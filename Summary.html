@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Press Summary</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/Summary.css" />
+</head>
+
+<body>
+    <header>Press Summary</header>
+    <div class="button__wrapper">
+        <div class="input-block__outer">
+            <div class="input__title">Die Number</div>
+            <input id="die-number__input" class="need-clear input-required save-data" type="text" />
+        </div>
+
+        <select id="presstype" onclick="timkiem();">
+        <option value="">-</option>
+        <option value="〇">〇</option>
+        <option value="◎">◎</option>
+        <option value="●">●</option>
+        </select>
+    </div>
+    <div class="summary__wrapper">
+        <table id="summary__table">
+            <thead>
+                <tr>
+                    <th>t_press.id</th>
+                    <th>Date</th>
+                    <th>Prs</th>
+                    <th>Die</th>
+                    <th>Typ</th>
+                    <th>Wsh</th>
+                    <th>BS</th>
+                    <th>BL</th>
+                    <th>PQt</th>
+                    <th>AQt</th>
+                    <th>Strt</th>
+                    <th>Stop</th>
+                    <th>W Qty</th>
+                    <th>W Qty</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>120</td>
+                    <td>17-12</td>
+                    <td>1</td>
+                    <td>SY30VN-01V</td>
+                    <td>●</td>
+                    <td>Yes</td>
+                    <td>12</td>
+                    <td>1200</td>
+                    <td>20</td>
+                    <td>15</td>
+                    <td>10:00</td>
+                    <td>11:00</td>
+                    <td>230</td>
+                    <td>230</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script src="./lib/jquery.min.js"></script>
+    <script src="./scr/Summary.js"></script>
+    <script type="text/javascript">
+        function timkiem() {
+            var input, table, tr, td, filter, i, txtdata;
+            input = document.getElementById("presstype");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("summary__table");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[4];
+                if (td) {
+                    txtdata = td.innerText;
+                    if (txtdata.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

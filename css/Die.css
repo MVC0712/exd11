@@ -1,0 +1,201 @@
+/*  2021/04/29 作成 */
+button {
+  height: 30px;
+}
+/* ====================== header ======================= */
+header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* justify-content: center; */
+}
+header div:nth-child(1) {
+  width: 150px;
+}
+header div:nth-child(2) {
+  width: 150px;
+}
+header div:nth-child(3) {
+  width: 150px;
+  font-size: 10pt;
+  font-weight: normal;
+}
+/* ====================== main wrapper ======================= */
+.main__wrapper {
+  height: 250px;
+  display: flex;
+  flex-direction: row;
+}
+/* ====================== button wrapper ======================= */
+.button__wrapper {
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+/* ====================== input  area ======================= */
+.input__area {
+  width: 350px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.input__area .input__wrapper {
+  width: 50%;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.input__area .input__wrapper .input__title {
+  width: 130px;
+  border: 1px solid;
+  border-color: #0000ff;
+}
+.input__area .input__wrapper .input-sub__wrapper {
+  width: 132px;
+  /* border: 1px solid; */
+  border: none;
+  /* border-color: #0000ff; */
+  display: flex;
+  flex-direction: row;
+}
+.input__area .input__wrapper .input-sub__wrapper > input {
+  width: 80px;
+  border: 1px solid;
+  border-color: #0000ff;
+}
+.input__area .input__wrapper .input-sub__wrapper > div {
+  width: 60px;
+  border: 1px solid;
+  border-width: 1px 1px 1px 0;
+  border-color: #0000ff;
+  text-align: center;
+}
+.input__area .input__wrapper input {
+  width: calc(130px - 1px);
+  padding: 0 1px 0 0;
+}
+.input__area .input__wrapper select {
+  width: 132px;
+  padding: 0;
+}
+/* ====================== production-table__wrapper ======================= */
+.production-table__wrapper {
+  width: calc(100% - 350px);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 5px;
+}
+.table-filter__wrapper {
+  width: 200px;
+  height: 30px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.table-filter__wrapper .filter__title {
+  background-color: #0000ff;
+  color: white;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #0000ff;
+  height: 20px;
+  width: 50px;
+}
+.table-filter__wrapper input {
+  width: 120px;
+}
+#production__table tbody {
+  width: 390px;
+  height: 150px;
+}
+#production__table th:nth-child(1),
+#production__table td:nth-child(1) {
+  display: none;
+}
+#production__table th:nth-child(2),
+#production__table td:nth-child(2) {
+  width: 100px;
+}
+#production__table td:nth-child(2) {
+  text-align: left;
+}
+
+#production__table th:nth-child(3),
+#production__table td:nth-child(3) {
+  width: 100px;
+}
+#production__table td:nth-child(3) {
+  text-align: left;
+}
+#production__table th:nth-child(4),
+#production__table td:nth-child(4) {
+  width: 140px;
+}
+#production__table td:nth-child(4) {
+  text-align: left;
+}
+#production__table th:nth-child(5),
+#production__table td:nth-child(5) {
+  width: 20px;
+}
+/* ====================== summary-table wrapper ======================= */
+.summary__wrapper {
+  height: calc(100% - 250px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+#summary__table tbody {
+  height: 216px;
+  width: 647px;
+}
+/* ======================        summary-table       ======================= */
+#summary__table th:nth-child(1),
+#summary__table td:nth-child(1) {
+  display: none;
+}
+#summary__table th:nth-child(2),
+#summary__table td:nth-child(2) {
+  width: 120px;
+}
+/* Dim */
+#summary__table th:nth-child(3),
+#summary__table td:nth-child(3) {
+  width: 50px;
+}
+#summary__table td:nth-child(3) {
+  text-align: right;
+}
+#summary__table th:nth-child(4),
+#summary__table td:nth-child(4) {
+  width: 130px;
+}
+#summary__table th:nth-child(5),
+#summary__table td:nth-child(5) {
+  width: 150px;
+}
+#summary__table th:nth-child(6),
+#summary__table td:nth-child(6) {
+  width: 80px;
+}
+#summary__table td:nth-child(6) {
+  text-align: right;
+}
+#summary__table th:nth-child(7),
+#summary__table td:nth-child(7) {
+  width: 80px;
+}
+#summary__table td:nth-child(7) {
+  text-align: right;
+}

@@ -1,0 +1,246 @@
+button {
+  height: 30px;
+}
+
+/* ====================== main wrapper ======================= */
+.main__wrapper {
+  height: 250px;
+  display: flex;
+  flex-direction: row;
+}
+/* ====================== button wrapper ======================= */
+.button__wrapper {
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+/* ====================== input  area ======================= */
+.input__area {
+  width: 400px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.input__area .input__wrapper {
+  width: 50%;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.input__area .input__wrapper .input__title {
+  width: 130px;
+  border: 1px solid;
+  border-color: #0000ff;
+}
+.input__area .input__wrapper .input-sub__wrapper {
+  width: 132px;
+  /* border: 1px solid; */
+  border: none;
+  /* border-color: #0000ff; */
+  display: flex;
+  flex-direction: row;
+}
+.input__area .input__wrapper .input-sub__wrapper > input {
+  width: 80px;
+  border: 1px solid;
+  border-color: #0000ff;
+}
+.input__area .input__wrapper .input-sub__wrapper > div {
+  width: 60px;
+  border: 1px solid;
+  border-width: 1px 1px 1px 0;
+  border-color: #0000ff;
+  text-align: center;
+}
+.input__area .input__wrapper input {
+  width: calc(130px - 1px);
+  padding: 0 1px 0 0;
+}
+.input__area .input__wrapper select {
+  width: 132px;
+  padding: 0;
+}
+
+/* ====================== category  area ======================= */
+.category__area {
+  width: calc(100% - 400px);
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.category__wrapper {
+  height: 100%;
+  width: calc(100% / 2);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.add-edit__input {
+  display: flex;
+  flex-direction: row;
+}
+.add-edit__input input {
+  width: 100px;
+  height: 20px;
+}
+.add-edit__input button {
+  height: 22px;
+  width: 50px;
+  margin: 0;
+}
+.category__wrapper tbody {
+  height: 150px;
+}
+
+.category__wrapper table th:nth-child(1),
+.category__wrapper table td:nth-child(1) {
+  display: none;
+}
+.category__wrapper table th:nth-child(2),
+.category__wrapper table td:nth-child(2) {
+  width: 120px;
+}
+.category__wrapper table td:nth-child(2) {
+  text-align: left;
+}
+.category__wrapper table th:nth-child(3),
+.category__wrapper table td:nth-child(3) {
+  width: 30px;
+}
+
+/* ====================== summary-table wrapper ======================= */
+.summary__wrapper {
+  height: calc(100% - 250px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+#summary__table tbody {
+  height: 216px;
+  width: 785px;
+}
+/* ======================        summary-table       ======================= */
+#summary__table th:nth-child(1),
+#summary__table td:nth-child(1) {
+  display: none;
+}
+#summary__table th:nth-child(2),
+#summary__table td:nth-child(2) {
+  width: 170px;
+}
+#summary__table th:nth-child(3),
+#summary__table td:nth-child(3) {
+  width: 80px;
+}
+/* production number */
+#summary__table th:nth-child(4),
+#summary__table td:nth-child(4) {
+  width: 150px;
+}
+/* production dept */
+#summary__table th:nth-child(5),
+#summary__table td:nth-child(5) {
+  width: 25px;
+}
+#summary__table td:nth-child(5) {
+  text-align: center;
+}
+
+/* material */
+#summary__table th:nth-child(6),
+#summary__table td:nth-child(6) {
+  width: 40px;
+}
+/* aging */
+#summary__table th:nth-child(7),
+#summary__table td:nth-child(7) {
+  width: 25px;
+}
+#summary__table td:nth-child(7) {
+  text-align: center;
+}
+/* Area */
+#summary__table th:nth-child(8),
+#summary__table td:nth-child(8) {
+  width: 40px;
+}
+#summary__table td:nth-child(8) {
+  text-align: right;
+}
+/* packing */
+#summary__table th:nth-child(9),
+#summary__table td:nth-child(9) {
+  width: 70px;
+}
+#summary__table td:nth-child(9) {
+  text-align: right;
+}
+/* Weight */
+#summary__table th:nth-child(10),
+#summary__table td:nth-child(10) {
+  width: 48px;
+  /* text-align: right; */
+}
+#summary__table td:nth-child(10) {
+  text-align: right;
+}
+/* Work Length */
+#summary__table th:nth-child(11),
+#summary__table td:nth-child(11) {
+  width: 30px;
+  /* text-align: right; */
+}
+#summary__table td:nth-child(11) {
+  text-align: right;
+}
+/* x packing column */
+#summary__table th:nth-child(12),
+#summary__table td:nth-child(12) {
+  width: 26px;
+  /* text-align: right; */
+}
+#summary__table td:nth-child(12) {
+  text-align: right;
+}
+/* y packing column */
+#summary__table th:nth-child(13),
+#summary__table td:nth-child(13) {
+  width: 26px;
+  /* text-align: right; */
+}
+#summary__table td:nth-child(13) {
+  text-align: right;
+}
+
+.summary__footer {
+  width: 200px;
+  height: 27px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+/* added  */
+header {
+  display: flex;
+  flex-direction: row;
+}
+
+.header-info {
+  width: 130px;
+  height: 100%;
+}
+.input__area .input__wrapper input.packing_spec {
+  width: 59px;
+}
+.packing_spec__wrapper {
+  display: flex;
+  flex-direction: row;
+}

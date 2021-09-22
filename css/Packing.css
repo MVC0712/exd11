@@ -1,0 +1,574 @@
+body {
+	width: calc(900px - 2px);
+}
+
+tbody td {
+	font-size: 10pt;
+	padding: 1px;
+}
+
+thead > tr > th {
+	border-bottom: 0;
+	height: 20px;
+}
+
+thead th,
+tbody th {
+	background-color: #0000ff;
+	border: solid 1px white;
+	color: white;
+	text-align: center;
+	font-size: 10pt;
+	font-weight: normal;
+}
+
+thead td {
+}
+
+td {
+	padding: 0;
+	/* font-size: 10pt; */
+}
+
+table input {
+	padding: 0;
+	/* width: 60px; */
+	border: none;
+	width: 100%;
+}
+
+table input.selected-input {
+	background-color: #d6d283;
+}
+
+tbody tr.selected-record {
+	background-color: #dbdbff;
+}
+
+/* basic setting */
+
+.no-display {
+	display: none;
+}
+
+.input-block__outer {
+	height: 35px;
+	width: initial;
+	margin: 0 5px 0 5px;
+}
+
+.bottom__wrapper .input-block__outer {
+	height: 30px;
+}
+
+.input__title {
+	width: initial;
+	padding: 0 3px 0 3px;
+}
+
+/* =============page layout=============== */
+
+.upper__wrapper {
+	padding: 0;
+	height: 250px;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+}
+
+.bottom__wrapper {
+	padding: 0;
+	height: calc(598px - 30px - 250px - 1px);
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	border-top: 1px dotted #0000ff;
+}
+
+.input__wrapper {
+	width: 650px;
+	height: 100%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-evenly;
+}
+
+.first__row {
+	display: flex;
+	justify-content: space-evenly;
+	width: 100%;
+}
+
+.dot__line {
+	width: 100%;
+	border-bottom: 1px dotted #0000ff;
+}
+
+.complete-list__wrapper {
+	width: calc(898px - 650px - 1px);
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	border-left: 1px dotted #0000ff;
+}
+
+.left__wrapper {
+	width: 300px;
+	height: 100%;
+}
+
+.middle__wrapper {
+	width: 300px;
+	height: 100%;
+}
+
+.right__wrapper {
+	width: calc(898px - 300px - 300px);
+	height: 100%;
+}
+
+.top__box {
+	height: 70px;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-content: space-evenly;
+}
+
+.complete-list__wrapper .top__box {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.bottom-table__wrapper {
+	width: 100%;
+	height: calc(317px - 70px);
+	display: flex;
+	align-items: start;
+	justify-content: center;
+}
+
+/* ============= Radio Settings =============== */
+
+.radio__input {
+	display: none;
+}
+
+.radio__span {
+	position: relative;
+}
+
+.radio__span:before {
+	content: "";
+	display: inline-block;
+	width: 12px;
+	height: 12px;
+	margin-right: 6px;
+	border: 1px solid #0000ff;
+	border-radius: 50%;
+}
+
+.radio__input:checked + .radio__span:after {
+	position: absolute;
+	top: 6px;
+	left: 3px;
+	content: "";
+	display: inline-block;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background-color: #0000ff;
+}
+
+.radio__input:checked + .radio__span {
+	color: #0000ff;
+}
+
+/* ============= Table Settings =============== */
+
+/* packing work history table */
+
+#packing-history__table td,
+#packing-history__table th {
+	font-size: 10pt;
+}
+
+#packing-history__table {
+	width: 385px;
+}
+
+#packing-history__table tbody {
+	height: 100px;
+}
+
+#packing-history__table tr th:nth-child(1),
+#packing-history__table tr td:nth-child(1) {
+	display: none;
+}
+
+/* date */
+
+#packing-history__table tr th:nth-child(2),
+#packing-history__table tr td:nth-child(2) {
+	width: 50px;
+}
+
+#packing-history__table tr td:nth-child(2) {
+	text-align: center;
+}
+
+/* start time */
+
+#packing-history__table tr th:nth-child(3),
+#packing-history__table tr td:nth-child(3) {
+	width: 50px;
+}
+
+#packing-history__table tr td:nth-child(3) {
+	text-align: center;
+}
+
+/* end time */
+
+#packing-history__table tr th:nth-child(4),
+#packing-history__table tr td:nth-child(4) {
+	width: 50px;
+}
+
+#packing-history__table tr td:nth-child(4) {
+	text-align: center;
+}
+
+/* Production Number */
+
+#packing-history__table tr th:nth-child(5),
+#packing-history__table tr td:nth-child(5) {
+	width: 140px;
+}
+
+#packing-history__table tr td:nth-child(5) {
+	text-align: left;
+}
+
+/* workers number */
+
+#packing-history__table tr th:nth-child(6),
+#packing-history__table tr td:nth-child(6) {
+	width: 30px;
+}
+
+#packing-history__table tr td:nth-child(6) {
+	text-align: right;
+}
+
+/* box number */
+
+#packing-history__table tr th:nth-child(7),
+#packing-history__table tr td:nth-child(7) {
+	width: 30px;
+}
+
+#packing-history__table tr td:nth-child(7) {
+	text-align: right;
+}
+
+/* ++++++++++++++++++  wokers__table +++++++++++++++++++ */
+
+/* workers__table */
+
+#workers__table {
+	width: 160px;
+}
+
+#workers__table tbody {
+	height: 100px;
+}
+
+#workers__table tr th:nth-child(1),
+#workers__table tr td:nth-child(1) {
+	display: none;
+}
+
+#workers__table tr th:nth-child(2),
+#workers__table tr td:nth-child(2) {
+	width: 140px;
+}
+
+#workers__table tr th:nth-child(3),
+#workers__table tr td:nth-child(3) {
+	width: 100px;
+}
+
+/* complete box table */
+
+#complete-list__table {
+	font-size: 10pt;
+	width: 230px;
+}
+
+#complete-list__table tbody {
+	height: 150px;
+}
+
+#complete-list__table tr th:nth-child(1),
+#complete-list__table tr td:nth-child(1) {
+	display: none;
+}
+
+#complete-list__table tr th:nth-child(2),
+#complete-list__table tr td:nth-child(2) {
+	width: 40px;
+}
+#complete-list__table tr td:nth-child(2) {
+	align-items: center;
+}
+
+#complete-list__table tr th:nth-child(3),
+#complete-list__table tr td:nth-child(3) {
+	width: 120px;
+}
+
+#complete-list__table tr td:nth-child(3) {
+	text-align: left;
+}
+
+#complete-list__table tr th:nth-child(4),
+#complete-list__table tr td:nth-child(4) {
+	width: 40px;
+}
+#complete-list__table tr td:nth-child(4) {
+	text-align: right;
+}
+
+/* Bottom wrapper table */
+
+.bottom__wrapper tbody.table-content {
+	height: 145px;
+}
+
+.table-footer {
+	overflow-y: initial;
+	height: initial;
+}
+
+.table-footer td {
+	border-color: white;
+	border-top: 1px solid black;
+	font-size: 12pt;
+	text-align: right;
+}
+
+/* Remain Rack Table */
+
+#remain-rack__table {
+	width: 232px;
+}
+
+#remain-rack__table tr th:nth-child(1),
+#remain-rack__table tr td:nth-child(1) {
+	display: none;
+}
+
+#remain-rack__table tr th:nth-child(2),
+#remain-rack__table tr td:nth-child(2) {
+	width: 70px;
+}
+
+#remain-rack__table tr td:nth-child(2) {
+	text-align: right;
+}
+
+#remain-rack__table tr th:nth-child(3),
+#remain-rack__table tr td:nth-child(3) {
+	width: 40px;
+}
+
+#remain-rack__table tr td:nth-child(3) {
+	text-align: right;
+}
+
+#remain-rack__table tr th:nth-child(4),
+#remain-rack__table tr td:nth-child(4) {
+	width: 45px;
+}
+
+#remain-rack__table tr td:nth-child(4) {
+	text-align: right;
+}
+
+#remain-rack__table tr th:nth-child(5),
+#remain-rack__table tr td:nth-child(5) {
+	width: 45px;
+}
+
+#remain-rack__table tr td:nth-child(5) {
+	text-align: right;
+}
+
+/* NG Table */
+
+#ng__table {
+	width: 230px;
+}
+
+#ng__table tr th:nth-child(1),
+#ng__table tr td:nth-child(1) {
+	display: none;
+}
+
+#ng__table tr th:nth-child(2),
+#ng__table tr td:nth-child(2) {
+	width: 40px;
+}
+
+#ng__table tr td:nth-child(2) {
+	text-align: right;
+}
+
+#ng__table tr th:nth-child(3),
+#ng__table tr td:nth-child(3) {
+	width: 120px;
+}
+
+#ng__table tr td:nth-child(3) {
+	text-align: left;
+}
+
+#ng__table tr th:nth-child(4),
+#ng__table tr td:nth-child(4) {
+	width: 40px;
+}
+
+#ng__table tr td:nth-child(4) {
+	text-align: right;
+}
+
+/* Box Table */
+
+#box__table {
+	width: 185px;
+}
+
+#box__table tr th:nth-child(1),
+#box__table tr td:nth-child(1) {
+	display: none;
+}
+
+#box__table tr th:nth-child(2),
+#box__table tr td:nth-child(2) {
+	width: 120px;
+}
+
+#box__table tr th:nth-child(3),
+#box__table tr td:nth-child(3) {
+	width: 40px;
+}
+
+#box__table tr td:nth-child(3) {
+	text-align: right;
+}
+
+/* ================  Input Select Button Elements ================= */
+
+.bottom__wrapper button {
+	margin: 0;
+	height: 22px;
+	border: 1px;
+	width: 40px;
+}
+
+#clrear-date__button {
+	margin: 0;
+	height: 22px;
+	border: 1px;
+	width: 40px;
+}
+
+#packing-add__button {
+	margin: 0;
+	height: 22px;
+	border: 1px;
+	width: 50px;
+}
+
+#press-date__input {
+	width: 120px;
+}
+
+#packing-date__input {
+	width: 120px;
+}
+
+#add_worker__button {
+	height: 22px;
+	border: 1px;
+	width: 40px;
+}
+
+#directive__input {
+	/* border-width: 1pt 0 1pt 1pt;
+  height: 19pt; */
+	border-right: 0;
+}
+
+#ng-qty__input {
+	border-right: 0;
+}
+
+#ng-code__select {
+	width: 150px;
+}
+
+#box-number__select {
+	width: 135px;
+}
+
+#box-new-number__input {
+	width: 80px;
+	border-left: 0;
+}
+
+#packing-check-date__input {
+	width: 120px;
+}
+
+#worker__select {
+	width: 110px;
+}
+
+#packing-start__input {
+	width: 35px;
+}
+
+#packing-end__input {
+	width: 35px;
+}
+
+#directive__input {
+	width: 25px;
+}
+
+#DN__display {
+	width: 105px;
+	font-size: 10pt;
+	border: 1px solid #0000ff;
+	height: 20px;
+}
+
+#PN__display {
+	width: 135px;
+	font-size: 10pt;
+	border: solid #0000ff;
+	border-width: 1px 1px 1px 0;
+	height: 20px;
+}
+
+#packing-box-add__button {
+	width: 95px;
+}

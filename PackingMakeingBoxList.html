@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Packing Box List</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/PackingMakingBoxList.css" />
+  </head>
+
+  <body>
+    <header>Tạo mã hộp (Making Box Number)</header>
+    <div class="input__wrapper">
+      <div class="input-block__outer">
+        <div class="input__title">O/S STT</div>
+        <input
+          disabled
+          id="ordersheet-number__input"
+          class="complete-input"
+          type="text"
+        />
+        <div id="m_ordersheet_id" class="no-dlisplay"></div>
+        <div class="input__title">P/N</div>
+        <input
+          disabled
+          id="production_number__input"
+          class="complete-input"
+          type="text"
+        />
+        <div id="m_production_number_id" class="no-dlisplay"></div>
+      </div>
+      <div class="input-block__outer">
+        <div class="input__title">Production Quantity</div>
+        <input
+          disabled
+          id="production-quantity__input"
+          class="complete-input"
+          type="text"
+        />
+        pic
+      </div>
+      <div class="input-block__outer">
+        <div class="input__title">BAR/BOX</div>
+        <input
+          disabled
+          id="bar_box__input"
+          class="complete-input"
+          type="text"
+        />
+        <div class="input__title">Column</div>
+        <input disabled id="column__input" class="complete-input" type="text" />
+        <div class="input__title">ROW</div>
+        <input disabled id="row__input" class="complete-input" type="text" />
+      </div>
+      <div class="input-block__outer button__wrapper">
+        <button id="make__button">Make Number</button>
+        <button id="cancel__button">Cancel</button>
+        <button id="agree__button">Save & Close</button>
+      </div>
+    </div>
+    <div class="summary__wrapper">
+      <table id="summary__table">
+        <thead>
+          <tr>
+            <!-- <th>ID</th> -->
+            <th>Order</th>
+            <th>Box Number</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <dialog class="dialog__wrapper" id="first__dialog">
+        Do you ?
+        <button id="f_dialog-cancel__button">Cancel</button>
+        <button id="f_dialog-boxnumber__button">BoxNoCpy</button>
+        <button id="f_dialog-delete__button" class="delete__button">
+          Delete
+        </button>
+      </dialog>
+      <dialog class="dialog__wrapper" id="second__dialog">
+        Do you Delete?
+        <button id="s_dialog-cancel__button">Cancel</button>
+        <button id="s_dialog-delete__button" class="delete__button">
+          Delete
+        </button>
+      </dialog>
+    </div>
+    <script src="./lib/jquery.min.js"></script>
+    <script>
+      let firstDialog = document.getElementById("first__dialog");
+      let secondDialog = document.getElementById("second__dialog");
+      let ajaxReturnData;
+      const myAjax = {
+        myAjax: function (fileName, sendData) {
+          $.ajax({
+            type: "POST",
+            url: fileName,
+            dataType: "json",
+            data: sendData,
+            async: false,
+          })
+            .done(function (data) {
+              ajaxReturnData = data;
+            })
+            .fail(function () {
+              alert("DB connect error");
+            });
+        },
+      };
+      $(function () {
+        let ordersheetNumber,
+          ordersheetId,
+          productionNumber,
+          productionNumberId,
+          productionQuantity;
+        // read data from parent window
+        ordersheetId = $(window.opener.document)
+          .find("#directive_input__select")
+          .val();
+        ordersheetNumber = $(window.opener.document)
+          .find("#directive_input__select option:selected")
+          .html();
+        productionNumber = $(window.opener.document)
+          .find("#PN__display")
+          .html();
+        productionNumberId = $(window.opener.document)
+          .find("#production_number_id")
+          .html();
+        productionQuantity = $(window.opener.document)
+          .find("#ordersheet-quantity")
+          .html();
+        $("#ordersheet-number__input").val(ordersheetNumber);
+        $("#m_ordersheet_id").html(ordersheetId);
+        $("#production_number__input").val(productionNumber);
+        $("#m_production_number_id").html(productionNumberId);
+        $("#production-quantity__input").val(productionQuantity);
+        // read packing spec deta from database
+        setPackingSpec();
+      });
+
+      function setPackingSpec() {
+        let fileName;
+        let sendData = new Object();
+        fileName = "./php/Packing/SelPackingSpec.php";
+        sendData = {
+          dummy: "dummy",
+          production_number_id: $("#m_production_number_id").html(),
+          created_at: getToday(),
+        };
+        myAjax.myAjax(fileName, sendData);
+        $("#bar_box__input").val(ajaxReturnData["packing_quantity"]);
+        $("#column__input").val(ajaxReturnData["packing_column"]);
+        $("#row__input").val(ajaxReturnData["packing_row"]);
+      }
+
+      // ==========================================
+      // ==========================================
+      // ========== BUTTON ACTION
+      // ==========================================
+      // ==========================================
+      $(document).on("click", "#make__button", function () {
+        let needBoxQuantity;
+        let orderQuantity = $("#production-quantity__input").val();
+        let quantityPerBox = Number($("#bar_box__input").val());
+
+        orderQuantity = Number(orderQuantity.replace(/,/g, ''));
+
+        needBoxQuantity = Math.ceil(orderQuantity / quantityPerBox);
+        // making summary__table
+        for (let index = 1; index <= needBoxQuantity; index++) {
+          let trObj = $("<tr>");
+          let order;
+          let boxNumber;
+          // needBoxQuantity > 10  then  01/20
+          // needBoxQuantity < 10  then   1/5
+          if (Number(needBoxQuantity) >= 10) {
+            order = ("00" + index).slice(-2);
+          } else {
+            order = index;
+          }
+          boxNumber =
+            $("#ordersheet-number__input").val() +
+            "-" +
+            order +
+            "/" +
+            needBoxQuantity;
+          trObj
+            .append($("<td>").html(index))
+            .append($("<td>").append($("<input>").val(boxNumber)))
+            .appendTo("#summary__table tbody");
+        }
+        // $(this).prop("disabled", true);
+      });
+
+      $(document).on("click", "#agree__button", function () {
+        let fileName;
+        let sendData = new Object();
+        let tableData = [];
+        // get table data
+        tableData = getTableData($("#summary__table tbody tr"));
+        tableData.push($("#m_ordersheet_id").html());
+        sendData = JSON.stringify(tableData);
+        fileName = "./php/Packing/InsNewBoxNumber.php";
+        myAjax.myAjax(fileName, sendData);
+        open("about:blank", "_self").close(); // close my self
+      });
+
+      $(document).on("click", "#cancel__button", function () {
+        open("about:blank", "_self").close(); // close my self
+      });
+
+      function getTableData(tableTrObj) {
+        let tableData = [];
+        tableTrObj.each(function () {
+          tableData.push($(this).find("input").val());
+        });
+        return tableData;
+      }
+
+      $(document).on("click", "table tr", function (e) {
+        let id_name;
+        id_name = $(this).parent().parent().attr("id");
+        id_name = id_name + "_selected__tr";
+        if (!$(this).hasClass("selected-record")) {
+          // tr に class を付与し、選択状態の background colorを付ける
+          $(this).parent().find("tr").removeClass("selected-record");
+          $(this).parent().find("input").removeClass("selected-input");
+          $(this).addClass("selected-record");
+          $(this).find("input").addClass("selected-input");
+          // tr に id を付与する
+          $("#" + id_name).removeAttr("id");
+          $(this).attr("id", id_name);
+        } else {
+          firstDialog.showModal();
+        }
+      });
+      // dialog cancel
+      $(document).on("click", "#f_dialog-cancel__button", function () {
+        firstDialog.close();
+      });
+      // dialog copy boxnumber
+      $(document).on("click", "#f_dialog-boxnumber__button", function () {
+        // click again same record, move selected data to parent window
+        let boxNumberId = $("#summary__table_selected__tr")
+          .find("td")
+          .eq(0)
+          .html();
+        let boxNumber = $("#summary__table_selected__tr").find("input").val();
+        $(window.opener.document)
+          .find("#box-number__select")
+          .empty()
+          .append($("<option>").val("0").html("no"))
+          .append($("<option>").val(boxNumberId).html(boxNumber));
+        open("about:blank", "_self").close(); // ウィンドウを閉じる
+        firstDialog.close();
+      });
+      // dialog delete
+      $(document).on("click", "#f_dialog-delete__button", function () {
+        firstDialog.close();
+        secondDialog.showModal();
+      });
+      // second dialog cancel button
+      $(document).on("click", "#s_dialog-cancel__button", function () {
+        secondDialog.close();
+      });
+      // second dialog delete button
+      $(document).on("click", "#s_dialog-delete__button", function () {
+        let fileName;
+        let sendData = new Object();
+        fileName = "./php/Packing/DelBoxNumber.php";
+        sendData = {
+          id: $("#summary__table_selected__tr").find("td").eq(0).html(),
+        };
+        myAjax.myAjax(fileName, sendData);
+        secondDialog.close();
+        makeSummaryTable();
+      });
+
+      $(document).on("keyup", "#box-number__input", function (e) {
+        $(this).val($(this).val().toUpperCase()); // 小文字を大文字に
+        if ($(this).val().length >= 5 && $(this).val() != "") {
+          $(this).removeClass("no-input").addClass("complete-input");
+          $("#add__button").prop("disabled", false);
+        } else {
+          $(this).removeClass("complete-input").addClass("no-input");
+          $("#add__button").prop("disabled", true);
+        }
+      });
+
+      $(document).on("click", "#add__button", function (e) {
+        let fileName;
+        let sendData = new Object();
+        fileName = "./php/Packing/InsBoxNumber.php";
+        sendData = {
+          dummy: "dummy",
+          box_number: $("#box-number__input").val(),
+          created_at: getToday(),
+        };
+        myAjax.myAjax(fileName, sendData);
+        // ==== remake summary table  ============
+        makeSummaryTable();
+        $("#box-number__input")
+          .val("")
+          .removeClass("complete-input")
+          .addClass("no-input");
+        $("#add__button").prop("disabled", true);
+      });
+
+      function makeSummaryTable() {
+        let fileName;
+        let sendData = new Object();
+        fileName = "./php/Packing/SelBoxNumber.php";
+        sendData = {
+          limit: 100,
+        };
+        myAjax.myAjax(fileName, sendData);
+        $("#summary__table tbody").empty();
+        ajaxReturnData.forEach(function (trVal) {
+          var newTr = $("<tr>");
+          Object.keys(trVal).forEach(function (tdVal, index) {
+            if (index == 1) {
+              $("<td>").append($("<input>").val(trVal[tdVal])).appendTo(newTr);
+            } else {
+              $("<td>").html(trVal[tdVal]).appendTo(newTr);
+            }
+          });
+          $(newTr).appendTo("#summary__table tbody");
+        });
+      }
+
+      function getToday() {
+        // 本日の日付をyy-mm-dd形式で返す
+        let dt = new Date();
+        return (
+          dt.getFullYear() + "-" + (dt.getMonth() + 1) + "-" + dt.getDate()
+        );
+      }
+    </script>
+  </body>
+</html>

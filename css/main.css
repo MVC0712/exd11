@@ -1,0 +1,147 @@
+* {
+  font-family: 游ゴシック体, "Yu Gothic", YuGothic, "ヒラギノ角ゴシック Pro",
+    "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, Osaka, "ＭＳ Ｐゴシック",
+    "MS PGothic", sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+body {
+  margin: 4px;
+  border: solid 1px #0000cc;
+  display: flex;
+  flex-direction: column;
+  height: calc(600px - 2px);
+  width: calc(800px - 2px);
+}
+header {
+  display: flex;
+  border-bottom: dotted 1px #0000cc;
+  flex-direction: column;
+  height: 30px;
+  justify-content: center;
+  text-align: center;
+  background-color: #0000cc;
+  color: white;
+  font-weight: bold;
+}
+footer {
+  width: 100%;
+  height: calc(598px - 31px - 5px - 480px);
+}
+.main__wrapper {
+  /* border-bottom: dotted 1px #0000cc; */
+  display: flex;
+  height: 480px;
+  flex-direction: column;
+  flex-wrap: wrap;
+  font-size: 10pt;
+  padding-top: 5px;
+  text-align: center;
+}
+/* ボタンの設定 */
+button {
+  width: 100px;
+  height: 40px;
+  display: block;
+  position: relative;
+  padding: 0px;
+  margin: 10px auto 10px auto;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  background: #0000ff;
+  border: none;
+  font-size: 9pt;
+  font-weight: bold;
+}
+button:hover {
+  cursor: pointer;
+  text-decoration: none;
+  background: #ff88ef;
+  transition: background 0.3s;
+}
+button:disabled {
+  cursor: default;
+  text-decoration: none;
+  background: #d7d7e9;
+}
+dialog button {
+  height: 50px;
+}
+/* テーブルの設定 */
+table {
+  border-collapse: collapse;
+  cursor: pointer;
+}
+thead,
+tbody {
+  display: block;
+}
+tbody {
+  overflow-y: scroll;
+  font-size: 10pt;
+  height: 75px;
+}
+thead td,
+thead th {
+  background-color: #0000ff;
+  border: solid 1px white;
+  color: white;
+  text-align: center;
+  font-size: 9pt;
+  font-weight: normal;
+}
+tbody td {
+  border: solid 1px rgb(243, 243, 243);
+  font-size: 9pt;
+  font-weight: normal;
+}
+tbody tr.selected-record {
+  background-color: #d6d283;
+}
+/* 必要入力枠の色塗り */
+.input-required {
+  /* background-color: #ffd1bf; */
+}
+.no-input {
+  background-color: #d6d283;
+}
+.complete-input {
+  background-color: #ffff;
+}
+/* 表のレコードの不可視化 */
+table tbody tr.hide {
+  display: none;
+}
+/* input要素をdisabledにしたとき */
+input:disabled {
+  background-color: #d1d1d1;
+}
+/* ------------ input block -------------------- */
+.input-block__outer {
+  height: 25px;
+  width: 150px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.input__title {
+  display: flex;
+  align-items: center;
+  height: 22px;
+  width: 40px;
+  background-color: #0000ff;
+  color: white;
+}
+input {
+  width: 40px;
+  height: 20px;
+  border: 1px solid #0000ff;
+  text-align: right;
+  padding: 0px 2px;
+}
+select {
+  width: 100px;
+  height: 22px;
+  border: 1px solid #0000ff;
+}

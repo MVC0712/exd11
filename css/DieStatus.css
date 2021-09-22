@@ -1,0 +1,125 @@
+body {
+    width: calc(900px - 2px);
+}
+
+thead>tr>th {
+    border-bottom: 0;
+    height: 20px;
+}
+
+thead th,
+tbody th {
+    background-color: #0000ff;
+    border: solid 1px white;
+    color: white;
+    text-align: center;
+    font-size: 9pt;
+    font-weight: normal;
+}
+
+td {
+    padding: 0;
+}
+
+
+/* =============page layout=============== */
+
+.main__wrapper1 {
+    padding: 0;
+    height: 380px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.left__wrapper {
+    width: 450px;
+    height: 565px;
+    flex-direction: column;
+}
+
+.right__wrapper {
+    width: calc(898px - 450px - 1px);
+    height: 565px;
+    border-left: 1px dotted #0000ff;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+
+/* =============== TABLES  ==================== */
+
+.left__wrapper tbody {
+    overflow-y: unset;
+}
+
+#die__table {
+    width: 350px;
+    height: 100%;
+}
+
+#die__table tbody {
+    width: 430px;
+    height: 545px;
+}
+
+#die__table th {
+    padding: 0;
+}
+
+
+/* id */
+
+#die__table tr th:nth-child(1),
+#die__table tr td:nth-child(1) {
+    display: none;
+}
+
+
+/* Die */
+
+#die__table tr th:nth-child(2),
+#die__table tr td:nth-child(2) {
+    width: 100px;
+    text-align: left;
+}
+
+
+/* Status */
+
+#die__table tr th:nth-child(3),
+#die__table tr td:nth-child(3) {
+    width: 70px;
+}
+
+#die__table tr td:nth-child(3) {
+    text-align: left;
+}
+
+
+/* Note */
+
+#die__table tr th:nth-child(4),
+#die__table tr td:nth-child(4) {
+    width: 150px;
+}
+
+#die__table tr td:nth-child(4) {
+    text-align: left;
+}
+
+#die__table tr th:nth-child(5),
+#die__table tr td:nth-child(5) {
+    width: 85px;
+}
+
+#die__table tr td:nth-child(5) {
+    text-align: center;
+}
+
+object {
+    width: 100%;
+    height: 100%;
+}

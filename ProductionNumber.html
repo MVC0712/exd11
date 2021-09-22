@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Production Number</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/ProductionNumber.css" />
+  </head>
+
+  <body>
+    <header>Production Number</header>
+    <div class="main__wrapper">
+      <div class="input__area">
+        <div class="input__wrapper">
+          <div class="input__title">Production Number</div>
+          <input class="save-data" id="production_number" type="text" />
+        </div>
+        <div class="input__wrapper">
+          <div class="input__title">Drawn Depertment</div>
+          <select name="" id="drawn_department" class="save-data need-clear">
+            <option value="0">no</option>
+            <option value="1">Dev. 1</option>
+            <option value="2">Dev. 2</option>
+            <option value="3">Dev. 3</option>
+            <option value="4">Dev. 4</option>
+            <option value="5">Dev. 5</option>
+            <option value="6">Dev. 6</option>
+            <option value="7">Dev. 7</option>
+            <option value="8">Dev. 8</option>
+            <option value="11">Dev. 11</option>
+          </select>
+        </div>
+        <div class="input__wrapper">
+          <div class="input__title">Material</div>
+          <select name="" id="billet_material_id" class="save-data need-clear">
+            <option value="0">no</option>
+            <option value="1">A6061</option>
+            <option value="2">A6063</option>
+            <option value="3">A6N01</option>
+          </select>
+        </div>
+        <div class="input__wrapper">
+          <div class="input__title">Aging</div>
+          <select name="" id="aging_type_id" class="save-data need-clear">
+            <option value="0">no</option>
+            <option value="1">O</option>
+            <option value="2">T5</option>
+            <option value="3">T6</option>
+          </select>
+        </div>
+        <div class="input__wrapper">
+          <div class="input__title">Production Length</div>
+          <div class="input-sub__wrapper">
+            <input type="text" / id="production_length" class="save-data">
+            <div>m</div>
+          </div>
+        </div>
+        <div class="input__wrapper">
+          <div class="input__title">Circumscribed Circle</div>
+          <div class="input-sub__wrapper">
+            <input type="text" / id="circumscribed_circle" class="save-data">
+            <div>mm</div>
+          </div>
+        </div>
+        <div class="input__wrapper">
+          <div class="input__title">Specific Weight</div>
+          <div class="input-sub__wrapper">
+            <input type="text" / id="specific_weight" class="save-data">
+            <div>kg/m</div>
+          </div>
+        </div>
+        <div class="input__wrapper">
+          <div class="input__title">Cross Section Area</div>
+          <div class="input-sub__wrapper">
+            <input type="text" / id="cross_section_area" class="save-data">
+            <div>mm2</div>
+          </div>
+        </div>
+        <div class="input__wrapper">
+          <div class="input__title">Packing Qty</div>
+          <input type="text" / id="packing_quantity" class="save-data">
+        </div>
+        <div class="input__wrapper"></div>
+      </div>
+      <div class="category__area">
+        <div class="category__wrapper">
+          <!-- <div class="category__title">category 1</div> -->
+          <table id="category1__table">
+            <thead>
+              <tr>
+                <th>id</th>
+                <th colspan="2">Category 1</th>
+              </tr>
+              <tr>
+                <th>id</th>
+                <th>note</th>
+                <th>qty</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>CQチューブ</td>
+                <td>qty</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="add-edit__input">
+            <input id="category1__input" type="text" />
+            <button id="category1__button" disabled>AddNew</button>
+          </div>
+        </div>
+        <div class="category__wrapper">
+          <table id="category2__table">
+            <thead>
+              <tr>
+                <th>id</th>
+                <th colspan="2">Category 2</th>
+              </tr>
+              <tr>
+                <th>id</th>
+                <th>note</th>
+                <th>qty</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="add-edit__input">
+            <input id="category2__input" type="text" />
+            <button id="category2__button" disabled>AddNew</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="button__wrapper">
+      <button id="save__button">Save</button>
+      <button id="update__button">Update</button>
+      <button id="test__button">Test</button>
+    </div>
+    <div class="summary__wrapper">
+      <table id="summary__table">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>cate 1</th>
+            <th>cate 2</th>
+            <th>PN</th>
+            <th>Dpt</th>
+            <th>Mtrl</th>
+            <th>Agi</th>
+            <th>Area</th>
+            <th>Pack</th>
+            <th>Weight</th>
+            <th>W_Len</th>
+            <!-- <th>BiletBandl</th> -->
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <div class="summary__footer" id="summary__footer">47items</div>
+    </div>
+    <!-- Summary 削除確認ダイアログ -->
+    <dialog class="dialog__wrapper" id="summary-delete__dialog">
+      Do you Summary Delete?
+      <button id="summary-delete-dialog-cancel__button">Cancel</button>
+      <button id="summary-delete-dialog-delete__button">Delete</button>
+    </dialog>
+    <!-- Category 1 削除確認ダイアログ -->
+    <dialog class="dialog__wrapper" id="category1-delete__dialog">
+      Do you Delete?
+      <button id="category1-delete-dialog-cancel__button">Cancel</button>
+      <button id="category1-delete-dialog-delete__button">Delete</button>
+    </dialog>
+    <!-- Category 2 削除確認ダイアログ -->
+    <dialog class="dialog__wrapper" id="category2-delete__dialog">
+      Do you Delete?
+      <button id="category2-delete-dialog-cancel__button">Cancel</button>
+      <button id="category2-delete-dialog-delete__button">Delete</button>
+    </dialog>
+
+    <script src="./lib/jquery.min.js"></script>
+    <script src="./scr/ProdcutionNumber.js"></script>
+  </body>
+</html>

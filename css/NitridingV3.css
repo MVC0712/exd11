@@ -1,0 +1,244 @@
+.main__wrapper {
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+.column__wrapper {
+  height: 100%;
+}
+.left__wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 520px;
+  justify-content: space-around;
+  align-items: center;
+}
+.center__wrapper {
+  width: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.right__wrapper {
+  width: calc(798px - 520px - 70px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+/* ++++++++++++++++++++++++++++++++++++++++++++ */
+/* ++++++++++++++++++++++++++++++++++++++++++++ */
+/* +++++++++++++++  LEFT Area ++++++++++++++ */
+/* ++++++++++++++++++++++++++++++++++++++++++++ */
+/* ++++++++++++++++++++++++++++++++++++++++++++ */
+
+/* ++++++++++++++++++++++++++++++++++++++++++++ */
+/* +++++++++++++++  summary table ++++++++++++++ */
+/* ++++++++++++++++++++++++++++++++++++++++++++ */
+#summary__table {
+  width: 500px;
+}
+#summary__table tbody {
+  height: 280px;
+}
+#summary__table tbody td.nitriding {
+  color: red;
+}
+/* id */
+#summary__table th:nth-child(1),
+#summary__table td:nth-child(1) {
+  display: none;
+}
+/* dies number */
+#summary__table th:nth-child(2),
+#summary__table td:nth-child(2) {
+  width: 150px;
+}
+#summary__table td:nth-child(2) {
+  text-align: left;
+}
+/* date */
+#summary__table th:nth-child(3),
+#summary__table td:nth-child(3) {
+  width: 70px;
+}
+#summary__table td:nth-child(3) {
+  text-align: center;
+}
+/* length */
+#summary__table th:nth-child(4),
+#summary__table td:nth-child(4) {
+  width: 60px;
+}
+#summary__table td:nth-child(4) {
+  text-align: right;
+}
+/* total lenght */
+#summary__table th:nth-child(5),
+#summary__table td:nth-child(5) {
+  width: 40px;
+}
+#summary__table td:nth-child(5) {
+  text-align: right;
+}
+
+#summary__table th:nth-child(6),
+#summary__table td:nth-child(6) {
+  width: 60px;
+}
+#summary__table td:nth-child(6) {
+  text-align: right;
+}
+#summary__table th:nth-child(7),
+#summary__table td:nth-child(7) {
+  width: 40px;
+}
+#summary__table td:nth-child(7) {
+  text-align: right;
+}
+#summary__table th:nth-child(8),
+#summary__table td:nth-child(8) {
+  width: 35px;
+}
+#summary__table td:nth-child(8) {
+  text-align: right;
+}
+#summary__table th:nth-child(9),
+#summary__table td:nth-child(9) {
+  display: none;
+}
+/* ++++++++++++++++++++++++++++++++++++++++++++ */
+/* +++++++++++++++  Button area ++++++++++++++ */
+/* ++++++++++++++++++++++++++++++++++++++++++++ */
+.button__wrapper {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+/* ++++++++++++++++++++++++++++++++++++++++++++ */
+/* +++++++++++++++  history table area ++++++++ */
+/* ++++++++++++++++++++++++++++++++++++++++++++ */
+#hisotry__table {
+  width: 210px;
+}
+#hisotry__table tbody {
+  width: 335px;
+}
+
+#hisotry__table th:nth-child(1),
+#hisotry__table td:nth-child(1) {
+  display: none;
+}
+#hisotry__table th:nth-child(2),
+#hisotry__table td:nth-child(2) {
+  /* width: 120px; */
+  display: none;
+}
+#hisotry__table td:nth-child(2) {
+  text-align: left;
+}
+#hisotry__table th:nth-child(3),
+#hisotry__table td:nth-child(3) {
+  display: none;
+}
+/* die number */
+#hisotry__table th:nth-child(4),
+#hisotry__table td:nth-child(4) {
+  width: 120px;
+}
+#hisotry__table td:nth-child(4) {
+  text-align: left;
+}
+/* Nitriding date */
+#hisotry__table th:nth-child(5),
+#hisotry__table td:nth-child(5) {
+  width: 80px;
+}
+/* profile length */
+#hisotry__table th:nth-child(6),
+#hisotry__table td:nth-child(6) {
+  width: 60px;
+}
+#hisotry__table td:nth-child(6) {
+  text-align: right;
+}
+/* wash times */
+#hisotry__table th:nth-child(7),
+#hisotry__table td:nth-child(7) {
+  width: 40px;
+}
+#hisotry__table td:nth-child(7) {
+  text-align: right;
+}
+/* ++++++++++++++++++++++++++++++++++++++++++++ */
+/* ++++++++++++++++++++++++++++++++++++++++++++ */
+/* +++++++++++++++  Center Area ++++++++++++++ */
+/* ++++++++++++++++++++++++++++++++++++++++++++ */
+/* ++++++++++++++++++++++++++++++++++++++++++++ */
+img {
+  width: 50px;
+  height: 80px;
+}
+/* ++++++++++++++++++++++++++++++++++++++++++++ */
+/* ++++++++++++++++++++++++++++++++++++++++++++ */
+/* +++++++++++++++  Right Area ++++++++++++++ */
+/* ++++++++++++++++++++++++++++++++++++++++++++ */
+/* ++++++++++++++++++++++++++++++++++++++++++++ */
+#nitriding__table {
+  width: 160px;
+}
+#nitriding__table tbody {
+  height: 150px;
+}
+#nitriding__table th:nth-child(1),
+#nitriding__table td:nth-child(1) {
+  display: none;
+}
+#nitriding__table th:nth-child(2),
+#nitriding__table td:nth-child(2) {
+  width: 140px;
+}
+#nitriding__table td:nth-child(2) {
+  text-align: left;
+}
+#nitriding__table th:nth-child(3),
+#nitriding__table td:nth-child(3) {
+  display: none;
+}
+#nitriding__table th:nth-child(4),
+#nitriding__table td:nth-child(4) {
+  display: none;
+}
+#nitriding__table th:nth-child(5),
+#nitriding__table td:nth-child(5) {
+  display: none;
+}
+#nitriding__table th:nth-child(6),
+#nitriding__table td:nth-child(6) {
+  display: none;
+}
+#nitriding__table th:nth-child(7),
+#nitriding__table td:nth-child(7) {
+  display: none;
+}
+
+.input__wrapper {
+  /* width: 100%; */
+}
+.title {
+  width: 160px;
+  height: 20px;
+  border: solid 1px #0000ff;
+  background-color: #0000ff;
+  color: white;
+}
+#nitriding_date_at {
+  width: 160px;
+  height: 20px;
+  background-origin: solid 1px #0000ff;
+  padding: 0;
+}

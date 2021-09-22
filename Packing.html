@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Packing</title>
+		<link rel="stylesheet" href="./css/main.css" />
+		<link rel="stylesheet" href="./css/Packing.css" />
+	</head>
+
+	<body>
+		<header>Packing</header>
+		<div class="upper__wrapper">
+			<div class="input__wrapper">
+				<div class="first__row">
+					<!-- Order number -->
+					<div class="input-block__outer">
+						<div class="input__title">Ordr</div>
+						<input id="directive__input" class="need-clear" type="text" />
+						<select
+							id="directive_input__select"
+							class="save-data no-input need-clear"
+						></select>
+					</div>
+					<!-- Press Date -->
+					<div class="input-block__outer">
+						<div class="input__title">PressDate</div>
+						<!-- <input id="press-date__input" class="need-clear no-input save-data" type="date" /> -->
+						<select
+							id="press-date__select"
+							class="save-data no-input need-clear"
+						></select>
+					</div>
+					<div class="input-block__outer">
+						<div class="input__title">D/P</div>
+						<div id="DN__display"></div>
+						<div id="PN__display"></div>
+						<div id="production_number_id" class="no-display"></div>
+						<div id="ordersheet-quantity" class="no-display"></div>
+					</div>
+				</div>
+				<div class="dot__line"></div>
+				<!-- Packing Date -->
+				<div class="input-block__outer">
+					<div class="input__title">PckDate</div>
+					<input
+						id="packing-date__input"
+						class="need-clear no-input save-data"
+						type="date"
+					/>
+				</div>
+				<!-- press work time -->
+				<div class="input-block__outer">
+					<div class="input__title">PckTm</div>
+					<input
+						id="packing-start__input"
+						class="save-data need-clear no-input"
+						type="text"
+					/>
+					-
+					<input
+						id="packing-end__input"
+						class="save-data need-clear no-input"
+						type="text"
+					/>
+				</div>
+				<button id="packing-add__button" disabled>Add</button>
+
+				<!-- Worker -->
+				<div class="input-block__outer">
+					<div class="input__title">Worker</div>
+					<select
+						id="worker__select"
+						class="no-input save-data need-clear"
+					></select>
+					<button id="add_worker__button" disabled>Add</button>
+				</div>
+				<!-- Packing Work Table -->
+				<table id="packing-history__table">
+					<thead>
+						<tr>
+							<th>id</th>
+							<th>Date</th>
+							<th>Start</th>
+							<th>End</th>
+							<th>PN</th>
+							<th>Wks</th>
+							<th>Box</th>
+						</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+				<!-- Packing Worker Table -->
+				<table id="workers__table">
+					<thead>
+						<tr>
+							<th>id</th>
+							<th>Name</th>
+						</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+
+				<!-- Packing Complete Date -->
+				<!-- <div class="input-block__outer">
+          <div class="input__title">Complete</div>
+          <input
+            id="packing-check-date__input"
+            class="need-clear no-input save-data"
+            type="date"
+          />
+          <button id="clrear-date__button">Clear</button>
+        </div> -->
+
+				<!-- <button id="test__button">TEST</button> -->
+			</div>
+
+			<div class="complete-list__wrapper">
+				<div class="top__box">
+					<div id="press_filter__wrapper">
+						<label>
+							<input
+								class="radio__input"
+								type="radio"
+								name="press_filter"
+								checked="checked"
+								value="1"
+							/>
+							<span class="radio__span"> SamePrs </span>
+						</label>
+						<label>
+							<input
+								class="radio__input"
+								type="radio"
+								name="press_filter"
+								value="2"
+							/>
+							<span class="radio__span"> AllPrs </span>
+						</label>
+					</div>
+				</div>
+				<table id="complete-list__table">
+					<thead class="table-content">
+						<tr>
+							<th>dummy</th>
+							<th>Date</th>
+							<th>BoxNum</th>
+							<th>Qty</th>
+						</tr>
+					</thead>
+					<tbody class="table-content"></tbody>
+				</table>
+			</div>
+		</div>
+		<div class="bottom__wrapper">
+			<div class="left__wrapper">
+				<div class="top__box"></div>
+				<div class="bottom-table__wrapper">
+					<table id="remain-rack__table">
+						<thead class="table-content">
+							<tr>
+								<th></th>
+								<th colspan="4">Aging Rack</th>
+							</tr>
+							<tr>
+								<th>id</th>
+								<th>RackNum</th>
+								<th>Ordr</th>
+								<th>OKQty</th>
+								<th>Pckd</th>
+							</tr>
+						</thead>
+						<tbody class="table-content"></tbody>
+						<tbody class="table-footer" id="remain-rack-table__footer">
+							<tr>
+								<td>1</td>
+								<td></td>
+								<td>Total</td>
+								<td id="aging-rack-total-qty__html">0</td>
+								<td id="aging-rack-packed-total-qty__html">0</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="middle__wrapper">
+				<div class="top__box">
+					<div class="input-block__outer">
+						<div class="input__title">NG</div>
+						<input id="ng-qty__input" class="need-clear no-input" type="text" />
+						<select id="ng-code__select" class="save-data need-clear"></select>
+						<button id="ng-qty__button" disabled>Add</button>
+					</div>
+				</div>
+				<div class="bottom-table__wrapper">
+					<table id="ng__table">
+						<thead class="table-content">
+							<tr>
+								<th></th>
+								<th colspan="3">NG Table</th>
+							</tr>
+							<tr>
+								<th>id</th>
+								<th>Code</th>
+								<th>Note</th>
+								<th>Qty</th>
+							</tr>
+						</thead>
+						<tbody class="table-content"></tbody>
+						<tbody class="table-footer" id="ng-table__footer">
+							<tr>
+								<td></td>
+								<td></td>
+								<td>NG</td>
+								<td id="ng-table-total-ng__html">0</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>OK</td>
+								<td id="ng-table-total-ok__html">0</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="right__wrapper">
+				<div class="top__box">
+					<div class="input-block__outer">
+						<div class="input__title">BoxNo.</div>
+						<select id="box-number__select" class="need-clear no-input">
+							<option value="0">_</option>
+						</select>
+						<button id="packing-box-add__button" disabled>NextO/SBoxAdd</button>
+						<!-- <button id="packing-box-add__button" disabled>Add</button> -->
+					</div>
+					<div class="input-block__outer">
+						<div class="input__title">Qty</div>
+						<input
+							id="packing-work-qty__input"
+							class="need-clear no-input"
+							type="text"
+						/>
+						<button id="packing-work-add__button" disabled>Add</button>
+					</div>
+				</div>
+				<div class="bottom-table__wrapper">
+					<table id="box__table">
+						<thead class="table-content">
+							<tr>
+								<th></th>
+								<th colspan="2">BOX Table</th>
+							</tr>
+							<tr>
+								<th>id</th>
+								<th>BoxNum</th>
+								<th>Qty</th>
+							</tr>
+						</thead>
+						<tbody class="table-content"></tbody>
+						<tbody class="table-footer" id="box-table__footer">
+							<tr>
+								<td></td>
+								<td>SUM</td>
+								<td id="box-table-total-qty__html">0</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<dialog class="dialog__wrapper" id="packing-hisotry__dialog">
+			Do you Delete?
+			<button id="packing-history-dialog-cancel__button">Cancel</button>
+			<button id="packing-history-dialog-delete__button">Delete</button>
+		</dialog>
+		<dialog class="dialog__wrapper" id="workers__dialog">
+			Do you Delete?
+			<button id="workers-dialog-cancel__button">Cancel</button>
+			<button id="workers-dialog-delete__button">Delete</button>
+		</dialog>
+		<dialog class="dialog__wrapper" id="ng_table-delete__dialog">
+			Do you Delete?
+			<button id="ng_table-dialog-cancel__button">Cancel</button>
+			<button id="ng_table-dialog-delete__button">Delete</button>
+		</dialog>
+		<dialog class="dialog__wrapper" id="box_table-delete__dialog">
+			Do you Delete?
+			<button id="box_table-dialog-cancel__button">Cancel</button>
+			<button id="box_table-dialog-delete__button">Delete</button>
+		</dialog>
+		<dialog class="dialog__wrapper" id="box-window__dialog">
+			Chưa có mã hộp <br />
+			No Box Number <br />
+			Đặt tên cho hộp <br />
+			Set Box Number Name?
+			<button id="box-window-cancel__button">Cancel</button>
+			<button id="box-window-open__button">Open</button>
+		</dialog>
+		<script src="./lib/jquery.min.js"></script>
+		<script src="./scr/Packing.js"></script>
+	</body>
+</html>

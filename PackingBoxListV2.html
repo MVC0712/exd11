@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Packing Box List</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/PackingBoxListV2.css" />
+  </head>
+
+  <body>
+    <header>Tạo mã hộp (Making Box Number)</header>
+    <div class="input__wrapper">
+      <div class="input-block__outer">
+        <div class="input__title">O/S STT</div>
+        <input
+          id="ordersheet-number__input"
+          class="complete-input"
+          type="text"
+        />
+        <div class="input__title">P/N</div>
+        <input
+          id="production_number__input"
+          class="complete-input"
+          type="text"
+        />
+      </div>
+      <div class="input-block__outer">
+        <div class="input__title">Production Quantity</div>
+        <input
+          id="production-quantity__input"
+          class="complete-input"
+          type="text"
+        />
+        pic
+      </div>
+      <div class="input-block__outer">
+        <div class="input__title">BAR/BOX</div>
+        <input id="bar_box__input" class="complete-input" type="text" />
+        <div class="input__title">Column</div>
+        <input id="column__input" class="complete-input" type="text" />
+        <div class="input__title">ROW</div>
+        <input id="row__input" class="complete-input" type="text" />
+      </div>
+      <div class="input-block__outer button__wrapper">
+        <button id="make__button">Make Number</button>
+        <button id="cancel__button">Cancel</button>
+        <button id="agree__button">OK</button>
+      </div>
+    </div>
+    <div class="summary__wrapper">
+      <table id="summary__table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Order</th>
+            <th>Box Number</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <dialog class="dialog__wrapper" id="first__dialog">
+        Do you ?
+        <button id="f_dialog-cancel__button">Cancel</button>
+        <button id="f_dialog-boxnumber__button">BoxNoCpy</button>
+        <button id="f_dialog-delete__button" class="delete__button">
+          Delete
+        </button>
+      </dialog>
+      <dialog class="dialog__wrapper" id="second__dialog">
+        Do you Delete?
+        <button id="s_dialog-cancel__button">Cancel</button>
+        <button id="s_dialog-delete__button" class="delete__button">
+          Delete
+        </button>
+      </dialog>
+    </div>
+    <script src="./lib/jquery.min.js"></script>
+    <script>
+      let firstDialog = document.getElementById("first__dialog");
+      let secondDialog = document.getElementById("second__dialog");
+      let ajaxReturnData;
+      const myAjax = {
+        myAjax: function (fileName, sendData) {
+          $.ajax({
+            type: "POST",
+            url: fileName,
+            dataType: "json",
+            data: sendData,
+            async: false,
+          })
+            .done(function (data) {
+              ajaxReturnData = data;
+            })
+            .fail(function () {
+              alert("DB connect error");
+            });
+        },
+      };
+      $(function () {
+        // makeSummaryTable();
+      });
+
+      $(document).on("click", "table tr", function (e) {
+        let id_name;
+        id_name = $(this).parent().parent().attr("id");
+        id_name = id_name + "_selected__tr";
+        if (!$(this).hasClass("selected-record")) {
+          // tr に class を付与し、選択状態の background colorを付ける
+          $(this).parent().find("tr").removeClass("selected-record");
+          $(this).parent().find("input").removeClass("selected-input");
+          $(this).addClass("selected-record");
+          $(this).find("input").addClass("selected-input");
+          // tr に id を付与する
+          $("#" + id_name).removeAttr("id");
+          $(this).attr("id", id_name);
+        } else {
+          firstDialog.showModal();
+        }
+      });
+      // dialog cancel
+      $(document).on("click", "#f_dialog-cancel__button", function () {
+        firstDialog.close();
+      });
+      // dialog copy boxnumber
+      $(document).on("click", "#f_dialog-boxnumber__button", function () {
+        // click again same record, move selected data to parent window
+        let boxNumberId = $("#summary__table_selected__tr")
+          .find("td")
+          .eq(0)
+          .html();
+        let boxNumber = $("#summary__table_selected__tr").find("input").val();
+        $(window.opener.document)
+          .find("#box-number__select")
+          .empty()
+          .append($("<option>").val("0").html("no"))
+          .append($("<option>").val(boxNumberId).html(boxNumber));
+        open("about:blank", "_self").close(); // ウィンドウを閉じる
+        firstDialog.close();
+      });
+      // dialog delete
+      $(document).on("click", "#f_dialog-delete__button", function () {
+        firstDialog.close();
+        secondDialog.showModal();
+      });
+      // second dialog cancel button
+      $(document).on("click", "#s_dialog-cancel__button", function () {
+        secondDialog.close();
+      });
+      // second dialog delete button
+      $(document).on("click", "#s_dialog-delete__button", function () {
+        let fileName;
+        let sendData = new Object();
+        fileName = "./php/Packing/DelBoxNumber.php";
+        sendData = {
+          id: $("#summary__table_selected__tr").find("td").eq(0).html(),
+        };
+        myAjax.myAjax(fileName, sendData);
+        secondDialog.close();
+        makeSummaryTable();
+      });
+
+      $(document).on("keyup", "#box-number__input", function (e) {
+        $(this).val($(this).val().toUpperCase()); // 小文字を大文字に
+        if ($(this).val().length >= 5 && $(this).val() != "") {
+          $(this).removeClass("no-input").addClass("complete-input");
+          $("#add__button").prop("disabled", false);
+        } else {
+          $(this).removeClass("complete-input").addClass("no-input");
+          $("#add__button").prop("disabled", true);
+        }
+      });
+
+      $(document).on("click", "#add__button", function (e) {
+        let fileName;
+        let sendData = new Object();
+        fileName = "./php/Packing/InsBoxNumber.php";
+        sendData = {
+          dummy: "dummy",
+          box_number: $("#box-number__input").val(),
+          created_at: getToday(),
+        };
+        myAjax.myAjax(fileName, sendData);
+        // ==== remake summary table  ============
+        makeSummaryTable();
+        $("#box-number__input")
+          .val("")
+          .removeClass("complete-input")
+          .addClass("no-input");
+        $("#add__button").prop("disabled", true);
+      });
+
+      function makeSummaryTable() {
+        let fileName;
+        let sendData = new Object();
+        fileName = "./php/Packing/SelBoxNumber.php";
+        sendData = {
+          limit: 100,
+        };
+        myAjax.myAjax(fileName, sendData);
+        $("#summary__table tbody").empty();
+        ajaxReturnData.forEach(function (trVal) {
+          var newTr = $("<tr>");
+          Object.keys(trVal).forEach(function (tdVal, index) {
+            if (index == 1) {
+              $("<td>").append($("<input>").val(trVal[tdVal])).appendTo(newTr);
+            } else {
+              $("<td>").html(trVal[tdVal]).appendTo(newTr);
+            }
+          });
+          $(newTr).appendTo("#summary__table tbody");
+        });
+      }
+
+      function getToday() {
+        // 本日の日付をyy-mm-dd形式で返す
+        let dt = new Date();
+        return (
+          dt.getFullYear() + "-" + (dt.getMonth() + 1) + "-" + dt.getDate()
+        );
+      }
+    </script>
+  </body>
+</html>

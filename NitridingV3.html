@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nitriding</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/NitridingV3.css" />
+</head>
+
+<body>
+    <header>Nitriding V3 窒化処理</header>
+    <div class="main__wrapper">
+        <div class="left__wrapper column__wrapper">
+            <table id="summary__table">
+                <thead>
+                    <tr>
+                        <th>dies_id</th>
+                        <th>Die Number</th>
+                        <th>
+                            Ntrd<br /> Day
+                        </th>
+                        <th>Len</th>
+                        <th>Wsh</th>
+                        <th>Total Len</th>
+                        <th>Total Wash</th>
+                        <th>Total Prs</th>
+                        <th>Dieamater</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <div class="button__wrapper">
+                <button id="delete-record__button" disabled>Delete Record</button>
+                <button id="test__button">TEST</button>
+                <div>
+                    <ul>
+                        <li>Dies diamater
+                            <=2 60mm: 3.5km</li>
+                                <li>Dies diamater => 300mm: 2.5km</li>
+                                <li>Wash times >= 5</li>
+                    </ul>
+                </div>
+            </div>
+            <table id="hisotry__table">
+                <thead>
+                    <tr>
+                        <th>nitriding_id</th>
+                        <th>die_id</th>
+                        <th>rank</th>
+                        <th>Die Number</th>
+                        <th>Ntrd Day</th>
+                        <th>Length</th>
+                        <th>Wash</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <!-- 削除確認ダイアログ -->
+            <dialog class="dialog__wrapper" id="delete__dialog">
+                Do you Delete?
+                <button id="delete-dialog-cancel__button">Cancel</button>
+                <button id="delete-dialog-delete__button">Delete</button>
+            </dialog>
+        </div>
+        <div class="center__wrapper column__wrapper">
+            <img src="./img/001.png" alt="arrow" />
+        </div>
+        <div class="right__wrapper column__wrapper">
+            <table id="nitriding__table">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Die</th>
+                        <th>Ntrd Day</th>
+                        <th>Length</th>
+                        <th>Total Len</th>
+                        <th>PrTim</th>
+                        <th>Dieamater</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <div class="input__wrapper">
+                <div class="title">Date</div>
+                <input id="nitriding_date_at" type="Date" />
+            </div>
+            <div class="button__wrapper">
+                <button id="nitriding__button" disabled>Nitriding</button>
+            </div>
+        </div>
+    </div>
+    <script src="./lib/jquery.min.js"></script>
+    <script src="./scr/NitridingV3.js"></script>
+</body>
+
+</html>

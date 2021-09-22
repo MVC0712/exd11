@@ -1,0 +1,574 @@
+input {
+  border: 0;
+  /* padding: 0 1px 0 0; */
+  height: 22px;
+  border: solid;
+  border-width: 0 1px 0 0;
+}
+select {
+  height: 22px;
+  width: 100%;
+  border: none;
+}
+button {
+  height: 30px;
+}
+/* dieselect frame */
+.die-set__wrapper {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.die-set__wrapper > div {
+  height: 30px;
+  width: 730px;
+  display: flex;
+  flex-direction: row;
+}
+.die-set__wrapper > div > div {
+  width: 100px;
+  height: 25px;
+  border: 1px;
+  border-style: solid;
+  border-color: #0000ff;
+  cursor: pointer;
+}
+.die-set__wrapper > div > input {
+  width: 50px;
+  height: 25px;
+  border: 1px;
+  border-style: solid;
+  border-color: #0000ff;
+}
+.die-set__wrapper > div > select {
+  width: 150px;
+  height: 27px;
+  /* padding: 1px 0; */
+  border: 1px;
+  border-style: solid;
+  border-color: #0000ff;
+}
+.die-set__wrapper > div > div:nth-child(4) {
+  width: 70px;
+  height: 25px;
+  border: 1px;
+  border-style: solid;
+  border-color: #0000ff;
+  background-color: #ffffff;
+  color: #0000ff;
+  text-align: right;
+}
+.die-set__wrapper > div > div:nth-child(5) {
+  width: 180px;
+  height: 25px;
+  border: 1px;
+  border-style: solid;
+  border-color: #0000ff;
+  background-color: #ffffff;
+  color: #0000ff;
+}
+.die-set__wrapper > div > div:nth-child(6) {
+  width: 85px;
+  height: 25px;
+  text-align: right;
+  border: 1px;
+  border-style: solid;
+  border-color: #0000ff;
+  background-color: #ffffff;
+  color: #0000ff;
+}
+.die-set__wrapper > div > div:nth-child(7) {
+  width: 45px;
+  height: 25px;
+  text-align: right;
+  border: 1px;
+  border-style: solid;
+  border-color: #0000ff;
+  background-color: #ffffff;
+  color: #0000ff;
+}
+/* main input frame */
+.main__wrapper {
+  height: 300px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* justify-content: space-around; */
+  align-content: flex-start;
+}
+
+.input__wrapper {
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  height: 80px;
+}
+.input__title {
+  border: 1px;
+  border-width: 0 1px 0 1px;
+  border-style: solid;
+  border-color: #0000ff;
+  display: flex;
+  justify-content: center;
+}
+.input__wrapper > div {
+  width: calc(100% - 20px);
+}
+.input__wrapper > select {
+  width: calc(100% - 20px + 2px);
+  border: 1px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #0000ff;
+  height: 22px;
+}
+.inner-input_wrapper {
+  display: flex;
+  flex-direction: row;
+  border: 1px;
+  /* border-width: 0 1px 0 1px; */
+  border-style: solid;
+  border-color: #0000ff;
+}
+.previous-value__display {
+  border: 1px;
+  border-width: 0 1px 0 1px;
+  border-style: solid;
+  border-color: #0000ff;
+  background-color: #ddffea;
+  height: 17px;
+}
+/* input frame */
+.main__wrapper > div:nth-child(1) {
+  width: 160px;
+}
+.main__wrapper > div:nth-child(1) > div > input {
+  border-right: 0;
+  width: 100%;
+}
+/* die number input */
+.main__wrapper > div:nth-child(2) {
+  width: 180px;
+  display: none;
+}
+/* discard thickness input */
+.main__wrapper > div:nth-child(3) {
+  width: 60px;
+}
+.main__wrapper > div:nth-child(3) > div:nth-child(2) {
+  text-align: right;
+}
+.main__wrapper > div:nth-child(3) > div > input {
+  border-right: 0;
+  width: 100%;
+}
+/* pressing type */
+.main__wrapper > div:nth-child(4) {
+  width: 60px;
+}
+.main__wrapper > div:nth-child(4) > div > select {
+  border-right: 0;
+  width: 100%;
+}
+/* Ram Speed */
+.main__wrapper > div:nth-child(5) {
+  width: 70px;
+}
+.main__wrapper > div:nth-child(5) > div:nth-child(2) {
+  text-align: right;
+}
+.main__wrapper > div:nth-child(5) > div > input {
+  border-right: 0;
+  width: 100%;
+}
+/* Billet Length */
+.main__wrapper > div:nth-child(6) {
+  width: 70px;
+}
+.main__wrapper > div:nth-child(6) > div:nth-child(2) {
+  text-align: right;
+}
+.main__wrapper > div:nth-child(6) > div > input {
+  border-right: 0;
+  width: 100%;
+}
+/* Billet Temperature */
+.main__wrapper > div:nth-child(7) {
+  width: 70px;
+}
+.main__wrapper > div:nth-child(7) > div:nth-child(2) {
+  text-align: right;
+}
+.main__wrapper > div:nth-child(7) > div > input {
+  border-right: 0;
+  width: 100%;
+}
+/* Billet Size */
+.main__wrapper > div:nth-child(8) {
+  width: 120px;
+}
+.main__wrapper > div:nth-child(8) > div:nth-child(2) {
+  text-align: center;
+}
+.main__wrapper > div:nth-child(8) > div > input {
+  /* border-right: 0; */
+  /* width: 20px; */
+  display: none;
+}
+.main__wrapper > div:nth-child(8) > div > select {
+  text-align: -webkit-center;
+}
+/* =============Billet taper heating============= */
+.main__wrapper > div:nth-child(9) {
+  width: 80px;
+}
+.main__wrapper > div:nth-child(9) > div:nth-child(2) {
+  text-align: center;
+}
+.main__wrapper > div:nth-child(9) > div > input {
+  border-right: 0;
+  display: none;
+  /* display: none; */
+}
+.main__wrapper > div:nth-child(9) > div > select {
+  width: 100%;
+}
+/* =========  Input Billet Qty  ========= */
+.main__wrapper > div:nth-child(10) {
+  width: 80px;
+}
+.main__wrapper > div:nth-child(10) > div:nth-child(2) {
+  text-align: right;
+}
+.main__wrapper > div:nth-child(10) > div > input {
+  border-right: 0;
+  width: 100%;
+}
+.main__wrapper > div:nth-child(10) > div > select {
+  display: none;
+  /* display: none; */
+}
+
+/* =============Die temperature============= */
+.main__wrapper > div:nth-child(11) {
+  width: 100px;
+}
+.main__wrapper > div:nth-child(11) > div:nth-child(2) {
+  text-align: right;
+}
+.main__wrapper > div:nth-child(11) > div > input {
+  border-right: 0;
+  width: 100%;
+  /* display: none; */
+}
+.main__wrapper > div:nth-child(11) > div > select {
+  display: none;
+}
+/* ========= Die Heating time  ========= */
+.main__wrapper > div:nth-child(12) {
+  width: 100px;
+}
+.main__wrapper > div:nth-child(12) > div:nth-child(2) {
+  text-align: right;
+}
+.main__wrapper > div:nth-child(12) > div > input {
+  border-right: 0;
+  width: 100%;
+  /* display: none; */
+}
+.main__wrapper > div:nth-child(12) > div > select {
+  display: none;
+}
+/* ========= Bolster  ========= */
+.main__wrapper > div:nth-child(13) {
+  width: 125px;
+}
+.main__wrapper > div:nth-child(13) > div:nth-child(2) {
+  text-align: center;
+}
+.main__wrapper > div:nth-child(13) > div > input {
+  border-right: 0;
+  width: 100%;
+  display: none;
+}
+/* .main__wrapper > div:nth-child(12) > div > select {
+} */
+/* =========  Stretch Ratio  ========= */
+.main__wrapper > div:nth-child(14) {
+  width: 80px;
+}
+.main__wrapper > div:nth-child(14) > div:nth-child(2) {
+  text-align: right;
+}
+.main__wrapper > div:nth-child(14) > div > input {
+  border-right: 0;
+  width: 100%;
+}
+.main__wrapper > div:nth-child(14) > div > select {
+  display: none;
+  /* display: none; */
+}
+/* =========  incharge person  ========= */
+.main__wrapper > div:nth-child(15) {
+  width: 180px;
+}
+.main__wrapper > div:nth-child(15) > div:nth-child(2) {
+  text-align: right;
+}
+.main__wrapper > div:nth-child(15) > div > input {
+  border-right: 0;
+  width: 100%;
+  display: none;
+}
+
+/* =========  sample position  (l)(m)(n) ========= */
+.main__wrapper > div:nth-child(16),
+.main__wrapper > div:nth-child(17),
+.main__wrapper > div:nth-child(18) {
+  width: 70px;
+}
+.main__wrapper > div:nth-child(16) > div:nth-child(2),
+.main__wrapper > div:nth-child(17) > div:nth-child(2),
+.main__wrapper > div:nth-child(18) > div:nth-child(2) {
+  text-align: right;
+}
+.main__wrapper > div:nth-child(16) > div > input,
+.main__wrapper > div:nth-child(17) > div > input,
+.main__wrapper > div:nth-child(18) > div > input {
+  border-right: 0;
+  width: 100%;
+}
+.main__wrapper > div:nth-child(16) > div > select,
+.main__wrapper > div:nth-child(17) > div > select,
+.main__wrapper > div:nth-child(18) > div > select {
+  display: none;
+}
+/* =========  nBn  ========= */
+.main__wrapper > div:nth-child(19) {
+  width: 70px;
+}
+.main__wrapper > div:nth-child(19) > div:nth-child(2) {
+  text-align: right;
+}
+.main__wrapper > div:nth-child(19) > div > input {
+  border-right: 0;
+  width: 100%;
+  display: none;
+}
+
+/* =========  note  ========= */
+.main__wrapper > div:nth-child(20) {
+  height: 130px;
+  width: 270px;
+}
+.main__wrapper > div:nth-child(20) > div:nth-child(2) {
+  text-align: left;
+  display: block;
+  height: 30px;
+  overflow-y: scroll;
+}
+.main__wrapper > div:nth-child(20) textarea {
+  resize: none;
+  display: block;
+  height: 50px;
+  width: 100%;
+  overflow-y: scroll;
+}
+/* =========  fig  ========= */
+.main__wrapper > div:nth-child(21) {
+  height: 130px;
+  width: 430px;
+}
+.main__wrapper > div:nth-child(21) img {
+  height: 130px;
+  width: 410px;
+}
+
+/* ====================================================== */
+/* =================  button wrapper ===================== */
+/* ====================================================== */
+div.button__wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 50px;
+}
+/* ====================================================== */
+/* =================  summary table ===================== */
+/* ====================================================== */
+#summary__table tbody {
+  height: 120px;
+}
+
+div.summary__wrapper {
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* =========  id ========= */
+#summary__table tr th:nth-child(1),
+#summary__table tr td:nth-child(1) {
+  display: none;
+}
+/* =========  Date ========= */
+#summary__table tr th:nth-child(2),
+#summary__table tr td:nth-child(2) {
+  width: 55px;
+}
+#summary__table tr td:nth-child(2) {
+  text-align: center;
+}
+/* =========  Discard Thickness ========= */
+#summary__table tr th:nth-child(3),
+#summary__table tr td:nth-child(3) {
+  width: 35px;
+}
+#summary__table tr td:nth-child(3) {
+  text-align: right;
+}
+/* =========  Press Type ========= */
+#summary__table tr th:nth-child(4),
+#summary__table tr td:nth-child(4) {
+  width: 30px;
+}
+#summary__table tr td:nth-child(4) {
+  text-align: center;
+}
+/* =========  Press Type ID ========= */
+#summary__table tr th:nth-child(5),
+#summary__table tr td:nth-child(5) {
+  /* width: 25px; */
+  display: none;
+}
+#summary__table tr td:nth-child(5) {
+  text-align: center;
+}
+/* =========  Ramspeed ========= */
+#summary__table tr th:nth-child(6),
+#summary__table tr td:nth-child(6) {
+  width: 30px;
+  /* display: none; */
+}
+#summary__table tr td:nth-child(6) {
+  text-align: right;
+}
+/* =========  billet length ========= */
+#summary__table tr th:nth-child(7),
+#summary__table tr td:nth-child(7) {
+  width: 35px;
+  /* display: none; */
+}
+#summary__table tr td:nth-child(7) {
+  text-align: right;
+}
+/* =========  billet temperature ========= */
+#summary__table tr th:nth-child(8),
+#summary__table tr td:nth-child(8) {
+  width: 45px;
+  /* display: none; */
+}
+#summary__table tr td:nth-child(8) {
+  text-align: right;
+}
+/* =========  billet taper heating ========= */
+#summary__table tr th:nth-child(9),
+#summary__table tr td:nth-child(9) {
+  width: 48px;
+  /* display: none; */
+}
+#summary__table tr td:nth-child(9) {
+  text-align: right;
+}
+/* =========  die temperature ========= */
+#summary__table tr th:nth-child(10),
+#summary__table tr td:nth-child(10) {
+  width: 45px;
+  /* display: none; */
+}
+#summary__table tr td:nth-child(10) {
+  text-align: right;
+}
+/* =========  die heating time ========= */
+#summary__table tr th:nth-child(11),
+#summary__table tr td:nth-child(11) {
+  width: 48px;
+  /* display: none; */
+}
+#summary__table tr td:nth-child(11) {
+  text-align: right;
+}
+/* =========  boloster ========= */
+#summary__table tr th:nth-child(12),
+#summary__table tr td:nth-child(12) {
+  width: 95px;
+  /* display: none; */
+}
+#summary__table tr td:nth-child(12) {
+  text-align: center;
+}
+/* =========  boloster id ========= */
+#summary__table tr th:nth-child(13),
+#summary__table tr td:nth-child(13) {
+  /* width: 65px; */
+  display: none;
+}
+#summary__table tr td:nth-child(13) {
+  text-align: right;
+}
+/* =========  stretch ratio ========= */
+#summary__table tr th:nth-child(14),
+#summary__table tr td:nth-child(14) {
+  width: 30px;
+  /* display: none; */
+}
+#summary__table tr td:nth-child(14) {
+  text-align: right;
+}
+/* =========  name ========= */
+#summary__table tr th:nth-child(15),
+#summary__table tr td:nth-child(15) {
+  width: 135px;
+  /* display: none; */
+}
+#summary__table tr td:nth-child(15) {
+  text-align: left;
+}
+/* =========  name id ========= */
+#summary__table tr th:nth-child(16),
+#summary__table tr td:nth-child(16) {
+  /* width: 65px; */
+  display: none;
+}
+#summary__table tr td:nth-child(16) {
+  text-align: right;
+}
+/* =========  l value ========= */
+#summary__table tr th:nth-child(17),
+#summary__table tr td:nth-child(17) {
+  width: 25px;
+  /* display: none; */
+}
+#summary__table tr td:nth-child(17) {
+  text-align: right;
+}
+/* =========  m value ========= */
+#summary__table tr th:nth-child(18),
+#summary__table tr td:nth-child(18) {
+  width: 25px;
+  /* display: none; */
+}
+#summary__table tr td:nth-child(18) {
+  text-align: right;
+}
+/* =========  n value ========= */
+#summary__table tr th:nth-child(19),
+#summary__table tr td:nth-child(19) {
+  width: 25px;
+  /* display: none; */
+}
+#summary__table tr td:nth-child(19) {
+  text-align: right;
+}

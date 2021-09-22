@@ -1,0 +1,118 @@
+body {
+    width: calc(1400px - 2px);
+}
+
+.main__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 50px;
+    flex-direction: row;
+}
+
+.main__wrapper div:nth-child(2) input {
+    width: 150px;
+}
+
+.input-block__wrapper {
+    height: 25px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: left;
+    justify-content: center;
+}
+
+.input__title {
+    width: initial;
+}
+
+input {
+    width: 120px;
+}
+
+button {
+    width: 100px;
+    height: 22px;
+    margin: 0px;
+}
+
+
+/* summary table */
+
+div.calendar table td,
+div.calendar table th {
+    border: 1px solid black;
+    text-align: center;
+    margin: 0px;
+}
+
+div.calendar {
+    overflow: auto;
+}
+
+.summary__wrapper {
+    height: calc(598px - 31px - 55px -20px);
+    align-items: center;
+    justify-content: center;
+}
+
+#summary__table {
+    /* width: 1170px; */
+    height: 515px;
+}
+
+#summary__table thead {
+    /* width: 1178px; */
+}
+
+#summary__table tbody {
+    height: 415px;
+    /* width: 1178px; */
+}
+
+#summary__table tr:nth-child(2n) {
+	background-color: #d2cdff;
+}
+
+#summary__table tr td:nth-child(1),
+#summary__table tr td:nth-child(2) {
+    display:none;
+}
+
+#summary__table tr td:nth-child(3) {
+    width: 100px;
+    text-align: left;
+}
+
+#summary__table tr td:nth-child(n+4) {
+    width: 28px;
+}
+
+#summary__table tr td:nth-child(2) {
+    width: 100px;
+}
+
+#summary__table tr th:nth-child(n+2) {
+    width: 28px;
+}
+
+#summary__table tr td:last-child {
+  background: #ffe8e8;
+	width: 40px;
+}
+
+#summary__table tbody tr.selected-record {
+    background-color: #c2ecff;
+  }
+
+td {
+    border: 1px solid black;
+    width: 100px;
+    overflow: hidden;
+}
+
+#summary__table tr td.active{
+    background: blue;
+    color: #fff;
+  }

@@ -1,0 +1,114 @@
+button {
+  height: 30px;
+}
+.main__wrapper {
+  height: 100px;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.button__wrapper {
+  align-items: center;
+}
+.input-block__outer {
+  height: 35px;
+}
+.input-blocks__wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: 200px;
+}
+.button__wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: 100px;
+}
+.summary__wrapper {
+  height: 450px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+/* name */
+.input-block__outer.name__outer {
+  width: 180px;
+}
+.input-block__outer.name__outer > input {
+  width: 130px;
+}
+/* emploee number */
+.input-block__outer.emploee-number__outer {
+  width: 200px;
+}
+.input-block__outer.emploee-number__outer > .input__title {
+  width: 120px;
+}
+.input-block__outer.emploee-number__outer > input {
+  width: 70px;
+}
+/* position */
+.input-block__outer.position__outer {
+  width: 155px;
+}
+.input-block__outer.position__outer > .input__title {
+  width: 80px;
+}
+.input-block__outer.position__outer > input {
+  display: none;
+}
+.input-block__outer.position__outer > select {
+  width: 70px;
+}
+/* leave at */
+.input-block__outer.leave-at__outer {
+  width: 200px;
+}
+.input-block__outer.leave-at__outer > .input__title {
+  width: 70px;
+}
+.input-block__outer.leave-at__outer > input {
+  width: 120px;
+}
+/* ========================================== */
+/* summary table */
+#summary__table tbody {
+  height: 300px;
+  width: 480px;
+}
+#summary__table {
+  /* background-color: antiquewhite; */
+}
+/* id */
+#summary__table tr th:nth-child(1),
+#summary__table tr td:nth-child(1) {
+  display: none;
+}
+/* Name */
+#summary__table tr th:nth-child(2),
+#summary__table tr td:nth-child(2) {
+  width: 170px;
+}
+/* Emploee Number */
+#summary__table tr th:nth-child(3),
+#summary__table tr td:nth-child(3) {
+  width: 120px;
+}
+#summary__table tr td:nth-child(3) {
+  text-align: right;
+}
+/* Position */
+#summary__table tr th:nth-child(4),
+#summary__table tr td:nth-child(4) {
+  width: 80px;
+}
+/* Leave Date */
+#summary__table tr th:nth-child(5),
+#summary__table tr td:nth-child(5) {
+  width: 80px;
+}
+#summary__table tr td:nth-child(5) {
+  text-align: center;
+}

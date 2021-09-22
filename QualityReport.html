@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quality Report</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/QuarlityReport.css" />
+  </head>
+
+  <body>
+    <header>Quality Report</header>
+    <!-- +++++++++++++++++ Upper Area +++++++++++++++++++ -->
+    <!-- +++++++++++++++++ Upper Area +++++++++++++++++++ -->
+    <!-- +++++++++++++++++ Upper Area +++++++++++++++++++ -->
+
+    <div class="upper__wrapper">
+      <div class="input-block__wrapper">
+        <div class="input__frame">
+          <div class="input__title">Press Date</div>
+          <input type="date" class="no-input" id="press_date__input" />
+          <div id="dies_qty__display">0 dies</div>
+          <!-- <input type="text" class="only-display" readonly id="press_date_at" /> -->
+        </div>
+      </div>
+      <div class="input-block__wrapper">
+        <div class="input__title">Die Number</div>
+        <select name="" id="press_id" class="no-input save-data need-clear">
+          <option value="0">No</option>
+        </select>
+      </div>
+      <div class="input-block__wrapper">
+        <div class="input__frame">
+          <div class="input__title">Input Billet</div>
+          <input type="text" id="actual_billet_quantities" /
+          class="only-display">pic
+        </div>
+      </div>
+      <div class="input-block__wrapper">
+        <div class="input__frame">
+          <div class="input__title">Operator</div>
+          <input type="text" id="staff_name" / class="only-display">
+        </div>
+      </div>
+      <div class="input-block__wrapper">
+        <div class="input__frame">
+          <div class="input__title">Pressing Type</div>
+          <input type="text" id="pressing_type" / class="only-display">
+        </div>
+      </div>
+      <div class="input-block__wrapper">
+        <div class="input__frame">
+          <div class="input__title">1st Billet Work</div>
+          <input type="text" id="1st_billet_quantity" / class="only-display">pic
+        </div>
+      </div>
+      <div class="input-block__wrapper">
+        <div class="input__frame">
+          <div class="input__title">2nd Billet Work</div>
+          <input type="text" id="2nd_billet_quantity" / class="only-display">pic
+        </div>
+      </div>
+      <div class="input-block__wrapper">
+        <div class="input__frame">
+          <div class="input__title">Total Work</div>
+          <input type="text" id="work_quantity" / class="only-display">pic
+        </div>
+      </div>
+      <div class="input-block__wrapper">
+        <div class="input__frame"></div>
+      </div>
+      <div class="input-block__wrapper">
+        <div class="input__frame"></div>
+      </div>
+      <div class="input-block__wrapper">
+        <div class="input__frame">
+          <div class="input__title">OK Works</div>
+          <input type="text" id="counted_work_quantity" /
+          class="only-display">pic
+        </div>
+      </div>
+    </div>
+    <!-- +++++++++++++++++ Down Area +++++++++++++++++++ -->
+    <!-- +++++++++++++++++ Down Area +++++++++++++++++++ -->
+    <!-- +++++++++++++++++ Down Area +++++++++++++++++++ -->
+    <div class="down__wrapper">
+      <div class="left__wrapper">
+        <!-- process -->
+        <div class="input-block__wrapper">
+          <div class="input__frame">
+            <div class="input__title">Process</div>
+            <select
+              name=""
+              id="process_id"
+              class="no-input save-data need-clear"
+            >
+              <option value="0">No</option>
+              <option value="1">QA</option>
+              <option value="2">Etching</option>
+              <option value="3">Packing</option>
+            </select>
+            <div class="input-unit__space"></div>
+          </div>
+        </div>
+        <!-- NG Code -->
+        <div class="input-block__wrapper">
+          <div class="input__frame">
+            <div class="input__title">NG Code</div>
+            <select
+              name=""
+              id="quality_code_id"
+              class="no-input save-data need-clear"
+            >
+              <option value="0">No</option>
+            </select>
+            <div class="input-unit__space"></div>
+          </div>
+        </div>
+        <!-- NG Quantity -->
+        <div class="input-block__wrapper">
+          <div class="input__frame">
+            <div class="input__title">NG Qty</div>
+            <input
+              type="text"
+              id="ng_quantities"
+              class="no-input save-data need-clear"
+            />
+            <div class="input-unit__space">pic</div>
+          </div>
+        </div>
+        <!-- Button Area -->
+        <div class="input-block__wrapper">
+          <button id="save__button" disabled>Save</button>
+          <button id="update__button" disabled>Update</button>
+          <button id="test__button">Test</button>
+          <button id="test2__button">Test2</button>
+        </div>
+        <div class="input-block__wrapper">
+          <button id="lang-change__button">Lang Chg</button>
+        </div>
+      </div>
+      <div class="right__wrapper">
+        <table id="ng__table">
+          <thead>
+            <tr>
+              <th>id</th>
+              <th>Process</th>
+              <th>NG Code</th>
+              <th class="description_vn">Description</th>
+              <th class="description_jp">Dscrp JP</th>
+              <th class="description_cn">Dscrp CN</th>
+              <th>Qty</th>
+            </tr>
+          </thead>
+          <tbody id="table__body"></tbody>
+          <tbody id="table__footer">
+            <tr>
+              <td></td>
+              <td>Total NG</td>
+              <td id="ngSumValue">0</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>OK</td>
+              <td id="ok_works__display">0</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>Total</td>
+              <td id="total_works__display">0</td>
+            </tr>
+          </tbody>
+        </table>
+        <!-- 削除確認ダイアログ -->
+        <dialog class="dialog__wrapper" id="delete__dialog">
+          Do you Delete?
+          <button id="delete-dialog-cancel__button">Cancel</button>
+          <button id="delete-dialog-delete__button">Delete</button>
+        </dialog>
+      </div>
+    </div>
+    <script src="./lib/jquery.min.js"></script>
+    <script
+      type="text/javascript"
+      src="./lib/jquery.mousewheel.min.js"
+    ></script>
+    <script src="./scr/QualityReport.js"></script>
+  </body>
+</html>

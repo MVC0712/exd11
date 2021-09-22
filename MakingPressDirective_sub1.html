@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Press Directive Sub Window</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <style type="text/css">
+      body {
+        width: 450px;
+        height: 440px;
+      }
+      .main__wrapper {
+        width: 445px;
+        height: 420px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      tbody {
+        height: 250px;
+      }
+      table td:nth-child(1) {
+        display: none;
+      }
+      table td:nth-child(2) {
+        width: 80px;
+      }
+      table td:nth-child(3) {
+        width: 80px;
+      }
+      table td:nth-child(4) {
+        width: 130px;
+      }
+      table tbody td:nth-child(4) {
+        text-align: left;
+      }
+      table td:nth-child(5) {
+        width: 45px;
+      }
+      table td:nth-child(6) {
+        width: 45px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main__wrapper">
+      <table id="press-directive__table">
+        <thead>
+          <tr>
+            <td>id</td>
+            <td>Press Date</td>
+            <td>Plan Date</td>
+            <td>Die Number</td>
+            <td>PressT</td>
+            <td>Billet<br />Qty</td>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <button id="close__button">Close</button>
+    </div>
+    <script src="./lib/jquery.min.js"></script>
+    <script>
+      $(function () {
+        ajaxSelPressDirctiveList();
+      });
+
+      function ajaxSelPressDirctiveList() {
+        $.ajax({
+          async: false,
+          url: "./php/MakingPressDirective/SelPressDirectiveList.php",
+          type: "post",
+          data: {
+            id: "dummy",
+          },
+          dataType: "json",
+        })
+          .done(function (data) {
+            makePressDirectiveList(data);
+          })
+          .fail(function () {
+            console.log("failed");
+          });
+      }
+
+      function makePressDirectiveList(data) {
+        var tableColumnName = [
+          "id",
+          "plan_date_at",
+          "created_at",
+          "die_number",
+          "pressing_type",
+          "billet_input_quantity",
+        ];
+        data.forEach(function (table_val) {
+          var newTr = $("<tr>");
+          tableColumnName.forEach(function (val) {
+            $("<td>").html(table_val[val]).appendTo(newTr);
+          });
+          $(newTr).appendTo("#press-directive__table tbody");
+        });
+      }
+
+      $(document).on("click", "#close__button", function () {
+        window.open("about:blank", "_self").close();
+      });
+    </script>
+  </body>
+</html>

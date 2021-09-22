@@ -1,0 +1,223 @@
+.no-input {
+  /* background-color: #ffddd3; */
+}
+.upper__wrapper {
+  width: 100%;
+  height: 250px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+.down__wrapper {
+  border-top: 1px dotted #0000ff;
+  width: 100%;
+  height: calc(598px - 30px - 250px - 1px);
+  display: flex;
+  flex-direction: row;
+}
+/* ************************************************* */
+/* Upper wrapper items */
+/* ************************************************* */
+.upper__wrapper > div.input-block__wrapper,
+.down__wrapper div.input-block__wrapper {
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.upper__wrapper > div.input-block__wrapper > div.input__frame,
+.down__wrapper div.input-block__wrapper > div.input__frame {
+  display: flex;
+  flex-direction: row;
+}
+
+.upper__wrapper > div div.input__title {
+  width: 135px;
+  padding-left: 5px;
+}
+.upper__wrapper > div input.only-display {
+  /* pointer-events: none; */
+}
+/* 個別設定 */
+/* press date */
+.upper__wrapper > div:nth-child(1) {
+  width: 50%;
+  border-bottom: 1px dotted #0000ff;
+}
+.upper__wrapper > div:nth-child(1) input {
+  width: 120px;
+}
+.upper__wrapper > div:nth-child(1) div#dies_qty__display {
+  height: 20px;
+  border-width: 1px 1px 1px 0;
+  border-style: solid;
+  border-color: #0000ff;
+  width: 70px;
+  text-align: right;
+  font-size: 10pt;
+}
+/* Die number */
+.upper__wrapper > div:nth-child(2) {
+  width: 50%;
+  border-bottom: 1px dotted #0000ff;
+}
+.upper__wrapper > div:nth-child(2) select {
+  width: 140px;
+}
+
+/* Input billet */
+.upper__wrapper > div:nth-child(3) {
+  width: calc(100% / 3);
+  background-color: #e3e3ff;
+}
+/* Operator */
+.upper__wrapper > div:nth-child(4) {
+  width: calc(100% / 3);
+  background-color: #e3e3ff;
+}
+.upper__wrapper > div:nth-child(4) input {
+  width: 110px;
+}
+/* Pressing Type */
+.upper__wrapper > div:nth-child(5) {
+  width: calc(100% / 3);
+  background-color: #e3e3ff;
+}
+/* 1st Billet */
+.upper__wrapper > div:nth-child(6) {
+  width: calc(100% / 3);
+  background-color: #e3e3ff;
+  border-bottom: 1px dotted #0000ff;
+}
+/* 2nd Billet */
+.upper__wrapper > div:nth-child(7) {
+  width: calc(100% / 3);
+  background-color: #e3e3ff;
+  border-bottom: 1px dotted #0000ff;
+}
+/* works */
+.upper__wrapper > div:nth-child(8) {
+  width: calc(100% / 3);
+  background-color: #e3e3ff;
+  border-bottom: 1px dotted #0000ff;
+}
+/* Counted work quantity */
+.upper__wrapper > div:nth-child(9) {
+  width: calc(100% / 3);
+}
+/* Counted work quantity */
+.upper__wrapper > div:nth-child(10),
+.upper__wrapper > div:nth-child(11),
+.upper__wrapper > div:nth-child(12) {
+  width: calc(100% / 3);
+}
+/* ************************************************* */
+/* Down wrapper items */
+/* ************************************************* */
+.down__wrapper > div.left__wrapper {
+  height: 100%;
+  width: 40%;
+}
+.down__wrapper > div.right__wrapper {
+  height: 100%;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.down__wrapper .input__title {
+  width: 100px;
+  padding-left: 5px;
+}
+.down__wrapper input {
+  width: 100px;
+}
+.down__wrapper select {
+  width: 106px;
+}
+.down__wrapper .input-unit__space {
+  width: 25px;
+}
+.down__wrapper .left__wrapper div.input-block__wrapper:nth-child(4) {
+  height: 70px;
+}
+/* =========== NG Table ================ */
+.down__wrapper #ng__table {
+  width: 400px;
+}
+.down__wrapper #ng__table tbody#table__body {
+  height: 180px;
+  border-left: 1px solid #e3e3ff;
+  border-bottom: 1px solid #a5a5a5;
+}
+
+/* id */
+.down__wrapper #ng__table th:nth-child(1),
+.down__wrapper #ng__table td:nth-child(1) {
+  display: none;
+}
+/* Process Name */
+.down__wrapper #ng__table th:nth-child(2),
+.down__wrapper #ng__table td:nth-child(2) {
+  width: 80px;
+}
+/* NG Code */
+.down__wrapper #ng__table th:nth-child(3),
+.down__wrapper #ng__table td:nth-child(3) {
+  width: 50px;
+}
+.down__wrapper #ng__table td:nth-child(3) {
+  text-align: center;
+}
+/* NG Description VN*/
+.down__wrapper #ng__table th:nth-child(4),
+.down__wrapper #ng__table td:nth-child(4) {
+  width: 200px;
+}
+/* NG Description JP*/
+.down__wrapper #ng__table th:nth-child(5),
+.down__wrapper #ng__table td:nth-child(5) {
+  width: 200px;
+  /* display: none; */
+}
+/* NG Description CN*/
+.down__wrapper #ng__table th:nth-child(6),
+.down__wrapper #ng__table td:nth-child(6) {
+  width: 200px;
+  /* display: none; */
+}
+/* NG qty */
+.down__wrapper #ng__table th:nth-child(7),
+.down__wrapper #ng__table td:nth-child(7) {
+  width: 40px;
+}
+.down__wrapper #ng__table td:nth-child(7) {
+  text-align: right;
+  padding-right: 2px;
+}
+.down__wrapper #table__footer td:nth-child(2) {
+  width: 335px;
+  display: block;
+  text-align: right;
+}
+.down__wrapper #table__footer td:nth-child(3) {
+  width: 39px;
+  text-align: right;
+}
+/* ------ table footer , display sum ng ------ */
+.down__wrapper #ng__table #table__footer {
+  height: auto;
+  overflow-y: hidden;
+}
+.down__wrapper #ng__table #table__footer td {
+  border: 1px #ffffff solid;
+  font-size: 12pt;
+  height: 20px;
+}
+
+.down__wrapper #ng__table #table__footer td:nth-child(4) {
+  text-align: right;
+}

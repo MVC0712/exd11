@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Making Directive Page</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/MakingPressDirective.css" />
+  </head>
+
+  <body>
+    <header>Making Directive Sheet Page</header>
+    <!-- ================ 金型 ========================== -->
+    <div class="die-set__wrapper">
+      <div>
+        <div id="select-die__title" class="input__title">Select Die</div>
+        <input id="die-number__input" class="need-clear" type="text" />
+        <select
+          name=""
+          id="die-number__select"
+          class="save-data need-clear no-input for-work-length"
+        ></select>
+        <div class="input__title" id="die-dimension__display">&Phi;xxxmm</div>
+        <div class="input__title" id="production-name__display">Product C</div>
+        <div class="input__title" id="specific-weight__display">xx.x kg/m</div>
+        <div class="input__title" id="work-length__display">XXX.X</div>
+        m
+      </div>
+    </div>
+
+    <!-- ================ 入力枠 ========================== -->
+    <div class="main__wrapper">
+      <div class="input__wrapper">
+        <div class="input__title">PlnPressDate</div>
+        <div class="previous-value__display need-clear">21-4-1</div>
+        <div class="inner-input_wrapper">
+          <input
+            id="date__input"
+            class="need-clear no-input save-data"
+            type="text"
+          />
+        </div>
+      </div>
+      <!-- Die Number -->
+      <div class="input__wrapper">
+        <div class="input__title">DieNumber</div>
+        <div class="previous-value__display need-clear">12.3</div>
+        <div class="inner-input_wrapper">
+          <input id="__" class="need-clear" type="text" />
+          <select name="" class="need-clear no-input">
+            <option value="0">CQ12T2-01</option>
+          </select>
+        </div>
+      </div>
+      <!-- Discard thickness -->
+      <div class="input__wrapper">
+        <div class="input__title">Discrd</div>
+        <div class="previous-value__display need-clear">35mm</div>
+        <div class="inner-input_wrapper">
+          <input
+            id="discard-thikness__input"
+            class="need-clear no-input save-data for-work-length"
+            type="text"
+          />
+        </div>
+      </div>
+      <!-- Pressing Type -->
+      <div class="input__wrapper">
+        <div class="input__title">Press</div>
+        <div class="previous-value__display need-clear">〇</div>
+        <select
+          name=""
+          id="pressing-type__select"
+          class="save-data need-clear no-input"
+        >
+          <option value="0">-</option>
+          <option value="1">〇</option>
+          <option value="2">◎</option>
+          <option value="3">●</option>
+        </select>
+      </div>
+      <!-- Ram Speed -->
+      <div class="input__wrapper">
+        <div class="input__title">RamSp</div>
+        <div class="previous-value__display need-clear">12.5mm</div>
+        <div class="inner-input_wrapper">
+          <input
+            id="ram-speed__input"
+            class="need-clear no-input save-data"
+            type="text"
+          />
+        </div>
+      </div>
+      <!-- Billet Length -->
+      <div class="input__wrapper">
+        <div class="input__title">Billet L.</div>
+        <div class="previous-value__display need-clear">1200</div>
+        <select
+          name=""
+          id="billet-length__select"
+          class="save-data need-clear no-input for-work-length"
+        >
+          <option value="0">-</option>
+          <option value="600">600</option>
+          <option value="1200">1200</option>
+        </select>
+      </div>
+      <!-- Billet Temperature -->
+      <div class="input__wrapper">
+        <div class="input__title">Billet T.</div>
+        <div class="previous-value__display need-clear">480&#8451;</div>
+        <div class="inner-input_wrapper">
+          <input
+            id="billet-temperature__input"
+            class="need-clear no-input save-data"
+            type="text"
+          />
+        </div>
+      </div>
+      <!-- Billet Taper Heating -->
+      <div class="input__wrapper">
+        <div class="input__title">Billet Taper.</div>
+        <div class="previous-value__display need-clear">100&#8451;/1000mm</div>
+        <div class="inner-input_wrapper">
+          <input id="billet-taper__input" class="no-input" type="text" />
+          <select
+            name=""
+            id="billet-taper-heating__select"
+            class="save-data need-clear no-input"
+          >
+            <option value="-1">-</option>
+            <option value="0">0</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+          </select>
+        </div>
+      </div>
+      <!-- Billet Size -->
+      <div class="input__wrapper">
+        <div class="input__title">Billet S.</div>
+        <div class="previous-value__display need-clear">9</div>
+        <div class="inner-input_wrapper">
+          <input id="billet-size__input" class="need-clear" type="text" />
+          <select
+            name=""
+            id="billet-size__select"
+            class="save-data need-clear no-input for-work-length"
+          >
+            <option value="0">-</option>
+            <option value="9">9</option>
+          </select>
+        </div>
+      </div>
+      <!-- input billet qty-->
+      <div class="input__wrapper">
+        <div class="input__title">Billet Qty</div>
+        <div class="previous-value__display need-clear">16</div>
+        <div class="inner-input_wrapper">
+          <input
+            id="billet-input-qty__input"
+            class="save-data need-clear no-input"
+            type="text"
+          />
+          <select name="" class="need-clear no-input">
+            <option value="0">-</option>
+            <option value="1">12</option>
+            <option value="2">34</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Die Tempareture -->
+      <div class="input__wrapper">
+        <div class="input__title">Die Temp.</div>
+        <div class="previous-value__display need-clear">480&#8451;</div>
+        <div class="inner-input_wrapper">
+          <input
+            id="die-temperature__input"
+            class="save-data need-clear no-input"
+            type="text"
+          />
+          <select name="" class="need-clear no-input">
+            <option value="0">-</option>
+            <option value="1">9</option>
+          </select>
+        </div>
+      </div>
+      <!-- Die heating time -->
+      <div class="input__wrapper">
+        <div class="input__title">Die H_Time</div>
+        <div class="previous-value__display need-clear">5.5h</div>
+        <div class="inner-input_wrapper">
+          <input
+            id="die-heating-time__input"
+            class="save-data need-clear no-input"
+            type="text"
+          />
+          <select name="" class="need-clear no-input input-required">
+            <option value="0">-</option>
+            <option value="1">9</option>
+          </select>
+        </div>
+      </div>
+      <!-- Bolster -->
+      <div class="input__wrapper">
+        <div class="input__title">Bolster</div>
+        <div class="previous-value__display need-clear">B4626-1710-**</div>
+        <div class="inner-input_wrapper">
+          <input id="bolster__input" class="need-clear no-input" type="text" />
+          <select
+            name=""
+            id="bolster__select"
+            class="save-data need-clear no-input"
+          >
+            <option value="0">-</option>
+          </select>
+        </div>
+      </div>
+      <!-- Stretch Ratio-->
+      <div class="input__wrapper">
+        <div class="input__title">Stretch</div>
+        <div class="previous-value__display need-clear">0.8%</div>
+        <div class="inner-input_wrapper">
+          <input
+            id="stretch-ratio__input"
+            class="save-data need-clear no-input"
+            type="text"
+          />
+          <select
+            name="stretch-ratio__select"
+            id=""
+            class="need-clear no-input"
+          >
+            <option value="0">-</option>
+            <option value="1">B4626-1710-**</option>
+            <option value="2">B4630-1515-**</option>
+          </select>
+        </div>
+      </div>
+      <!-- incharge person -->
+      <div class="input__wrapper">
+        <div class="input__title">Incharge</div>
+        <div class="previous-value__display need-clear">Nguyễn Xuân Tuấn</div>
+        <div class="inner-input_wrapper">
+          <input
+            id="incharge-person__input"
+            class="need-clear no-input"
+            type="text"
+          />
+          <select
+            name=""
+            id="incharge__select"
+            class="save-data need-clear no-input"
+          >
+            <option value="0">-</option>
+            <option value="1">Nguyễn Xuân Tuấn</option>
+            <option value="2">Nguyễn Hải Đăng</option>
+          </select>
+        </div>
+      </div>
+      <!-- sample position (l)-->
+      <div class="input__wrapper">
+        <div class="input__title">l</div>
+        <div class="previous-value__display need-clear">1.5m</div>
+        <div class="inner-input_wrapper">
+          <input
+            id="sample-position-l__input"
+            class="save-data need-clear no-input"
+            type="text"
+          />
+          <select name="" class="need-clear no-input">
+            <option value="0">-</option>
+            <option value="1">12</option>
+            <option value="2">34</option>
+          </select>
+        </div>
+      </div>
+      <!-- sample position (m)-->
+      <div class="input__wrapper">
+        <div class="input__title">m</div>
+        <div class="previous-value__display need-clear">15</div>
+        <div class="inner-input_wrapper">
+          <input
+            id="sample-position-m__input"
+            class="save-data need-clear no-input"
+            type="text"
+          />
+          <select name="" class="need-clear no-input">
+            <option value="0">-</option>
+            <option value="1">12</option>
+            <option value="2">34</option>
+          </select>
+        </div>
+      </div>
+      <!-- sample position (n)-->
+      <div class="input__wrapper">
+        <div class="input__title">n</div>
+        <div class="previous-value__display need-clear">16</div>
+        <div class="inner-input_wrapper">
+          <input
+            id="sample-position-n__input"
+            class="save-data need-clear no-input"
+            type="text"
+          />
+          <select name="" class="need-clear no-input">
+            <option value="0">-</option>
+            <option value="1">12</option>
+            <option value="2">34</option>
+          </select>
+        </div>
+      </div>
+      <!-- nBn -->
+      <div class="input__wrapper">
+        <div class="input__title">nBn</div>
+        <div class="previous-value__display need-clear">nBn</div>
+        <div class="inner-input_wrapper">
+          <input id="nbn__input" class="need-clear no-input" type="text" />
+          <select
+            name=""
+            id="nbn__select"
+            class="save-data need-clear no-input"
+          >
+            <option value="0">-</option>
+            <option value="1">1B1</option>
+            <option value="2">1B2</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- note -->
+      <div class="input__wrapper">
+        <div class="input__title">note</div>
+        <div class="previous-value__display need-clear">
+          Feb. 21th press die scratch<br />hogehoge
+        </div>
+        <div class="inner-input_wrapper">
+          <!-- <input id="note__input" class="need-clear no-input" type="text"> -->
+          <textarea
+            name=""
+            id="note__textarea"
+            class="save-data need-clear"
+          ></textarea>
+        </div>
+      </div>
+
+      <!-- paramater fig -->
+      <div class="input__wrapper fig">
+        <img src="./img/fig_001.svg" alt="" />
+      </div>
+    </div>
+
+    <div class="button__wrapper">
+      <button id="save__button">Save</button>
+      <button id="update__button">Update</button>
+      <button id="print__button">Print</button>
+      <button id="test__button">TEST</button>
+      <!-- 削除確認ダイアログ -->
+      <dialog class="dialog__wrapper" id="delete__dialog">
+        Do you Delete?
+        <button id="delete-dialog-cancel__button">Cancel</button>
+        <button id="delete-dialog-delete__button">Delete</button>
+      </dialog>
+    </div>
+    <div class="summary__wrapper">
+      <table id="summary__table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>PDate</th>
+            <th>DisTh</th>
+            <th>PTyp</th>
+            <th>PressTypeId</th>
+            <th>Spd</th>
+            <th>B_Len</th>
+            <th>B_Temp</th>
+            <th>B_Taper</th>
+            <th>DieTmp</th>
+            <th>DieHeat</th>
+            <th>Bolster</th>
+            <th>BolsterId</th>
+            <th>StrR</th>
+            <th>Name</th>
+            <th>NameId</th>
+            <th>l</th>
+            <th>m</th>
+            <th>n</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- <tr>
+          <td>ID</td>
+          <td>21-10-10</td>
+          <td>85</td>
+          <td>〇</td>
+          <td>1</td>
+          <td>12.3</td>
+          <td>1200</td>
+          <td>480</td>
+          <td>100</td>
+          <td>470</td>
+          <td>5.5</td>
+          <td>B4630-1515-**</td>
+          <td>BolsterId</td>
+          <td>0.8</td>
+          <td>Nguyễn Xuân Tuấn</td>
+          <td>NameId</td>
+          <td>4</td>
+          <td>15</td>
+          <td>16</td>
+        </tr> -->
+        </tbody>
+      </table>
+    </div>
+    <script src="./lib/jquery.min.js"></script>
+    <script src="./scr/MakingPressDirective.js"></script>
+  </body>
+</html>

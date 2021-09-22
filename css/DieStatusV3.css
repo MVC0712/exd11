@@ -1,0 +1,469 @@
+.main__wrapper {
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.column__wrapper {
+    height: 100%;
+}
+
+.left__wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 520px;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.center__wrapper {
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.right__wrapper {
+    width: calc(798px - 520px - 70px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.right__wrapper_up {
+    width: calc(798px - 520px - 70px);
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    top: 0;
+}
+
+.right__wrapper_down {
+    width: calc(798px - 520px - 70px);
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    position: relative;
+}
+
+.right__wrapper_select {
+    width: calc(798px - 520px - 70px);
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+}
+
+.right__wrapper_text_input {
+    width: 156px;
+    height: 50px;
+    display: table;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: left;
+    position: relative;
+    text-align: left;
+}
+
+.right__wrapper2 {
+    width: calc(798px - 520px - 78px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+/* ++++++++++++++++++++++++++++++++++++++++++++ */
+
+
+/* +++++++++++++++  LEFT Area ++++++++++++++ */
+
+
+/* +++++++++++++++  summary table ++++++++++++++ */
+
+
+/* ++++++++++++++++++++++++++++++++++++++++++++ */
+
+#summary__table {
+    width: 515px;
+}
+
+#summary__table tbody {
+    height: 550px;
+}
+
+#summary__table tbody td.nitriding {
+    color: red;
+}
+
+
+/* id */
+
+#summary__table th:nth-child(1),
+#summary__table td:nth-child(1) {
+    display: none;
+}
+
+
+/* dies number */
+
+#summary__table th:nth-child(2),
+#summary__table td:nth-child(2) {
+    width: 100px;
+}
+
+#summary__table td:nth-child(2) {
+    text-align: left;
+}
+
+
+/* Prs time */
+
+#summary__table th:nth-child(3),
+#summary__table td:nth-child(3) {
+    width: 38px;
+}
+
+#summary__table td:nth-child(3) {
+    text-align: center;
+}
+
+
+/* Status */
+
+#summary__table th:nth-child(4),
+#summary__table td:nth-child(4) {
+    width: 67px;
+}
+
+#summary__table td:nth-child(4) {
+    text-align: left;
+}
+
+
+/* die_status_id */
+
+#summary__table th:nth-child(5),
+#summary__table td:nth-child(5) {
+    width: 60px;
+    display: none;
+}
+
+#summary__table td:nth-child(5) {
+    text-align: center;
+}
+
+#summary__table th:nth-child(6),
+#summary__table td:nth-child(6) {
+    width: 132px;
+}
+
+#summary__table td:nth-child(6) {
+    text-align: left;
+}
+
+#summary__table th:nth-child(7),
+#summary__table td:nth-child(7) {
+    width: 70px;
+}
+
+#summary__table td:nth-child(7) {
+    text-align: left;
+}
+
+#summary__table th:nth-child(8),
+#summary__table td:nth-child(8) {
+    width: 70px;
+}
+
+#summary__table td:nth-child(8) {
+    text-align: left;
+}
+
+#summary__table th:nth-child(9),
+#summary__table td:nth-child(9) {
+    width: 75px;
+}
+
+#summary__table td:nth-child(9) {
+    text-align: left;
+}
+
+
+/* ++++++++++++++++++++++++++++++++++++++++++++ */
+
+
+/* +++++++++++++++  Button area ++++++++++++++ */
+
+
+/* ++++++++++++++++++++++++++++++++++++++++++++ */
+
+.button__wrapper {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+
+/* ++++++++++++++++++++++++++++++++++++++++++++ */
+
+
+/* +++++++++++++++  Center Area ++++++++++++++ */
+
+
+/* ++++++++++++++++++++++++++++++++++++++++++++ */
+
+img {
+    width: 50px;
+    height: 80px;
+}
+
+
+/* ++++++++++++++++++++++++++++++++++++++++++++ */
+
+
+/* +++++++++++++++  Right Area ++++++++++++++ */
+
+
+/* ++++++++++++++++++++++++++++++++++++++++++++ */
+
+#add__table {
+    width: 160px;
+}
+
+#add__table tbody {
+    height: 180px;
+}
+
+#add__table th:nth-child(1),
+#add__table td:nth-child(1) {
+    display: none;
+}
+
+#add__table th:nth-child(2),
+#add__table td:nth-child(2) {
+    width: 140px;
+}
+
+#add__table td:nth-child(2) {
+    text-align: left;
+}
+
+#add__table th:nth-child(3),
+#add__table td:nth-child(3) {
+    display: none;
+}
+
+#add__table th:nth-child(4),
+#add__table td:nth-child(4) {
+    display: none;
+}
+
+#add__table th:nth-child(5),
+#add__table td:nth-child(5) {
+    display: none;
+}
+
+#add__table th:nth-child(6),
+#add__table td:nth-child(6) {
+    display: none;
+}
+
+#add__table th:nth-child(7),
+#add__table td:nth-child(7) {
+    display: none;
+}
+
+#add__table th:nth-child(8),
+#add__table td:nth-child(8) {
+    display: none;
+}
+
+#add__table th:nth-child(9),
+#add__table td:nth-child(9) {
+    display: none;
+}
+
+.input__wrapper {
+    /* width: 100%; */
+}
+
+.title {
+    width: 160px;
+    height: 20px;
+    border: solid 1px #0000ff;
+    background-color: #0000ff;
+    color: white;
+}
+
+#do_sth_at {
+    width: 160px;
+    height: 20px;
+    background-origin: solid 1px #0000ff;
+    padding: 0;
+}
+
+#do_sth_at_time {
+    width: 160px;
+    height: 20px;
+    background-origin: solid 1px #0000ff;
+    padding: 0;
+}
+
+input[type="radio" i] {
+    justify-content: center;
+    text-align: left;
+}
+
+#status_process,
+#measure,
+#wash,
+#fix {
+    width: auto;
+    text-align: left;
+    display: table;
+}
+
+#go__button {
+    height: 20px;
+    margin-top: 5px;
+    margin-bottom: 2px;
+}
+
+#myfile {
+    width: 100%;
+    appearance: none;
+    background-color: initial;
+    cursor: default;
+    align-items: baseline;
+    color: inherit;
+    text-overflow: ellipsis;
+    white-space: pre;
+    text-align: start !important;
+    padding: initial;
+    border: initial;
+    overflow: hidden !important;
+}
+
+
+/* history */
+
+.main__wrapperh {
+    padding: 0;
+    height: 200px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.left__wrapperh {
+    width: 350px;
+    height: 180px;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.right__wrapperh {
+    width: calc(898px - 450px - 1px);
+    height: 130px;
+    /* border-left: 1px dotted #0000ff; */
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+#die__table {
+    width: 350px;
+    height: 100%;
+}
+
+#die__table tbody {
+    width: 430px;
+    height: 130px;
+}
+
+#die__table th {
+    padding: 0;
+}
+
+
+/* id */
+
+#die__table tr th:nth-child(1),
+#die__table tr td:nth-child(1) {
+    display: none;
+}
+
+
+/* Die */
+
+#die__table tr th:nth-child(2),
+#die__table tr td:nth-child(2) {
+    width: 100px;
+    text-align: left;
+}
+
+
+/* Status */
+
+#die__table tr th:nth-child(3),
+#die__table tr td:nth-child(3) {
+    width: 70px;
+}
+
+#die__table tr td:nth-child(3) {
+    text-align: left;
+}
+
+
+/* Note */
+
+#die__table tr th:nth-child(4),
+#die__table tr td:nth-child(4) {
+    width: 150px;
+}
+
+#die__table tr td:nth-child(4) {
+    text-align: left;
+}
+
+#die__table tr th:nth-child(5),
+#die__table tr td:nth-child(5) {
+    width: 85px;
+}
+
+#die__table tr td:nth-child(5) {
+    text-align: center;
+}
+
+object {
+    width: 180px;
+    height: 100%;
+}
+
+.zoom {
+    padding: 50px;
+    transition: transform .2s;
+    margin: 0 auto;
+}
+
+.zoom:hover {
+    -ms-transform: scale(1.5);
+    /* IE 9 */
+    -webkit-transform: scale(1.5);
+    /* Safari 3-8 */
+    transform: scale(1.5);
+}

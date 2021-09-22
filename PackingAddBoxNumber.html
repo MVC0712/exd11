@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ordersheet Input Page</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/PackingAddBoxNumber.css" />
+  </head>
+
+  <body>
+    <header>Add Box Number</header>
+    <div class="main__wrapper">
+      <div class="input-block__outer">
+        <div class="input__title">Production Number</div>
+        <div id="production-number__display"></div>
+        <div id="production_number_id" class="no-display"></div>
+      </div>
+      <table id="summary__table">
+        <thead>
+          <tr>
+            <th>ordersheet_id</th>
+            <th>Order Sheet</th>
+            <th>Delivery</th>
+            <th>Qty</th>
+            <th>Qty/Case</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <div class="button__wrapper">
+        <button id="ok__button" disabled>OK</button>
+        <button id="cancel__button">Cancel</button>
+      </div>
+    </div>
+    <script src="./lib/jquery.min.js"></script>
+    <script>
+      const myAjax = {
+        myAjax: function (fileName, sendData) {
+          $.ajax({
+            type: "POST",
+            url: fileName,
+            dataType: "json",
+            data: sendData,
+            async: false,
+          })
+            .done(function (data) {
+              ajaxReturnData = data;
+            })
+            .fail(function () {
+              alert("DB connect error");
+            });
+        },
+      };
+
+      $(function () {
+        let productionNumber;
+        let fileName;
+        let sendData = new Object();
+        // read ordersheet list that has same production number
+        fileName = "./php/Packing/SelSameOrderPnSheet.php";
+        sendData = {
+          m_ordersheet_id: $(window.opener.document)
+            .find("#directive_input__select")
+            .val(),
+        };
+        myAjax.myAjax(fileName, sendData);
+        $("#summary__table tbody").empty();
+        ajaxReturnData.forEach(function (trVal) {
+          var newTr = $("<tr>");
+          Object.keys(trVal).forEach(function (tdVal, index) {
+            $("<td>").html(trVal[tdVal]).appendTo(newTr);
+          });
+          $(newTr).appendTo("#summary__table tbody");
+        });
+        // copy production number from parent window
+        productionNumber = $(window.opener.document)
+          .find("#PN__display")
+          .html();
+        $("#production-number__display").html(productionNumber);
+      });
+
+      $(document).on("click", "#summary__table tbody tr", function () {
+        // remove id and class and add id and class
+        $(".selected-record").removeClass("selected-record");
+        $("#selected__tr").removeAttr("id");
+        $(this).attr("id", "selected__tr").addClass("selected-record");
+        // activate ok button
+        $("#ok__button").prop("disabled", false);
+      });
+
+      $(document).on("click", "#ok__button", function () {
+        let fileName;
+        let sendData = new Object();
+        let tableData = [];
+        let ordersheet_id;
+        let targetObject;
+        // read ordersheet list that has same production number
+        ordersheet_id = $("#selected__tr td:nth-child(1)").html();
+        fileName = "./php/Packing/SelCountBoxNumber.php";
+        sendData = {
+          m_ordersheet_id: ordersheet_id,
+        };
+        myAjax.myAjax(fileName, sendData);
+        if (ajaxReturnData["count"] == 0) {
+          // there is no made box number. so make box number
+          tableData = makeBoxNumberList();
+          tableData.push($("#selected__tr td:nth-child(1)").html());
+          // inset into t_packing_boxnumber
+          sendData = JSON.stringify(tableData);
+          fileName = "./php/Packing/InsNewBoxNumber.php";
+          myAjax.myAjax(fileName, sendData);
+        }
+        // read sele3cted box number list
+        fileName = "./php/Packing/SelBoxNumberList.php";
+        sendData = {
+          m_ordersheet_id: ordersheet_id,
+        };
+        myAjax.myAjax(fileName, sendData);
+        targetObject = $(window.opener.document).find("#box-number__select");
+        ajaxReturnData.forEach(function (value) {
+          $("<option>")
+            .val(value["id"])
+            .html(value["box_number"])
+            .appendTo(targetObject);
+        });
+        open("about:blank", "_self").close(); // close my self
+      });
+
+      function makeBoxNumberList() {
+        let needBoxQuantity;
+        let newBoxNumberList = [];
+        let ordersheetNumber = $("#selected__tr td:nth-child(2)").html();
+        let orderQuantity = Number($("#selected__tr td:nth-child(4)").html());
+        let quantityPerBox = Number($("#selected__tr td:nth-child(5)").html());
+
+        needBoxQuantity = Math.ceil(orderQuantity / quantityPerBox);
+        // making summary__table
+        for (let index = 1; index <= needBoxQuantity; index++) {
+          let trObj = $("<tr>");
+          let order;
+          let boxNumber;
+          // needBoxQuantity > 10  then  01/20
+          // needBoxQuantity < 10  then   1/5
+          if (Number(needBoxQuantity) >= 10) {
+            order = ("00" + index).slice(-2);
+          } else {
+            order = index;
+          }
+          boxNumber = ordersheetNumber + "-" + order + "/" + needBoxQuantity;
+          newBoxNumberList.push(boxNumber);
+        }
+        return newBoxNumberList;
+      }
+      $(document).on("click", "#cancel__button", function () {
+        open("about:blank", "_self").close(); // close my self
+      });
+    </script>
+  </body>
+</html>

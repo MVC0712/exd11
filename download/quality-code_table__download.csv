@@ -1,0 +1,28 @@
+quality_code,description_vn,note_vn,description_jp,note_jp
+品質コード,内容（ベトナム語）,説明（ベトナム語）,内容（日本語）,内容（日本語）
+301,"Lỗi hình dạng","Hình dạng của sản phẩm không khớp bản vẽ",成形不良,制品形状与图纸不符
+302,"Lỗi dấu khuôn","Vết cấn trên bề mặt sản phẩm do khuôn",ダイスマーク,由于模具原因造成的型材表面连续超过图纸设定的纵线伤
+303,"Lỗi mặt trong bóng khí","Bị sần sùi hoặc lỗ gây ra bởi bóng khí bên mặt trong sản phẩm",内面フクレ,因型材内壁有气泡造成的凸起或凹坑
+304,"Lỗi trầy xước","Bị trầy xước trên bề mặt hoặc trong góc khi vận chuyển cấp hàng",磕碰伤不良,在传送、下料或天车搬运等过程中由人为原因造成的型材表面或边角的磕碰伤不良
+305,"Lỗi độ nhám（Rz,Ry）","Độ nhám không đạt yêu cầu của bản vẽ（Rz、Ry）      ",粗さ不良,"制品的粗糙度（Rz、Ry）不符合图纸或相关文书的要求       "
+306,"Lỗi độ tròn","Độ tròn của sản phẩm không đạt yêu cầu của bản vẽ",真円度不良,制品的真圆度不符合图纸或相关文书的要求
+307,"Lỗi kích thước","Kích thước của sản phẩm không đạt yêu cầu của bản vẽ",寸法不良,制品的尺寸不符合图纸或相关文书的要求
+308,"Lỗi độ cong","Độ cong của sản phẩm không đạt yêu cầu của bản vẽ ",曲がり不良,制品的弯曲度不符合图纸或相关文书的要求
+309,"Lỗi độ xoắn","Độ xoắn của sản phẩm không đạt yêu cầu của bản vẽ ",ねじれ不良,制品的扭曲度不符合图纸或相关文书的要求
+310,"Lỗi tính năng","Độ cứng hoặc độ giãn không đạt yêu cầu của bản vẽ ",硬度不足,制品的硬度或拉伸性能不符合图纸或相关文书的要求
+311,"Lỗi ăn mòn","Có vết nứt xảy ra khi thực hiện quá trình ngâm tẩm",エッチング不良,浸蚀后出现的型材焊合线处有裂纹
+312,"Lỗi nứt","Quá trình ép đùn không đều để nứt dài trên bề mặt",裂纹不良,挤压工艺不适合导致的表面出现连续的均匀的开裂
+313,"Độ bám dính kém","Khiếm khuyết gây ra bởi bụi nhôm dính trên bề mặt",粘铝不良,由于表面集结粘铝导致的不良
+314,"Vết sần sùi","Trong quá trình ép đùn do khuôn bị rung tạo vết sần sùi trên bề mặt",押出振動による不良,挤压过程中　由于模具震动导致型材表面产生带有颗粒状的痕迹
+315,"Tổn thương mặt trong","Khiếm khuyết gây ra theo chiều dọc bởi phần tiếp giáp với mặt trong khuôn",内径ダイスマーク,由于模具原因造成的型材内壁连续纵线伤的不良
+316,"Rỗ bề mặt","Lỗ xuất hiện trên bề mặt do ép",表面坑,由于压延导致型材表面出现凹坑
+317,"Lỗi bòng khí mặt ngoài ","Các vết lồi hoặc lõm do bong bóng trên bề mặt sản phẩm",外面フクレ異常,因型材表面有气泡造成的凸起或凹坑
+318,"Đen bề mặt","Các đường màu đen không đều xuất hiện trên bề mặt",型材表面黒線,表面出现无规则黑线
+319,"Lỗi ngâm tẩm","Có các vết màu đen xuất hiện trên mặt sản phẩm sau khi ngâm NaOH",エッチング巻込不良,浸蚀后出现的型材端面有黑色夹杂物
+320,"Lỗi vết nứt cạnh","Các vết nứt không liền trên bề mặt sản phẩm sau khi ngâm NaOH",浸蚀边部裂纹不良,浸蚀后出现的样品端面非焊合上的裂纹
+321,"Lỗi đường dọc","""Trong quá trình ép đùn_do tốc độ đùn cao xuất hiện các đường dọc bên trong và ngoài sản phẩm""",拉伤不良,挤压过程中由于挤压速度快　造成外表面　内径出现的多条纵向拉伤
+322,"Lỗi dính vải nỉ","""Các vật liệu như nỉ bám vào bên ngoài sản phẩm do bong tróc của con lăn và băng tải""",粘毛毡不良,挤压过程中由于毛毡辊、毛毡带脱落掉毛造成型材外表面粘附毛毡等异物
+323,"Lỗi điểm dừng","Sản phẩm cuối của lot nguyên liệu trước khi dừng được đánh dấu 323 và để dưới cùng của giá để hàng",停机痕不良,端材利用机种带有停机痕部位的素材要标记323并且下架保留
+324,"Lỗi đóng gói","Vật liệu cuối cùng được đánh dấu bằng“△”sau khi bị cắt và đóng gói riêng",卷裂不良,端材利用机种切断后标记“△”　捆包进行单独保留　用于加工双杆部品
+351,"Lỗi khác","Mục này để ghi những lỗi không mong muốn_ cụ thể phải được ghi chú rõ ràng",其他不良,本工序内　上记项目以外的不良。（备注中须明确记录不良现象）
+0,"Không có lỗi SP",,,

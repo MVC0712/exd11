@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSV down load page</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/CsvDownLoad.css" />
+</head>
+
+<body>
+    <header>CSV down load page</header>
+    <div class="main__wrapper">
+        <button id="date-diename-billetqty__download">
+        Date Die<br />Input Billet (Shift_JIS)
+      </button>
+        <button id="dies-monthly-pressingtype-table__download">
+        Die Monthly<br />Input Billet (Shift_JIS)
+      </button>
+        <button id="each-press-result-table__download">
+        Each Press<br />Result (Shift_JIS)
+      </button>
+        <button id="quality-code_table__download">
+        Quality Code Table <br />
+        (UTF-8)
+      </button>
+        <button id="quality-summary_table__download">
+        Quality Summary Table <br />
+        (UTF-8)
+      </button>
+        <button id="ordersheet-summary_table__download">
+        受注・進捗一覧 <br />
+        (Shift_JIS)
+      </button>
+    </div>
+    <script src="./lib/jquery.min.js"></script>
+    <script>
+        // 日付－型番－投入ビレット数
+        $(document).on("click", "#date-diename-billetqty__download", function() {
+            ajaxMakeDlFile("date-diename-billetQTY");
+        });
+
+        // 型番－月－押出形式－投入量
+        $(document).on(
+            "click",
+            "#dies-monthly-pressingtype-table__download",
+            function() {
+                ajaxMakeDlFile("Die--Month--BilletInput");
+            }
+        );
+        // 日付－型番－投入ビレット数－品質結果
+        $(document).on(
+            "click",
+            "#each-press-result-table__download",
+            function() {
+                ajaxMakeDlFile("each-press-result-table__download");
+            }
+        );
+        // 品質コード一覧
+        $(document).on("click", "#quality-code_table__download", function() {
+            ajaxMakeDlFile("quality-code_table__download");
+        });
+        // Quality Summary Table
+        $(document).on("click", "#quality-summary_table__download", function() {
+            ajaxMakeDlFile("quality-summmary_table__download");
+        });
+        // 受注・進捗・一覧
+        $(document).on("click", "#ordersheet-summary_table__download", function() {
+            ajaxMakeDlFile("ordersheet-summary_table__download");
+        });
+
+        function ajaxMakeDlFile(phpFileName) {
+            $.ajax({
+                    type: "POST",
+                    url: "./php/DownLoad/" + phpFileName + ".php",
+                    dataType: "json",
+                    data: {
+                        file_name: phpFileName
+                    },
+                    // async: false,
+                })
+                .done(function(data) {
+                    // console.log("hello");
+                    downloadFile(phpFileName + ".csv");
+                })
+                .fail(function(data) {
+                    alert("call php program error 255");
+                });
+        }
+
+        function downloadFile(downloadFileName) {
+            // 指定したファイル名のファイルをダウンロードする。
+            const a = document.createElement("a");
+            document.body.appendChild(a);
+            a.download = downloadFileName;
+            a.href = "./download/" + downloadFileName;
+
+            a.click();
+            a.remove();
+        }
+    </script>
+</body>
+
+</html>

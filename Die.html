@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Die Edit Page</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/Die.css" />
+  </head>
+
+  <body>
+    <header>
+      <div></div>
+      <div id="topTitle">Dies Page</div>
+      <div id="headerDisplay">?? Dies</div>
+    </header>
+    <div class="main__wrapper">
+      <div class="input__area">
+        <!-- Die Number -->
+        <div class="input__wrapper">
+          <div class="input__title">Die Number</div>
+          <input class="save-data" id="die_number" type="text" />
+        </div>
+        <!-- Die Number -->
+        <div class="input__wrapper">
+          <div class="input__title">Arrival Date</div>
+          <input class="save-data" id="arrival_at" type="date" />
+        </div>
+        <!-- hole -->
+        <div class="input__wrapper">
+          <div class="input__title">Hole</div>
+          <input class="save-data" id="hole" type="text" />
+        </div>
+        <!-- Diamater -->
+        <div class="input__wrapper">
+          <div class="input__title">Diamater</div>
+          <select name="" id="die_diamater_id" class="save-data need-clear">
+            <option value="0">No</option>
+          </select>
+        </div>
+        <!-- Bolster -->
+        <div class="input__wrapper">
+          <div class="input__title">Bolster</div>
+          <select name="" id="bolstar_id" class="save-data need-clear">
+            <option value="0">No</option>
+          </select>
+        </div>
+      </div>
+      <div class="production-table__wrapper">
+        <div class="table-filter__wrapper">
+          <div class="filter__title">Filter</div>
+          <input id="production-filter__input" type="text" />
+        </div>
+        <table id="production__table">
+          <thead>
+            <tr>
+              <td></td>
+              <th colspan="4">Production Number List</th>
+            </tr>
+            <tr>
+              <th>id</th>
+              <th>Cate1</th>
+              <th>Cate2</th>
+              <th>Production Number</th>
+              <th>Lnk</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="button__wrapper">
+      <button id="update__button">Update</button>
+      <button id="addnew__button">AddNew</button>
+      <button id="test__button">test</button>
+    </div>
+    <div class="summary__wrapper">
+      <table id="summary__table">
+        <thead>
+          <tr>
+            <td></td>
+            <td colspan="6">Dies List</td>
+          </tr>
+          <tr>
+            <th>id</th>
+            <th>Die Number</th>
+            <th>Dim</th>
+            <th>Bolster</th>
+            <th>PN</th>
+            <th>Arrival</th>
+            <th>Edit</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <!-- 削除確認ダイアログ -->
+    <dialog class="dialog__wrapper" id="summary-delete__dialog">
+      Do you Delete?
+      <button id="delete-dialog-cancel__button">Cancel</button>
+      <button id="delete-dialog-delete__button">Delete</button>
+    </dialog>
+    <script src="./lib/jquery.min.js"></script>
+    <script src="./scr/Die.js"></script>
+  </body>
+</html>

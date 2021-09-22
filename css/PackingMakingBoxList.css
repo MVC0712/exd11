@@ -1,0 +1,146 @@
+body {
+  width: 420px;
+  height: 550px;
+}
+input {
+  font-size: 12pt;
+}
+input:disabled {
+  background-color: whitesmoke;
+  /* background-color: white; */
+  /* font-size: 12pt; */
+  color: black;
+}
+
+tbody td {
+  font-size: 10pt;
+  padding: 1px;
+}
+
+thead > tr > th {
+  border-bottom: 0;
+  height: 20px;
+}
+
+thead th,
+tbody th {
+  background-color: #0000ff;
+  border: solid 1px white;
+  color: white;
+  text-align: center;
+  font-size: 10pt;
+  font-weight: normal;
+}
+
+tbody tr.selected-record {
+  background-color: #dbdbff;
+}
+
+td {
+  padding: 0;
+  /* font-size: 10pt; */
+}
+
+table input {
+  padding: 0;
+  /* width: 60px; */
+  border: none;
+  width: 100%;
+}
+
+table input.selected-input {
+  background-color: #dbdbff;
+}
+/* basic setting */
+.no-dlisplay {
+  display: none;
+}
+.input-block__outer {
+  height: initial;
+  width: initial;
+  margin: 0 5px 0 5px;
+  width: 100%;
+}
+.button__wrapper {
+  justify-content: space-evenly;
+}
+
+.bottom__wrapper .input-block__outer {
+  height: 30px;
+}
+
+.input__title {
+  width: initial;
+  padding: 0 3px 0 3px;
+}
+/* ========  Page Layout ============ */
+.input__wrapper {
+  width: 100%;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+
+.summary__wrapper {
+  width: 100%;
+  height: calc(598px - 250px);
+  display: flex;
+  align-items: start;
+  justify-content: space-evenly;
+}
+button {
+  margin: 0;
+  height: 25px;
+  border: 1px;
+  width: 120px;
+  color: yellow;
+}
+/* ============ elements =========== */
+#ordersheet-number__input {
+  width: 120px;
+}
+#production_number__input {
+  width: 120px;
+}
+/* ============ dialog ============= */
+dialog button {
+  width: 100px;
+  height: 50px;
+  margin: 10px;
+  font: 12pt;
+}
+dialog button.delete__button {
+  color: yellow;
+}
+/* ----------- input --------------- */
+#box-number__input {
+  width: 100px;
+}
+/* ----------- table desgin ---------------- */
+#summary__table {
+  width: 240px;
+}
+#summary__table tbody {
+  height: 250px;
+}
+#summary__table input {
+  text-align: left;
+}
+#summary__table tr th:nth-child(1),
+#summary__table tr td:nth-child(1) {
+  width: 40px;
+  padding-right: 5px;
+  font-size: 12pt;
+}
+#summary__table tr td:nth-child(1) {
+  text-align: right;
+}
+#summary__table tr th:nth-child(2),
+#summary__table tr td:nth-child(2) {
+  width: 170px;
+}
+#summary__table tr td:nth-child(2) {
+  text-align: left;
+}

@@ -1,0 +1,77 @@
+.filter__wrapper{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.input-block__outer {
+  width: 100%;
+  height: 35px;
+}
+.filter__wrapper input{
+  width: 80px;
+}
+/* summary table */
+.main__wrapper{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 600px;
+}
+/* id */
+#summary__table thead th:nth-child(1),
+#summary__table tbody td:nth-child(1){
+  display: none;
+}
+/* date */
+#summary__table thead th:nth-child(2),
+#summary__table tbody td:nth-child(2){
+  width: 38px;
+}
+/* die number */
+#summary__table thead th:nth-child(3),
+#summary__table tbody td:nth-child(3){
+  width: 100px;
+}
+#summary__table tbody td:nth-child(3){
+  text-align: left;
+}
+
+/* production number */
+#summary__table thead th:nth-child(4),
+#summary__table tbody td:nth-child(4){
+  width: 50px;
+  display: none;
+}
+/* pressing type */
+#summary__table thead th:nth-child(5),
+#summary__table tbody td:nth-child(5){
+  width: 20px;
+}
+/* plan billet qty */
+#summary__table thead th:nth-child(6),
+#summary__table tbody td:nth-child(6){
+  width: 20px;
+}
+#summary__table tbody td:nth-child(6){
+  text-align: right;
+}
+/* Actual billet qty */
+#summary__table thead th:nth-child(7),
+#summary__table tbody td:nth-child(7){
+  width: 20px;
+}
+#summary__table tbody td:nth-child(7){
+  text-align: right;
+}
+/* profile qty */
+#summary__table thead th:nth-child(8),
+#summary__table tbody td:nth-child(8){
+  width: 20px;
+}
+#summary__table tbody td:nth-child(8){
+  text-align: right;
+}
+/* tbody */
+#summary__table tbody{
+  height: 500px;
+}

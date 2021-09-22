@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Schedule</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/Schedule.css" />
+</head>
+
+<body>
+    <header>Schedule</header>
+    <div class="main__wrapper">
+        <div class="input-block__wrapper">
+                <div class="input__title">Die number</div>
+                <input id="die__input" style="width: 70px;" class="need-clear" type="text" />
+                <select id="die__select" class="no-input save-data need-clear">
+                  <option value="0">No select</option>
+                </select>
+                <div id="number-of-die__display" style="margin-right: 5px; width: 10px;" class="input__title">0</div>
+            <div class="input__title">Prs_date</div>
+            <input type=date class="need-clear no-input save-data" id='press__date'>
+            <div class="input__title">Prs_qty</div>
+            <input id="press__qty" class="need-clear no-input save-data" style="width:50px" type="number" />
+            <button id="insert_plan">Input</button>
+        </div>
+
+        <div class="input-block__wrapper">
+            <div class="input__title">Press type</div>
+
+            <select id="presstype" onclick="timkiem();">
+                <option value="">Press type</option>
+                <option value="〇">〇</option>
+                <option value="◎">◎</option>
+                <option value="●">●</option>
+            </select>
+
+            <div class="input__title">Die Number</div>
+            <input id="die_number__input" class="" type="text" />
+            <div class="input__title">Term</div>
+
+            <input type=date id='std' value="2021-09-01"> →
+            <input type=date id='end' value="2021-09-30">
+        </div>
+    </div>
+    <div class="summary__wrapper">
+        <div id="table" class="calendar"></div>
+
+    </div>
+    <script src="./lib/jquery.min.js"></script>
+    <script src="./scr/Schedule.js"></script>
+</body>
+
+</html>

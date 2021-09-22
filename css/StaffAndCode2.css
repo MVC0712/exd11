@@ -1,0 +1,170 @@
+.main__wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  padding: 0;
+  /* height: 598px; */
+  height: calc(598px - 31px);
+}
+/* ================================================= */
+/* ================================================= */
+/* member__wrapper                                   */
+/* ================================================= */
+/* ================================================= */
+.member__wrapper {
+  width: 100%;
+  border-bottom: solid 1px #0000cc;
+  height: 280px;
+  display: flex;
+}
+.member__wrapper .input-area__wrapper {
+  width: 35%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  /* align-content: space-around; */
+}
+.member__wrapper .input-area__wrapper .input__wrapper {
+  width: 80%;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.member__wrapper .input-area__wrapper .input__wrapper .title {
+  width: 220px;
+  height: 20px;
+  border: #0000ff 1px solid;
+  padding: 0 1px;
+  color: white;
+  background-color: #0000ff;
+}
+.member__wrapper .input-area__wrapper .input__wrapper input {
+  width: 220px;
+  height: 20px;
+  border: #0000ff 1px solid;
+  padding: 0 1px;
+}
+.member__wrapper .input-area__wrapper .input__wrapper select {
+  width: 224px;
+  height: 22px;
+  border: #0000ff 1px solid;
+  padding: 0 1px;
+}
+/* member table   */
+.member__wrapper .table__wrapper {
+  width: 65%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.member__wrapper .table__wrapper .button__wrapper {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.member__wrapper .table__wrapper .button__wrapper button {
+  height: 30px;
+}
+#member__table {
+  width: 478px;
+  height: 200px;
+}
+#member__table tbody {
+  height: 145px;
+}
+#member__table th {
+  height: 25px;
+}
+
+#member__table th:nth-child(1),
+#member__table td:nth-child(1) {
+  display: none;
+}
+/* name */
+#member__table th:nth-child(2),
+#member__table td:nth-child(2) {
+  width: 170px;
+}
+#member__table td:nth-child(2) {
+  text-align: left;
+}
+/* emploee number */
+#member__table th:nth-child(3),
+#member__table td:nth-child(3) {
+  width: 95px;
+}
+/* position */
+#member__table th:nth-child(4),
+#member__table td:nth-child(4) {
+  width: 43px;
+}
+/* position */
+#member__table th:nth-child(5),
+#member__table td:nth-child(5),
+#member__table th:nth-child(6),
+#member__table td:nth-child(6) {
+  width: 70px;
+}
+
+/* ------------Quality Code area ----------------- */
+.quality-code__wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 286px;
+  justify-content: center;
+  align-items: center;
+}
+.quality-code__wrapper div {
+  width: 100%;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.quality-code__wrapper div:nth-child(3) {
+  display: flex;
+  flex-direction: row;
+  height: 40px;
+}
+.quality-code__wrapper button {
+  height: 20px;
+}
+#quality-code__table {
+  width: 760px;
+}
+
+#quality-code__table tbody {
+  height: 200px;
+  overflow-y: scroll;
+}
+#quality-code__table tbody td {
+  height: 25px;
+}
+#quality-code__table td:nth-child(1) {
+  display: none;
+}
+#quality-code__table td:nth-child(2) {
+  width: 40px;
+}
+#quality-code__table td:nth-child(3),
+#quality-code__table td:nth-child(4),
+#quality-code__table td:nth-child(5) {
+  width: 230px;
+}
+#quality-code__table input {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  text-align: left;
+}
+#quality-code__table td:nth-child(2) input {
+  text-align: center;
+}

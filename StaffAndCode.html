@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Staff & Code</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/StaffAndCode.css" />
+  </head>
+
+  <body>
+    <header>Staff & Code</header>
+    <div class="main__wrapper">
+      <div class="member__wrapper">
+        <div class="input-area__wrapper">
+          <div class="input__wrapper">
+            <div class="title">Name</div>
+            <input type="text" id="staff_name" / class="save-data no-input
+            input-required need-clear">
+          </div>
+          <div class="input__wrapper">
+            <div class="title">Emploee Number</div>
+            <input type="text" id="emploee_number" / class="save-data no-input
+            input-required need-clear">
+          </div>
+          <div class="input__wrapper">
+            <div class="title">Position</div>
+            <select
+              id="position_id"
+              class="save-data no-input input-required need-clear"
+            >
+              <option value="0">no</option>
+              <option value="1">Staff</option>
+              <option value="2">Worker</option>
+            </select>
+          </div>
+          <div class="input__wrapper">
+            <div class="title">Join Date</div>
+            <input type="date" id="joining_date" / class="save-data no-input
+            input-required need-clear">
+          </div>
+          <div class="input__wrapper">
+            <div class="title">Leave Date</div>
+            <input type="date" id="leave_at" / class="save-data need-clear">
+          </div>
+        </div>
+        <div class="table__wrapper">
+          <table id="member__table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Emploee Number</th>
+                <th>Position</th>
+                <th>Leave Date</th>
+                <th>Update Date</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+          <div class="button__wrapper">
+            <button disabled id="member-save__button">Save</button>
+            <button disabled id="member-update__button">Update</button>
+            <button id="member-test__button">test</button>
+            <!-- 削除確認ダイアログ -->
+            <dialog class="dialog__wrapper" id="member-delete__dialog">
+              Do you Delete?
+              <button id="member-delete-dialog-cancel__button">Cancel</button>
+              <button id="member-delete-dialog-delete__button">Delete</button>
+            </dialog>
+          </div>
+        </div>
+      </div>
+      <div class="quality-code__wrapper">
+        <div class="input__wrapper">
+          <div class="left__block">
+            <div class="input__frame">
+              <div class="title">Code</div>
+              <input
+                id="quality_code"
+                type="text"
+                class="no-input need-clear save-data input-required"
+              />
+            </div>
+          </div>
+          <div class="right__block">
+            <div class="input__frame">
+              <div class="title">VN</div>
+              <textarea
+                id="description_vn"
+                class="no-input need-clear save-data input-required"
+              ></textarea>
+              <div class="title">JP</div>
+              <textarea
+                id="description_jp"
+                class="need-clear save-data"
+              ></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="button__wrapper">
+          <button id="code-save__button" disabled>Save</button>
+          <button id="code-update__button" disabled>Update</button>
+        </div>
+        <div class="table__wrapper">
+          <table id="code__table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Code</th>
+                <th>Description VN</th>
+                <th>Description JP</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+          <!-- 削除確認ダイアログ -->
+          <dialog class="dialog__wrapper" id="code-delete__dialog">
+            Do you Delete?
+            <button id="code-delete-dialog-cancel__button">Cancel</button>
+            <button id="code-delete-dialog-delete__button">Delete</button>
+          </dialog>
+        </div>
+      </div>
+    </div>
+    <script src="./lib/jquery.min.js"></script>
+    <script src="./scr/StaffAndCode.js"></script>
+  </body>
+</html>

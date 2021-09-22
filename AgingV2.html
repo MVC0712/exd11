@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aging Page</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/AgingV2.css" />
+</head>
+
+<body>
+    <header>Aging 時効処理</header>
+    <div class="upper__block">
+        <div class="wait_table__wrapper table__wrapper aging__table">
+            <table id="not_aging__table">
+                <thead>
+                    <tr>
+                        <td></td>
+                        <td colspan="5">Stocked Rack</td>
+                    </tr>
+                    <tr>
+                        <td>using_aging_rack.id</td>
+                        <td>Die No.</td>
+                        <td>RckNo</td>
+                        <td>P.Date</td>
+                        <td>A.Date</td>
+                        <td>t_aging.id</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>id</td>
+                        <td>VM30D-01V</td>
+                        <td>01</td>
+                        <td>01-01</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- 削除、追加確認ダイアログ -->
+            <dialog class="dialog__wrapper" id="delete__dialog">
+                Do you?
+                <button id="delete-dialog-cancel__button">Cancel</button>
+                <button id="delete-dialog-add__button">Add</button>
+                <button id="delete-dialog-delete__button">Delete</button>
+            </dialog>
+            <!-- 削除ダイアログ -->
+            <dialog class="dialog__wrapper" id="confirm_delete__dialog">
+                Do you Delete?
+                <button id="confirm-cancel__button">Cancel</button>
+                <button id="confirm-delete__button">Delete</button>
+            </dialog>
+        </div>
+        <div class="column_space">
+            <img src="./img/001.png" alt="" />
+        </div>
+        <div class="aging_table__wrapper table__wrapper aging__table">
+            <table id="plan_aging__table">
+                <thead>
+                    <tr>
+                        <td></td>
+                        <td colspan="5">Aging</td>
+                    </tr>
+                    <tr>
+                        <td>using_aging_rack.id</td>
+                        <td>Die No.</td>
+                        <td>RckNo</td>
+                        <td>P.Date</td>
+                        <td>A.Date</td>
+                        <td>t_aging.id</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div class="column_space"></div>
+        <div class="history_table__wrapper table__wrapper">
+            <table id="history__table">
+                <thead>
+                    <tr>
+                        <td></td>
+                        <td colspan="7">History</td>
+                    </tr>
+                    <tr>
+                        <td>using_aging_rack.id</td>
+                        <td>Die No.</td>
+                        <td>RckNo</td>
+                        <td>P.Date</td>
+                        <td>A.Date</td>
+                        <td>t_aging.id</td>
+                        <td>A.Date yyyy-mm-dd</td>
+                        <td>hardness</td>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+    <div class="down__block">
+        <div class="input__wrapper">
+            <div class="input__block">
+                <div class="title">Date</div>
+                <input type="date" name="" id="aging_date" />
+            </div>
+        </div>
+        <div class="input__wrapper">
+            <div class="input__block">
+                <div class="title">Hardnesss</div>
+                <input type="text" name="" id="hardness" />HR
+            </div>
+        </div>
+        <div class="input__wrapper">
+            <div class="button__block">
+                <button id="save__button">Aging</button>
+                <button id="update__button">Update</button>
+                <button id="add-aging__button">Add Aging</button>
+                <button id="remove-aging__button">Remove Aging</button>
+                <button id="test__button">Test</button>
+            </div>
+        </div>
+        <div class="input__wrapper">
+            <div class="input__block"></div>
+        </div>
+    </div>
+    <script src="./lib/jquery.min.js"></script>
+    <script src="./scr/AgingV2.js"></script>
+</body>
+
+</html>

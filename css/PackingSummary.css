@@ -1,0 +1,124 @@
+body {
+	width: calc(900px - 2px);
+}
+tbody td {
+	font-size: 12pt;
+}
+tbody tr.selected-record {
+	background-color: #dbdbff;
+}
+/* =============  page layout ================= */
+.upper__wrapper {
+	height: 100px;
+	width: 100%;
+}
+.main__wrapper {
+	height: calc(598px - 31px - 100px);
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+}
+.left__wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	width: 600px;
+}
+.right__wrapper {
+	width: calc(898px - 600px);
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+}
+/* ============  SUMMARY TABLE ================= */
+#summary__table {
+	width: 540px;
+}
+#summary__table tbody {
+	height: 310px;
+}
+#summary__table th:nth-child(1),
+#summary__table td:nth-child(1) {
+	display: none;
+}
+#summary__table th:nth-child(2),
+#summary__table td:nth-child(2) {
+	width: 100px;
+}
+#summary__table td:nth-child(2) {
+	text-align: left;
+}
+#summary__table th:nth-child(3),
+#summary__table td:nth-child(3) {
+	width: 130px;
+}
+#summary__table td:nth-child(3) {
+	text-align: left;
+}
+#summary__table th:nth-child(4),
+#summary__table td:nth-child(4) {
+	width: 60px;
+}
+#summary__table td:nth-child(4) {
+	text-align: center;
+}
+#summary__table th:nth-child(5),
+#summary__table td:nth-child(5) {
+	width: 70px;
+}
+#summary__table td:nth-child(5) {
+	text-align: right;
+}
+#summary__table th:nth-child(6),
+#summary__table td:nth-child(6) {
+	width: 70px;
+}
+#summary__table td:nth-child(6) {
+	text-align: right;
+}
+#summary__table th:nth-child(7),
+#summary__table td:nth-child(7) {
+	width: 70px;
+}
+#summary__table td:nth-child(7) {
+	text-align: right;
+}
+/* ============  SUB TABLE ================= */
+#sub__table {
+	width: 230px;
+}
+#sub__table tbody:nth-child(2) {
+	height: 310px;
+}
+#sub__table tbody:nth-child(3) {
+	height: initial;
+	overflow-y: initial;
+}
+#sub__table tbody:nth-child(3) td {
+	border-color: white;
+	font-size: 14pt;
+}
+#sub__table tbody:nth-child(3) td:nth-child(2) {
+	text-align: right;
+}
+#sub__table thead tr:nth-child(1) {
+	height: 32px;
+}
+#sub__table th:nth-child(1),
+#sub__table td:nth-child(1) {
+	display: none;
+}
+#sub__table th:nth-child(2),
+#sub__table td:nth-child(2) {
+	width: 140px;
+}
+#sub__table td:nth-child(2) {
+	text-align: left;
+}
+#sub__table th:nth-child(3),
+#sub__table td:nth-child(3) {
+	width: 65px;
+}
+#sub__table td:nth-child(3) {
+	text-align: right;
+}

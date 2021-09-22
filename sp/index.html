@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Extrusion Top</title>
+  <link rel="stylesheet" href="./css/main.css">
+  <!-- <link rel="stylesheet" href="./css/index.css"> -->
+</head>
+
+<body>
+  <header>
+    Top Menu
+  </header>
+  <div class="main__wrapper">
+    <button id="history__button">Histroy</button>
+    <button disabled>TEST</button>
+    <button disabled>TEST</button>
+    <button disabled>TEST</button>
+    <button disabled>TEST</button>
+  </div>
+  <script src="../lib/jquery.min.js"></script>
+  <script>
+    $(function () {
+      console.log("helo");
+    });
+
+    $(document).on("click", "#history__button", function () {
+      console.log("Hello");
+      window.open("History.html");
+    });
+
+
+  </script>
+
+</body>
+
+</html>

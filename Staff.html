@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MemberList</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/staff.css" />
+  </head>
+
+  <body>
+    <header>Member Edit Page</header>
+    <div class="main__wrapper">
+      <!-- Name -->
+      <div class="input-block__outer name__outer">
+        <div class="input__title">Name</div>
+        <input
+          id="name__input"
+          class="need-clear no-input save-data"
+          type="text"
+        />
+      </div>
+      <!-- Emploee Number -->
+      <div class="input-block__outer emploee-number__outer">
+        <div class="input__title">Emploee Number</div>
+        <input
+          id="emploee-number__input"
+          class="need-clear no-input save-data"
+          type="text"
+        />
+      </div>
+      <!-- Position -->
+      <div class="input-block__outer position__outer">
+        <div class="input__title">Position</div>
+        <input id="position__input" class="need-clear no-input" type="text" />
+        <select
+          name=""
+          id="position__select"
+          class="input-required no-input save-data need-clear"
+        >
+          <option value="0">-</option>
+          <option value="1">Staff</option>
+          <option value="2">Worker</option>
+        </select>
+      </div>
+      <!-- Leave at -->
+      <div class="input-block__outer leave-at__outer">
+        <div class="input__title">Leave date</div>
+        <input
+          id="leave-date__input"
+          class="need-clear save-data complete-input"
+          type="date"
+        />
+      </div>
+    </div>
+
+    <div class="button__wrapper">
+      <button id="save__button">Save</button>
+      <button id="update__button">Update</button>
+      <button id="test__button">Test</button>
+    </div>
+    <div class="summary__wrapper">
+      <!-- 保存ダイアログ -->
+      <dialog class="dialog__wrapper" id="save__dialog">
+        Do you save?
+        <button id="save-dialog-cancel__button">Cancel</button>
+        <button id="save-dialog-save__button">Save</button>
+      </dialog>
+      <!-- 削除確認ダイアログ -->
+      <dialog class="dialog__wrapper" id="delete__dialog">
+        Do you Delete?
+        <button id="delete-dialog-cancel__button">Cancel</button>
+        <button id="delete-dialog-delete__button">Delete</button>
+      </dialog>
+      <!-- 更新ダイアログ -->
+      <dialog class="dialog__wrapper" id="update__dialog">
+        Do you Update?
+        <button id="update-dialog-cancel__button">Cancel</button>
+        <button id="update-dialog-update__button">Update</button>
+      </dialog>
+      <table id="summary__table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th id="staff_name">Name</th>
+            <th id="emploee_number">Emploee Number</th>
+            <th id="position">Position</th>
+            <th id="leave_at">Leave Date</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <script src="./lib/jquery-3.3.1.min.js"></script>
+    <script src="./scr/Staff.js"></script>
+  </body>
+</html>

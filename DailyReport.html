@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Extrusion Dailyreport</title>
+  <link rel="stylesheet" href="./css/main.css">
+  <link rel="stylesheet" href="./css/DailyReport.css">
+
+</head>
+
+<body>
+  <header>
+    Press Dailyreport Input Page
+  </header>
+  <div class="main__wrapper">
+    <div class="input-blocks__wrapper">
+      <!-- Date -->
+      <div class="input-block__outer">
+        <div class="input__title">Date</div>
+        <input id="date__input" class="need-clear no-input input-required save-data" type="text">
+      </div>
+      <!-- Die Number -->
+      <div class="input-block__outer">
+        <div class="input__title">Die</div>
+        <input id="die__input" class="need-clear" type="text">
+        <select name="" id="die__select" class="input-required no-input save-data need-clear">
+          <option value="0">No select</option>
+        </select>
+        <div id="number-of-die__display" class="input__title">0</div>
+      </div>
+      <!-- Did washed -->
+      <div class="input-block__outer">
+        <div class="input__title">is Washed?</div>
+        <input id="is-washed__input" class="need-clear" type="text">
+        <select name="" id="is-washed__select" class="input-required no-input save-data need-clear">
+          <option value="0">-</option>
+          <option value="1">No</option>
+          <option value="2">Yes</option>
+        </select>
+      </div>
+      <!-- Press type -->
+      <div class="input-block__outer">
+        <div class="input__title">Press Type</div>
+        <input id="pressing-type__input" class="need-clear" type="text">
+        <select name="" id="pressing-type__select" class="input-required no-input save-data need-clear">
+          <option value="0">-</option>
+          <option value="1">〇</option>
+          <option value="2">◎</option>
+          <option value="3">●</option>
+        </select>
+      </div>
+      <!-- Press machine number -->
+      <div class="input-block__outer">
+        <div class="input__title">M/N</div>
+        <input id="machine-number__input" class="need-clear" type="text">
+        <select name="" id="machine-number__select" class="input-required no-input save-data need-clear">
+          <option value="0">-</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+        </select>
+      </div>
+      <!-- Billet Lot Number -->
+      <div class="input-block__outer">
+        <div class="input__title">Bundle No</div>
+        <input id="billet-lot-number__input" class="need-clear no-input input-required save-data" type="text">
+      </div>
+      <!-- Billet Size -->
+      <div class="input-block__outer">
+        <div class="input__title">Billet S.</div>
+        <input id="billet-size__input" class="need-clear" type="text">
+        <select name="" id="billet-size__select" class="input-required no-input save-data need-clear">
+          <option value="0">-</option>
+          <option value="9">9</option>
+          <option value="12">12</option>
+        </select>
+      </div>
+      <!-- Billet length -->
+      <div class="input-block__outer">
+        <div class="input__title">Billet length</div>
+        <input id="billet-length__input" class="need-clear" type="text">
+        <select name="" id="billet-length__select" class="input-required no-input save-data need-clear">
+          <option value="0">-</option>
+          <option value="600">600</option>
+          <option value="1200">1200</option>
+        </select>
+      </div>
+      <!-- Plan Billet Qty -->
+      <div class="input-block__outer">
+        <div class="input__title">Plan B_Qty</div>
+        <input id="plan-billet-qty__input" class="save-data need-clear no-input input-required" type="text">pic.
+      </div>
+      <!-- Actual Billet Qty -->
+      <div class="input-block__outer">
+        <div class="input__title">Actu.B_Qty</div>
+        <input id="actual-billet-qty__input" class="save-data need-clear no-input input-required" type="text">pic.
+      </div>
+      <!-- press stop cause -->
+      <div class="input-block__outer">
+        <div class="input__title">Stop cause</div>
+        <input id="stop-cause__input" class="need-clear" type="text">
+        <select name="" id="stop-cause__select" class="save-data need-clear input-required no-input">
+          <option value="0">-</option>
+        </select>
+      </div>
+      <!-- press work time -->
+      <div class="input-block__outer">
+        <div class="input__title">Press Tm</div>
+        <input id="press-start__input" class="save-data need-clear no-input input-required" type="text">
+        -
+        <input id="press-finish__input" class="save-data need-clear no-input input-required" type="text">
+      </div>
+      <!-- Actual Ram Speed -->
+      <div class="input-block__outer">
+        <div class="input__title">Ram Spd</div>
+        <input id="actual-ram-speed__input" class="save-data need-clear no-input input-required" type="text">mm/s
+      </div>
+      <!-- Actual Die Temp -->
+      <div class="input-block__outer">
+        <div class="input__title">A.Die Temp.</div>
+        <input id="actual-die-temp__input" class="save-data need-clear no-input input-required" type="text">&#8451;
+      </div>
+      <!-- Name -->
+      <div class="input-block__outer">
+        <div class="input__title">Name</div>
+        <input id="name__input" class="need-clear" type="text">
+        <select name="" id="name__select" class="save-data need-clear input-required no-input">
+          <option value="0">-</option>
+        </select>
+      </div>
+
+
+    </div>
+
+
+  </div>
+  <div class="button__wrapper">
+    <button id="save__button">Save</button>
+    <button id="update__button">Update</button>
+    <button id="test__button">TEST</button>
+    <!-- 削除確認ダイアログ -->
+    <dialog class="dialog__wrapper" id="delete__dialog">
+      Do you Delete?
+      <button id="delete-dialog-cancel__button">Cancel</button>
+      <button id="delete-dialog-delete__button">Delete</button>
+    </dialog>
+
+  </div>
+  <div class="summary__wrapper">
+    <table id="summary__table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Date</th>
+          <th>Prs</th>
+          <th>Die</th>
+          <th>Die_id</th>
+          <th>Typ</th>
+          <th>Typ_id</th>
+          <th>isWshd</th>
+          <th>isWshd_id</th>
+          <th>BiletBandl</th>
+          <th>B/S</th>
+          <th>B/L</th>
+          <th>PQty</th>
+          <th>AQty</th>
+          <th>StopCu</th>
+          <th>Start</th>
+          <th>Stop</th>
+          <th>RamSpd</th>
+          <th>DieTmp</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+
+  </div>
+
+  <script src="./lib/jquery-3.3.1.min.js"></script>
+  <script src="./scr/DailyReport.js"></script>
+
+
+</body>
+
+</html>

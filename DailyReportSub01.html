@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DailyReport Preview</title>
+    <style type="text/css">
+      body {
+        width: 600px;
+        height: 500px;
+      }
+      object {
+        width: 100%;
+        height: 500px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <button id="test__button">test</button> -->
+    <script src="./lib/jquery.min.js"></script>
+    <script>
+      $(function () {
+        var test = window.opener.document;
+        var filename = $(window.opener.document).find("label").html();
+        var fileType = filename.substr(filename.lastIndexOf(".") + 1, 3);
+        console.log(filename);
+        console.log(filename.lastIndexOf("."));
+        console.log(filename.substr(filename.lastIndexOf(".") + 1, 3));
+
+        switch (fileType) {
+          case "pdf":
+          case "PDF":
+            $("<object>")
+              .attr(
+                "data",
+                "../upload/01_press_directive/" +
+                  filename +
+                  "#toolbar=0&navpanes=0"
+              )
+              .attr("type", "application/pdf")
+              .appendTo("body");
+            break;
+          case "jpg":
+          case "JPG":
+            $("<object>")
+              .attr("data", "../upload/01_press_directive/" + filename)
+              .attr("type", "image/jpeg")
+              .appendTo("body");
+            break;
+        }
+      });
+
+      $(document).on("click", "#test__button", function () {
+        var test = window.opener.document;
+        var filename = $(window.opener.document).find("label").html();
+        var fileType = filename.substr(filename.lastIndexOf(".") + 1, 3);
+        console.log(filename);
+        console.log(filename.lastIndexOf("."));
+        console.log(filename.substr(filename.lastIndexOf(".") + 1, 3));
+
+        switch (fileType) {
+          case "pdf":
+          case "PDF":
+            $("<object>")
+              .attr(
+                "data",
+                "../upload/01_press_directive/" +
+                  filename +
+                  "#toolbar=0&navpanes=0"
+              )
+              .attr("type", "application/pdf")
+              .appendTo("body");
+            break;
+          case "jpg":
+          case "JPG":
+            $("<object>")
+              .attr("data", "../upload/01_press_directive/" + filename)
+              .attr("type", "image/jpeg")
+              .appendTo("body");
+            break;
+        }
+      });
+    </script>
+  </body>
+</html>

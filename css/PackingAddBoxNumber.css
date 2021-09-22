@@ -1,0 +1,100 @@
+body {
+  height: 350px;
+  width: 350px;
+}
+/* basic setting */
+.main__wrapper {
+  /* border-bottom: dotted 1px #0000cc; */
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  /* font-size: 10pt; */
+  /* padding-top: 5px; */
+  text-align: center;
+  justify-content: space-evenly;
+}
+.no-display {
+  display: none;
+}
+.input-block__outer {
+  height: 35px;
+  width: 100%;
+  margin: 0;
+}
+.input__title {
+  width: initial;
+  padding: 0 3px 0 3px;
+}
+.button__wrapper {
+  display: flex;
+  width: 90%;
+}
+button {
+  width: 100px;
+  height: 30px;
+}
+tbody tr.selected-record {
+  background-color: #dbdbff;
+}
+
+/* ======================        elements setting    ======================= */
+#production-number__display {
+  width: 150px;
+  font-size: 11pt;
+  border: 1px solid #0000ff;
+  height: 20px;
+  text-align: left;
+}
+
+/* ======================        summary-table       ======================= */
+.summary__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 350px;
+}
+#summary__table {
+  width: 258px;
+}
+#summary__table tbody {
+  height: 170px;
+}
+#summary__table tbody td {
+  font-size: 12pt;
+}
+/* id */
+#summary__table th:nth-child(1),
+#summary__table td:nth-child(1) {
+  display: none;
+}
+/* ordersheet number */
+#summary__table th:nth-child(2),
+#summary__table td:nth-child(2) {
+  width: 100px;
+}
+#summary__table td:nth-child(2) {
+  text-align: left;
+}
+/* delivery date */
+#summary__table th:nth-child(3),
+#summary__table td:nth-child(3) {
+  width: 70px;
+}
+#summary__table td:nth-child(3) {
+  text-align: center;
+}
+/* quantity */
+#summary__table th:nth-child(4),
+#summary__table td:nth-child(4) {
+  width: 60px;
+}
+#summary__table td:nth-child(4) {
+  text-align: right;
+}
+/* qty per case */
+#summary__table th:nth-child(5),
+#summary__table td:nth-child(5) {
+  display: none;
+}
