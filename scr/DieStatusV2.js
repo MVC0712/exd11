@@ -163,9 +163,9 @@ $(document).on("change", "#process", function() {
     } else if ($("#process").val() == 2) {
         $("#process").removeClass("no-input").addClass("complete-input");
         document.getElementById("status_process").innerHTML = `
-            <input type="radio" checked name="check_uncheck" class='radio-button' value="4" />Immersion <br />
-            <input type="radio" name="check_uncheck" class='radio-button' value="5" />Shot <br />
-            <input type="radio" name="check_uncheck" class='radio-button' value="6" />Clean <br />`;
+            <input type="radio" checked name="check_uncheck" class='radio-button' value="4" />Washing <br />
+            <input type="radio" name="check_uncheck" class='radio-button' value="7" />Grinding <br />
+            <input type="radio" name="check_uncheck" class='radio-button' value="9" />Wire cutting <br />`;
     } else if ($("#process").val() == 3) {
         $("#process").removeClass("no-input").addClass("complete-input");
         document.getElementById("status_process").innerHTML = `

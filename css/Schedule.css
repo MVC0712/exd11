@@ -97,8 +97,12 @@ div.calendar {
     width: 28px;
 }
 
+#summary__table tbody tr:nth-child(2n) {
+    border-bottom: 2px solid rgb(0, 0, 0);
+}
+
 #summary__table tr td:last-child {
-  background: #ffe8e8;
+  background: #fff9f9;
 	width: 40px;
 }
 
@@ -115,4 +119,4 @@ td {
 #summary__table tr td.active{
     background: blue;
     color: #fff;
-  }
+}

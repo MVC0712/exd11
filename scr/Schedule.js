@@ -149,7 +149,7 @@ function renderHead(div, start, end) {
     r_days += "</tr>";
     r_days2 += "</tr>";
     r_year += '<th colspan="' + (daysInYear) + '">' + c_year + '</th>';
-    r_year += "<th rowspan='4' style ='width: 40px;'>Total</th></tr>";
+    r_year += "<th rowspan='4' style ='width: 40px;'>Total</th><th rowspan='4' style ='width: 45px;'>Per</th></tr>";
     r_month += '<th colspan="' + (daysInMonth) + '">' + months[c_month] + '</th>';
     r_month += "</tr>";
     table = "<table id='summary__table'> <thead>" + r_year + r_month + r_days + r_days2 + "</thead> <tbody> </tbody> </table>";
@@ -226,36 +226,55 @@ $(document).on("click", "#insert_plan", function() {
   $("#insert_plan").prop("disabled", true);
   $("#die__input").val("");
   $("#die__select").val("");
+  $("#die__select").removeClass("complete-input").addClass("no-input");
   $("#press__date").val("");
+  $("#press__date").removeClass("complete-input").addClass("no-input");
   $("#press__qty").val("");
+  $("#press__qty").removeClass("complete-input").addClass("no-input");
   makeSummaryTable();
 });
 
 function Total() {
-  $table1 = jQuery('#summary__table');
+  $table1 = $('#summary__table');
   $table1.find('tbody tr').each(function(){
     var sum = 0;
-    jQuery(this).find('td').each(function(){
-      if(!isNaN(Number(jQuery(this).text()))){
-        sum = sum + Number(jQuery(this).text());
+    $(this).find('td').each(function(){
+      if(!isNaN(Number($(this).text()))){
+        sum = sum + Number($(this).text());
       }
     });
     sum = sum - Number($(this).find("td").eq(0).html())
     - Number($(this).find("td").eq(1).html());
-    jQuery(this).append('<td>'+sum+'</td>');
+    $(this).append('<td>'+sum+'</td>');
   });
+  check_tt();
 };
 
-// $('document').ready(function(){
-//   $table1 = jQuery('#summary__table');
-//   $table1.find('thead tr').append('<th>Total</th>');
-//   $table1.find('tbody tr').each(function(){
-//     var sum = 0;
-//     jQuery(this).find('td').each(function(){
-//       if(!isNaN(Number(jQuery(this).text()))){
-//         sum = sum + Number(jQuery(this).text());
-//       }
-//     });
-//     jQuery(this).append('<td>'+sum+'</td>');
-//   });
-// });
+function check_tt() {
+  var table = document.getElementById("summary__table");
+  var tbody = table.getElementsByTagName("tbody")[0];
+  var tr = tbody.getElementsByTagName("tr");
+  var b = tr[0].cells.length - 1;
+  for (i = 0; i < tr.length; i += 2) {
+    // console.log(tr.length)
+    var lastcol1 =tr[i].getElementsByTagName("td")[b].innerText;
+    var lastcol2 =tr[i+1].getElementsByTagName("td")[b].innerText;
+    // console.log(lastcol1,lastcol2)  
+      if (lastcol1 != 0 || lastcol2 != 0) {
+        tr[i].style.display = "";
+        tr[i+1].style.display = "";
+        // table.rows[i].insertCell(10);
+        // table.rows[i].cells[10].innerHTML = diff;
+        // table.rows[i].insertCell(b+1);
+        // table.rows[i].cells[b+1].innerHTML = lastcol2/lastcol1*100+'%';
+        if (lastcol1 == 0 && lastcol2 != 0) {
+          tbody.rows[i].append('No plan');
+        } else{
+          tbody.rows[i].append(lastcol2/lastcol1*100+'%');
+        }
+      } else {
+        tr[i].style.display = "none";
+        tr[i+1].style.display = "none";
+      }
+  }
+};
