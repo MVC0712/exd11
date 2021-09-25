@@ -3,15 +3,9 @@
   $passwd = "";
   $dies_id = "";
   $press_date = "";
-  $press_time = "";
-  $press_quantity ="";
 
   $dies_id = $_POST['dies_id'];
   $press_date = $_POST['press_date'];
-  $press_time = $_POST['press_time'];
-  $press_quantity = $_POST['press_quantity'];
-
-  $today = date("Y-m-d");
 
   try {
       $dbh = new PDO(
@@ -24,16 +18,12 @@
           )
       );
 
-          $sql_paramater[] = "('$dies_id', '$press_date $press_time', '$press_quantity')";
-        //   print_r($sql_paramater);
+      $sql = "DELETE FROM t_schedule WHERE dies_id = '$dies_id' AND press_date = '$press_date' ";
 
-      $sql = "INSERT INTO t_schedule ";
-      $sql = $sql."(dies_id, press_date, press_quantity) VALUES ";
-      $sql = $sql.join(",", $sql_paramater);
       $prepare = $dbh->prepare($sql);
       
       $prepare->execute();
-      echo json_encode("INSERTED");
+      echo json_encode("DELETED");
   } catch (PDOException $e) {
       $error = $e->getMessage();
       print_r($error);
