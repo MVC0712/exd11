@@ -66,7 +66,7 @@ $sql1 = $sql1." FROM
     GROUP BY idm
     ORDER BY idm DESC, o ASC";
     $sql = $sql2.$sql3;
-    // echo $sql;
+    // print_r($sql);
   try {
       $dbh = new PDO(
           'mysql:host=localhost; dbname=extrusion; charset=utf8',

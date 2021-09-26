@@ -57,7 +57,7 @@ function round(num, decimalPlaces = 0) {
 }
 
 function makeSummaryTable() {
-    var fileName = "./php/Schedule/SelSummary.php";
+    var fileName = "./php/Schedule/SelSummaryFullDieid.php";
     // var fileName1 = "./php/Schedule/SelSummaryPrs.php";
     // var fileName2 = "./php/Schedule/SelSummarySch.php";
     var sendObj = new Object();
@@ -67,6 +67,7 @@ function makeSummaryTable() {
     myAjax.myAjax(fileName, sendObj);
     // myAjax.myAjax1(fileName1, sendObj);
     // myAjax.myAjax2(fileName2, sendObj);
+    console.log(ajaxReturnData);
 
     $("#summary__table tbody").empty();
     ajaxReturnData.forEach(function(trVal) {
@@ -78,6 +79,8 @@ function makeSummaryTable() {
     });
     Total();
     die_ins();
+    timkiemkhuon();
+    check_tt();
     $("#insert_plan").prop("disabled", true);
     $("#delete_plan").prop("disabled", true);
 }
@@ -327,7 +330,7 @@ function Total() {
     - Number($(this).find("td").eq(1).html());
     $(this).append('<td>'+sum+'</td>');
   });
-  check_tt();
+  // check_tt();
 };
 
 function check_tt() {
@@ -355,3 +358,24 @@ function check_tt() {
     }
   }
 };
+
+function timkiemkhuon() {
+  var input, table, tr, td, filter, i, txtdata;
+  input = document.getElementById("die_number__input");
+  console.log(input)
+  filter = input.value.toUpperCase();
+  table = document.getElementById("summary__table");
+  var tbody = table.getElementsByTagName("tbody")[0];
+  var tr = tbody.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[2];
+      if (td) {
+          txtdata = td.innerText;
+          if (txtdata.toUpperCase().indexOf(filter) > -1) {
+              tr[i].style.display = "";
+          } else {
+              tr[i].style.display = "none";
+          }
+      }
+  }
+}
