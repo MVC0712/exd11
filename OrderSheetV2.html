@@ -1,78 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ordersheet Input Page</title>
     <link rel="stylesheet" href="./css/main.css" />
     <link rel="stylesheet" href="./css/OrderSheetV2.css" />
-    <!-- <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=mG1U2B1__mVHVQM-8Onhksj3fcY0hFk8000FYQ651R9RFKEZTgapRGHWamiOKyqfiFzhjCnXJbjx2FDW3eav9_UG_w2UA5oToj81jiGGGYGniZrcrAWolD-dnX1QB-M0" charset="UTF-8"></script></head> -->
+  </head>
 
-    <body>
-        <header>Ordersheet Input Page V2</header>
-        <div class="main__wrapper">
-            <!-- ordersheet number -->
-            <div class="input-block__outer">
-                <div class="input__title">Order Sheet No</div>
-                <input id="ordersheet_number" class="need-clear save-data no-input" type="text" />
-            </div>
-            <!-- production number -->
-            <div class="input-block__outer">
-                <div class="input__title">Production Number</div>
-                <input id="production_number" class="need-clear" type="text" />
-                <select name="" id="production_number__select" class="no-input save-data need-clear"></select>
-            </div>
-            <!-- issue -->
-            <div class="input-block__outer">
-                <div class="input__title">Issue at</div>
-                <input id="issue_date_at" class="need-clear save-data no-input" type="date" />
-            </div>
-            <!-- Delivery date -->
-            <div class="input-block__outer">
-                <div class="input__title">Delivery at</div>
-                <input id="delivery_date_at" class="need-clear save-data no-input" type="date" />
-            </div>
-            <!-- Production Quantity -->
-            <div class="input-block__outer">
-                <div class="input__title">Prodcution Qty</div>
-                <input id="production_quantity" class="need-clear save-data no-input" type="text" />
-            </div>
-        </div>
-        <div class="button__wrapper">
-            <button disabled id="save__button">Save</button>
-            <button disabled id="update__button">Update</button>
-            <button id="test__button">TEST</button>
-        </div>
-        <div class="summary__wrapper">
-            <!-- 削除確認ダイアログ -->
-            <dialog class="dialog__wrapper" id="delete__dialog">
-                Do you Delete?
-                <button id="delete-dialog-cancel__button">Cancel</button>
-                <button id="delete-dialog-delete__button">Delete</button>
-            </dialog>
-
-            <table id="summary__table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>OrderSheet</th>
-                        <th>Delivery</th>
-                        <th>Issue</th>
-                        <th>Production Number</th>
-                        <th>Order Qty.</th>
-                        <th>Cut Qty.</th>
-                        <th>NG Qty.</th>
-                        <th>OK Qty.</th>
-                        <th>Update</th>
-                        <th>Diff Qty.</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-        </div>
-        <script src="./lib/jquery-3.3.1.min.js"></script>
-        <script src="./scr/OrderSheetV2.js"></script>
-    </body>
-
+  <body>
+    <header>Ordersheet Input Page V2</header>
+    <div class="main__wrapper">
+      <!-- ordersheet number -->
+      <div class="input-block__outer">
+        <div class="input__title">Order Sheet No</div>
+        <input
+          id="ordersheet_number"
+          class="need-clear save-data no-input"
+          type="text"
+        />
+      </div>
+      <!-- production number -->
+      <div class="input-block__outer">
+        <div class="input__title">Production Number</div>
+        <input id="production_number" class="need-clear" type="text" />
+        <select
+          name=""
+          id="production_number__select"
+          class="no-input save-data need-clear"
+        ></select>
+      </div>
+      <!-- issue -->
+      <div class="input-block__outer">
+        <div class="input__title">Issue at</div>
+        <input
+          id="issue_date_at"
+          class="need-clear save-data no-input"
+          type="date"
+        />
+      </div>
+      <!-- Delivery date -->
+      <div class="input-block__outer">
+        <div class="input__title">Delivery at</div>
+        <input
+          id="delivery_date_at"
+          class="need-clear save-data no-input"
+          type="date"
+        />
+      </div>
+      <!-- Production Quantity -->
+      <div class="input-block__outer">
+        <div class="input__title">Prodcution Qty</div>
+        <input
+          id="production_quantity"
+          class="need-clear save-data no-input"
+          type="text"
+        />
+      </div>
+    </div>
+    <div class="button__wrapper">
+      <button disabled id="save__button">Save</button>
+      <button disabled id="update__button">Update</button>
+      <div class="button__block">
+        <button id="remain__button">Chk Remain</button>
+        <img id="icon" src="./img/002.svg" alt="icon" />
+      </div>
+      <button id="test__button">TEST</button>
+    </div>
+    <div class="summary__wrapper">
+      <!-- 削除確認ダイアログ -->
+      <dialog class="dialog__wrapper" id="delete__dialog">
+        Do you Delete?
+        <button id="delete-dialog-cancel__button">Cancel</button>
+        <button id="delete-dialog-delete__button">Delete</button>
+      </dialog>
+      <table id="summary__table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>OrderSheet</th>
+            <th>Delivery</th>
+            <th>Issue</th>
+            <th>Production Number</th>
+            <th>Order Qty.</th>
+            <th>Cut Qty.</th>
+            <th>NG Qty.</th>
+            <th>OK Qty.</th>
+            <th>Update</th>
+            <th>Diff Qty.</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <script src="./lib/jquery.min.js"></script>
+    <script src="./scr/OrderSheetV2.js"></script>
+  </body>
 </html>

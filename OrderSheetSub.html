@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Packing Box List</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/OrderSheetSub.css" />
+  </head>
+
+  <body>
+    <header>Sản phẩm chưa đóng gói （仕掛／未梱包　一覧）</header>
+    <div class="input__wrapper">
+      <div class="input-block__outer">
+        <div class="input__title">P/N</div>
+        <input
+          id="production-number__input"
+          class="complete-input"
+          type="text"
+        />
+      </div>
+    </div>
+    <div class="summary__wrapper">
+      <div class="left__wrapper">
+        <table id="summary__table">
+          <thead>
+            <tr>
+              <th>Mã sản phẩm</th>
+              <th>Số lượng</th>
+            </tr>
+            <tr>
+              <th>品番</th>
+              <th>数量</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div class="middle__wrapper">
+        <img src="./img/001.png" alt="arrow" />
+      </div>
+      <div class="right__wrapper">
+        <table id="sub__table">
+          <thead>
+            <tr>
+              <th>Ngày đùn</th>
+              <th>Số lượng</th>
+            </tr>
+            <tr>
+              <th>押出日</th>
+              <th>数量</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+    <script src="./lib/jquery.min.js"></script>
+    <script>
+      let ajaxReturnData;
+      const myAjax = {
+        myAjax: function (fileName, sendData) {
+          $.ajax({
+            type: "POST",
+            url: fileName,
+            dataType: "json",
+            data: sendData,
+            async: false,
+          })
+            .done(function (data) {
+              ajaxReturnData = data;
+            })
+            .fail(function () {
+              alert("DB connect error");
+            });
+        },
+      };
+      $(function () {
+        setSummaryTable();
+      });
+
+      function setSummaryTable() {
+        let fileName;
+        let sendData = new Object();
+        fileName = "./php/OrderSheet/SelRemainWork.php";
+        sendData = {
+          dummy: "dummy",
+        };
+        myAjax.myAjax(fileName, sendData);
+        $("#summary__table tbody").empty();
+        ajaxReturnData.forEach(function (trVal) {
+          let newTr = $("<tr>");
+          Object.keys(trVal).forEach(function (tdVal, index) {
+            $("<td>").html(trVal[tdVal]).appendTo(newTr);
+          });
+          $(newTr).appendTo("#summary__table tbody");
+        });
+      }
+
+      $(document).on("keyup", "#production-number__input", function () {
+        $(this).val($(this).val().toUpperCase()); // 小文字を大文字に
+        $("#summary__table tbody tr").each(function (index, element) {
+          let str = $(this).find("td").eq(0).html();
+          if (str.startsWith($("#production-number__input").val())) {
+            console.log("一致");
+            $(this).removeClass("no-display");
+          } else {
+            $(this).addClass("no-display");
+          }
+        });
+      });
+
+      $(document).on("click", "#summary__table tbody tr", function (e) {
+        let fileName;
+        let sendData = new Object();
+        // remove id and class and set id and class
+        $("#summary__tr").removeAttr("id");
+        $(this).parent().find("tr").removeClass("selected-record");
+        $(this).addClass("selected-record").attr("id", "summary__tr");
+
+        fileName = "./php/OrderSheet/SelSelRemain.php";
+        sendData = {
+          production_number: $(this).find("td").eq(0).html(),
+        };
+        myAjax.myAjax(fileName, sendData);
+        $("#sub__table tbody").empty();
+        ajaxReturnData.forEach(function (trVal) {
+          let newTr = $("<tr>");
+          Object.keys(trVal).forEach(function (tdVal, index) {
+            $("<td>").html(trVal[tdVal]).appendTo(newTr);
+          });
+          $(newTr).appendTo("#sub__table tbody");
+        });
+      });
+      // ==========================================
+      // ==========================================
+      // ========== BUTTON ACTION
+      // ==========================================
+      // ==========================================
+
+      function getToday() {
+        // 本日の日付をyy-mm-dd形式で返す
+        let dt = new Date();
+        return (
+          dt.getFullYear() + "-" + (dt.getMonth() + 1) + "-" + dt.getDate()
+        );
+      }
+    </script>
+  </body>
+</html>
