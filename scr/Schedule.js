@@ -51,6 +51,27 @@ const myAjax = {
   }
 };
 
+$(function() {
+  var now = new Date();
+  var prevMonthLastDate = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+  var prevMonthFirstDate = new Date(now.getFullYear() - (now.getMonth() > 0 ? 0 : 1), (now.getMonth() + 12) % 12, 1);
+
+  var formatDateComponent = function(dateComponent) {
+    return (dateComponent < 10 ? '0' : '') + dateComponent;
+  };
+
+  var formatDate = function(date) {
+    return date.getFullYear()  + '-' + formatDateComponent(date.getMonth() + 1) + '-' + formatDateComponent(date.getDate()) ;
+  };
+
+  // document.write(formatDate(prevMonthFirstDate) + ' - ' + formatDate(prevMonthLastDate));
+  var a = formatDate(prevMonthFirstDate);
+  var b = formatDate(prevMonthLastDate);
+
+  $("#std").val(a);
+  $("#end").val(b);
+});
+
 function round(num, decimalPlaces = 0) {
   num = Math.round(num + "e" + decimalPlaces);
   return Number(num + "e" + -decimalPlaces);
@@ -79,8 +100,7 @@ function makeSummaryTable() {
     });
     Total();
     die_ins();
-    timkiemkhuon();
-    check_tt();
+    // check_tt();
     $("#insert_plan").prop("disabled", true);
     $("#delete_plan").prop("disabled", true);
 }
@@ -295,6 +315,7 @@ $(document).on("click", "#insert_plan", function() {
   $("#press__qty").val("");
   $("#press__qty").removeClass("complete-input").addClass("no-input");
   makeSummaryTable();
+  timkiemkhuon();
 });
 
 $(document).on("click", "#delete_plan", function() {
@@ -315,6 +336,7 @@ $(document).on("click", "#delete_plan", function() {
   $("#press__qty").val("");
   $("#press__qty").removeClass("complete-input").addClass("no-input");
   makeSummaryTable();
+  timkiemkhuon();
 });
 
 function Total() {
@@ -330,7 +352,7 @@ function Total() {
     - Number($(this).find("td").eq(1).html());
     $(this).append('<td>'+sum+'</td>');
   });
-  // check_tt();
+  check_tt();
 };
 
 function check_tt() {
@@ -378,4 +400,4 @@ function timkiemkhuon() {
           }
       }
   }
-}
+} 
