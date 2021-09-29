@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Press Plan Page</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/PackingBoxNumberSummary.css" />
+  </head>
+
+  <body>
+    <header>Tổng hợp các thùng đã đóng gói （梱包番号検索）</header>
+    <div class="upper__wrapper">
+      <div class="input-block__outer">
+        <div class="input__title">Mã thùng<br />梱包番号</div>
+        <input type="text" id="box_number__input" />
+      </div>
+      <div class="input-block__outer">
+        <div class="input__title">Mã khuôn<br />金型番号</div>
+        <input type="text" id="die_number__input" />
+      </div>
+      <div class="input-block__outer">
+        <div class="input__title">Ngày đùn<br />押出日</div>
+        <input type="date" id="press_start__input" /> -
+        <input type="date" id="press_end__input" />
+      </div>
+    </div>
+    <div class="main__wrapper">
+      <table id="summary__table">
+        <thead>
+          <tr>
+            <th>Mã thùng</th>
+            <th>Mã khuôn</th>
+            <th>Mã lot or Billet Lot</th>
+            <th>Tổng sản phẩm</th>
+            <th>Ngày đùn</th>
+            <th>Ngày ngâm kiềm</th>
+            <th>Ngày đóng gói</th>
+          </tr>
+          <tr>
+            <th>梱包番号</th>
+            <th>金型番号</th>
+            <th>ビレット製造番号</th>
+            <th>数量</th>
+            <th>押出日</th>
+            <th>時効日</th>
+            <th>梱包日</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>P202109005-15/15</td>
+            <td>XLA25B2-V01B</td>
+            <td>60X2-E9H5717A</td>
+            <td>36</td>
+            <td>21-09-21</td>
+            <td>21-09-21</td>
+            <td>21-09-21</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <script src="./lib/jquery.min.js"></script>
+    <script>
+      let ajaxReturnData;
+
+      const myAjax = {
+        myAjax: function (fileName, sendData) {
+          $.ajax({
+            type: "POST",
+            url: fileName,
+            dataType: "json",
+            data: sendData,
+            async: false,
+          })
+            .done(function (data) {
+              ajaxReturnData = data;
+            })
+            .fail(function () {
+              alert("DB connect error");
+            });
+        },
+      };
+
+      $(function () {
+        var fileName = "./php/PackingBoxNumberSummary/SelSummary.php";
+        var sendData = {
+          die_number: "dummy",
+        };
+        myAjax.myAjax(fileName, sendData);
+        // console.log(ajaxReturnData);
+        $("#summary__table tbody").empty();
+        ajaxReturnData.forEach(function (trVal) {
+          var newTr = $("<tr>");
+          Object.keys(trVal).forEach(function (tdVal) {
+            $("<td>").html(trVal[tdVal]).appendTo(newTr);
+          });
+          $(newTr).appendTo("#summary__table tbody");
+        });
+      });
+
+      $(document).on("click", "#summary__table tbody tr", function (e) {
+        // remove id and class and set id and class
+        $("#selected__tr").removeAttr("id");
+        $(this).parent().find("tr").removeClass("selected-record");
+        $(this).addClass("selected-record").attr("id", "selected__tr");
+      });
+
+      $(document).on("keyup", "input", function () {
+        $(this).val($(this).val().toUpperCase()); // 小文字を大文字に
+        makeSummaryTable();
+      });
+
+      $(document).on("change", "input", function () {
+        makeSummaryTable();
+        // test();
+      });
+
+      function makeSummaryTable() {
+        let summaryTable = $("#summary__table tr");
+        let checkBoxNumber = true;
+        let checkDieNumber = true;
+        let checkPressDate = true;
+
+        summaryTable.each(function (index, element) {
+          // box number fileter
+          checkBoxNumber = $(this)
+            .find("td")
+            .eq(0)
+            .text()
+            .startsWith($("#box_number__input").val());
+          // die number fileter
+          checkDieNumber = $(this)
+            .find("td")
+            .eq(1)
+            .text()
+            .startsWith($("#die_number__input").val());
+          checkPressDate = checkPDate($(this));
+
+          if (checkBoxNumber && checkDieNumber && checkPressDate) {
+            $(this).removeClass("no-display");
+          } else {
+            $(this).addClass("no-display");
+          }
+        });
+      }
+
+      function checkPDate(targetTr) {
+        let startDate = $("#press_start__input").val();
+        let endDate = $("#press_end__input").val();
+        let tableDate = targetTr.find("td").eq(5).text();
+        let flag = false;
+        // when there is both date data, it is normal
+        $("input[type='date']").each(function () {
+          if ($(this).val() == "") flag = true;
+        });
+
+        startDate = Number(startDate.replace(/-/g, ""));
+        endDate = Number(endDate.replace(/-/g, ""));
+        tableDate = Number("20" + tableDate.replace(/-/g, ""));
+
+        if (startDate < tableDate && tableDate < endDate) flag = true;
+
+        return flag;
+      }
+
+      function test() {
+        let flag = true;
+        // when there is both date data, it is normal
+        $("input[type='date']").each(function () {
+          if ($(this).val() == "") flag = false;
+        });
+        if (!flag) return false;
+
+        console.log("ok");
+        let startDate = $("#press_start__input").val();
+        let endDate = $("#press_end__input").val();
+        startDate = startDate.replace(/-/g, "");
+        endDate = endDate.replace(/-/g, "");
+        console.log(startDate);
+      }
+    </script>
+  </body>
+</html>

@@ -1,71 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Packing Summary Page</title>
-		<link rel="stylesheet" href="./css/main.css" />
-		<link rel="stylesheet" href="./css/PackingSummary.css" />
-	</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Packing Summary Page</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/PackingSummary.css" />
+  </head>
 
-	<body>
-		<header>Packing Summary Page</header>
-		<div class="upper__wrapper"></div>
-		<div class="main__wrapper">
-			<div class="left__wrapper">
-				<table id="summary__table">
-					<thead>
-						<tr>
-							<th>m_ordersheet_id</th>
-							<th>Mã chỉ thị</th>
-							<th>Mã sản phẩm</th>
-							<th>Ngày giao hàng</th>
-							<th>Số lượng yêu cầu</th>
-							<th>Số lượng đã đóng gói</th>
-							<th>Số thùng đã đóng gói</th>
-						</tr>
-						<tr>
-							<th>m_ordersheet_id</th>
-							<th>注文番号</th>
-							<th>品番</th>
-							<th>納期</th>
-							<th>受注数</th>
-							<th>箱詰数</th>
-							<th>箱数</th>
-						</tr>
-					</thead>
-					<tbody></tbody>
-				</table>
-			</div>
-			<div class="right__wrapper">
-				<table id="sub__table">
-					<thead>
-						<tr>
-							<th>box_id</th>
-							<th>Mã thùng</th>
-							<th>Số lượng S.P.</th>
-						</tr>
-						<tr>
-							<th>id</th>
-						</tr>
-						<tr>
-							<th>box_id</th>
-							<th>梱包番号</th>
-							<th>製品数量</th>
-						</tr>
-					</thead>
-					<tbody></tbody>
-					<tbody>
-						<tr>
-							<td></td>
-							<td>Total</td>
-							<td id="total_qty">0</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
-		<script src="./lib/jquery.min.js"></script>
-		<script src="./scr/PackingSummary.js"></script>
-	</body>
+  <body>
+    <header>Packing Summary Page</header>
+    <div class="upper__wrapper">
+      <div></div>
+      <div></div>
+      <div>
+        <div class="button__wrapper">
+          <button id="box-history__button">Box Serch Page</button>
+          <img id="icon" src="./img/003.svg" alt="icon" />
+        </div>
+      </div>
+    </div>
+    <div class="main__wrapper">
+      <div class="left__wrapper">
+        <table id="summary__table">
+          <thead>
+            <tr>
+              <th>m_ordersheet_id</th>
+              <th>Mã chỉ thị</th>
+              <th>Mã sản phẩm</th>
+              <th>Ngày giao hàng</th>
+              <th>Số lượng yêu cầu</th>
+              <th>Số lượng đã đóng gói</th>
+              <th>Số thùng đã đóng gói</th>
+            </tr>
+            <tr>
+              <th>m_ordersheet_id</th>
+              <th>注文番号</th>
+              <th>品番</th>
+              <th>納期</th>
+              <th>受注数</th>
+              <th>箱詰数</th>
+              <th>箱数</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div class="right__wrapper">
+        <table id="sub__table">
+          <thead>
+            <tr>
+              <th>box_id</th>
+              <th>Mã thùng</th>
+              <th>Số lượng S.P.</th>
+            </tr>
+            <tr>
+              <th>id</th>
+            </tr>
+            <tr>
+              <th>box_id</th>
+              <th>梱包番号</th>
+              <th>製品数量</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+          <tbody>
+            <tr>
+              <td></td>
+              <td>Total</td>
+              <td id="total_qty">0</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <script src="./lib/jquery.min.js"></script>
+    <script src="./scr/PackingSummary.js"></script>
+  </body>
 </html>

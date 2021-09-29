@@ -136,10 +136,6 @@
   height: 270px;
 }
 
-#summary__table tbody tr.no-display {
-  display: none;
-}
-
 /* id */
 
 #summary__table th:nth-child(1),

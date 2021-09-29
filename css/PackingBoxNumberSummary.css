@@ -1,0 +1,99 @@
+body {
+  width: calc(900px - 2px);
+}
+.upper__wrapper {
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.main__wrapper {
+  height: 400px;
+  height: calc(598px - 30px - 80px);
+  padding-top: initial;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+.input-block__outer {
+  height: 35px;
+  width: initial;
+  margin: 0 5px 0 5px;
+}
+.input__title {
+  width: initial;
+  padding: 0 15px 0 5px;
+  height: 44px;
+}
+input {
+  width: 100px;
+  height: 42px;
+  font-size: 14pt;
+}
+input[type="date"] {
+  width: 140px;
+  height: 42px;
+  font-size: 12pt;
+}
+/* -------------   table setting -------------- */
+tbody tr.selected-record {
+  background-color: #dbdbff;
+}
+
+tbody td {
+  font-size: 12pt;
+}
+
+#summary__table {
+  width: 860px;
+}
+
+#summary__table tbody {
+  height: 370px;
+}
+#summary__table tbody tr.no-display {
+  display: none;
+}
+
+#summary__table th:nth-child(1),
+#summary__table td:nth-child(1) {
+  width: 160px;
+}
+#summary__table td:nth-child(1) {
+  text-align: left;
+}
+#summary__table th:nth-child(2),
+#summary__table td:nth-child(2) {
+  width: 140px;
+}
+#summary__table td:nth-child(2) {
+  text-align: left;
+}
+#summary__table th:nth-child(3),
+#summary__table td:nth-child(3) {
+  width: 220px;
+}
+#summary__table td:nth-child(3) {
+  text-align: left;
+}
+#summary__table th:nth-child(4),
+#summary__table td:nth-child(4) {
+  width: 50px;
+}
+#summary__table td:nth-child(4) {
+  text-align: right;
+}
+#summary__table th:nth-child(5),
+#summary__table td:nth-child(5),
+#summary__table th:nth-child(6),
+#summary__table td:nth-child(6),
+#summary__table th:nth-child(7),
+#summary__table td:nth-child(7) {
+  width: 80px;
+}
+#summary__table td:nth-child(5),
+#summary__table td:nth-child(6),
+#summary__table td:nth-child(7) {
+  text-align: right;
+}
