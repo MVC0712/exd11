@@ -148,7 +148,7 @@
       function checkPDate(targetTr) {
         let startDate = $("#press_start__input").val();
         let endDate = $("#press_end__input").val();
-        let tableDate = targetTr.find("td").eq(5).text();
+        let tableDate = targetTr.find("td").eq(4).text();
         let flag = false;
         // when there is both date data, it is normal
         $("input[type='date']").each(function () {
@@ -159,7 +159,7 @@
         endDate = Number(endDate.replace(/-/g, ""));
         tableDate = Number("20" + tableDate.replace(/-/g, ""));
 
-        if (startDate < tableDate && tableDate < endDate) flag = true;
+        if (startDate <= tableDate && tableDate <= endDate) flag = true;
 
         return flag;
       }
