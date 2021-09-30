@@ -1,0 +1,85 @@
+input {
+  width: 200px;
+}
+/* 外枠 */
+#scroll-table__area {
+  position: relative;
+  width: 386px;
+  height: 167px;
+  /* background-color: #cccccc; */
+  /* border: 1px solid #000000; */
+}
+/* 左上固定カラム */
+#fix_tbl {
+  width: 90px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+/* 基本のテーブル定義 */
+table.csTbl {
+  table-layout: fixed;
+  font-size: 16px;
+}
+table.csTbl td {
+  height: 16px;
+}
+table.csTbl th {
+  font-size: 12px;
+  font-weight: normal;
+}
+table.csTbl th {
+  /* background-color: lightBlue; */
+  color: #000000;
+}
+table.csTbl tr:nth-child(odd) td {
+  /* background-color: #c8c8e8; */
+  color: #000000;
+}
+table.csTbl tr:nth-child(even) td {
+  /* background-color: #e8e8ff; */
+  color: #000000;
+}
+
+#h_fix_tbl {
+  width: 360px;
+}
+#h_fix_tbl th,
+#h_fix_tbl td {
+  width: 90px;
+}
+#h_fix_tbl th:last-child,
+#h_fix_tbl th:last-child {
+  width: 110px;
+}
+
+#v_fix_tbl th {
+  width: 90px;
+}
+
+#header_h {
+  position: absolute;
+  left: 90px;
+  top: 0px;
+  width: 280px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+#header_v {
+  position: absolute;
+  left: 0px;
+  top: 22px;
+  width: 90px;
+  height: 130px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+#data {
+  position: absolute;
+  left: 90px;
+  top: 22px;
+  overflow-x: scroll;
+  overflow-y: scroll;
+  width: 296px;
+  height: 145px;
+}
