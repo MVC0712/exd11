@@ -3,6 +3,24 @@
   flex-direction: row;
 }
 
+.right__area{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 100%;
+  width: 20%;
+}
+
+.title {
+  width: 100px;
+  height: 20px;
+  border: #0000ff 1px solid;
+  padding: 0 1px;
+  color: white;
+  background-color: #0000ff;
+}
+
+
 .dropbtn {
   background-color: #0004ff;
   color: white;

@@ -12,52 +12,39 @@
 	<body>
 		<header>Extrusion Top Page</header>
 		<div class="main__wrapper">
+			<!-- <div class="left__area"></div> -->
+			<div class="right__area">
+				<!-- <div class="title">Report</div> -->
+				<button id="ex_daily_report">Extrusion<br />Daily Input</button>
+				<button id="ordersheet">OrderSheet</button>
+				<button id="quality_report">Quality<br />Report</button>
+				<button id="packing">Packing</button>
+				<button id="aging">Aging</button>
+			</div>
 
-			<div class="dropdown">
-				<button class="dropbtn">Report</button>
-				<div class="dropdown-content">
-					<a id="ex_daily_report">Extrusion Daily Input</a>
-					<a id="quality_report">Quality Report</a>
-					<a id="ordersheet">OrderSheet</a>
-					<a id="aging">Aging</a>
-					<a id="packing">Packing</a>
-				</div>
+			<div class="right__area">
+				<button id="packing_summary">Packing<br />Summary</button>
+				<button id="qa_summary">QA Summary</button>
+				<button id="summary">Press Summary</button>
 			</div>
-			<div class="dropdown">
-				<button class="dropbtn">Summary</button>
-				<div class="dropdown-content">
-					<a id="qa_summary">QA Summary</a>
-					<a id="summary">Press Summary</a>
-					<a id="packing_summary">Packing Summary</a>
-				</div>
+
+			<div class="right__area">
+				<button id="making-press-directive">Press Directive<br />Set Page</button>
+				<button id="schedule">Schedule</button>
 			</div>
-			<div class="dropdown">
-				<button class="dropbtn">Plan</button>
-				<div class="dropdown-content">
-					<a id="schedule">Schedule</a>
-					<a id="making-press-directive">Make press Directive</a>
-				</div>
-			</div>
-			<div class="dropdown">
-				<button class="dropbtn">Die-PN</button>
-				<div class="dropdown-content">
-					<a id="diestasus">Die Status page</a>
-					<a id="diehistory">Die History</a>
-					<a id="nitriding">Nitriding</a>
-					<a id="production_number">Edit<br />PN</a>
-					<a id="die_number">Edit<br />Die</a>
-				</div>
-			</div>
-			<div class="dropdown">
-				<button class="dropbtn">Khác</button>
-				<div class="dropdown-content">
-					<a id="staff-page">Staff<br />QA Code</a>
-					<a id="csv_download">CSV download</a>
-					<a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSf5VQLgCA0OSKjtfnjQqLhe9K_bJomrRF3mJFz9Avgyi940xQ/viewform">Nhiệt độ xưởng</a>
-					<a target="_blank" href="https://docs.google.com/spreadsheets/d/1T5GqSYowzOoxD9Rbj5fWwclU0Gw2HZJv52oJfQx7cPo/edit#gid=676715897">Bảng kế hoạch</a>
-					<a target="_blank" href="https://sites.google.com/view/smc3/billet-manage-%E3%83%93%E3%83%AC%E3%83%83%E3%83%88%E5%9C%A8%E5%BA%AB%E7%AE%A1%E7%90%86">Check SL billet</a>
-				
-				</div>
+
+			<div class="right__area">
+				<button id="nitriding">Nitriding</button>
+				<button id="diestasus">Die Status</button>
+				<button id="diehistory">Die History</button>
+				<button id="production_number">Edit<br />PN</button>
+				<button id="die_number">Edit<br />Die</button>
+			</div>		
+
+			<div class="right__area">
+				<button id="check_billet">Check SL billet</button>
+				<button id="check_temp">Check nhiệt độ</button>
+				<button id="staff-page">Staff<br />QA Code</button>
 			</div>
 		</div>
 
@@ -127,6 +114,14 @@
 
 			$(document).on("click", "#schedule", function () {
 				window.open("Schedule.html");
+			});
+
+			$(document).on("click", "#check_billet", function () {
+				window.open("https://sites.google.com/view/smc3/billet-manage-%E3%83%93%E3%83%AC%E3%83%83%E3%83%88%E5%9C%A8%E5%BA%AB%E7%AE%A1%E7%90%86");
+			});
+
+			$(document).on("click", "#check_temp", function () {
+				window.open("https://docs.google.com/forms/d/e/1FAIpQLSf5VQLgCA0OSKjtfnjQqLhe9K_bJomrRF3mJFz9Avgyi940xQ/viewform");
 			});
 		</script>
 	</body>
