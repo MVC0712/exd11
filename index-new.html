@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Extrusion Top</title>
+		<link rel="stylesheet" href="./css/main.css" />
+		<link rel="stylesheet" href="./css/index_new.css" />
+	</head>
+
+	<body>
+		<header>Extrusion Top Page</header>
+		<div class="main__wrapper">
+
+			<div class="dropdown">
+				<button class="dropbtn">Report</button>
+				<div class="dropdown-content">
+					<a id="ex_daily_report">Extrusion Daily Input</a>
+					<a id="quality_report">Quality Report</a>
+					<a id="ordersheet">OrderSheet</a>
+					<a id="aging">Aging</a>
+					<a id="packing">Packing</a>
+				</div>
+			</div>
+			<div class="dropdown">
+				<button class="dropbtn">Summary</button>
+				<div class="dropdown-content">
+					<a id="qa_summary">QA Summary</a>
+					<a id="summary">Press Summary</a>
+					<a id="packing_summary">Packing Summary</a>
+				</div>
+			</div>
+			<div class="dropdown">
+				<button class="dropbtn">Plan</button>
+				<div class="dropdown-content">
+					<a id="schedule">Schedule</a>
+					<a id="making-press-directive">Make press Directive</a>
+				</div>
+			</div>
+			<div class="dropdown">
+				<button class="dropbtn">Die-PN</button>
+				<div class="dropdown-content">
+					<a id="diestasus">Die Status page</a>
+					<a id="diehistory">Die History</a>
+					<a id="nitriding">Nitriding</a>
+					<a id="production_number">Edit<br />PN</a>
+					<a id="die_number">Edit<br />Die</a>
+				</div>
+			</div>
+			<div class="dropdown">
+				<button class="dropbtn">Khác</button>
+				<div class="dropdown-content">
+					<a id="staff-page">Staff<br />QA Code</a>
+					<a id="csv_download">CSV download</a>
+					<a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSf5VQLgCA0OSKjtfnjQqLhe9K_bJomrRF3mJFz9Avgyi940xQ/viewform">Nhiệt độ xưởng</a>
+					<a target="_blank" href="https://docs.google.com/spreadsheets/d/1T5GqSYowzOoxD9Rbj5fWwclU0Gw2HZJv52oJfQx7cPo/edit#gid=676715897">Bảng kế hoạch</a>
+					<a target="_blank" href="https://sites.google.com/view/smc3/billet-manage-%E3%83%93%E3%83%AC%E3%83%83%E3%83%88%E5%9C%A8%E5%BA%AB%E7%AE%A1%E7%90%86">Check SL billet</a>
+				
+				</div>
+			</div>
+		</div>
+
+		<script src="./lib/jquery-3.3.1.min.js"></script>
+		<script>
+			$(document).on("click", "#ex_daily_report", function () {
+				window.open("DailyReportV11.html");
+			});
+
+			$(document).on("click", "#making-press-directive", function () {
+				window.open("MakingPressDirectiveV2.html");
+			});
+
+			$(document).on("click", "#staff-page", function () {
+				window.open("StaffAndCode2.html");
+			});
+
+			$(document).on("click", "#production_number", function () {
+				window.open("ProductionNumberV2.html");
+			});
+
+			$(document).on("click", "#die_number", function () {
+				window.open("Die.html");
+			});
+
+			$(document).on("click", "#ordersheet", function () {
+				window.open("OrderSheetV2.html");
+			});
+			$(document).on("click", "#quality_report", function () {
+				window.open("QualityReportV2.html");
+			});
+
+			$(document).on("click", "#packing", function () {
+				window.open("Packing.html");
+			});
+
+			$(document).on("click", "#csv_download", function () {
+				window.open("CsvDownLoad.html");
+			});
+
+			$(document).on("click", "#nitriding", function () {
+				window.open("NitridingV3.html");
+			});
+
+			$(document).on("click", "#aging", function () {
+				window.open("AgingV2.html");
+			});
+			$(document).on("click", "#diestasus", function () {
+				window.open("DieStatusV2.html");
+			});
+
+			$(document).on("click", "#diehistory", function () {
+				window.open("DieStatus.html");
+			});
+
+			$(document).on("click", "#packing_summary", function () {
+				window.open("PackingSummary.html");
+			});
+
+			$(document).on("click", "#qa_summary", function () {
+				window.open("QalitySummary.html");
+			});
+
+			$(document).on("click", "#summary", function () {
+				window.open("Summary.html");
+			});
+
+			$(document).on("click", "#schedule", function () {
+				window.open("Schedule.html");
+			});
+		</script>
+	</body>
+</html>
