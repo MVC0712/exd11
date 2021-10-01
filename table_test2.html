@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style type="text/css">
+      /* 外枠 */
+      #x_data_area {
+        position: relative;
+        width: 386px;
+        height: 167px;
+        background-color: #cccccc;
+        border: 1px solid #000000;
+      }
+
+      /* 基本のテーブル定義 */
+      table.csTbl {
+        border: 1px solid #000000;
+        border-collapse: collapse;
+        table-layout: fixed;
+        font-size: 16px;
+      }
+      table.csTbl td {
+        border: 1px solid #000000;
+        height: 16px;
+      }
+      table.csTbl th {
+        border: 1px solid #000000;
+        font-size: 16px;
+      }
+      table.csTbl th {
+        background-color: lightBlue;
+        color: #000000;
+      }
+      table.csTbl tr:nth-child(odd) td {
+        background-color: #c8c8e8;
+        color: #000000;
+      }
+      table.csTbl tr:nth-child(even) td {
+        background-color: #e8e8ff;
+        color: #000000;
+      }
+
+      #h_fix_tbl {
+        width: 360px;
+      }
+      #h_fix_tbl th,
+      #h_fix_tbl td {
+        width: 90px;
+      }
+      #h_fix_tbl th:last-child,
+      #h_fix_tbl th:last-child {
+        width: 110px;
+      }
+
+      #v_fix_tbl th {
+        width: 90px;
+      }
+
+      #header_h {
+        position: absolute;
+        left: 90px;
+        top: 0px;
+        width: 280px;
+        overflow-x: hidden;
+        overflow-y: hidden;
+      }
+      #header_v {
+        position: absolute;
+        left: 0px;
+        top: 22px;
+        width: 90px;
+        height: 130px;
+        overflow-x: hidden;
+        overflow-y: hidden;
+      }
+      #data {
+        position: absolute;
+        left: 90px;
+        top: 22px;
+        overflow-x: scroll;
+        overflow-y: scroll;
+        width: 296px;
+        height: 145px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="x_data_area">
+      <!-- 固定ヘッダ -->
+      <table
+        class="csTbl"
+        style="width: 90px; position: absolute; left: 0px; top: 0px"
+      >
+        <tr>
+          <th>社員番号</th>
+        </tr>
+      </table>
+      <!-- 水平ヘッダ -->
+      <div id="header_h">
+        <table class="csTbl" id="h_fix_tbl">
+          <tr>
+            <th>名前</th>
+            <th>性別</th>
+            <th>年齢</th>
+            <th>職位</th>
+          </tr>
+        </table>
+      </div>
+      <!-- 垂直ヘッダ -->
+      <div id="header_v">
+        <table class="csTbl" id="v_fix_tbl">
+          <tr>
+            <th>1</th>
+          </tr>
+          <tr>
+            <th>2</th>
+          </tr>
+          <tr>
+            <th>3</th>
+          </tr>
+          <tr>
+            <th>4</th>
+          </tr>
+          <tr>
+            <th>5</th>
+          </tr>
+          <tr>
+            <th>6</th>
+          </tr>
+          <tr>
+            <th>7</th>
+          </tr>
+          <tr>
+            <th>8</th>
+          </tr>
+          <tr>
+            <th>9</th>
+          </tr>
+          <tr>
+            <th>10</th>
+          </tr>
+          <tr>
+            <th>11</th>
+          </tr>
+          <tr>
+            <th>12</th>
+          </tr>
+          <tr>
+            <th>13</th>
+          </tr>
+        </table>
+      </div>
+
+      <!-- スクロールデータ -->
+      <div id="data">
+        <table class="csTbl" id="h_fix_tbl">
+          <tr>
+            <td><a href="http://www.matao.me">matao.me</a></td>
+            <td>男</td>
+            <td>33</td>
+            <td>PM</td>
+          </tr>
+          <tr>
+            <td><a href="http://www.hymama.com">hymama.com</a></td>
+            <td>女</td>
+            <td>33</td>
+            <td>PM</td>
+          </tr>
+          <tr>
+            <td>zanmai.net</td>
+            <td>男</td>
+            <td>12</td>
+            <td>PG</td>
+          </tr>
+          <tr>
+            <td><a href="http://www.zanmai.net">zanmai.net</a></td>
+            <td>男</td>
+            <td>13</td>
+            <td>PM</td>
+          </tr>
+          <tr>
+            <td><a href="http://www.baido.jp">baido.jp</a></td>
+            <td>男</td>
+            <td>14</td>
+            <td>SE</td>
+          </tr>
+          <tr>
+            <td>zanmai2</td>
+            <td>女</td>
+            <td>15</td>
+            <td>SE</td>
+          </tr>
+          <tr>
+            <td>hymama</td>
+            <td>女</td>
+            <td>33</td>
+            <td>PM</td>
+          </tr>
+          <tr>
+            <td>zanmai</td>
+            <td>男</td>
+            <td>12</td>
+            <td>PG</td>
+          </tr>
+          <tr>
+            <td>xiecheng</td>
+            <td>男</td>
+            <td>13</td>
+            <td>PM</td>
+          </tr>
+          <tr>
+            <td>baido</td>
+            <td>男</td>
+            <td>14</td>
+            <td>SE</td>
+          </tr>
+          <tr>
+            <td>zanmai2</td>
+            <td>女</td>
+            <td>15</td>
+            <td>SE</td>
+          </tr>
+          <tr>
+            <td>zanmai2</td>
+            <td>女</td>
+            <td>15</td>
+            <td>SE</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <script type="text/javascript">
+      function $E(id) {
+        return document.getElementById(id);
+      }
+      function scroll() {
+        $E("header_h").scrollLeft = $E("data").scrollLeft; // 左右連動させる
+        $E("header_v").scrollTop = $E("data").scrollTop; // 上下連動させる
+      }
+      $E("data").onscroll = scroll;
+    </script>
+  </body>
+</html>

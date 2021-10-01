@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./lib/jquery.min.js"></script>
+    <style type="text/css">
+      /* 基本のテーブル定義 */
+      #tableT,
+      #tableH,
+      #tableV,
+      #tableD {
+        border: 1px solid #000000;
+        border-collapse: collapse;
+        table-layout: fixed;
+        font-size: 16px;
+      }
+
+      #tableD td {
+        border: 1px solid #000000;
+        height: 16px;
+      }
+
+      #tableH th,
+      #tableD th {
+        border: 1px solid #000000;
+        font-size: 16px;
+      }
+
+      #tableD th {
+        background-color: #ffbb88;
+        color: #000000;
+      }
+
+      #tableD tr:nth-child(odd) td {
+        background-color: #c8c8e8;
+        color: #000000;
+      }
+
+      #tableD tr:nth-child(even) td {
+        background-color: #e8e8ff;
+        color: #000000;
+      }
+
+      #header_h {
+        position: absolute;
+        top: 0px;
+        overflow-x: hidden;
+        overflow-y: hidden;
+      }
+
+      #header_v {
+        position: absolute;
+        left: 0px;
+        overflow-x: hidden;
+        overflow-y: hidden;
+      }
+
+      #data {
+        position: absolute;
+        overflow-x: scroll;
+        overflow-y: scroll;
+        width: 270px;
+        height: 150px;
+      }
+    </style>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        //固定部を作成、tableDの一番左のヘッダーを取得、固定部に張り付ける
+        //水平ヘッダー部を作成
+        var fF = 0;
+        $("#tableD > thead > tr > th").each(function (i) {
+          if (fF == 0) {
+            $(this).clone(true).appendTo($("#tableT > thead > tr"));
+            StyleCopyB($("#tableT > thead > tr > th:first"), $(this));
+            fF = 1;
+          } else {
+            $(this).clone(true).appendTo($("#tableH > thead > tr"));
+            StyleCopyB($("#tableH > thead > tr > th:last"), $(this));
+          }
+        });
+
+        //非表示化
+        $("#tableD > thead > tr").hide();
+
+        //垂直ヘッダー部を作成
+        $("#tableD > tbody > tr").each(function (i) {
+          $("#tableV > tbody").append("<tr></tr>");
+          $(this)
+            .children()
+            .eq(0)
+            .clone(true)
+            .appendTo($("#tableV > tbody > tr:last-child"));
+          $(this).children().eq(0).hide();
+          StyleCopyB(
+            $("#tableV > tbody > tr:last-child > td"),
+            $(this).children().eq(0)
+          );
+        });
+
+        //垂直ヘッダーのwidthを固定部に設定
+        StyleCopyA(
+          $("#tableT > thead > tr > th:first"),
+          $("#tableV > tbody > tr:first > td")
+        );
+
+        //データ部のwidthを水平ヘッダーに設定
+        $("#tableH > thead > tr > th").each(function (i) {
+          $(this).width(
+            $("#tableD > tbody > tr")
+              .children()
+              .eq(i + 1)
+              .width()
+          );
+        });
+
+        //DIVheader-hとDIVdataのleftを設定
+        $("#header_h").css("left", $("#tableT").width() + "px");
+        $("#data").css("left", $("#tableT").width() + "px");
+
+        //DIVheader-vとDIVdataのtopを設定
+        $("#header_v").css("top", $("#tableT").height() + "px");
+        $("#data").css("top", $("#tableT").height() + "px");
+
+        //
+        $("#header_h").width($("#data").width() - 17); //17前後要微調整、垂直スクロールバーの幅....※求め方は不明
+        $("#tableH").width($("#tableD").width() - $("#tableT").width());
+
+        //DIVheader-vのheightをDIVdataのheightを設定
+        $("#header_v").height($("#data").height() - 17); //17前後要微調整は水平スクロールバーの高さ....※17の求め方は不明
+
+        //-------------------------------------------------------------------------------------------------
+        $("#data").on("scroll", function () {
+          $("#header_h").scrollLeft($("#data").scrollLeft()); // データ部のスクロールをヘッダに反映
+          $("#header_v").scrollTop($("#data").scrollTop()); // データ部のスクロールをヘッダに反映
+        });
+        //-------------------------------------------------------------------------------------------------
+
+        function StyleCopyA($copyTo, $copyFrom) {
+          $copyTo.css("width", $copyFrom.css("width"));
+        }
+
+        function StyleCopyB($copyTo, $copyFrom) {
+          $copyTo.css("height", $copyFrom.css("height"));
+          $copyTo.css("font-size", $copyFrom.css("font-size"));
+          $copyTo.css("background-color", $copyFrom.css("background-color"));
+          $copyTo.css("vertical-align", $copyFrom.css("vertical-align"));
+          $copyTo.css("border-top-width", $copyFrom.css("border-top-width"));
+          $copyTo.css("border-top-color", $copyFrom.css("border-top-color"));
+          $copyTo.css("border-top-style", $copyFrom.css("border-top-style"));
+          $copyTo.css("border-left-width", $copyFrom.css("border-left-width"));
+          $copyTo.css("border-left-color", $copyFrom.css("border-left-color"));
+          $copyTo.css("border-left-style", $copyFrom.css("border-left-style"));
+          $copyTo.css(
+            "border-right-width",
+            $copyFrom.css("border-right-width")
+          );
+          $copyTo.css(
+            "border-right-color",
+            $copyFrom.css("border-right-color")
+          );
+          $copyTo.css(
+            "border-right-style",
+            $copyFrom.css("border-right-style")
+          );
+          $copyTo.css(
+            "border-bottom-width",
+            $copyFrom.css("border-bottom-width")
+          );
+          $copyTo.css(
+            "border-bottom-color",
+            $copyFrom.css("border-bottom-color")
+          );
+          $copyTo.css(
+            "border-bottom-style",
+            $copyFrom.css("border-bottom-style")
+          );
+        }
+      });
+    </script>
+  </head>
+
+  <body>
+    <div style="position: relative">
+      <!--固定部-->
+      <table id="tableT" style="position: absolute; left: 0px; top: 0px">
+        <thead>
+          <tr></tr>
+        </thead>
+      </table>
+
+      <!--水平ヘッダー部-->
+      <div id="header_h">
+        <table id="tableH">
+          <thead>
+            <tr></tr>
+          </thead>
+        </table>
+      </div>
+
+      <!--垂直ヘッダー部-->
+      <div id="header_v">
+        <table id="tableV">
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <!--データ部-->
+      <div id="data">
+        <table id="tableD" style="width: 430px">
+          <thead>
+            <tr>
+              <th>固定項目</th>
+              <th>項目１</th>
+              <th>項目２</th>
+              <th>項目３</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="width: 120px">項目名称A</td>
+              <td style="width: 130px">スライド項目A1</td>
+              <td style="width: 60px">項目A2</td>
+              <td style="width: 120px">スライド項目A3</td>
+            </tr>
+            <tr>
+              <td>項目名称B</td>
+              <td>スライド項目B1</td>
+              <td>項目B2</td>
+              <td>スライド項目B3</td>
+            </tr>
+            <tr>
+              <td>項目名称C</td>
+              <td>スライド項目C1</td>
+              <td>項目C2</td>
+              <td>スライド項目C3</td>
+            </tr>
+            <tr>
+              <td>項目名称D</td>
+              <td>スライド項目D1</td>
+              <td>項目D2</td>
+              <td>スライド項目D3</td>
+            </tr>
+            <tr>
+              <td>項目名称E</td>
+              <td>スライド項目E1</td>
+              <td>項目E2</td>
+              <td>スライド項目E3</td>
+            </tr>
+            <tr>
+              <td>項目名称F</td>
+              <td>スライド項目F1</td>
+              <td>項目F2</td>
+              <td>スライド項目F3</td>
+            </tr>
+            <tr>
+              <td>項目名称G</td>
+              <td>スライド項目G1</td>
+              <td>項目G2</td>
+              <td>スライド項目G3</td>
+            </tr>
+            <tr>
+              <td>項目名称H</td>
+              <td>スライド項目H1</td>
+              <td>項目H2</td>
+              <td>スライド項目H3</td>
+            </tr>
+            <tr>
+              <td>項目名称I</td>
+              <td>スライド項目I1</td>
+              <td>項目I2</td>
+              <td>スライド項目I3</td>
+            </tr>
+            <tr>
+              <td>項目名称J</td>
+              <td>スライド項目J1</td>
+              <td>項目J2</td>
+              <td>スライド項目J3</td>
+            </tr>
+            <tr>
+              <td>項目名称K</td>
+              <td>スライド項目K1</td>
+              <td>項目K2</td>
+              <td>スライド項目K3</td>
+            </tr>
+            <tr>
+              <td>項目名称L</td>
+              <td>スライド項目L1</td>
+              <td>項目L2</td>
+              <td>スライド項目L3</td>
+            </tr>
+            <tr>
+              <td>項目名称M</td>
+              <td>スライド項目M1</td>
+              <td>項目M2</td>
+              <td>スライド項目M3</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
