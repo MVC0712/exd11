@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QA Summary V2</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/QualitySummaryV2.css" />
+  </head>
+  <body>
+    <header>Tổng hợp kết quả đo</header>
+    <div class="upper__wrapper">
+      <div id="process-filter" class="input-block__outer">
+        <div class="input__title">D/E/A/P<br />工程</div>
+        <div class="inner__wrapper">
+          <select id="process__select">
+            <option value="0">no</option>
+            <option value="1">Dim</option>
+            <option value="2">Etching</option>
+            <option value="3">Aging</option>
+            <option value="4">Packing</option>
+          </select>
+          <input type="date" id="process-date__input" />
+        </div>
+      </div>
+      <div id="dies-filter" class="input-block__outer diename">
+        <div class="input__title">Mã khuôn<br />金型番号</div>
+        <div class="inner__wrapper">
+          <input type="text" id="die_number__input" />
+          <div class="term__wrapper">
+            <input id="start__date" type="date" />~
+            <input id="end__date" type="date" />
+          </div>
+        </div>
+      </div>
+      <div class="input-block__outer diename">
+        <div class="input__title">Kiểu đùn<br />押出種別</div>
+        <div class="button__wrapper">
+          <div class="pressing-type__div active__button">
+            <div id="test_press"></div>
+          </div>
+          <div class="pressing-type__div active__button">
+            <div id="masproduction_test_press1">
+              <div id="masproduction_test_press2"></div>
+            </div>
+          </div>
+          <div class="pressing-type__div active__button">
+            <div id="masproduction"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="main__wrapper">
+      <div id="scroll-table__area">
+        <!-- fixed part -->
+        <table class="csTbl" id="fix_tbl">
+          <tr>
+            <th>t_press_id</th>
+            <th>đùn</th>
+            <th>Mã khuôn</th>
+            <th>yyyy-mm-dd</th>
+          </tr>
+          <tr>
+            <th>t_press_id</th>
+            <th>日付</th>
+            <th>型番</th>
+            <th>yyyy-mm-dd</th>
+          </tr>
+        </table>
+        <!-- holizonal fix part -->
+        <div id="header_h">
+          <table class="csTbl" id="h_fix_tbl">
+            <tr>
+              <th>FX</th>
+              <th>CC</th>
+              <th>P/T</th>
+              <th>P/B</th>
+              <th>A/B</th>
+              <th>Qty</th>
+              <th>T_ng</th>
+              <th>T_ok</th>
+              <th>Dim</th>
+              <th>Eching</th>
+              <th>Aging</th>
+              <th>Pck</th>
+              <th>301</th>
+              <th>302</th>
+              <th>303</th>
+              <th>304</th>
+              <th>305</th>
+              <th>306</th>
+              <th>307</th>
+              <th>308</th>
+              <th>309</th>
+              <th>310</th>
+              <th>311</th>
+              <th>312</th>
+              <th>313</th>
+              <th>314</th>
+              <th>315</th>
+              <th>316</th>
+              <th>317</th>
+              <th>318</th>
+              <th>319</th>
+              <th>320</th>
+              <th>321</th>
+              <th>322</th>
+              <th>323</th>
+              <th>324</th>
+              <th>351</th>
+            </tr>
+            <tr>
+              <th>型修</th>
+              <th>条件</th>
+              <th>P/T</th>
+              <th>P/B</th>
+              <th>A/B</th>
+              <th>Qty</th>
+              <th>T_ng</th>
+              <th>T_ok</th>
+              <th>寸法</th>
+              <th>Eching</th>
+              <th>時効</th>
+              <th>梱包</th>
+              <th>301</th>
+              <th>302</th>
+              <th>303</th>
+              <th>304</th>
+              <th>305</th>
+              <th>306</th>
+              <th>307</th>
+              <th>308</th>
+              <th>309</th>
+              <th>310</th>
+              <th>311</th>
+              <th>312</th>
+              <th>313</th>
+              <th>314</th>
+              <th>315</th>
+              <th>316</th>
+              <th>317</th>
+              <th>318</th>
+              <th>319</th>
+              <th>320</th>
+              <th>321</th>
+              <th>322</th>
+              <th>323</th>
+              <th>324</th>
+              <th>351</th>
+            </tr>
+          </table>
+        </div>
+        <!-- vertical fix part -->
+        <div id="header_v">
+          <table class="csTbl" id="v_fix_tbl">
+            <tr></tr>
+          </table>
+        </div>
+
+        <!-- scroll part -->
+        <div id="data">
+          <table class="csTbl" id="table_d">
+            <tr></tr>
+          </table>
+        </div>
+
+        <!-- footer part -->
+        <div id="footer_data">
+          <table class="csTbl" id="table_footer">
+            <tr>
+              <td>Total</td>
+              <td id="plan_billet_quantities"></td>
+              <td id="actual_billet_quantities"></td>
+              <td id="work_quantity"></td>
+              <td id="total_ng"></td>
+              <td id="total_ok"></td>
+              <td></td>
+              <td></td>
+              <td>9</td>
+              <td>10</td>
+              <td>11</td>
+              <td>12</td>
+              <td>13</td>
+              <td>14</td>
+              <td>15</td>
+              <td>16</td>
+              <td>17</td>
+              <td>18</td>
+              <td>19</td>
+              <td>21</td>
+              <td>22</td>
+              <td>23</td>
+              <td>24</td>
+              <td>25</td>
+              <td>26</td>
+              <td>27</td>
+              <td>28</td>
+              <td>29</td>
+              <td>30</td>
+              <td>31</td>
+              <td>32</td>
+              <td>33</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <script src="./lib/jquery.min.js"></script>
+    <script src="./scr/QualitySummaryV2.js"></script>
+    <script type="text/javascript">
+      function $E(id) {
+        return document.getElementById(id);
+      }
+      function scroll() {
+        $E("header_h").scrollLeft = $E("data").scrollLeft; // 左右連動させる
+        $E("footer_data").scrollLeft = $E("data").scrollLeft; // 左右連動させる
+        $E("header_v").scrollTop = $E("data").scrollTop; // 上下連動させる
+      }
+      $E("data").onscroll = scroll;
+    </script>
+  </body>
+</html>

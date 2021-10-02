@@ -1,5 +1,9 @@
 let ajaxReturnData;
 
+const isNumber = function (value) {
+  return typeof value === "number" && isFinite(value);
+};
+
 const myAjax = {
   myAjax: function (fileName, sendData) {
     $.ajax({
@@ -19,296 +23,201 @@ const myAjax = {
 };
 
 $(function () {
-  // makeNgSelect();
-  $("#add__button").prop("disabled", true);
-  $("#test__button").remove();
   makeSummaryTable();
-  mau();
-});
-
-// ==============  die_number  ===================
-$(document).on("keyup", "#die_number__input", function () {
-  if (checkInput()) {
-    makeTableWithTerm();
-  } else {
-    makeSummaryTable();
-  }
-  mau();
 });
 
 function makeSummaryTable() {
-  var fileName = "./php/QualitySummary/SelSummary.php";
-  var sendData = {
-    die_number: $("#die_number__input").val() + "%",
+  var fileName;
+  var sendData = new Object();
+  var totalData = new Object();
+  totalData["actual_billet_quantities"] = 0;
+
+  fileName = "./php/QualitySummary/SelSummaryV2.php";
+  sendData = {
+    die_number: "%",
   };
-  // read n
   myAjax.myAjax(fileName, sendData);
-  // fill select options
-
-  // return false;
-
-  $("#summary__table tbody").empty();
-
-  ajaxReturnData.forEach(function (trVal) {
-    var newTr = $("<tr>");
-    Object.keys(trVal).forEach(function (tdVal) {
-      $("<td>").html(trVal[tdVal]).appendTo(newTr);
+  // table initialize
+  $("#v_fix_tbl tbody").empty();
+  $("#table_d tbody").empty();
+  ajaxReturnData.forEach(function (trVal, i) {
+    var newTr = $("<tr>"),
+      dataTr = $("<tr>");
+    Object.keys(trVal).forEach(function (tdVal, index) {
+      // making table
+      // index < 4 ===> fixed column   index >= 4 ====> scroll data
+      if (index < 4) {
+        $("<td>").html(trVal[tdVal]).appendTo(newTr);
+      } else {
+        $("<td>").html(trVal[tdVal]).appendTo(dataTr);
+      }
+      // making total field
+      // first initialize object value
+      if (i == 0) {
+        totalData[tdVal] = 0;
+      }
+      // trVal[tdVal]が数値型の時だけ、加算する。
+      if (isNumber(Number(trVal[tdVal]))) {
+        totalData[tdVal] = totalData[tdVal] + Number(trVal[tdVal]);
+      }
     });
-    $(newTr).appendTo("#summary__table tbody");
+    $(newTr).appendTo("#v_fix_tbl tbody");
+    $(dataTr).appendTo("#table_d tbody");
   });
-  console.log("Die search");
-  mau();
-  ulitycall();
+  fillTotalValue(totalData);
 }
 
-// ==============  press term  ===================
-$(document).on("change", "input.date__input", function () {
-  if (checkInput()) {
-    // both input frame is filled?
-    makeTableWithTerm();
+function fillTotalValue(totalData) {
+  Object.keys(totalData).forEach(function (value, index) {
+    $("#" + value).html(totalData[value]);
+  });
+}
+
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// -------------------------  color table record   -------------------------
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+$(document).on("click", "#table_d tr", function () {
+  $("body .selected__tr").removeClass("selected__tr");
+  $(this).addClass("selected__tr");
+  // get current row number
+  $("#v_fix_tbl tr").eq($(this).index()).addClass("selected__tr");
+});
+
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// -------------------------  filter function     -------------------------
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// order sheet nuumber :
+
+// -------- press type button display --------------
+$(document).on("click", ".pressing-type__div", function () {
+  if ($(this).hasClass("active__button")) {
+    $(this).removeClass("active__button").addClass("non-active__button");
+  } else {
+    $(this).removeClass("non-active__button").addClass("active__button");
   }
 });
 
-function makeTableWithTerm() {
-  var fileName = "./php/QualitySummary/SelSummaryTerm.php";
-  var sendData = {
-    die_number: $("#die_number__input").val() + "%",
-    start_term: $("#start_term").val(),
-    end_term: $("#end_term").val(),
-  };
-  myAjax.myAjax(fileName, sendData);
-  console.log(ajaxReturnData);
-  $("#summary__table tbody").empty();
+// -------- process filter or die name filter  --------------
+$(document).on("click", "#process-filter", function () {
+  $(this).find(".disabled-mode").removeClass("disabled-mode");
+  $("#dies-filter input").addClass("disabled-mode").val("");
+});
 
-  ajaxReturnData.forEach(function (trVal) {
-    var newTr = $("<tr>");
-    Object.keys(trVal).forEach(function (tdVal) {
-      $("<td>").html(trVal[tdVal]).appendTo(newTr);
-    });
-    $(newTr).appendTo("#summary__table tbody");
+$(document).on("click", "#dies-filter", function () {
+  $(this).find(".disabled-mode").removeClass("disabled-mode");
+  $("#process-filter input").addClass("disabled-mode").val("");
+  $("#process-filter select").addClass("disabled-mode").val("0");
+});
+
+// -------- process filter or die name filter  --------------
+$(document).on("click", "#process-filter", function () {
+  $(this).find(".disabled-mode").removeClass("disabled-mode");
+  $("#dies-filter input").addClass("disabled-mode").val("");
+});
+
+// -------- press type filtering              --------------
+$(document).on("click", ".button__wrapper .pressing-type__div", function () {
+  tableFilter();
+});
+
+// -------- Die Number Filtering          --------------
+$(document).on("keyup", "#die_number__input", function () {
+  $(this).val($(this).val().toUpperCase()); // 小文字を大文字に
+  tableFilter();
+});
+
+$(document).on("change", "#dies-filter input[type='date']", function () {
+  // when both value was inputed call filter function
+  if (!checkDateInput()) return false;
+  tableFilter();
+});
+
+function checkDateInput() {
+  let flag = true;
+  // when both value was inputed call filter function
+  $("#dies-filter input[type='date']").each(function () {
+    if ($(this).val() == "") {
+      flag = false;
+    }
   });
-  console.log("Term search");
-  mau();
-  ulitycall();
-}
-
-function checkInput() {
-  let flag = false;
-  // $("input.date__input").each(function() {
-  //     if ($(this).val() == "") {
-  //         flag = false;
-  //     }
-  // });
-
-  var fr = document.getElementById("start_term").value;
-  var to = document.getElementById("end_term").value;
-  if (fr != "" && to != "") {
-    flag = true;
-  }
-  console.log(flag);
   return flag;
 }
 
-// ==============  summary table ====================
-$(document).on("click", "#summary__table tbody tr", function (e) {
-  // tr に class を付与し、選択状態の background colorを付ける
-  $(this).parent().find("tr").removeClass("selected-record");
-  $(this).addClass("selected-record");
-});
+function tableFilter() {
+  let str = setFilterStr();
 
-function timkiem() {
-  var input, table, tr, td, filter, i, txtdata;
-  input = document.getElementById("presstype");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("summary__table");
-  tr = table.getElementsByTagName("tr");
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[3];
-    if (td) {
-      txtdata = td.innerText;
-      if (txtdata.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
+  $("#table_d tr").each(function (index, element) {
+    if (checkPressType($(this), str) && checkDieName($(this), index)) {
+      $(this).removeClass("no-display");
+      $("#v_fix_tbl tr").eq(index).removeClass("no-display");
+    } else {
+      $(this).addClass("no-display");
+      $("#v_fix_tbl tr").eq(index).addClass("no-display");
+    }
+  });
+}
+
+function checkDieName(targetDom, index) {
+  // die name filter -------------
+  let flag = true;
+  let string = $("#v_fix_tbl tr").eq(index).find("td").eq(2).html();
+  let pattern = $("#die_number__input").val();
+  let pressDate = Number(
+    $("#v_fix_tbl tr").eq(index).find("td").eq(3).html().replace(/-/g, "")
+  );
+  let startDate = Number($("#start__date").val().replace(/-/g, ""));
+  let endDate = Number($("#end__date").val().replace(/-/g, ""));
+  // when disable mode , it always return ture
+  if ($("#die_number__input").hasClass("disabled-mode")) {
+    return true;
+  }
+
+  if (!string.indexOf(pattern)) {
+    flag = true;
+  } else {
+    flag = false;
+  }
+  // when date filter is requested
+  if (checkDateInput() && flag) {
+    if (startDate < pressDate && pressDate < endDate) {
+      flag = true;
+    } else {
+      flag = false;
     }
   }
-  ulitycall();
+
+  return flag;
 }
 
-function mau() {
-  var table, tr, td, i, j, txtdata;
-  table = document.getElementById("summary__table");
-  tr = table.getElementsByTagName("tr");
-  for (j = 10; j < 38; j++) {
-    for (i = 0; i < tr.length; i++) {
-      td = tr[i].getElementsByTagName("td")[j];
-      if (td) {
-        txtdata = td.innerText;
-        if (txtdata > 0) {
-          td.style.backgroundColor = "orange";
-        }
-      }
+function checkPressType(targetDom, str) {
+  let mystr;
+  let myregex = new RegExp();
+  let result;
+  mystr = targetDom.find("td").eq(2).html();
+  myregex = RegExp(str);
+  result = mystr.match(myregex);
+
+  return result;
+}
+
+function setFilterStr() {
+  let str = "";
+  if ($("#test_press").parent().hasClass("active__button")) {
+    str = "〇";
+  }
+  if ($("#masproduction_test_press1").parent().hasClass("active__button")) {
+    if (str.length) {
+      str = str + "|◎";
+    } else {
+      str = "◎";
     }
   }
-  timkiem();
-}
-
-function pb() {
-  var tablepb, trpb, tdpb, ipb, j;
-  var pb = 0;
-  var txtdatapb = 0;
-  tablepb = document.getElementById("summary__table");
-  trpb = tablepb.getElementsByTagName("tr");
-  for (ipb = 0; ipb < trpb.length; ipb++) {
-    tdpb = trpb[ipb].getElementsByTagName("td")[4];
-    if (tdpb) {
-      txtdatapb = Number(tdpb.innerText);
-      if ($(trpb[ipb]).css("display") !== "none") {
-        pb += txtdatapb;
-      }
+  if ($("#masproduction").parent().hasClass("active__button")) {
+    if (str.length) {
+      str = str + "|●";
+    } else {
+      str = "●";
     }
   }
-  document.getElementById("pb").innerHTML = pb;
-}
-
-function datesearch() {
-  var choice, datea, filterdt, tabledt, trdt, td9, td10, td11, td12, idt;
-  var datea = document.getElementById("date").value;
-  filterdt = formatDate(datea);
-  choice = $("#choice").val();
-  tabledt = document.getElementById("summary__table");
-  trdt = tabledt.getElementsByTagName("tr");
-  if (choice == 1) {
-    console.log(9);
-    for (idt = 0; idt < trdt.length; idt++) {
-      td9 = trdt[idt].getElementsByTagName("td")[9];
-      if (td9) {
-        if (td9.innerHTML.toUpperCase().indexOf(filterdt) > -1) {
-          trdt[idt].style.display = "";
-        } else {
-          trdt[idt].style.display = "none";
-        }
-      }
-    }
-  } else if (choice == 2) {
-    console.log(10);
-    for (idt = 0; idt < trdt.length; idt++) {
-      td10 = trdt[idt].getElementsByTagName("td")[10];
-      if (td10) {
-        if (td10.innerHTML.toUpperCase().indexOf(filterdt) > -1) {
-          trdt[idt].style.display = "";
-        } else {
-          trdt[idt].style.display = "none";
-        }
-      }
-    }
-  } else if (choice == 3) {
-    console.log(11);
-    for (idt = 0; idt < trdt.length; idt++) {
-      td11 = trdt[idt].getElementsByTagName("td")[11];
-      if (td11) {
-        if (td11.innerHTML.toUpperCase().indexOf(filterdt) > -1) {
-          trdt[idt].style.display = "";
-        } else {
-          trdt[idt].style.display = "none";
-        }
-      }
-    }
-  } else if (choice == 4) {
-    console.log(12);
-    for (idt = 0; idt < trdt.length; idt++) {
-      td12 = trdt[idt].getElementsByTagName("td")[12];
-      if (td12) {
-        if (td12.innerHTML.toUpperCase().indexOf(filterdt) > -1) {
-          trdt[idt].style.display = "";
-        } else {
-          trdt[idt].style.display = "none";
-        }
-      }
-    }
-  } else if (choice == 5) {
-    console.log("all");
-    for (idt = 0; idt < trdt.length; idt++) {
-      td9 = trdt[idt].getElementsByTagName("td")[9];
-      td10 = trdt[idt].getElementsByTagName("td")[10];
-      td11 = trdt[idt].getElementsByTagName("td")[11];
-      td12 = trdt[idt].getElementsByTagName("td")[12];
-      if (td9) {
-        if (
-          td9.innerHTML.toUpperCase().indexOf(filterdt) > -1 ||
-          td10.innerHTML.toUpperCase().indexOf(filterdt) > -1 ||
-          td11.innerHTML.toUpperCase().indexOf(filterdt) > -1 ||
-          td12.innerHTML.toUpperCase().indexOf(filterdt) > -1
-        ) {
-          trdt[idt].style.display = "";
-        } else {
-          trdt[idt].style.display = "none";
-        }
-      }
-    }
-  }
-}
-
-function formatDate(date) {
-  var d = new Date(date),
-    month = "" + (d.getMonth() + 1),
-    day = "" + d.getDate(),
-    year = d.getFullYear();
-
-  if (month.length < 2) month = "0" + month;
-  if (day.length < 2) day = "0" + day;
-
-  return [month, day].join("-");
-}
-
-function total_row(col, idcol) {
-  var tablett, trtt, tdtt, itt, tt;
-  var tt = 0;
-  var txttt = 0;
-  tablett = document.getElementById("summary__table");
-  trtt = tablett.getElementsByTagName("tr");
-  for (itt = 0; itt < trtt.length; itt++) {
-    tdtt = trtt[itt].getElementsByTagName("td")[col];
-    if (tdtt) {
-      txttt = Number(tdtt.innerText);
-      if ($(trtt[itt]).css("display") !== "none") {
-        tt += txttt;
-      }
-    }
-  }
-  document.getElementById(idcol).innerHTML = tt;
-}
-
-function ulitycall() {
-  total_row(4, "pb");
-  total_row(5, "ab");
-  total_row(6, "qty");
-  total_row(7, "tng");
-  total_row(8, "tok");
-  total_row(13, "t301");
-  total_row(14, "t302");
-  total_row(15, "t303");
-  total_row(16, "t304");
-  total_row(17, "t305");
-  total_row(18, "t306");
-  total_row(19, "t307");
-  total_row(20, "t308");
-  total_row(21, "t309");
-  total_row(22, "t310");
-  total_row(23, "t311");
-  total_row(24, "t312");
-  total_row(25, "t313");
-  total_row(26, "t314");
-  total_row(27, "t315");
-  total_row(28, "t316");
-  total_row(29, "t317");
-  total_row(30, "t318");
-  total_row(31, "t319");
-  total_row(32, "t320");
-  total_row(33, "t321");
-  total_row(34, "t322");
-  total_row(35, "t323");
-  total_row(36, "t324");
-  total_row(37, "t351");
+  return str;
 }
