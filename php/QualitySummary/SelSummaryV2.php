@@ -22,7 +22,7 @@
           m_dies.die_number,
           t_press.press_date_at,
           t30.dies_fix,
-          '' AS change_condision,
+          t40.change_condition AS change_condision,
           m_pressing_type.pressing_type,
           t_press.plan_billet_quantities,
           t_press.actual_billet_quantities,
@@ -153,6 +153,106 @@
             ON t10.dies_id = t20.dies_id AND t10.rank = t20.rank + 1
             ORDER BY t_press_id DESC	
           ) AS t30 ON t30.t_press_id = t_press.id
+        LEFT JOIN 
+        	(
+
+SELECT
+  t10.t_press_directive_id AS t_press_directive_id,
+  CASE
+    WHEN t30.ram_speed != t40.ram_speed
+    OR t30.billet_size != t40.billet_size 
+    OR t30.billet_length != t40.billet_length 
+    OR t30.billet_temperature != t40.billet_temperature 
+    OR t30.billet_taper_heating != t40.billet_taper_heating 
+    OR t30.die_temperature != t40.die_temperature 
+    OR t30.stretch_ratio != t40.stretch_ratio 
+    THEN 'Yes'
+    ELSE ''
+  END change_condition
+FROM
+  (
+    SELECT
+      t1.id AS t_press_directive_id,
+      t1.dies_id,
+      (
+        SELECT
+          COUNT(*)
+        FROM
+          (
+            SELECT
+              t_press_directive.id,
+              t_press_directive.dies_id,
+              t_press_directive.plan_date_at
+            FROM
+              t_press_directive
+              LEFT JOIN t_press ON t_press.press_directive_id = t_press_directive.id
+            WHERE
+              t_press.id IS NOT NULL
+          ) t2
+        WHERE
+          t2.dies_id = t1.dies_id
+          AND t2.plan_date_at > t1.plan_date_at
+      ) + 1 AS rank
+    FROM
+      (
+        SELECT
+          t_press_directive.id,
+          t_press_directive.dies_id,
+          t_press_directive.plan_date_at
+        FROM
+          t_press_directive
+          LEFT JOIN t_press ON t_press.press_directive_id = t_press_directive.id
+        WHERE
+          t_press.id IS NOT NULL
+      ) AS t1
+    GROUP BY t_press_directive_id
+  ) AS t10
+  INNER JOIN (
+    SELECT
+      t1.id AS t_press_directive_id,
+      t1.dies_id,
+      (
+        SELECT
+          COUNT(*)
+        FROM
+          (
+            SELECT
+              t_press_directive.id,
+              t_press_directive.dies_id,
+              t_press_directive.plan_date_at
+            FROM
+              t_press_directive
+              LEFT JOIN t_press ON t_press.press_directive_id = t_press_directive.id
+            WHERE
+              t_press.id IS NOT NULL
+          ) t2
+        WHERE
+          t2.dies_id = t1.dies_id
+          AND t2.plan_date_at > t1.plan_date_at
+      ) + 1 AS rank
+    FROM
+      (
+        SELECT
+          t_press_directive.id,
+          t_press_directive.dies_id,
+          t_press_directive.plan_date_at
+        FROM
+          t_press_directive
+          LEFT JOIN t_press ON t_press.press_directive_id = t_press_directive.id
+        WHERE
+          t_press.id IS NOT NULL
+      ) AS t1
+    GROUP BY t_press_directive_id
+  ) AS t20 ON t10.dies_id = t20.dies_id
+  AND t10.rank + 1 = t20.rank
+  LEFT JOIN t_press_directive AS t30 ON t10.t_press_directive_id = t30.id
+  LEFT JOIN t_press_directive AS t40 ON t20.t_press_directive_id = t40.id
+ORDER BY
+  t10.dies_id,
+  t10.rank
+
+        	) AS t40 ON t_press.press_directive_id = t40.t_press_directive_id
+          
         ORDER BY 	t_press.press_date_at DESC, t_press.press_start_at
         LIMIT 200
       ";
