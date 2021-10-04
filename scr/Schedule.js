@@ -53,8 +53,8 @@ const myAjax = {
 
 $(function() {
   var now = new Date();
-  var prevMonthLastDate = new Date(now.getFullYear(), now.getMonth() + 1, 0);
-  var prevMonthFirstDate = new Date(now.getFullYear() - (now.getMonth() > 0 ? 0 : 1), (now.getMonth() + 12) % 12, 1);
+  var MonthLastDate = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+  var MonthFirstDate = new Date(now.getFullYear() - (now.getMonth() > 0 ? 0 : 1), (now.getMonth() + 12) % 12, 1);
 
   var formatDateComponent = function(dateComponent) {
     return (dateComponent < 10 ? '0' : '') + dateComponent;
@@ -64,9 +64,9 @@ $(function() {
     return date.getFullYear()  + '-' + formatDateComponent(date.getMonth() + 1) + '-' + formatDateComponent(date.getDate()) ;
   };
 
-  // document.write(formatDate(prevMonthFirstDate) + ' - ' + formatDate(prevMonthLastDate));
-  var a = formatDate(prevMonthFirstDate);
-  var b = formatDate(prevMonthLastDate);
+  // document.write(formatDate(MonthFirstDate) + ' - ' + formatDate(MonthLastDate));
+  var a = formatDate(MonthFirstDate);
+  var b = formatDate(MonthLastDate);
 
   $("#std").val(a);
   $("#end").val(b);
