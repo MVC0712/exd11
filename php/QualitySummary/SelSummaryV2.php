@@ -154,7 +154,7 @@
             ORDER BY t_press_id DESC	
           ) AS t30 ON t30.t_press_id = t_press.id
         ORDER BY 	t_press.press_date_at DESC, t_press.press_start_at
-        LIMIT 300
+        LIMIT 200
       ";
 
       $prepare = $dbh->prepare($sql);

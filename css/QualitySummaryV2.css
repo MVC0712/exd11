@@ -228,7 +228,7 @@ table#h_fix_tbl th:nth-child(4),
 table#table_d td:nth-child(4),
 table#h_fix_tbl th:nth-child(5),
 table#table_d td:nth-child(5) {
-  width: 28px;
+  width: 35px;
 }
 table#table_d td:nth-child(4),
 table#table_d td:nth-child(5) {
@@ -241,7 +241,7 @@ table#h_fix_tbl th:nth-child(7),
 table#table_d td:nth-child(7),
 table#h_fix_tbl th:nth-child(8),
 table#table_d td:nth-child(8) {
-  width: 40px;
+  width: 50px;
 }
 table#table_d td:nth-child(6),
 table#table_d td:nth-child(7),
@@ -316,7 +316,7 @@ table#h_fix_tbl th:nth-child(36),
 table#table_d td:nth-child(36),
 table#h_fix_tbl th:nth-child(37),
 table#table_d td:nth-child(37) {
-  width: 43px;
+  width: 40px;
 }
 table#table_d td:nth-child(13),
 table#table_d td:nth-child(14),
@@ -351,27 +351,27 @@ table#table_footer td {
   font-weight: bolder;
 }
 table#table_footer td:nth-child(1) {
-  width: calc(35px * 3);
+  width: calc(37px + 37px + 30px);
   text-align: right;
 }
 table#table_footer td:nth-child(2),
 table#table_footer td:nth-child(3) {
-  width: calc(28px * 1);
+  width: calc(35px * 1);
   text-align: right;
 }
 table#table_footer td:nth-child(4),
 table#table_footer td:nth-child(5),
 table#table_footer td:nth-child(6) {
-  width: calc(40px * 1);
+  width: 50px;
   text-align: right;
 }
-table#table_footer td:nth-child(7) {
-  width: calc(50px * 4);
-  /* text-align: right; */
-}
+table#table_footer td:nth-child(7),
 table#table_footer td:nth-child(8),
 table#table_footer td:nth-child(9),
-table#table_footer td:nth-child(10),
+table#table_footer td:nth-child(10) {
+  width: calc(48px);
+  /* text-align: right; */
+}
 table#table_footer td:nth-child(11),
 table#table_footer td:nth-child(12),
 table#table_footer td:nth-child(13),
@@ -394,8 +394,11 @@ table#table_footer td:nth-child(29),
 table#table_footer td:nth-child(30),
 table#table_footer td:nth-child(31),
 table#table_footer td:nth-child(32),
-table#table_footer td:nth-child(33) {
-  width: calc(43px * 1);
+table#table_footer td:nth-child(33),
+table#table_footer td:nth-child(34),
+table#table_footer td:nth-child(35),
+table#table_footer td:nth-child(36) {
+  width: calc(40px * 1);
   text-align: right;
 }
 
