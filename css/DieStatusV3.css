@@ -99,7 +99,7 @@
 }
 
 #summary__table tbody {
-    height: 550px;
+    height: 390px;
 }
 
 #summary__table tbody td.nitriding {
@@ -362,37 +362,39 @@ input[type="radio" i] {
 
 .main__wrapperh {
     padding: 0;
-    height: 200px;
+    height: 180px;
     width: 100%;
     display: flex;
     flex-direction: row;
 }
 
 .left__wrapperh {
-    width: 350px;
-    height: 180px;
-    flex-direction: column;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
     justify-content: center;
 }
 
 .right__wrapperh {
-    width: calc(898px - 450px - 1px);
-    height: 130px;
+    width: 100%;
+    /* height: 100px; */
     /* border-left: 1px dotted #0000ff; */
     display: flex;
     align-items: center;
     justify-content: space-around;
-    flex-direction: column;
+    flex-direction: row;
 }
 
 #die__table {
-    width: 350px;
-    height: 100%;
+    /* width: 350px; */
+    height: 100px;
 }
 
 #die__table tbody {
-    width: 430px;
-    height: 130px;
+    width: 301px;
+    height: 100px;
 }
 
 #die__table th {
@@ -412,8 +414,9 @@ input[type="radio" i] {
 
 #die__table tr th:nth-child(2),
 #die__table tr td:nth-child(2) {
-    width: 100px;
-    text-align: left;
+    /* width: 100px;
+    text-align: left; */
+    display: none;
 }
 
 
@@ -422,6 +425,7 @@ input[type="radio" i] {
 #die__table tr th:nth-child(3),
 #die__table tr td:nth-child(3) {
     width: 70px;
+    text-align: center;
 }
 
 #die__table tr td:nth-child(3) {
@@ -433,7 +437,7 @@ input[type="radio" i] {
 
 #die__table tr th:nth-child(4),
 #die__table tr td:nth-child(4) {
-    width: 150px;
+    width: 120px;
 }
 
 #die__table tr td:nth-child(4) {
@@ -449,21 +453,28 @@ input[type="radio" i] {
     text-align: center;
 }
 
-object {
-    width: 180px;
-    height: 100%;
-}
+
 
 .zoom {
-    padding: 50px;
+    padding: 10px;
     transition: transform .2s;
     margin: 0 auto;
 }
 
 .zoom:hover {
-    -ms-transform: scale(1.5);
+    -ms-transform: scale(3);
     /* IE 9 */
-    -webkit-transform: scale(1.5);
+    -webkit-transform: scale(3);
     /* Safari 3-8 */
-    transform: scale(1.5);
+    transform: scale(3);
+    z-index: 1;
+}
+
+#file_area{
+    width: 200px;
+    height: 150px;
+}
+object {
+    width: 150px;
+    height: 150px;
 }

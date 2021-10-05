@@ -559,8 +559,8 @@ $("#rackqty__input").on("keyup", function (e) {
   if (
     !isNaN($(this).val()) &&
     $(this).val() != "" &&
-    0 < $(this).val() &&
-    $(this).val() <= 100
+    0 < $(this).val() 
+    // && $(this).val() <= 100
   ) {
     $(this).removeClass("no-input").addClass("complete-input");
   } else {

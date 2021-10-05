@@ -29,6 +29,29 @@
                 </thead>
                 <tbody></tbody>
             </table>
+                <div>
+                    <div class="right__wrapperh">
+                        <table id="die__table">
+                            <thead>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td id="sel_die_number" style="text-align:center;" colspan="5">Die number</td>
+                                </tr>
+                                <tr>
+                                    <td>id</td>
+                                    <td>Die number</td>
+                                    <td>Status</td>
+                                    <td>Note</td>
+                                    <td>Date-time</td>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                        <div id="file_area" class="zoom"></div>
+                    </div>
+                    
+                </div>
         </div>
         <div class="center__wrapper column__wrapper">
             <img src="./img/001.png" alt="arrow" />
@@ -59,7 +82,7 @@
                             <option value="0">Select Process</option>
                             <option value="1">Measuring</option>
                             <option value="2">Washing</option>
-                            <option value="3">Fixing</option>
+                            <!-- <option value="3">Fixing</option> -->
                             <option value="4">On rack</option>
                         </select>
                     </div>
@@ -83,27 +106,7 @@
     </div>
 
     <br>
-    <div>
-        <div class="main__wrapperh">
-            <div class="left__wrapperh zoom" id="file_area">
-            </div>
-            <div class="right__wrapperh">
-                <table id="die__table">
-                    <thead>
-                        <tr>
-                            <td>id</td>
-                            <td>Die number</td>
-                            <td>Status</td>
-                            <td>Note</td>
-                            <td>Date time</td>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
 
-            </div>
-        </div>
-    </div>
 
     <script src="./lib/jquery.min.js"></script>
     <script src="./scr/DieStatusV3.js"></script>

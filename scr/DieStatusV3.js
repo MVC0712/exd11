@@ -97,7 +97,7 @@ function fillTableBodyHisotry(data, tbodyDom) {
 // -------------------------   summary table tr click   -------------
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 $(document).on("click", "#summary__table tbody tr", function() {
-    var fileName = "./php/DieStatus/SelSelSummary3.php";
+    var fileName = "./php/DieStatus/SelDieHis.php";
     var sendData = new Object();
     if (!$(this).hasClass("selected-record")) {
         $(this).parent().find("tr").removeClass("selected-record");
@@ -105,13 +105,18 @@ $(document).on("click", "#summary__table tbody tr", function() {
         $("#summary__table__selected").removeAttr("id");
         $(this).attr("id", "summary__table__selected");
         sendData = {
-            id: $("#summary__table__selected").find("td").eq(0).html(),
+            targetId: $("#summary__table__selected").find("td").eq(0).html(),
         };
+        myAjax.myAjax(fileName, sendData);
+        console.log(ajaxReturnData[0].die_number);
+        document.getElementById("sel_die_number").innerHTML = ajaxReturnData[0].die_number;
+        fillTableBodyh(ajaxReturnData, $("#die__table tbody"));
     } else {
         $("#add__table tbody").append($(this).removeClass("selected-record"));
         $("#go__button").prop("disabled", false);
     }
     go_check();
+    document.getElementById("file_area").innerHTML = ``;
 });
 
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -163,9 +168,9 @@ $(document).on("change", "#process", function() {
     } else if ($("#process").val() == 2) {
         $("#process").removeClass("no-input").addClass("complete-input");
         document.getElementById("status_process").innerHTML = `
-            <input type="radio" checked name="check_uncheck" class='radio-button' value="4" />Immersion <br />
-            <input type="radio" name="check_uncheck" class='radio-button' value="5" />Shot <br />
-            <input type="radio" name="check_uncheck" class='radio-button' value="6" />Clean <br />`;
+            <input type="radio" checked name="check_uncheck" class='radio-button' value="4" />Washing <br />
+            <input type="radio" name="check_uncheck" class='radio-button' value="7" />Grinding <br />
+            <input type="radio" name="check_uncheck" class='radio-button' value="9" />Wire cutting <br />`;
     } else if ($("#process").val() == 3) {
         $("#process").removeClass("no-input").addClass("complete-input");
         document.getElementById("status_process").innerHTML = `
@@ -296,25 +301,6 @@ const date = new Date();
 document.getElementById('do_sth_at').value = formatDate(date);
 document.getElementById('do_sth_at_time').value = formatTime(date);
 
-
-
-
-// History
-
-
-$(function() {
-    makeSummaryTableh();
-});
-
-function makeSummaryTableh() {
-    var fileName = "./php/DieStatus/DieHistory.php";
-    var sendData = {
-        dummy: "dummy",
-    };
-    myAjax.myAjax(fileName, sendData);
-    fillTableBodyh(ajaxReturnData, $("#die__table tbody"));
-}
-
 function fillTableBodyh(data, tbodyDom) {
     let checkLimit = new Object();
     let chekFlag = false;
@@ -375,8 +361,8 @@ $(document).on("click", "#die__table tbody tr", function() {
             document.getElementById("file_area").innerHTML = ``;
         }
     } else {
-        $("#add__table tbody").append($(this).removeClass("selected-record"));
-        $("#go__button").prop("disabled", false);
+        // $("#add__table tbody").append($(this).removeClass("selected-record"));
+        // $("#go__button").prop("disabled", false);
         document.getElementById("file_area").innerHTML = ``;
     }
 });
