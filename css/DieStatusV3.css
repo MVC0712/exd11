@@ -453,11 +453,9 @@ input[type="radio" i] {
     text-align: center;
 }
 
-
-
 .zoom {
     padding: 10px;
-    transition: transform .2s;
+    transition: transform .5s;
     margin: 0 auto;
 }
 
@@ -468,13 +466,16 @@ input[type="radio" i] {
     /* Safari 3-8 */
     transform: scale(3);
     z-index: 1;
+    cursor: progress;
 }
 
 #file_area{
     width: 200px;
     height: 150px;
 }
+
 object {
     width: 150px;
+    width: auto;
     height: 150px;
 }

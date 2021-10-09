@@ -142,7 +142,6 @@ $(document).on("click", "#add__table tbody tr", function() {
     go_check();
 });
 
-
 function go_check() {
     if (($("#add__table tbody tr").length == 0) && ($("#process").val() == 0)) {
         $("#go__button").prop("disabled", true);
@@ -308,9 +307,7 @@ function fillTableBodyh(data, tbodyDom) {
     data.forEach(function(trVal) {
         let newTr = $("<tr>");
         Object.keys(trVal).forEach(function(tdVal, index) {
-
             $("<td>").html(trVal[tdVal]).appendTo(newTr);
-
         });
         chekFlag = false;
         $(newTr).appendTo(tbodyDom);
@@ -319,7 +316,7 @@ function fillTableBodyh(data, tbodyDom) {
 
 $(document).on("click", "#die__table tbody tr", function() {
     var fileName = "./php/DieStatus/SelSelFile.php";
-    var sendObj = new Object();
+    var sendData = new Object();
     document.getElementById("file_area").innerHTML = ``;
     if (!$(this).hasClass("selected-record")) {
         $(this).parent().find("tr").removeClass("selected-record");
@@ -329,15 +326,10 @@ $(document).on("click", "#die__table tbody tr", function() {
         sendData = {
             targetId: $("#die__table__selected").find("td").eq(0).html(),
         };
-        console.log(sendData);
         myAjax.myAjax(fileName, sendData);
-        console.log(ajaxReturnData[0].file_url);
 
         var filename = ajaxReturnData[0].file_url;
         var fileType = filename.substr(filename.lastIndexOf(".") + 1, 3);
-        console.log(filename);
-        console.log(filename.lastIndexOf("."));
-        console.log(filename.substr(filename.lastIndexOf(".") + 1, 3));
         if (filename.length !== 0) {
             switch (fileType) {
                 case "pdf":
@@ -351,6 +343,8 @@ $(document).on("click", "#die__table tbody tr", function() {
                     break;
                 case "jpg":
                 case "JPG":
+                case "png":
+                case "PNG":
                     $("<object>")
                         .attr("data", "../upload/DieHistory/" + filename)
                         .attr("type", "image/jpeg")
@@ -361,8 +355,7 @@ $(document).on("click", "#die__table tbody tr", function() {
             document.getElementById("file_area").innerHTML = ``;
         }
     } else {
-        // $("#add__table tbody").append($(this).removeClass("selected-record"));
-        // $("#go__button").prop("disabled", false);
+        $(this).removeClass("selected-record");
         document.getElementById("file_area").innerHTML = ``;
     }
 });

@@ -62,8 +62,21 @@ div.calendar {
     height: 515px;
 }
 
-#summary__table thead {
-    /* width: 1178px; */
+#summary__table th {
+    position:sticky;
+	top:0;
+	z-index:1;
+}
+
+#summary__table th:first-child {
+	position: sticky;
+    left: 0;
+	z-index: 2;
+}
+
+#summary__table td:first-child {
+	position:sticky;
+    left: 0;
 }
 
 #summary__table tbody {
