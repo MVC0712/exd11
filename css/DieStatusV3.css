@@ -459,14 +459,14 @@ input[type="radio" i] {
     margin: 0 auto;
 }
 
-.zoom:hover {
+.zoom:active {
     -ms-transform: scale(3);
     /* IE 9 */
     -webkit-transform: scale(3);
     /* Safari 3-8 */
     transform: scale(3);
     z-index: 1;
-    cursor: progress;
+    cursor: zoom-in;
 }
 
 #file_area{
