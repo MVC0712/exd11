@@ -409,7 +409,7 @@ function Diff_qty() {
       diff = txtok - txtod;
       table.rows[i].insertCell(10);
       table.rows[i].cells[10].innerHTML = diff;
-      if (diff > 0) {
+      if (diff >= 0) {
         table.rows[i].cells[10].style.backgroundColor = "#ffbfc6";
       } else {
         table.rows[i].cells[10].style.backgroundColor = "#d1fff9";
