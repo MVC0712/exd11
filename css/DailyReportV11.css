@@ -118,19 +118,44 @@ select {
   width: 15px;
   text-align: right;
 }
+
+#is-washed__input {
+  display: none;
+}
+
 #is-washed__select {
   width: 45px;
 }
+
+#pressing-type__input {
+display: none;
+}
+
 #pressing-type__select {
   width: 40px;
   font-family: "ＭＳ ゴシック";
 }
+
+#machine-number__input {
+  display: none;
+}
+
 #billet-lot-number__input {
   width: 190px;
 }
+
+#billet-size__input {
+  display: none;
+}
+
+#billet-length__input {
+  display: none;
+}
+
 #billet-length__select {
   width: 60px;
 }
+
 #stop-cause__select {
   width: 60px;
 }
