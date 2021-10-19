@@ -1,133 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Extrusion Top</title>
-		<link rel="stylesheet" href="./css/main.css" />
-		<link rel="stylesheet" href="./css/index_new.css" />
-	</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Extrusion Top</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/index_new.css" />
+  </head>
 
-	<body>
-		<header>Extrusion Top Page</header>
-		<div class="main__wrapper">
-			<!-- <div class="left__area"></div> -->
-			<div class="right__area">
-				<!-- <div class="title">Report</div> -->
-				<button id="ex_daily_report">Extrusion<br />Daily Input</button>
-				<button id="ordersheet">OrderSheet</button>
-				<button id="quality_report">Quality<br />Report</button>
-				<button id="packing">Packing</button>
-				<button id="aging">Aging</button>
-			</div>
+  <body>
+    <header>Extrusion Top Page</header>
+    <div class="main__wrapper">
+      <!-- <div class="left__area"></div> -->
+      <div class="right__area">
+        <!-- <div class="title">Report</div> -->
+        <button id="ex_daily_report">Extrusion<br />Daily Input</button>
+        <button id="ordersheet">OrderSheet</button>
+        <button id="quality_report">Quality<br />Report</button>
+        <button id="packing">Packing</button>
+        <button id="aging">Aging</button>
+      </div>
 
-			<div class="right__area">
-				<button id="packing_summary">Packing<br />Summary</button>
-				<button id="qa_summary">QA Summary</button>
-				<button id="summary">Press Summary</button>
-			</div>
+      <div class="right__area">
+        <button id="packing_summary">Packing<br />Summary</button>
+        <button id="qa_summary">QA Summary</button>
+        <button id="summary">Press Summary</button>
+      </div>
 
-			<div class="right__area">
-				<button id="making-press-directive">Press Directive<br />Set Page</button>
-				<button id="schedule">Schedule</button>
-				<button id="schedule_excel">Schedule Excel</button>
-			</div>
+      <div class="right__area">
+        <button id="making-press-directive">
+          Press Directive<br />Set Page
+        </button>
+        <button id="schedule">Schedule</button>
+        <button id="schedule_excel">Schedule Excel</button>
+      </div>
 
-			<div class="right__area">
-				<button id="nitriding">Nitriding</button>
-				<button id="diestasus">Die Status</button>
-				<button id="diehistory">Die History</button>
-				<button id="production_number">Edit<br />PN</button>
-				<button id="die_number">Edit<br />Die</button>
-			</div>		
+      <div class="right__area">
+        <button id="nitriding">Nitriding</button>
+        <button id="diestasus">Die Status</button>
+        <button id="diehistory">Die History</button>
+        <button id="production_number">Edit<br />PN</button>
+        <button id="die_number">Edit<br />Die</button>
+      </div>
 
-			<div class="right__area">
-				<button id="check_billet">Check SL billet</button>
-				<button id="check_temp">Check nhiệt độ</button>
-				<button id="staff-page">Staff<br />QA Code</button>
-			</div>
-		</div>
+      <div class="right__area">
+        <button id="check_billet">Check SL billet</button>
+        <button id="check_temp">Check nhiệt độ</button>
+        <button id="staff-page">Staff<br />QA Code</button>
+        <button id="csv_download">CSV<br />Down load</button>
+      </div>
+    </div>
 
-		<script src="./lib/jquery-3.3.1.min.js"></script>
-		<script>
-			$(document).on("click", "#ex_daily_report", function () {
-				window.open("DailyReportV11.html");
-			});
+    <script src="./lib/jquery-3.3.1.min.js"></script>
+    <script>
+      $(document).on("click", "#ex_daily_report", function () {
+        window.open("DailyReportV11.html");
+      });
 
-			$(document).on("click", "#making-press-directive", function () {
-				window.open("MakingPressDirectiveV2.html");
-			});
+      $(document).on("click", "#making-press-directive", function () {
+        window.open("MakingPressDirectiveV2.html");
+      });
 
-			$(document).on("click", "#staff-page", function () {
-				window.open("StaffAndCode2.html");
-			});
+      $(document).on("click", "#staff-page", function () {
+        window.open("StaffAndCode2.html");
+      });
 
-			$(document).on("click", "#production_number", function () {
-				window.open("ProductionNumberV2.html");
-			});
+      $(document).on("click", "#production_number", function () {
+        window.open("ProductionNumberV2.html");
+      });
 
-			$(document).on("click", "#die_number", function () {
-				window.open("Die.html");
-			});
+      $(document).on("click", "#die_number", function () {
+        window.open("Die.html");
+      });
 
-			$(document).on("click", "#ordersheet", function () {
-				window.open("OrderSheetV2.html");
-			});
-			$(document).on("click", "#quality_report", function () {
-				window.open("QualityReportV2.html");
-			});
+      $(document).on("click", "#ordersheet", function () {
+        window.open("OrderSheetV2.html");
+      });
+      $(document).on("click", "#quality_report", function () {
+        window.open("QualityReportV2.html");
+      });
 
-			$(document).on("click", "#packing", function () {
-				window.open("Packing.html");
-			});
+      $(document).on("click", "#packing", function () {
+        window.open("Packing.html");
+      });
 
-			$(document).on("click", "#csv_download", function () {
-				window.open("CsvDownLoad.html");
-			});
+      $(document).on("click", "#csv_download", function () {
+        window.open("CsvDownLoad.html");
+      });
 
-			$(document).on("click", "#nitriding", function () {
-				window.open("NitridingV3.html");
-			});
+      $(document).on("click", "#nitriding", function () {
+        window.open("NitridingV3.html");
+      });
 
-			$(document).on("click", "#aging", function () {
-				window.open("AgingV2.html");
-			});
-			$(document).on("click", "#diestasus", function () {
-				window.open("DieStatusV3.html");
-			});
+      $(document).on("click", "#aging", function () {
+        window.open("AgingV2.html");
+      });
+      $(document).on("click", "#diestasus", function () {
+        window.open("DieStatusV3.html");
+      });
 
-			$(document).on("click", "#diehistory", function () {
-				window.open("DieStatus.html");
-			});
+      $(document).on("click", "#diehistory", function () {
+        window.open("DieStatus.html");
+      });
 
-			$(document).on("click", "#packing_summary", function () {
-				window.open("PackingSummary.html");
-			});
+      $(document).on("click", "#packing_summary", function () {
+        window.open("PackingSummary.html");
+      });
 
-			$(document).on("click", "#qa_summary", function () {
-				window.open("QualitySummary.html");
-			});
+      $(document).on("click", "#qa_summary", function () {
+        window.open("QualitySummary.html");
+      });
 
-			$(document).on("click", "#summary", function () {
-				window.open("Summary.html");
-			});
+      $(document).on("click", "#summary", function () {
+        window.open("Summary.html");
+      });
 
-			$(document).on("click", "#schedule", function () {
-				window.open("Schedule.html");
-			});
+      $(document).on("click", "#schedule", function () {
+        window.open("Schedule.html");
+      });
 
-			$(document).on("click", "#check_billet", function () {
-				window.open("https://sites.google.com/view/smc3/billet-manage-%E3%83%93%E3%83%AC%E3%83%83%E3%83%88%E5%9C%A8%E5%BA%AB%E7%AE%A1%E7%90%86");
-			});
+      $(document).on("click", "#check_billet", function () {
+        window.open(
+          "https://sites.google.com/view/smc3/billet-manage-%E3%83%93%E3%83%AC%E3%83%83%E3%83%88%E5%9C%A8%E5%BA%AB%E7%AE%A1%E7%90%86"
+        );
+      });
 
-			$(document).on("click", "#check_temp", function () {
-				window.open("https://docs.google.com/forms/d/e/1FAIpQLSf5VQLgCA0OSKjtfnjQqLhe9K_bJomrRF3mJFz9Avgyi940xQ/viewform");
-			});
+      $(document).on("click", "#check_temp", function () {
+        window.open(
+          "https://docs.google.com/forms/d/e/1FAIpQLSf5VQLgCA0OSKjtfnjQqLhe9K_bJomrRF3mJFz9Avgyi940xQ/viewform"
+        );
+      });
 
-			$(document).on("click", "#schedule_excel", function () {
-				window.open("https://sites.google.com/view/smc3/schedule%E3%82%B9%E3%82%B1%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB");
-			});
-		</script>
-	</body>
+      $(document).on("click", "#schedule_excel", function () {
+        window.open(
+          "https://sites.google.com/view/smc3/schedule%E3%82%B9%E3%82%B1%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB"
+        );
+      });
+    </script>
+  </body>
 </html>
