@@ -459,7 +459,7 @@ input[type="radio" i] {
     margin: 0 auto;
 }
 
-.zoom:active {
+.zoom:hover {
     -ms-transform: scale(3);
     /* IE 9 */
     -webkit-transform: scale(3);
