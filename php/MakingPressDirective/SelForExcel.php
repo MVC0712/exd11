@@ -51,7 +51,11 @@
       t_press_directive.die_temperature,
       t_press_directive.die_heating_time,
       t_press_directive.stretch_ratio,
-      'xxx' AS cooling_type,
+      CASE m_production_numbers.cooling_type
+        WHEN 1 THEN 'Air'
+        WHEN 2 THEN 'Water'
+        WHEN 3 THEN 'Mist'
+      END AS cooling_type,
       t_press_directive.billet_size,
       m_bolster.bolster_name,
       CASE m_production_numbers.aging_type_id WHEN 1 THEN 'O' WHEN 2 THEN 'T5' WHEN 3 THEN 'T6' END AS aging,
