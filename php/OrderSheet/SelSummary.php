@@ -28,7 +28,6 @@
       FROM m_ordersheet
       LEFT JOIN m_production_numbers ON m_ordersheet.production_numbers_id = m_production_numbers.id
       ORDER BY m_ordersheet.delivery_date_at DESC
-      LIMIT 30
 
     ");
     $prepare->execute();
