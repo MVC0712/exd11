@@ -400,12 +400,17 @@ function Color() {
   tr = table.getElementsByTagName("tr");
   for (i = 0; i < tr.length; i++) {
     td = tr[i].getElementsByTagName("td")[9];
+    tp = tr[i].getElementsByTagName("td")[11];
     if (td) {
       txttd = Number(td.innerText.replace(",", ""));
+      txttp = Number(tp.innerText.replace(",", ""));
       if (txttd >= 0) {
-        table.rows[i].cells[9].style.backgroundColor = "#ffbfc6";
+        table.rows[i].cells[9].style.backgroundColor = "#ffa1bd";
       } else {
         table.rows[i].cells[9].style.backgroundColor = "#d1fff9";
+      }
+      if (txttp > 0) {
+        table.rows[i].cells[11].style.backgroundColor = "#ffa1bd";
       }
     }
   }

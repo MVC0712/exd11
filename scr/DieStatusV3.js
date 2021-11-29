@@ -341,6 +341,8 @@ $(document).on("click", "#die__table tbody tr", function() {
                         .attr("type", "application/pdf")
                         .appendTo("#file_area");
                     break;
+                case "jpeg":
+                case "JPEG":
                 case "jpg":
                 case "JPG":
                 case "png":

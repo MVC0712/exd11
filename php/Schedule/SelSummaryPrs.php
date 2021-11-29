@@ -2,11 +2,11 @@
 
 $userid = "webuser";
 $passwd = "";
-$start_s = "";
-$end_s = "";
+$start_s = "2021-11-01";
+$end_s = "2021-11-05";
 
-$start_s = $_POST['start_s'];
-$end_s = $_POST['end_s'];
+// $start_s = $_POST['start_s'];
+// $end_s = $_POST['end_s'];
 
   $begin = new DateTime($start_s);
   $end = new DateTime($end_s);
@@ -36,7 +36,7 @@ $end_s = $_POST['end_s'];
     GROUP BY idm
     ORDER BY idm DESC";
     $sql = $sql1.$sql3;
-    // echo $sql;
+    echo $sql;
   try {
       $dbh = new PDO(
           'mysql:host=localhost; dbname=extrusion; charset=utf8',
