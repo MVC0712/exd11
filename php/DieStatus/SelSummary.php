@@ -38,9 +38,7 @@
       t10.die_status,
       t10.die_status_id,
       t10.note,
-      DATE_FORMAT(t10.do_sth_at,'%m-%d %H:%i') AS do_sth_at
-
-      
+      DATE_FORMAT(t10.do_sth_at, '%m-%d %H:%i') AS do_sth_at
   FROM
       t_press
           LEFT JOIN
@@ -66,7 +64,16 @@
       WHERE
           t10.dies_id IS NOT NULL) AS t10 ON t10.dies_id = t_press.dies_id
   GROUP BY dies_id
-  ORDER BY die_status DESC , die_number ASC;
+  ORDER BY CASE die_status
+      WHEN 'Grinding' THEN 9
+      WHEN 'Washing' THEN 8
+      WHEN 'Measuring' THEN 7
+      WHEN 'NG' THEN 6
+      WHEN 'OK' THEN 5
+      WHEN 'Wire cutting' THEN 4
+      WHEN 'On rack' THEN 3
+      ELSE 0
+  END DESC , is_washed_die DESC , die_number ASC;
         ";
 
       $prepare = $dbh->prepare($sql);
