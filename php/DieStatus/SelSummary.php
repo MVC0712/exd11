@@ -65,15 +65,14 @@
           t10.dies_id IS NOT NULL) AS t10 ON t10.dies_id = t_press.dies_id
   GROUP BY dies_id
   ORDER BY CASE die_status
-      WHEN 'Grinding' THEN 9
-      WHEN 'Washing' THEN 8
-      WHEN 'Measuring' THEN 7
-      WHEN 'NG' THEN 6
-      WHEN 'OK' THEN 5
-      WHEN 'Wire cutting' THEN 4
-      WHEN 'On rack' THEN 3
-      ELSE 0
-  END DESC , is_washed_die DESC , die_number ASC;
+    WHEN 'Grinding' THEN 9
+    WHEN 'Wire cutting' THEN 8
+    WHEN 'Washing' THEN 7
+    WHEN 'Measuring' THEN 6
+    WHEN 'NG' THEN 5
+    WHEN 'OK' THEN 4
+    ELSE 0
+    END DESC , is_washed_die DESC , die_number ASC;
         ";
 
       $prepare = $dbh->prepare($sql);

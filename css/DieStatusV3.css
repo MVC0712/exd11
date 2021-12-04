@@ -454,9 +454,9 @@ input[type="radio" i] {
 }
 
 .zoom {
-    padding: 10px;
-    transition: transform .5s;
-    margin: 0 auto;
+    /* padding: 10px; */
+    transition: transform 0.5s;
+    /* margin: 0 auto; */
 }
 
 .zoom:hover {
@@ -467,15 +467,17 @@ input[type="radio" i] {
     transform: scale(3);
     z-index: 1;
     cursor: zoom-in;
+    transform-origin: bottom;
 }
 
 #file_area{
     width: 200px;
     height: 150px;
+    transform-origin: bottom;
 }
 
 object {
-    width: 150px;
     width: auto;
     height: 150px;
+    transform-origin: bottom;
 }
