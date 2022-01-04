@@ -269,7 +269,7 @@ function make_action() {
             } else if ((txt_sta_val == 7) || (txt_sta_val == 8) ||
                 (txt_sta_val == 9)) {
                 table.rows[i].cells[7].innerHTML = "Fixing";
-                table.rows[i].cells[7].style.backgroundColor = "#bfc1ff"
+                table.rows[i].cells[7].style.backgroundColor = "red"
 
             } else if ((txt_sta_val == 10) || (txt_sta_val == 2)) {
                 table.rows[i].cells[7].innerHTML = "Ready press";

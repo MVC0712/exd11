@@ -66,7 +66,7 @@ tbody tr.selected-record input {
   justify-content: space-around;
 }
 .right__wrapper {
-  width: calc(898px - 600px - 1px);
+  width: calc(898px - 610px - 1px);
   height: 100%;
   border-left: 1px dotted #0000ff;
   display: flex;
