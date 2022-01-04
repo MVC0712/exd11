@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QualityReport V3</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/QualityReportV3.css" />
+</head>
+
+<body>
+    <header>Quality Report V3</header>
+    <div class="upper__wrapper">
+        <div class="input-block__wrapper">
+            <div class="input__title">Date</div>
+            <input id="date__input" class="need-clear no-input save-data" type="date" />
+        </div>
+
+        <div class="input-block__wrapper">
+            <div class="input__title">Die Name</div>
+            <input class="need-clear" type="text" />
+            <select name="" id="die_number" class="no-input input-required need-clear"></select>
+            <div id="slkhuon">0</div>
+            <select style="width: 60px" id="press_start" class="no-input input-required need-clear"></select>
+        </div>
+
+        <div class="input-block__wrapper">
+            <div class="input__title">Pressing Type</div>
+            <input id="pressing_type" class="need-clear" type="text" / readonly>
+        </div>
+
+        <div class="input-block__wrapper">
+            <div class="input__title">Input Billet Qty</div>
+            <input id="input_billet_quantity" class="need-clear" type="text" / readonly>
+            <div id="press_id" hidden></div>
+        </div>
+    </div>
+    <div class="middle__wrapper">
+        <div class="input-block__wrapper">
+            <div class="input__title">Dim Check</div>
+            <input id="dimension_check_date" class="need-clear" type="text" / readonly>
+        </div>
+
+        <div class="input-block__wrapper">
+            <div class="input__title">Etching</div>
+            <input id="etching_check_date" class="need-clear" type="text" / readonly>
+        </div>
+
+        <div class="input-block__wrapper">
+            <div class="input__title">Aging Check</div>
+            <input id="aging_check_date" class="need-clear" type="text" / readonly>
+        </div>
+
+        <div class="input-block__wrapper">
+            <div class="input__title">Packing</div>
+            <input id="packing_date" class="need-clear" type="text" / readonly>
+        </div>
+
+        <table id="total-ng__table">
+            <thead>
+                <tr>
+                    <td>Total</td>
+                    <td>301</td>
+                    <td>302</td>
+                    <td>303</td>
+                    <td>304</td>
+                    <td>305</td>
+                    <td>306</td>
+                    <td>307</td>
+                    <td>308</td>
+                    <td>309</td>
+                    <td>310</td>
+                    <td>311</td>
+                    <td>312</td>
+                    <td>313</td>
+                    <td>314</td>
+                    <td>315</td>
+                    <td>316</td>
+                    <td>317</td>
+                    <td>318</td>
+                    <td>319</td>
+                    <td>320</td>
+                    <td>321</td>
+                    <td>322</td>
+                    <td>323</td>
+                    <td>324</td>
+                    <td>351</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="buttom__wrapper">
+        <div>
+            <table id="rack__table">
+                <thead>
+                    <tr>
+                        <th>t_using_aging_rack</th>
+                        <th>Ord</th>
+                        <th>Rack</th>
+                        <th>Qty</th>
+                    </tr>
+                </thead>
+                <tbody id="table__body"></tbody>
+                <tbody id="table__footer">
+                    <tr>
+                        <td>1</td>
+                        <td></td>
+                        <td>Total</td>
+                        <td id="total_work_quantity">0</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- Process Button Area -->
+        <div>
+            <input type="radio" name="process_name" value="1" checked="checked" />Dimension <br />
+            <input type="radio" name="process_name" value="2" />Etching <br />
+            <input type="radio" name="process_name" value="3" />Aging <br />
+            <input type="radio" name="process_name" value="4" />Packing <br />
+        </div>
+        <!-- NG table Area -->
+        <div class="ng_table__wrapper">
+            <div class="input-block__wrapper">
+                <div class="input__title">Complete Date</div>
+                <input id="complete_date" class="need-clear" type="date" />
+            </div>
+            <div class="input-block__wrapper">
+                <div class="input__title">NG Code</div>
+                <input id="ng_code__input" class="need-clear" type="text" />
+                <select name="" id="ng_code__select" class="no-input need-clear save-data"></select>
+                <div class="space"></div>
+                <div class="input__title">NG Qty</div>
+                <input id="ng_quantity" class="need-clear no-input save-data" type="text" />
+            </div>
+            <div class="button__area">
+                <button id="add__button">Add</button>
+                <button id="test__button">test</button>
+            </div>
+            <table id="ng__table">
+                <thead>
+                    <tr>
+                        <th>t_press_quality.id</th>
+                        <th>t_press_quality.process_id</th>
+                        <th>Process</th>
+                        <th>Code</th>
+                        <th>Qty</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+                <tbody id="ng-table__footer">
+                    <tr>
+                        <td>1</td>
+                        <td></td>
+                        <td></td>
+                        <td>NG</td>
+                        <td id="total_ng_quantity">0</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td></td>
+                        <td></td>
+                        <td>OK</td>
+                        <td id="total_ok_quantity">0</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- NG Data 削除確認ダイアログ -->
+            <dialog class="dialog__wrapper" id="delete_ng__dialog">
+                Do you Delete?
+                <button id="delete_ng__dialog-cancel">Cancel</button>
+                <button id="delete_ng__dialog-delete">Delete</button>
+            </dialog>
+            <!-- Rack Data 削除確認ダイアログ -->
+            <dialog class="dialog__wrapper" id="delete_rack__dialog">
+                Do you Delete?
+                <button id="delete_rack__dialog-cancel">Cancel</button>
+                <button id="delete_rack__dialog-delete">Delete</button>
+            </dialog>
+            <div id="test"></div>
+        </div>
+    </div>
+    <script src="./lib/jquery.min.js"></script>
+    <script src="./scr/QualityReportV3.js"></script>
+</body>
+
+</html>

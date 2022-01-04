@@ -18,6 +18,7 @@
         <button id="ex_daily_report">Extrusion<br />Daily Input</button>
         <button id="ordersheet">OrderSheet</button>
         <button id="quality_report">Quality<br />Report</button>
+        <button id="quality_report_N">Quality<br />Report New</button>
         <button id="packing">Packing</button>
         <button id="aging">Aging</button>
       </div>
@@ -79,6 +80,9 @@
       });
       $(document).on("click", "#quality_report", function () {
         window.open("QualityReportV2.html");
+      });
+      $(document).on("click", "#quality_report_N", function () {
+        window.open("QualityReportV3.html");
       });
 
       $(document).on("click", "#packing", function () {
