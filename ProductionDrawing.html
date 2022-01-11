@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Production Drawing</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/ProductionDrawing.css" />
+  </head>
+
+  <body>
+    <header>Production Drawing</header>
+    <div class="main__wrapper">
+      <div class="left__wrapper">
+        <div class="input-left__wrapper">
+          <div class="input__title">Production Number</div>
+          <input id="production_number__input" placeholder="Tìm trong bảng" type="text" onkeyup="timkiem();" />
+        </div>
+        <div class="table__wrapper">
+          <table id="summary__table">
+            <thead>
+                <tr>
+                    <th>dies_id</th>
+                    <th>Production Number</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+        </div>
+      </div>
+      <div class="right__wrapper">
+        <div id="file_area"></div>
+      </div>
+    </div>
+    <script src="./lib/jquery.min.js"></script>
+    <script src="./scr/ProductionDrawing.js"></script>
+  </body>
+</html>

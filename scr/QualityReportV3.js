@@ -33,9 +33,7 @@ function makeNgSelect() {
     var sendData = {
         ng_code: $("#ng_code__input").val() + "%",
     };
-    // read ng_code
     myAjax.myAjax(fileName, sendData);
-    // fill select options
     $("#ng_code__select").empty();
     if (ajaxReturnData.length == 1) {
         $("#ng_code__select").removeClass("no-input").addClass("complete-input");
@@ -57,16 +55,14 @@ function makeDieOption() {
         dummy: "dummy",
         press_date: $("#date__input").val(),
     };
-    // summary tebale の読み出し
     myAjax.myAjax(fileName, sendData);
 }
 // ==============  date  ===================
 $(document).on("change", "#date__input", function() {
-    
-
     makeDieOption();
     $("#die_number option").remove();
     $("#die_number").append($("<option>").val(0).html("NO select"));
+    $("#die_number").removeClass("complete-input").addClass("no-input");
     $("#slkhuon").html(ajaxReturnData.length);
 
     ajaxReturnData.forEach(function(value) {
@@ -76,12 +72,14 @@ $(document).on("change", "#date__input", function() {
     });
     $("#date__input").removeClass("no-input").addClass("complete-input");
 });
+
 // ==============  die_number  ===================
 $(document).on("change", "#die_number", function() {
     if ($(this).val() != 0) {
         $(this).removeClass("no-input").addClass("complete-input");
 
         fillPressStart();
+        $("#slngay").html(ajaxReturnData.length);
         $("#press_start option").remove();
         $("#press_start").append($("<option>").val(0).html("NO"));
         $("#press_start").removeClass("complete-input").addClass("no-input");
@@ -121,7 +119,6 @@ function fillPressData() {
         press_start_at: $("#press_start").val(),
     };
     console.log(sendData);
-    // call php program
     myAjax.myAjax(fileName, sendData);
     console.log(ajaxReturnData);
     $("#pressing_type").val(ajaxReturnData[0]["pressing_type"]);
@@ -129,12 +126,11 @@ function fillPressData() {
         ajaxReturnData[0]["actual_billet_quantities"]
     );
     press_id = ajaxReturnData[0]["press_id"];
-    // filling date
     $("#dimension_check_date").val(ajaxReturnData[0]["dimension_check_date"]);
     $("#etching_check_date").val(ajaxReturnData[0]["etching_check_date"]);
     $("#aging_check_date").val(ajaxReturnData[0]["aging_check_date"]);
     $("#packing_date").val(ajaxReturnData[0]["packing_check_date"]);
-    // read used aging rack information
+
     fileName = "./php/QualityReport/SelRackData.php";
     sendData = {
         press_id: ajaxReturnData[0]["press_id"],

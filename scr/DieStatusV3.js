@@ -59,43 +59,18 @@ function returnToday() {
 }
 
 function fillTableBody(data, tbodyDom) {
-    let checkLimit = new Object();
-    let checkFlag = false;
     $(tbodyDom).empty();
     data.forEach(function(trVal) {
         let newTr = $("<tr>");
         Object.keys(trVal).forEach(function(tdVal, index) {
-            if (checkFlag) {
-                $("<td>").html(trVal[tdVal]).addClass("nitriding").appendTo(newTr);
-            } else {
-                $("<td>").html(trVal[tdVal]).appendTo(newTr);
-            }
-        });
-        checkFlag = false;
-        $(newTr).appendTo(tbodyDom);
-    });
-}
-
-function fillTableBodyHisotry(data, tbodyDom) {
-    let checkLimit = new Object();
-    let checkFlag = false;
-    $(tbodyDom).empty();
-    data.forEach(function(trVal) {
-        let newTr = $("<tr>");
-        Object.keys(trVal).forEach(function(tdVal, index) {
-            if (tdVal == "profile_length") {
-                trVal[tdVal] = trVal[tdVal] + " km";
-            }
             $("<td>").html(trVal[tdVal]).appendTo(newTr);
         });
-        checkFlag = false;
         $(newTr).appendTo(tbodyDom);
     });
 }
 
-// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // -------------------------   summary table tr click   -------------
-// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 $(document).on("click", "#summary__table tbody tr", function() {
     var fileName = "./php/DieStatus/SelDieHis.php";
     var sendData = new Object();
@@ -119,11 +94,9 @@ $(document).on("click", "#summary__table tbody tr", function() {
     document.getElementById("file_area").innerHTML = ``;
 });
 
-// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // -------------------------   add__table table tr click   -------------
-// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 $(document).on("click", "#add__table tbody tr", function() {
-    // var fileName = "./php/DieStatus/SelSelSummary.php";
     var sendData = new Object();
     var tableId = $(this).parent().parent().attr("id");
 
@@ -182,7 +155,6 @@ $(document).on("change", "#process", function() {
             <input type="radio" checked name="check_uncheck" class='radio-button' value="10" />On rack <br />`;
     }
     go_check();
-    console.log($('input[name="check_uncheck"]:checked').val());
 });
 
 $(document).on("click", "#go__button", function() {
@@ -231,32 +203,32 @@ $(document).on("click", "#go__button", function() {
 });
 
 function make_action() {
-    var table, tr, action_s, pr_tm, sta_val, txt_pr_tm, txt_sta_val, i, diff;
+    var table, tr, pr_tm, sta_val, txt_pr_tm, txt_sta_val, i;
+    var W1P1 =[1, 4, 10, 49];
     table = document.getElementById("summary__table");
     tr = table.getElementsByTagName("tr");
     for (i = 0; i < tr.length; i++) {
+        die_id = tr[i].getElementsByTagName("td")[0];
         pr_tm = tr[i].getElementsByTagName("td")[2];
         sta_val = tr[i].getElementsByTagName("td")[4];
-        action_s = tr[i].getElementsByTagName("td")[7];
         if (pr_tm) {
+            txt_die_id = Number(die_id.innerText.replace(",", ""));
             txt_pr_tm = Number(pr_tm.innerText.replace(",", ""));
             txt_sta_val = Number(sta_val.innerText.replace(",", ""));
             table.rows[i].insertCell(7);
-            if (txt_pr_tm >= 2) {
+            if (((txt_pr_tm >= 1) && (W1P1.includes(txt_die_id))) || 
+                (txt_pr_tm >= 2)||(txt_sta_val == 3)) {
                 table.rows[i].cells[7].innerHTML = "Need wash";
                 table.rows[i].cells[7].style.backgroundColor = "#ffc870";
 
             } else if (txt_sta_val == 1) {
                 table.rows[i].cells[7].innerHTML = "Wait result";
-                table.rows[i].cells[7].style.backgroundColor = "#fbffbf";
+                table.rows[i].cells[7].style.backgroundColor = "#bff542";
 
-            } else if ((txt_sta_val == 2) && (txt_pr_tm <= 1)) {
+            } else if (((txt_sta_val == 2) && (txt_pr_tm <= 1)) ||
+                    ((txt_sta_val == 10) || (txt_sta_val == 2))) {
                 table.rows[i].cells[7].innerHTML = "Ready press";
                 table.rows[i].cells[7].style.backgroundColor = "#b3ffe4";
-
-            } else if (txt_sta_val == 3) {
-                table.rows[i].cells[7].innerHTML = "Need wash";
-                table.rows[i].cells[7].style.backgroundColor = "#ffc870";
 
             } else if ((txt_sta_val == 4)) {
                 table.rows[i].cells[7].innerHTML = "Washing";
@@ -267,13 +239,9 @@ function make_action() {
                 table.rows[i].cells[7].style.backgroundColor = "#bfc1ff"
 
             } else if ((txt_sta_val == 7) || (txt_sta_val == 8) ||
-                (txt_sta_val == 9)) {
+                    (txt_sta_val == 9)) {
                 table.rows[i].cells[7].innerHTML = "Fixing";
                 table.rows[i].cells[7].style.backgroundColor = "red"
-
-            } else if ((txt_sta_val == 10) || (txt_sta_val == 2)) {
-                table.rows[i].cells[7].innerHTML = "Ready press";
-                table.rows[i].cells[7].style.backgroundColor = "#b3ffe4";
             }
         }
     }
@@ -285,14 +253,12 @@ const formatDate = (date) => {
     const day = getTwoDigits(date.getDate());
     const month = getTwoDigits(date.getMonth() + 1);
     const year = date.getFullYear();
-
     return `${year}-${month}-${day}`;
 }
 
 const formatTime = (date) => {
     const hours = getTwoDigits(date.getHours());
     const mins = getTwoDigits(date.getMinutes());
-
     return `${hours}:${mins}`;
 }
 
@@ -301,15 +267,12 @@ document.getElementById('do_sth_at').value = formatDate(date);
 document.getElementById('do_sth_at_time').value = formatTime(date);
 
 function fillTableBodyh(data, tbodyDom) {
-    let checkLimit = new Object();
-    let chekFlag = false;
     $(tbodyDom).empty();
     data.forEach(function(trVal) {
         let newTr = $("<tr>");
         Object.keys(trVal).forEach(function(tdVal, index) {
             $("<td>").html(trVal[tdVal]).appendTo(newTr);
         });
-        chekFlag = false;
         $(newTr).appendTo(tbodyDom);
     });
 }
@@ -365,7 +328,6 @@ $(document).on("click", "#die__table tbody tr", function() {
 function timkiemkhuon() {
     var input, table, tr, td, td1, td2, filter, i, txtdata, txtdata1, txtdata2, txtdata3;
     input = document.getElementById("die_number__input");
-    console.log(input)
     filter = input.value.toUpperCase();
     table = document.getElementById("summary__table");
     var tbody = table.getElementsByTagName("tbody")[0];
