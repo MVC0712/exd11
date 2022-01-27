@@ -103,7 +103,7 @@
 
 #summary__table th:nth-child(3),
 #summary__table td:nth-child(3) {
-    width: 65px;
+    width: 90px;
 }
 
 #summary__table td:nth-child(3) {
@@ -117,7 +117,7 @@
 
 #summary__table th:nth-child(5),
 #summary__table td:nth-child(5) {
-    width: 50px;
+    width: 90px;
 }
 
 #summary__table td:nth-child(5) {
@@ -138,7 +138,7 @@
 
 #summary__table th:nth-child(8),
 #summary__table td:nth-child(8) {
-    width: 90px;
+    width: 100px;
 }
 
 #summary__table td:nth-child(8) {
@@ -146,27 +146,17 @@
 }
 
 #summary__table th:nth-child(9),
-#summary__table td:nth-child(9) {
-    display: none;
-}
-
+#summary__table td:nth-child(9),
 #summary__table th:nth-child(10),
-#summary__table td:nth-child(10) {
-    width: 30px;
-}
-
+#summary__table td:nth-child(10),
 #summary__table th:nth-child(11),
 #summary__table td:nth-child(11) {
-    width: 30px;
-}
-
-#summary__table td:nth-child(11) {
-    text-align: center;
+    display: none;
 }
 
 #summary__table th:nth-child(12),
 #summary__table td:nth-child(12) {
-    width: 30px;
+    width: 25px;
 }
 
 #summary__table td:nth-child(12) {
@@ -314,55 +304,47 @@ input[type="radio" i] {
     flex-direction: row;
 }
 
-#die__table {
+#ma__table {
     height: 100px;
 }
 
-#die__table tbody {
+#ma__table tbody {
     width: 301px;
     height: 100px;
 }
 
-#die__table th {
+#ma__table th {
     padding: 0;
 }
 
-#die__table tr th:nth-child(1),
-#die__table tr td:nth-child(1) {
+#ma__table tr th:nth-child(1),
+#ma__table tr td:nth-child(1),
+#ma__table tr th:nth-child(2),
+#ma__table tr td:nth-child(2),
+#ma__table tr th:nth-child(3),
+#ma__table tr td:nth-child(3) {
     display: none;
 }
 
-#die__table tr th:nth-child(2),
-#die__table tr td:nth-child(2) {
-    display: none;
+#ma__table tr th:nth-child(4),
+#ma__table tr td:nth-child(4),
+#ma__table tr th:nth-child(5),
+#ma__table tr td:nth-child(5) {
+    width: 90px;
 }
 
-#die__table tr th:nth-child(3),
-#die__table tr td:nth-child(3) {
-    width: 70px;
-    text-align: center;
-}
-
-#die__table tr td:nth-child(3) {
+#ma__table tr td:nth-child(4),
+#ma__table tr td:nth-child(5) {
     text-align: left;
 }
 
-#die__table tr th:nth-child(4),
-#die__table tr td:nth-child(4) {
-    width: 120px;
+#ma__table tr th:nth-child(6),
+#ma__table tr td:nth-child(6) {
+    width: 90px;
 }
 
-#die__table tr td:nth-child(4) {
+#ma__table tr td:nth-child(6) {
     text-align: left;
-}
-
-#die__table tr th:nth-child(5),
-#die__table tr td:nth-child(5) {
-    width: 85px;
-}
-
-#die__table tr td:nth-child(5) {
-    text-align: center;
 }
 
 .zoom {

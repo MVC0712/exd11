@@ -34,6 +34,7 @@ function makeSummaryTable() {
     };
     myAjax.myAjax(fileName, sendData);
     fillTableBody(ajaxReturnData, $("#summary__table tbody"));
+    make_action()
 }
 
 function fillTableBody(data, tbodyDom) {
@@ -96,7 +97,7 @@ $(document).on("change", "#part_position", function() {
 // -------------------------   summary table tr click   -------------
 
 $(document).on("click", "#summary__table tbody tr", function() {
-    var fileName = "./php/Maintenance/SelDieHis.php";
+    var fileName = "./php/Maintenance/SelSelHis.php";
     var sendData = new Object();
     if (!$(this).hasClass("selected-record")) {
         $(this).parent().find("tr").removeClass("selected-record");
@@ -104,11 +105,11 @@ $(document).on("click", "#summary__table tbody tr", function() {
         $("#summary__table__selected").removeAttr("id");
         $(this).attr("id", "summary__table__selected");
         sendData = {
-            targetId: $("#summary__table__selected").find("td").eq(0).html(),
+            targetId: $("#summary__table__selected").find("td").eq(3).html(),
         };
-        // myAjax.myAjax(fileName, sendData);
-        document.getElementById("sel_die_number").innerHTML = ajaxReturnData[0].die_number;
-        fillTableBodyh(ajaxReturnData, $("#die__table tbody"));
+        myAjax.myAjax(fileName, sendData);
+        document.getElementById("ma_po").innerHTML = ajaxReturnData[0].machine+"-"+ajaxReturnData[0].part_position;
+        fillTableBodyh(ajaxReturnData, $("#ma__table tbody"));
     } else {
         $("#add__table tbody").append($(this).removeClass("selected-record"));
         $("#go__button").prop("disabled", false);
@@ -138,16 +139,17 @@ $(document).on("click", "#add__table tbody tr", function() {
     go_check();
 });
 
-// function go_check() {
-//     if(($("#maintenance_start").val() != "")|| 
-//         ($("#maintenance_finish").val() != "")||
-//         ($("#machine").val() == 0)||
-//         ($("#part_position").val() == 0)){
-//         $("#go__button").prop("disabled", true);
-//     } else {
-//         $("#go__button").prop("disabled", false);
-//     }
-// };
+function go_check() {
+    if (($("#add__table tbody tr").length == 0) || 
+        (($("#maintenance_start").val() == "")|| 
+        ($("#maintenance_finish").val() == "")||
+        ($("#machine").val() == 0)||
+        ($("#part_position").val() == 0))) {
+        $("#go__button").prop("disabled", true);
+    } else {
+        $("#go__button").prop("disabled", false);
+    }
+};
 
 $(document).on("click", "#go__button", function() {
     var fileName = "./php/Maintenance/InsMaintenance.php";
@@ -238,50 +240,67 @@ function fillTableBodyh(data, tbodyDom) {
     });
 }
 
-// $(document).on("click", "#die__table tbody tr", function() {
-//     var fileName = "./php/DieStatus/SelSelFile.php";
-//     var sendData = new Object();
-//     document.getElementById("file_area").innerHTML = ``;
-//     if (!$(this).hasClass("selected-record")) {
-//         $(this).parent().find("tr").removeClass("selected-record");
-//         $(this).addClass("selected-record");
-//         $("#die__table__selected").removeAttr("id");
-//         $(this).attr("id", "die__table__selected");
-//         sendData = {
-//             targetId: $("#die__table__selected").find("td").eq(0).html(),
-//         };
-//         myAjax.myAjax(fileName, sendData);
+$(document).on("click", "#ma__table tbody tr", function() {
+    var fileName = "./php/Maintenance/SelSelFile.php";
+    var sendData = new Object();
+    document.getElementById("file_area").innerHTML = ``;
+    if (!$(this).hasClass("selected-record")) {
+        $(this).parent().find("tr").removeClass("selected-record");
+        $(this).addClass("selected-record");
+        $("#die__table__selected").removeAttr("id");
+        $(this).attr("id", "die__table__selected");
+        sendData = {
+            targetId: $("#die__table__selected").find("td").eq(0).html(),
+        };
+        myAjax.myAjax(fileName, sendData);
 
-//         var filename = ajaxReturnData[0].file_url;
-//         var fileType = filename.substr(filename.lastIndexOf(".") + 1, 3);
-//         if (filename.length !== 0) {
-//             switch (fileType) {
-//                 case "pdf":
-//                 case "PDF":
-//                     $("<object>")
-//                         .attr(
-//                             "data",
-//                             "../upload/DieHistory/" + filename + "#toolbar=0&navpanes=0")
-//                         .attr("type", "application/pdf")
-//                         .appendTo("#file_area");
-//                     break;
-//                 case "jpeg":
-//                 case "JPEG":
-//                 case "jpg":
-//                 case "JPG":
-//                 case "png":
-//                 case "PNG":
-//                     $("<object>")
-//                         .attr("data", "../upload/DieHistory/" + filename)
-//                         .attr("type", "image/jpeg")
-//                         .appendTo("#file_area");
-//                     break;
-//             }
-//         } else if (filename === null) {
-//             document.getElementById("file_area").innerHTML = ``;
-//         }
-//     } else {
-//         $(this).removeClass("selected-record");
-//         document.getElementById("file_area").innerHTML = ``;
-//     }
-// });
+        var filename = ajaxReturnData[0].file_url;
+        var fileType = filename.substr(filename.lastIndexOf(".") + 1, 3);
+        if (filename.length !== 0) {
+            switch (fileType) {
+                case "pdf":
+                case "PDF":
+                    $("<object>")
+                        .attr(
+                            "data",
+                            "../upload/Maintenance/" + filename + "#toolbar=0&navpanes=0")
+                        .attr("type", "application/pdf")
+                        .appendTo("#file_area");
+                    break;
+                case "jpeg":
+                case "JPEG":
+                case "jpg":
+                case "JPG":
+                case "png":
+                case "PNG":
+                    $("<object>")
+                        .attr("data", "../upload/Maintenance/" + filename)
+                        .attr("type", "image/jpeg")
+                        .appendTo("#file_area");
+                    break;
+            }
+        } else if (filename === null) {
+            document.getElementById("file_area").innerHTML = ``;
+        }
+    } else {
+        $(this).removeClass("selected-record");
+        document.getElementById("file_area").innerHTML = ``;
+    }
+});
+
+
+function make_action() {
+    var table, tr, act, txt_act, i;
+    table = document.getElementById("summary__table");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+        act = tr[i].getElementsByTagName("td")[10];
+        if (act) {
+            txt_act = act.innerText.replace(",", "");
+            if (txt_act=="IT" ) {
+                table.rows[i].style.backgroundColor = "#ffc870";
+            } else {
+            } 
+        }
+    }
+};
