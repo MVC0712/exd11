@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Maintenance</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/Maintenance.css" />
+</head>
+<body>
+    <header>Maintenance</header>
+    <div class="main__wrapper">
+        <div class="left__wrapper column__wrapper">
+            <!-- <input id="die_number__input" placeholder="Tìm trong bảng" style="width: 100px; text-align: left;" type="text" onkeyup="timkiemkhuon();" /> -->
+            <table id="summary__table">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Machine_id</th>
+                        <th>Machine</th>
+                        <th>Part_position_id</th>
+                        <th>Work</th>
+                        <th>Ma_start</th>
+                        <th>Ma_finish</th>
+                        <th>Note</th>
+                        <th>File_url</th>
+                        <th>TTN</th>
+                        <th>Ittime</th>
+                        <th>WT</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+                <div>
+                    <div class="right__wrapperh">
+                        <table id="die__table">
+                            <thead>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td id="sel_die_number" style="text-align:center;" colspan="5">Die number</td>
+                                </tr>
+                                <tr>
+                                    <td>id</td>
+                                    <td>Die number</td>
+                                    <td>Status</td>
+                                    <td>Note</td>
+                                    <td>Date-time</td>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                        <div id="file_area" class="zoom"></div>
+                    </div>
+                </div>
+        </div>
+        <div class="center__wrapper column__wrapper">
+            <img src="./img/001.png" alt="arrow" />
+        </div>
+        <div class="right__wrapper column__wrapper">
+            <div class="right__wrapper_up">
+                <table id="add__table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th>Machine</th>
+                            <th></th>
+                            <th>Work</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+            <div class="input__wrapper">
+                <div class="right__wrapper_down">
+                    <div class="title">Start</div>
+                    <input id="maintenance_start" class="no-input" type="datetime-local" />
+                    <div class="title">Finish</div>
+                    <input id="maintenance_finish" class="no-input" type="datetime-local" />
+                        <!-- <div class="title">Machine</div>
+                        <select id="machine" class="no-input save-data need-clear">
+                        </select>
+                        <div class="title">Work</div>
+                        <select id="part_position" class="no-input save-data need-clear">
+                            <option value="0">Select Part</option>
+                        </select> -->
+                </div>
+                <input type="file" value="No_image.jpg" name="myfile" id="myfile">
+                <div>
+                    <div class="title">Note</div>
+                    <textarea id="note" class="right__wrapper_text_input">
+                    </textarea>
+                    <button id="go__button" >Insert</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script src="./lib/jquery.min.js"></script>
+    <script src="./scr/Maintenance.js"></script>
+</body>
+
+</html>

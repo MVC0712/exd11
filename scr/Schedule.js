@@ -52,6 +52,12 @@ const myAjax = {
 };
 
 $(function() {
+  $("#insert_plan").prop("disabled", true);
+  $("#delete_plan").prop("disabled", true);
+  die_ins();
+});
+
+$(function() {
   var now = new Date();
   var MonthLastDate = new Date(now.getFullYear(), now.getMonth() + 1, 0);
   // var MonthFirstDate = new Date(now.getFullYear() - (now.getMonth() > 0 ? 0 : 1), (now.getMonth() + 12) % 12, 1);
@@ -111,7 +117,7 @@ $(document).on("click", "#summary__table tbody tr", function(e) {
 });
 
 $(document).on("click", "#summary__table tbody td", function(e) {
-  table = document.getElementById("summary__table");
+  // table = document.getElementById("summary__table");
     var table = document.getElementById("summary__table");
     var tr = table.getElementsByTagName("tr");
     var year_s = tr[1].getElementsByTagName("th")[this.cellIndex];

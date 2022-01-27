@@ -29,7 +29,8 @@
                       t_dies_status ON t_dies_status.dies_id = m_dies.id
                   WHERE
                       m_dies.id = t_press.dies_id
-                          AND t_dies_status.die_status_id = 4
+                      AND (t_dies_status.die_status_id = 4 OR
+                            t_dies_status.die_status_id = 10)
                   GROUP BY m_dies.id))
           THEN
               1
@@ -76,8 +77,6 @@
         ";
 
       $prepare = $dbh->prepare($sql);
-
-      // $prepare->bindValue(':id', $_POST["id"], PDO::PARAM_STR);
       $prepare->execute();
       $result = $prepare->fetchAll(PDO::FETCH_ASSOC);
 

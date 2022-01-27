@@ -21,7 +21,7 @@
     m_dies.die_number,
     m_die_status.die_status,
     t_dies_status.note,
-    DATE_FORMAT(t_dies_status.do_sth_at, '%m-%d %H:%i') AS do_sth_at
+    DATE_FORMAT(t_dies_status.do_sth_at, '%y-%m-%d %H:%i') AS do_sth_at
 FROM
     t_dies_status
         LEFT JOIN
