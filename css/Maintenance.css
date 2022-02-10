@@ -8,13 +8,15 @@
 
 .column__wrapper {
     height: 100%;
+    align-items: center;
+    justify-content: center;
 }
 
 .left__wrapper {
     display: flex;
     flex-direction: column;
     width: 520px;
-    justify-content: space-around;
+    /* justify-content: space-around; */
     align-items: center;
 }
 
@@ -27,7 +29,7 @@
 
 .right__wrapper {
     width: calc(798px - 520px - 70px);
-    display: flex;
+    /* display: flex; */
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
@@ -138,7 +140,7 @@
 
 #summary__table th:nth-child(8),
 #summary__table td:nth-child(8) {
-    width: 100px;
+    width: 70px;
 }
 
 #summary__table td:nth-child(8) {
@@ -147,13 +149,13 @@
 
 #summary__table th:nth-child(9),
 #summary__table td:nth-child(9),
-#summary__table th:nth-child(10),
-#summary__table td:nth-child(10),
 #summary__table th:nth-child(11),
 #summary__table td:nth-child(11) {
     display: none;
 }
 
+#summary__table th:nth-child(10),
+#summary__table td:nth-child(10),
 #summary__table th:nth-child(12),
 #summary__table td:nth-child(12) {
     width: 25px;
@@ -252,6 +254,7 @@ input[type="radio" i] {
     text-align: left;
 }
 
+#line,
 #machine,
 #part_position {
     width: 100%;

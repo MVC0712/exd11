@@ -21,6 +21,7 @@ const myAjax = {
 $(function() {
     makeSummaryTable();
     machine();
+    line();
     $("#save__button").prop("disabled", true);
     $("#update__button").prop("disabled", true);
     $("#test__button").remove();
@@ -63,6 +64,21 @@ function machine() {
     });
 }
 
+function line() {
+    var fileName = "./php/Maintenance/SelLine.php";
+    var sendData = {
+        dummy: "dummy",
+    };
+    myAjax.myAjax(fileName, sendData);
+    $("#line option").remove();
+    $("#line").append($("<option>").val(0).html("NO select"));
+    ajaxReturnData.forEach(function(value) {
+        $("#line").append(
+            $("<option>").val(value["id"]).html(value["line"])
+        );
+    });
+}
+
 $(document).on("change", "#machine", function() {
     var fileName = "./php/Maintenance/SelPartPosition.php";
     var sendData = {
@@ -81,6 +97,15 @@ $(document).on("change", "#machine", function() {
     } else {
         $(this).removeClass("complete-input").addClass("no-input");
         $("#part_position").removeClass("complete-input").addClass("no-input");
+    }
+    go_check();
+});
+
+$(document).on("change", "#line", function() {
+    if ($(this).val() != 0) {
+        $(this).removeClass("no-input").addClass("complete-input");
+    } else {
+        $(this).removeClass("complete-input").addClass("no-input");
     }
     go_check();
 });
@@ -304,3 +329,5 @@ function make_action() {
         }
     }
 };
+
+//Get today function javaScript
