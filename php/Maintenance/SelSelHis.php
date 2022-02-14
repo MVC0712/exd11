@@ -21,9 +21,9 @@
         m_machine.machine,
         m_part_position.part_position,
         DATE_FORMAT(t_maintenance_history.maintenance_start,
-                '%y-%m-%d %H-%i') AS maintenance_start,
+                '%y-%m-%d %H:%i') AS maintenance_start,
         DATE_FORMAT(t_maintenance_history.maintenance_finish,
-                '%y-%m-%d %H-%i') AS maintenance_finish,
+                '%y-%m-%d %H:%i') AS maintenance_finish,
         t_maintenance_history.note
     FROM
         t_maintenance_history

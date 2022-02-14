@@ -22,6 +22,7 @@ $(function() {
     makeSummaryTable();
     machine();
     line();
+    part();
     $("#save__button").prop("disabled", true);
     $("#update__button").prop("disabled", true);
     $("#test__button").remove();
@@ -62,6 +63,21 @@ function machine() {
             $("<option>").val(value["id"]).html(value["machine"])
         );
     });
+};
+
+function part() {
+    var fileName = "./php/Maintenance/SelPart.php";
+    var sendData = {
+        dummy: "dummy",
+    };
+    myAjax.myAjax(fileName, sendData);
+    $("#part_position option").remove();
+    $("#part_position").append($("<option>").val(0).html("NO select"));
+    ajaxReturnData.forEach(function(value) {
+        $("#part_position").append(
+            $("<option>").val(value["id"]).html(value["part_position"])
+        );
+    });
 }
 
 function line() {
@@ -94,6 +110,7 @@ $(document).on("change", "#machine", function() {
     });
     if ($(this).val() != 0) {
         $(this).removeClass("no-input").addClass("complete-input");
+        $("#part_position").removeClass("complete-input").addClass("no-input");
     } else {
         $(this).removeClass("complete-input").addClass("no-input");
         $("#part_position").removeClass("complete-input").addClass("no-input");
@@ -136,39 +153,19 @@ $(document).on("click", "#summary__table tbody tr", function() {
         document.getElementById("ma_po").innerHTML = ajaxReturnData[0].machine+"-"+ajaxReturnData[0].part_position;
         fillTableBodyh(ajaxReturnData, $("#ma__table tbody"));
     } else {
-        $("#add__table tbody").append($(this).removeClass("selected-record"));
+        $(this).removeClass("selected-record");
         $("#go__button").prop("disabled", false);
     }
     go_check();
     document.getElementById("file_area").innerHTML = ``;
-});
-
-// -------------------------   add__table table tr click   -------------
-
-$(document).on("click", "#add__table tbody tr", function() {
-    var sendData = new Object();
-    var tableId = $(this).parent().parent().attr("id");
-
-    if (!$(this).hasClass("selected-record")) {
-        $(this).parent().find("tr").removeClass("selected-record");
-        $(this).addClass("selected-record");
-        $("#add__table__selected").removeAttr("id");
-        $(this).attr("id", "add__table__selected");
-        sendData = {
-            id: $("#add__table__selected").find("td").eq(0).html(),
-        };
-    } else {
-        $("#summary__table tbody").prepend($(this).removeClass("selected-record"));
-        $("#go__button").prop("disabled", true);
-    }
-    go_check();
+    $("#update__button").remove();
 });
 
 function go_check() {
-    if (($("#add__table tbody tr").length == 0) || 
-        (($("#maintenance_start").val() == "")|| 
+    if ((($("#maintenance_start").val() == "")|| 
         ($("#maintenance_finish").val() == "")||
         ($("#machine").val() == 0)||
+        ($("#line").val() == 0)||
         ($("#part_position").val() == 0))) {
         $("#go__button").prop("disabled", true);
     } else {
@@ -179,15 +176,12 @@ function go_check() {
 $(document).on("click", "#go__button", function() {
     var fileName = "./php/Maintenance/InsMaintenance.php";
     var sendObj = new Object();
-    $("#add__table tbody tr td:nth-child(4)").each(function(
-        index,
-        element
-    ) {
-        sendObj[index] = $(this).html();
-    });
     sendObj["maintenance_start"] =getDateTime(new Date($("#maintenance_start").val()));
     sendObj["maintenance_finish"] = getDateTime(new Date($("#maintenance_finish").val()));
     sendObj["note"] = $("#note").val();
+    sendObj["line"] = $("#line").val();
+    sendObj["machine"] = $("#machine").val();
+    sendObj["part_position"] = $("#part_position").val();
     if (document.getElementById("myfile").files.length == 0) {
         console.log("khong co file");
         sendObj["file_url"] = 'No_image.jpg';
@@ -211,11 +205,73 @@ $(document).on("click", "#go__button", function() {
     myAjax.myAjax(fileName, sendObj);
     console.log(sendObj)
 
-    $("#add__table tbody").empty();
     $("#go__button").prop("disabled", true);
     $("#note").val("");
     $("#myfile").val("");
+    $("#myfile").removeClass("complete-input").addClass("no-input");
+    $("#line").val(0);
+    $("#line").removeClass("complete-input").addClass("no-input");
+    $("#machine").val(0);
+    $("#machine").removeClass("complete-input").addClass("no-input");
+    $("#part_position").val(0);
+    $("#part_position").removeClass("complete-input").addClass("no-input");
+    $("#maintenance_start").val("");
+    $("#maintenance_start").removeClass("complete-input").addClass("no-input");
+    $("#maintenance_finish").val("");
+    $("#maintenance_finish").removeClass("complete-input").addClass("no-input");
     makeSummaryTable();
+    $("#update__button").remove();
+});
+
+$(document).on("click", "#update__button", function() {
+    var fileName = "./php/Maintenance/UpdateData.php";
+    var sendObj = new Object();
+    sendObj["maintenance_start"] =getDateTime(new Date($("#maintenance_start").val()));
+    sendObj["maintenance_finish"] = getDateTime(new Date($("#maintenance_finish").val()));
+    sendObj["note"] = $("#note").val();
+    sendObj["line"] = $("#line").val();
+    sendObj["machine"] = $("#machine").val();
+    sendObj["part_position"] = $("#part_position").val();
+    if (document.getElementById("myfile").files.length == 0) {
+        sendObj["file_url"] = 'No_image.jpg';
+    } else {
+        sendObj["file_url"] = $('#myfile')[0].files[0].name;
+        var file_data = $('#myfile').prop('files')[0];
+        var form_data = new FormData();
+        form_data.append('file', file_data);
+        $.ajax({
+            url: "./php/Maintenance/FileUpload.php",
+            dataType: 'text',
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: form_data,
+            type: 'post',
+        });
+    }
+    if (!$("#ma__table").hasClass("selected-record")) {
+        sendObj["targetId"] = $("#die__table__selected").find("td").eq(0).html();
+    }
+
+    myAjax.myAjax(fileName, sendObj);
+    console.log(sendObj)
+
+    $("#go__button").prop("disabled", true);
+    $("#note").val("");
+    $("#myfile").val("");
+    $("#myfile").removeClass("complete-input").addClass("no-input");
+    $("#line").val(0);
+    $("#line").removeClass("complete-input").addClass("no-input");
+    $("#machine").val(0);
+    $("#machine").removeClass("complete-input").addClass("no-input");
+    $("#part_position").val(0);
+    $("#part_position").removeClass("complete-input").addClass("no-input");
+    $("#maintenance_start").val("");
+    $("#maintenance_start").removeClass("complete-input").addClass("no-input");
+    $("#maintenance_finish").val("");
+    $("#maintenance_finish").removeClass("complete-input").addClass("no-input");
+    makeSummaryTable();
+    $("#update__button").remove();
 });
 
 const getTwoDigits = (value) => value < 10 ? `0${value}` : value;
@@ -266,10 +322,12 @@ function fillTableBodyh(data, tbodyDom) {
 }
 
 $(document).on("click", "#ma__table tbody tr", function() {
+    let update;
     var fileName = "./php/Maintenance/SelSelFile.php";
     var sendData = new Object();
     document.getElementById("file_area").innerHTML = ``;
     if (!$(this).hasClass("selected-record")) {
+        let update = true;
         $(this).parent().find("tr").removeClass("selected-record");
         $(this).addClass("selected-record");
         $("#die__table__selected").removeAttr("id");
@@ -278,6 +336,20 @@ $(document).on("click", "#ma__table tbody tr", function() {
             targetId: $("#die__table__selected").find("td").eq(0).html(),
         };
         myAjax.myAjax(fileName, sendData);
+
+        $("#line").val(ajaxReturnData[0].line_id);
+        $("#line").removeClass("no-input").addClass("complete-input");
+        $("#machine").val(ajaxReturnData[0].machine_id);
+        $("#machine").removeClass("no-input").addClass("complete-input");
+        $("#part_position").val(ajaxReturnData[0].part_position_id);
+        $("#part_position").removeClass("no-input").addClass("complete-input");
+        $("#maintenance_start").val(ajaxReturnData[0].maintenance_start);
+        $("#maintenance_start").removeClass("no-input").addClass("complete-input");
+        $("#maintenance_finish").val(ajaxReturnData[0].maintenance_finish);
+        $("#maintenance_finish").removeClass("no-input").addClass("complete-input");
+        $("#note").val(ajaxReturnData[0].note);
+
+        $("<button>Update</button>").attr("id", "update__button").appendTo("#ins__data");
 
         var filename = ajaxReturnData[0].file_url;
         var fileType = filename.substr(filename.lastIndexOf(".") + 1, 3);
@@ -292,8 +364,8 @@ $(document).on("click", "#ma__table tbody tr", function() {
                         .attr("type", "application/pdf")
                         .appendTo("#file_area");
                     break;
-                case "jpeg":
-                case "JPEG":
+                case "jpe":
+                case "JPE":
                 case "jpg":
                 case "JPG":
                 case "png":
@@ -305,11 +377,13 @@ $(document).on("click", "#ma__table tbody tr", function() {
                     break;
             }
         } else if (filename === null) {
+            let update = false; 
             document.getElementById("file_area").innerHTML = ``;
         }
     } else {
         $(this).removeClass("selected-record");
         document.getElementById("file_area").innerHTML = ``;
+        $("#update__button").remove();
     }
 });
 
@@ -329,5 +403,3 @@ function make_action() {
         }
     }
 };
-
-//Get today function javaScript
