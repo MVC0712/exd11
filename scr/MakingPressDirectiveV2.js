@@ -69,6 +69,13 @@ function makeDieSelectDom(data) {
     });
 }
 
+$(function() {
+    if (0 == $(this).val()) {
+        ajaxSelNbn();
+    }
+    ajaxSelNbn();
+});
+
 // die select ====================================================
 $(document).on("change", "#die-number__select", function() {
     if ("0" != $(this).val()) {
@@ -850,7 +857,7 @@ function fillReadData(data) {
     // ストレッチ 小数点0埋め。
     data[0]["stretch_ratio"] = (
         Math.round(data[0]["stretch_ratio"] * 100) / 100
-    ).toFixed(1);
+    ).toFixed(2);
     // サンプル取得開始位置
     data[0]["value_l"] = (Math.round(data[0]["value_l"] * 10) / 10).toFixed(1);
 

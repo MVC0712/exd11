@@ -204,7 +204,7 @@ $(document).on("click", "#go__button", function() {
 
 function make_action() {
     var table, tr, pr_tm, sta_val, txt_pr_tm, txt_sta_val, i;
-    var W1P1 =[1, 4, 10, 49];
+    var W1P1 =[4, 10];
     table = document.getElementById("summary__table");
     tr = table.getElementsByTagName("tr");
     for (i = 0; i < tr.length; i++) {
@@ -226,7 +226,7 @@ function make_action() {
                 table.rows[i].cells[7].style.backgroundColor = "#bff542";
 
             } else if (((txt_sta_val == 2) && (txt_pr_tm <= 1)) ||
-                    ((txt_sta_val == 10) || (txt_sta_val == 2))) {
+                    ((txt_sta_val == 10) || (txt_sta_val == 2 ||(txt_sta_val == 11)))) {
                 table.rows[i].cells[7].innerHTML = "Ready press";
                 table.rows[i].cells[7].style.backgroundColor = "#b3ffe4";
 

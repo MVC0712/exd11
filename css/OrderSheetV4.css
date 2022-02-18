@@ -1,0 +1,230 @@
+body {
+  margin: 4px;
+  border: solid 1px #0000cc;
+  display: flex;
+  flex-direction: column;
+  height: calc(600px - 2px);
+  width: calc(850px - 2px);
+}
+
+.button__wrapper button {
+  height: 30px;
+  margin: 0;
+}
+
+#note{
+  width: 150px;
+}
+/* --------- main wrapper ---------  */
+
+.main__wrapper {
+  padding-top: 15px;
+  flex-direction: row;
+  height: 70px;
+  align-content: space-around;
+  justify-content: space-around;
+}
+
+/* select */
+
+.main__wrapper select {
+  border-width: 1px 1px 1px 0;
+}
+
+/* ordersheet number */
+
+.main__wrapper > div:nth-child(1) {
+  width: 250px;
+}
+
+.main__wrapper > div:nth-child(1) > div:nth-child(1) {
+  width: 100px;
+}
+
+.main__wrapper > div:nth-child(1) > input:nth-child(2) {
+  width: 100px;
+}
+
+/* production number */
+
+.main__wrapper > div:nth-child(2) {
+  width: 420px;
+}
+
+.main__wrapper > div:nth-child(2) > div {
+  width: 130px;
+}
+
+.main__wrapper > div:nth-child(2) > input {
+  width: 50px;
+}
+
+.main__wrapper > div:nth-child(2) > select {
+  width: 180px;
+}
+
+/* issue date */
+
+.main__wrapper > div:nth-child(3) {
+  width: 180px;
+}
+
+.main__wrapper > div:nth-child(3) > div {
+  width: 50px;
+}
+
+.main__wrapper > div:nth-child(3) > input {
+  width: 120px;
+}
+
+/* delivery date */
+
+.main__wrapper > div:nth-child(4) {
+  width: 220px;
+}
+
+.main__wrapper > div:nth-child(4) > div {
+  width: 65px;
+}
+
+.main__wrapper > div:nth-child(4) > input {
+  width: 120px;
+}
+
+/* production quantity */
+
+.main__wrapper > div:nth-child(5) {
+  width: 150px;
+}
+
+.main__wrapper > div:nth-child(5) > div {
+  width: 90px;
+}
+
+.main__wrapper > div:nth-child(5) > input {
+  width: 50px;
+}
+
+/* ======================        button area       ======================= */
+
+#remain__button {
+  width: 120px;
+  padding-left: 10px;
+}
+
+/* ----------button block ============== */
+.button__block {
+  position: relative;
+}
+#icon {
+  width: 24px;
+  position: absolute;
+  top: 3px;
+  left: 2px;
+}
+/* --------- button wrapper ---------  */
+
+.button__wrapper {
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+/* --------- summary wrapper ---------  */
+
+.summary__wrapper {
+  height: calc(598px - 165px);
+  display: flex;
+  align-content: space-around;
+  justify-content: space-around;
+  flex-direction: row;
+}
+
+/* ======================        summary-table       ======================= */
+
+#summary__table tbody {
+  height: 400px;
+}
+
+/* id */
+
+#summary__table th:nth-child(1),
+#summary__table td:nth-child(1) {
+  display: none;
+}
+
+/* ordersheet number */
+
+#summary__table th:nth-child(2),
+#summary__table td:nth-child(2) {
+  width: 75px;
+}
+
+/* Delivery Date */
+
+#summary__table th:nth-child(3),
+#summary__table td:nth-child(3) {
+  width: 70px;
+}
+
+#summary__table td:nth-child(3) {
+  text-align: center;
+}
+
+/* Issue Date */
+
+#summary__table th:nth-child(4),
+#summary__table td:nth-child(4) {
+  width: 70px;
+}
+
+#summary__table td:nth-child(4) {
+  text-align: center;
+}
+
+/* production number */
+
+#summary__table th:nth-child(5),
+#summary__table td:nth-child(5) {
+  width: 115px;
+}
+
+/* production Qty */
+
+#summary__table th:nth-child(6),
+#summary__table td:nth-child(6),
+#summary__table th:nth-child(7),
+#summary__table td:nth-child(7),
+#summary__table th:nth-child(8),
+#summary__table td:nth-child(8),
+#summary__table th:nth-child(9),
+#summary__table td:nth-child(9),
+#summary__table th:nth-child(10),
+#summary__table td:nth-child(10),
+#summary__table th:nth-child(11),
+#summary__table td:nth-child(11),
+#summary__table th:nth-child(12),
+#summary__table td:nth-child(12) {
+  width: 47px;
+}
+
+#summary__table td:nth-child(6),
+#summary__table td:nth-child(7),
+#summary__table td:nth-child(8),
+#summary__table td:nth-child(9),
+#summary__table td:nth-child(10),
+#summary__table td:nth-child(11),
+#summary__table td:nth-child(12) {
+  text-align: right;
+}
+
+#summary__table th:nth-child(13),
+#summary__table td:nth-child(13) {
+  width: 65px;
+}
+#summary__table th:nth-child(14),
+#summary__table td:nth-child(14) {
+  width: 65px;
+}
