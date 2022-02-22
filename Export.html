@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Export</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/Export.css" />
+  </head>
+
+  <body>
+    <header>Export</header>
+    <div class="main__wrapper">
+      <!-- ordersheet_number -->
+      <div class="input-block__outer" id="production_number__group">
+        <div class="input__title" id="production_number__title">Production Number</div>
+        <input id="production_number" class="need-clear" type="text" />
+        <select
+          id="production_number__select"
+          class="no-input save-data need-clear"
+        ></select>
+      </div>
+      
+      <!-- Export date -->
+      <div class="input-block__outer" id="export_at__group">
+        <div class="input__title" id="export_at__title">Export at</div>
+        <input
+          id="export_at"
+          class="need-clear save-data no-input"
+          type="datetime-local"
+        />
+      </div>
+      <!-- Quantity -->
+      <div class="input-block__outer" id="quantity__group">
+        <div class="input__title" id="quantity__title">Qty</div>
+        <input
+          id="quantity"
+          class="need-clear save-data no-input"
+          type="number"
+          step="1"
+        />
+      </div>
+
+    </div>
+    <div class="button__wrapper">
+      <input id="search_input" placeholder="Tìm trong bảng" style="width: 100px; text-align: left;" type="text" onkeyup="timkiemkhuon();" />
+      <button disabled id="save__button">Save</button>
+      <button disabled id="update__button">Update</button>
+      <button disabled id="delete__button">Delete</button>
+    </div>
+    <div class="summary__wrapper">
+      <!-- 削除確認ダイアログ -->
+      <dialog class="dialog__wrapper" id="delete__dialog">
+        Do you want to delete?
+        <button id="delete-dialog-cancel__button">Cancel</button>
+        <button id="delete-dialog-delete__button">Delete</button>
+      </dialog>
+      <div>
+        <div>Export history</div>
+      <table id="summary__table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Production_id</th>
+            <th>Production Number</th>
+            <th>Export at</th>
+            <th>Qty</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div>
+      <div>Product remains</div>
+      <table id="summary__table__remain">
+        <thead>
+          <tr>
+            <th>Production_id</th>
+            <th>Production Number</th>
+            <th>Last imported</th>
+            <th>Last exported</th>
+            <th>TT imp</th>
+            <th>TT exp</th>
+            <th>Remain</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    </div>
+    <script src="./lib/jquery.min.js"></script>
+    <script src="./scr/Export.js"></script>
+  </body>
+</html>

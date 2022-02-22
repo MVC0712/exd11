@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To warehouse</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/Import.css" />
+  </head>
+
+  <body>
+    <header>To warehouse</header>
+    <div class="main__wrapper">
+      <!-- ordersheet_number -->
+      <div class="input-block__outer" id="ordersheet_number__group">
+        <div class="input__title" id="ordersheet_number__title">Order Sheet</div>
+        <input id="ordersheet_number" class="need-clear" type="text" />
+        <select
+          id="ordersheet_number__select"
+          class="no-input save-data need-clear"
+        ></select>
+        <div id="production_number">Production number</div>
+      </div>
+      
+      <!-- Import date -->
+      <div class="input-block__outer" id="import_at__group">
+        <div class="input__title" id="import_at__title">To warehouse at</div>
+        <input
+          id="import_at"
+          class="need-clear save-data no-input"
+          type="datetime-local"
+        />
+      </div>
+      <!-- Quantity -->
+      <div class="input-block__outer" id="quantity__group">
+        <div class="input__title" id="quantity__title">Qty</div>
+        <input
+          id="quantity"
+          class="need-clear save-data no-input"
+          type="number"
+          step="1"
+        />
+      </div>
+
+    </div>
+    <div class="button__wrapper">
+      <input id="search_input" placeholder="Tìm trong bảng" style="width: 100px; text-align: left;" type="text" onkeyup="timkiemkhuon();" />
+      <button disabled id="save__button">Save</button>
+      <button disabled id="update__button">Update</button>
+      <button disabled id="delete__button">Delete</button>
+    </div>
+    <div class="summary__wrapper">
+      <dialog class="dialog__wrapper" id="delete__dialog">
+        Do you want to delete?
+        <button id="delete-dialog-cancel__button">Cancel</button>
+        <button id="delete-dialog-delete__button">Delete</button>
+      </dialog>
+      <div>
+        <div>To warehouse history</div>
+      <table id="summary__table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>OrderSheet_id</th>
+            <th>OrderSheet</th>
+            <th>Production Number</th>
+            <th>Import at</th>
+            <th>Qty</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+<div>
+  <div>To warehouse sum by Ordersheet</div>
+      <table id="summary__table__ordersheet">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>OrderSheet_id</th>
+            <th>OrderSheet</th>
+            <th>Production Number</th>
+            <th>Qty</th>
+            <th>Import at</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    </div>
+    <script src="./lib/jquery.min.js"></script>
+    <script src="./scr/Import.js"></script>
+  </body>
+</html>
