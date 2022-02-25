@@ -20,8 +20,9 @@
       $sql = "
         SELECT 
             ordersheet_id,
-            DATE_FORMAT(import_at, '%Y-%m-%dT%H:%i') AS import_at,
-            quantity
+            DATE_FORMAT(import_at, '%Y-%m-%d') AS import_at,
+            quantity,
+            note
         FROM
             extrusion.t_import
         WHERE

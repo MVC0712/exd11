@@ -3,9 +3,10 @@
   margin: 0;
 }
 
-#note{
-  width: 150px;
+input {
+  text-align: left;
 }
+
 /* --------- main wrapper ---------  */
 
 .main__wrapper {
@@ -24,10 +25,10 @@
 
 /* ordersheet number */
 #ordersheet_number__group{
-  width: 400px;
+  width: 390px;
 }
 #ordersheet_number__title {
-  width: 80px;
+  width: 75px;
 }
 #ordersheet_number {
   width: 80px;
@@ -36,7 +37,7 @@
   width: 100px;
 }
 #production_number{
-  width: 135px;
+  width: 130px;
   height: 20px;
   border: 1px;
   border-style: solid;
@@ -46,23 +47,33 @@
 }
 
 #import_at__group{
-  width: 290px;
+  width: 205px;
 }
 #import_at__title {
-  width: 100px;
+  width: 85px;
 }
 #import_at {
-  width: 180px;
+  width: 120px;
 }
 
 #quantity__group{
-  width: 100px;
+  width: 80px;
 }
 #quantity__title {
   width: 30px;
 }
 #quantity {
   width: 50px;
+}
+
+#note__group{
+  width: 110px;
+}
+#note__title {
+  width: 30px;
+}
+#note {
+  width: 70px;
 }
 
 /* ======================        button area       ======================= */

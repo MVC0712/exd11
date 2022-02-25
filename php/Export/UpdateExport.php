@@ -5,11 +5,13 @@
   $export_at = "";
   $production_number__select = "";
   $quantity = "";
+  $note = "";
   $id = "";
 
   $export_at = $_POST['export_at'];
   $production_number__select = $_POST['production_number__select'];
   $quantity = $_POST['quantity'];
+  $note = $_POST['note'];
   $id = $_POST['id'];
 
   try {
@@ -28,7 +30,8 @@
       UPDATE t_export SET 
         export_at = '$export_at',
         production_number_id = '$production_number__select',
-        quantity = '$quantity'
+        quantity = '$quantity',
+        note = '$note'
       WHERE id = $id ";
 
     $prepare = $dbh->prepare($sql);

@@ -3,8 +3,8 @@
   margin: 0;
 }
 
-#note{
-  width: 150px;
+input {
+  text-align: left;
 }
 /* --------- main wrapper ---------  */
 
@@ -24,7 +24,7 @@
 
 /* production number */
 #production_number__group{
-  width: 360px;
+  width: 350px;
 }
 #production_number__title {
   width: 120px;
@@ -37,23 +37,33 @@
 }
 
 #export_at__group{
-  width: 250px;
+  width: 185px;
 }
 #export_at__title {
-  width: 80px;
+  width: 55px;
 }
 #export_at {
-  width: 230px;
+  width: 130px;
 }
 
 #quantity__group{
-  width: 100px;
+  width: 80px;
 }
 #quantity__title {
   width: 30px;
 }
 #quantity {
   width: 50px;
+}
+
+#note__group{
+  width: 140px;
+}
+#note__title {
+  width: 30px;
+}
+#note {
+  width: 110px;
 }
 
 /* ======================        button area       ======================= */

@@ -1,9 +1,6 @@
 <?php
-  /* 21/06/22作成 */
   $userid = "webuser";
   $passwd = "";
-  // print_r($_POST);
-  
   try {
       $dbh = new PDO(
           'mysql:host=localhost; dbname=extrusion; charset=utf8',
@@ -15,21 +12,16 @@
       )
       );
 
-      $sql = "
+      $prepare = $dbh->prepare("
         SELECT 
-            t_export.id,
-            t_export.production_number_id,
-            m_production_numbers.production_number,
-            DATE_FORMAT(t_export.export_at, '%y-%m-%d') AS export_at,
-            t_export.quantity
+            m_production_numbers.file_url
         FROM
-            extrusion.t_export
-        LEFT JOIN
-            m_production_numbers ON m_production_numbers.id = t_export.production_number_id
-        ORDER BY export_at DESC;
-        ";
+            extrusion.m_production_numbers
+        WHERE   
+            m_production_numbers.production_number = :production_number
+    ");
 
-      $prepare = $dbh->prepare($sql);
+      $prepare->bindValue(':production_number', $_POST["production_number"], (INT)PDO::PARAM_INT);
       $prepare->execute();
       $result = $prepare->fetchAll(PDO::FETCH_ASSOC);
 

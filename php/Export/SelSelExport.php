@@ -20,8 +20,9 @@
       $sql = "
         SELECT 
             production_number_id,
-            DATE_FORMAT(export_at, '%Y-%m-%dT%H:%i') AS export_at,
-            quantity
+            DATE_FORMAT(export_at, '%Y-%m-%d') AS export_at,
+            quantity,
+            note
         FROM
             extrusion.t_export
         WHERE

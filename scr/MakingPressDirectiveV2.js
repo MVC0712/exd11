@@ -1049,3 +1049,37 @@ function chekAllInputValue() {
 $(document).on("click", "#test__button", function() {
     chekAllInputValueNew();
 });
+
+const myAjax = {
+    myAjax: function(fileName, sendData) {
+        $.ajax({
+                type: "POST",
+                url: fileName,
+                dataType: "json",
+                data: sendData,
+                async: false,
+            })
+            .done(function(data) {
+                ajaxReturnData = data;
+            })
+            .fail(function() {
+                alert("DB connect error");
+            });
+    },
+  };
+
+$(document).on("click", "#production-name__display", function () {
+    // window.open(
+    //   "./DailiReport_OrderSheet.html",
+    //   null,
+    //   "width=830, height=500,toolbar=yes,menubar=yes,scrollbars=no"
+    // );
+    console.log($(this).html());
+    var fileName = "./php/MakingPressDirective/SelSelFile.php";
+    var sendData = {
+        production_number: $(this).html()
+    };
+    myAjax.myAjax(fileName, sendData);
+    console.log(ajaxReturnData);
+
+});

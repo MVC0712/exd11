@@ -21,7 +21,7 @@
             m_ordersheet.id AS order_id,
             m_ordersheet.ordersheet_number,
             m_production_numbers.production_number,
-            DATE_FORMAT(t_import.import_at, '%y-%m-%d %H:%i') AS import_at,
+            DATE_FORMAT(t_import.import_at, '%y-%m-%d') AS import_at,
             t_import.quantity
         FROM
             extrusion.t_import

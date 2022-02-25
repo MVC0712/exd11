@@ -5,11 +5,13 @@
   $import_at = "";
   $ordersheet_number__select = "";
   $quantity = "";
+  $note = "";
   $id = "";
 
   $import_at = $_POST['import_at'];
   $ordersheet_number__select = $_POST['ordersheet_number__select'];
   $quantity = $_POST['quantity'];
+  $note = $_POST['note'];
   $id = $_POST['id'];
 
   try {
@@ -28,7 +30,8 @@
       UPDATE t_import SET 
         import_at = '$import_at',
         ordersheet_id = '$ordersheet_number__select',
-        quantity = '$quantity'
+        quantity = '$quantity',
+        note = '$note'
       WHERE id = $id ";
 
     $prepare = $dbh->prepare($sql);

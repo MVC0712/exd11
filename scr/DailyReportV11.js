@@ -56,15 +56,15 @@ $(document).on("change", "#directive_input__select", function () {
     m_ordersheet_id: $("#directive_input__select").val(),
   };
   myAjax.myAjax(fileName, sendData);
-  $("#die__select")
-    .empty()
-    .append($("<option>").val(0).html("NO select"))
-    .append(
-      $("<option>")
-        .val(ajaxReturnData["m_dies_id"])
-        .html(ajaxReturnData["die_number"])
-    );
-  $("#number-of-die__display").html("1");
+
+  $("#die__select option").remove();
+  $("#die__select").append($("<option>").val(0).html("NO select"));
+  ajaxReturnData.forEach(function(value) {
+      $("#die__select").append(
+          $("<option>").val(value.m_dies_id).html(value.die_number)
+      );
+  });
+  $("#number-of-die__display").html(ajaxReturnData.length);
   $("#die__input").prop("disabled", true);
 
   $("#pressing-type__select")

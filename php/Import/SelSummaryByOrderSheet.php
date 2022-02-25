@@ -22,7 +22,7 @@
             m_ordersheet.ordersheet_number,
             m_production_numbers.production_number,
             SUM(quantity) AS Total,
-            DATE_FORMAT(MAX(t_import.import_at), '%y-%m-%d %H:%i') AS import_at 
+            DATE_FORMAT(MAX(t_import.import_at), '%y-%m-%d') AS import_at 
         FROM
             extrusion.t_import
         LEFT JOIN

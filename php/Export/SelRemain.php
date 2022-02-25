@@ -26,7 +26,7 @@
             (SELECT 
                 m_production_numbers.id AS production_number_id,
                 m_production_numbers.production_number,
-                DATE_FORMAT(MAX(t_import.import_at), '%y-%m-%d %H:%i') AS lim,
+                DATE_FORMAT(MAX(t_import.import_at), '%y-%m-%d') AS lim,
                 NULL AS lex,
                 SUM(quantity) AS ttim,
                 0 AS ttex,
@@ -39,7 +39,7 @@
                 t_export.production_number_id,
                 m_production_numbers.production_number,
                 NULL AS lim,
-                DATE_FORMAT(MAX(t_export.export_at), '%y-%m-%d %H:%i') AS lex,
+                DATE_FORMAT(MAX(t_export.export_at), '%y-%m-%d') AS lex,
                 0 AS ttim,
                 SUM(t_export.quantity) AS ttex,
                 SUM(t_export.quantity) * - 1 AS Total

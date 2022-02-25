@@ -161,6 +161,7 @@ $(document).on("click", "#save__button", function() {
   sendObj["import_at"] =getDateTime(new Date($("#import_at").val()));
   sendObj["ordersheet_number__select"] = $("#ordersheet_number__select").val();
   sendObj["quantity"] = $("#quantity").val();
+  sendObj["note"] = $("#note").val();
   myAjax.myAjax(fileName, sendObj);
   console.log(sendObj)
 
@@ -171,6 +172,7 @@ $(document).on("click", "#save__button", function() {
   $("#ordersheet_number__select").removeClass("complete-input").addClass("no-input");
   $("#quantity").val("");
   $("#quantity").removeClass("complete-input").addClass("no-input");
+  $("#note").val("");
   $("#import_at").val("");
   $("#import_at").removeClass("complete-input").addClass("no-input");
   $("#production_number").html('Production number');
@@ -196,6 +198,7 @@ $(document).on("click", "#summary__table tr", function (e) {
     $("#ordersheet_number__select").val(ajaxReturnData[0].ordersheet_id);
     $("#ordersheet_number__select").removeClass("no-input").addClass("complete-input");
     $("#quantity").val(ajaxReturnData[0].quantity);
+    $("#note").val(ajaxReturnData[0].note);
     $("#quantity").removeClass("no-input").addClass("complete-input");
     $("#import_at").val(ajaxReturnData[0].import_at);
     $("#import_at").removeClass("no-input").addClass("complete-input");
@@ -236,6 +239,7 @@ $(document).on("click", "#delete-dialog-delete__button", function () {
   $("#ordersheet_number__select").removeClass("complete-input").addClass("no-input");
   $("#quantity").val("");
   $("#quantity").removeClass("complete-input").addClass("no-input");
+  $("#note").val("");
   $("#import_at").val("");
   $("#import_at").removeClass("complete-input").addClass("no-input");
   $("#production_number").html('Production number');
@@ -249,6 +253,7 @@ $(document).on("click", "#update__button", function() {
   sendObj["import_at"] =getDateTime(new Date($("#import_at").val()));
   sendObj["ordersheet_number__select"] = $("#ordersheet_number__select").val();
   sendObj["quantity"] = $("#quantity").val();
+  sendObj["note"] = $("#note").val();
   sendObj["id"] = $("#summary__table #selected__tr").find("td").eq(0).html();
 
   myAjax.myAjax(fileName, sendObj);
@@ -261,6 +266,7 @@ $(document).on("click", "#update__button", function() {
   $("#ordersheet_number__select").removeClass("complete-input").addClass("no-input");
   $("#quantity").val("");
   $("#quantity").removeClass("complete-input").addClass("no-input");
+  $("#note").val("");
   $("#import_at").val("");
   $("#import_at").removeClass("complete-input").addClass("no-input");
   $("#production_number").html('Production number');

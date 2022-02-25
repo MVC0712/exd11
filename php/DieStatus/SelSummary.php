@@ -85,7 +85,7 @@ FROM
             END) AS is_washed_die,
             'Pressed' AS die_status,
             '11' AS die_status_id,
-            '' AS note,
+            CONCAT(t_press.actual_billet_quantities,' ', 'billets') AS note,
             CONCAT(DATE_FORMAT(t_press.press_date_at, '%y-%m-%d'), ' ', DATE_FORMAT(t_press.press_start_at, '%H:%i')) AS do_sth_at
     FROM
         t_press

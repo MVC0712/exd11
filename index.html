@@ -36,6 +36,8 @@
         </button>
         <button id="schedule">Schedule</button>
         <button id="schedule_excel">Schedule Excel</button>
+        <button id="import">To warehouse</button>
+        <button id="export">Export</button>
       </div>
 
       <div class="right__area">
@@ -119,6 +121,14 @@
 
       $(document).on("click", "#qa_summary", function () {
         window.open("QualitySummary.html");
+      });
+
+      $(document).on("click", "#import", function () {
+        window.open("Import.html");
+      });
+
+      $(document).on("click", "#export", function () {
+        window.open("Export.html");
       });
 
       $(document).on("click", "#summary", function () {

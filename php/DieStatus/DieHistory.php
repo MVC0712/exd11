@@ -33,7 +33,7 @@
         t_press.id,
         m_dies.die_number,
         'Press' AS die_status,
-        '' AS note,
+        CONCAT(t_press.actual_billet_quantities,' ', 'billets') AS note,
         CONCAT(DATE_FORMAT(t_press.press_date_at, '%y-%m-%d'),
         ' ',
         DATE_FORMAT(t_press.press_start_at, '%H:%i')) AS do_sth_at
@@ -42,6 +42,7 @@
     LEFT JOIN
         m_dies ON m_dies.id = t_press.dies_id
     ORDER BY do_sth_at DESC , die_number ASC
+    LIMIT 400
         ";
 
       $prepare = $dbh->prepare($sql);

@@ -5,10 +5,12 @@
   $production_number__select = "";
   $quantity = "";
   $export_at = "";
+  $note = "";
 
   $production_number__select = $_POST['production_number__select'];
   $quantity = $_POST['quantity'];
   $export_at = $_POST['export_at'];
+  $note = $_POST['note'];
 
   try {
       $dbh = new PDO(
@@ -21,9 +23,9 @@
           )
       );
 
-      $sql = "INSERT INTO t_export (production_number_id, quantity, export_at
+      $sql = "INSERT INTO t_export (production_number_id, quantity, export_at, note
       ) VALUES (
-          '$production_number__select', '$quantity', '$export_at'
+          '$production_number__select', '$quantity', '$export_at', '$note'
       )";
       $prepare = $dbh->prepare($sql);
       

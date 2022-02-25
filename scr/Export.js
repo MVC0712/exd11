@@ -147,6 +147,7 @@ $(document).on("click", "#summary__table tr", function (e) {
     $("#production_number__select").removeClass("no-input").addClass("complete-input");
     $("#quantity").val(ajaxReturnData[0].quantity);
     $("#quantity").removeClass("no-input").addClass("complete-input");
+    $("#note").val(ajaxReturnData[0].note);
     $("#export_at").val(ajaxReturnData[0].export_at);
     $("#export_at").removeClass("no-input").addClass("complete-input");
     $("#update__button").prop("disabled", false);
@@ -179,6 +180,7 @@ $(document).on("click", "#delete-dialog-delete__button", function () {
   $("#production_number__select").removeClass("complete-input").addClass("no-input");
   $("#quantity").val("");
   $("#quantity").removeClass("complete-input").addClass("no-input");
+  $("#note").val("");
   $("#export_at").val("");
   $("#export_at").removeClass("complete-input").addClass("no-input");
   $("#production_number").html('Production number');
@@ -205,6 +207,7 @@ $(document).on("click", "#save__button", function() {
   sendObj["export_at"] =getDateTime(new Date($("#export_at").val()));
   sendObj["production_number__select"] = $("#production_number__select").val();
   sendObj["quantity"] = $("#quantity").val();
+  sendObj["note"] = $("#note").val();
   myAjax.myAjax(fileName, sendObj);
   console.log(sendObj)
 
@@ -215,6 +218,7 @@ $(document).on("click", "#save__button", function() {
   $("#production_number__select").removeClass("complete-input").addClass("no-input");
   $("#quantity").val("");
   $("#quantity").removeClass("complete-input").addClass("no-input");
+  $("#note").val("");
   $("#export_at").val("");
   $("#export_at").removeClass("complete-input").addClass("no-input");
   makeSummaryTableByOrderSheet();
@@ -230,6 +234,7 @@ $(document).on("click", "#update__button", function() {
   sendObj["export_at"] =getDateTime(new Date($("#export_at").val()));
   sendObj["production_number__select"] = $("#production_number__select").val();
   sendObj["quantity"] = $("#quantity").val();
+  sendObj["note"] = $("#note").val();
   sendObj["id"] = $("#summary__table #selected__tr").find("td").eq(0).html();
 
   myAjax.myAjax(fileName, sendObj);
@@ -242,6 +247,7 @@ $(document).on("click", "#update__button", function() {
   $("#production_number__select").removeClass("complete-input").addClass("no-input");
   $("#quantity").val("");
   $("#quantity").removeClass("complete-input").addClass("no-input");
+  $("#note").val("");
   $("#export_at").val("");
   $("#export_at").removeClass("complete-input").addClass("no-input");
   $("#production_number").html('Production number');

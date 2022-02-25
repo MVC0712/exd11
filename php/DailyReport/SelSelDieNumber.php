@@ -27,7 +27,7 @@
 
     $prepare->bindValue(':m_ordersheet_id', $_POST["m_ordersheet_id"], PDO::PARAM_STR); 
     $prepare->execute();
-    $result = $prepare->fetch(PDO::FETCH_ASSOC);
+    $result = $prepare->fetchAll(PDO::FETCH_ASSOC);
 
     echo json_encode($result);
   } catch (PDOException $e){
