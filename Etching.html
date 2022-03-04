@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Etching</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/Etching.css" />
+</head>
+
+<body>
+    <header>Etching</header>
+    <div class="upper__wrapper">
+        <div class="input-block__wrapper">
+            <div class="input__title">Ngày đùn</div>
+            <input id="date__input" class="need-clear no-input save-data" type="date" />
+        </div>
+
+        <div class="input-block__wrapper">
+            <div class="input__title">Khuôn</div>
+            <input class="need-clear" type="text" />
+            <select name="" id="die_number" class="no-input input-required need-clear"></select>
+            <div id="slkhuon">0</div>
+        </div>
+
+        <div class="input-block__wrapper">
+            <input id="pressing_type" class="need-clear" type="text" / readonly>
+        </div>
+
+        <div class="input-block__wrapper">
+            <div class="input__title">Số billet</div>
+            <input id="input_billet_quantity" class="need-clear" type="text" / readonly>
+            <div id="press_id" hidden></div>
+        </div>
+        <div class="input-block__wrapper">
+            <div class="input__title">Ngày ngâm</div>
+            <input id="etching__date" class="need-clear no-input save-data" type="date" />
+        </div>
+    </div>
+
+    <div class="buttom__wrapper">
+        <table id="data__table">
+            <thead>
+              <tr><th colspan="5">Bảng ngâm mẫu</th><th></th><td colspan="6" id="confirm"></td></tr>
+              <tr><th>Pos</th><th>id</th><th colspan="2">1St</th><th colspan="2">2Nd</th><th colspan="2">3Th</th><th colspan="2">4Th</th><th colspan="2">5Th</th></tr>
+              <tr><th>Pos</th><th>id</th><th>Jug</th><th>Code</th><th>Jug</th><th>Code</th><th>Jug</th><th>Code</th><th>Jug</th><th>Code</th><th>Jug</th><th>Code</th></tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+          <div>
+            <button id="save__button" disabled>Save</button>
+            <div>
+                <table id="sum_code__table">
+                    <thead>
+                        <tr><th colspan="2">Tổng hợp</th></tr>
+                        <tr>
+                            <th>311</th>
+                            <td id="c311"></td>
+                        </tr>
+                        <tr>
+                            <th>319</th>
+                            <td id="c319"></td>
+                        </tr>
+                        <tr>
+                            <th>320</th>
+                            <td id="c320"></td>
+                        </tr>
+                        <tr>
+                            <th>351</th>
+                            <td id="c351"></td>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+          </div>
+          
+        </div>
+
+    <script src="./lib/jquery.min.js"></script>
+    <script src="./scr/Etching.js"></script>
+</body>
+
+</html>
