@@ -215,32 +215,32 @@ function make_action() {
             txt_die_id = Number(die_id.innerText.replace(",", ""));
             txt_pr_tm = Number(pr_tm.innerText.replace(",", ""));
             txt_sta_val = Number(sta_val.innerText.replace(",", ""));
-            table.rows[i].insertCell(7);
+            // table.rows[i].insertCell(7);
             if (((txt_pr_tm >= 1) && (W1P1.includes(txt_die_id))) || 
                 (txt_pr_tm >= 2)||(txt_sta_val == 3)) {
-                table.rows[i].cells[7].innerHTML = "Need wash";
+                // table.rows[i].cells[7].innerHTML = "Need wash";
                 table.rows[i].cells[7].style.backgroundColor = "#ffc870";
 
             } else if (txt_sta_val == 1) {
-                table.rows[i].cells[7].innerHTML = "Wait result";
+                // table.rows[i].cells[7].innerHTML = "Wait result";
                 table.rows[i].cells[7].style.backgroundColor = "#bff542";
 
             } else if (((txt_sta_val == 2) && (txt_pr_tm <= 1)) ||
                     ((txt_sta_val == 10) || (txt_sta_val == 2 ||(txt_sta_val == 11)))) {
-                table.rows[i].cells[7].innerHTML = "Ready press";
+                // table.rows[i].cells[7].innerHTML = "Ready press";
                 table.rows[i].cells[7].style.backgroundColor = "#b3ffe4";
 
             } else if ((txt_sta_val == 4)) {
-                table.rows[i].cells[7].innerHTML = "Washing";
+                // table.rows[i].cells[7].innerHTML = "Washing";
                 table.rows[i].cells[7].style.backgroundColor = "#bfc1ff"
 
             } else if ((txt_sta_val == 5) || (txt_sta_val == 6)) {
-                table.rows[i].cells[7].innerHTML = "Cleaning";
+                // table.rows[i].cells[7].innerHTML = "Cleaning";
                 table.rows[i].cells[7].style.backgroundColor = "#bfc1ff"
 
             } else if ((txt_sta_val == 7) || (txt_sta_val == 8) ||
                     (txt_sta_val == 9)) {
-                table.rows[i].cells[7].innerHTML = "Fixing";
+                // table.rows[i].cells[7].innerHTML = "Fixing";
                 table.rows[i].cells[7].style.backgroundColor = "red"
             }
         }

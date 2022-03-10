@@ -123,7 +123,7 @@ $(document).on("change", "input[type='date']", function (e) {
 
 // production qty
 $(document).on("keyup", "#production_quantity", function (e) {
-  if ($(this).val() > 1 && $(this).val() != "") {
+  if ($(this).val() >= 1 && $(this).val() != "") {
     $(this).removeClass("no-input").addClass("complete-input");
   } else {
     $(this).removeClass("complete-input").addClass("no-input");
