@@ -1069,17 +1069,17 @@ const myAjax = {
   };
 
 $(document).on("click", "#production-name__display", function () {
-    // window.open(
-    //   "./DailiReport_OrderSheet.html",
-    //   null,
-    //   "width=830, height=500,toolbar=yes,menubar=yes,scrollbars=no"
-    // );
+    window.open(
+      "./ViewDrawing.html",
+      null,
+      "width=700, height=560,toolbar=yes,menubar=yes,scrollbars=no"
+    );
     console.log($(this).html());
     var fileName = "./php/MakingPressDirective/SelSelFile.php";
     var sendData = {
         production_number: $(this).html()
     };
     myAjax.myAjax(fileName, sendData);
-    console.log(ajaxReturnData);
+    console.log(ajaxReturnData[0].file_url);
 
 });
