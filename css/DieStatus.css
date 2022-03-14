@@ -62,7 +62,7 @@ td {
 
 #die__table tbody {
     width: 430px;
-    height: 520px;
+    height: 530px;
 }
 
 #die__table th {
@@ -82,7 +82,7 @@ td {
 
 #die__table tr th:nth-child(2),
 #die__table tr td:nth-child(2) {
-    width: 100px;
+    width: 110px;
     text-align: left;
 }
 

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EtchingV2</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/EtchingV2.css" />
+</head>
+
+<body>
+    <header>EtchingV2</header>
+    <div class="buttom__wrapper">
+
+            <table id="summary_table">
+                <thead>
+                    <tr>
+                        <th>press_id</th>
+                        <th>Ngày đùn</th>
+                        <th>die_id</th>
+                        <th>Khuôn</th>
+                        <th>Kiểu</th>
+                        <th>Sl</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+
+        <table id="data__table">
+            <thead>
+              <tr><th colspan="5">Bảng ngâm mẫu</th><th></th><td colspan="6" id="confirm"></td></tr>
+              <tr><th>Pos</th><th>id</th><th colspan="2">1St</th><th colspan="2">2Nd</th><th colspan="2">3Th</th><th colspan="2">4Th</th><th colspan="2">5Th</th></tr>
+              <tr><th>Pos</th><th>id</th><th>Jug</th><th>Code</th><th>Jug</th><th>Code</th><th>Jug</th><th>Code</th><th>Jug</th><th>Code</th><th>Jug</th><th>Code</th></tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+          <div>
+            <button id="save__button" disabled>Save</button>
+            <div>
+                <table id="sum_code__table">
+                    <thead>
+                        <tr><th colspan="2">Tổng hợp</th></tr>
+                        <tr>
+                            <th>311</th>
+                            <td id="c311"></td>
+                        </tr>
+                        <tr>
+                            <th>319</th>
+                            <td id="c319"></td>
+                        </tr>
+                        <tr>
+                            <th>320</th>
+                            <td id="c320"></td>
+                        </tr>
+                        <tr>
+                            <th>351</th>
+                            <td id="c351"></td>
+                        </tr>
+                    </thead>
+                </table>
+                <div>
+                    <input type="date" id="etching__date" class="need-clear no-input save-data">
+                </div>
+            </div>
+          </div>
+          
+        </div>
+
+    <script src="./lib/jquery.min.js"></script>
+    <script src="./scr/EtchingV2.js"></script>
+</body>
+
+</html>

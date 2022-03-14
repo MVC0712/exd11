@@ -1,0 +1,399 @@
+body>div {
+    width: 100%;
+}
+
+/* ============== Page Layout ============== */
+
+.upper__wrapper {
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.middle__wrapper {
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.buttom__wrapper {
+    height: calc(598px - 31px - 50px - 100px);
+    display: flex;
+    flex-direction: row;
+    /* align-items: center; */
+    /* justify-content: space-around; */
+}
+
+.input-block__wrapper {
+    height: 25px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.buttom__wrapper>div {
+    height: 100%;
+}
+
+.buttom__wrapper>div:nth-child(1) {
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.buttom__wrapper>div:nth-child(2) {
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.buttom__wrapper>div.ng_table__wrapper {
+    width: calc(798px - 200px - 200px);
+    /* height: 100%; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#ng_code__select {
+    width: 130px;
+}
+
+#etching__date {
+    width: 120px;
+}
+
+/* =====================  upper__wrapper   ========================== */
+
+/* date */
+
+.upper__wrapper>div:nth-child(1)>.input__title{
+    width: 75px;
+}
+
+.upper__wrapper>div:nth-child(1) input {
+    width: 120px;
+}
+
+
+/* date */
+
+.upper__wrapper>div:nth-child(2)>.input__title {
+    width: 50px;
+}
+
+.upper__wrapper>div:nth-child(2) input {
+    width: 120px;
+    display: none;
+}
+
+.upper__wrapper>div:nth-child(2) select {
+    width: 130px;
+}
+
+
+/* Pressing Type */
+
+.upper__wrapper>div:nth-child(3)>.input__title {
+    width: 110px;
+}
+
+.upper__wrapper>div:nth-child(3) input {
+    width: 30px;
+    text-align: center;
+    font-size: 12pt;
+    /* padding-bottom: 3px; */
+    /* height: calc(20px - 3px); */
+    font-family: "ＭＳ ゴシック";
+}
+
+
+/* Input Billet */
+
+.upper__wrapper>div:nth-child(4)>.input__title {
+    width: 60px;
+}
+
+.upper__wrapper>div:nth-child(4) input {
+    width: 30px;
+}
+
+.upper__wrapper>div:nth-child(5)>.input__title {
+    width: 85px;
+}
+
+.upper__wrapper>div:nth-child(5) input {
+    width: 120px;
+}
+
+/* Middle Wrapper */
+
+.middle__wrapper .input__title {
+    width: 90px;
+}
+
+.middle__wrapper input {
+    width: 90px;
+}
+
+.middle__wrapper table {
+    /* width: 700px; */
+}
+
+.middle__wrapper table tbody {
+    overflow-y: unset;
+    height: initial;
+}
+
+.middle__wrapper table th,
+.middle__wrapper table td {
+    width: 27px;
+}
+
+.middle__wrapper table td {
+    text-align: right;
+}
+
+#slkhuon {
+    width: 10px;
+    color: red;
+    text-align: right;
+}
+
+/* ===================== Rack table  ========================== */
+
+#data__table tbody {
+    height: 440px;
+    width: 381px;
+}
+
+#data__table td,
+#data__table th {
+    font-size: 10pt;
+}
+
+#data__table th:nth-child(2),
+#data__table td:nth-child(2){
+    display: none;
+}
+
+#data__table th:nth-child(1),
+#data__table td:nth-child(1),
+#data__table th:nth-child(3),
+#data__table td:nth-child(3),
+#data__table th:nth-child(4),
+#data__table td:nth-child(4),
+#data__table th:nth-child(5),
+#data__table td:nth-child(5),
+#data__table th:nth-child(6),
+#data__table td:nth-child(6),
+#data__table th:nth-child(7),
+#data__table td:nth-child(7),
+#data__table th:nth-child(8),
+#data__table td:nth-child(8),
+#data__table th:nth-child(9),
+#data__table td:nth-child(9),
+#data__table th:nth-child(10),
+#data__table td:nth-child(10),
+#data__table th:nth-child(11),
+#data__table td:nth-child(11),
+#data__table th:nth-child(12),
+#data__table td:nth-child(12) {
+    width: 29px;
+}
+
+#data__table td select {
+    width: 100%;
+    border: 0;
+    font-size: 10pt;
+    text-align: center;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+}
+
+#data__table #selected__tr input {
+    background-color: #d6d283;
+}
+
+#sum_code__table td,
+#sum_code__table th {
+    font-size: 10pt;
+    border: solid 1px blue;
+}
+
+#sum_code__table td {
+    background-color: white;
+    color: black;
+}
+
+#sum_code__table th:nth-child(1),
+#sum_code__table td:nth-child(1),
+#sum_code__table th:nth-child(2),
+#sum_code__table td:nth-child(2),
+#sum_code__table th:nth-child(3),
+#sum_code__table td:nth-child(3) {
+    width: 50px;
+}
+
+
+#summary_table tbody {
+    height: 480px;
+    width: 290px;
+}
+
+#summary_table td,
+#summary_table th {
+    font-size: 10pt;
+}
+
+#summary_table th:nth-child(1),
+#summary_table td:nth-child(1){
+    display: none;
+}
+
+#summary_table th:nth-child(2),
+#summary_table td:nth-child(2) {
+    width: 80px;
+}
+
+#summary_table th:nth-child(3),
+#summary_table td:nth-child(3) {
+    display: none;
+}
+
+#summary_table th:nth-child(4),
+#summary_table td:nth-child(4) {
+    width: 125px;
+}
+
+#summary_table th:nth-child(5),
+#summary_table td:nth-child(5) {
+    width: 30px;
+    text-align: center;
+}
+
+#summary_table th:nth-child(6),
+#summary_table td:nth-child(6) {
+    width: 25px;
+}
+
+/* ===================== button area  ========================== */
+
+.button__area {
+    display: flex;
+}
+
+.button__area button {
+    margin: 5px;
+}
+
+
+/* ===================== ng table  ========================== */
+
+#ng__table tbody {
+    height: 160px;
+    width: 300px;
+}
+
+#ng__table td,
+#ng__table th {
+    font-size: 12pt;
+}
+
+#ng__table th:nth-child(1),
+#ng__table td:nth-child(1) {
+    display: none;
+}
+
+#ng__table th:nth-child(2),
+#ng__table td:nth-child(2) {
+    display: none;
+}
+
+#ng__table th:nth-child(3),
+#ng__table td:nth-child(3) {
+    width: 117px;
+}
+
+#ng__table td:nth-child(3) select {
+    width: 100%;
+    font-size: 12pt;
+    border: 0;
+    /* background-color: khaki; */
+}
+
+#ng__table th:nth-child(4),
+#ng__table td:nth-child(4) {
+    width: 90px;
+}
+
+#ng__table td:nth-child(4) {
+    text-align: right;
+    padding: 0;
+}
+
+#ng__table td:nth-child(4) select {
+    width: 100%;
+    font-size: 12pt;
+    border: 0;
+    /* background-color: khaki; */
+}
+
+#ng__table th:nth-child(5),
+#ng__table td:nth-child(5) {
+    width: 60px;
+}
+
+#ng__table td:nth-child(5) {
+    text-align: right;
+}
+
+button {
+    height: 25px;
+}
+
+#ng__table td:nth-child(4) input,
+#ng__table td:nth-child(5) input {
+    width: 100%;
+    border: 0;
+    font-size: 12pt;
+}
+
+#ng__table input {
+    cursor: pointer;
+}
+
+#ng__table input.selected-input {
+    background-color: #d6d283;
+    cursor: initial;
+}
+
+#ng__table select.selected-select {
+    background-color: #d6d283;
+    cursor: initial;
+}
+
+#ng__table #ng-table__footer {
+    height: 50px;
+    overflow-y: unset;
+}
+
+#ng__table #ng-table__footer tr td {
+    border: 0;
+}
+
+#ng__table #ng-table__footer tr:nth-child(1) td {
+    border-top: gray solid 1px;
+}

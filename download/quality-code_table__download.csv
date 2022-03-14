@@ -9,7 +9,7 @@ quality_code,description_vn,note_vn,description_jp,note_jp
 307,"Lỗi kích thước","Kích thước của sản phẩm không đạt yêu cầu của bản vẽ",寸法不良,制品的尺寸不符合图纸或相关文书的要求
 308,"Lỗi độ cong","Độ cong của sản phẩm không đạt yêu cầu của bản vẽ ",曲がり不良,制品的弯曲度不符合图纸或相关文书的要求
 309,"Lỗi độ xoắn","Độ xoắn của sản phẩm không đạt yêu cầu của bản vẽ ",ねじれ不良,制品的扭曲度不符合图纸或相关文书的要求
-310,"Lỗi tính năng","Độ cứng hoặc độ giãn không đạt yêu cầu của bản vẽ ",硬度不足,制品的硬度或拉伸性能不符合图纸或相关文书的要求
+310,"Lỗi cơ học","Độ cứng hoặc độ giãn không đạt yêu cầu của bản vẽ ",硬度不足,制品的硬度或拉伸性能不符合图纸或相关文书的要求
 311,"Lỗi ăn mòn","Có vết nứt xảy ra khi thực hiện quá trình ngâm tẩm",エッチング不良,浸蚀后出现的型材焊合线处有裂纹
 312,"Lỗi nứt","Quá trình ép đùn không đều để nứt dài trên bề mặt",裂纹不良,挤压工艺不适合导致的表面出现连续的均匀的开裂
 313,"Độ bám dính kém","Khiếm khuyết gây ra bởi bụi nhôm dính trên bề mặt",粘铝不良,由于表面集结粘铝导致的不良
