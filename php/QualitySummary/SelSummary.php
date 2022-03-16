@@ -102,7 +102,7 @@ LEFT JOIN
 		GROUP BY 	t_using_aging_rack.t_press_id
 	) t20 ON t20.t_press_id = t_press.id
 WHERE m_dies.die_number LIKE :die_number
-ORDER BY 	t_press.press_date_at DESC, t_press.press_start_at
+ORDER BY 	t_press.press_date_at DESC, t_press.press_start_at DESC
 LIMIT 75
     ");
 

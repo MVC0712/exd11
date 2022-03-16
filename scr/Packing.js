@@ -370,6 +370,12 @@ $(document).on("change", "#packing-date__input", function () {
 	// background color changing
 	if ($(this).val() != "") {
 		$(this).removeClass("no-input").addClass("complete-input");
+		let fileName = "./php/Packing/InsPackDate.php";
+		let sendData = {
+			press_id: $("#press-date__select").val(),
+			packing_date: $(this).val(),
+		};
+		myAjax.myAjax(fileName, sendData);
 	} else {
 		$(this).removeClass("complete-input").addClass("no-input");
 	}

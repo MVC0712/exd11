@@ -3,178 +3,19 @@ body>div {
 }
 
 /* ============== Page Layout ============== */
-
-.upper__wrapper {
-    height: 50px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-}
-
-.middle__wrapper {
-    height: 100px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-    flex-wrap: wrap;
-}
-
 .buttom__wrapper {
     height: calc(598px - 31px - 50px - 100px);
     display: flex;
     flex-direction: row;
-    /* align-items: center; */
-    /* justify-content: space-around; */
-}
-
-.input-block__wrapper {
-    height: 25px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-}
-
-.buttom__wrapper>div {
-    height: 100%;
-}
-
-.buttom__wrapper>div:nth-child(1) {
-    width: 200px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.buttom__wrapper>div:nth-child(2) {
-    width: 200px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
-
-.buttom__wrapper>div.ng_table__wrapper {
-    width: calc(798px - 200px - 200px);
-    /* height: 100%; */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-}
-
-#ng_code__select {
-    width: 130px;
 }
 
 #etching__date {
-    width: 120px;
-}
-
-/* =====================  upper__wrapper   ========================== */
-
-/* date */
-
-.upper__wrapper>div:nth-child(1)>.input__title{
-    width: 75px;
-}
-
-.upper__wrapper>div:nth-child(1) input {
-    width: 120px;
-}
-
-
-/* date */
-
-.upper__wrapper>div:nth-child(2)>.input__title {
-    width: 50px;
-}
-
-.upper__wrapper>div:nth-child(2) input {
-    width: 120px;
-    display: none;
-}
-
-.upper__wrapper>div:nth-child(2) select {
     width: 130px;
 }
 
-
-/* Pressing Type */
-
-.upper__wrapper>div:nth-child(3)>.input__title {
-    width: 110px;
-}
-
-.upper__wrapper>div:nth-child(3) input {
-    width: 30px;
-    text-align: center;
-    font-size: 12pt;
-    /* padding-bottom: 3px; */
-    /* height: calc(20px - 3px); */
-    font-family: "ＭＳ ゴシック";
-}
-
-
-/* Input Billet */
-
-.upper__wrapper>div:nth-child(4)>.input__title {
-    width: 60px;
-}
-
-.upper__wrapper>div:nth-child(4) input {
-    width: 30px;
-}
-
-.upper__wrapper>div:nth-child(5)>.input__title {
-    width: 85px;
-}
-
-.upper__wrapper>div:nth-child(5) input {
-    width: 120px;
-}
-
-/* Middle Wrapper */
-
-.middle__wrapper .input__title {
-    width: 90px;
-}
-
-.middle__wrapper input {
-    width: 90px;
-}
-
-.middle__wrapper table {
-    /* width: 700px; */
-}
-
-.middle__wrapper table tbody {
-    overflow-y: unset;
-    height: initial;
-}
-
-.middle__wrapper table th,
-.middle__wrapper table td {
-    width: 27px;
-}
-
-.middle__wrapper table td {
-    text-align: right;
-}
-
-#slkhuon {
-    width: 10px;
-    color: red;
-    text-align: right;
-}
-
-/* ===================== Rack table  ========================== */
-
 #data__table tbody {
-    height: 440px;
-    width: 381px;
+    height: 500px;
+    width: 350px;
 }
 
 #data__table td,
@@ -209,7 +50,7 @@ body>div {
 #data__table td:nth-child(11),
 #data__table th:nth-child(12),
 #data__table td:nth-child(12) {
-    width: 29px;
+    width: 27px;
 }
 
 #data__table td select {
@@ -244,13 +85,12 @@ body>div {
 #sum_code__table td:nth-child(2),
 #sum_code__table th:nth-child(3),
 #sum_code__table td:nth-child(3) {
-    width: 50px;
+    width: 55px;
 }
 
-
 #summary_table tbody {
-    height: 480px;
-    width: 290px;
+    height: 540px;
+    width: 310px;
 }
 
 #summary_table td,
@@ -265,7 +105,7 @@ body>div {
 
 #summary_table th:nth-child(2),
 #summary_table td:nth-child(2) {
-    width: 80px;
+    width: 60px;
 }
 
 #summary_table th:nth-child(3),
@@ -275,18 +115,23 @@ body>div {
 
 #summary_table th:nth-child(4),
 #summary_table td:nth-child(4) {
-    width: 125px;
+    width: 115px;
 }
 
 #summary_table th:nth-child(5),
 #summary_table td:nth-child(5) {
-    width: 30px;
+    width: 25px;
     text-align: center;
 }
 
 #summary_table th:nth-child(6),
 #summary_table td:nth-child(6) {
-    width: 25px;
+    width: 20px;
+}
+
+#summary_table th:nth-child(7),
+#summary_table td:nth-child(7) {
+    width: 55px;
 }
 
 /* ===================== button area  ========================== */

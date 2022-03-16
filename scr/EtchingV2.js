@@ -20,6 +20,23 @@ const myAjax = {
 };
 
 $(function() {
+    // var fileName = "./php/Etching/SelSummary.php";
+    // var sendData = {
+    //     dummy: "dummy",
+    // };
+    // myAjax.myAjax(fileName, sendData);
+    // $("#summary_table tbody").empty();
+    // ajaxReturnData.forEach(function(trVal) {
+    //     let newTr = $("<tr>");
+    //     Object.keys(trVal).forEach(function(tdVal, index) {
+    //         $("<td>").html(trVal[tdVal]).appendTo(newTr);
+    //     });
+    //     $(newTr).appendTo("#summary_table tbody");
+    // });
+    makeSummaryTable();
+});
+
+function makeSummaryTable() {
     var fileName = "./php/Etching/SelSummary.php";
     var sendData = {
         dummy: "dummy",
@@ -33,8 +50,7 @@ $(function() {
         });
         $(newTr).appendTo("#summary_table tbody");
     });
-
-});
+}
 
 function makeDataTable(targetDom, ajaxReturnData) {
     $("#data__table tbody tr").remove();
@@ -219,6 +235,7 @@ $(document).on("click", "#save__button", function() {
         makeDataTable($("#data__table"), ajaxReturnData);
     }
     color();
+    makeSummaryTable();
 
 });
 
@@ -453,3 +470,32 @@ $(document).on("click", "#data__table tbody tr", function(e) {
 
     }
 });
+
+function timkiem() {
+    var input, table, tr, td, td1, td2, filter, i, txtdata, txtdata1, txtdata2, txtdata3;
+    input = document.getElementById("die_number__input");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("summary_table");
+    var tbody = table.getElementsByTagName("tbody")[0];
+    var tr = tbody.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[1];
+        td1 = tr[i].getElementsByTagName("td")[2];
+        td2 = tr[i].getElementsByTagName("td")[3];
+        td3 = tr[i].getElementsByTagName("td")[4];
+        if (td||td1||td2) {
+            txtdata = td.innerText;
+            txtdata1 = td1.innerText;
+            txtdata2 = td2.innerText;
+            txtdata3 = td3.innerText;
+            if (txtdata.toUpperCase().indexOf(filter) > -1||
+                txtdata1.toUpperCase().indexOf(filter) > -1||
+                txtdata2.toUpperCase().indexOf(filter) > -1||
+                txtdata3.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+} 

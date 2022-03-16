@@ -15,20 +15,30 @@
 
       $prepare = $dbh->prepare("
       SELECT 
-      t_press.id AS press_id,
-      t_press.press_date_at AS press_date_at,
-      t_press.dies_id,
-      m_dies.die_number,
-      m_pressing_type.pressing_type,
-      t_press.actual_billet_quantities
-  FROM
-      t_press
-          LEFT JOIN
-      m_pressing_type ON t_press.pressing_type_id = m_pressing_type.id
-          LEFT JOIN
-      m_dies ON t_press.dies_id = m_dies.id
-  ORDER BY t_press.press_date_at DESC , t_press.press_start_at
-  LIMIT 75;
+    t_press.id AS press_id,
+    DATE_FORMAT(t_press.press_date_at, '%y-%m-%d') AS press_date_at,
+    t_press.dies_id,
+    m_dies.die_number,
+    m_pressing_type.pressing_type,
+    t_press.actual_billet_quantities,
+    CASE
+        WHEN t10.exist > 0 THEN 'Đã lưu'
+        ELSE 'Chưa lưu'
+    END AS confirm
+FROM
+    t_press
+        LEFT JOIN
+    m_pressing_type ON t_press.pressing_type_id = m_pressing_type.id
+        LEFT JOIN
+    m_dies ON t_press.dies_id = m_dies.id
+        LEFT JOIN
+    (SELECT 
+        t_etching.press_id, COUNT(*) AS exist
+    FROM
+        extrusion.t_etching
+    GROUP BY t_etching.press_id) AS t10 ON t10.press_id = t_press.id
+ORDER BY t_press.press_date_at DESC , t_press.press_start_at DESC
+LIMIT 75;
     ");
 
       $prepare->execute();
