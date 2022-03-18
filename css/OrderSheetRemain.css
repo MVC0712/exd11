@@ -1,0 +1,208 @@
+body {
+  width: 620px;
+  height: 550px;
+}
+input {
+  font-size: 12pt;
+}
+input:disabled {
+  background-color: whitesmoke;
+  /* background-color: white; */
+  /* font-size: 12pt; */
+  color: black;
+}
+
+tbody td {
+  font-size: 10pt;
+  padding: 1px;
+}
+
+thead > tr > th {
+  border-bottom: 0;
+  height: 20px;
+}
+
+thead th,
+tbody th {
+  background-color: #0000ff;
+  border: solid 1px white;
+  color: white;
+  text-align: center;
+  font-size: 10pt;
+  font-weight: normal;
+}
+
+tbody tr.selected-record {
+  background-color: #dbdbff;
+}
+
+td {
+  padding: 0;
+  /* font-size: 10pt; */
+}
+
+table input {
+  padding: 0;
+  /* width: 60px; */
+  border: none;
+  width: 100%;
+}
+
+table input.selected-input {
+  background-color: #dbdbff;
+}
+/* basic setting */
+.no-dlisplay {
+  display: none;
+}
+.input-block__outer {
+  height: initial;
+  width: initial;
+  margin: 0 5px 0 5px;
+  width: 100%;
+}
+.button__wrapper {
+  justify-content: space-evenly;
+}
+
+.bottom__wrapper .input-block__outer {
+  height: 30px;
+}
+
+.input__title {
+  width: initial;
+  padding: 0 3px 0 3px;
+}
+/* ========  Page Layout ============ */
+.input__wrapper {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+
+.summary__wrapper {
+  width: 100%;
+  height: calc(598px - 120px);
+  display: flex;
+  align-items: start;
+  justify-content: space-evenly;
+}
+.left__wrapper {
+  height: 100%;
+  width: 320px;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+}
+.middle__wrapper {
+  width: 80px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.right__wrapper {
+  height: 100%;
+  width: calc(620px - 80px - 320px);
+  display: flex;
+  align-items: start;
+  justify-content: center;
+}
+button {
+  margin: 0;
+  height: 25px;
+  border: 1px;
+  width: 120px;
+  color: yellow;
+}
+/* ============ elements =========== */
+#ordersheet-number__input {
+  width: 120px;
+}
+#search_input {
+  width: 120px;
+}
+img {
+  width: 50px;
+}
+/* ============ dialog ============= */
+dialog button {
+  width: 100px;
+  height: 50px;
+  margin: 10px;
+  font: 12pt;
+}
+dialog button.delete__button {
+  color: yellow;
+}
+/* ----------- input --------------- */
+#box-number__input {
+  width: 100px;
+}
+/* ----------- table desgin ---------------- */
+#summary__table {
+  width: 480px;
+}
+#summary__table tbody {
+  height: 450px;
+  width: 500px;
+}
+
+#summary__table td,
+#summary__table th {
+    font-size: 10pt;
+}
+
+#summary__table th:nth-child(1),
+#summary__table td:nth-child(1){
+    display: none;
+}
+
+#summary__table th:nth-child(2),
+#summary__table td:nth-child(2) {
+    width: 140px;
+}
+
+#summary__table th:nth-child(3),
+#summary__table td:nth-child(3),
+#summary__table th:nth-child(4),
+#summary__table td:nth-child(4),
+#summary__table th:nth-child(5),
+#summary__table td:nth-child(5),
+#summary__table th:nth-child(6),
+#summary__table td:nth-child(6),
+#summary__table th:nth-child(7),
+#summary__table td:nth-child(7) {
+    width: 65px;
+} 
+/* ---------------- right table setting ---------------- */
+#sub__table {
+  width: 180px;
+}
+#sub__table tbody {
+  height: 330px;
+}
+#sub__table input {
+  text-align: left;
+}
+
+#sub__table tr th:nth-child(1),
+#sub__table tr td:nth-child(1) {
+  width: 80px;
+  padding-right: 5px;
+}
+#sub__table tr td:nth-child(1) {
+  text-align: center;
+  font-size: 12pt;
+}
+#sub__table tr th:nth-child(2),
+#sub__table tr td:nth-child(2) {
+  width: 70px;
+}
+#sub__table tr td:nth-child(2) {
+  text-align: right;
+  font-size: 12pt;
+}

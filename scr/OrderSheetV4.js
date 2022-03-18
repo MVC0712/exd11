@@ -386,6 +386,14 @@ $(document).on("click", "#remain__button", function () {
   // window.open("./OrderSheetSub.html");
 });
 
+$(document).on("click", "#check_remain", function () {
+  window.open(
+    "./OrderSheetremain.html",
+    null,
+    "width=630, height=580, top=100,left=100, toolbar=yes,menubar=yes,scrollbars=no"
+  );
+});
+
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // ------------------------- test button -------------------------
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
