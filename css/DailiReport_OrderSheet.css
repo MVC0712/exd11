@@ -9,7 +9,7 @@ body {
   height: 350px;
 }
 #summary__table {
-  width: 690px;
+  width: 700px;
 }
 #summary__table tbody {
   height: 270px;
@@ -47,18 +47,15 @@ body {
 }
 /* production Qty */
 #summary__table th:nth-child(6),
-#summary__table td:nth-child(6) {
-  width: 100px;
-}
-#summary__table td:nth-child(6) {
-  text-align: right;
-}
-
-/* Update */
+#summary__table td:nth-child(6),
 #summary__table th:nth-child(7),
-#summary__table td:nth-child(7) {
-  width: 100px;
-}
-#summary__table td:nth-child(7) {
-  text-align: center;
+#summary__table td:nth-child(7),
+#summary__table th:nth-child(8),
+#summary__table td:nth-child(8),
+#summary__table th:nth-child(9),
+#summary__table td:nth-child(9),
+#summary__table th:nth-child(10),
+#summary__table td:nth-child(10) {
+  width: 50px;
+  text-align: left;
 }

@@ -1,5 +1,0 @@
-order deny,allow
-    deny from all
-#    allow from 10.168.
-#    allow from 192.168.172.31
-

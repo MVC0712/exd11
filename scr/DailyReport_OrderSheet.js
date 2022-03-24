@@ -5,7 +5,7 @@ $(function () {
 function ajaxSelSummary() {
   $.ajax({
     type: "POST",
-    url: "./php/OrderSheet/SelSummary.php",
+    url: "./php/OrderSheet/SelSummarySub.php",
     dataType: "json",
     async: false,
     data: {
