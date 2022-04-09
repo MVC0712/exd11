@@ -21,7 +21,7 @@
 }
 /* ==============  summary table ================ */
 #summary__table tbody {
-  width: 525px;
+  width: 555px;
   height: 400px;
 }
 /* t_press_id */
@@ -83,7 +83,7 @@
   width: 30px;
 }
 #summary__table td:nth-child(8) {
-  text-align: right;
+  text-align: left;
 }
 /* Plan Billet Qty */
 #summary__table th:nth-child(9),
@@ -91,7 +91,7 @@
   width: 22px;
 }
 #summary__table td:nth-child(9) {
-  text-align: right;
+  text-align: left;
 }
 /* Actually Billet Qty */
 #summary__table th:nth-child(10),
@@ -99,7 +99,7 @@
   width: 22px;
 }
 #summary__table td:nth-child(10) {
-  text-align: right;
+  text-align: left;
 }
 /* Press Start Time */
 #summary__table th:nth-child(11),
@@ -107,7 +107,7 @@
   width: 33px;
 }
 #summary__table td:nth-child(11) {
-  text-align: right;
+  text-align: left;
 }
 /* Press End Time */
 #summary__table th:nth-child(12),
@@ -115,7 +115,7 @@
   width: 33px;
 }
 #summary__table td:nth-child(12) {
-  text-align: right;
+  text-align: left;
 }
 /* Work Qty */
 #summary__table th:nth-child(13),
@@ -123,7 +123,7 @@
   width: 40px;
 }
 #summary__table td:nth-child(13) {
-  text-align: right;
+  text-align: left;
 }
 /* Work Qty */
 #summary__table th:nth-child(14),
@@ -131,5 +131,5 @@
   width: 40px;
 }
 #summary__table td:nth-child(14) {
-  text-align: right;
+  text-align: left;
 }

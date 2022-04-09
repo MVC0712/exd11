@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MaintenanceV2</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/MaintenanceV2.css" />
+</head>
+<body>
+    <header>MaintenanceV2</header>
+    <div class="main__wrapper">
+        <div class="upper__wrapper">
+            <div class="left__wrapper">
+                <table id="summary__table">
+                    <thead>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div class="right__wrapper">
+            </div>
+        </div>
+        <div class="lower__wrapper">
+        <div>
+            <table id="line"> 
+                <thead>
+                    <th>id</th>
+                    <th>Category1</th>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <div class="title">Add Cate 1</div>
+            <input type="text" id="ins_line" />
+        </div>
+        <div>
+            <table id="machine"> 
+                <thead>
+                    <th>id</th>
+                    <th>Category2</th>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <div class="title">Add Cate 2</div>
+            <input type="text" id="ins_machine" />
+        </div>
+        <div>
+            <table id="work"> 
+                <thead>
+                    <th>id</th>
+                    <th>Work</th>
+                    <th>KTG</th>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <div class="title">Add Work</div>
+            <input type="text" id="ins_machine" />
+            <input type="text" id="duration" />
+        </div>
+            <div id="left">
+                <div class="title">Start</div>
+                <input id="maintenance_start" class="no-input" type="date" />
+                <!-- <div class="title">Finish</div>
+                <input id="maintenance_finish" class="no-input" type="date" /> -->
+            <div>
+                <div class="title">Staff</div>
+                <select id="staff" class="no-input save-data need-clear">
+                    <option value="0">Select Part</option>
+                </select>
+            </div>
+            <div>
+            <div class="title">Normal</div>
+            <select id="normal" class="save-data need-clear">
+                <option value="0">Yes</option>
+                <option value="1">No</option>
+            </select>
+        </div>
+        </div>
+        <div id="right">
+            <div class="title">Filename</div>
+            <input id="file" type="file" multiple />
+
+        <div class="title">Notes</div>
+        <input id="note" type="text"/>
+        <button id="insert">
+            Insert
+        </button>
+        <button id="update">
+            Update
+        </button>
+    </div>
+    </div>
+    </div>
+    <script src="./lib/jquery.min.js"></script>
+    <script src="./scr/MaintenanceV2.js"></script>
+</body>
+
+</html>

@@ -36,7 +36,13 @@
     $prepare = $dbh->prepare($sql);
     
     $prepare->execute();
-    echo json_encode("INSERTED");
+
+    $prepare = $dbh->prepare("
+    SELECT MAX(t_maintenance_history.id) AS id FROM t_maintenance_history");
+    $prepare->execute();
+    $result = $prepare->fetch(PDO::FETCH_ASSOC);
+
+    echo json_encode($result);
     } catch (PDOException $e) {
         $error = $e->getMessage();
         print_r($error);

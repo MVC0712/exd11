@@ -42,7 +42,6 @@
     LEFT JOIN
         m_dies ON m_dies.id = t_press.dies_id
     ORDER BY do_sth_at DESC , die_number ASC
-    LIMIT 400
         ";
 
       $prepare = $dbh->prepare($sql);

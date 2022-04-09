@@ -1,6 +1,8 @@
 <?php
+  /* 21/03/26作成 */
   $userid = "webuser";
   $passwd = "";
+  // print_r($_POST);
   
   try{
     $dbh = new PDO(
@@ -14,10 +16,10 @@
     );
 
     $prepare = $dbh->prepare("
-    SELECT 
-      id, machine
-    FROM
-      m_machine
+      SELECT 
+        m_staff.id,
+        m_staff.staff_name
+      FROM m_staff
     ");
     $prepare->execute();
     $result = $prepare->fetchAll(PDO::FETCH_ASSOC);

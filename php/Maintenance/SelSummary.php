@@ -4,7 +4,7 @@
   
   try {
       $dbh = new PDO(
-          'mysql:host=localhost; dbname=exd_maintenance; charset=utf8',
+          'mysql:host=localhost; dbname=extrusion; charset=utf8',
           $userid,
           $passwd,
           array(

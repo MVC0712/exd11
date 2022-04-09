@@ -242,3 +242,7 @@ button {
 #ng__table #ng-table__footer tr:nth-child(1) td {
     border-top: gray solid 1px;
 }
+
+#data__table #table_headder {
+    font-size: 8pt;
+}

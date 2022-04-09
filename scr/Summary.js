@@ -33,7 +33,7 @@ $(function() {
 });
 
 function makeSummaryTable() {
-    var fileName = "./php/Summary/SelSummary.php";
+    var fileName = "./php/Summary/SelSummaryV2.php";
     var sendData = {
         dummy: "dummy",
         die_number: $("#die-number__input").val() + "%",

@@ -346,7 +346,7 @@ $(document).on("click", "#data__table tbody tr", function(e) {
             dies_id: $("#selected__tr").find("td").eq(2).html(),
         };
         myAjax.myAjax(fileName, sendData);
-    
+        $("#table_headder").html($("#selected__tr").find("td").eq(3).html()+" ("+$("#selected__tr").find("td").eq(1).html()+")");
         let h = ajaxReturnData[0].hole; 
         let n = ajaxReturnData[0].n; 
         let m = ajaxReturnData[0].m; 

@@ -190,6 +190,7 @@ $(document).on("click", "#go__button", function() {
             type: 'post',
         });
     }
+    console.log(sendObj);
     myAjax.myAjax(fileName, sendObj);
 
     $("#add__table tbody").empty();
