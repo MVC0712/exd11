@@ -37,31 +37,51 @@
     align-items: center;
 }
 
-.right__wrapper_select {
-    width: calc(798px - 520px - 70px);
-    height: 100px;
+#button__area {
     display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    position: relative;
+    flex-direction: row;
+    width: 100%;
+    /* height: 100%; */
+    padding-top: 30px;
+    justify-content: space-around   ;
 }
 
 tbody tr.selected-record {
     background-color: #20b9ff;
 }
 
-.right__wrapper_text_input {
-    width: 100%;
-    height: 50px;
-    display: table;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: left;
-    position: relative;
+input {
+    width: 40px;
+    height: 20px;
+    border: 1px solid #0000ff;
+    padding: 0px 2px;
     text-align: left;
 }
 
+button {
+    width: 50px;
+    height: 22px;
+    display: block;
+    position: relative;
+    padding: 0px;
+    margin: 0px;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    background: #0000ff;
+    border: none;
+    font-size: 9pt;
+    font-weight: bold;
+}
+
+.input-block__outer {
+    height: 25px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
 /* +++++++++++++++  summary table ++++++++++++++ */
 
 #summary__table {
@@ -141,22 +161,6 @@ tbody tr.selected-record {
     text-align: center;
 }
 
-/* +++++++++++++++  Button area ++++++++++++++ */
-
-.button__wrapper {
-    width: 100%;
-    height: 50px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-
-img {
-    width: 50px;
-    height: 80px;
-}
-
-/* +++++++++++++++  Right Area ++++++++++++++ */
 .title {
     width: 100%;
     height: 20px;
@@ -165,8 +169,19 @@ img {
     color: white;
 }
 
-#maintenance_start,
-#maintenance_finish {
+#ins_line,
+#ins_machine,
+#ins_work {
+    width: 50%;
+    height: 20px;
+}
+
+#duration {
+    width: 30px;
+    height: 20px;
+}
+
+#maintenance_start {
     width: 100%;
     height: 20px;
     background-origin: solid 1px #0000ff;
@@ -204,55 +219,12 @@ select {
     margin-right: 5px;
 }
 
-#myfile {
-    width: 100%;
-    appearance: none;
-    background-color: initial;
-    cursor: default;
-    align-items: baseline;
-    color: inherit;
-    text-overflow: ellipsis;
-    white-space: pre;
-    text-align: start !important;
-    padding: initial;
-    border: initial;
-    overflow: hidden !important;
-}
-
-#ins__data {
-    height: 500px;
-}
-
-.main__wrapperh {
-    padding: 0;
-    height: 180px;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-}
-
-.left__wrapperh {
-    width: 100px;
-    height: 100px;
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    justify-content: center;
-}
-
-.right__wrapperh {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    flex-direction: row;
-}
-
 #line,
 #machine,
 #work {
     height: 100px;
 }
+
 #line tbody,
 #machine tbody,
 #work tbody {
@@ -301,25 +273,6 @@ select {
 #work tr input {
     border: 0px solid #ffffff;
     width: 40px;
-}
-
-.zoom {
-    transition: transform 0.5s;
-}
-
-.zoom:hover {
-    -ms-transform: scale(3);
-    -webkit-transform: scale(3);
-    transform: scale(3);
-    z-index: 1;
-    cursor: zoom-in;
-    transform-origin: bottom;
-}
-
-#file_area{
-    width: 200px;
-    height: 150px;
-    transform-origin: bottom;
 }
 
 object {

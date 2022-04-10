@@ -19,13 +19,13 @@ const myAjax = {
 };
 
 $(function() {
+    staff();
     makeSummaryTable();
     machine();
     line();
     // part();
-    staff();
     $("#save__button").prop("disabled", true);
-    $("#update__button").prop("disabled", true);
+    $("#update").prop("disabled", true);
     $("#test__button").remove();
     $("#delete-record__button").remove();
 });
@@ -115,11 +115,36 @@ $(document).on("click", "#summary__table tbody tr", function() {
         fillTableBodyh(ajaxReturnData, $("#ma__table tbody"));
     } else {
         $(this).removeClass("selected-record");
-        $("#go__button").prop("disabled", false);
+        $(this).removeAttr("id");
+        $("#insert").prop("disabled", false);
     }
-    go_check();
+    Insert_check();
+    Update_check();
     document.getElementById("file_area").innerHTML = ``;
-    $("#update__button").remove();
+    $("#update").remove();
+});
+
+$(document).on("click", "#history__summary tbody tr", function() {
+    var fileName = "./php/Maintenance/SelFile.php";
+    var sendData = new Object();
+    if (!$(this).hasClass("selected-record")) {
+        $(this).parent().find("tr").removeClass("selected-record");
+        $(this).addClass("selected-record");
+        $("#history__summary__selected").removeAttr("id");
+        $(this).attr("id", "history__summary__selected");
+        Update_check();
+        sendData = {
+            targetId: $("#history__summary__selected").find("td").eq(0).html(),
+        };
+        // myAjax.myAjax(fileName, sendData);
+    } else {
+        $(this).removeClass("selected-record");
+        $(this).removeAttr("id");
+        $("#insert").prop("disabled", false);
+    }
+    Insert_check();
+    Update_check();
+    document.getElementById("file_area").innerHTML = ``;
 });
 
 $(document).on("click", "#line tbody tr", function() {
@@ -130,7 +155,8 @@ $(document).on("click", "#line tbody tr", function() {
         $(this).attr("id", "line__selected");
     } else {
         $(this).removeClass("selected-record");
-        $("#go__button").prop("disabled", false);
+        $(this).removeAttr("id");
+        $("#insert").prop("disabled", false);
     }
 });
 
@@ -141,6 +167,8 @@ $(document).on("click", "#machine tbody tr", function() {
         $(this).addClass("selected-record");
         $("#machine__selected").removeAttr("id");
         $(this).attr("id", "machine__selected");
+        InsWork_check();
+        Update_check();
         var sendData = {
             machine_id: $("#machine__selected").find("td").eq(0).html(),
         };
@@ -148,8 +176,11 @@ $(document).on("click", "#machine tbody tr", function() {
         fillTableBody(ajaxReturnData, $("#work tbody"));
     } else {
         $(this).removeClass("selected-record");
-        $("#go__button").prop("disabled", false);
+        $(this).removeAttr("id");
+        $("#insert").prop("disabled", false);
         $("#work tbody").empty();
+        InsWork_check();
+        Update_check();
     }
 });
 
@@ -161,7 +192,7 @@ $(document).on("click", "#work tbody tr", function() {
         $(this).attr("id", "work__selected");
     } else {
         // $(this).removeClass("selected-record");
-        // $("#go__button").prop("disabled", false);
+        // $("#insert").prop("disabled", false);
     }
 });
 
@@ -176,15 +207,78 @@ $(document).on("change", "#work input", function() {
     // console.log(sendData);
 });
 
-function go_check() {
-    if ((($("#maintenance_start").val() == "")|| 
-        ($("#maintenance_finish").val() == "")||
-        ($("#machine").val() == 0)||
-        ($("#line").val() == 0)||
-        ($("#part_position").val() == 0))) {
-        $("#go__button").prop("disabled", true);
+$(document).on("keyup", "#ins_line", function() {
+    if ($(this).val().length != 0) {
+        $(this).removeClass("no-input").addClass("complete-input");
+        $("#Insert_line").prop("disabled", false);
     } else {
-        $("#go__button").prop("disabled", false);
+        $(this).removeClass("complete-input").addClass("no-input");
+        $("#Insert_line").prop("disabled", true);
+    }
+});
+
+$(document).on("keyup", "#ins_machine", function() {
+    if ($(this).val().length != 0) {
+        $(this).removeClass("no-input").addClass("complete-input");
+        $("#Insert_machine").prop("disabled", false);
+    } else {
+        $(this).removeClass("complete-input").addClass("no-input");
+        $("#Insert_machine").prop("disabled", true);
+    }
+});
+
+$(document).on("keyup", "#ins_work", function() {
+    if ($(this).val().length != 0) {
+        $(this).removeClass("no-input").addClass("complete-input");
+    } else {
+        $(this).removeClass("complete-input").addClass("no-input");
+    }
+    InsWork_check();
+    Update_check();
+});
+
+$(document).on("keyup", "#duration", function() {
+    if ($(this).val().length != 0) {
+        $(this).removeClass("no-input").addClass("complete-input");
+    } else {
+        $(this).removeClass("complete-input").addClass("no-input");
+    }
+    InsWork_check();
+    Update_check();
+});
+
+function InsWork_check() {
+    if ((($("#duration").val().length == 0)|| 
+        ($("#ins_work").val().length == 0)||
+        (!$("#machine tbody tr").hasClass("selected-record")))) {
+        $("#Insert_work").prop("disabled", true);
+    } else {
+        $("#Insert_work").prop("disabled", false);
+    }
+};
+
+function Insert_check() {
+    if (($("#maintenance_start").val() == "")|| 
+        ($("#staff").val() == 0)||
+        (!$("#machine tbody tr").hasClass("selected-record")) ||
+        (!$("#line tbody tr").hasClass("selected-record")) ||
+        (!$("#work tbody tr").hasClass("selected-record"))) {
+        $("#insert").prop("disabled", true);
+    } else {
+        $("#insert").prop("disabled", false);
+    }
+};
+
+function Update_check() {
+    if (($("#maintenance_start").val() == "")|| 
+        ($("#staff").val() == 0)||
+        (!$("#machine tbody tr").hasClass("selected-record")) ||
+        (!$("#line tbody tr").hasClass("selected-record")) ||
+        (!$("#history__summary tbody tr").hasClass("selected-record")) ||
+        (!$("#work tbody tr").hasClass("selected-record"))) {
+        $("#update").prop("disabled", true);
+    } else {
+        $("#update").prop("disabled", false);
     }
 };
 
@@ -233,7 +327,7 @@ $(document).on("click", "#insert", function() {
 
     }
 
-    $("#go__button").prop("disabled", true);
+    $("#insert").prop("disabled", true);
     $("#note").val("");
     $("#myfile").val("");
     $("#myfile").removeClass("complete-input").addClass("no-input");
@@ -248,10 +342,10 @@ $(document).on("click", "#insert", function() {
     $("#maintenance_finish").val("");
     $("#maintenance_finish").removeClass("complete-input").addClass("no-input");
     makeSummaryTable();
-    $("#update__button").remove();
+    $("#update").remove();
 });
 
-$(document).on("click", "#update__button", function() {
+$(document).on("click", "#update", function() {
     var fileName = "./php/Maintenance/UpdateData.php";
     var sendObj = new Object();
     sendObj["maintenance_start"] =getDateTime(new Date($("#maintenance_start").val()));
@@ -284,7 +378,7 @@ $(document).on("click", "#update__button", function() {
     myAjax.myAjax(fileName, sendObj);
     console.log(sendObj)
 
-    $("#go__button").prop("disabled", true);
+    $("#insert").prop("disabled", true);
     $("#note").val("");
     $("#myfile").val("");
     $("#myfile").removeClass("complete-input").addClass("no-input");
@@ -299,7 +393,7 @@ $(document).on("click", "#update__button", function() {
     $("#maintenance_finish").val("");
     $("#maintenance_finish").removeClass("complete-input").addClass("no-input");
     makeSummaryTable();
-    $("#update__button").remove();
+    $("#update").remove();
 });
 
 const getTwoDigits = (value) => value < 10 ? `0${value}` : value;
@@ -328,16 +422,16 @@ $(document).on("change", "#maintenance_start", function() {
     } else {
         $(this).removeClass("complete-input").addClass("no-input");
     }
-    go_check();
+    Insert_check();
 });
 
 $(document).on("change", "#staff", function() {
-    if ($(this).val() != "") {
+    if ($(this).val() != 0) {
         $(this).removeClass("no-input").addClass("complete-input");
     } else {
         $(this).removeClass("complete-input").addClass("no-input");
     }
-    go_check();
+    Insert_check();
 });
 
 function fillTableBodyh(data, tbodyDom) {
@@ -379,7 +473,7 @@ $(document).on("click", "#ma__table tbody tr", function() {
         $("#maintenance_finish").removeClass("no-input").addClass("complete-input");
         $("#note").val(ajaxReturnData[0].note);
 
-        $("<button>Update</button>").attr("id", "update__button").appendTo("#ins__data");
+        $("<button>Update</button>").attr("id", "update").appendTo("#ins__data");
 
         var filename = ajaxReturnData[0].file_url;
         var fileType = filename.substr(filename.lastIndexOf(".") + 1, 3);
@@ -413,7 +507,7 @@ $(document).on("click", "#ma__table tbody tr", function() {
     } else {
         $(this).removeClass("selected-record");
         document.getElementById("file_area").innerHTML = ``;
-        $("#update__button").remove();
+        $("#update").remove();
     }
 });
 

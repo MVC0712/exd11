@@ -20,6 +20,16 @@
                 </table>
             </div>
             <div class="right__wrapper">
+                <table id="history__summary">
+                    <thead></thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                kkkkk
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
         <div class="lower__wrapper">
@@ -29,10 +39,17 @@
                     <th>id</th>
                     <th>Category1</th>
                 </thead>
-                <tbody></tbody>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Machine1</td>
+                    </tr>
+                </tbody>
             </table>
-            <div class="title">Add Cate 1</div>
-            <input type="text" id="ins_line" />
+            <div class="input-block__outer">
+                <input id="ins_line" class="no-input" type="text">
+                <button id="Insert_line" disabled>Cate 1</button>
+            </div>
         </div>
         <div>
             <table id="machine"> 
@@ -40,10 +57,17 @@
                     <th>id</th>
                     <th>Category2</th>
                 </thead>
-                <tbody></tbody>
+                <tbody>
+                    <tr>
+                        <td>2</td>
+                        <td>Machine2</td>
+                    </tr>
+                </tbody>
             </table>
-            <div class="title">Add Cate 2</div>
-            <input type="text" id="ins_machine" />
+            <div class="input-block__outer">
+                <input id="ins_machine" class="no-input" type="text">
+                <button id="Insert_machine" disabled>Cate 2</button>
+            </div>
         </div>
         <div>
             <table id="work"> 
@@ -52,21 +76,27 @@
                     <th>Work</th>
                     <th>KTG</th>
                 </thead>
-                <tbody></tbody>
+                <tbody>
+                    <tr>
+                        <td>3</td>
+                        <td>Work1</td>
+                        <td>KTG1</td>
+                    </tr>
+                </tbody>
             </table>
-            <div class="title">Add Work</div>
-            <input type="text" id="ins_machine" />
-            <input type="text" id="duration" />
+            <div class="input-block__outer">
+                <input id="ins_work" class="no-input" type="text">
+                <input id="duration" class="no-input" type="text">
+                <button id="Insert_work" disabled>Work</button>
+            </div>
         </div>
             <div id="left">
                 <div class="title">Start</div>
                 <input id="maintenance_start" class="no-input" type="date" />
-                <!-- <div class="title">Finish</div>
-                <input id="maintenance_finish" class="no-input" type="date" /> -->
             <div>
                 <div class="title">Staff</div>
-                <select id="staff" class="no-input save-data need-clear">
-                    <option value="0">Select Part</option>
+                <select id="staff" class="no-input need-clear">
+                    <option value="0">Select</option>
                 </select>
             </div>
             <div>
@@ -83,12 +113,14 @@
 
         <div class="title">Notes</div>
         <input id="note" type="text"/>
-        <button id="insert">
-            Insert
-        </button>
-        <button id="update">
-            Update
-        </button>
+        <div id="button__area">
+            <button id="insert" disabled>
+                Insert
+            </button>
+            <button id="update" disabled>
+                Update
+            </button>
+        </div>
     </div>
     </div>
     </div>
