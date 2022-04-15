@@ -47,6 +47,7 @@
         <button id="diehistory">Die History</button>
         <button id="production_number">Edit<br />PN</button>
         <button id="die_number">Edit<br />Die</button>
+        <button id="maintenance">Bảo trì TB</button>
       </div>
 
       <div class="right__area">
@@ -61,6 +62,10 @@
     <script>
       $(document).on("click", "#ex_daily_report", function () {
         window.open("DailyReportV12.html");
+      });
+
+      $(document).on("click", "#maintenance", function () {
+        window.open("MaintenanceV2.html");
       });
 
       $(document).on("click", "#etching", function () {

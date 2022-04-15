@@ -25,7 +25,7 @@
 .left__wrapper {
     display: flex;
     flex-direction: column;
-    width: 520px;
+    width: 560px;
     height: 100%;
     align-items: center;
 }
@@ -85,11 +85,12 @@ button {
 /* +++++++++++++++  summary table ++++++++++++++ */
 
 #summary__table {
-    width: 515px;
+    width: 500px;
 }
 
 #summary__table tbody {
-    height: 340px;
+    height: 315px;
+    width: 555px;
 }
 
 #summary__table th:nth-child(1),
@@ -101,7 +102,7 @@ button {
 
 #summary__table th:nth-child(3),
 #summary__table td:nth-child(3) {
-    width: 90px;
+    width: 70px;
 }
 
 #summary__table td:nth-child(3) {
@@ -115,7 +116,7 @@ button {
 
 #summary__table th:nth-child(5),
 #summary__table td:nth-child(5) {
-    width: 90px;
+    width: 80px;
 }
 
 #summary__table td:nth-child(5) {
@@ -123,20 +124,22 @@ button {
 }
 
 #summary__table th:nth-child(6),
-#summary__table td:nth-child(6),
-#summary__table th:nth-child(7),
-#summary__table td:nth-child(7) {
-    width: 85px;
+#summary__table td:nth-child(6) {
+    display: none;
 }
 
-#summary__table td:nth-child(6),
+#summary__table th:nth-child(7),
+#summary__table td:nth-child(7) {
+    width: 80px;
+}
+
 #summary__table td:nth-child(7) {
     text-align: left;
 }
 
 #summary__table th:nth-child(8),
 #summary__table td:nth-child(8) {
-    width: 70px;
+    width: 35px;
 }
 
 #summary__table td:nth-child(8) {
@@ -145,20 +148,21 @@ button {
 
 #summary__table th:nth-child(9),
 #summary__table td:nth-child(9),
-#summary__table th:nth-child(11),
-#summary__table td:nth-child(11) {
-    display: none;
-}
-
 #summary__table th:nth-child(10),
 #summary__table td:nth-child(10),
-#summary__table th:nth-child(12),
-#summary__table td:nth-child(12) {
-    width: 25px;
+#summary__table th:nth-child(13),
+#summary__table td:nth-child(13) {
+    width: 70px;
 }
 
-#summary__table td:nth-child(12) {
-    text-align: center;
+#summary__table th:nth-child(11),
+#summary__table td:nth-child(11) {
+    width: 35px;
+}
+
+#summary__table th:nth-child(12),
+#summary__table td:nth-child(12){
+    display: none;
 }
 
 .title {
@@ -279,4 +283,54 @@ object {
     width: auto;
     height: 150px;
     transform-origin: bottom;
+}
+
+#history__summary {
+    width: 205px;
+}
+
+#history__summary tbody {
+    height: 200px;
+}
+
+#history__summary th:nth-child(1),
+#history__summary td:nth-child(1),
+#history__summary th:nth-child(2),
+#history__summary td:nth-child(2) {
+    display: none;
+}
+
+
+#history__summary th:nth-child(3),
+#history__summary td:nth-child(3),
+#history__summary th:nth-child(4),
+#history__summary td:nth-child(4) {
+    width: 65px;
+}
+
+#history__summary td:nth-child(3) {
+    text-align: left;
+}
+
+#history__summary th:nth-child(5),
+#history__summary td:nth-child(5) {
+    width: 50px;
+}
+
+#file_area{
+    width: auto;
+    height: 150px;
+    transform-origin: bottom;
+    flex-direction: row;
+    display: flex;
+}
+
+object {
+    z-index: 1;
+    width: auto;
+    height: 150px;
+    transform-origin: bottom;
+        float: right;
+        width: 33.33%;
+        padding: 5px;
 }

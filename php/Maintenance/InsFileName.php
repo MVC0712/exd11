@@ -19,16 +19,16 @@
 
       foreach ($_POST as $val) {
 
-          $sql_paramater[] = "({$val}, '$t_maintenance_history_id')";
+          $sql_paramater[] = "('{$val}', '$t_maintenance_history_id')";
       }
 
       $sql = "INSERT INTO t_machine_maintenance_attached_file ";
       $sql = $sql."(attached_file, t_maintenance_history_id) VALUES ";
       $sql = $sql.join(",", $sql_paramater);
-    //   $prepare = $dbh->prepare($sql);
-      print_r($sql);
-    //   $prepare->execute();
-    //   echo json_encode("INSERTED");
+      // print_r($sql);
+      $prepare = $dbh->prepare($sql);
+      $prepare->execute();
+      echo json_encode("INSERTED");
   } catch (PDOException $e) {
       $error = $e->getMessage();
       print_r($error);

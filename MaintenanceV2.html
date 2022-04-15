@@ -15,21 +15,47 @@
             <div class="left__wrapper">
                 <table id="summary__table">
                     <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>line_id</th>
+                            <th>Line</th>
+                            <th>machine_id</th>
+                            <th>Machine</th>
+                            <th>Work_id</th>
+                            <th>Work</th>
+                            <th>Nor</th>
+                            <th>Start</th>
+                            <th>Next_T</th>
+                            <th>Ttn</th>
+                            <th>IT</th>
+                            <th>Note</th>
+                        </tr>
                     </thead>
-                    <tbody></tbody>
+                    <tbody>
+                    </tbody>
                 </table>
             </div>
             <div class="right__wrapper">
                 <table id="history__summary">
-                    <thead></thead>
-                    <tbody>
+                    <thead>
                         <tr>
-                            <td>
-                                kkkkk
-                            </td>
+                            <td></td>
+                            <td></td>
+                            <td id="ma_po" style="text-align:center;" colspan="5">Machine-Position</td>
                         </tr>
+                        <tr>
+                            <td>id</td>
+                            <td>Machine</td>
+                            <td>Work</td>
+                            <td>Ma_start</td>
+                            <td>Note</td>
+                        </tr>
+                    </thead>
+                    <tbody>
                     </tbody>
                 </table>
+                <div id="file_area">
+                </div>
             </div>
         </div>
         <div class="lower__wrapper">
@@ -41,9 +67,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>1</td>
-                        <td>Machine1</td>
-                    </tr>
+
                 </tbody>
             </table>
             <div class="input-block__outer">
@@ -58,10 +82,7 @@
                     <th>Category2</th>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>2</td>
-                        <td>Machine2</td>
-                    </tr>
+
                 </tbody>
             </table>
             <div class="input-block__outer">
@@ -77,11 +98,7 @@
                     <th>KTG</th>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>3</td>
-                        <td>Work1</td>
-                        <td>KTG1</td>
-                    </tr>
+
                 </tbody>
             </table>
             <div class="input-block__outer">
@@ -119,6 +136,9 @@
             </button>
             <button id="update" disabled>
                 Update
+            </button>
+            <button id="download">
+                Tải file
             </button>
         </div>
     </div>

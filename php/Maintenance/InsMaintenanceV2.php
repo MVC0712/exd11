@@ -3,20 +3,24 @@
     $passwd = "";
 
     $maintenance_start = "";
-    $maintenance_finish = "";
     $note = "";
+    $normal = "";
+    $staff = "";
     $line = "";
     $machine = "";
-    $part_position = "";
-    $file_url = "";
 
     $maintenance_start = $_POST['maintenance_start'];
-    $maintenance_finish = $_POST['maintenance_finish'];
     $note = $_POST['note'];
+    $normal = $_POST['normal'];
+    $staff = $_POST['staff'];
     $line = $_POST['line'];
     $machine = $_POST['machine'];
-    $part_position = $_POST['part_position'];
-    $file_url = $_POST['file_url'];
+    array_pop($_POST);
+    array_pop($_POST);
+    array_pop($_POST);
+    array_pop($_POST);
+    array_pop($_POST);
+    array_pop($_POST);
 
     try {
         $dbh = new PDO(
@@ -29,13 +33,18 @@
             )
         );
 
-    $sql = "INSERT INTO t_maintenance_history (line_id, part_position_id, maintenance_start, maintenance_finish, note, file_url
-    ) VALUES (
-        '$line', '$part_position', '$maintenance_start', '$maintenance_finish', '$note', '$file_url'
-    )";
-    $prepare = $dbh->prepare($sql);
+        foreach ($_POST as $val) {
+
+            $sql_paramater[] = "('$normal', '$line', '{$val}', '$staff', '$maintenance_start', '$note')";
+        }
+  
+        $sql = "INSERT INTO t_maintenance_history ";
+        $sql = $sql."(normal, line_id, part_position_id, staff_id, maintenance_start, note) VALUES ";
+        $sql = $sql.join(",", $sql_paramater);
+        // print_r($sql);
+        $prepare = $dbh->prepare($sql);
     
-    $prepare->execute();
+        $prepare->execute();
 
     $prepare = $dbh->prepare("
     SELECT MAX(t_maintenance_history.id) AS id FROM t_maintenance_history");

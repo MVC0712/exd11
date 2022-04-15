@@ -80,6 +80,10 @@ $(function() {
 $(document).on("change", "#die-number__select", function() {
     if ("0" != $(this).val()) {
         $(this).removeClass("no-input").addClass("complete-input");
+        $(".u").each(function() {
+            $(this).val("");
+            $(this).removeClass("complete-input").addClass("no-input");
+        });
     } else {
         $(this).removeClass("complete-input").addClass("no-input");
     }

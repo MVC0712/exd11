@@ -16,22 +16,23 @@
       );
 
       $prepare = $dbh->prepare("
-      SELECT 
-      t_maintenance_history.id,
-      m_machine.machine,
-      m_part_position.part_position,
-      DATE_FORMAT(t_maintenance_history.maintenance_start,
-              '%y-%m-%d') AS maintenance_start,
-      t_maintenance_history.note
-  FROM
-      t_maintenance_history
-          LEFT JOIN
-      m_part_position ON t_maintenance_history.part_position_id = m_part_position.id
-          LEFT JOIN
-      m_machine ON m_part_position.machine_id = m_machine.id
-  WHERE
-      t_maintenance_history.part_position_id = :targetId
-  ORDER BY maintenance_start DESC;
+    SELECT 
+        t_maintenance_history.id,
+        t_maintenance_history.line_id,
+        m_part_position.machine_id,
+        t_maintenance_history.part_position_id,
+        t_maintenance_history.maintenance_start,
+        t_maintenance_history.staff_id,
+        t_maintenance_history.normal,
+        t_maintenance_history.note
+    FROM
+        t_maintenance_history
+    LEFT JOIN
+        m_part_position ON m_part_position.id = t_maintenance_history.part_position_id
+    LEFT JOIN
+        m_machine ON m_machine.id = m_part_position.machine_id
+    WHERE
+        t_maintenance_history.id = :targetId
     ");
 
       $prepare->bindValue(':targetId', $_POST["targetId"], (INT)PDO::PARAM_INT);

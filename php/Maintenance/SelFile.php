@@ -16,22 +16,12 @@
       );
 
       $prepare = $dbh->prepare("
-      SELECT 
-      t_maintenance_history.id,
-      m_machine.machine,
-      m_part_position.part_position,
-      DATE_FORMAT(t_maintenance_history.maintenance_start,
-              '%y-%m-%d') AS maintenance_start,
-      t_maintenance_history.note
-  FROM
-      t_maintenance_history
-          LEFT JOIN
-      m_part_position ON t_maintenance_history.part_position_id = m_part_position.id
-          LEFT JOIN
-      m_machine ON m_part_position.machine_id = m_machine.id
-  WHERE
-      t_maintenance_history.part_position_id = :targetId
-  ORDER BY maintenance_start DESC;
+        SELECT 
+            attached_file
+        FROM 
+            t_machine_maintenance_attached_file
+        WHERE
+            t_maintenance_history_id = :targetId
     ");
 
       $prepare->bindValue(':targetId', $_POST["targetId"], (INT)PDO::PARAM_INT);
