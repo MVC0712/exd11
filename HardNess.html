@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HardNess</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/HardNess.css" />
+</head>
+
+<body>
+    <header>HardNess</header>
+    <div class="buttom__wrapper">
+
+            <table id="summary_table">
+                <thead>
+                    <tr>
+                        <th>press_id</th>
+                        <th>Ngày đùn</th>
+                        <th>die_id</th>
+                        <!-- <th>Khuôn</th> -->
+                        <th><input id="die_number__input" placeholder="Tìm trong bảng" style="width: 110px; text-align: left;" type="text" onkeyup="timkiem();" /></th>
+                        <th>Kiểu</th>
+                        <th>Sl</th>
+                        <th>XN</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+<div>
+        <table id="data__table">
+            <thead>
+              <!-- <tr><th id="table_headder">Bảng ngâm mẫu</th><th></th><td id="confirm"></td></tr> -->
+              <tr><th>Vị trí</th><th>id</th><th>ĐC TB</th><th>Đánh giá</th></tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <table id="add_new_data">
+        <thead>
+            <tr><th>Vị trí</th><th>id</th><th>ĐC TB</th></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <input id="new_pos" class="need-clear" type="text" />
+                </td>
+                <td>
+                vv
+            </td>
+                <td>
+                <input id="new_data" class="need-clear" type="text" />
+            </td>
+            <!-- <td>
+                <input id="new_jug" class="need-clear" type="text" />
+            </tr> -->
+        </tbody>
+        </table> 
+        <button id="add_new_data__button">Thêm mẫu mới</button>   
+        </div>
+
+
+          <div style="width:200px; flex-direction: row;">
+            <button id="save__button" disabled>Lưu dữ liệu</button>
+
+        <div id="mear_jug" style="flex-direction: row;">
+            <div class="input-block__outer">
+                <div class="input__title">ĐCYC</div>
+                <input id="dcyc" class="no-input" type="number">
+            </div>
+            <div id="gh">
+                <input id="ght" class="no-input" type="number">
+                <input id="ghd" class="no-input" type="number">
+            </div>
+        </div>
+        <div>
+            <div>Ngày đo</div>
+            <input type="date" id="hardness__date" class="need-clear no-input save-data">
+        </div>
+        </div>
+        </div>         
+
+    <script src="./lib/jquery.min.js"></script>
+    <script src="./scr/HardNess.js"></script>
+</body>
+
+</html>

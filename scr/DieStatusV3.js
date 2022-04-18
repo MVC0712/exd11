@@ -205,7 +205,7 @@ $(document).on("click", "#go__button", function() {
 
 function make_action() {
     var table, tr, pr_tm, sta_val, txt_pr_tm, txt_sta_val, i;
-    var W1P1 =[4];
+    var W1P1 =[];
     table = document.getElementById("summary__table");
     tr = table.getElementsByTagName("tr");
     for (i = 0; i < tr.length; i++) {
