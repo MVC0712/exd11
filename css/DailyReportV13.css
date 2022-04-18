@@ -1,0 +1,522 @@
+body {
+  width: calc(1050px - 2px);
+}
+thead > tr > th {
+  border-bottom: 0;
+  height: 20px;
+}
+thead th,
+tbody th {
+  background-color: #0000ff;
+  border: solid 1px white;
+  color: white;
+  text-align: center;
+  font-size: 9pt;
+  font-weight: normal;
+}
+td {
+  padding: 0;
+}
+
+table input {
+  padding: 0;
+  /* width: 60px; */
+  border: none;
+  width: 100%;
+}
+
+tbody tr.selected-record {
+  background-color: #dbdbff;
+}
+
+tbody tr.selected-record input {
+  background-color: #dbdbff;
+}
+
+/* basic setting */
+.input__title {
+  width: initial;
+  padding: 0 3px 0 3px;
+}
+/* =============page layout=============== */
+.main__wrapper {
+  padding: 0;
+  height: 380px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.left__wrapper {
+  width: 600px;
+  height: 100%;
+  flex-direction: column;
+}
+.left__wrapper > .input__wrapper {
+  height: 280px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.left__wrapper > .table__wrapper {
+  height: calc(400px - 280px);
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.right__wrapper {
+  width: 220px;
+  height: 100%;
+  border-left: 1px dotted #0000ff;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+}
+.mid__wrapper {
+  width: 225px;
+  height: 100%;
+  border-left: 1px dotted #0000ff;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+}
+.button__wrapper {
+  display: flex;
+  flex-direction: row;
+  height: 30px;
+  align-items: center;
+}
+
+.summary__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(598px - 30px - 380px - 1px);
+}
+/* =============page layout end=============== */
+/* =============input elements =============== */
+.input-block__outer {
+  height: 35px;
+  width: initial;
+  margin: 0 3px 0 3px;
+}
+select {
+  width: 45px;
+  border-left: none;
+}
+#directive__input {
+  width: 30px;
+}
+#directive_input__select {
+  width: 97px;
+}
+#date__input {
+  width: 120px;
+}
+#die__input {
+  width: 30px;
+}
+#die__select {
+  width: 140px;
+}
+#number-of-die__display {
+  width: 15px;
+  text-align: right;
+}
+
+#is-washed__input {
+  display: none;
+}
+
+#is-washed__select {
+  width: 45px;
+}
+
+#pressing-type__input {
+display: none;
+}
+
+#pressing-type__select {
+  width: 40px;
+  font-family: "ＭＳ ゴシック";
+}
+
+#machine-number__input {
+  display: none;
+}
+
+#billet-lot-number__input {
+  width: 190px;
+}
+
+#billet-size__input {
+  display: none;
+}
+
+#billet-length__input {
+  display: none;
+}
+
+#billet-length__select {
+  width: 60px;
+}
+
+#stop-cause__select {
+  width: 60px;
+}
+#name__select {
+  width: 120px;
+}
+#press-directive__select {
+  width: 80px;
+}
+#file-upload__input {
+  display: none;
+}
+#file-upload__input + label {
+  background-color: white;
+  display: inline-block;
+  cursor: pointer;
+  border: solid 1px #0000ff;
+  width: 200px;
+  height: 20px;
+}
+#press-direction_file {
+  display: none;
+}
+#press-direction-date__select {
+  display: none;
+}
+#rackqty__input {
+  border-right: 0;
+}
+#start-term,
+#end-term {
+  width: 120px;
+}
+/* =============input elements end =============== */
+/* =============== TABLES  ==================== */
+.left__wrapper tbody {
+  overflow-y: unset;
+}
+#container-temperature__table {
+  height: 90px;
+}
+#container-temperature__table tbody {
+  height: initial;
+}
+#container-temperature__table thead th {
+  height: 40px;
+}
+
+#container-temperature__table td,
+#container-temperature__table th {
+  width: 62px;
+  padding: 0;
+}
+#ram-values__table {
+  height: 90px;
+}
+#ram-values__table tbody {
+  height: initial;
+}
+#ram-values__table tr th:nth-child(1) {
+  width: 35px;
+}
+#ram-values__table tr th,
+#ram-values__table tr td {
+  width: 40px;
+}
+#add_error__table,
+#error__table {
+  width: 220px;
+}
+#error__table tbody {
+  height: 250px;
+  width: 222px;
+}
+#add_error__table tbody {
+  height: 22px;
+  overflow: hidden;
+}
+#rack__table {
+  width: 172px;
+}
+#add_error__table tbody td input {
+  width: 47px;
+}
+#add_error__table th,
+#add_error__table thead th,
+#add_error__table td,
+#error__table thead th,
+#error__table td,
+#rack__table th,
+#rack__table td {
+  width: 50px;
+}
+#add_error__table tbody td input,
+#error__table tbody td,
+#rack__table tbody td {
+  text-align: left;
+  padding-right: 3px;
+}
+#error__table th:nth-child(1),
+#error__table td:nth-child(1),
+#rack__table th:nth-child(1),
+#rack__table td:nth-child(1) {
+  display: none;
+}
+
+#work-length__table {
+  width: 182px;
+}
+#work-length__table tbody {
+  height: 150px;
+}
+#work-length__table th {
+  padding: 0;
+}
+#work-length__table tr th:nth-child(1),
+#work-length__table tr td:nth-child(1) {
+  width: 40px;
+}
+#work-length__table tr th:nth-child(2),
+#work-length__table tr td:nth-child(2),
+#work-length__table tr th:nth-child(3),
+#work-length__table tr td:nth-child(3) {
+  width: 60px;
+}
+/* =============== TABLES  END ==================== */
+/* =============each input elements ============== */
+
+/* =============== BUTTONS ====================== */
+
+button {
+  height: 20px;
+  width: 100px;
+}
+#preview__button {
+  height: 22px;
+  width: 50px;
+  margin: 0;
+}
+
+#add-rack__button {
+  margin: 0;
+  width: 60px;
+  height: 22px;
+  border: solid 1px #0000ff;
+}
+/* =============== BUTTONS END ====================== */
+/* =============== Summary Table ====================== */
+
+#ram-values__table th {
+  border-bottom: 0px;
+}
+
+#ram-values__table td {
+  /* border-bottom: 1px; */
+}
+
+#ram-values__table th {
+  height: 20px;
+}
+
+#ram-values__table th,
+#ram-values__table td {
+  padding: 0;
+}
+
+#ram-values__table input {
+  /* background-color: whitesmoke; */
+  padding: 0;
+  width: 40px;
+}
+/* summary table */
+#summary__table tr.no-display {
+  display: none;
+}
+
+/* summary table */
+#summary__table {
+  width: 880px;
+}
+#summary__table tbody {
+  height: 120px;
+}
+#summary__table th {
+  padding: 0;
+}
+
+/* id */
+#summary__table tr th:nth-child(1),
+#summary__table tr td:nth-child(1) {
+  display: none;
+}
+
+/* date */
+#summary__table tr th:nth-child(2),
+#summary__table tr td:nth-child(2) {
+  width: 40px;
+  text-align: center;
+}
+/* Press Number */
+#summary__table tr th:nth-child(3),
+#summary__table tr td:nth-child(3) {
+  width: 20px;
+}
+#summary__table tr td:nth-child(3) {
+  text-align: right;
+}
+/* Die Name */
+#summary__table tr th:nth-child(4),
+#summary__table tr td:nth-child(4) {
+  width: 100px;
+}
+#summary__table tr td:nth-child(4) {
+  text-align: left;
+}
+/* Die_id */
+#summary__table tr th:nth-child(5),
+#summary__table tr td:nth-child(5) {
+  display: none;
+}
+/* Order Sheet */
+#summary__table tr th:nth-child(6),
+#summary__table tr td:nth-child(6) {
+  width: 100px;
+}
+/* Press Type */
+#summary__table tr th:nth-child(7),
+#summary__table tr td:nth-child(7) {
+  width: 25px;
+}
+
+#summary__table tr td:nth-child(7) {
+  text-align: center;
+  font-family: "MS ゴシック";
+}
+
+/* Press Type_id */
+
+#summary__table tr th:nth-child(8),
+#summary__table tr td:nth-child(8) {
+  display: none;
+}
+/* is Washed */
+#summary__table tr th:nth-child(9),
+#summary__table tr td:nth-child(9) {
+  width: 42px;
+}
+
+#summary__table tr td:nth-child(9) {
+  text-align: center;
+}
+
+/* is Washed_id */
+
+#summary__table tr th:nth-child(10),
+#summary__table tr td:nth-child(10) {
+  display: none;
+}
+
+/* billet lot */
+
+#summary__table tr th:nth-child(11),
+#summary__table tr td:nth-child(11) {
+  width: 90px;
+}
+
+/* B/S */
+
+#summary__table tr th:nth-child(12),
+#summary__table tr td:nth-child(12) {
+  width: 23px;
+}
+
+#summary__table tr td:nth-child(12) {
+  text-align: right;
+}
+
+/* Billet Length */
+
+#summary__table tr th:nth-child(13),
+#summary__table tr td:nth-child(13) {
+  width: 35px;
+}
+
+#summary__table tr td:nth-child(13) {
+  text-align: right;
+}
+
+/* Plan Billet Qty */
+
+#summary__table tr th:nth-child(14),
+#summary__table tr td:nth-child(14) {
+  width: 37px;
+}
+
+#summary__table tr td:nth-child(14) {
+  text-align: right;
+}
+
+/* Actual Billet Qty */
+
+#summary__table tr th:nth-child(15),
+#summary__table tr td:nth-child(15) {
+  width: 37px;
+}
+
+#summary__table tr td:nth-child(15) {
+  text-align: right;
+}
+
+/* Stop Cause */
+
+#summary__table tr th:nth-child(16),
+#summary__table tr td:nth-child(16) {
+  width: 45px;
+}
+
+#summary__table tr td:nth-child(16) {
+  text-align: right;
+}
+
+/* Start Finish time */
+
+#summary__table tr th:nth-child(17),
+#summary__table tr td:nth-child(17),
+#summary__table tr th:nth-child(18),
+#summary__table tr td:nth-child(18) {
+  width: 48px;
+}
+
+#summary__table tr td:nth-child(17),
+#summary__table tr td:nth-child(18) {
+  text-align: right;
+}
+
+/* Ramspeed Dietemp */
+
+#summary__table tr th:nth-child(19),
+#summary__table tr td:nth-child(19),
+#summary__table tr th:nth-child(20),
+#summary__table tr td:nth-child(20) {
+  width: 50px;
+}
+
+#summary__table tr td:nth-child(19),
+#summary__table tr td:nth-child(20) {
+  text-align: right;
+}
+/* Press Directive Sheet */
+#summary__table tr th:nth-child(21),
+#summary__table tr td:nth-child(21) {
+  width: 50px;
+}
+#summary__table tr td:nth-child(21) {
+  text-align: center;
+}
