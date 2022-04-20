@@ -29,8 +29,9 @@ const myAjax = {
 
 $(function () {
   // test ボタンの表示
-  $("#test__button").hide();
+  // $("#test__button").hide();
   setSummaryTable();
+  ErrorCode();
 });
 // *****************************************************
 // *****************************************************
@@ -426,8 +427,23 @@ $(document).on("keyup", "#work-length__table input", function () {
 });
 
 // add error code
-$(document).on("keyup", "#err_code", function() {
-  if ($(this).val().length != 0) {
+function ErrorCode() {
+  var fileName = "./php/DailyReport/SelErrorCode.php";
+  var sendData = {
+      dummy: "dummy",
+  };
+  myAjax.myAjax(fileName, sendData);
+  $("#err_code option").remove();
+  $("#err_code").append($("<option>").val(0).html("NO"));
+  ajaxReturnData.forEach(function(value) {
+      $("#err_code").append(
+          $("<option>").val(value["id"]).html(value["err_code"])
+      );
+  });
+};
+
+$(document).on("change", "#err_code", function() {
+  if ($(this).val() != 0) {
       $(this).removeClass("no-input").addClass("complete-input");
   } else {
       $(this).removeClass("complete-input").addClass("no-input");
@@ -485,59 +501,183 @@ function add_error_check() {
 };
 
 $("#add_error__button").on("click", function () {
-  let trNumber;
-  let fileName;
-  let sendData = new Object();
-  let order_number;
-  let rackNumberArr = [];
   switch ($(this).text()) {
     case "Save":
-      trNumber = $("#error__table tbody tr").length;
       $("<tr>")
         .append("<td></td>")
-        .append("<td>" + $("#err_code").val() + "</td>")
-        .append("<td>" + $("#err_start").val() + "</td>")
-        .append("<td>" + $("#err_end").val() + "</td>")
-        .append("<td>" + $("#err_note").val() + "</td>")
+        .append($("<td>").append(ErrorCodeOption($("#err_code").val())))
+        .append($("<td>").append($("<input>").val($("#err_start").val())))
+        .append($("<td>").append($("<input>").val($("#err_end").val())))
+        .append($("<td>").append($("<input>").val($("#err_note").val())))
         .appendTo("#error__table tbody");
       $(this).prop("disabled", true);
       $("#err_code").val("").focus().removeClass("complete-input").addClass("no-input");
       $("#err_start").val("").removeClass("complete-input").addClass("no-input");
       $("#err_end").val("").removeClass("complete-input").addClass("no-input");
       $("#err_note").val("");
-      break;
+    break;
     case "Add":
-      $("#error__table tbody tr td:nth-child(2)").each(function () {
-        rackNumberArr.push(Number($(this).html()));
-      });
-      if (rackNumberArr.length != 0) {
-        order_number = Math.max(...rackNumberArr) + 1;
-      } else {
-        order_number = 1;
-      }
+      let fileName;
+      let sendData = new Object();
       fileName = "./php/DailyReport/InsUsingAgingRack.php";
       sendData = {
         t_press_id: $("#selected__tr td:nth-child(1)").text(),
-        order_number: order_number,
-        rack_number: $("#racknumber__input").val(),
-        work_quantity: $("#rackqty__input").val(),
+        err_code: $("#err_code").val(),
+        err_start: $("#err_start").val(),
+        err_end: $("#err_end").val(),
+        err_note: $("#err_note").val(),
       };
       // myAjax.myAjax(fileName, sendData);
-      // ============= Fill Rack Data
-      // makeRackTable();
-      // ============= reset input frame
-      // $("#racknumber__input")
-      //   .val("")
-      //   .removeClass("complete-input")
-      //   .addClass("no-input");
-      // $("#rackqty__input")
-      //   .val("")
-      //   .removeClass("complete-input")
-      //   .addClass("no-input");
-      // $("#add-rack__button").prop("disabled", true);
+      makeErrorTable();
+      $("#err_code").val("").removeClass("complete-input").addClass("no-input");
+      $("#err_start").val("").removeClass("complete-input").addClass("no-input");
+      $("#err_end").val("").removeClass("complete-input").addClass("no-input");
+      $("#err_note").val("").removeClass("complete-input").addClass("no-input");
+      $("#add_error__button").prop("disabled", true);
+    break;
+  }
+});
+
+function makeErrorTable() {
+  fileName = "./php/DailyReport/SelError.php";
+  sendData = {
+    id: $("#selected__tr").find("td").eq(0).html(),
+  };
+  myAjax.myAjax(fileName, sendData);
+  $("#error__table tbody").empty();
+  ajaxReturnData.forEach(function (trVal) {
+    var newTr = $("<tr>");
+    Object.keys(trVal).forEach(function (tdVal) {
+      if (tdVal == "error_code") {
+        $("<td>")
+            .append(ErrorCodeOption(trVal[tdVal]))
+            .appendTo(newTr);
+      } else if (tdVal == "id") {
+        $("<td>").html(trVal[tdVal]).appendTo(newTr);
+    } else {
+      $("<td>").append($("<input>").val(trVal[tdVal])).appendTo(newTr);
+    }   
+    });
+    $(newTr).appendTo("#error__table tbody");
+  });
+};
+
+function ErrorCodeOption(seletedId) {
+  let targetDom = $("<select>");
+
+  fileName = "./php/DailyReport/SelErrorCode.php";
+  sendData = {
+      ng_code: "%",
+  };
+  myAjax.myAjax(fileName, sendData);
+  ajaxReturnData.forEach(function(element) {
+      if (element["err_code"] == seletedId) {
+          $("<option>")
+              .html(element["err_code"])
+              .val(element["id"])
+              .prop("selected", true)
+              .appendTo(targetDom);
+      } else {
+          $("<option>")
+              .html(element["err_code"])
+              .val(element["id"])
+              .appendTo(targetDom);
+      }
+  });
+  return targetDom;
+}
+
+// add bundle no
+$(document).on("keyup", "#bundle_no", function() {
+  if ($(this).val().length != 0) {
+      $(this).removeClass("no-input").addClass("complete-input");
+  } else {
+      $(this).removeClass("complete-input").addClass("no-input");
+  }
+  add_bundle_check();
+});
+
+$(document).on("keyup", "#quantity", function() {
+  if ($(this).val().length != 0) {
+      $(this).removeClass("no-input").addClass("complete-input");
+  } else {
+      $(this).removeClass("complete-input").addClass("no-input");
+  }
+  add_bundle_check();
+});
+
+$(document).on("keyup", "#lot_no", function() {
+  if ($(this).val().length != 0) {
+      $(this).removeClass("no-input").addClass("complete-input");
+  } else {
+      $(this).removeClass("complete-input").addClass("no-input");
+  }
+  add_bundle_check();
+});
+
+function add_bundle_check() {
+  if (($("#bundle_no").hasClass("no-input")) ||
+      ($("#quantity").hasClass("no-input")) ||
+      ($("#lot_no").hasClass("no-input"))) {
+      $("#add_bundle__button").prop("disabled", true);
+  } else {
+      $("#add_bundle__button").prop("disabled", false);
+  }
+};
+
+$("#add_bundle__button").on("click", function () {
+  switch ($(this).text()) {
+    case "Save":
+      $("<tr>")
+        .append("<td></td>")
+        .append($("<td>").append($("<input>").val($("#bundle_no").val())))
+        .append($("<td>").append($("<input>").val($("#quantity").val())))
+        .append($("<td>").append($("<input>").val($("#lot_no").val())))
+        .appendTo("#bundle__table tbody");
+      $(this).prop("disabled", true);
+      $("#bundle_no").val("").focus().removeClass("complete-input").addClass("no-input");
+      $("#quantity").val("").removeClass("complete-input").addClass("no-input");
+      $("#lot_no").val("").removeClass("complete-input").addClass("no-input");
+      break;
+    case "Add":
+      let fileName;
+      let sendData = new Object();
+      fileName = "./php/DailyReport/InsUsingAgingRack.php";
+      sendData = {
+        t_press_id: $("#selected__tr td:nth-child(1)").text(),
+        bundle_no: $("#bundle_no").val(),
+        quantity: $("#quantity").val(),
+        lot_no: $("#lot_no").val(),
+      };
+      // myAjax.myAjax(fileName, sendData);
+      makeBundleTable();
+      $("#bundle_no").val("").removeClass("complete-input").addClass("no-input");
+      $("#quantity").val("").removeClass("complete-input").addClass("no-input");
+      $("#lot_no").val("").removeClass("complete-input").addClass("no-input");
+      $("#add_bundle__button").prop("disabled", true);
       break;
   }
 });
+
+function makeBundleTable() {
+  fileName = "./php/DailyReport/SelBundle.php";
+  sendData = {
+    id: $("#selected__tr").find("td").eq(0).html(),
+  };
+  myAjax.myAjax(fileName, sendData);
+  $("#bundle__table tbody").empty();
+  ajaxReturnData.forEach(function (trVal) {
+    var newTr = $("<tr>");
+    Object.keys(trVal).forEach(function (tdVal) {
+      if (tdVal == "id") {
+        $("<td>").html(trVal[tdVal]).appendTo(newTr);
+    } else {
+      $("<td>").append($("<input>").val(trVal[tdVal])).appendTo(newTr);
+    }   
+    });
+    $(newTr).appendTo("#bundle__table tbody");
+  });
+}
 
 // *****************************************************
 // *****************************************************
@@ -951,6 +1091,8 @@ $(document).on("click", "#summary__table tbody tr", function (e) {
     fillWorkInformation(ajaxReturnData);
     // ============= Fill Rack Data
     makeRackTable();
+    makeBundleTable();
+    makeErrorTable();
 
     editMode = true;
     // button activation
@@ -958,6 +1100,8 @@ $(document).on("click", "#summary__table tbody tr", function (e) {
     $("#preview__button").attr("disabled", false);
     // set aging rack table to edit mode
     $("#add-rack__button").text("Add");
+    $("#add_error__button").text("Add");
+    $("#add_bundle__button").text("Add");
     $("#racknumber__input").removeClass("complete-input").addClass("no-input");
     $("#rackqty__input").removeClass("complete-input").addClass("no-input");
   } else {
@@ -967,6 +1111,60 @@ $(document).on("click", "#summary__table tbody tr", function (e) {
   }
 });
 
+$(document).on("click", "#error__table tbody tr", function() {
+  if (!$(this).hasClass("selected-record")) {
+      $(this).parent().find("tr").removeClass("selected-record");
+      $(this).addClass("selected-record");
+      $("#error__selected").removeAttr("id");
+      $(this).attr("id", "error__selected");
+  } else {
+      // $(this).removeClass("selected-record");
+      // $(this).removeAttr("id");
+  }
+});
+
+$(document).on("click", "#bundle__table tbody tr", function() {
+  if (!$(this).hasClass("selected-record")) {
+      $(this).parent().find("tr").removeClass("selected-record");
+      $(this).addClass("selected-record");
+      $("#bundle__selected").removeAttr("id");
+      $(this).attr("id", "bundle__selected");
+  } else {
+      // $(this).removeClass("selected-record");
+      // $(this).removeAttr("id");
+  }
+});
+
+$(document).on("change", "#error__table tbody tr", function () {
+  let sendData = new Object();
+  let fileName;
+  fileName = "./php/DailyReport/UpdateError.php";
+  sendData = {
+    id: $("#error__selected td:nth-child(1)").html(),
+    error_code_id : $("#error__selected td:nth-child(2) select").val(),
+    start_time: $("#error__selected td:nth-child(3) input").val(),
+    end_time: $("#error__selected td:nth-child(4) input").val(),
+    note: $("#error__selected td:nth-child(5) input").val(),
+  };
+  console.log(sendData);
+  myAjax.myAjax(fileName, sendData);
+});
+
+$(document).on("change", "#bundle__table tbody tr input", function () {
+  let sendData = new Object();
+  let fileName;
+  if (editMode) {
+    fileName = "./php/DailyReport/UpdateBundle.php";
+    sendData = {
+      id: $("#bundle__selected td:nth-child(1)").html(),
+      bundle: $("#bundle__selected td:nth-child(2) input").val(),
+      quantity: $("#bundle__selected td:nth-child(3) input").val(),
+      lot: $("#bundle__selected td:nth-child(4) input").val(),
+    };
+    console.log(sendData);
+    myAjax.myAjax(fileName, sendData);
+  }
+});
 // deleteダイアログのキャンセルボタンが押されたとき
 $(document).on("click", "#delete-dialog-cancel__button", function () {
   deleteDialog.close();
@@ -1156,7 +1354,6 @@ $(document).on("click", "#save__button", function () {
   sendData = inputData;
   myAjax.myAjax(fileName, sendData);
   targetId = ajaxReturnData["id"];
-  // ========Table Data:Rack information===========
   // 1:get table data
   tableData = getTableData($("#rack__table tbody tr"));
   tableData.push(targetId);
@@ -1164,8 +1361,6 @@ $(document).on("click", "#save__button", function () {
   fileName = "./php/DailyReport/InsUsedRack.php";
   sendData = JSON.stringify(tableData);
   myAjax.myAjax(fileName, sendData);
-  // return false;
-  // ========Table Data:Work information===========
   // 1:get and adjust table data
   workInfrmationTable = getTableDataInput($("#work-length__table tbody tr"));
   sendTable = makeSendData(workInfrmationTable);
@@ -1173,6 +1368,18 @@ $(document).on("click", "#save__button", function () {
   // 2:Insert into database
   fileName = "./php/DailyReport/InsWorkInformation3.php";
   sendData = JSON.stringify(sendTable);
+  myAjax.myAjax(fileName, sendData);
+
+  ErrorData = tableData($("#error__table tbody tr"));
+  ErrorData.push(targetId);
+  fileName = "./php/DailyReport/InsError13.php";
+  sendData = JSON.stringify(ErrorData);
+  myAjax.myAjax(fileName, sendData);
+
+  BundleData = tableData($("#bundle__table tbody tr"));
+  BundleData.push(targetId);
+  fileName = "./php/DailyReport/InsBundle13.php";
+  sendData = JSON.stringify(BundleData);
   myAjax.myAjax(fileName, sendData);
 
   setSummaryTable();
@@ -1194,6 +1401,8 @@ function clearInputData() {
   // table クリア
   $("#rack__table tbody").empty();
   $("#work-length__table tbody").empty();
+  $("#error__table tbody").empty();
+  $("#bundle__table tbody").empty();
 }
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // ------------------------- Update BUTTON  ----------------------------------
@@ -1358,6 +1567,28 @@ $(document).on("click", "#preview__button", function () {
 
 // ==================== test button =======================
 $(document).on("click", "#test__button", function () {
-  console.log(getTableDataInput($("#work-length__table tbody tr")));
-  console.log($("#work-length__table tbody tr"));
+  console.log(tableData($("#bundle__table tbody tr")));
+  console.log(tableData($("#error__table tbody tr")));
+  // console.log($("#work-length__table tbody tr"));
 });
+
+
+function tableData(tableTrObj) {
+  var tableData = [];
+  tableTrObj.each(function (index, element) {
+    var tr = [];
+    $(this)
+      .find("td")
+      .each(function (index, element) {
+        if ($(this).find("input").length) {
+          tr.push($(this).find("input").val());
+        } else if ($(this).find("select").length) {
+          tr.push($(this).find("select").val());
+        } else {
+          tr.push($(this).html());
+        }
+      });
+    tableData.push(tr);
+  });
+  return tableData;
+}

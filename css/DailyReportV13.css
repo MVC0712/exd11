@@ -235,18 +235,23 @@ display: none;
   width: 220px;
 }
 #error__table tbody {
-  height: 250px;
+  height: 60px;
   width: 222px;
 }
 #add_error__table tbody {
-  height: 22px;
+  height: 25px;
   overflow: hidden;
 }
 #rack__table {
   width: 172px;
 }
-#add_error__table tbody td input {
+#add_error__table tbody td input,
+#add_error__table tbody tr select { 
   width: 47px;
+  text-align: center;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: none;
 }
 #add_error__table th,
 #add_error__table thead th,
@@ -269,7 +274,71 @@ display: none;
 #rack__table td:nth-child(1) {
   display: none;
 }
+#error__table td:nth-child(2) select {
+  text-align: center;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: none;
+}
 
+#bundle__table {
+  width: 172px;
+}
+#bundle__table tbody {
+  height: 110px;
+  width: 222px;
+}
+#bundle__table th:nth-child(1),
+#bundle__table td:nth-child(1) {
+  display: none;
+}
+#bundle__table th:nth-child(2),
+#bundle__table td:nth-child(2) {
+  width: 50px;
+}
+#bundle__table th:nth-child(3),
+#bundle__table td:nth-child(3) {
+  width: 30px;
+}
+#bundle__table th:nth-child(4),
+#bundle__table td:nth-child(4) {
+  width: 120px;
+}
+#bundle__table th:nth-child(5),
+#bundle__table td:nth-child(5) {
+  width: 100px;
+}
+#error__table tbody td input,
+#bundle__table tbody td input {
+  text-align: left;
+}
+#add_bundle__table {
+  width: 172px;
+}
+#add_bundle__table tbody {
+  height: 22px;
+  width: 222px;
+  overflow: hidden;
+}
+#add_bundle__table tbody td input {
+  text-align: left;
+}
+#add_bundle__table th:nth-child(1),
+#add_bundle__table td:nth-child(1) {
+  width: 50px;
+}
+#add_bundle__table th:nth-child(2),
+#add_bundle__table td:nth-child(2) {
+  width: 30px;
+}
+#add_bundle__table th:nth-child(3),
+#add_bundle__table td:nth-child(3) {
+  width: 120px;
+}
+#add_bundle__button,
+#add_error__button {
+  margin-top: 0px;
+}
 #work-length__table {
   width: 182px;
 }
@@ -306,7 +375,7 @@ button {
 
 #add-rack__button {
   margin: 0;
-  width: 60px;
+  width: 50px;
   height: 22px;
   border: solid 1px #0000ff;
 }

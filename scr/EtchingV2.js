@@ -20,19 +20,6 @@ const myAjax = {
 };
 
 $(function() {
-    // var fileName = "./php/Etching/SelSummary.php";
-    // var sendData = {
-    //     dummy: "dummy",
-    // };
-    // myAjax.myAjax(fileName, sendData);
-    // $("#summary_table tbody").empty();
-    // ajaxReturnData.forEach(function(trVal) {
-    //     let newTr = $("<tr>");
-    //     Object.keys(trVal).forEach(function(tdVal, index) {
-    //         $("<td>").html(trVal[tdVal]).appendTo(newTr);
-    //     });
-    //     $(newTr).appendTo("#summary_table tbody");
-    // });
     makeSummaryTable();
 });
 

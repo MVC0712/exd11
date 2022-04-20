@@ -83,6 +83,10 @@ $(document).on("click", "#die__table tbody tr", function() {
                     break;
                 case "jpg":
                 case "JPG":
+                case "png":
+                case "PNG":
+                case "jpe":
+                case "JPE":
                     $("<object>")
                         .attr("data", "../upload/DieHistory/" + filename)
                         .attr("type", "image/jpeg")
