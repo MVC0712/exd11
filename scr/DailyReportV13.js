@@ -390,6 +390,20 @@ $(document).on("keyup", "#scrap_weight__input", function () {
   }
 });
 
+// 1St length
+$(document).on("keyup", "#first_actual_length", function () {
+  if (
+    !isNaN($(this).val()) &&
+    $(this).val().length != 0 &&
+    1500 <= $(this).val() &&
+    $(this).val() <= 6600
+  ) {
+    $(this).removeClass("no-input").addClass("complete-input");
+  } else {
+    $(this).removeClass("complete-input").addClass("no-input");
+  }
+});
+
 // ====================== filter items ====================
 // Press type
 $("#press-type-filter").on("change", function () {
@@ -519,20 +533,19 @@ $("#add_error__button").on("click", function () {
     case "Add":
       let fileName;
       let sendData = new Object();
-      fileName = "./php/DailyReport/InsUsingAgingRack.php";
+      fileName = "./php/DailyReport/AddError13.php";
       sendData = {
-        t_press_id: $("#selected__tr td:nth-child(1)").text(),
+        press_id: $("#selected__tr td:nth-child(1)").text(),
         err_code: $("#err_code").val(),
         err_start: $("#err_start").val(),
         err_end: $("#err_end").val(),
         err_note: $("#err_note").val(),
       };
-      // myAjax.myAjax(fileName, sendData);
+      myAjax.myAjax(fileName, sendData);
       makeErrorTable();
       $("#err_code").val("").removeClass("complete-input").addClass("no-input");
       $("#err_start").val("").removeClass("complete-input").addClass("no-input");
       $("#err_end").val("").removeClass("complete-input").addClass("no-input");
-      $("#err_note").val("").removeClass("complete-input").addClass("no-input");
       $("#add_error__button").prop("disabled", true);
     break;
   }
@@ -642,14 +655,14 @@ $("#add_bundle__button").on("click", function () {
     case "Add":
       let fileName;
       let sendData = new Object();
-      fileName = "./php/DailyReport/InsUsingAgingRack.php";
+      fileName = "./php/DailyReport/AddBundle13.php";
       sendData = {
-        t_press_id: $("#selected__tr td:nth-child(1)").text(),
+        press_id: $("#selected__tr td:nth-child(1)").text(),
         bundle_no: $("#bundle_no").val(),
         quantity: $("#quantity").val(),
         lot_no: $("#lot_no").val(),
       };
-      // myAjax.myAjax(fileName, sendData);
+      myAjax.myAjax(fileName, sendData);
       makeBundleTable();
       $("#bundle_no").val("").removeClass("complete-input").addClass("no-input");
       $("#quantity").val("").removeClass("complete-input").addClass("no-input");
@@ -1067,7 +1080,7 @@ function setSummaryTable() {
 // ------------------------- Summary Table ---------------------------------
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 $(document).on("click", "#summary__table tbody tr", function (e) {
-  let fileName = "./php/DailyReport/SelSelData12.php";
+  let fileName = "./php/DailyReport/SelSelData13.php";
   let sendData;
   if (!$(this).hasClass("selected-record")) {
     // tr に class を付与し、選択状態の background colorを付ける
@@ -1278,6 +1291,7 @@ function fillReadData(data) {
   $("#billet-size__select").val(data[0]["billet_size"]);
   $("#billet-length__select").val(data[0]["billet_length"]);
   $("#scrap_weight__input").val(data[0]["scrap_weight__input"]);
+  $("#first_actual_length").val(data[0]["first_actual_length"]);
   $("#name__select")
     .empty()
     .append($("<option>").html(data[0]["staff_name"]).val(data[0]["staff_id"]));
@@ -1350,7 +1364,7 @@ $(document).on("click", "#save__button", function () {
   // ======= Input Data ==================
   inputData = getInputData();
   console.log(inputData);
-  fileName = "./php/DailyReport/InsPd12.php";
+  fileName = "./php/DailyReport/InsPd13.php";
   sendData = inputData;
   myAjax.myAjax(fileName, sendData);
   targetId = ajaxReturnData["id"];
@@ -1418,7 +1432,7 @@ $(document).on("click", "#update__button", function () {
 
   // ========Input data============
   inputData = getInputData();
-  fileName = "./php/DailyReport/UpdatePd12.php";
+  fileName = "./php/DailyReport/UpdatePd13.php";
   sendData = inputData;
   myAjax.myAjax(fileName, sendData);
   // ========Table Data:Rack information===========
