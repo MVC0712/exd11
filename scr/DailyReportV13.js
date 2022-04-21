@@ -1384,13 +1384,13 @@ $(document).on("click", "#save__button", function () {
   sendData = JSON.stringify(sendTable);
   myAjax.myAjax(fileName, sendData);
 
-  ErrorData = tableData($("#error__table tbody tr"));
+  ErrorData = getTableData($("#error__table tbody tr"));
   ErrorData.push(targetId);
   fileName = "./php/DailyReport/InsError13.php";
   sendData = JSON.stringify(ErrorData);
   myAjax.myAjax(fileName, sendData);
 
-  BundleData = tableData($("#bundle__table tbody tr"));
+  let BundleData = getTableData($("#bundle__table tbody tr"));
   BundleData.push(targetId);
   fileName = "./php/DailyReport/InsBundle13.php";
   sendData = JSON.stringify(BundleData);
@@ -1581,13 +1581,13 @@ $(document).on("click", "#preview__button", function () {
 
 // ==================== test button =======================
 $(document).on("click", "#test__button", function () {
-  console.log(tableData($("#bundle__table tbody tr")));
-  console.log(tableData($("#error__table tbody tr")));
+  console.log(getTableData($("#bundle__table tbody tr")));
+  console.log(getTableData($("#error__table tbody tr")));
   // console.log($("#work-length__table tbody tr"));
 });
 
 
-function tableData(tableTrObj) {
+function getTableData(tableTrObj) {
   var tableData = [];
   tableTrObj.each(function (index, element) {
     var tr = [];

@@ -20,7 +20,7 @@
 
     if(count($data_json) > 0){
       foreach($data_json as $val){
-        $sql_paramater[] = "({$selected_id}, {$val[1]}, {$val[2]}, {$val[3]}, {$val[4]})";
+        $sql_paramater[] = "('{$selected_id}', '{$val[1]}', '{$val[2]}', '{$val[3]}', '{$val[4]}')";
       }
       $sql = "INSERT INTO t_error (press_id, error_code_id, start_time, end_time, note) VALUES ".join(",", $sql_paramater);
       $prepare = $dbh->prepare($sql);

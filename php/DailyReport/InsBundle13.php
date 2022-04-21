@@ -20,7 +20,7 @@
 
     if(count($data_json) > 0){
       foreach($data_json as $val){
-        $sql_paramater[] = "({$selected_id}, {$val[1]}, {$val[2]}, {$val[3]})";
+        $sql_paramater[] = "('{$selected_id}', '{$val[1]}', '{$val[2]}', '{$val[3]}')";
       }
       $sql = "INSERT INTO t_bundle (press_id, bundle, quantity, lot) VALUES ".join(",", $sql_paramater);
       $prepare = $dbh->prepare($sql);
