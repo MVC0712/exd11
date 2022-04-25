@@ -24,12 +24,12 @@
         press_date_at,
         pressing_type_id,
         press_machine_no,
-        billet_lot_number,
+        -- billet_lot_number,
         billet_size,
         billet_length,
         plan_billet_quantities,
         actual_billet_quantities,
-        press_stop_cause_id,
+        -- press_stop_cause_id,
         press_start_at,
         press_finish_at,
         actual_ram_speed,
@@ -66,12 +66,12 @@
         :press_date_at,
         :pressing_type_id,
         :press_machine_no,
-        :billet_lot_number,
+        -- :billet_lot_number,
         :billet_size,
         :billet_length,
         :plan_billet_quantities,
         :actual_billet_quantities,
-        :press_stop_cause_id,
+        -- :press_stop_cause_id,
         :press_start_at,
         :press_finish_at,
         :actual_ram_speed,
@@ -108,12 +108,12 @@
       $prepare->bindValue(':press_date_at', $_POST["date__input"], PDO::PARAM_STR);
       $prepare->bindValue(':pressing_type_id', (INT)$_POST["pressing-type__select"], PDO::PARAM_INT);
       $prepare->bindValue(':press_machine_no', (INT)$_POST["machine-number__select"], PDO::PARAM_INT);
-      $prepare->bindValue(':billet_lot_number', $_POST["billet-lot-number__input"], PDO::PARAM_STR);
+    //   $prepare->bindValue(':billet_lot_number', $_POST["billet-lot-number__input"], PDO::PARAM_STR);
       $prepare->bindValue(':billet_size', (INT)$_POST["billet-size__select"], PDO::PARAM_INT);
       $prepare->bindValue(':billet_length', (INT)$_POST["billet-length__select"], PDO::PARAM_INT);
       $prepare->bindValue(':plan_billet_quantities', (INT)$_POST["plan-billet-qty__input"], PDO::PARAM_INT);
       $prepare->bindValue(':actual_billet_quantities', (INT)$_POST["actual-billet-qty__input"], PDO::PARAM_INT);
-      $prepare->bindValue(':press_stop_cause_id', (INT)$_POST["stop-cause__select"], PDO::PARAM_INT);
+    //   $prepare->bindValue(':press_stop_cause_id', (INT)$_POST["stop-cause__select"], PDO::PARAM_INT);
       $prepare->bindValue(':press_start_at', $_POST["press-start__input"], PDO::PARAM_STR);
       $prepare->bindValue(':press_finish_at', $_POST["press-finish__input"], PDO::PARAM_STR);
       $prepare->bindValue(':actual_ram_speed', $_POST["actual-ram-speed__input"], PDO::PARAM_STR);
