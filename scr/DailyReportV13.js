@@ -1,6 +1,6 @@
 // 2021/09/10 start to edit
 // 削除確認ダイアログ
-// let deleteDialog = document.getElementById("delete__dialog");
+let deleteDialog = document.getElementById("delete__dialog");
 
 // 初期値
 let ajaxReturnData;
@@ -29,7 +29,7 @@ const myAjax = {
 
 $(function () {
   // test ボタンの表示
-  // $("#test__button").hide();
+  $("#test__button").hide();
   setSummaryTable();
   ErrorCode();
 });
@@ -1474,6 +1474,13 @@ function getInputData() {
       inputData[$(this).attr("id")] = $(this).val();
     });
     $("select.save-data").each(function (index, element) {
+      inputData[$(this).attr("id")] = $(this).val();
+    });
+  } else {
+    $("input.save-data_new").each(function (index, element) {
+      inputData[$(this).attr("id")] = $(this).val();
+    });
+    $("select.save-data_new").each(function (index, element) {
       inputData[$(this).attr("id")] = $(this).val();
     });
   }

@@ -1,3 +1,6 @@
+body {
+    width: 850px;
+}
 body>div {
     width: 100%;
 }
@@ -6,9 +9,9 @@ input {
     /* width: 40px; */
     width: 95%;
     height: 20px;
-    border: none;
+    border: 0;
     text-align: left;
-    padding: 0px 2px;
+    padding: 0px;
 }
 
 /* ============== Page Layout ============== */
@@ -24,21 +27,29 @@ input {
     align-items: center;
 }
 
+#jud_con {
+    width: 120px;
+    flex-direction: row
+}
+
 #dcyc{
-    width: 100%;
+    width: 50px;
     border-radius: 5px;
     border: 1px solid #0000ff;
     text-align: right;
 }
 
 #gh {
-    width:50px;
+    width:30px;
 }
 
+input[type=number]::-webkit-inner-spin-button,
 #ght,
 #ghd {
+    width:40px;
     border: 1px solid #0000ff;
     border-radius: 5px;
+    margin: 0;
 }
 
 #hardness__date {
@@ -47,13 +58,17 @@ input {
 }
 
 #data__table tbody {
-    height: 450px;
-    width: 220px;
+    height: 500px;
+    width: 410px;
 }
 
 #add_new_data tbody {
-    height: 30px;
-    /* width: 350px; */
+    width: 430px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+    overflow: hidden;
 }
 
 #data__table td,
@@ -64,9 +79,7 @@ input {
 }
 
 #data__table th:nth-child(2),
-#data__table td:nth-child(2),
-#add_new_data th:nth-child(2),
-#add_new_data td:nth-child(2){
+#data__table td:nth-child(2){
     display: none;
 }
 
@@ -74,14 +87,12 @@ input {
 #data__table td:nth-child(1),
 #add_new_data th:nth-child(1),
 #add_new_data td:nth-child(1) {
-    width: 50px;
+    width: 35px;
     text-align: center;
 }
 
-#add_new_data th:nth-child(3),
-#add_new_data td:nth-child(3),
-#add_new_data th:nth-child(4),
-#add_new_data td:nth-child(4),
+#add_new_data th,
+#add_new_data td,
 #data__table th:nth-child(3),
 #data__table td:nth-child(3),
 #data__table th:nth-child(4),
@@ -102,7 +113,7 @@ input {
 #data__table td:nth-child(11),
 #data__table th:nth-child(12),
 #data__table td:nth-child(12) {
-    width: 70px;
+    width: 30px;
     text-align: center;
 }
 
@@ -118,10 +129,16 @@ input {
     text-overflow: '';
 }
 
+#add_new {
+    width: 100%;
+    height: 20px;
+    margin: 0;
+}
+
 #add_new_data .need-clear input,
 #add_new_data #selected__tr input,
 #data__table #selected__tr input {
-    background-color: #6bfaff;
+    /* background-color: #6bfaff; */
 }
 
 #sum_code__table td,
@@ -146,7 +163,7 @@ input {
 
 #summary_table tbody {
     height: 540px;
-    width: 310px;
+    width: 283px;
 }
 
 #summary_table td,
@@ -161,7 +178,7 @@ input {
 
 #summary_table th:nth-child(2),
 #summary_table td:nth-child(2) {
-    width: 60px;
+    width: 55px;
 }
 
 #summary_table th:nth-child(3),
@@ -171,18 +188,18 @@ input {
 
 #summary_table th:nth-child(4),
 #summary_table td:nth-child(4) {
-    width: 115px;
+    width: 110px;
 }
 
 #summary_table th:nth-child(5),
 #summary_table td:nth-child(5) {
-    width: 25px;
+    width: 15px;
     text-align: center;
 }
 
 #summary_table th:nth-child(6),
 #summary_table td:nth-child(6) {
-    width: 20px;
+    width: 15px;
 }
 
 #summary_table th:nth-child(7),
@@ -198,105 +215,6 @@ input {
 
 .button__area button {
     margin: 5px;
-}
-
-
-/* ===================== ng table  ========================== */
-
-#ng__table tbody {
-    height: 160px;
-    width: 300px;
-}
-
-#ng__table td,
-#ng__table th {
-    font-size: 12pt;
-}
-
-#ng__table th:nth-child(1),
-#ng__table td:nth-child(1) {
-    display: none;
-}
-
-#ng__table th:nth-child(2),
-#ng__table td:nth-child(2) {
-    display: none;
-}
-
-#ng__table th:nth-child(3),
-#ng__table td:nth-child(3) {
-    width: 117px;
-}
-
-#ng__table td:nth-child(3) select {
-    width: 100%;
-    font-size: 12pt;
-    border: 0;
-    /* background-color: khaki; */
-}
-
-#ng__table th:nth-child(4),
-#ng__table td:nth-child(4) {
-    width: 90px;
-}
-
-#ng__table td:nth-child(4) {
-    text-align: right;
-    padding: 0;
-}
-
-#ng__table td:nth-child(4) select {
-    width: 100%;
-    font-size: 12pt;
-    border: 0;
-    /* background-color: khaki; */
-}
-
-#ng__table th:nth-child(5),
-#ng__table td:nth-child(5) {
-    width: 60px;
-}
-
-#ng__table td:nth-child(5) {
-    text-align: right;
-}
-
-button {
-    height: 25px;
-}
-
-#ng__table td:nth-child(4) input,
-#ng__table td:nth-child(5) input {
-    width: 100%;
-    border: 0;
-    font-size: 12pt;
-}
-
-#ng__table input {
-    cursor: pointer;
-}
-
-#ng__table input.selected-input {
-    background-color: #d6d283;
-    cursor: initial;
-}
-
-#ng__table select.selected-select {
-    background-color: #d6d283;
-    cursor: initial;
-}
-
-#ng__table #ng-table__footer {
-    height: 50px;
-    overflow-y: unset;
-}
-
-#ng__table #ng-table__footer tr td {
-    border: 0;
-}
-
-#ng__table #ng-table__footer tr:nth-child(1) td {
-    border-top: gray solid 1px;
 }
 
 #data__table #table_headder {

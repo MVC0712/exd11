@@ -15,9 +15,9 @@
 
       $prepare = $dbh->prepare("
     SELECT 
-      Position,
+      position,
       id,
-      jug
+      1hn, 2hn, 3hn, 4hn, 5hn, 6hn, 7hn, 8hn, 9hn, 10hn
     FROM
       extrusion.t_hardness
     WHERE

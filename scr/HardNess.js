@@ -74,12 +74,8 @@ function makeDataTable(targetDom, ajaxReturnData) {
         Object.keys(trVal).forEach(function(tdVal) {
             if (tdVal == "position" || tdVal == "id") {
                 $("<td>").html(trVal[tdVal]).appendTo(newTr);
-            // } else if (tdVal == "jug") {
-            //     $("<td>")
-            //         .append(makeJugCodeOptionDom(trVal[tdVal]))
-            //         .appendTo(newTr);
             } else {
-                $("<td>").html(trVal[tdVal]).appendTo(newTr);
+                $("<td>").append($("<input>").val(trVal[tdVal])).appendTo(newTr);
             }
         });
         $(newTr).appendTo(targetDom);
@@ -181,7 +177,7 @@ $(document).on("change", "#data__table tbody td", function() {
 });
 
 $(document).on("click", "#save__button", function() {
-    var fileName = "./php/HardNess/InsEtching.php";
+    var fileName = "./php/HardNess/InsHardness.php";
 
     tableData = getTableDataInput($("#data__table tbody tr"))
     console.log(tableData);
@@ -223,6 +219,8 @@ function getTableDataInput(tableTrObj) {
         .each(function (index, element) {
             if ($(this).find("select").length) {
                 tr.push($(this).find("select").val());
+            } else if ($(this).find("input").length) {
+                    tr.push($(this).find("input").val());
             } else {
                 tr.push($(this).html());
             }
@@ -232,37 +230,72 @@ function getTableDataInput(tableTrObj) {
     return tableData;
 };
 
-$(document).on("change", "#data__table tbody tr select", function () {
+$(document).on("change", "#data__table tbody tr", function () {
     let sendData = new Object();
     let fileName;
-    fileName = "./php/HardNess/UpdateEtching.php";
+    fileName = "./php/HardNess/UpdateHardness.php";
     sendData = {
-      id: $("#selected__tr td:nth-child(2)").html(),
-      jug1 : $("#selected__tr td:nth-child(3) select").val(),
-      code1 : $("#selected__tr td:nth-child(4) select").val(),
-      jug2 : $("#selected__tr td:nth-child(5) select").val(),
-      code2 : $("#selected__tr td:nth-child(6) select").val(),
-      jug3 : $("#selected__tr td:nth-child(7) select").val(),
-      code3 : $("#selected__tr td:nth-child(8) select").val(),
-      jug4 : $("#selected__tr td:nth-child(9) select").val(),
-      code4 : $("#selected__tr td:nth-child(10) select").val(),
-      jug5 : $("#selected__tr td:nth-child(11) select").val(),
-      code5 : $("#selected__tr td:nth-child(12) select").val(),
+      id: $("#data_select_tr td:nth-child(2)").html(),
+      new_1_data : $("#data_select_tr td:nth-child(3) input").val(),
+      new_2_data : $("#data_select_tr td:nth-child(4) input").val(),
+      new_3_data : $("#data_select_tr td:nth-child(5) input").val(),
+      new_4_data : $("#data_select_tr td:nth-child(6) input").val(),
+      new_5_data : $("#data_select_tr td:nth-child(7) input").val(),
+      new_6_data : $("#data_select_tr td:nth-child(8) input").val(),
+      new_7_data : $("#data_select_tr td:nth-child(9) input").val(),
+      new_8_data : $("#data_select_tr td:nth-child(10) input").val(),
+      new_9_data : $("#data_select_tr td:nth-child(11) input").val(),
+      new_10_data : $("#data_select_tr td:nth-child(12) input").val(),
     };
     console.log(sendData);
     myAjax.myAjax(fileName, sendData);
+});
+
+$(document).on("click", "#add_new", function () {
+    let sendData = new Object();
+    let fileName;
+    fileName = "./php/HardNess/AddNewHardness.php";
+    sendData = {
+      id: press_id,
+      new_pos : $("#new_pos").val(),
+      new_1_data : $("#new_1_data").val(),
+      new_2_data : $("#new_2_data").val(),
+      new_3_data : $("#new_3_data").val(),
+      new_4_data : $("#new_4_data").val(),
+      new_5_data : $("#new_5_data").val(),
+      new_6_data : $("#new_6_data").val(),
+      new_7_data : $("#new_7_data").val(),
+      new_8_data : $("#new_8_data").val(),
+      new_9_data : $("#new_9_data").val(),
+      new_10_data : $("#new_10_data").val(),
+    };
+    console.log(sendData);
+    myAjax.myAjax(fileName, sendData);
+
+    fileName = "./php/HardNess/SelData.php";
+    sendData = {
+        press_id: press_id,
+    };
+    myAjax.myAjax(fileName, sendData);
+    if (ajaxReturnData.length==0) {
+        $("#confirm").html("Chưa lưu dữ liệu");
+        $("#save__button").prop("disabled", false);
+    } else {
+        $("#confirm").html("Đã lưu dữ liệu");
+        $("#save__button").prop("disabled", true);
+        makeDataTable($("#data__table"), ajaxReturnData);
+    }
+    jugment();
 });
 
 $(document).on("click", "#data__table tbody tr", function(e) {
     if (!$(this).hasClass("selected-record")) {
         $(this).parent().find("tr").removeClass("selected-record");
         $(this).addClass("selected-record");
-        $("#selected__tr").removeAttr("id");
-        $(this).attr("id", "selected__tr");
+        $("#data_select_tr").removeAttr("id");
+        $(this).attr("id", "data_select_tr");
     } else {
-
     }
-    jugment();
 });
 
 $(document).on("click", "#summary_table tbody tr", function(e) {
@@ -277,7 +310,7 @@ $(document).on("click", "#summary_table tbody tr", function(e) {
             dies_id: $("#selected__tr").find("td").eq(2).html(),
         };
         myAjax.myAjax(fileName, sendData);
-        $("#table_headder").html($("#selected__tr").find("td").eq(3).html()+" ("+$("#selected__tr").find("td").eq(1).html()+")");
+        // $("#table_headder").html($("#selected__tr").find("td").eq(3).html()+" ("+$("#selected__tr").find("td").eq(1).html()+")");
         let h = ajaxReturnData[0].hole; 
         let n = ajaxReturnData[0].n; 
         let m = ajaxReturnData[0].m; 
@@ -330,21 +363,22 @@ $(document).on("click", "#summary_table tbody tr", function(e) {
                 else { trDom.append($("<td>").html( Math.ceil((i-n-3)/(2*n) + 1) + "END")); }
 
             }
-            for (j = 0; j < 3; ++j) {
+            for (j = 0; j < 11; ++j) {
             let tdDom;
             if (j==0) {
                 trDom.append($("<td>").html(""));
             } else if (j%2==1) {
                 tdDom = $("<td>").append($("<input>").addClass("need-clear"));
-            } else if (j==2){
-                tdDom = $("<td>");
+            // } else if (j==2){
+            //     tdDom = $("<td>");
                 // tdDom = $("<td>").append($("<select>").append(
                 //     $("<option>").val(33).html(""),
                 //     $("<option>").val(11).html("OK"),
                 //     $("<option>").val(19).html("NG")
                 // ).addClass("need-clear"));
             } else {
-                tdDom = $("<td>");
+                // tdDom = $("<td>");
+                tdDom = $("<td>").append($("<input>").addClass("need-clear"));
             }
             trDom.append(tdDom);
             }
@@ -365,11 +399,15 @@ $(document).on("click", "#summary_table tbody tr", function(e) {
             makeDataTable($("#data__table"), ajaxReturnData);
         }
         color();
-        jugment();
+        // jugment();
 
     } else {
 
     }
+});
+
+$(document).on("click", "#jugmm", function(e) {
+    jugment();
 });
 
 function timkiem() {
@@ -409,17 +447,18 @@ function jugment() {
     var min = Number($("#dcyc").val()) - Number($("#ght").val());
     console.log(min, max);
       for (i = 1; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td")[2];
-        td1 = tr[i].getElementsByTagName("td")[3];
-        console.log(td, td1);
-        if (td) {
-            txtdata = Number(td.getElementsByTagName("input")[0].value);
-            if (txtdata < min) {
-                table.rows[i].cells[3].innerHTML = "NG";
-                $(td1).css("background-color", "red");
-            } else {
-                table.rows[i].cells[3].innerHTML = "OK";
-                $(td1).css("background-color", "white");
+          for (j = 2; j < 13; ++j) {
+            td = tr[i].getElementsByTagName("td")[j];
+            if (td) {
+                txtdata = Number(td.getElementsByTagName("input")[0].value);
+                console.log(txtdata);
+                if (txtdata < min) {
+                    // table.rows[i].append('NG');
+                    table.rows[i].style.backgroundColor = "red";
+                } else {
+                    // table.rows[i].append('OK');
+                    table.rows[i].style.backgroundColor = "white";
+                }
             }
         }
     }

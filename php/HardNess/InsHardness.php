@@ -20,13 +20,13 @@
           )
       );
         foreach ($data_json as $val) {
-            $sql_paramater[] = "({$press_id}, '{$val[0]}', {$val[2]}, {$val[3]}, {$val[4]}, {$val[5]}, {$val[6]}, {$val[7]}, {$val[8]}, {$val[9]}, {$val[10]}, {$val[11]})";
+            $sql_paramater[] = "('{$press_id}', '{$val[0]}', '{$val[2]}', '{$val[3]}', '{$val[4]}', '{$val[5]}', '{$val[6]}', '{$val[7]}', '{$val[8]}', '{$val[9]}', '{$val[10]}', '{$val[11]}')";
         };
 
-      $sql = "INSERT INTO t_etching ";
-      $sql = $sql."(press_id, Position, 1st_jug, 1st_code, 2nd_jug, 2nd_code, 3rd_jug, 3rd_code, 4th_jug, 4th_code, 5th_jug, 5th_code ) VALUES ";
+      $sql = "INSERT INTO t_hardness ";
+      $sql = $sql."(press_id, position, 1hn, 2hn, 3hn, 4hn, 5hn, 6hn, 7hn, 8hn, 9hn, 10hn) VALUES ";
       $sql = $sql.join(",", $sql_paramater);
-    //   print_r($sql);
+      // print_r($sql);
       $prepare = $dbh->prepare($sql);
       
       $prepare->execute();

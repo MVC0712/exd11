@@ -17,11 +17,11 @@
                 <thead>
                     <tr>
                         <th>press_id</th>
-                        <th>Ngày đùn</th>
+                        <th>Ngày</th>
                         <th>die_id</th>
                         <!-- <th>Khuôn</th> -->
                         <th><input id="die_number__input" placeholder="Tìm trong bảng" style="width: 110px; text-align: left;" type="text" onkeyup="timkiem();" /></th>
-                        <th>Kiểu</th>
+                        <th>Stl</th>
                         <th>Sl</th>
                         <th>XN</th>
                     </tr>
@@ -34,39 +34,66 @@
         <table id="data__table">
             <thead>
               <!-- <tr><th id="table_headder">Bảng ngâm mẫu</th><th></th><td id="confirm"></td></tr> -->
-              <tr><th>Vị trí</th><th>id</th><th>ĐC TB</th><th>Đánh giá</th></tr>
+                <tr>
+                  <th>Vị trí</th>
+                  <th>id</th>
+                  <th>1</th>
+                  <th>2</th>
+                  <th>3</th>
+                  <th>4</th>
+                  <th>5</th>
+                  <th>6</th>
+                  <th>7</th>
+                  <th>8</th>
+                  <th>9</th>
+                  <th>10</th>
+                </tr>
             </thead>
             <tbody>
             </tbody>
         </table>
         <table id="add_new_data">
         <thead>
-            <tr><th>Vị trí</th><th>id</th><th>ĐC TB</th></tr>
+            <tr>
+                <th>Vị trí</th>
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+                <th>4</th>
+                <th>5</th>
+                <th>6</th>
+                <th>7</th>
+                <th>8</th>
+                <th>9</th>
+                <th>10</th>
+              </tr>
         </thead>
         <tbody>
             <tr>
-                <td>
-                    <input id="new_pos" class="need-clear" type="text" />
-                </td>
-                <td>
-                vv
-            </td>
-                <td>
-                <input id="new_data" class="need-clear" type="text" />
-            </td>
-            <!-- <td>
-                <input id="new_jug" class="need-clear" type="text" />
-            </tr> -->
+                <td><input id="new_pos" class="need-clear" type="text" /></td>
+                <td><input id="new_1_data" class="need-clear" type="text" /></td>
+                <td><input id="new_2_data" class="need-clear" type="text" /></td>
+                <td><input id="new_3_data" class="need-clear" type="text" /></td>
+                <td><input id="new_4_data" class="need-clear" type="text" /></td>
+                <td><input id="new_5_data" class="need-clear" type="text" /></td>
+                <td><input id="new_6_data" class="need-clear" type="text" /></td>
+                <td><input id="new_7_data" class="need-clear" type="text" /></td>
+                <td><input id="new_8_data" class="need-clear" type="text" /></td>
+                <td><input id="new_9_data" class="need-clear" type="text" /></td>
+                <td><input id="new_10_data" class="need-clear" type="text" /></td>
+                <td><button id="add_new">+</button></td>  
+            </tr>
         </tbody>
         </table> 
-        <button id="add_new_data__button">Thêm mẫu mới</button>   
+        <!-- <button id="add_new_data__button">Thêm mẫu mới</button>    -->
         </div>
 
 
-          <div style="width:200px; flex-direction: row;">
-            <button id="save__button" disabled>Lưu dữ liệu</button>
+          <div id="jud_con">
+            <button id="save__button" disabled>Lưu</button>
+            <button id="jugmm" disabled>Đánh giá</button>
 
-        <div id="mear_jug" style="flex-direction: row;">
+        <div id="mear_jug">
             <div class="input-block__outer">
                 <div class="input__title">ĐCYC</div>
                 <input id="dcyc" class="no-input" type="number">
