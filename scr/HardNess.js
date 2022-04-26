@@ -42,13 +42,16 @@ $(document).on("change", "#ghd", function () {
 });
 
 $(document).on("change", "#hardness__date", function() {
-    var fileName = "./php/HardNess/InsEtchingDate.php";
-    var sendData = {
-        press_id : press_id,
-        hardness__date: $("#hardness__date").val(),
-    };
-    // myAjax.myAjax(fileName, sendData);
-    $("#hardness__date").addClass("complete-input").removeClass("no-input");
+    if (press_id) {
+        var fileName = "./php/HardNess/InsHardNessDate.php";
+        var sendData = {
+            press_id : press_id,
+            hardness__date: $("#hardness__date").val(),
+        };
+        console.log(sendData);
+        myAjax.myAjax(fileName, sendData);
+        $("#hardness__date").addClass("complete-input").removeClass("no-input");
+    }
 });
 
 function makeSummaryTable() {

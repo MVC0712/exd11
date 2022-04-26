@@ -2,10 +2,10 @@
   $userid = "webuser";
   $passwd = "";
 
-  $etching__date = "";
+  $hardness__date = "";
   $press_id = "";
 
-  $etching__date = $_POST['etching__date'];
+  $hardness__date = $_POST['hardness__date'];
   $press_id = $_POST['press_id'];
 
   try{
@@ -23,7 +23,7 @@
       "UPDATE 
         t_press 
       SET 
-        etching_check_date = '$etching__date' 
+        hardness_check_date = '$hardness__date' 
       WHERE 
         id = $press_id
       ");

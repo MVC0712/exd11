@@ -32,6 +32,7 @@ $(function () {
   $("#test__button").hide();
   setSummaryTable();
   ErrorCode();
+  $("#machine-number__select").val(1).removeClass("no-input").addClass("complete-input");
 });
 // *****************************************************
 // *****************************************************
@@ -102,6 +103,7 @@ $(document).on("change", "#die__select", function () {
     };
     myAjax.myAjax(fileName, sendData);
     $("#press-directive__select option").remove();
+    // $("#press-directive__select").append($("<option>").val(0).html("NO select"));
     ajaxReturnData.forEach(function (value) {
       $("#press-directive__select").append(
         $("<option>").val(value["id"]).html(value["plan_date_at"])
@@ -139,7 +141,7 @@ $(document).on("change", "#machine-number__select", function () {
 });
 // Billet Lot
 $(document).on("keyup", "#billet-lot-number__input", function () {
-  $(this).val($(this).val().toUpperCase());
+  $(this).val($(this).val().toUpperCase()); 
   if ($(this).val() != 0)
     $(this).removeClass("no-input").addClass("complete-input");
   else $(this).removeClass("complete-input").addClass("no-input");
@@ -382,7 +384,7 @@ $(document).on("keyup", "#scrap_weight__input", function () {
     !isNaN($(this).val()) &&
     $(this).val().length != 0 &&
     0 <= $(this).val() &&
-    $(this).val() <= 1000
+    $(this).val() <= 2000
   ) {
     $(this).removeClass("no-input").addClass("complete-input");
   } else {
@@ -602,24 +604,35 @@ function ErrorCodeOption(seletedId) {
 
 // add bundle no
 $(document).on("keyup", "#bundle_no", function() {
-  if ($(this).val().length != 0) {
-      $(this).removeClass("no-input").addClass("complete-input");
+  if (
+    !isNaN($(this).val()) &&
+    $(this).val().length != 0 &&
+    0 <= $(this).val() &&
+    $(this).val() <= 1000
+  ) {
+    $(this).removeClass("no-input").addClass("complete-input");
   } else {
-      $(this).removeClass("complete-input").addClass("no-input");
+    $(this).removeClass("complete-input").addClass("no-input");
   }
   add_bundle_check();
 });
 
 $(document).on("keyup", "#quantity", function() {
-  if ($(this).val().length != 0) {
-      $(this).removeClass("no-input").addClass("complete-input");
+  if (
+    !isNaN($(this).val()) &&
+    $(this).val().length != 0 &&
+    0 <= $(this).val() &&
+    $(this).val() <= 1000
+  ) {
+    $(this).removeClass("no-input").addClass("complete-input");
   } else {
-      $(this).removeClass("complete-input").addClass("no-input");
+    $(this).removeClass("complete-input").addClass("no-input");
   }
   add_bundle_check();
 });
 
 $(document).on("keyup", "#lot_no", function() {
+  $(this).val($(this).val().toUpperCase());
   if ($(this).val().length != 0) {
       $(this).removeClass("no-input").addClass("complete-input");
   } else {
@@ -691,6 +704,29 @@ function makeBundleTable() {
     $(newTr).appendTo("#bundle__table tbody");
   });
 }
+
+$(document).on("change", "#die__select", function() {
+  if((editMode==false)&&($(this).val()!=0)){
+    fileName = "./php/DailyReport/SelFromDirective.php";
+    sendData = {
+      id: $("#press-directive__select").val(),
+    };
+    myAjax.myAjax(fileName, sendData);
+    console.log(ajaxReturnData);
+    $("#pressing-type__select").val(ajaxReturnData[0]["pressing_type_id"]).removeClass("no-input").addClass("complete-input");
+    $("#billet-size__select").val(ajaxReturnData[0]["billet_size"]).removeClass("no-input").addClass("complete-input");
+    $("#billet-length__select").val(ajaxReturnData[0]["billet_length"]).removeClass("no-input").addClass("complete-input");
+    $("#plan-billet-qty__input").val(ajaxReturnData[0]["billet_input_quantity"]).removeClass("no-input").addClass("complete-input");
+    $("#actual-ram-speed__input").val(ajaxReturnData[0]["ram_speed"]).removeClass("no-input").addClass("complete-input");
+  };
+  if($("#die__select").val()==0){
+    $("#pressing-type__select").val("").removeClass("complete-input").addClass("no-input");
+    $("#billet-size__select").val("").removeClass("complete-input").addClass("no-input");
+    $("#billet-length__select").val("").removeClass("complete-input").addClass("no-input");
+    $("#plan-billet-qty__input").val("").removeClass("complete-input").addClass("no-input");
+    $("#actual-ram-speed__input").val("").removeClass("complete-input").addClass("no-input");
+  }
+});
 
 // *****************************************************
 // *****************************************************
@@ -1055,7 +1091,7 @@ $(document).on("click", "#add_row__button", function () {
 });
 
 function setSummaryTable() {
-  let fileName = "./php/DailyReport/SelSummary2.php";
+  let fileName = "./php/DailyReport/SelSummary13.php";
   let sendData = {
     die_number: $("#die-number-fileter").val() + "%",
     start_date: $("#start-term").val(),
@@ -1225,14 +1261,14 @@ function fillReadData(data) {
   let targetDom = $(".input__wrapper input");
   // console.log(data);
   targetDom.eq(1).val(data[0]["press_date_at"]);
-  targetDom.eq(6).val(data[0]["billet_lot_number"]);
-  targetDom.eq(9).val(data[0]["plan_billet_quantities"]);
-  targetDom.eq(10).val(data[0]["actual_billet_quantities"]);
-  targetDom.eq(11).val(data[0]["stop_code"]);
-  targetDom.eq(12).val(data[0]["press_start_at"]);
-  targetDom.eq(13).val(data[0]["press_finish_at"]);
-  targetDom.eq(14).val(data[0]["actual_ram_speed"]);
-  targetDom.eq(15).val(data[0]["actual_die_temperature"]);
+  // targetDom.eq(6).val(data[0]["billet_lot_number"]);
+  targetDom.eq(8).val(data[0]["plan_billet_quantities"]);
+  targetDom.eq(9).val(data[0]["actual_billet_quantities"]);
+  // targetDom.eq(11).val(data[0]["stop_code"]);
+  targetDom.eq(10).val(data[0]["press_start_at"]);
+  targetDom.eq(11).val(data[0]["press_finish_at"]);
+  targetDom.eq(12).val(data[0]["actual_ram_speed"]);
+  targetDom.eq(13).val(data[0]["actual_die_temperature"]);
 
   targetDom = $("#container-temperature__table input");
   targetDom.eq(0).val(data[0]["container_upside_stemside_temperature"]);
@@ -1259,13 +1295,13 @@ function fillReadData(data) {
   $("#die__select")
     .empty()
     .append($("<option>").html(data[0]["die_number"]).val(data[0]["dies_id"]));
-  $("#stop-cause__select")
-    .empty()
-    .append(
-      $("<option>")
-        .html(data[0]["stop_code"])
-        .val(data[0]["press_stop_cause_id"])
-    );
+  // $("#stop-cause__select")
+  //   .empty()
+  //   .append(
+  //     $("<option>")
+  //       .html(data[0]["stop_code"])
+  //       .val(data[0]["press_stop_cause_id"])
+  //   );
   $("#press-directive__select")
     .empty()
     .append(

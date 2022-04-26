@@ -411,7 +411,7 @@ button {
 
 /* summary table */
 #summary__table {
-  width: 880px;
+  width: 1020px;
 }
 #summary__table tbody {
   height: 120px;
@@ -438,7 +438,7 @@ button {
   width: 20px;
 }
 #summary__table tr td:nth-child(3) {
-  text-align: right;
+  text-align: center;
 }
 /* Die Name */
 #summary__table tr th:nth-child(4),
@@ -496,7 +496,7 @@ button {
 
 #summary__table tr th:nth-child(11),
 #summary__table tr td:nth-child(11) {
-  width: 90px;
+  width: 130px;
 }
 
 /* B/S */
@@ -547,7 +547,7 @@ button {
 
 #summary__table tr th:nth-child(16),
 #summary__table tr td:nth-child(16) {
-  width: 45px;
+  width: 150px;
 }
 
 #summary__table tr td:nth-child(16) {
