@@ -307,7 +307,7 @@ $(document).on("click", "#summary_table tbody tr", function(e) {
         $(this).addClass("selected-record");
         $("#selected__tr").removeAttr("id");
         $(this).attr("id", "selected__tr");
-
+        $("#hardness__date").val("").addClass("no-input").removeClass("complete-input");
         var fileName = "./php/HardNess/SelSide.php";
         var sendData = {
             dies_id: $("#selected__tr").find("td").eq(2).html(),
@@ -323,7 +323,9 @@ $(document).on("click", "#summary_table tbody tr", function(e) {
             dies_id: $("#selected__tr").find("td").eq(2).html(),
         };
         myAjax.myAjax(fileName, sendData);
-        // $("#etching__date").val(ajaxReturnData[0]["etching_check_date"]).removeClass("no-input").addClass("complete-input");
+        if (ajaxReturnData[0].hardness_check_date!=null) {
+            $("#hardness__date").val(ajaxReturnData[0]["hardness_check_date"]).removeClass("no-input").addClass("complete-input");
+        }
         press_id = ajaxReturnData[0]["press_id"];
         let a = ajaxReturnData[0]["actual_billet_quantities"];
     
@@ -332,7 +334,7 @@ $(document).on("click", "#summary_table tbody tr", function(e) {
             press_id: press_id,
         };
         myAjax.myAjax(fileName, sendData);
-        console.log(ajaxReturnData[0].exist);
+        // console.log(ajaxReturnData[0].exist);
     
         $("#data__table tbody tr").remove();
         for (i = 0; i < Math.ceil(a * 2 * m * h); ++i) {
@@ -396,13 +398,21 @@ $(document).on("click", "#summary_table tbody tr", function(e) {
         if (ajaxReturnData.length==0) {
             $("#confirm").html("Chưa lưu dữ liệu");
             $("#save__button").prop("disabled", false);
+            $("#add_new").prop("disabled", true);
         } else {
             $("#confirm").html("Đã lưu dữ liệu");
             $("#save__button").prop("disabled", true);
+            $("#add_new").prop("disabled", false);
             makeDataTable($("#data__table"), ajaxReturnData);
         }
-        color();
-        // jugment();
+
+        var fileName = "./php/HardNess/SelHardNess.php";
+        var sendData = {
+            dies_id: $("#selected__tr").find("td").eq(2).html(),
+        };
+        myAjax.myAjax(fileName, sendData);
+        $("#dcyc").val(ajaxReturnData[0].hardness).removeClass("no-input").addClass("complete-input");
+
 
     } else {
 
@@ -410,6 +420,12 @@ $(document).on("click", "#summary_table tbody tr", function(e) {
 });
 
 $(document).on("click", "#jugmm", function(e) {
+    var fileName = "./php/HardNess/SelData.php";
+    var sendData = {
+        press_id: press_id,
+    };
+    myAjax.myAjax(fileName, sendData);
+    makeDataTable($("#data__table"), ajaxReturnData);
     jugment();
 });
 
@@ -443,50 +459,41 @@ function timkiem() {
 };
 
 function jugment() {
-    var table, tr, td, i, j, txtdata;
+    var table, tr, td, i, j, txtdata, tt=0, avr=0, co=0;
     table = document.getElementById("data__table");
     tr = table.getElementsByTagName("tr");
-    var max = Number($("#ght").val()) + Number($("#dcyc").val());
-    var min = Number($("#dcyc").val()) - Number($("#ght").val());
-    console.log(min, max);
+    // var max = Number($("#ght").val()) + Number($("#dcyc").val());
+    var min = Number($("#dcyc").val()) - 0.5;
+    console.log(min);
       for (i = 1; i < tr.length; i++) {
-          for (j = 2; j < 13; ++j) {
+        avr = 0;
+        co=0;
+        tt=0;
+        for (j = 2; j < 12; ++j) {
             td = tr[i].getElementsByTagName("td")[j];
             if (td) {
                 txtdata = Number(td.getElementsByTagName("input")[0].value);
-                console.log(txtdata);
-                if (txtdata < min) {
-                    // table.rows[i].append('NG');
-                    table.rows[i].style.backgroundColor = "red";
-                } else {
-                    // table.rows[i].append('OK');
-                    table.rows[i].style.backgroundColor = "white";
+                tt+=txtdata;
+                if (txtdata != 0) {
+                    co+=1;
                 }
             }
+        }
+        avr = tt/co;
+        console.log(avr);
+        table.rows[i].insertCell(12);
+        table.rows[i].cells[12].innerHTML = roundUp(avr, 1);
+        if (avr < min) {
+            // table.rows[i].cells[12].innerHTML = "NG";
+            table.rows[i].style.backgroundColor = "red";
+        } else {
+            // table.rows[i].cells[12].innerHTML = "OK";
+            table.rows[i].style.backgroundColor = "white";
         }
     }
 };
 
-function color() {
-    var table, tr, td, i, j, txtdata;
-    table = document.getElementById("data__table");
-    tr = table.getElementsByTagName("tr");
-    for (j = 0; j < 12; j++) {
-      for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td")[j];
-        td1 = tr[i].getElementsByTagName("td")[j+1];
-        if (td) {
-            txtdata = $(td).find("select").find("option:selected").text();
-            if (txtdata == "NG") {
-                $(td).find("select").css("background-color", "red");
-                $(td1).find("select").css("background-color", "red");
-            } else if (txtdata == "OK") {
-                $(td).find("select").css("background-color", "white");
-                $(td1).find("select").css("background-color", "white");
-            } else if (txtdata != 0 && txtdata != "OK") {
-                $(td).find("select").css("background-color", "orange");
-            }
-        }
-      }
-    }
-};
+function roundUp(num, precision) {
+    precision = Math.pow(10, precision)
+    return Math.ceil(num * precision) / precision
+}

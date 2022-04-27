@@ -32,6 +32,10 @@ input {
     flex-direction: row
 }
 
+#data_select_tr {
+    background-color: aqua;
+}
+
 #dcyc{
     width: 50px;
     border-radius: 5px;
@@ -59,7 +63,7 @@ input[type=number]::-webkit-inner-spin-button,
 
 #data__table tbody {
     height: 500px;
-    width: 410px;
+    width: 420px;
 }
 
 #add_new_data tbody {
@@ -112,7 +116,9 @@ input[type=number]::-webkit-inner-spin-button,
 #data__table th:nth-child(11),
 #data__table td:nth-child(11),
 #data__table th:nth-child(12),
-#data__table td:nth-child(12) {
+#data__table td:nth-child(12),
+#data__table th:nth-child(13),
+#data__table td:nth-child(13) {
     width: 30px;
     text-align: center;
 }
