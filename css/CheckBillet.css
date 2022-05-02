@@ -1,0 +1,188 @@
+.button__wrapper button {
+  height: 30px;
+  margin: 0;
+}
+
+input {
+  text-align: left;
+}
+/* --------- main wrapper ---------  */
+
+.main__wrapper {
+  padding-top: 15px;
+  flex-direction: row;
+  height: 50px;
+  align-content: space-around;
+  justify-content: space-around;
+}
+
+#input_area {
+  height: 70px;
+  display: flex;
+  align-content: space-around;
+  justify-content: space-around;
+  flex-direction: row;
+}
+
+/* select */
+
+.main__wrapper select {
+  border-width: 1px 1px 1px 0;
+}
+
+/* production number */
+#staff_name__group{
+  width: 320px;
+  margin-left: 10px;
+}
+#staff_name__title {
+  width: 35px;
+}
+#staff_name {
+  width: 60px;
+}
+#staff_name__select{
+  width: 150px;
+}
+
+#check_at__group{
+  width: 185px;
+  margin-left: 10px;
+}
+#check_at__title {
+  width: 75px;
+}
+#check_at {
+  width: 130px;
+}
+
+#plan__group{
+  width: 285px;
+  /* margin-left: 10px; */
+}
+#plan__title {
+  width: 90px;
+}
+#plan_start,
+#plan_end {
+  width: 130px;
+}
+/* ======================        button area       ======================= */
+
+#remain__button {
+  width: 120px;
+  padding-left: 10px;
+}
+
+/* ----------button block ============== */
+.button__block {
+  position: relative;
+}
+#icon {
+  width: 24px;
+  position: absolute;
+  top: 3px;
+  left: 2px;
+}
+/* --------- button wrapper ---------  */
+
+.button__wrapper {
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+/* ======================        summary-table       ======================= */
+#input__table tbody {
+  height: 45px;
+  width: 345px;
+  -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+    overflow: hidden;
+}
+
+#input__table th:nth-child(1),
+#input__table td:nth-child(1),
+#input__table th:nth-child(2),
+#input__table td:nth-child(2),
+#input__table th:nth-child(3),
+#input__table td:nth-child(3),
+#input__table th:nth-child(4),
+#input__table td:nth-child(4),
+#input__table th:nth-child(5),
+#input__table td:nth-child(5),
+#input__table th:nth-child(6),
+#input__table td:nth-child(6) {
+  width: 50px;
+}
+
+#input__table td input[type="text"] {
+  width: 47px;
+  border: 0;
+  padding: 0;
+}
+
+#summary__table tbody {
+  height: 200px;
+  width: 602px;
+}
+
+#summary__table td:nth-child(1),
+#summary__table th:nth-child(1) {
+  display: none;
+}
+
+#summary__table th:nth-child(2),
+#summary__table td:nth-child(2) {
+  width: 80px;
+}
+#summary__table th:nth-child(3),
+#summary__table td:nth-child(3) {
+  width: 120px;
+}
+#summary__table th:nth-child(4),
+#summary__table td:nth-child(4),
+#summary__table th:nth-child(5),
+#summary__table td:nth-child(5),
+#summary__table th:nth-child(6),
+#summary__table td:nth-child(6),
+#summary__table th:nth-child(7),
+#summary__table td:nth-child(7),
+#summary__table th:nth-child(8),
+#summary__table td:nth-child(8),
+#summary__table th:nth-child(9),
+#summary__table td:nth-child(9) {
+  width: 60px;
+  text-align: center;
+}
+
+
+#caculate__table td,
+#caculate__table th {
+    font-size: 10pt;
+    border: solid 1px blue;
+}
+#caculate__table td {
+    background-color: white;
+    color: black;
+}
+#caculate__table th:nth-child(1),
+#caculate__table td:nth-child(1) {
+    width: 80px;
+    text-align: left;
+    padding-left: 5px;
+}
+#caculate__table th:nth-child(2),
+#caculate__table td:nth-child(2),
+#caculate__table th:nth-child(3),
+#caculate__table td:nth-child(3),
+#caculate__table th:nth-child(4),
+#caculate__table td:nth-child(4),
+#caculate__table th:nth-child(5),
+#caculate__table td:nth-child(5) {
+    width: 55px;
+}
