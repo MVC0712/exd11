@@ -188,7 +188,8 @@ $(document).on("click", "#save__button", function() {
     
     var sendData = {
         data : jsonData,
-        press_id : press_id
+        press_id : press_id,
+        hardness_finish : $("#hardness_finish").val(),
     };
     console.log(sendData);
     myAjax.myAjax(fileName, sendData);
@@ -208,10 +209,46 @@ $(document).on("click", "#save__button", function() {
         $("#save__button").prop("disabled", true);
         makeDataTable($("#data__table"), ajaxReturnData);
     }
+    // var fileName = "./php/HardNess/SelFinish.php";
+    // var sendData = {
+    //     press_id: press_id,
+    // };
+    // myAjax.myAjax(fileName, sendData);
+    // $("#hardness_finish").val(ajaxReturnData[0].hardness_finish);
     color();
     makeSummaryTable();
 
 });
+
+function makeNgCodeOptionDom(seletedId) {
+    let targetDom = $("<select>");
+
+    var ngcode=[
+        {
+            "id": 0,
+            "hardness_finish": "Chưa HT"
+        },
+        {
+            "id": 1,
+            "hardness_finish": "Đã HT"
+        },
+    ]
+    ngcode.forEach(function(element) {
+        if (element["id"] == seletedId) {
+            $("<option>")
+                .html(element["hardness_finish"])
+                .val(element["id"])
+                .prop("selected", true)
+                .appendTo(targetDom);
+        } else {
+            $("<option>")
+                .html(element["hardness_finish"])
+                .val(element["id"])
+                .appendTo(targetDom);
+        }
+    });
+    return targetDom;
+}
 
 function getTableDataInput(tableTrObj) {
     var tableData = [];
@@ -417,10 +454,28 @@ $(document).on("click", "#summary_table tbody tr", function(e) {
         myAjax.myAjax(fileName, sendData);
         $("#dcyc").val(ajaxReturnData[0].hardness).removeClass("no-input").addClass("complete-input");
 
-
+        var fileName = "./php/HardNess/SelFinish.php";
+        var sendData = {
+            press_id: press_id,
+        };
+        myAjax.myAjax(fileName, sendData);
+        if (ajaxReturnData.length==0) {
+            $("#hardness_finish").val(0);
+        } else {
+            $("#hardness_finish").val(ajaxReturnData[0].hardness_finish);
+        }
     } else {
 
     }
+});
+
+$(document).on("change", "#hardness_finish", function() {
+    var fileName = "./php/HardNess/UpdateFinish.php";
+    var sendData = {
+        press_id: press_id,
+        hardness_finish: $("#hardness_finish").val(),
+    };
+    myAjax.myAjax(fileName, sendData);
 });
 
 $(document).on("click", "#jugmm", function(e) {

@@ -20,10 +20,11 @@
                         <th>Ngày</th>
                         <th>die_id</th>
                         <!-- <th>Khuôn</th> -->
-                        <th><input id="die_number__input" placeholder="Tìm trong bảng" style="width: 110px; text-align: left;" type="text" onkeyup="timkiem();" /></th>
+                        <th><input id="die_number__input" placeholder="Tìm trong bảng" style="width: 105px; text-align: left;" type="text" onkeyup="timkiem();" /></th>
                         <th>Stl</th>
                         <th>Sl</th>
                         <th>XN</th>
+                        <th>HT</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -109,6 +110,10 @@
             <div>Ngày đo</div>
             <input type="date" id="hardness__date" class="need-clear no-input save-data">
         </div>
+        <select id="hardness_finish" style="width: 130px" class="need-clear save-data">
+            <option value="0">Chưa HT</option>
+            <option value="1">Đã HT</option>
+        </select>
         </div>
         </div>         
 

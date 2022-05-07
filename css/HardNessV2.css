@@ -169,7 +169,7 @@ input[type=number]::-webkit-inner-spin-button,
 
 #summary_table tbody {
     height: 540px;
-    width: 283px;
+    width: 290px;
 }
 
 #summary_table td,
@@ -194,7 +194,7 @@ input[type=number]::-webkit-inner-spin-button,
 
 #summary_table th:nth-child(4),
 #summary_table td:nth-child(4) {
-    width: 110px;
+    width: 105px;
 }
 
 #summary_table th:nth-child(5),
@@ -210,7 +210,12 @@ input[type=number]::-webkit-inner-spin-button,
 
 #summary_table th:nth-child(7),
 #summary_table td:nth-child(7) {
-    width: 55px;
+    width: 40px;
+}
+
+#summary_table th:nth-child(8),
+#summary_table td:nth-child(8) {
+    width: 25px;
 }
 
 /* ===================== button area  ========================== */

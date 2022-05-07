@@ -23,8 +23,12 @@
     t_press.actual_billet_quantities,
     CASE
         WHEN t10.exist > 0 THEN 'Đã lưu'
-        ELSE 'Chưa lưu'
-    END AS confirm
+        ELSE 'C lưu'
+    END AS confirm,
+    CASE
+        WHEN t20.hardness_finish = 1 THEN 'HT'
+        ELSE 'CHT'
+    END AS XN
 FROM
     t_press
         LEFT JOIN
@@ -37,6 +41,12 @@ FROM
     FROM
         extrusion.t_hardness
     GROUP BY t_hardness.press_id) AS t10 ON t10.press_id = t_press.id
+        LEFT JOIN
+    (SELECT 
+        t_press_sub.press_id, hardness_finish
+    FROM
+        extrusion.t_press_sub
+    GROUP BY t_press_sub.press_id) AS t20 ON t20.press_id = t_press.id
 ORDER BY t_press.press_date_at DESC , t_press.press_start_at DESC
 LIMIT 75;
     ");

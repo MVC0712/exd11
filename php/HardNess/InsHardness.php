@@ -7,6 +7,7 @@
 
   $data = $_POST['data'];
   $press_id = $_POST['press_id'];
+  $hardness_finish = $_POST['hardness_finish'];
   $data_json = json_decode($data);
 
   try {
@@ -28,7 +29,10 @@
       $sql = $sql.join(",", $sql_paramater);
       // print_r($sql);
       $prepare = $dbh->prepare($sql);
-      
+      $prepare->execute();
+
+      $sql1 = "INSERT INTO t_press_sub (press_id, hardness_finish) VALUES ('{$press_id}', '{$hardness_finish}')";
+      $prepare = $dbh->prepare($sql1);
       $prepare->execute();
       echo json_encode("INSERTED");
   } catch (PDOException $e) {
