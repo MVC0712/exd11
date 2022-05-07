@@ -30,11 +30,12 @@ $(function() {
     return date.getFullYear()  + '-' + formatDateComponent(date.getMonth() + 1) + '-' + formatDateComponent(date.getDate()) ;
   };
 
-  var a = formatDate(MonthFirstDate);
+  var a = (new Date());
   var b = formatDate(MonthLastDate);
+  var c = formatDate(new Date());
 
-  $("#plan_start").val(formatDate(MonthFirstDate));
-  $("#plan_end").val(formatDate(MonthLastDate));
+  $("#plan_start").val(c);
+  $("#plan_end").val(formatDate(new Date(a.setDate(a.getDate() + 10))))
   selStaff();
   makeSummaryTable();
 });

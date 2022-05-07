@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HardNess</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/HardNessV2.css" />
+</head>
+
+<body>
+    <header>HardNess</header>
+    <div class="buttom__wrapper">
+
+            <table id="summary_table">
+                <thead>
+                    <tr>
+                        <th>press_id</th>
+                        <th>Ngày</th>
+                        <th>die_id</th>
+                        <!-- <th>Khuôn</th> -->
+                        <th><input id="die_number__input" placeholder="Tìm trong bảng" style="width: 110px; text-align: left;" type="text" onkeyup="timkiem();" /></th>
+                        <th>Stl</th>
+                        <th>Sl</th>
+                        <th>XN</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+<div>
+        <table id="data__table">
+            <thead>
+              <!-- <tr><th id="table_headder">Bảng ngâm mẫu</th><th></th><td id="confirm"></td></tr> -->
+                <tr>
+                  <th>Vị trí</th>
+                  <th>id</th>
+                  <th>1</th>
+                  <th>2</th>
+                  <th>3</th>
+                  <th>4</th>
+                  <th>5</th>
+                  <th>6</th>
+                  <th>7</th>
+                  <th>8</th>
+                  <th>9</th>
+                  <th>10</th>
+                  <th>ĐG</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <table id="add_new_data">
+        <thead>
+            <tr>
+                <th>Vị trí</th>
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+                <th>4</th>
+                <th>5</th>
+                <th>6</th>
+                <th>7</th>
+                <th>8</th>
+                <th>9</th>
+                <th>10</th>
+              </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input id="new_pos" class="need-clear" type="text" /></td>
+                <td><input id="new_1_data" class="need-clear" type="text" /></td>
+                <td><input id="new_2_data" class="need-clear" type="text" /></td>
+                <td><input id="new_3_data" class="need-clear" type="text" /></td>
+                <td><input id="new_4_data" class="need-clear" type="text" /></td>
+                <td><input id="new_5_data" class="need-clear" type="text" /></td>
+                <td><input id="new_6_data" class="need-clear" type="text" /></td>
+                <td><input id="new_7_data" class="need-clear" type="text" /></td>
+                <td><input id="new_8_data" class="need-clear" type="text" /></td>
+                <td><input id="new_9_data" class="need-clear" type="text" /></td>
+                <td><input id="new_10_data" class="need-clear" type="text" /></td>
+                <td><button id="add_new" disabled>+</button></td>  
+            </tr>
+        </tbody>
+        </table> 
+        <!-- <button id="add_new_data__button">Thêm mẫu mới</button>    -->
+        </div>
+
+
+          <div id="jud_con">
+            <button id="save__button" disabled>Lưu</button>
+            <button id="jugmm" disabled>Đánh giá</button>
+            <button id="skip" disabled>Skip</button>
+
+        <div id="mear_jug">
+            <div class="input-block__outer">
+                <div class="input__title">ĐCYC</div>
+                <input id="dcyc" class="no-input" type="number">
+            </div>
+            <!-- <div id="gh">
+                <input id="ght" class="no-input" type="number">
+                <input id="ghd" class="no-input" type="number">
+            </div> -->
+        </div>
+        <div>
+            <div>Ngày đo</div>
+            <input type="date" id="hardness__date" class="need-clear no-input save-data">
+        </div>
+        </div>
+        </div>         
+
+    <script src="./lib/jquery.min.js"></script>
+    <script src="./scr/HardNessV2.js"></script>
+</body>
+
+</html>

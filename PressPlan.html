@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PressPlan</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/PressPlan.css" />
+  </head>
+
+  <body>
+    <header>Press Plan</header>
+    <div class="main__wrapper">
+      <div class="input-block__outer">
+        <div class="input__title">Production Number</div>
+        <input id="production_number" class="need-clear" type="text" />
+        <select
+          id="production_number__select"
+          class="no-input save-data need-clear"
+        ></select>
+      </div>
+      <div class="input-block__outer">
+        <div class="input__title">Die Number</div>
+        <select
+          id="die_number__select"
+          class="no-input save-data need-clear"
+        ></select>
+      </div>
+      <div class="input-block__outer">
+        <div class="input__title">Press at</div>
+        <input
+          id="press_date_at"
+          class="need-clear save-data no-input"
+          type="date"
+        />
+      </div>
+      <div class="input-block__outer">
+        <div class="input__title">Qty</div>
+        <input
+          id="quantity"
+          class="need-clear save-data no-input"
+          type="text"
+        />
+      </div>
+    </div>
+    <div class="button__wrapper">
+      <button disabled id="save__button">Save</button>
+      <!-- <button disabled id="update__button">Update</button> -->
+      <!-- <button id="test__button">TEST</button> -->
+      <div class="input-block__outer" id="plan__group">
+        <div class="input__title" id="plan__title">Kế hoạch</div>
+        <input
+          id="plan_start"
+          class="save-data"
+          type="date"
+        />
+        →
+        <input
+        id="plan_end"
+        class="save-data"
+        type="date"
+      />
+      </div>
+    </div>
+    <div class="summary__wrapper">
+      <!-- 削除確認ダイアログ -->
+      <dialog class="dialog__wrapper" id="delete__dialog">
+        Do you Delete?
+        <button id="delete-dialog-cancel__button">Cancel</button>
+        <button id="delete-dialog-delete__button">Delete</button>
+      </dialog>
+
+      <table id="summary__table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Production Number id</th>
+            <th>Press date</th>
+            <th>Production Number</th>
+            <th>Die Number</th>
+            <!-- <th>Material</th> -->
+            
+            <th>Qty</th>
+            <!-- <th>Update</th> -->
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+
+      <table id="caculate__table">
+        <thead>
+          <tr><th>Mã VL</th><th>Tồn HT</th><th>Thực tế</th><th>Kế hoạch</th><th>Order</th></tr>
+          <tr>
+            <th>6061-1200</th><td id="ht6061-1200"></td><td id="tt6061-1200"></td><td id="pl6061-1200"></td><td id="od6061-1200"></td>
+          </tr>
+          <tr>
+            <th>6061-600</th><td id="ht6061-600"></td><td id="tt6061-600"></td><td id="pl6061-600"></td><td id="od6061-600"></td>
+          </tr>
+          <tr>
+            <th>6063-1200</th><td id="ht6063-1200"></td><td id="tt6063-1200"></td><td id="pl6063-1200"></td><td id="od6063-1200"></td>
+          </tr>
+          <tr>
+            <th>6063-600</th><td id="ht6063-600"></td><td id="tt6063-600"></td><td id="pl6063-600"></td><td id="od6063-600"></td>
+          </tr>
+          <tr>
+            <th>6N01-1200</th><td id="ht6N01-1200"></td><td id="tt6N01-1200"></td><td id="pl6N01-1200"></td><td id="od6N01-1200"></td>
+          </tr>
+          <tr>
+            <th>6N01-600</th><td id="ht6N01-600"></td><td id="tt6N01-600"></td><td id="pl6N01-600"></td><td id="od6N01-600"></td>
+          </tr>
+        </thead>
+      </table>
+
+    </div>
+    <script src="./lib/jquery.min.js"></script>
+    <script src="./scr/PressPlan.js"></script>
+  </body>
+</html>
