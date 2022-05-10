@@ -54,7 +54,6 @@ const myAjax = {
 $(function() {
   $("#insert_plan").prop("disabled", true);
   $("#delete_plan").prop("disabled", true);
-  // die_ins();
 });
 
 $(function() {
@@ -89,6 +88,7 @@ function makeSummaryTable() {
     sendObj["end_s"] = $("#end").val();
     myAjax.myAjax(fileName, sendObj);
     fillTableBody1(ajaxReturnData, $("#summary__table tbody"));
+    Total();
 }
 
 function fillTableBody(data, tbodyDom) {
@@ -108,49 +108,22 @@ function fillTableBody(data, tbodyDom) {
 }
 function fillTableBody1(data, tbodyDom) {
   $(tbodyDom).empty();
-// loop through the data and append a row to the table body if idd of this row = idd of the next row then append this row and next row to table
-  for (var i = 0; i < data.length; i++) {
+  for (var i = 0; i < data.length -1; i++) {
     var newTr = $("<tr>");
     var newTrr = $("<tr>");
-    // Object.keys(data[i]).forEach(function(tdVal) {
       if ((data[i]).idd==data[i+1].idd) {
-        // for (var m = 0;m< Object.keys(data[i]).length; m++) {
-        //   $("<td>").html(data[i][m]).appendTo(newTr);
-        // }
-        // for (var n = 0;n< data[i+1].length; n++) {
-        //   $("<td>").html(data[i+1][n]).appendTo(newTr);
-        // }
-
         for (const a in data[i]) {
           $("<td>").html(data[i][a]).appendTo(newTr);
         }
         for (const a in data[i+1]) {
           $("<td>").html(data[i+1][a]).appendTo(newTrr);
         }
-
         i++;
       } else {
-        // for (var l = 0;l< Object.keys(data[i]).length; l++) {
-        //   $("<td>").html(data[i][l]).appendTo(newTr);
-        // }
       }
-    // });
     $(newTr).appendTo(tbodyDom);
     $(newTrr).appendTo(tbodyDom);
   }
-
-  //   data.forEach(function(trVal) {
-  //     var newTr = $("<tr>");
-  //     Object.keys(trVal).forEach(function(tdVal) {
-  //         if (tdVal == "idd" && (trVal+1).idd==tdVal.idd)  {
-  //           $("<td>").html(trVal[tdVal]).appendTo(newTr);
-  //           $("<td>").html((trVal+1)[tdVal]).appendTo(newTr);
-  //         } else {
-  //             $("<td>").html(trVal[tdVal]).appendTo(newTr);
-  //         }
-  //     });
-  //     $(newTr).appendTo(tbodyDom);
-  // });
 }
 
 // ==============  summary table ====================
@@ -160,25 +133,11 @@ $(document).on("click", "#summary__table tbody tr", function(e) {
 });
 
 $(document).on("click", "#summary__table tbody td", function(e) {
-    // var table = document.getElementById("summary__table");
-    // var tr = table.getElementsByTagName("tr");
-    // var year_s = tr[1].getElementsByTagName("th")[this.cellIndex];
-    // var month_s = tr[3].getElementsByTagName("th")[this.cellIndex];
-    // var date_s = tr[4].getElementsByTagName("th")[this.cellIndex];
-    // var die_id  = this.parentNode.cells[1];
-    // var die__id = Number($(die_id).text());
-    // console.log([Number($(die_id).text()), Number($(date_s).text()),
-    //   Number($(month_s).text()), Number($(year_s).text())]);
-    // var date_full = ($(year_s).text()) +'-' + getTwoDigits($(month_s).text()) + '-' + getTwoDigits($(date_s).text());
-    // console.log(date_full)
   if (!$(this).hasClass("active")) {
     $("td").removeClass("active");
     $(this).addClass("active");
   } else {
     $("td").removeClass("active");
-    // $("#die__select").val(die__id).change();
-    // $("#press__date").val(date_full);
-    // $("#press__date").removeClass("no-input").addClass("complete-input");
   }
 });
 
@@ -237,6 +196,7 @@ function renderHead(div, start, end) {
     r_year += '<th colspan="' + (daysInYear) + '">' + c_year + '</th>';
     r_year1 += '<th>' + c_year + '</th>';
     // r_year += "<th rowspan='4' style ='width: 40px;'>Total</th><th rowspan='4' style ='width: 45px;'>Per</th></tr>";
+    r_year += "<th rowspan='4' style ='width: 40px;'>Total</th></tr>";
     r_year += "</tr>";
     r_year1 += "</tr>";
     r_month += '<th colspan="' + (daysInMonth) + '">' + months[c_month] + '</th>';
@@ -248,90 +208,8 @@ function renderHead(div, start, end) {
     div.html(table);
 }
 
-// $(document).on("change", "#press__date", function() {
-//   $(this).removeClass("no-input").addClass("complete-input");
-//   check_ins();
-//   check_del();
-// });
-// $(document).on("keyup", "#die__input", function() {
-//   let fileName = "./php/PlanView/SelDieNumber.php";
-//   let sendData = {
-//       die_number: $(this).val() + "%",
-//   };
-//   myAjax.myAjax(fileName, sendData);
-//   $("#number-of-die__display").html(ajaxReturnData.length);
-//   $("#die__select option").remove();
-//   $("#die__select").append($("<option>").val(0).html("NO select"));
-//   ajaxReturnData.forEach(function(value) {
-//       $("#die__select").append(
-//           $("<option>").val(value["id"]).html(value["die_number"])
-//       );
-//   });
-// });
-// function die_ins() {
-//   let fileName = "./php/PlanView/SelDieNumber.php";
-//   let sendData = {
-//       die_number: $("#die__input").val() + "%",
-//   };
-//   myAjax.myAjax(fileName, sendData);
-//   $("#number-of-die__display").html(ajaxReturnData.length);
-//   $("#die__select option").remove();
-//   $("#die__select").append($("<option>").val(0).html("NO select"));
-//   ajaxReturnData.forEach(function(value) {
-//       $("#die__select").append(
-//           $("<option>").val(value["id"]).html(value["die_number"])
-//       );
-//   });
-// check_ins();
-// check_del();
-// };
-// $(document).on("change", "#die__select", function() {
-//   if ($(this).val() != "0") {
-//     $(this).removeClass("no-input").addClass("complete-input");
-// } else {
-//     $(this).removeClass("complete-input").addClass("no-input");
-// }
-// check_ins();
-// check_del();
-// });
-// $(document).on("keyup", "#press__qty", function() {
-//   if ($(this).val() > 0) {
-//     $(this).removeClass("no-input").addClass("complete-input");
-// } else {
-//     $(this).removeClass("complete-input").addClass("no-input");
-// }
-// check_ins();
-// check_del();
-// });
-
-// function check_ins() {
-//   $("#insert_plan").prop("disabled", true);
-//   var st1 = $("#die__select").val();
-//   var st2 = $("#press__date").val().length;
-//   var st3 = $("#press__qty").val();
-
-//   if(st1 !=0 && st2 !=0 &&st3 > 0){
-//     $("#insert_plan").prop("disabled", false);
-//   }else{
-//     $("#insert_plan").prop("disabled", true);
-//   }
-// };
-
-// function check_del() {
-//   $("#delete_plan").prop("disabled", true);
-//   var st1 = $("#die__select").val();
-//   var st2 = $("#press__date").val().length;
-//   var st3 = $("#press__qty").val().length;
-//   if(st1 !=0 && st2 !=0 && st3 ==0 ){
-//     $("#delete_plan").prop("disabled", false);
-//   }else{
-//     $("#delete_plan").prop("disabled", true);
-//   }
-// };
-
 function Total() {
-  $table1 = $('#summary__table');
-  $table1.find('tbody tr').each(function(){
+  $('#summary__table tbody tr').each(function(){
     var sum = 0;
     $(this).find('td').each(function(){
       if(!isNaN(Number($(this).text()))){
@@ -341,8 +219,9 @@ function Total() {
     sum = sum - Number($(this).find("td").eq(0).html())
     - Number($(this).find("td").eq(1).html());
     $(this).append('<td>'+sum+'</td>');
+    console.log(sum);
   });
-  check_tt();
+  // check_tt();
 };
 
 function check_tt() {

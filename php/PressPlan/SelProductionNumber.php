@@ -16,11 +16,17 @@
     );
 
     $prepare = $dbh->prepare("
-      SELECT 
-        m_production_numbers.id,
-        m_production_numbers.production_number
-      FROM m_production_numbers
-      WHERE m_production_numbers.production_number LIKE '%$production_number%'
+    SELECT 
+      m_production_numbers.id,
+      m_production_numbers.production_number,
+      m_dies.die_number
+    FROM
+      m_production_numbers
+    LEFT JOIN
+      m_dies ON m_production_numbers.id = m_dies.production_number_id
+    WHERE m_production_numbers.production_number LIKE '%$production_number%' OR m_dies.die_number LIKE '%$production_number%'
+    GROUP BY m_production_numbers.id
+    ORDER BY m_production_numbers.production_number ASC
     ");
 
     $prepare->execute();

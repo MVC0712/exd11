@@ -1,5 +1,5 @@
 body {
-    width: calc(1400px - 2px);
+    width: calc(1250px - 2px);
 }
 
 .main__wrapper {
@@ -59,7 +59,7 @@ div.calendar {
 
 #summary__table {
     /* width: 1170px; */
-    height: 515px;
+    height: 535px;
 }
 
 #summary__table th {
@@ -80,7 +80,7 @@ div.calendar {
 }
 
 #summary__table tbody {
-    height: 445px;
+    height: 475px;
     /* width: 1135px; */
     width: 100%;
 }
@@ -115,10 +115,10 @@ div.calendar {
     border-bottom: 2px solid rgb(0, 0, 0);
 }
 
-/* #summary__table tr td:last-child {
+#summary__table tr td:last-child {
   background: #fff9f9;
 	width: 40px;
-} */
+}
 
 #summary__table tbody tr.selected-record {
     background-color: #c2ecff;

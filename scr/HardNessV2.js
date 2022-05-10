@@ -442,7 +442,7 @@ $(document).on("click", "#summary_table tbody tr", function(e) {
             $("#confirm").html("Đã lưu dữ liệu");
             $("#save__button").prop("disabled", true);
             $("#skip").prop("disabled", true);
-            $("#add_new").prop("disabled", true);
+            $("#add_new").prop("disabled", false);
             $("#jugmm").prop("disabled", false);
             makeDataTable($("#data__table"), ajaxReturnData);
         }
