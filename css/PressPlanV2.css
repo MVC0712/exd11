@@ -4,14 +4,16 @@ body {
   display: flex;
   flex-direction: column;
   height: calc(600px - 2px);
-  width: calc(1050px - 2px);
+  width: calc(1150px - 2px);
 }
 
 .button__wrapper button {
   height: 30px;
   margin: 0;
 }
-
+.same-date {
+  background-color: #79e0ff;
+}
 #note{
   width: 150px;
 }
@@ -145,11 +147,12 @@ body {
 
 #production__table tbody {
   height: 500px;
-  width: 265px;
+  width: 215px;
 }
 #add__table tbody {
-  height: 320px;
-  width:294px;
+  height: 360px;
+  width:384px;
+  overflow: hidden;
 }
 /* id */
 
@@ -172,17 +175,30 @@ body {
 #production__table td:nth-child(3) {
   width: 110px;
 }
+#production__table th:nth-child(3),
+#production__table td:nth-child(3) {
+  width: 60px;
+}
 #add__table td:nth-child(3) select {
   width: 110px;
   border-width: 0;
 }
 #add__table th:nth-child(4),
 #add__table td:nth-child(4) {
-  width: 25px;
+  width: 53px;
 }
 #add__table td:nth-child(4) input {
-  width: 25px;
+  width: 50px;
   text-align: center;
+  border: none;
+}
+#add__table th:nth-child(5),
+#add__table td:nth-child(5) {
+  width: 75px;
+}
+#add__table td:nth-child(5) input {
+  width: 75px;
+  text-align: left;
   border: none;
 }
 
@@ -209,10 +225,17 @@ body {
 #caculate__table td:nth-child(4),
 #caculate__table th:nth-child(5),
 #caculate__table td:nth-child(5) {
-    width: 50px;
+    width: 60px;
 }
-
-
+#VL61 {
+  background-color: rgb(255, 0, 0);
+}
+#VL63 {
+  background-color: rgb(0, 4, 255);
+}
+#VL6N {
+  background-color: rgb(255, 251, 0);
+}
 #summary__table tbody {
   height: 500px;
 }
@@ -256,10 +279,33 @@ body {
 
 #summary__table th:nth-child(6),
 #summary__table td:nth-child(6) {
-  width: 50px;
+  width: 34px;
 }
 #summary__table td:nth-child(6) input {
-  width: 40px;
+  width: 30px;
   text-align: center;
   border: none;
+}
+#summary__table th:nth-child(7),
+#summary__table td:nth-child(7) {
+  width: 62px;
+}
+#summary__table td:nth-child(7) input {
+  width: 60px;
+  text-align: center;
+  border: none;
+}
+
+.class1 {
+  display: inline-block;
+  align-items:center;
+}
+.input1 {
+  display: inline-block;
+  width: 200px;
+  padding-left: 20px;
+}
+button {
+  width:90px;
+  height:20px;
 }

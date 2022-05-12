@@ -19,7 +19,7 @@
     SELECT 
       m_production_numbers.id,
       m_production_numbers.production_number,
-      m_dies.die_number
+      LEFT(m_dies.die_number, CHAR_LENGTH(m_dies.die_number) - 5) AS die_number
     FROM
       m_production_numbers
     LEFT JOIN

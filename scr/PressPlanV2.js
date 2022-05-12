@@ -60,6 +60,7 @@ function makeSummaryTable() {
   var sendData = {
     start : $("#plan_start").val(),
     end : $("#plan_end").val(),
+    die_number : $("#die_number").val(),
   };
   myAjax.myAjax(fileName, sendData);
   fillTableBody(ajaxReturnData, $("#summary__table tbody"));
@@ -146,7 +147,7 @@ function fillTableBody(data, tbodyDom) {
           } else if (tdVal == "plan_date") {
               $("<td>")
                   .append(makeDatePlan(trVal[tdVal])).appendTo(newTr);
-          } else if (tdVal == "quantity") {
+          } else if ((tdVal == "quantity")||(tdVal == "note")) {
               $("<td>")
                   .append(makeInput(trVal[tdVal])).appendTo(newTr);
           } else {
@@ -218,6 +219,9 @@ $(document).on("change", "#press_date_at", function (e) {
   }
   checkSave();
 });
+$(document).on("keyup", "#die_number", function (e) {
+  makeSummaryTable();
+});
 function checkSave() {
   if ($("#add__table tbody tr").length==0 || $("#press_date_at").val()=="") {
     $("#save__button").prop("disabled", true);
@@ -235,10 +239,20 @@ $(document).on("change", "#plan_end", function (e) {
 $(document).on("click", "#summary__table tbody tr", function (e) {
   if (!$(this).hasClass("selected-record")) {
     $(this).parent().find("tr").removeClass("selected-record");
+    $(this).parent().find("tr").removeClass("same-date");
     $(this).addClass("selected-record");
     $("#selected__tr").removeAttr("id");
     $(this).attr("id", "selected__tr");
     $("#selected__tr td:nth-child(3) input").attr("id", "selected__date");
+    var plDate = $(this).find("td input").val();
+    console.log(plDate);
+    $("#summary__table tbody tr").each(function (index, element) {
+      if ($(this).find("td input").val() == plDate) {
+        $(this).addClass("same-date");
+      } else {
+        $(this).removeClass("same-date");
+      }
+    });
   } else {
     deleteDialog.showModal();
   }
@@ -260,6 +274,7 @@ $(document).on("click", "#production__table tbody tr", function (e) {
       $("<td>").html(pro).appendTo(newTr);
       $("<td>").append(makeDieNumberSel("", pro_id)).appendTo(newTr);
       $("<td>").append(makeInput("0")).appendTo(newTr);
+      $("<td>").append(makeInput("")).appendTo(newTr);
       $(newTr).appendTo("#add__table tbody");
       $(this).remove();
   }
@@ -285,7 +300,7 @@ function getTableDataInput(tableTrObj) {
           if ($(this).find("select").length) {
               tr.push($(this).find("select").val());
           } else if ($(this).find("input").length) {
-                  tr.push($(this).find("input").val());
+              tr.push($(this).find("input").val());
           } else {
               tr.push($(this).html());
           }
@@ -335,6 +350,7 @@ $(document).on("change", "#summary__table tbody tr td", function () {
     die_number_id : $("#selected__tr td:nth-child(5) select").val(),
     date_plan : $("#selected__date").val(),
     quantity : $("#selected__tr td:nth-child(6) input").val(),
+    note : $("#selected__tr td:nth-child(7) input").val(),
   };
   console.log(sendData);
   myAjax.myAjax(fileName, sendData);

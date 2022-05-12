@@ -4,9 +4,11 @@
   $passwd = "";
   $start = "";
   $end = "";
+  $die_number = "";
 
   $start = $_POST['start'];
   $end = $_POST['end'];
+  $die_number = $_POST['die_number'];
   
   try{
     $dbh = new PDO(
@@ -27,7 +29,8 @@
     m_production_numbers.production_number,
     t_press_plan.dies_id,
     
-    t_press_plan.quantity
+    t_press_plan.quantity,
+    t_press_plan.note
 FROM
     t_press_plan
         LEFT JOIN
@@ -35,7 +38,7 @@ FROM
         LEFT JOIN
     m_production_numbers ON m_production_numbers.id = t_press_plan.production_number_id
 WHERE
-    t_press_plan.plan_date BETWEEN '$start' AND '$end'
+    t_press_plan.plan_date BETWEEN '$start' AND '$end' AND m_dies.die_number LIKE '%$die_number%'
 ORDER BY t_press_plan.plan_date DESC
     ");
     $prepare->execute();

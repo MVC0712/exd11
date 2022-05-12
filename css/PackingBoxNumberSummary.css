@@ -2,11 +2,11 @@ body {
   width: calc(900px - 2px);
 }
 .upper__wrapper {
-  height: 80px;
+  height: 60px;
   display: flex;
-  flex-direction: row;
+  /* flex-direction: row; */
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-around;
 }
 .main__wrapper {
   height: 400px;
@@ -22,19 +22,22 @@ body {
   margin: 0 5px 0 5px;
 }
 .input__title {
-  width: initial;
-  padding: 0 15px 0 5px;
-  height: 44px;
+  width: 80px;
+  padding: 0 0px 0 5px;
+  /* height: 44px; */
+  text-align: left;
 }
 input {
   width: 100px;
-  height: 42px;
+  /* height: 42px; */
   font-size: 14pt;
+  text-align: left;
 }
 input[type="date"] {
   width: 140px;
-  height: 42px;
+  /* height: 42px; */
   font-size: 12pt;
+  text-align: center;
 }
 /* -------------   table setting -------------- */
 tbody tr.selected-record {
@@ -50,7 +53,7 @@ tbody td {
 }
 
 #summary__table tbody {
-  height: 370px;
+  height: 430px;
 }
 #summary__table tbody tr.no-display {
   display: none;

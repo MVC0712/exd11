@@ -7,12 +7,14 @@
   $die_number_id = "";
   $date_plan = "";
   $quantity = "";
+  $note = "";
 
   $targetId = $_POST["targetId"];
   // $production_number_id = $_POST["production_number_id"];
   $die_number_id = $_POST["die_number_id"];
   $date_plan = $_POST["date_plan"];
   $quantity = $_POST["quantity"];
+  $note = $_POST["note"];
   try{
     $dbh = new PDO(
       'mysql:host=localhost; dbname=extrusion; charset=utf8',
@@ -29,7 +31,8 @@
         -- production_number_id = '$production_number_id',
         dies_id = '$die_number_id',
         plan_date = '$date_plan',
-        quantity = '$quantity'
+        quantity = '$quantity',
+        note = '$note'
       WHERE id = '$targetId'
     ");
 

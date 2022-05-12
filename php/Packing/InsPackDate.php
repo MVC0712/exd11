@@ -12,9 +12,9 @@
       )
       );
 
-      $prepare = $dbh->prepare("UPDATE t_press SET packing_check_date = :packing_date WHERE id = :press_id");
+      $prepare = $dbh->prepare("UPDATE t_press SET packing_check_date = :packing_date WHERE id = :t_press_id");
 
-      $prepare->bindValue(':press_id', (INT)$_POST['press_id'], PDO::PARAM_INT);
+      $prepare->bindValue(':t_press_id', (INT)$_POST['t_press_id'], PDO::PARAM_INT);
       $prepare->bindValue(':packing_date', $_POST['packing_date'], PDO::PARAM_STR);
       $prepare->execute();
       

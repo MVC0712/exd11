@@ -11,19 +11,28 @@
   <body>
     <header>Tổng hợp các thùng đã đóng gói （梱包番号検索）</header>
     <div class="upper__wrapper">
+      <div>
       <div class="input-block__outer">
-        <div class="input__title">Mã thùng<br />梱包番号</div>
+        <div class="input__title">Mã thùng</div>
         <input type="text" id="box_number__input" />
       </div>
       <div class="input-block__outer">
-        <div class="input__title">Mã khuôn<br />金型番号</div>
+        <div class="input__title">Mã khuôn</div>
         <input type="text" id="die_number__input" />
       </div>
+    </div>
+    <div>
       <div class="input-block__outer">
-        <div class="input__title">Ngày đùn<br />押出日</div>
-        <input type="date" id="press_start__input" /> -
-        <input type="date" id="press_end__input" />
+        <div class="input__title">Ngày đùn</div>
+        <input type="date" class="press" id="press_start__input" /> -
+        <input type="date" class="press" id="press_end__input" />
       </div>
+      <div class="input-block__outer">
+        <div class="input__title">Đóng gói</div>
+        <input type="date" class="pack" id="pack_start__input" /> -
+        <input type="date" class="pack" id="pack_end__input" />
+      </div>
+    </div>
     </div>
     <div class="main__wrapper">
       <table id="summary__table">
@@ -83,20 +92,45 @@
       };
 
       $(function () {
-        var fileName = "./php/PackingBoxNumberSummary/SelSummary.php";
-        var sendData = {
-          die_number: "dummy",
-        };
-        myAjax.myAjax(fileName, sendData);
-        // console.log(ajaxReturnData);
-        $("#summary__table tbody").empty();
-        ajaxReturnData.forEach(function (trVal) {
-          var newTr = $("<tr>");
-          Object.keys(trVal).forEach(function (tdVal) {
-            $("<td>").html(trVal[tdVal]).appendTo(newTr);
-          });
-          $(newTr).appendTo("#summary__table tbody");
-        });
+        var now = new Date();
+  var MonthLastDate = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+  // var MonthFirstDate = new Date(now.getFullYear() - (now.getMonth() > 0 ? 0 : 1), (now.getMonth() + 12) % 12, 1);
+  var MonthFirstDate = new Date(now.getFullYear(), (now.getMonth() + 12) % 12, 1);
+  var formatDateComponent = function(dateComponent) {
+    return (dateComponent < 10 ? '0' : '') + dateComponent;
+  };
+
+  var formatDate = function(date) {
+    return date.getFullYear()  + '-' + formatDateComponent(date.getMonth() + 1) + '-' + formatDateComponent(date.getDate()) ;
+  };
+
+  var a = formatDate(MonthFirstDate);
+  var b = formatDate(MonthLastDate);
+
+  $("#press_start__input").val(a);
+  $("#press_end__input").val(b);
+  $("#pack_start__input").val(a);
+  $("#pack_end__input").val(b);
+        makeSummaryTable();
+        // var fileName = "./php/PackingBoxNumberSummary/SelSummary.php";
+        // var sendData = {
+        //   press_start__input: $("#press_start__input").val(),
+        //   press_end__input: $("#press_end__input").val(),
+        //   pack_start__input: $("#pack_start__input").val(),
+        //   pack_end__input: $("#pack_end__input").val(),
+        //   box_number__input: $("#box_number__input").val(),
+        //   die_number__input: $("#die_number__input").val(),
+        // };
+        // myAjax.myAjax(fileName, sendData);
+        // // console.log(ajaxReturnData);
+        // $("#summary__table tbody").empty();
+        // ajaxReturnData.forEach(function (trVal) {
+        //   var newTr = $("<tr>");
+        //   Object.keys(trVal).forEach(function (tdVal) {
+        //     $("<td>").html(trVal[tdVal]).appendTo(newTr);
+        //   });
+        //   $(newTr).appendTo("#summary__table tbody");
+        // });
       });
 
       $(document).on("click", "#summary__table tbody tr", function (e) {
@@ -117,32 +151,54 @@
       });
 
       function makeSummaryTable() {
-        let summaryTable = $("#summary__table tr");
-        let checkBoxNumber = true;
-        let checkDieNumber = true;
-        let checkPressDate = true;
-
-        summaryTable.each(function (index, element) {
-          // box number fileter
-          checkBoxNumber = $(this)
-            .find("td")
-            .eq(0)
-            .text()
-            .startsWith($("#box_number__input").val());
-          // die number fileter
-          checkDieNumber = $(this)
-            .find("td")
-            .eq(1)
-            .text()
-            .startsWith($("#die_number__input").val());
-          checkPressDate = checkPDate($(this));
-
-          if (checkBoxNumber && checkDieNumber && checkPressDate) {
-            $(this).removeClass("no-display");
-          } else {
-            $(this).addClass("no-display");
-          }
+        var fileName = "./php/PackingBoxNumberSummary/SelSummary.php";
+        var sendData = {
+          press_start__input: $("#press_start__input").val(),
+          press_end__input: $("#press_end__input").val(),
+          pack_start__input: $("#pack_start__input").val(),
+          pack_end__input: $("#pack_end__input").val(),
+          box_number__input: $("#box_number__input").val(),
+          die_number__input: $("#die_number__input").val(),
+        };
+        myAjax.myAjax(fileName, sendData);
+        // console.log(ajaxReturnData);
+        $("#summary__table tbody").empty();
+        ajaxReturnData.forEach(function (trVal) {
+          var newTr = $("<tr>");
+          Object.keys(trVal).forEach(function (tdVal) {
+            $("<td>").html(trVal[tdVal]).appendTo(newTr);
+          });
+          $(newTr).appendTo("#summary__table tbody");
         });
+        // let summaryTable = $("#summary__table tr");
+        // let checkBoxNumber = true;
+        // let checkDieNumber = true;
+        // let checkPressDate = true;
+        // let checkPackDate = true;
+
+        // summaryTable.each(function (index, element) {
+        //   // box number fileter
+        //   checkBoxNumber = $(this)
+        //     .find("td")
+        //     .eq(0)
+        //     .text()
+        //     .startsWith($("#box_number__input").val());
+        //   // die number fileter
+        //   checkDieNumber = $(this)
+        //     .find("td")
+        //     .eq(1)
+        //     .text()
+        //     .startsWith($("#die_number__input").val());
+        //   checkPressDate = checkPDate($(this));
+        //   // checkPackDate = checkPackDate($(this));
+
+        //   // if (checkBoxNumber && checkDieNumber && checkPressDate ) {
+        //     if (checkBoxNumber && checkDieNumber && checkPressDate && checkPackDate) {
+        //     $(this).removeClass("no-display");
+        //   } else {
+        //     $(this).addClass("no-display");
+        //   }
+        // });
       }
 
       function checkPDate(targetTr) {
@@ -151,7 +207,7 @@
         let tableDate = targetTr.find("td").eq(4).text();
         let flag = false;
         // when there is both date data, it is normal
-        $("input[type='date']").each(function () {
+        $(".press").each(function () {
           if ($(this).val() == "") flag = true;
         });
 
@@ -160,6 +216,25 @@
         tableDate = Number("20" + tableDate.replace(/-/g, ""));
 
         if (startDate <= tableDate && tableDate <= endDate) flag = true;
+
+        return flag;
+      }
+
+      function checkPackDate(targetTr) {
+        let startDateP = $("#pack_start__input").val();
+        let endDateP = $("#pack_end__input").val();
+        let tableDateP = targetTr.find("td").eq(6).text();
+        let flag = false;
+        // when there is both date data, it is normal
+        $(".pack").each(function () {
+          if ($(this).val() == "") flag = true;
+        });
+
+        startDateP = Number(startDateP.replace(/-/g, ""));
+        endDateP = Number(endDateP.replace(/-/g, ""));
+        tableDateP = Number("20" + tableDateP.replace(/-/g, ""));
+
+        if (startDateP <= tableDateP && tableDateP <= endDateP) flag = true;
 
         return flag;
       }

@@ -372,9 +372,10 @@ $(document).on("change", "#packing-date__input", function () {
 		$(this).removeClass("no-input").addClass("complete-input");
 		let fileName = "./php/Packing/InsPackDate.php";
 		let sendData = {
-			press_id: $("#press-date__select").val(),
+			t_press_id: $("#press-date__select").val(),
 			packing_date: $(this).val(),
 		};
+		console.log(sendData);
 		myAjax.myAjax(fileName, sendData);
 	} else {
 		$(this).removeClass("complete-input").addClass("no-input");
