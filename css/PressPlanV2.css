@@ -279,10 +279,10 @@ body {
 
 #summary__table th:nth-child(6),
 #summary__table td:nth-child(6) {
-  width: 34px;
+  width: 54px;
 }
 #summary__table td:nth-child(6) input {
-  width: 30px;
+  width: 50px;
   text-align: center;
   border: none;
 }

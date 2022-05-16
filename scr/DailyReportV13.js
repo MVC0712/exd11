@@ -409,13 +409,7 @@ $(document).on("keyup", "#first_actual_length", function () {
 // ====================== filter items ====================
 // Press type
 $("#press-type-filter").on("change", function () {
-  $("#summary__table tbody tr.no-display").removeClass("no-display");
-  if ($(this).val() == "0") return false;
-  $("#summary__table tbody tr").each(function (element, index) {
-    if ($(this).find("td").eq(7).html() != $("#press-type-filter").val()) {
-      $(this).addClass("no-display");
-    }
-  });
+  setSummaryTable();
 });
 
 // Die Name Fileter
@@ -1096,6 +1090,7 @@ function setSummaryTable() {
     die_number: $("#die-number-fileter").val() + "%",
     start_date: $("#start-term").val(),
     end_date: $("#end-term").val(),
+    press_type: "%" + $("#press-type-filter").val() + "%",
   };
   myAjax.myAjax(fileName, sendData);
 

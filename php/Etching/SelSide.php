@@ -30,7 +30,7 @@
         m_nbn ON m_nbn.id = t_press_directive.nbn_id
       WHERE
         dies_id = :dies_id
-      GROUP BY dies_id;
+      ORDER BY plan_date_at DESC;
       ");
 
       $prepare->bindValue(':dies_id', (INT)$_POST["dies_id"], PDO::PARAM_INT);

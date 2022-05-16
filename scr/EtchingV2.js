@@ -337,6 +337,7 @@ $(document).on("click", "#data__table tbody tr", function(e) {
         let h = ajaxReturnData[0].hole; 
         let n = ajaxReturnData[0].n; 
         let m = ajaxReturnData[0].m; 
+        console.log(h, n, m);
         var fileName = "./php/Etching/SelPressData.php";
         var sendData = {
             press_date: $("#selected__tr").find("td").eq(1).html(),

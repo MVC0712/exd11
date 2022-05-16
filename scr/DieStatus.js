@@ -27,13 +27,16 @@ $(function() {
 function makeSummaryTable() {
     var fileName = "./php/DieStatus/DieHistory.php";
     var sendData = {
-        dummy: "dummy",
+        die_number__input: $("#die_number__input").val(),
     };
     myAjax.myAjax(fileName, sendData);
     fillTableBody(ajaxReturnData, $("#die__table tbody"));
 }
-
+$(document).on("keyup", "#die_number__input", function (e) {
+    makeSummaryTable();
+});
 function fillTableBody(data, tbodyDom) {
+    $(tbodyDom).empty();
     let checkLimit = new Object();
     let chekFlag = false;
     $(tbodyDom).empty();

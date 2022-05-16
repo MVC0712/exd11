@@ -2,7 +2,9 @@
   /* 21/06/22作成 */
   $userid = "webuser";
   $passwd = "";
-  // print_r($_POST);
+  
+  $die_number__input = "";
+  $die_number__input = $_POST["die_number__input"];
   
   try {
       $dbh = new PDO(
@@ -29,6 +31,8 @@
         m_die_status ON t_dies_status.die_status_id = m_die_status.id
     LEFT JOIN
         m_dies ON t_dies_status.dies_id = m_dies.id 
+    WHERE
+        m_dies.die_number LIKE '%$die_number__input%'
     UNION SELECT 
         t_press.id,
         m_dies.die_number,
@@ -41,6 +45,8 @@
         t_press
     LEFT JOIN
         m_dies ON m_dies.id = t_press.dies_id
+    WHERE
+        m_dies.die_number LIKE '%$die_number__input%'
     ORDER BY do_sth_at DESC , die_number ASC
         ";
 
