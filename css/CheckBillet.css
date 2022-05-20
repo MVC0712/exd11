@@ -23,7 +23,16 @@ input {
   justify-content: space-around;
   flex-direction: row;
 }
-
+#V6N01A {
+  background-color: rgb(255, 251, 0);
+  color: rgb(0, 0, 0);
+}
+#V6061 {
+  background-color: rgb(255, 0, 0);
+}
+#V6063 {
+  background-color: rgb(47, 0, 255);
+}
 /* select */
 
 .main__wrapper select {
@@ -194,4 +203,5 @@ input {
 }
 #VL6N {
   background-color: rgb(255, 251, 0);
+  color: rgb(0, 0, 0);
 }

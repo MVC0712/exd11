@@ -1,10 +1,8 @@
 <?php
   $userid = "webuser";
   $passwd = "";
-  
-  $production_number = "";
-  $production_number = $_POST['production_number'];
-
+  $production_number_id= "";
+  $production_number_id = $_POST["production_number_id"];
   try{
     $dbh = new PDO(
       'mysql:host=localhost; dbname=extrusion; charset=utf8',
@@ -18,16 +16,15 @@
 
     $prepare = $dbh->prepare("
     SELECT 
-        m_production_numbers.id,
-        m_production_numbers.production_number
+      id, die_number
     FROM
-        m_production_numbers
+      m_dies
     WHERE
-        m_production_numbers.production_number LIKE '%$production_number%'
-    ORDER BY production_number DESC;
+      production_number_id = $production_number_id
+
     ");
     $prepare->execute();
-    $result = $prepare->fetchAll(PDO::FETCH_ASSOC);
+    $result = $prepare->fetchALL(PDO::FETCH_ASSOC);
 
     echo json_encode($result);
   } catch (PDOException $e){

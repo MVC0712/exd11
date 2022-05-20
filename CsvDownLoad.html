@@ -33,12 +33,18 @@
         受注・進捗一覧 <br />
         (Shift_JIS)
       </button>
+      <button id="not_press">
+        Khuôn chưa đùn <br />
+      </button>
     </div>
     <script src="./lib/jquery.min.js"></script>
     <script>
         // 日付－型番－投入ビレット数
         $(document).on("click", "#date-diename-billetqty__download", function() {
             ajaxMakeDlFile("date-diename-billetQTY");
+        });
+        $(document).on("click", "#not_press", function() {
+            ajaxMakeDlFile("Notpress");
         });
 
         // 型番－月－押出形式－投入量

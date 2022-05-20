@@ -3,98 +3,37 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PressPlan</title>
+    <title>PackPlan</title>
     <link rel="stylesheet" href="./css/main.css" />
-    <link rel="stylesheet" href="./css/PressPlanV2.css" />
+    <link rel="stylesheet" href="./css/PackPlan.css" />
   </head>
 
   <body>
-    <header>Press Plan</header>
-    <!-- <div class="main__wrapper">
-      <div class="input-block__outer">
-        <div class="input__title">Production Number</div>
-        <input id="production_number" class="need-clear" type="text" />
-        <select
-          id="production_number__select"
-          class="no-input save-data need-clear"
-        ></select>
-      </div>
-      <div class="input-block__outer">
-        <div class="input__title">Die Number</div>
-        <select
-          id="die_number__select"
-          class="no-input save-data need-clear"
-        ></select>
-      </div>
-      <div class="input-block__outer">
-        <div class="input__title">Press at</div>
-        <input
-          id="press_date_at"
-          class="need-clear save-data no-input"
-          type="date"
-        />
-      </div>
-      <div class="input-block__outer">
-        <div class="input__title">Qty</div>
-        <input
-          id="quantity"
-          class="need-clear save-data no-input"
-          type="text"
-        />
-      </div>
-    </div> -->
-    <!-- <div class="button__wrapper">
-      <button disabled id="save__button">Save</button>
-      <div class="input-block__outer" id="plan__group">
-        <div class="input__title" id="plan__title">Kế hoạch</div>
-        <input
-          id="plan_start"
-          class="save-data"
-          type="date"
-        />
-        →
-        <input
-        id="plan_end"
-        class="save-data"
-        type="date"
-      />
-      </div>
-    </div> -->
+    <header>Pack Plan</header>
     <div class="summary__wrapper">
-      <!-- 削除確認ダイアログ -->
-      <dialog class="dialog__wrapper" id="delete__dialog">
+      <!-- <dialog class="dialog__wrapper" id="delete__dialog">
         Do you Delete?
         <button id="delete-dialog-cancel__button">Cancel</button>
         <button id="delete-dialog-delete__button">Delete</button>
-      </dialog>
+      </dialog> -->
 
-      <table id="production__table">
+      <!-- <table id="production__table">
         <thead>
           <tr>
             <th>ID</th>
-            <!-- <th>Production Number id</th>
-            <th>Press date</th> -->
             <th><input id="production_number" class="need-clear" type="text" /></th>
             <th>Die</th>
-            <!-- <th>Material</th> -->
-            
-            <!-- <th>Qty</th> -->
-            <!-- <th>Update</th> -->
           </tr>
         </thead>
         <tbody></tbody>
-      </table>
-      <div>
+      </table> -->
+      <!-- <div>
       <table id="add__table">
         <thead>
           <tr>
             <th>Production Number id</th>
-            <!-- <th>Production Number id</th>
-            <th>Press date</th> -->
             <th>Production Number</th>
             <th>Die Number</th>
-            <!-- <th>Material</th> -->
-            
             <th>Qty</th>
             <th>Note</th>
           </tr>
@@ -133,9 +72,7 @@
           </tr>
         </thead>
       </table>
-
-
-  </div>
+  </div> -->
   <div>
   <div>
   <input
@@ -164,6 +101,11 @@ type="text"
         <!-- <th>Material</th> -->
         
         <th>Qty</th>
+        <th>Aging date</th>
+        <th>Hardness date</th>
+        <th>Pack date</th>
+        <th>~Qty~</th>
+        <th>Pqty</th>
         <th>Note</th>
       </tr>
     </thead>
@@ -196,6 +138,6 @@ type="text"
 
     </div>
     <script src="./lib/jquery.min.js"></script>
-    <script src="./scr/PressPlanV2.js"></script>
+    <script src="./scr/PackPlan.js"></script>
   </body>
 </html>

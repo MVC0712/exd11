@@ -1,0 +1,110 @@
+<?php
+  /* 21/06/22作成 */
+  $userid = "webuser";
+  $passwd = "";
+  $start = "";
+  $end = "";
+
+  $start = $_POST['start'];
+  $end = $_POST['end'];
+  try {
+      $dbh = new PDO(
+          'mysql:host=localhost; dbname=extrusion; charset=utf8',
+          $userid,
+          $passwd,
+          array(
+          PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+          PDO::ATTR_EMULATE_PREPARES => false
+      )
+      );
+
+      $sql = "
+      SELECT 
+      t_press_plan.id,
+      SUM(CASE
+          WHEN
+              t10.billet_size = 9
+              AND t10.billet_length = 1200
+              AND t10.billet_material = 'A6063'
+          THEN
+              t_press_plan.quantity
+          ELSE 0
+      END) AS A6063_228_1200,
+      SUM(CASE
+          WHEN
+              t10.billet_size = 9
+              AND t10.billet_length = 600
+              AND t10.billet_material = 'A6063'
+          THEN
+              t_press_plan.quantity
+          ELSE 0
+      END) AS A6063_228_600,
+      SUM(CASE
+          WHEN
+              t10.billet_size = 9
+              AND t10.billet_length = 1200
+              AND t10.billet_material = 'A6061'
+          THEN
+              t_press_plan.quantity
+          ELSE 0
+      END) AS A6061_228_1200,
+      SUM(CASE
+          WHEN
+              t10.billet_size = 9
+              AND t10.billet_length = 600
+              AND t10.billet_material = 'A6061'
+          THEN
+              t_press_plan.quantity
+          ELSE 0
+      END) AS A6061_228_600,
+      SUM(CASE
+          WHEN
+              t10.billet_size = 9
+              AND t10.billet_length = 1200
+              AND t10.billet_material = '6N01'
+          THEN
+              t_press_plan.quantity
+          ELSE 0
+      END) AS A6N01_228_1200,
+      SUM(CASE
+          WHEN
+              t10.billet_size = 9
+              AND t10.billet_length = 600
+              AND t10.billet_material = '6N01'
+          THEN
+              t_press_plan.quantity
+          ELSE 0
+      END) AS A6N01_228_600
+  FROM
+      t_press_plan
+          LEFT JOIN
+      m_dies ON m_dies.id = t_press_plan.dies_id
+          LEFT JOIN
+      (SELECT 
+          production_number_id,
+              billet_size,
+              billet_length,
+              billet_material
+      FROM
+          t_press
+      LEFT JOIN m_dies ON m_dies.id = t_press.dies_id
+      LEFT JOIN m_production_numbers ON m_production_numbers.id = m_dies.production_number_id
+      LEFT JOIN m_billet_material ON m_billet_material.id = m_production_numbers.billet_material_id
+      GROUP BY m_production_numbers.id) t10 ON t10.production_number_id = t_press_plan.production_number_id
+  WHERE
+      t_press_plan.plan_date BETWEEN '$start' AND '$end'
+  ORDER BY id DESC
+  ;
+  
+        ";
+
+      $prepare = $dbh->prepare($sql);
+      $prepare->execute();
+      $result = $prepare->fetchAll(PDO::FETCH_ASSOC);
+
+      echo json_encode($result);
+  } catch (PDOException $e) {
+      $error = $e->getMessage();
+      echo json_encode($error);
+  }
+  $dbh = null;

@@ -36,9 +36,11 @@
         <button id="making-press-directive">
           Press Directive<br />Set Page
         </button>
+                <!-- <button id="schedule">Schedule</button> -->
         <button id="pressplan">PressPlan</button>
-        <!-- <button id="schedule">Schedule</button> -->
         <button id="planview">PlanView</button>
+        <button id="packplan">PackPlan</button>
+        <button id="packview">PackView</button>
         <!-- <button id="schedule_excel">Schedule Excel</button> -->
         <button id="import">To warehouse</button>
         <button id="export">Export</button>
@@ -163,7 +165,13 @@
       $(document).on("click", "#planview", function () {
         window.open("PlanView.html");
       });
+      $(document).on("click", "#packplan", function () {
+        window.open("PackPlan.html");
+      });
 
+      $(document).on("click", "#packview", function () {
+        window.open("PackView.html");
+      });
       // $(document).on("click", "#check_billet", function () {
       //   window.open(
       //     "https://sites.google.com/view/smc3/billet-manage-%E3%83%93%E3%83%AC%E3%83%83%E3%83%88%E5%9C%A8%E5%BA%AB%E7%AE%A1%E7%90%86"

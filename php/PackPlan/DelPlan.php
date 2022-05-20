@@ -2,9 +2,6 @@
   $userid = "webuser";
   $passwd = "";
 
-  $id = "";
-  $id = $_POST['id'];
-
   try{
     $dbh = new PDO(
       'mysql:host=localhost; dbname=extrusion; charset=utf8',
@@ -17,10 +14,12 @@
     );
 
 
-    $stmt = $dbh->prepare("DELETE FROM t_export WHERE id=$id");
+    $stmt = $dbh->prepare("DELETE FROM t_press_plan WHERE id=:targetId");
+    $stmt->bindValue(':targetId', (INT)$_POST["targetId"], PDO::PARAM_INT);
     $stmt->execute();
 
     echo(json_encode("Deleted"));
+
   } catch (PDOException $e){
     $error = $e->getMessage();
     print_r($error);

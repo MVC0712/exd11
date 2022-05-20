@@ -262,6 +262,12 @@ display: none;
 #rack__table td {
   width: 50px;
 }
+
+#add_error__table tbody tr select option { 
+  width: 47px;
+  text-align: left;
+}
+
 #add_error__table tbody td input,
 #error__table tbody td,
 #rack__table tbody td {

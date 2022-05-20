@@ -16,8 +16,17 @@
     );
 
     $prepare = $dbh->prepare("
-    SELECT m_error_code.id, m_error_code.error_code AS err_code, error_name FROM m_error_code");
- 
+      SELECT 
+        m_dies.id
+        , m_dies.die_number
+      FROM 
+        m_dies
+      WHERE m_dies.die_number LIKE :die_number
+      ORDER BY m_dies.die_number 
+
+    ");
+
+    $prepare->bindValue(':die_number', $_POST["die_number"], PDO::PARAM_STR); 
     $prepare->execute();
     $result = $prepare->fetchAll(PDO::FETCH_ASSOC);
 

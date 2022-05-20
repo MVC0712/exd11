@@ -99,6 +99,7 @@ body {
 #production_number {
   width: 125px;
   height: 20px;
+  text-align: left;
 }
 .button__wrapper {
   height: 60px;
@@ -235,6 +236,7 @@ body {
 }
 #VL6N {
   background-color: rgb(255, 251, 0);
+  color: rgb(0, 0, 0);
 }
 #summary__table tbody {
   height: 500px;

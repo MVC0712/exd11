@@ -447,7 +447,7 @@ function ErrorCode() {
   $("#err_code").append($("<option>").val(0).html("NO"));
   ajaxReturnData.forEach(function(value) {
       $("#err_code").append(
-          $("<option>").val(value["id"]).html(value["err_code"])
+          $("<option>").val(value["id"]).html(value["err_code"]+" "+value["error_name"])
       );
   });
 };

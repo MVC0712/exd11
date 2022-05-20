@@ -1,0 +1,118 @@
+body {
+  margin: 4px;
+  border: solid 1px #0000cc;
+  display: flex;
+  flex-direction: column;
+  height: calc(600px - 2px);
+  width: calc(1200px - 2px);
+}
+
+.same-date {
+  background-color: #79e0ff;
+}
+#plan_start,
+#plan_end {
+  width: 130px;
+}
+.summary__wrapper {
+  height: calc(598px - 165px);
+  display: flex;
+  align-content: space-around;
+  justify-content: space-around;
+  flex-direction: row;
+}
+
+#summary__table tbody {
+  height: 520px;
+}
+
+#summary__table th:nth-child(1),
+#summary__table td:nth-child(1),
+#summary__table th:nth-child(2),
+#summary__table td:nth-child(2) {
+  display: none;
+}
+
+#summary__table th:nth-child(3),
+#summary__table td:nth-child(3) {
+  width: 100px;
+}
+#summary__table th:nth-child(4),
+#summary__table td:nth-child(4) {
+  width: 130px;
+}
+#summary__table th:nth-child(5),
+#summary__table td:nth-child(5) {
+  width: 130px;
+}
+#summary__table th:nth-child(6),
+#summary__table td:nth-child(6) {
+  width: 40px;
+  text-align: center;
+}
+#summary__table th:nth-child(7),
+#summary__table td:nth-child(7) {
+  width: 130px;
+}
+#summary__table td:nth-child(7) input {
+  width: 125px;
+  text-align: center;
+  border: none;
+}
+
+#summary__table th:nth-child(8),
+#summary__table td:nth-child(8) {
+  width: 130px;
+}
+#summary__table td:nth-child(8) input {
+  width: 125px;
+  text-align: center;
+  border: none;
+}
+#summary__table th:nth-child(9),
+#summary__table td:nth-child(9) {
+  width: 130px;
+}
+#summary__table td:nth-child(9) input {
+  width: 125px;
+  text-align: center;
+  border: none;
+}
+
+#summary__table th:nth-child(10),
+#summary__table td:nth-child(10) {
+  width: 45px;
+  text-align: center;
+}
+#summary__table th:nth-child(11),
+#summary__table td:nth-child(11) {
+  width: 50px;
+}
+#summary__table td:nth-child(11) input {
+  width: 45px;
+  text-align: center;
+  border: none;
+}
+#summary__table th:nth-child(12),
+#summary__table td:nth-child(12) {
+  width: 130px;
+}
+#summary__table td:nth-child(12) input {
+  width: 125px;
+  text-align: center;
+  border: none;
+}
+
+.class1 {
+  display: inline-block;
+  align-items:center;
+}
+.input1 {
+  display: inline-block;
+  width: 200px;
+  padding-left: 20px;
+}
+button {
+  width:90px;
+  height:20px;
+}
