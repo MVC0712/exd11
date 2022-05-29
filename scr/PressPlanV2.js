@@ -364,3 +364,37 @@ function clearInputData() {
 $(document).on("click", "#test__button", function () {
   
 });
+
+$(document).on("click", "#download_excel", function() {
+  ajaxMakeDlFile("Plan");
+});
+
+function ajaxMakeDlFile(phpFileName) {
+  $.ajax({
+          type: "POST",
+          url: "./php/DownLoad/" + phpFileName + ".php",
+          dataType: "json",
+          data: {
+              file_name: phpFileName,
+              start : $("#plan_start").val(),
+    end : $("#plan_end").val(),
+    die_number : $("#die_number").val(),
+          },
+      })
+      .done(function(data) {
+          downloadFile(phpFileName + ".csv");
+      })
+      .fail(function(data) {
+          alert("call php program error 255");
+      });
+}
+
+function downloadFile(downloadFileName) {
+  const a = document.createElement("a");
+  document.body.appendChild(a);
+  a.download = downloadFileName;
+  a.href = "./download/" + downloadFileName;
+
+  a.click();
+  a.remove();
+}
