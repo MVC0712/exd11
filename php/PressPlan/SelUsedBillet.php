@@ -28,7 +28,7 @@
           THEN
               t_press.actual_billet_quantities
           ELSE 0
-      END) AS A6063_228_1200,
+      END) AS 'A60632281200',
       SUM(CASE
           WHEN
               billet_size = 9 AND billet_length = 600
@@ -36,7 +36,7 @@
           THEN
               t_press.actual_billet_quantities
           ELSE 0
-      END) AS A6063_228_600,
+      END) AS 'A6063228600',
       SUM(CASE
           WHEN
               billet_size = 9 AND billet_length = 1200
@@ -44,7 +44,7 @@
           THEN
               t_press.actual_billet_quantities
           ELSE 0
-      END) AS A6061_228_1200,
+      END) AS 'A60612281200',
       SUM(CASE
           WHEN
               billet_size = 9 AND billet_length = 600
@@ -52,23 +52,23 @@
           THEN
               t_press.actual_billet_quantities
           ELSE 0
-      END) AS A6061_228_600,
+      END) AS 'A6061228600',
       SUM(CASE
           WHEN
               billet_size = 9 AND billet_length = 1200
-                  AND m_billet_material.billet_material = '6N01'
+                  AND m_billet_material.billet_material = '6N01A'
           THEN
               t_press.actual_billet_quantities
           ELSE 0
-      END) AS A6N01_228_1200,
+      END) AS 'A6N01A2281200',
       SUM(CASE
           WHEN
               billet_size = 9 AND billet_length = 600
-                  AND m_billet_material.billet_material = '6N01'
+                  AND m_billet_material.billet_material = '6N01A'
           THEN
               t_press.actual_billet_quantities
           ELSE 0
-      END) AS A6N01_228_600
+      END) AS 'A6N01A228600'
   FROM
       t_press
           LEFT JOIN

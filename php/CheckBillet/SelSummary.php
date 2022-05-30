@@ -24,8 +24,8 @@
             t_checkbillet.A6061228600,
             t_checkbillet.A60632281200,
             t_checkbillet.A6063228600,
-            t_checkbillet.A6N012281200,
-            t_checkbillet.A6N01228600
+            t_checkbillet.A6N01A2281200,
+            t_checkbillet.A6N01A228600
         FROM
             extrusion.t_checkbillet
         LEFT JOIN

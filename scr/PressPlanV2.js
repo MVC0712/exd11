@@ -80,8 +80,8 @@ function makeLastBillet() {
   $("#ht6061-600").text(ajaxReturnData[0].A6061228600);
   $("#ht6063-1200").text(ajaxReturnData[0].A60632281200);
   $("#ht6063-600").text(ajaxReturnData[0].A6063228600);
-  $("#ht6N01-1200").text(ajaxReturnData[0].A6N012281200);
-  $("#ht6N01-600").text(ajaxReturnData[0].A6N01228600);
+  $("#ht6N01-1200").text(ajaxReturnData[0].A6N01A2281200);
+  $("#ht6N01-600").text(ajaxReturnData[0].A6N01A228600);
 };
 
 function makeUsedBillet() {
@@ -91,12 +91,12 @@ function makeUsedBillet() {
       end : $("#plan_end").val(),
   };
   myAjax.myAjax(fileName, sendData);
-  $("#tt6061-1200").html(ajaxReturnData[0].A6061_228_1200);
-  $("#tt6061-600").html(ajaxReturnData[0].A6061_228_600);
-  $("#tt6063-1200").html(ajaxReturnData[0].A6063_228_1200);
-  $("#tt6063-600").html(ajaxReturnData[0].A6063_228_600);
-  $("#tt6N01-1200").html(ajaxReturnData[0].A6N01_228_1200);
-  $("#tt6N01-600").html(ajaxReturnData[0].A6N01_228_600);
+  $("#tt6061-1200").html(ajaxReturnData[0].A60612281200);
+  $("#tt6061-600").html(ajaxReturnData[0].A6061228600);
+  $("#tt6063-1200").html(ajaxReturnData[0].A60632281200);
+  $("#tt6063-600").html(ajaxReturnData[0].A6063228600);
+  $("#tt6N01-1200").html(ajaxReturnData[0].A6N01A2281200);
+  $("#tt6N01-600").html(ajaxReturnData[0].A6N01A228600);
 };
 
 function makePlanBillet() {
@@ -106,12 +106,12 @@ function makePlanBillet() {
       end : $("#plan_end").val(),
   };
   myAjax.myAjax(fileName, sendData);
-  $("#pl6061-1200").html(ajaxReturnData[0].A6061_228_1200);
-  $("#pl6061-600").html(ajaxReturnData[0].A6061_228_600);
-  $("#pl6063-1200").html(ajaxReturnData[0].A6063_228_1200);
-  $("#pl6063-600").html(ajaxReturnData[0].A6063_228_600);
-  $("#pl6N01-1200").html(ajaxReturnData[0].A6N01_228_1200);
-  $("#pl6N01-600").html(ajaxReturnData[0].A6N01_228_600);
+  $("#pl6061-1200").html(ajaxReturnData[0].A60612281200);
+  $("#pl6061-600").html(ajaxReturnData[0].A6061228600);
+  $("#pl6063-1200").html(ajaxReturnData[0].A60632281200);
+  $("#pl6063-600").html(ajaxReturnData[0].A6063228600);
+  $("#pl6N01-1200").html(ajaxReturnData[0].A6N01A2281200);
+  $("#pl6N01-600").html(ajaxReturnData[0].A6N01A228600);
 };
 
 function makeOrderBillet() {

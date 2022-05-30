@@ -16,17 +16,23 @@
       );
 
       $sql = "
-      SELECT 
-      t_checkbillet.A60612281200,
-      t_checkbillet.A6061228600,
-      t_checkbillet.A60632281200,
-      t_checkbillet.A6063228600,
-      t_checkbillet.A6N01A2281200,
-      t_checkbillet.A6N01A228600
-  FROM
-      extrusion.t_checkbillet
-  ORDER BY check_at DESC , create_at DESC
-  LIMIT 1;
+        SELECT 
+            t_checkbillet.id,
+            t_checkbillet.check_at,
+            m_staff.staff_name,
+            t_checkbillet.A60612281200,
+            t_checkbillet.A6061228600,
+            t_checkbillet.A60632281200,
+            t_checkbillet.A6063228600,
+            t_checkbillet.A6N012281200,
+            t_checkbillet.A6N01228600,
+            t_checkbillet.A6N01A228600,
+            t_checkbillet.A6N01A2281200
+        FROM
+            extrusion.t_checkbillet
+        LEFT JOIN
+            m_staff ON m_staff.id = t_checkbillet.staff_id
+        ORDER BY check_at DESC, created_at DESC;
         ";
 
       $prepare = $dbh->prepare($sql);

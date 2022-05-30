@@ -61,20 +61,38 @@
           WHEN
               t10.billet_size = 9
               AND t10.billet_length = 1200
-              AND t10.billet_material = '6N01A'
+              AND t10.billet_material = '6N01'
           THEN
               t_press_plan.quantity
           ELSE 0
-      END) AS 'A6N01A2281200',
+      END) AS 'A6N012281200',
       SUM(CASE
           WHEN
               t10.billet_size = 9
               AND t10.billet_length = 600
-              AND t10.billet_material = '6N01A'
+              AND t10.billet_material = '6N01'
           THEN
               t_press_plan.quantity
           ELSE 0
-      END) AS 'A6N01A228600'
+      END) AS 'A6N01228600',
+      SUM(CASE
+      WHEN
+          t10.billet_size = 9
+          AND t10.billet_length = 1200
+          AND t10.billet_material = '6N01A'
+      THEN
+          t_press_plan.quantity
+      ELSE 0
+  END) AS 'A6N01A2281200',
+  SUM(CASE
+      WHEN
+          t10.billet_size = 9
+          AND t10.billet_length = 600
+          AND t10.billet_material = '6N01A'
+      THEN
+          t_press_plan.quantity
+      ELSE 0
+  END) AS 'A6N01A228600'
   FROM
       t_press_plan
           LEFT JOIN

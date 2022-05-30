@@ -10,6 +10,8 @@
   $vl6063_600 = "";
   $vl6N01_1200 = "";
   $vl6N01_600 = "";
+  $vl6N01A_1200 = "";
+  $vl6N01A_600 = "";
 
   $staff_id = $_POST['staff_id'];
   $check_at = $_POST['check_at'];
@@ -19,6 +21,8 @@
   $vl6063_600 = $_POST['vl6063_600'];
   $vl6N01_1200 = $_POST['vl6N01_1200'];
   $vl6N01_600 = $_POST['vl6N01_600'];
+  $vl6N01A_1200 = $_POST['vl6N01A_1200'];
+  $vl6N01A_600 = $_POST['vl6N01A_600'];
 
   try {
       $dbh = new PDO(
@@ -32,9 +36,9 @@
       );
 
       $sql = "INSERT INTO t_checkbillet 
-                (staff_id, check_at, A6061228600, A60612281200, A6063228600, A60632281200, A6N01A228600, A6N01A2281200
+                (staff_id, check_at, A6061228600, A60612281200, A6063228600, A60632281200, A6N01228600, A6N012281200, A6N01A228600, A6N01A2281200
             ) VALUES (
-                '$staff_id', '$check_at', '$vl6061_600', '$vl6061_1200', '$vl6063_600', '$vl6063_1200', '$vl6N01_600', '$vl6N01_1200'
+                '$staff_id', '$check_at', '$vl6061_600', '$vl6061_1200', '$vl6063_600', '$vl6063_1200', '$vl6N01_600', '$vl6N01_1200', '$vl6N01A_600', '$vl6N01A_1200'
             )";
             
       $prepare = $dbh->prepare($sql);

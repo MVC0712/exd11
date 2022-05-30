@@ -39,7 +39,6 @@ $(function() {
   selStaff();
   makeSummaryTable();
 });
-
 function selStaff() {
   var fileName = "./php/CheckBillet/SelStaff.php";
   var sendData = {
@@ -54,7 +53,6 @@ function selStaff() {
       );
   });
 };
-
 $(document).on("keyup", "#staff_name", function (e) {
   var fileName = "./php/CheckBillet/SelStaff.php";
   var sendData = {
@@ -69,7 +67,6 @@ $(document).on("keyup", "#staff_name", function (e) {
       );
   });
 });
-
 $(document).on("change", "#staff_name__select", function (e) {
   if ($(this).val() != 0) {
     $(this).removeClass("no-input").addClass("complete-input");
@@ -86,7 +83,6 @@ $(document).on("change", "#check_at", function (e) {
   }
   go_check();
 });
-
 $(document).on("change", "#plan_start", function (e) {
   if ($(this).val() != 0) {
     $(this).removeClass("no-input").addClass("complete-input");
@@ -95,7 +91,6 @@ $(document).on("change", "#plan_start", function (e) {
   }
   makeSummaryTable();
 });
-
 $(document).on("change", "#plan_end", function (e) {
   if ($(this).val() != 0) {
     $(this).removeClass("no-input").addClass("complete-input");
@@ -105,9 +100,6 @@ $(document).on("change", "#plan_end", function (e) {
   makeSummaryTable();
 });
 
-// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-// ------------------------- input check from here -------------------------
-// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 $(document).on("keyup", "#input__table tbody input", function (e) {
   if ($(this).val() >= 0 && $(this).val() != "") {
     $(this).removeClass("no-input").addClass("complete-input");
@@ -125,7 +117,6 @@ function checkInputTable() {
   });
   return check;
 }
-
 function go_check() {
   if (($("#check_at").val() == "")|| 
       ($("#staff_name__select").val() == 0)||
@@ -136,11 +127,8 @@ function go_check() {
   }
 };
 
-// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-// ------------------------- Summary Table ---------------------------------
-// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 function makeSummaryTable() {
-  var fileName = "./php/CheckBillet/SelSummary.php";
+  var fileName = "./php/CheckBillet/SelSummaryV2.php";
   var sendData = {
       dummy: "dummy",
   };
@@ -155,7 +143,7 @@ function makeSummaryTable() {
 };
 
 function makeLastBillet() {
-  var fileName = "./php/CheckBillet/SelLastBillet.php";
+  var fileName = "./php/CheckBillet/SelLastBilletV2.php";
   var sendData = {
       dummy: "dummy",
   };
@@ -164,38 +152,44 @@ function makeLastBillet() {
   $("#ht6061-600").text(ajaxReturnData[0].A6061228600);
   $("#ht6063-1200").text(ajaxReturnData[0].A60632281200);
   $("#ht6063-600").text(ajaxReturnData[0].A6063228600);
-  $("#ht6N01-1200").text(ajaxReturnData[0].A6N01A2281200);
-  $("#ht6N01-600").text(ajaxReturnData[0].A6N01A228600);
+  $("#ht6N01-1200").text(ajaxReturnData[0].A6N012281200);
+  $("#ht6N01-600").text(ajaxReturnData[0].A6N01228600);
+  $("#ht6N01A-1200").text(ajaxReturnData[0].A6N01A2281200);
+  $("#ht6N01A-600").text(ajaxReturnData[0].A6N01A228600);
 };
 
 function makeUsedBillet() {
-  var fileName = "./php/CheckBillet/SelUsedBillet.php";
+  var fileName = "./php/CheckBillet/SelUsedBilletV2.php";
   var sendData = {
       start : $("#plan_start").val(),
       end : $("#plan_end").val(),
   };
   myAjax.myAjax(fileName, sendData);
-  $("#tt6061-1200").html(ajaxReturnData[0].A60612281200);
-  $("#tt6061-600").html(ajaxReturnData[0].A6061228600);
-  $("#tt6063-1200").html(ajaxReturnData[0].A60632281200);
-  $("#tt6063-600").html(ajaxReturnData[0].A6063228600);
-  $("#tt6N01-1200").html(ajaxReturnData[0].A6N01A2281200);
-  $("#tt6N01-600").html(ajaxReturnData[0].A6N01A228600);
+  $("#tt6061-1200").text(ajaxReturnData[0].A60612281200);
+  $("#tt6061-600").text(ajaxReturnData[0].A6061228600);
+  $("#tt6063-1200").text(ajaxReturnData[0].A60632281200);
+  $("#tt6063-600").text(ajaxReturnData[0].A6063228600);
+  $("#tt6N01-1200").text(ajaxReturnData[0].A6N012281200);
+  $("#tt6N01-600").text(ajaxReturnData[0].A6N01228600);
+  $("#tt6N01A-1200").text(ajaxReturnData[0].A6N01A2281200);
+  $("#tt6N01A-600").text(ajaxReturnData[0].A6N01A228600);
 };
 
 function makePlanBillet() {
-  var fileName = "./php/CheckBillet/SelPlanBillet.php";
+  var fileName = "./php/CheckBillet/SelPlanBilletV2.php";
   var sendData = {
       start : $("#plan_start").val(),
       end : $("#plan_end").val(),
   };
   myAjax.myAjax(fileName, sendData);
-  $("#pl6061-1200").html(ajaxReturnData[0].A60612281200);
-  $("#pl6061-600").html(ajaxReturnData[0].A6061228600);
-  $("#pl6063-1200").html(ajaxReturnData[0].A60632281200);
-  $("#pl6063-600").html(ajaxReturnData[0].A6063228600);
-  $("#pl6N01-1200").html(ajaxReturnData[0].A6N01A2281200);
-  $("#pl6N01-600").html(ajaxReturnData[0].A6N01A228600);
+  $("#pl6061-1200").text(ajaxReturnData[0].A60612281200);
+  $("#pl6061-600").text(ajaxReturnData[0].A6061228600);
+  $("#pl6063-1200").text(ajaxReturnData[0].A60632281200);
+  $("#pl6063-600").text(ajaxReturnData[0].A6063228600);
+  $("#pl6N01-1200").text(ajaxReturnData[0].A6N012281200);
+  $("#pl6N01-600").text(ajaxReturnData[0].A6N01228600);
+  $("#pl6N01A-1200").text(ajaxReturnData[0].A6N01A2281200);
+  $("#pl6N01A-600").text(ajaxReturnData[0].A6N01A228600);
 };
 
 function makeOrderBillet() {
@@ -205,6 +199,8 @@ function makeOrderBillet() {
   $("#od6063-600").html(orderQuantity($("#pl6063-600").html() - $("#ht6063-600").html()));
   $("#od6N01-1200").html(orderQuantity($("#pl6N01-1200").html() - $("#ht6N01-1200").html()));
   $("#od6N01-600").html(orderQuantity($("#pl6N01-600").html() - $("#ht6N01-600").html()));
+  $("#od6N01A-1200").html(orderQuantity($("#pl6N01A-1200").html() - $("#ht6N01A-1200").html()));
+  $("#od6N01A-600").html(orderQuantity($("#pl6N01A-600").html() - $("#ht6N01A-600").html()));
 };
 
 function orderQuantity(number) {
@@ -221,7 +217,6 @@ function orderQuantity(number) {
     return 0;
   }
 };
-
 function fillTableBody(data, tbodyDom) {
   $(tbodyDom).empty();
   data.forEach(function(trVal) {
@@ -232,7 +227,6 @@ function fillTableBody(data, tbodyDom) {
       $(newTr).appendTo(tbodyDom);
   });
 }
-
 $(document).on("click", "#summary__table tr", function (e) {
   if (!$(this).hasClass("selected-record")) {
     $(this).parent().find("tr").removeClass("selected-record");
@@ -249,15 +243,12 @@ $(document).on("click", "#summary__table tr", function (e) {
     // deleteDialog.showModal();
   }
 });
-
 $(document).on("click", "#delete__button", function () {
   deleteDialog.showModal();
 });
-
 $(document).on("click", "#delete-dialog-cancel__button", function () {
   deleteDialog.close();
 });
-
 $(document).on("click", "#delete-dialog-delete__button", function () {
   var fileName = "./php/CheckBillet/DelSelData.php";
   var sendObj = new Object(); 
@@ -266,25 +257,11 @@ $(document).on("click", "#delete-dialog-delete__button", function () {
   myAjax.myAjax(fileName, sendObj);
   deleteDialog.close();
   $("#save__button").prop("disabled", true);
-  $("#delete__button").prop("disabled", true);
-  $("#update__button").prop("disabled", true);
-  $("#production_number__select").val(0);
-  $("#production_number__select").removeClass("complete-input").addClass("no-input");
-  $("#quantity").val("");
-  $("#quantity").removeClass("complete-input").addClass("no-input");
-  $("#note").val("");
-  $("#export_at").val("");
-  $("#export_at").removeClass("complete-input").addClass("no-input");
-  $("#production_number").html('Production number');
-  makeSummaryTableByOrderSheet();
   makeSummaryTable();
 });
 
-// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-// ------------------------- Save Button -------------------------
-// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 $(document).on("click", "#save__button", function() {
-  var fileName = "./php/CheckBillet/InsCheckBillet.php";
+  var fileName = "./php/CheckBillet/InsCheckBilletV2.php";
   var sendObj = new Object();
   sendObj["staff_id"] = $("#staff_name__select").val();
   sendObj["check_at"] =$("#check_at").val();
@@ -294,44 +271,15 @@ $(document).on("click", "#save__button", function() {
   sendObj["vl6063_600"] = $("#vl6063_600").val();
   sendObj["vl6N01_1200"] = $("#vl6N01_1200").val();
   sendObj["vl6N01_600"] = $("#vl6N01_600").val();
+  sendObj["vl6N01A_1200"] = $("#vl6N01A_1200").val();
+  sendObj["vl6N01A_600"] = $("#vl6N01A_600").val();
   myAjax.myAjax(fileName, sendObj);
   console.log(sendObj)
 
   $("#save__button").prop("disabled", true);
-  // loop thought all class need-clear and clear it
   $(".need-clear").each(function() {
     $(this).val("");
     $(this).removeClass("complete-input").addClass("no-input");
   });
   makeSummaryTable();
 });
-
-// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-// ------------------------- update button -------------------------
-// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-$(document).on("click", "#update__button", function() {
-  var fileName = "./php/CheckBillet/UpdateExport.php";
-  var sendObj = new Object();
-  sendObj["export_at"] =getDateTime(new Date($("#export_at").val()));
-  sendObj["production_number__select"] = $("#production_number__select").val();
-  sendObj["quantity"] = $("#quantity").val();
-  sendObj["note"] = $("#note").val();
-  sendObj["id"] = $("#summary__table #selected__tr").find("td").eq(0).html();
-
-  myAjax.myAjax(fileName, sendObj);
-  console.log(sendObj)
-
-  $("#save__button").prop("disabled", true);
-  $("#update__button").prop("disabled", true);
-  $("#delete__button").prop("disabled", true);
-  $("#production_number__select").val(0);
-  $("#production_number__select").removeClass("complete-input").addClass("no-input");
-  $("#quantity").val("");
-  $("#quantity").removeClass("complete-input").addClass("no-input");
-  $("#note").val("");
-  $("#export_at").val("");
-  $("#export_at").removeClass("complete-input").addClass("no-input");
-  $("#production_number").html('Production number');
-  makeSummaryTableByOrderSheet();
-  makeSummaryTable();
-}); 

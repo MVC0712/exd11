@@ -56,6 +56,22 @@
       SUM(CASE
           WHEN
               billet_size = 9 AND billet_length = 1200
+                  AND m_billet_material.billet_material = '6N01'
+          THEN
+              t_press.actual_billet_quantities
+          ELSE 0
+      END) AS 'A6N012281200',
+      SUM(CASE
+          WHEN
+              billet_size = 9 AND billet_length = 600
+                  AND m_billet_material.billet_material = '6N01'
+          THEN
+              t_press.actual_billet_quantities
+          ELSE 0
+      END) AS 'A6N01228600',
+      SUM(CASE
+          WHEN
+              billet_size = 9 AND billet_length = 1200
                   AND m_billet_material.billet_material = '6N01A'
           THEN
               t_press.actual_billet_quantities
