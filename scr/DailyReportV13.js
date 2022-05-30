@@ -557,7 +557,7 @@ function makeErrorTable() {
   ajaxReturnData.forEach(function (trVal) {
     var newTr = $("<tr>");
     Object.keys(trVal).forEach(function (tdVal) {
-      if (tdVal == "error_code") {
+      if (tdVal == "id") {
         $("<td>")
             .append(ErrorCodeOption(trVal[tdVal]))
             .appendTo(newTr);
@@ -580,7 +580,7 @@ function ErrorCodeOption(seletedId) {
   };
   myAjax.myAjax(fileName, sendData);
   ajaxReturnData.forEach(function(element) {
-      if (element["err_code"] == seletedId) {
+      if (element["id"] == seletedId) {
           $("<option>")
               .html(element["err_code"])
               .val(element["id"])
