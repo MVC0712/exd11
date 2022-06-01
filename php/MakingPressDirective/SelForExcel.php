@@ -39,8 +39,8 @@
     CASE m_production_numbers.billet_material_id
         WHEN 1 THEN '6061'
         WHEN 2 THEN '6063'
-        WHEN 3 THEN '6N01'
-        ELSE ''
+        WHEN 3 THEN '6N01A'
+        ELSE '6N01'
     END AS material,
     ROUND(m_production_numbers.specific_weight, 2) AS specific_weight,
     CASE t_press_directive.billet_size

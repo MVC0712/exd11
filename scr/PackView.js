@@ -82,12 +82,12 @@ function round(num, decimalPlaces = 0) {
 }
 
 function makeSummaryTable() {
-    var fileName = "./php/PackView/SelSummaryFullDieid.php";
+    var fileName = "./php/PackView/SelSummaryV2.php";
     var sendObj = new Object();
     sendObj["start_s"] = $('#std').val();
     sendObj["end_s"] = $("#end").val();
     myAjax.myAjax(fileName, sendObj);
-    fillTableBody(ajaxReturnData, $("#summary__table tbody"));
+    fillTableBody1(ajaxReturnData, $("#summary__table tbody"));
     Total();
 }
 

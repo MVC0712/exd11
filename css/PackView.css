@@ -83,6 +83,10 @@ div.calendar {
     height: 475px;
     /* width: 1135px; */
     width: 100%;
+    overflow:visible;
+}
+#summary__table tr:nth-child(2n) {
+	background-color: #d2cdff;
 }
 #summary__table tr td:nth-child(1),
 #summary__table tr td:nth-child(2) {
@@ -105,7 +109,9 @@ div.calendar {
 #summary__table tr th:nth-child(n+2) {
     width: 28px;
 }
-
+#summary__table tbody tr:nth-child(2n) {
+    border-bottom: 2px solid rgb(0, 0, 0);
+}
 #summary__table tr td:last-child {
   background: #fff9f9;
 	width: 40px;
