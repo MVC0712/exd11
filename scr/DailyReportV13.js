@@ -427,7 +427,7 @@ $("#end-term").on("change", function () {
 $(document).on("keyup", "#work-length__table input", function () {
   if (
     0 < Number($(this).val()) &&
-    Number($(this).val()) < 59 &&
+    Number($(this).val()) <= 400 &&
     $(this).val() != ""
   ) {
     $(this).removeClass("no-input").addClass("complete-input");
