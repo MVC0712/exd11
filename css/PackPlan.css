@@ -10,9 +10,16 @@ body {
 .same-date {
   background-color: #79e0ff;
 }
-#plan_start,
+/* #plan_start,
 #plan_end {
   width: 130px;
+} */
+input {
+  width: 90px;
+  height: 20px;
+  border: 1px solid #0000ff;
+  text-align: right;
+  padding: 0px 2px;
 }
 .summary__wrapper {
   height: calc(598px - 165px);
