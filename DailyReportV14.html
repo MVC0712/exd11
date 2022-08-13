@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Extrusion Dailyreport</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/DailyReportV14.css" />
+  </head>
+
+  <body>
+    <header>Press Dailyreport Input Page V13</header>
+    <div class="main__wrapper">
+      <div class="left__wrapper">
+        <div class="input__wrapper">
+          <div class="input-block__outer">
+            <div class="input-block__outer">
+              <div class="input__title">OrdrNo</div>
+              <input id="directive__input" class="need-clear" type="text" />
+              <select
+                id="directive_input__select"
+                class="save-data need-clear"
+              ></select>
+            </div>
+          </div>
+
+          <!-- Date -->
+          <div class="input-block__outer">
+            <div class="input__title">Date</div>
+            <input
+              id="date__input"
+              class="need-clear no-input save-data"
+              type="date"
+            />
+          </div>
+          <!-- Die Number -->
+          <div class="input-block__outer">
+            <div class="input__title">Die</div>
+            <input id="die__input" class="need-clear" type="text" />
+            <select id="die__select" class="no-input save-data need-clear">
+              <option value="0">No select</option>
+            </select>
+            <div id="number-of-die__display" class="input__title">0</div>
+          </div>
+          <!-- Did washed -->
+          <div class="input-block__outer">
+            <div class="input__title">is Washed?</div>
+            <input id="is-washed__input" class="need-clear" type="text" />
+            <select
+              id="is-washed__select"
+              class="no-input save-data need-clear"
+            >
+              <option value="0">-</option>
+              <option value="1">No</option>
+              <option value="2">Yes</option>
+            </select>
+          </div>
+          <!-- Press type -->
+          <div class="input-block__outer">
+            <div class="input__title">Press Type</div>
+            <input id="pressing-type__input" class="need-clear" type="text" />
+            <select
+              id="pressing-type__select"
+              class="no-input save-data need-clear"
+            >
+              <option value="0">-</option>
+              <option value="1">〇</option>
+              <option value="2">◎</option>
+              <option value="3">●</option>
+            </select>
+          </div>
+          <!-- Press machine number -->
+          <div class="input-block__outer">
+            <div class="input__title">M/N</div>
+            <input id="machine-number__input" class="need-clear" type="text" />
+            <select
+              id="machine-number__select"
+              class="no-input save-data need-clear"
+            >
+              <option value="0">-</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+            </select>
+          </div>
+          <!-- Billet Lot Number -->
+          <!-- <div class="input-block__outer" style="display: none;">
+            <div class="input__title">Bundle No</div>
+            <input
+              id="billet-lot-number__input"
+              class="need-clear complete-input save-data_new"
+              type="text"
+              value="1"
+            />
+          </div> -->
+          <!-- Billet Size -->
+          <div class="input-block__outer">
+            <div class="input__title">Billet S.</div>
+            <input id="billet-size__input" class="need-clear" type="text" />
+            <select
+              id="billet-size__select"
+              class="no-input save-data need-clear"
+            >
+              <option value="0">-</option>
+              <option value="9">9</option>
+              <option value="12">12</option>
+            </select>
+          </div>
+          <!-- Billet length -->
+          <div class="input-block__outer">
+            <div class="input__title">Billet length</div>
+            <input id="billet-length__input" class="need-clear" type="text" />
+            <select
+              id="billet-length__select"
+              class="no-input save-data need-clear"
+            >
+              <option value="0">-</option>
+              <option value="600">600</option>
+              <option value="1200">1200</option>
+            </select>
+          </div>
+          <!-- Plan Billet Qty -->
+          <div class="input-block__outer">
+            <div class="input__title">Plan B_Qty</div>
+            <input
+              id="plan-billet-qty__input"
+              class="save-data need-clear no-input"
+              type="text"
+            />pic.
+          </div>
+          <!-- Actual Billet Qty -->
+          <div class="input-block__outer">
+            <div class="input__title">Actu.B_Qty</div>
+            <input
+              id="actual-billet-qty__input"
+              class="save-data need-clear no-input"
+              type="text"
+            />pic.
+          </div>
+          <!-- press stop cause -->
+          <!-- <div style="display: none;" class="input-block__outer">
+            <div class="input__title">Stop cause</div>
+            <input id="stop-cause__input" class="need-clear" type="text" />
+            <select
+              id="stop-cause__select"
+              class="save-data_new need-clear complete-input"
+            >
+              <option value="0">-</option>
+              <option value="1" selected>100</option>
+            </select>
+          </div> -->
+          <!-- press work time -->
+          <div class="input-block__outer">
+            <div class="input__title">Press Tm</div>
+            <input
+              id="press-start__input"
+              class="save-data need-clear no-input"
+              type="text"
+            />
+            -
+            <input
+              id="press-finish__input"
+              class="save-data need-clear no-input"
+              type="text"
+            />
+          </div>
+          <!-- Actual Ram Speed -->
+          <div class="input-block__outer">
+            <div class="input__title">Ram Spd</div>
+            <input
+              id="actual-ram-speed__input"
+              class="save-data need-clear no-input"
+              type="text"
+            />mm/s
+          </div>
+          <!-- Actual Die Temp -->
+          <div class="input-block__outer">
+            <div class="input__title">A.Die Temp.</div>
+            <input
+              id="actual-die-temp__input"
+              class="save-data need-clear no-input"
+              type="text"
+            />&#8451;
+          </div>
+          <!-- Name -->
+          <div class="input-block__outer">
+            <div class="input__title">Name</div>
+            <input id="name__input" class="need-clear" type="text" />
+            <select id="name__select" class="save-data need-clear no-input">
+              <option value="0">-</option>
+            </select>
+          </div>
+          <!-- Press Directive -->
+          <div class="input-block__outer">
+            <div class="input__title">Directive</div>
+            <input id="press-directive__input" class="need-clear" type="text" />
+            <select
+              id="press-directive__select"
+              class="save-data need-clear no-input"
+            >
+              <option value="0">-</option>
+            </select>
+          </div>
+          <!-- File Select -->
+          <div class="input-block__outer">
+            <div class="input__title">File</div>
+            <form id="file-upload__form">
+              <input type="file" name="file_01" id="file-upload__input" />
+              <label id="file_name" for="file-upload__input">no file</label>
+            </form>
+
+            <input id="press-direction_file" class="need-clear" type="file" />
+            <select id="press-direction-date__select" class="need-clear">
+              <option value="0">-</option>
+            </select>
+            <button id="preview__button" disabled>Preview</button>
+          </div>
+          <!-- end -->
+          <div class="input-block__outer">
+            <div class="input__title">KL phế phẩm cắt</div>
+            <input style="width: 70px" id="scrap_weight__input" class="need-clear no-input save-data" type="text"/>
+          </div>
+          <div class="input-block__outer">
+            <div class="input__title">SP dài</div>
+            <input style="width: 70px" id="first_actual_length" class="need-clear no-input save-data" type="text"/>
+          </div>
+        </div>
+        <div class="table__wrapper">
+          <!-- Container Temperture -->
+          <table id="container-temperature__table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>StemSide</th>
+                <th>DieSide</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>Upside</th>
+                <td>
+                  <input
+                    id="container_upside_stemside"
+                    class="save-data need-clear no-input"
+                    type="text"
+                  />
+                </td>
+                <td>
+                  <input
+                    id="container_upside_dieside"
+                    class="save-data need-clear no-input"
+                    type="text"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <th>Downside</th>
+                <td>
+                  <input
+                    id="container_downside_stemside"
+                    class="save-data need-clear no-input"
+                    type="text"
+                  />
+                </td>
+                <td>
+                  <input
+                    id="container_downside_dieside"
+                    class="save-data need-clear no-input"
+                    type="text"
+                  />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <!-- ラム速等テーブル -->
+          <table id="ram-values__table">
+            <thead>
+              <tr>
+                <th></th>
+                <th colspan="3">1000/400mm</th>
+                <th colspan="3">200mm</th>
+              </tr>
+              <tr>
+                <th></th>
+                <th>spd</th>
+                <th>press</th>
+                <th>temp</th>
+                <th>spd</th>
+                <th>press</th>
+                <th>temp</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>No.1</th>
+                <td>
+                  <input
+                    type="text"
+                    id="no1_1000_ram_speed"
+                    class="save-data need-clear no-input ram_speed"
+                  />
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    id="no1_1000_ram_pressure"
+                    class="save-data need-clear no-input ram_pressure"
+                  />
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    id="no1_1000_work_temperature"
+                    class="save-data need-clear no-input work_temperature"
+                  />
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    id="no1_0200_ram_speed"
+                    class="save-data need-clear no-input ram_speed"
+                  />
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    id="no1_0200_ram_pressure"
+                    class="save-data need-clear no-input ram_pressure"
+                  />
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    id="no1_0200_work_temperature"
+                    class="save-data need-clear no-input work_temperature"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <th>No.2</th>
+                <td>
+                  <input
+                    type="text"
+                    id="no2_1000_ram_speed"
+                    class="save-data need-clear ram_speed"
+                  />
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    id="no2_1000_ram_pressure"
+                    class="save-data need-clear ram_pressure"
+                  />
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    id="no2_1000_work_temperature"
+                    class="save-data need-clear work_temperature"
+                  />
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    id="no2_0200_ram_speed"
+                    class="save-data need-clear ram_speed"
+                  />
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    id="no2_0200_ram_pressure"
+                    class="save-data need-clear ram_pressure"
+                  />
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    id="no2_0200_work_temperature"
+                    class="save-data need-clear work_temperature"
+                  />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="mid__wrapper">
+        <table id="bundle__table">
+          <thead>
+            <tr>
+              <td></td>
+              <td colspan="4">Bundle No</td>
+            </tr>
+            <tr>
+              <td>id</td>
+              <!-- <td>Stt</td> -->
+              <td>Bundle</td>
+              <td>Qty</td>
+              <td>Lot</td>
+              <td>MNF</td>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+        <table id="add_bundle__table">
+          <thead>
+            <tr>
+              <td>Bundle</td>
+              <td>Qty</td>
+              <td>Lot</td>
+              <td>MNF</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input id="bundle_no" class="no-input"/></td>
+              <td><input id="quantity" class="no-input"/></td>
+              <td><input id="lot_no" class="no-input"/></td>
+              <td><select id="mfg" class="no-input">
+                    <option value="">--</option>
+                    <option value="1">Dubai</option>
+                    <option value="2">Việt Nam</option>
+                  </select>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <button id="add_bundle__button" disabled>Save</button>
+        <table id="error__table">
+          <thead>
+            <tr>
+              <td></td>
+              <td colspan="4">Error record</td>
+            </tr>
+            <tr>
+              <td>id</td>
+              <td>Code</td>
+              <td>Start</td>
+              <td>End</td>
+              <td>Note</td>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+        <table id="add_error__table">
+          <thead>
+            <tr>
+              <td>Code</td>
+              <td>Start</td>
+              <td>End</td>
+              <td>Note</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <select id="err_code" class="no-input">
+                </select>
+              </td>
+              <td><input id="err_start" class="no-input"/></td>
+              <td><input id="err_end" class="no-input"/></td>
+              <td><input id="err_note"/></td>
+            </tr>
+          </tbody>
+        </table>
+        <button id="add_error__button" disabled>Save</button>
+      </div>
+      <div class="right__wrapper">
+        <table id="rack__table">
+          <thead>
+            <tr>
+              <td></td>
+              <td colspan="3">Rack</td>
+            </tr>
+            <tr>
+              <td>id</td>
+              <td>Order</td>
+              <td>Rack</td>
+              <td>Qty</td>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <div class="input-block__outer">
+          <div class="input__title">Rack</div>
+          <input
+            id="racknumber__input"
+            class="need-clear no-input"
+            type="text"
+          />
+          <div class="input__title">Qty</div>
+          <input id="rackqty__input" class="need-clear no-input" type="text" />
+          <button id="add-rack__button" disabled>Save</button>
+        </div>
+        <table id="work-length__table">
+          <thead>
+            <tr>
+              <th></th>
+              <th colspan="2">Profile</th>
+            </tr>
+            <tr>
+              <th></th>
+              <th>len</th>
+              <th>qty</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>No.1</th>
+              <td>
+                <input
+                  type="text"
+                  class="no-input save-data need-clear work-information"
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  class="no-input save-data need-clear work-information"
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <button id="add_row__button">Add Row</button>
+      </div>
+    </div>
+
+    <div class="button__wrapper">
+      <button id="save__button" disabled>Save</button>
+      <button id="update__button" disabled>Update</button>
+      <button id="test__button">TEST</button>
+      <div class="input-block__outer">
+        <div class="input__title">P Type</div>
+        <select id="press-type-filter">
+          <option value=""></option>
+          <option value="1">〇</option>
+          <option value="2">◎</option>
+          <option value="3">●</option>
+        </select>
+      </div>
+      <div class="input-block__outer">
+        <div class="input__title">Die</div>
+        <input id="die-number-fileter" class="need-clear" type="text" />
+      </div>
+      <div class="input-block__outer">
+        <div class="input__title">Term</div>
+        <input id="start-term" class="need-clear" type="date" />-
+        <input id="end-term" class="need-clear" type="date" />
+      </div>
+    </div>
+    <div class="summary__wrapper">
+      <table id="summary__table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Date</th>
+            <th>Prs</th>
+            <th>Die</th>
+            <th>Die_id</th>
+            <th>O/S</th>
+            <th>Typ</th>
+            <th>Typ_id</th>
+            <th>isWshd</th>
+            <th>isWshd_id</th>
+            <th>BiletBandl</th>
+            <th>B/S</th>
+            <th>B/L</th>
+            <th>PQty</th>
+            <th>AQty</th>
+            <th>StopCu</th>
+            <th>Start</th>
+            <th>Stop</th>
+            <th>RamSpd</th>
+            <th>DieTmp</th>
+            <th>P/D/S</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <!-- 削除確認ダイアログ -->
+    <dialog class="dialog__wrapper" id="delete__dialog">
+      Do you Delete?
+      <button id="delete-dialog-cancel__button">Cancel</button>
+      <button id="delete-dialog-delete__button">Delete</button>
+    </dialog>
+    <!-- rack delete dialog -->
+    <dialog class="dialog__wrapper" id="delete-rack__dialog">
+      Do you Delete?
+      <button id="delete-rack-cancel__button">Cancel</button>
+      <button id="delete-rack-delete__button">Delete</button>
+    </dialog>
+
+    <script src="./lib/jquery.min.js"></script>
+    <script src="./scr/DailyReportV14.js"></script>
+  </body>
+</html>
