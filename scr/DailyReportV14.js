@@ -9,6 +9,15 @@ let cancelKeydownEvent = false;
 let editMode = false;
 let readNewFile = false;
 
+let mfgOption = [{
+  id: 1,
+  mfg: "Dubai"
+},
+{
+  id: 2,
+  mfg: "Việt Nam"
+}]
+
 const myAjax = {
   myAjax: function (fileName, sendData) {
     $.ajax({
@@ -635,9 +644,19 @@ $(document).on("keyup", "#lot_no", function() {
   add_bundle_check();
 });
 
+$(document).on("change", "#mfg", function() {
+  if ($(this).val() != 0) {
+      $(this).removeClass("no-input").addClass("complete-input");
+  } else {
+      $(this).removeClass("complete-input").addClass("no-input");
+  }
+  add_bundle_check();
+});
+
 function add_bundle_check() {
   if (($("#bundle_no").hasClass("no-input")) ||
       ($("#quantity").hasClass("no-input")) ||
+      ($("#mfg").hasClass("no-input")) ||
       ($("#lot_no").hasClass("no-input"))) {
       $("#add_bundle__button").prop("disabled", true);
   } else {
@@ -653,10 +672,12 @@ $("#add_bundle__button").on("click", function () {
         .append($("<td>").append($("<input>").val($("#bundle_no").val())))
         .append($("<td>").append($("<input>").val($("#quantity").val())))
         .append($("<td>").append($("<input>").val($("#lot_no").val())))
+        .append($("<td>").append(mfgCodeOption($("#err_code").val())))
         .appendTo("#bundle__table tbody");
       $(this).prop("disabled", true);
       $("#bundle_no").val("").focus().removeClass("complete-input").addClass("no-input");
       $("#quantity").val("").removeClass("complete-input").addClass("no-input");
+      $("#mfg").val(0).removeClass("complete-input").addClass("no-input");
       $("#lot_no").val("").removeClass("complete-input").addClass("no-input");
       break;
     case "Add":
@@ -697,6 +718,25 @@ function makeBundleTable() {
     });
     $(newTr).appendTo("#bundle__table tbody");
   });
+}
+
+function mfgCodeOption(seletedId) {
+  let targetDom = $("<select>");
+    mfgOption.forEach(function(element) {
+      if (element["id"] == seletedId) {
+          $("<option>")
+              .html(element["mfg"])
+              .val(element["id"])
+              .prop("selected", true)
+              .appendTo(targetDom);
+      } else {
+          $("<option>")
+              .html(element["mfg"])
+              .val(element["id"])
+              .appendTo(targetDom);
+      }
+  });
+  return targetDom;
 }
 
 $(document).on("change", "#die__select", function() {
