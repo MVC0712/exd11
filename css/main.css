@@ -30,7 +30,7 @@ footer {
 .main__wrapper {
   /* border-bottom: dotted 1px #0000cc; */
   display: flex;
-  height: 480px;
+  height: 550px;
   flex-direction: column;
   flex-wrap: wrap;
   font-size: 10pt;

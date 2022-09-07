@@ -1,7 +1,10 @@
 <?php
   $userid = "webuser";
   $passwd = "";
-  
+  $die_number__input = "";
+
+  $die_number__input = $_POST['die_number__input'];
+
   try {
       $dbh = new PDO(
           'mysql:host=localhost; dbname=extrusion; charset=utf8',
@@ -24,11 +27,7 @@
     CASE
         WHEN t10.exist > 0 THEN 'Đã lưu'
         ELSE 'C lưu'
-    END AS confirm,
-    CASE
-        WHEN t20.hardness_finish = 1 THEN 'HT'
-        ELSE 'CHT'
-    END AS XN
+    END AS confirm
 FROM
     t_press
         LEFT JOIN
@@ -37,16 +36,12 @@ FROM
     m_dies ON t_press.dies_id = m_dies.id
         LEFT JOIN
     (SELECT 
-        t_hardness.press_id, COUNT(*) AS exist
+        t_measurement.press_id, COUNT(*) AS exist
     FROM
-        extrusion.t_hardness
-    GROUP BY t_hardness.press_id) AS t10 ON t10.press_id = t_press.id
-        LEFT JOIN
-    (SELECT 
-        t_press_sub.press_id, hardness_finish
-    FROM
-        extrusion.t_press_sub
-    GROUP BY t_press_sub.press_id) AS t20 ON t20.press_id = t_press.id
+        extrusion.t_measurement
+    GROUP BY t_measurement.press_id) AS t10 ON t10.press_id = t_press.id
+    WHERE
+    die_number LIKE '%$die_number__input%'
 ORDER BY t_press.press_date_at DESC , t_press.press_start_at DESC;
     ");
 

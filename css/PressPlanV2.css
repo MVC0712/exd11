@@ -4,7 +4,7 @@ body {
   display: flex;
   flex-direction: column;
   height: calc(600px - 2px);
-  width: calc(1150px - 2px);
+  width: calc(1250px - 2px);
 }
 
 .button__wrapper button {
@@ -253,10 +253,10 @@ body {
 
 #summary__table th:nth-child(3),
 #summary__table td:nth-child(3) {
-  width: 115px;
+  width: 105px;
 }
 #summary__table td:nth-child(3) input {
-  width: 110px;
+  width: 100px;
   border-width: 0;
   border: none;
   text-align: left;
@@ -290,11 +290,11 @@ body {
 }
 #summary__table th:nth-child(7),
 #summary__table td:nth-child(7) {
-  width: 62px;
+  width: 172px;
 }
 #summary__table td:nth-child(7) input {
-  width: 60px;
-  text-align: center;
+  width: 170px;
+  text-align: left;
   border: none;
 }
 

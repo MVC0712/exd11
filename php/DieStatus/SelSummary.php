@@ -17,35 +17,38 @@
 
       $sql = "
       SELECT 
-    *
+    t_press.dies_id,
+    m_dies.die_number,
+    SUM(CASE
+        WHEN
+            (CONCAT(t_press.press_date_at,
+                    ' ',
+                    DATE_FORMAT(t_press.press_start_at, '%H:%i')) > (SELECT 
+                    MAX(IFNULL(t_dies_status.do_sth_at,
+                                '2000-01-01 00:00')) AS do_sth_date
+                FROM
+                    m_dies
+                        LEFT JOIN
+                    t_dies_status ON t_dies_status.dies_id = m_dies.id
+                WHERE
+                    m_dies.id = t_press.dies_id
+                        AND (t_dies_status.die_status_id = 4
+                        OR t_dies_status.die_status_id = 10)
+                GROUP BY m_dies.id))
+        THEN
+            1
+        ELSE 0
+    END) AS is_washed_die,
+    t10.die_status,
+    t10.die_status_id,
+    t10.note,
+    DATE_FORMAT(t10.do_sth_at, '%y-%m-%d %H:%i') AS do_sth_at
 FROM
+    t_press
+        LEFT JOIN
+    m_dies ON t_press.dies_id = m_dies.id
+        LEFT JOIN
     (SELECT 
-        t_press.dies_id,
-            m_dies.die_number,
-            SUM(CASE
-                WHEN
-                    (t_press.press_date_at > (SELECT 
-                            MAX(IFNULL(t_dies_status.do_sth_at, '2000-01-01')) AS do_sth_date
-                        FROM
-                            m_dies
-                        LEFT JOIN t_dies_status ON t_dies_status.dies_id = m_dies.id
-                        WHERE
-                            m_dies.id = t_press.dies_id
-                                AND (t_dies_status.die_status_id = 4
-                                OR t_dies_status.die_status_id = 10)
-                        GROUP BY m_dies.id))
-                THEN
-                    1
-                ELSE 0
-            END) AS is_washed_die,
-            t10.die_status,
-            t10.die_status_id,
-            t10.note,
-            DATE_FORMAT(t10.do_sth_at, '%y-%m-%d %H:%i') AS do_sth_at
-    FROM
-        t_press
-    LEFT JOIN m_dies ON t_press.dies_id = m_dies.id
-    LEFT JOIN (SELECT 
         t_dies_status.dies_id,
             m_die_status.die_status,
             t_dies_status.die_status_id,
@@ -64,44 +67,15 @@ FROM
         AND t_dies_status.do_sth_at = t10.do_sth_at
     WHERE
         t10.dies_id IS NOT NULL) AS t10 ON t10.dies_id = t_press.dies_id
-    GROUP BY t_press.dies_id UNION SELECT 
-        t_press.dies_id,
-            m_dies.die_number,
-            SUM(CASE
-                WHEN
-                    (t_press.press_date_at > (SELECT 
-                            MAX(IFNULL(t_dies_status.do_sth_at, '2000-01-01')) AS do_sth_date
-                        FROM
-                            m_dies
-                        LEFT JOIN t_dies_status ON t_dies_status.dies_id = m_dies.id
-                        WHERE
-                            m_dies.id = t_press.dies_id
-                                AND (t_dies_status.die_status_id = 4
-                                OR t_dies_status.die_status_id = 10)
-                        GROUP BY m_dies.id))
-                THEN
-                    1
-                ELSE 0
-            END) AS is_washed_die,
-            'Pressed' AS die_status,
-            '11' AS die_status_id,
-            CONCAT(t_press.actual_billet_quantities, ' ', 'billets') AS note,
-            CONCAT(DATE_FORMAT(t_press.press_date_at, '%y-%m-%d'), ' ', DATE_FORMAT(t_press.press_start_at, '%H:%i')) AS do_sth_at
-    FROM
-        t_press
-    LEFT JOIN m_dies ON m_dies.id = t_press.dies_id
-    GROUP BY t_press.dies_id
-    ORDER BY do_sth_at DESC) AS t100
-GROUP BY t100.dies_id
+GROUP BY dies_id
 ORDER BY CASE die_status
     WHEN 'Grinding' THEN 9
     WHEN 'Wire cutting' THEN 8
-    WHEN 'Nitriding' THEN 7
+    WHEN 'NG' THEN 7
     WHEN 'Washing' THEN 6
-    WHEN 'Measuring' THEN 5
-    WHEN 'NG' THEN 4
-    WHEN 'OK' THEN 3
-    WHEN 'Pressed' THEN 2
+    WHEN 'OK' THEN 5
+    WHEN 'Measuring' THEN 4
+    WHEN 'On rack' THEN 3
     ELSE 0
 END DESC , is_washed_die DESC , die_number ASC;
         ";

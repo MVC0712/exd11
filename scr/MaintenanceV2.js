@@ -642,7 +642,7 @@ function select_row(targetId, targetDom, id) {
             $(element).addClass("selected-record");
             $(id).removeAttr("id");
             $(element).attr("id", id);
-            $(targetDom).scrollTop(19 * index);
+            $('#'+id)[0].scrollIntoView();
         }
     });
     Insert_check();

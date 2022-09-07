@@ -672,7 +672,7 @@ $("#add_bundle__button").on("click", function () {
         .append($("<td>").append($("<input>").val($("#bundle_no").val())))
         .append($("<td>").append($("<input>").val($("#quantity").val())))
         .append($("<td>").append($("<input>").val($("#lot_no").val())))
-        .append($("<td>").append(mfgCodeOption($("#err_code").val())))
+        .append($("<td>").append(mfgCodeOption($("#mfg").val())))
         .appendTo("#bundle__table tbody");
       $(this).prop("disabled", true);
       $("#bundle_no").val("").focus().removeClass("complete-input").addClass("no-input");

@@ -1,0 +1,253 @@
+body {
+    width: 940px;
+}
+body>div {
+    width: 100%;
+}
+
+input {
+    /* width: 40px; */
+    width: 95%;
+    height: 20px;
+    border: 0;
+    text-align: left;
+    padding: 0px;
+}
+button {
+    width: 60px;
+    height: 20px;
+    border: 0;
+    padding: 0px;
+}
+/* ============== Page Layout ============== */
+.buttom__wrapper {
+    height: calc(598px - 31px - 50px - 100px);
+    display: flex;
+    flex-direction: row;
+}
+
+#mear_jug {
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+}
+
+#jud_con {
+    /* width: 120px; */
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#data_select_tr {
+    background-color: aqua;
+}
+
+#dcyc{
+    width: 50px;
+    border-radius: 5px;
+    border: 1px solid #0000ff;
+    text-align: right;
+}
+
+#gh {
+    width:30px;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+#ght,
+#ghd {
+    width:40px;
+    border: 1px solid #0000ff;
+    border-radius: 5px;
+    margin: 0;
+}
+
+#measurement__date {
+    width: 110px;
+    border: 1px solid #0000ff;
+}
+
+#data__table tbody {
+    height: 410px;
+    width: 640px;
+}
+
+#add_new_data tbody {
+    width: 620px;
+    height: 25px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+    overflow: hidden;
+}
+
+#data__table td,
+#data__table th,
+#add_new_data td,
+#add_new_data th {
+    font-size: 10pt;
+}
+
+#data__table th:nth-child(2),
+#data__table td:nth-child(2){
+    display: none;
+}
+
+#data__table th:nth-child(1),
+#data__table td:nth-child(1),
+#add_new_data th:nth-child(1),
+#add_new_data td:nth-child(1) {
+    width: 28px;
+    text-align: center;
+}
+
+#add_new_data th,
+#add_new_data td,
+#data__table th:nth-child(3),
+#data__table td:nth-child(3),
+#data__table th:nth-child(4),
+#data__table td:nth-child(4),
+#data__table th:nth-child(5),
+#data__table td:nth-child(5),
+#data__table th:nth-child(6),
+#data__table td:nth-child(6),
+#data__table th:nth-child(7),
+#data__table td:nth-child(7),
+#data__table th:nth-child(8),
+#data__table td:nth-child(8) {
+    width: 70px;
+    text-align: center;
+}
+#data__table th:nth-child(9),
+#data__table td:nth-child(9)  {
+    width: 150px;
+    text-align: center;
+}
+#dd {
+    background-color: white;
+    color: red;
+    content: "\2014";
+    height: 10px;
+    font-weight: 900;
+    border: 1px solid black;
+}
+#kdd {
+    background-color: white;
+    color: red;
+}
+#add_new_data td select,
+#data__table td select {
+    width: 100%;
+    border: 0;
+    font-size: 10pt;
+    text-align: center;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+}
+
+#add_new {
+    width: 100%;
+    height: 20px;
+    margin: 0;
+}
+
+#add_new_data .need-clear input,
+#add_new_data #selected__tr input,
+#data__table #selected__tr input {
+    /* background-color: #6bfaff; */
+}
+
+#sum_code__table td,
+#sum_code__table th {
+    font-size: 10pt;
+    border: solid 1px blue;
+}
+
+#sum_code__table td {
+    background-color: white;
+    color: black;
+}
+
+#sum_code__table th:nth-child(1),
+#sum_code__table td:nth-child(1),
+#sum_code__table th:nth-child(2),
+#sum_code__table td:nth-child(2),
+#sum_code__table th:nth-child(3),
+#sum_code__table td:nth-child(3) {
+    width: 55px;
+}
+
+#summary_table tbody {
+    height: 540px;
+    width: 290px;
+}
+
+#summary_table td,
+#summary_table th {
+    font-size: 10pt;
+}
+
+#summary_table th:nth-child(1),
+#summary_table td:nth-child(1){
+    display: none;
+}
+
+#summary_table th:nth-child(2),
+#summary_table td:nth-child(2) {
+    width: 55px;
+}
+
+#summary_table th:nth-child(3),
+#summary_table td:nth-child(3) {
+    display: none;
+}
+
+#summary_table th:nth-child(4),
+#summary_table td:nth-child(4) {
+    width: 105px;
+}
+
+#summary_table th:nth-child(5),
+#summary_table td:nth-child(5) {
+    width: 15px;
+    text-align: center;
+}
+
+#summary_table th:nth-child(6),
+#summary_table td:nth-child(6) {
+    width: 15px;
+}
+
+#summary_table th:nth-child(7),
+#summary_table td:nth-child(7) {
+    width: 40px;
+}
+
+#summary_table th:nth-child(8),
+#summary_table td:nth-child(8) {
+    width: 25px;
+}
+
+/* ===================== button area  ========================== */
+
+.button__area {
+    display: flex;
+}
+
+.button__area button {
+    margin: 5px;
+}
+
+#data__table #table_headder {
+    font-size: 8pt;
+}
+#save__button {
+    margin: 5px;
+    /* padding: 5px; */
+}
