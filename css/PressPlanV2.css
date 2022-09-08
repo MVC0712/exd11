@@ -239,7 +239,7 @@ body {
   color: rgb(0, 0, 0);
 }
 #summary__table tbody {
-  height: 500px;
+  height: 520px;
 }
 
 /* id */
@@ -310,4 +310,33 @@ body {
 button {
   width:90px;
   height:20px;
+}
+#hover_area {
+  /* display: none; */
+  position:absolute;
+  left: 250px;
+  background-color: aqua;
+}
+.notshow {
+  display: none;
+}
+#hover_table tbody {
+  height: 160px;
+  overflow: auto;
+}
+#hover_table th:nth-child(1),
+#hover_table td:nth-child(1) {
+  display: none;
+}
+#hover_table th:nth-child(2),
+#hover_table td:nth-child(2) {
+  width: 120px;
+}
+#hover_table th:nth-child(3),
+#hover_table td:nth-child(3) {
+  width: 35px;
+}
+#hover_table th:nth-child(4),
+#hover_table td:nth-child(4) {
+  width: 70px;
 }

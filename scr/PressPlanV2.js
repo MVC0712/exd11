@@ -69,6 +69,7 @@ function makeSummaryTable() {
   makeUsedBillet();
   makeOrderBillet();
   orderQuantity();
+  $("#hover_area").addClass("notshow");
 }
 function makeLastBillet() {
   var fileName = "./php/CheckBillet/SelLastBillet.php";
@@ -264,7 +265,16 @@ $(document).on("click", "#production__table tbody tr", function (e) {
     $("#selected__tr").removeAttr("id");
     $(this).attr("id", "selected__tr");
     $("#selected__tr td:nth-child(3) input").attr("id", "selected__date");
+
+    var fileName = "./php/PressPlan/SelDieHover.php";
+    var sendData = {
+      production_number: $(this).find("td:nth-child(1)").html()
+    };
+    myAjax.myAjax(fileName, sendData);
+    fillTableBody(ajaxReturnData, $("#hover_table tbody"));
+    $("#hover_area").removeClass("notshow");
   } else {
+    $("#hover_area").addClass("notshow");
     let pro_id = $(this).find("td:nth-child(1)").html();
     let pro = $(this).find("td:nth-child(2)").html();
     console.log(pro_id);
