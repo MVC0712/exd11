@@ -35,7 +35,7 @@ $(document).on("change", "#measurement__date", function() {
         $("#measurement__date").addClass("complete-input").removeClass("no-input");
     }
 });
-$(document).on("change", "#die_number__input", function() {
+$(document).on("keyup", "#die_number__input", function() {
     makeSummaryTable();
 });
 function makeSummaryTable() {
@@ -67,6 +67,7 @@ function makeDataTable(targetDom, ajaxReturnData) {
         });
         $(newTr).appendTo(targetDom);
     });
+    
 };
 
 $(document).on("click", "#save__button", function() {
@@ -95,6 +96,7 @@ $(document).on("click", "#save__button", function() {
         makeDataTable($("#data__table"), ajaxReturnData);
     }
     makeSummaryTable();
+    
 });
 
 function getTableDataInput(tableTrObj) {
@@ -133,6 +135,7 @@ $(document).on("change", "#data__table tbody tr", function () {
     };
     console.log(sendData);
     myAjax.myAjax(fileName, sendData);
+    
 });
 
 $(document).on("click", "#add_new", function () {
@@ -164,6 +167,7 @@ $(document).on("click", "#add_new", function () {
         $("#save__button").prop("disabled", true);
         makeDataTable($("#data__table"), ajaxReturnData);
     }
+    
 });
 
 $(document).on("click", "#data__table tbody tr", function(e) {
@@ -182,7 +186,7 @@ $(document).on("click", "#summary_table tbody tr", function(e) {
         $(this).addClass("selected-record");
         $("#selected__tr").removeAttr("id");
         $(this).attr("id", "selected__tr");
-        $("#hardness__date").val("").addClass("no-input").removeClass("complete-input");
+        $("#measurement__date").val("").addClass("no-input").removeClass("complete-input");
         var fileName = "./php/Measurement/SelSide.php";
         var sendData = {
             dies_id: $("#selected__tr").find("td").eq(2).html(),
@@ -198,8 +202,8 @@ $(document).on("click", "#summary_table tbody tr", function(e) {
             dies_id: $("#selected__tr").find("td").eq(2).html(),
         };
         myAjax.myAjax(fileName, sendData);
-        if (ajaxReturnData[0].hardness_check_date!=null) {
-            $("#hardness__date").val(ajaxReturnData[0]["hardness_check_date"]).removeClass("no-input").addClass("complete-input");
+        if (ajaxReturnData[0].measurement_check_date!=null) {
+            $("#measurement__date").val(ajaxReturnData[0]["measurement_check_date"]).removeClass("no-input").addClass("complete-input");
         }
         press_id = ajaxReturnData[0]["press_id"];
         let a = ajaxReturnData[0]["actual_billet_quantities"];
@@ -287,6 +291,7 @@ $(document).on("click", "#summary_table tbody tr", function(e) {
             $("#rz3").html(ajaxReturnData[0].rz3);
             $("#die_mark_3").html(ajaxReturnData[0].die_mark_3);
             $("#note").html(ajaxReturnData[0].note);
+            ulitycall();
         } else {
             $("#rz1").html("-");
             $("#die_mark_1").html("-");
@@ -331,4 +336,31 @@ function timkiem() {
 function roundUp(num, precision) {
     precision = Math.pow(10, precision)
     return Math.ceil(num * precision) / precision
+}
+function jug_column(col, jug_val) {
+    var tablett, trtt, tdtt, itt;
+    var jug = $("#"+jug_val).html();
+    if ($.isNumeric(jug)) {
+        tablett = document.getElementById("data__table");
+        trtt = tablett.getElementsByTagName("tr");
+        for (itt = 0; itt < trtt.length; itt++) {
+        tdtt = trtt[itt].getElementsByTagName("td")[col];
+        if (tdtt) {
+            var txttt = Number(tdtt.getElementsByTagName('input')[0].value);
+            if (txttt>jug) {
+                tdtt.style.backgroundColor = "red";
+            }
+        }
+        }
+    }
+  }
+
+function ulitycall() {
+    jug_column(2, "rz1");
+    jug_column(4, "rz2");
+    jug_column(6, "rz3");
+    jug_column(3, "die_mark_1");
+    jug_column(5, "die_mark_2");
+    jug_column(7, "die_mark_3");
+    console.log(1);
 }
