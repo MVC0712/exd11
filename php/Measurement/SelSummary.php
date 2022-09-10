@@ -42,7 +42,8 @@ FROM
     GROUP BY t_measurement.press_id) AS t10 ON t10.press_id = t_press.id
     WHERE
     die_number LIKE '%$die_number__input%'
-ORDER BY t_press.press_date_at DESC , t_press.press_start_at DESC;
+ORDER BY t_press.press_date_at DESC , t_press.press_start_at DESC
+LIMIT 100;
     ");
 
       $prepare->execute();

@@ -127,6 +127,15 @@ input[type=number]::-webkit-inner-spin-button,
     width: 150px;
     text-align: center;
 }
+#add_new_data th:nth-child(8),
+#add_new_data td:nth-child(8) {
+    width: 150px;
+    text-align: center;
+}
+#add_new,
+#new_7_data {
+    width: 150px;
+}
 #dd {
     background-color: white;
     color: red;
@@ -250,4 +259,7 @@ input[type=number]::-webkit-inner-spin-button,
 #save__button {
     margin: 5px;
     /* padding: 5px; */
+}
+#name__select {
+    width: 180px;
 }

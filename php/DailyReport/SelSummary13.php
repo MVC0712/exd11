@@ -74,7 +74,7 @@
           AND pressing_type_id LIKE :press_type
           GROUP BY t_press.id
       ORDER BY t_press.press_date_at DESC , t_press.press_start_at
-      LIMIT 1000
+      LIMIT 100
           ";
           $prepare = $dbh->prepare($sql);
           $prepare->bindValue(':die_number', $_POST["die_number"], PDO::PARAM_STR);
@@ -140,7 +140,7 @@
                         AND pressing_type_id LIKE :press_type
             GROUP BY t_press.id
       ORDER BY t_press.press_date_at DESC , t_press.press_start_at
-      LIMIT 1000
+      LIMIT 100
           ";
           $prepare = $dbh->prepare($sql);
           $prepare->bindValue(':die_number', $_POST["die_number"], PDO::PARAM_STR);

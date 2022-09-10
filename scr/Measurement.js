@@ -1,6 +1,8 @@
 let ajaxReturnData;
 let press_id;
-
+let meaStaff =[{id: 30, staff_name: "Trần Thị Thảo"},
+                {id: 34, staff_name: "Phạm Thị Kim Hương"},
+                {id: 41, staff_name: "Nguyễn Thị Vui"},];
 const myAjax = {
     myAjax: function(fileName, sendData) {
         $.ajax({
@@ -21,8 +23,21 @@ const myAjax = {
 
 $(function() {
     makeSummaryTable();
+    makeNameList("");
 });
 
+$(document).on("change", "#name__select", function() {
+    if (press_id) {
+        var fileName = "./php/Measurement/InsMeasurementStaff.php";
+        var sendData = {
+            press_id : press_id,
+            measurement_staff: $("#name__select").val(),
+        };
+        console.log(sendData);
+        myAjax.myAjax(fileName, sendData);
+        $("#name__select").addClass("complete-input").removeClass("no-input");
+    }
+});
 $(document).on("change", "#measurement__date", function() {
     if (press_id) {
         var fileName = "./php/Measurement/InsMeasurementDate.php";
@@ -53,7 +68,23 @@ function makeSummaryTable() {
         $(newTr).appendTo("#summary_table tbody");
     });
 };
-
+$(document).on("keyup", "#name__input", function () {
+    makeNameList($(this).val());
+});
+function makeNameList(inputValue) {
+    // let fileName = "./php/Measurement/SelStaff.php";
+    // let sendData = {
+    //     name_s: "%" + inputValue + "%",
+    // };
+    // myAjax.myAjax(fileName, sendData);
+    $("#name__select option").remove();
+    $("#name__select").append($("<option>").val(0).html("--------------"));
+    meaStaff.forEach(function (value) {
+        $("#name__select").append(
+        $("<option>").val(value["id"]).html(value["staff_name"])
+        );
+    });
+}
 function makeDataTable(targetDom, ajaxReturnData) {
     $("#data__table tbody tr").remove();
     ajaxReturnData.forEach(function(trVal) {
@@ -187,12 +218,12 @@ $(document).on("click", "#summary_table tbody tr", function(e) {
         $("#selected__tr").removeAttr("id");
         $(this).attr("id", "selected__tr");
         $("#measurement__date").val("").addClass("no-input").removeClass("complete-input");
+        $("#name__select").val(0).addClass("no-input").removeClass("complete-input");
         var fileName = "./php/Measurement/SelSide.php";
         var sendData = {
             dies_id: $("#selected__tr").find("td").eq(2).html(),
         };
         myAjax.myAjax(fileName, sendData);
-        // $("#table_headder").html($("#selected__tr").find("td").eq(3).html()+" ("+$("#selected__tr").find("td").eq(1).html()+")");
         let h = ajaxReturnData[0].hole; 
         let n = ajaxReturnData[0].n; 
         let m = ajaxReturnData[0].m; 
@@ -205,6 +236,9 @@ $(document).on("click", "#summary_table tbody tr", function(e) {
         if (ajaxReturnData[0].measurement_check_date!=null) {
             $("#measurement__date").val(ajaxReturnData[0]["measurement_check_date"]).removeClass("no-input").addClass("complete-input");
         }
+        if (ajaxReturnData[0].measurement_staff!=null) {
+            $("#name__select").val(ajaxReturnData[0]["measurement_staff"]).removeClass("no-input").addClass("complete-input");
+        }
         press_id = ajaxReturnData[0]["press_id"];
         let a = ajaxReturnData[0]["actual_billet_quantities"];
     
@@ -213,7 +247,6 @@ $(document).on("click", "#summary_table tbody tr", function(e) {
             press_id: press_id,
         };
         myAjax.myAjax(fileName, sendData);
-        // console.log(ajaxReturnData[0].exist);
     
         $("#data__table tbody tr").remove();
         for (i = 0; i < Math.ceil(a * 2 * m * h); ++i) {
@@ -264,17 +297,11 @@ $(document).on("click", "#summary_table tbody tr", function(e) {
         };
         myAjax.myAjax(fileName, sendData);
         if (ajaxReturnData.length==0) {
-            $("#confirm").html("Chưa lưu dữ liệu");
             $("#save__button").prop("disabled", false);
-            $("#skip").prop("disabled", false);
             $("#add_new").prop("disabled", true);
-            $("#jugmm").prop("disabled", true);
         } else {
-            $("#confirm").html("Đã lưu dữ liệu");
             $("#save__button").prop("disabled", true);
-            $("#skip").prop("disabled", true);
             $("#add_new").prop("disabled", false);
-            $("#jugmm").prop("disabled", false);
             makeDataTable($("#data__table"), ajaxReturnData);
         }
 
@@ -304,39 +331,10 @@ $(document).on("click", "#summary_table tbody tr", function(e) {
     } else {
     }
 });
-
-function timkiem() {
-    var input, table, tr, td, td1, td2, filter, i, txtdata, txtdata1, txtdata2, txtdata3;
-    input = document.getElementById("die_number__input");
-    filter = input.value.toUpperCase();
-    table = document.getElementById("summary_table");
-    var tbody = table.getElementsByTagName("tbody")[0];
-    var tr = tbody.getElementsByTagName("tr");
-    for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td")[1];
-        td1 = tr[i].getElementsByTagName("td")[2];
-        td2 = tr[i].getElementsByTagName("td")[3];
-        td3 = tr[i].getElementsByTagName("td")[4];
-        if (td||td1||td2) {
-            txtdata = td.innerText;
-            txtdata1 = td1.innerText;
-            txtdata2 = td2.innerText;
-            txtdata3 = td3.innerText;
-            if (txtdata.toUpperCase().indexOf(filter) > -1||
-                txtdata1.toUpperCase().indexOf(filter) > -1||
-                txtdata2.toUpperCase().indexOf(filter) > -1||
-                txtdata3.toUpperCase().indexOf(filter) > -1) {
-                tr[i].style.display = "";
-            } else {
-                tr[i].style.display = "none";
-            }
-        }
-    }
-};
 function roundUp(num, precision) {
     precision = Math.pow(10, precision)
     return Math.ceil(num * precision) / precision
-}
+};
 function jug_column(col, jug_val) {
     var tablett, trtt, tdtt, itt;
     var jug = $("#"+jug_val).html();
@@ -353,8 +351,7 @@ function jug_column(col, jug_val) {
         }
         }
     }
-  }
-
+};
 function ulitycall() {
     jug_column(2, "rz1");
     jug_column(4, "rz2");
@@ -363,4 +360,4 @@ function ulitycall() {
     jug_column(5, "die_mark_2");
     jug_column(7, "die_mark_3");
     console.log(1);
-}
+};

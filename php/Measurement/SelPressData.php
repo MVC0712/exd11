@@ -23,7 +23,7 @@
             t_press.dimension_check_date,
             t_press.etching_check_date,
             t_press.aging_check_date,
-            t_press.packing_check_date,
+            t_press.measurement_staff,
             t_press.measurement_check_date
         FROM t_press
         left join m_dies on t_press.dies_id = m_dies.id
