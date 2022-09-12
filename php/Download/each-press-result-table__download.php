@@ -19,7 +19,8 @@
       $file_path = "../../download/" . $_POST["file_name"] . ".csv";
 
       $export_csv_title = [
-          "date", "die_number", "production_number", "specific_weight", "discard_thickness",
+          "date", "die_number", "production_number", "specific_weight",  "is_Washed",
+          "discard_thickness",
           "stretch_reatio", "press_start", "press_finish", "press_type", "billet_size",
           "billet_length", "billet_lot_no", "plan_billet_input", "actual_billet_input",
           "actual_ram_speed", "actual_die_temp", "ok_works", "1st_billet_work_length",
@@ -36,7 +37,7 @@
           "billet_No19_work_length", "billet_No20_work_length"
            ];
       $export_csv_title_sub = [
-        "押出日", "型番", "品番",  "単重", "ディスカード厚", "ストレッチ", "開始", "終了", "押出種別", "ビレットサイズ",
+        "押出日", "型番", "品番",  "単重", "洗浄", "ディスカード厚", "ストレッチ", "開始", "終了", "押出種別", "ビレットサイズ",
         "ビレット長さ", "ビレット製造番号", "計画ビレット数", "実績ビレット数", "ラム速（実測）", "金型温度（実測）",
         "良品数", "1stビレット押出長さ", "2ndビレット押出長さ", "1stビレット製品数", "2ndビレット製品数", "総不良数",
         "301", "302", "303", "304", "305", "306", "307", "308", "309", "310", "311", "312", "313", "314", "315", "316",
@@ -56,6 +57,7 @@
       m_dies.die_number,
       m_production_numbers.production_number,
       m_production_numbers.specific_weight,
+      case when t_press.is_washed_die = 1 then 'NoWash' when t_press.is_washed_die = 2 then 'Washed' else '' end as is_Washed,
       t_press_directive.discard_thickness,
       t_press_directive.stretch_ratio,
       t_press.press_start_at,
