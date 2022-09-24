@@ -39,16 +39,16 @@
 
   $sql="";
   $sql="UPDATE t_hardness SET 
-        1hn = $new_1_data,
-        2hn = $new_2_data,
-        3hn = $new_3_data,
-        4hn = $new_4_data,
-        5hn = $new_5_data,
-        6hn = $new_6_data,
-        7hn = $new_7_data,
-        8hn = $new_8_data,
-        9hn = $new_9_data,
-        10hn = $new_10_data
+        1hn = '$new_1_data',
+        2hn = '$new_2_data',
+        3hn = '$new_3_data',
+        4hn = '$new_4_data',
+        5hn = '$new_5_data',
+        6hn = '$new_6_data',
+        7hn = '$new_7_data',
+        8hn = '$new_8_data',
+        9hn = '$new_9_data',
+        10hn = '$new_10_data'
       WHERE id = $id ";
 // print_r($sql);
     $prepare = $dbh->prepare($sql);

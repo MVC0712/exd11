@@ -56,7 +56,6 @@ function makeSummaryTable() {
     });
     $(newTr).appendTo("#summary__table tbody");
   });
-  console.log("Die search");
   mau();
   ulitycall();
 }
@@ -319,3 +318,24 @@ $(document).on("click", "#quality-summary-test__button", function () {
   window.open("QualitySummaryV2.html");
   window.open("about:blank", "_self").close();
 });
+
+$( "#summary__table thead tr th" ).hover(function(e) {
+    var fileName = "./php/QualitySummary/SelErrorDes.php";
+    var sendData = {
+      error_code : $(this).html(),
+    };
+    myAjax.myAjax(fileName, sendData);
+
+    $('#vn').html(ajaxReturnData[0].description_vn + ": " + ajaxReturnData[0].note_vn);
+    $('#jp').html(ajaxReturnData[0].description_jp + ": " + ajaxReturnData[0].note_jp);
+    $('#desc').css({
+      display:  'block',
+      left:  e.pageX - 250,
+      top:   e.pageY + 25
+   });
+  }, function() {
+    $('#desc').css({
+      display:  'none'
+   });
+  }
+);

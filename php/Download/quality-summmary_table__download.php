@@ -29,7 +29,7 @@
         "エッチング巻込不良", "浸蚀边部裂纹不良", "拉伤不良", "粘毛毡不良",
         "停机痕不良", "卷裂不良", "其他不良"
       ];
-      $export_csv_title_sub = [
+      $export_csv_title = [
         "press_date_at", "pressing_time", "die_number", "production_number", "specific_weight", 
         "production_length", "production_weight", "discard_thickness", "discard_weight",
         "pressing_type", "plan_billet_quantities", "actual_billet_quantities",
@@ -143,9 +143,9 @@
       foreach ($export_csv_title as $key => $val) {
           $export_header[] = mb_convert_encoding($val, 'UTF-8', 'UTF-8');
       }
-      foreach ($export_csv_title_sub as $key => $val) {
-          $export_header_sub[] = mb_convert_encoding($val, 'UTF-8', 'UTF-8'); //
-      }
+    //   foreach ($export_csv_title_sub as $key => $val) {
+    //       $export_header_sub[] = mb_convert_encoding($val, 'UTF-8', 'UTF-8'); //
+    //   }
       /*
           Make CSV Part
        */
@@ -153,7 +153,7 @@
           $file = new SplFileObject($file_path, "w");
           // write csv header
           $file->fputcsv($export_header);
-          $file->fputcsv($export_header_sub);
+        //   $file->fputcsv($export_header_sub);
           // query database
           $stmt = $dbh->query($export_sql);
           // create csv sentences

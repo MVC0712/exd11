@@ -298,3 +298,9 @@ input {
 #date {
   width: 125px;
 }
+
+#desc {
+  background-color: aqua;
+  position: fixed;
+  display: none;
+}
