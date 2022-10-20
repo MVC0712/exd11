@@ -573,3 +573,36 @@ function skip() {
         }
     }
 };
+
+$(document).on("click", "#download_excel", function() {
+    console.log(1111111)
+    ajaxMakeDlFile($("#selected__tr").find("td").eq(1).html()+"-"+$("#selected__tr").find("td").eq(3).html());
+});
+
+function ajaxMakeDlFile(phpFileName) {
+$.ajax({
+        type: "POST",
+        url: "./php/DownLoad/" + "Hardness" + ".php",
+        dataType: "json",
+        data: {
+            file_name: phpFileName,
+            press_id : press_id
+        },
+    })
+    .done(function(data) {
+        downloadFile(phpFileName + ".csv");
+    })
+    .fail(function(data) {
+        alert("call php program error 255");
+    });
+}
+
+function downloadFile(downloadFileName) {
+const a = document.createElement("a");
+document.body.appendChild(a);
+a.download = downloadFileName;
+a.href = "./download/" + downloadFileName;
+
+a.click();
+a.remove();
+}
