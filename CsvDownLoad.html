@@ -36,6 +36,9 @@
       <button id="not_press">
         Khuôn chưa đùn <br />
       </button>
+      <button id="die_data">
+        DS khuôn <br />
+      </button>
     </div>
     <script src="./lib/jquery.min.js"></script>
     <script>
@@ -45,6 +48,9 @@
         });
         $(document).on("click", "#not_press", function() {
             ajaxMakeDlFile("Notpress");
+        });
+        $(document).on("click", "#die_data", function() {
+            ajaxMakeDlFile("DieData");
         });
 
         // 型番－月－押出形式－投入量
