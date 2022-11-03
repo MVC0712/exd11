@@ -103,11 +103,14 @@ LEFT JOIN
 		GROUP BY 	t_using_aging_rack.t_press_id
 	) t20 ON t20.t_press_id = t_press.id
 WHERE m_dies.die_number LIKE :die_number
-ORDER BY 	t_press.press_date_at DESC, t_press.press_start_at DESC
+    AND t_press.press_date_at BETWEEN :start_term AND :end_term
+ORDER BY 	t_press.press_date_at DESC, t_press.press_start_at
 LIMIT 75
     ");
 
       $prepare->bindValue(':die_number', $_POST["die_number"], PDO::PARAM_STR);
+      $prepare->bindValue(':start_term', $_POST["start_term"], PDO::PARAM_STR);
+      $prepare->bindValue(':end_term', $_POST["end_term"], PDO::PARAM_STR);
       $prepare->execute();
       $result = $prepare->fetchAll(PDO::FETCH_ASSOC);
 

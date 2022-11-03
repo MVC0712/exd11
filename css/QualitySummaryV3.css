@@ -1,0 +1,308 @@
+body {
+  width: calc(1200px - 2px);
+}
+
+.main__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 50px;
+  flex-direction: row;
+}
+
+/* Ver2 Page button  from here */
+.button__wrapper {
+  position: relative;
+}
+#icon {
+  width: 28px;
+  position: absolute;
+  top: 14px;
+  left: 2px;
+}
+#quality-summary-test__button {
+  height: 35px;
+  width: 90px;
+  padding-left: 15px;
+}
+/* Ver2 Page button  end */
+
+.main__wrapper div:nth-child(2) input {
+  width: 150px;
+}
+
+.input-block__wrapper {
+  height: 25px;
+  /* width: 150px; */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.input__title {
+  width: initial;
+}
+
+input {
+  width: 100px;
+}
+
+/* summary table */
+
+.summary__wrapper {
+  height: calc(598px - 31px - 55px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#summary__table {
+  width: 1180px;
+}
+
+#summary__table tbody {
+  height: 450px;
+}
+
+/* id */
+
+#summary__table th:nth-child(1),
+#summary__table td:nth-child(1) {
+  display: none;
+}
+
+/* press date */
+
+#summary__table th:nth-child(2),
+#summary__table td:nth-child(2) {
+  width: 40px;
+}
+
+#summary__table td:nth-child(2) {
+  text-align: center;
+}
+
+/* die number */
+
+#summary__table th:nth-child(3),
+#summary__table td:nth-child(3) {
+  width: 110px;
+}
+
+#summary__table td:nth-child(3) {
+  text-align: left;
+}
+
+/* Pressing Type */
+
+#summary__table th:nth-child(4),
+#summary__table td:nth-child(4) {
+  width: 20px;
+}
+
+#summary__table td:nth-child(4) {
+  text-align: center;
+  font-family: "ＭＳ ゴシック";
+}
+
+/* Plan input billet qty */
+
+#summary__table th:nth-child(5),
+#summary__table td:nth-child(5) {
+  width: 30px;
+}
+
+#summary__table td:nth-child(5) {
+  text-align: right;
+}
+
+/* Actual input billet qty */
+
+#summary__table th:nth-child(6),
+#summary__table td:nth-child(6) {
+  width: 30px;
+}
+
+#summary__table td:nth-child(6) {
+  text-align: right;
+}
+
+/* Cut work quantity */
+
+#summary__table th:nth-child(7),
+#summary__table td:nth-child(7) {
+  width: 30px;
+}
+
+#summary__table td:nth-child(7) {
+  text-align: right;
+}
+
+/* Total Ng quantity */
+
+#summary__table th:nth-child(8),
+#summary__table td:nth-child(8) {
+  width: 30px;
+}
+
+#summary__table td:nth-child(8) {
+  text-align: right;
+}
+
+/* Total OK quantity */
+
+/* #summary__table th:nth-child(9), */
+
+#summary__table td:nth-child(9) {
+  width: 30px;
+  background-color: rgb(255, 245, 153);
+}
+
+#summary__table th:nth-child(9),
+#summary__table td:nth-child(9) {
+  width: 30px;
+}
+
+#summary__table td:nth-child(9) {
+  text-align: right;
+}
+
+/* Dimension Check Date */
+
+#summary__table th:nth-child(10),
+#summary__table td:nth-child(10) {
+  width: 45px;
+}
+
+#summary__table td:nth-child(10) {
+  text-align: center;
+}
+
+/* Etching Check Date */
+
+#summary__table th:nth-child(11),
+#summary__table td:nth-child(11) {
+  width: 45px;
+}
+
+#summary__table td:nth-child(11) {
+  text-align: center;
+}
+
+/* Aging Check Date */
+
+#summary__table th:nth-child(12),
+#summary__table td:nth-child(12) {
+  width: 45px;
+}
+
+#summary__table td:nth-child(12) {
+  text-align: center;
+}
+
+/* Packing Check Date */
+
+#summary__table th:nth-child(13),
+#summary__table td:nth-child(13) {
+  width: 45px;
+}
+
+#summary__table td:nth-child(13) {
+  text-align: center;
+}
+
+/* Each Ng Qty */
+
+#summary__table th:nth-child(14),
+#summary__table td:nth-child(14),
+#summary__table th:nth-child(15),
+#summary__table td:nth-child(15),
+#summary__table th:nth-child(16),
+#summary__table td:nth-child(16),
+#summary__table th:nth-child(17),
+#summary__table td:nth-child(17),
+#summary__table th:nth-child(18),
+#summary__table td:nth-child(18),
+#summary__table th:nth-child(19),
+#summary__table td:nth-child(19),
+#summary__table th:nth-child(20),
+#summary__table td:nth-child(20),
+#summary__table th:nth-child(21),
+#summary__table td:nth-child(21),
+#summary__table th:nth-child(22),
+#summary__table td:nth-child(22),
+#summary__table th:nth-child(23),
+#summary__table td:nth-child(23),
+#summary__table th:nth-child(24),
+#summary__table td:nth-child(24),
+#summary__table th:nth-child(25),
+#summary__table td:nth-child(25),
+#summary__table th:nth-child(26),
+#summary__table td:nth-child(26),
+#summary__table th:nth-child(27),
+#summary__table td:nth-child(27),
+#summary__table th:nth-child(28),
+#summary__table td:nth-child(28),
+#summary__table th:nth-child(29),
+#summary__table td:nth-child(29),
+#summary__table th:nth-child(30),
+#summary__table td:nth-child(30),
+#summary__table th:nth-child(31),
+#summary__table td:nth-child(31),
+#summary__table th:nth-child(32),
+#summary__table td:nth-child(32),
+#summary__table th:nth-child(33),
+#summary__table td:nth-child(33),
+#summary__table th:nth-child(34),
+#summary__table td:nth-child(34),
+#summary__table th:nth-child(35),
+#summary__table td:nth-child(35),
+#summary__table th:nth-child(36),
+#summary__table td:nth-child(36),
+#summary__table th:nth-child(37),
+#summary__table td:nth-child(37),
+#summary__table th:nth-child(38),
+#summary__table td:nth-child(38) {
+  width: 22px;
+}
+
+#summary__table td:nth-child(14),
+#summary__table td:nth-child(15),
+#summary__table td:nth-child(16),
+#summary__table td:nth-child(17),
+#summary__table td:nth-child(18),
+#summary__table td:nth-child(19),
+#summary__table td:nth-child(20),
+#summary__table td:nth-child(21),
+#summary__table td:nth-child(22),
+#summary__table td:nth-child(23),
+#summary__table td:nth-child(24),
+#summary__table td:nth-child(25),
+#summary__table td:nth-child(26),
+#summary__table td:nth-child(27),
+#summary__table td:nth-child(28),
+#summary__table td:nth-child(29),
+#summary__table td:nth-child(30),
+#summary__table td:nth-child(31),
+#summary__table td:nth-child(32),
+#summary__table td:nth-child(33),
+#summary__table td:nth-child(34),
+#summary__table td:nth-child(35),
+#summary__table td:nth-child(36),
+#summary__table td:nth-child(37),
+#summary__table td:nth-child(38) {
+  text-align: right;
+}
+#summary__table td:nth-child(39) {
+ display: none;
+}
+#date {
+  width: 125px;
+}
+#vll,
+#desc {
+  background-color: aqua;
+  position: fixed;
+  display: none;
+}

@@ -254,22 +254,22 @@ $(document).on("keyup", "#die-heating-time__input", function() {
     else $(this).removeClass("complete-input").addClass("no-input");
 });
 
-$(document).on("keydown", "#die-heating-time__input", function(e) {
-    chkMoveNext(e, $(this), $("#bolster__select"));
-});
+// $(document).on("keydown", "#die-heating-time__input", function(e) {
+//     chkMoveNext(e, $(this), $("#bolster__select"));
+// });
 
 // Bolster  ====================================================
-$(document).on("focus", "#bolster__select", function() {
-    if (0 == $(this).val()) {
-        ajaxSelBolster();
-    }
-});
+// $(document).on("focus", "#bolster__select", function() {
+//     if (0 == $(this).val()) {
+//         ajaxSelBolster();
+//     }
+// });
 
-$(document).on("change", "#bolster__select", function() {
-    if (0 != $(this).val())
-        $(this).removeClass("no-input").addClass("complete-input");
-    else $(this).removeClass("complete-input").addClass("no-input");
-});
+// $(document).on("change", "#bolster__select", function() {
+//     if (0 != $(this).val())
+//         $(this).removeClass("no-input").addClass("complete-input");
+//     else $(this).removeClass("complete-input").addClass("no-input");
+// });
 
 $(document).on("keydown", "#bolster__select", function(e) {
     chkMoveNext(e, $(this), $("#stretch-ratio__input"));
@@ -654,6 +654,7 @@ $(document).on("change", "div.main__wrapper", function() {
 function checkInputComplete() {
     let flag = true;
     // console.log($('.save-data'));
+    $("#bolster__select").removeClass("no-input");
     $(".save-data").each(function(index, element) {
         // console.log(element);
         if ($(element).hasClass("no-input")) {

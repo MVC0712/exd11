@@ -9,15 +9,6 @@ let cancelKeydownEvent = false;
 let editMode = false;
 let readNewFile = false;
 
-let mfgOption = [{
-  id: 1,
-  mfg: "Dubai"
-},
-{
-  id: 2,
-  mfg: "Việt Nam"
-}]
-
 const myAjax = {
   myAjax: function (fileName, sendData) {
     $.ajax({
@@ -644,19 +635,9 @@ $(document).on("keyup", "#lot_no", function() {
   add_bundle_check();
 });
 
-$(document).on("change", "#mfg", function() {
-  if ($(this).val() != 0) {
-      $(this).removeClass("no-input").addClass("complete-input");
-  } else {
-      $(this).removeClass("complete-input").addClass("no-input");
-  }
-  add_bundle_check();
-});
-
 function add_bundle_check() {
   if (($("#bundle_no").hasClass("no-input")) ||
       ($("#quantity").hasClass("no-input")) ||
-      ($("#mfg").hasClass("no-input")) ||
       ($("#lot_no").hasClass("no-input"))) {
       $("#add_bundle__button").prop("disabled", true);
   } else {
@@ -672,12 +653,10 @@ $("#add_bundle__button").on("click", function () {
         .append($("<td>").append($("<input>").val($("#bundle_no").val())))
         .append($("<td>").append($("<input>").val($("#quantity").val())))
         .append($("<td>").append($("<input>").val($("#lot_no").val())))
-        .append($("<td>").append(mfgCodeOption($("#mfg").val())))
         .appendTo("#bundle__table tbody");
       $(this).prop("disabled", true);
       $("#bundle_no").val("").focus().removeClass("complete-input").addClass("no-input");
       $("#quantity").val("").removeClass("complete-input").addClass("no-input");
-      $("#mfg").val(0).removeClass("complete-input").addClass("no-input");
       $("#lot_no").val("").removeClass("complete-input").addClass("no-input");
       break;
     case "Add":
@@ -718,25 +697,6 @@ function makeBundleTable() {
     });
     $(newTr).appendTo("#bundle__table tbody");
   });
-}
-
-function mfgCodeOption(seletedId) {
-  let targetDom = $("<select>");
-    mfgOption.forEach(function(element) {
-      if (element["id"] == seletedId) {
-          $("<option>")
-              .html(element["mfg"])
-              .val(element["id"])
-              .prop("selected", true)
-              .appendTo(targetDom);
-      } else {
-          $("<option>")
-              .html(element["mfg"])
-              .val(element["id"])
-              .appendTo(targetDom);
-      }
-  });
-  return targetDom;
 }
 
 $(document).on("change", "#die__select", function() {
@@ -1125,7 +1085,7 @@ $(document).on("click", "#add_row__button", function () {
 });
 
 function setSummaryTable() {
-  let fileName = "./php/DailyReport/SelSummary13.php";
+  let fileName = "./php/DailyReport/SelSummary14.php";
   let sendData = {
     die_number: $("#die-number-fileter").val() + "%",
     start_date: $("#start-term").val(),
@@ -1146,12 +1106,13 @@ function setSummaryTable() {
     });
     $(newTr).appendTo("#summary__table tbody");
   });
+  special_note();
 }
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // ------------------------- Summary Table ---------------------------------
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 $(document).on("click", "#summary__table tbody tr", function (e) {
-  let fileName = "./php/DailyReport/SelSelData13.php";
+  let fileName = "./php/DailyReport/SelSelData14.php";
   let sendData;
   if (!$(this).hasClass("selected-record")) {
     // tr に class を付与し、選択状態の background colorを付ける
@@ -1363,6 +1324,7 @@ function fillReadData(data) {
   $("#billet-length__select").val(data[0]["billet_length"]);
   $("#scrap_weight__input").val(data[0]["scrap_weight__input"]);
   $("#first_actual_length").val(data[0]["first_actual_length"]);
+  $("#special_note").val(data[0]["special_note"]);
   $("#name__select")
     .empty()
     .append($("<option>").html(data[0]["staff_name"]).val(data[0]["staff_id"]));
@@ -1435,7 +1397,7 @@ $(document).on("click", "#save__button", function () {
   // ======= Input Data ==================
   inputData = getInputData();
   console.log(inputData);
-  fileName = "./php/DailyReport/InsPd13.php";
+  fileName = "./php/DailyReport/InsPd14.php";
   sendData = inputData;
   myAjax.myAjax(fileName, sendData);
   targetId = ajaxReturnData["id"];
@@ -1468,8 +1430,9 @@ $(document).on("click", "#save__button", function () {
   myAjax.myAjax(fileName, sendData);
 
   setSummaryTable();
-
+  
   clearInputData(); // データの削除と背景色の設定
+  // $("#special_note").removeClass("no-input").addClass("complete-input");
   $("#save__button").prop("disabled", true); // save ボタン非活性化
   $("#die__input").prop("disabled", false); // enable die_input frame
   readNewFile = false;
@@ -1488,6 +1451,7 @@ function clearInputData() {
   $("#work-length__table tbody").empty();
   $("#error__table tbody").empty();
   $("#bundle__table tbody").empty();
+  $("#special_note").removeClass("no-input").addClass("complete-input");
 }
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // ------------------------- Update BUTTON  ----------------------------------
@@ -1503,7 +1467,7 @@ $(document).on("click", "#update__button", function () {
 
   // ========Input data============
   inputData = getInputData();
-  fileName = "./php/DailyReport/UpdatePd13.php";
+  fileName = "./php/DailyReport/UpdatePd14.php";
   sendData = inputData;
   myAjax.myAjax(fileName, sendData);
   // ========Table Data:Rack information===========
@@ -1527,7 +1491,7 @@ $(document).on("click", "#update__button", function () {
   setSummaryTable();
   clearInputData(); // データの削除と背景色の設定
   $("#save__button").prop("disabled", true); // save ボタン非活性化
-
+  $("#update__button").prop("disabled", true)
   readNewFile = false;
 });
 
@@ -1683,4 +1647,16 @@ function getTableData(tableTrObj) {
     tableData.push(tr);
   });
   return tableData;
+}
+function special_note() {
+  var tablett, trtt, tdtt, itt, tt;
+  tablett = document.getElementById("summary__table");
+  trtt = tablett.getElementsByTagName("tr");
+  for (itt = 1; itt < trtt.length; itt++) {
+    tdtt = trtt[itt].getElementsByTagName("td")[21];
+    var aaa = tdtt.innerText;
+    if (aaa != "") {
+      $(trtt[itt]).css("color", "red");
+    }
+  }
 }
