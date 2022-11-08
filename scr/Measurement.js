@@ -227,10 +227,12 @@ $(document).on("click", "#summary_table tbody tr", function(e) {
         let h = ajaxReturnData[0].hole; 
         let n = ajaxReturnData[0].n; 
         let m = ajaxReturnData[0].m; 
-        var fileName = "./php/Measurement/SelPressData.php";
+        press_id = $("#selected__tr").find("td").eq(0).html();
+        var fileName = "./php/Measurement/SelPressDataV2.php";
         var sendData = {
-            press_date: $("#selected__tr").find("td").eq(1).html(),
-            dies_id: $("#selected__tr").find("td").eq(2).html(),
+            // press_date: $("#selected__tr").find("td").eq(1).html(),
+            // dies_id: $("#selected__tr").find("td").eq(2).html(),
+            press_id: press_id,
         };
         myAjax.myAjax(fileName, sendData);
         if (ajaxReturnData[0].measurement_check_date!=null) {
@@ -239,7 +241,7 @@ $(document).on("click", "#summary_table tbody tr", function(e) {
         if (ajaxReturnData[0].measurement_staff!=null) {
             $("#name__select").val(ajaxReturnData[0]["measurement_staff"]).removeClass("no-input").addClass("complete-input");
         }
-        press_id = ajaxReturnData[0]["press_id"];
+        // press_id = ajaxReturnData[0]["press_id"];
         let a = ajaxReturnData[0]["actual_billet_quantities"];
     
         var fileName = "./php/Measurement/SelExist.php";

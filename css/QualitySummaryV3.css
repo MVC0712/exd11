@@ -1,5 +1,5 @@
 body {
-  width: calc(1200px - 2px);
+  width: calc(1220px - 2px);
 }
 
 .main__wrapper {
@@ -58,7 +58,7 @@ input {
 }
 
 #summary__table {
-  width: 1180px;
+  width: 1205px;
 }
 
 #summary__table tbody {
@@ -110,7 +110,7 @@ input {
 
 #summary__table th:nth-child(5),
 #summary__table td:nth-child(5) {
-  width: 30px;
+  width: 35px;
 }
 
 #summary__table td:nth-child(5) {
@@ -121,7 +121,7 @@ input {
 
 #summary__table th:nth-child(6),
 #summary__table td:nth-child(6) {
-  width: 30px;
+  width: 35px;
 }
 
 #summary__table td:nth-child(6) {
@@ -132,7 +132,7 @@ input {
 
 #summary__table th:nth-child(7),
 #summary__table td:nth-child(7) {
-  width: 30px;
+  width: 35px;
 }
 
 #summary__table td:nth-child(7) {
@@ -143,7 +143,7 @@ input {
 
 #summary__table th:nth-child(8),
 #summary__table td:nth-child(8) {
-  width: 30px;
+  width: 35px;
 }
 
 #summary__table td:nth-child(8) {
@@ -155,13 +155,13 @@ input {
 /* #summary__table th:nth-child(9), */
 
 #summary__table td:nth-child(9) {
-  width: 30px;
+  width: 35px;
   background-color: rgb(255, 245, 153);
 }
 
 #summary__table th:nth-child(9),
 #summary__table td:nth-child(9) {
-  width: 30px;
+  width: 35px;
 }
 
 #summary__table td:nth-child(9) {

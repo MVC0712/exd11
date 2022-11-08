@@ -354,16 +354,18 @@ $(document).on("click", "#summary_table tbody tr", function(e) {
         let h = ajaxReturnData[0].hole; 
         let n = ajaxReturnData[0].n; 
         let m = ajaxReturnData[0].m; 
-        var fileName = "./php/HardNess/SelPressData.php";
+        press_id = $("#selected__tr").find("td").eq(0).html();
+        var fileName = "./php/HardNess/SelPressDataV2.php";
         var sendData = {
-            press_date: $("#selected__tr").find("td").eq(1).html(),
-            dies_id: $("#selected__tr").find("td").eq(2).html(),
+            // press_date: $("#selected__tr").find("td").eq(1).html(),
+            // dies_id: $("#selected__tr").find("td").eq(2).html(),
+            press_id: press_id,
         };
         myAjax.myAjax(fileName, sendData);
         if (ajaxReturnData[0].hardness_check_date!=null) {
             $("#hardness__date").val(ajaxReturnData[0]["hardness_check_date"]).removeClass("no-input").addClass("complete-input");
         }
-        press_id = ajaxReturnData[0]["press_id"];
+        // press_id = $("#selected__tr").find("td").eq(0).html();
         let a = ajaxReturnData[0]["actual_billet_quantities"];
     
         var fileName = "./php/HardNess/SelExist.php";

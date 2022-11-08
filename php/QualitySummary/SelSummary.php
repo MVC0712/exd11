@@ -54,8 +54,7 @@ SELECT
 	t10.code_322,
 	t10.code_323,
 	t10.code_324,
-	t10.code_351,
-	t_press.special_note
+	t10.code_351
 FROM t_press
 LEFT JOIN m_pressing_type ON t_press.pressing_type_id = m_pressing_type.id
 LEFT JOIN m_dies ON t_press.dies_id = m_dies.id
