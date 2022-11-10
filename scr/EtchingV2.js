@@ -337,11 +337,12 @@ $(document).on("click", "#data__table tbody tr", function(e) {
         let h = ajaxReturnData[0].hole; 
         let n = ajaxReturnData[0].n; 
         let m = ajaxReturnData[0].m; 
-        console.log(h, n, m);
-        var fileName = "./php/Etching/SelPressData.php";
+        press_id = $("#selected__tr").find("td").eq(0).html();
+        var fileName = "./php/Etching/SelPressDataV2.php";
         var sendData = {
-            press_date: $("#selected__tr").find("td").eq(1).html(),
-            dies_id: $("#selected__tr").find("td").eq(2).html(),
+            // press_date: $("#selected__tr").find("td").eq(1).html(),
+            // dies_id: $("#selected__tr").find("td").eq(2).html(),
+            press_id: press_id,
         };
         myAjax.myAjax(fileName, sendData);
         $("#pressing_type").val(ajaxReturnData[0]["pressing_type"]);
@@ -349,7 +350,7 @@ $(document).on("click", "#data__table tbody tr", function(e) {
         $("#input_billet_quantity").val(
             ajaxReturnData[0]["actual_billet_quantities"]
         );
-        press_id = ajaxReturnData[0]["press_id"];
+        // press_id = ajaxReturnData[0]["press_id"];
     
         let a = ajaxReturnData[0]["actual_billet_quantities"];
     
