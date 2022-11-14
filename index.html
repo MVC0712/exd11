@@ -54,6 +54,7 @@
         <button id="production_number">Edit<br />PN</button>
         <button id="die_number">Edit<br />Die</button>
         <button id="maintenance">Bảo trì TB</button>
+        <button id="log">LS máy đùn</button>
       </div>
 
       <div class="right__area">
@@ -72,6 +73,10 @@
 
       $(document).on("click", "#maintenance", function () {
         window.open("MaintenanceV2.html");
+      });
+
+      $(document).on("click", "#log", function () {
+        window.open("ExtrusionLog.html");
       });
 
       $(document).on("click", "#etching", function () {

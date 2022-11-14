@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Extrusion Log</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/Extrusionlog.css" />
+  </head>
+
+  <body>
+    <header>Extrusion Log</header>
+    <div class="summary__wrapper">
+      <dialog class="dialog__wrapper" id="delete__dialog">
+        Do you Delete?
+        <button id="delete-dialog-cancel__button">Cancel</button>
+        <button id="delete-dialog-delete__button">Delete</button>
+      </dialog>
+      <div class="left">
+        <div style="display: flex; align-items:center; justify-content: space-around;">
+          <div>Ngày
+          <input id="input_date" class="save-data need-clear" type="date"/>
+        </div>
+        <div>Máy
+          <select id="machine_number">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+        </div>
+        <div>Khuôn
+        <select id="die-number__select" style="width: 130px;" class="need-clear">
+        </select>
+      </div>
+        </div>
+      <table id="add__table">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>Die Number</th>
+            <th>Code</th>
+            <th>Start</th>
+            <th>End</th>
+            <th><button id="add__button">Add</button></th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+        <div style="width: 350px; display: flex; align-items:center; padding-bottom: 5px; justify-content: space-around;">
+          <button disabled id="save__button">Save</button>
+        </div>
+
+  </div>
+  <div>
+    <div style="width: 550px; display: flex; align-items:center; justify-content: space-around;">
+  <input id="plan_start" type="date"/> → <input id="plan_end" type="date"/>
+  <!-- <div>Máy
+    <select id="machine_number">
+      <option value="0">-----</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+    </select>
+  </div> -->
+  <button disabled id="download_excel" style="margin: 0; padding:0;">Tải về</button>
+</div>
+  <table id="summary__table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Date</th>
+        <th>MCN</th>
+        <th>Die Number</th>
+        <th>Code</th>
+        <th>Start</th>
+        <th>End</th>
+        <th>Note</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
+    </div>
+    <script src="./lib/jquery.min.js"></script>
+    <script src="./scr/ExtrusionLog.js"></script>
+  </body>
+</html>

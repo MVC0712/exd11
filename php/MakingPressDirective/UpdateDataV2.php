@@ -32,7 +32,6 @@
           billet_taper_heating = :billet_taper_heating,
           die_temperature = :die_temperature,
           die_heating_time = :die_heating_time,
-          bolstar_id = :bolstar_id,
           stretch_ratio = :stretch_ratio,
           aiging_type_id = :aiging_type_id,
           previous_press_note = :previous_press_note,
@@ -56,7 +55,7 @@
       $prepare->bindValue(':billet_taper_heating', (INT)$_POST['billet-taper-heating__select' ], PDO::PARAM_INT);
       $prepare->bindValue(':die_temperature', (INT)$_POST['die-temperature__input' ], PDO::PARAM_INT);
       $prepare->bindValue(':die_heating_time', $_POST['die-heating-time__input' ], PDO::PARAM_STR);
-      $prepare->bindValue(':bolstar_id', (INT)$_POST['bolster__select' ], PDO::PARAM_INT);
+      // $prepare->bindValue(':bolstar_id', (INT)$_POST['bolster__select' ], PDO::PARAM_INT);
       $prepare->bindValue(':stretch_ratio', $_POST['stretch-ratio__input' ], PDO::PARAM_STR);
       $prepare->bindValue(':aiging_type_id', 1, PDO::PARAM_INT);
       $prepare->bindValue(':previous_press_note', $_POST['note__textarea' ], PDO::PARAM_STR);
