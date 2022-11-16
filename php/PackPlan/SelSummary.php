@@ -34,13 +34,21 @@
     t_press_plan.pack_plan_date,
     t100.max1 * t_press_plan.quantity AS ppl,
     t_press_plan.pack_quantity,
-    t_press_plan.pack_note
+    t_press_plan.pack_note,
+    t_press_sub.hardness_finish,
+    t_press.packing_check_date,
+    t_press.aging_check_date
 FROM
     t_press_plan
         LEFT JOIN
     m_dies ON m_dies.id = t_press_plan.dies_id
         LEFT JOIN
     m_production_numbers ON m_production_numbers.id = t_press_plan.production_number_id
+        LEFT JOIN
+    t_press ON t_press.dies_id = t_press_plan.dies_id
+        AND t_press.press_date_at = t_press_plan.plan_date
+        LEFT JOIN
+    t_press_sub ON t_press_sub.press_id = t_press.id
         LEFT JOIN
     (SELECT 
         dies_id, max1, max2
@@ -61,7 +69,7 @@ FROM
     WHERE
         max1 > 0
     GROUP BY t_press.dies_id) t100 ON t100.dies_id = t_press_plan.dies_id
-    WHERE
+WHERE
     t_press_plan.plan_date BETWEEN '$start' AND '$end' AND m_dies.die_number LIKE '%$die_number%'
 ORDER BY t_press_plan.plan_date DESC
     ");

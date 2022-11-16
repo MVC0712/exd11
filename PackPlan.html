@@ -11,115 +11,13 @@
   <body>
     <header>Pack Plan</header>
     <div class="summary__wrapper">
-      <!-- <dialog class="dialog__wrapper" id="delete__dialog">
-        Do you Delete?
-        <button id="delete-dialog-cancel__button">Cancel</button>
-        <button id="delete-dialog-delete__button">Delete</button>
-      </dialog> -->
-
-      <!-- <table id="production__table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th><input id="production_number" class="need-clear" type="text" /></th>
-            <th>Die</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table> -->
-      <!-- <div>
-      <table id="add__table">
-        <thead>
-          <tr>
-            <th>Production Number id</th>
-            <th>Production Number</th>
-            <th>Die Number</th>
-            <th>Qty</th>
-            <th>Note</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-        <div style="width: 350px; display: flex; align-items:center; padding-bottom: 5px; justify-content: space-around;">
-          <input
-          id="press_date_at"
-          class="no-input save-data need-clear"
-          type="date"
-        />
-          <button disabled id="save__button">Save</button>
-        </div>
-
-<table id="caculate__table">
-        <thead>
-          <tr><th>Mã VL</th><th>Tồn HT</th><th>Thực tế</th><th>Kế hoạch</th><th>Order</th></tr>
-          <tr>
-            <th id="VL61">6061-1200</th><td id="ht6061-1200"></td><td id="tt6061-1200"></td><td id="pl6061-1200"></td><td id="od6061-1200"></td>
-          </tr>
-          <tr>
-            <th id="VL61">6061-600</th><td id="ht6061-600"></td><td id="tt6061-600"></td><td id="pl6061-600"></td><td id="od6061-600"></td>
-          </tr>
-          <tr>
-            <th id="VL63">6063-1200</th><td id="ht6063-1200"></td><td id="tt6063-1200"></td><td id="pl6063-1200"></td><td id="od6063-1200"></td>
-          </tr>
-          <tr>
-            <th id="VL63">6063-600</th><td id="ht6063-600"></td><td id="tt6063-600"></td><td id="pl6063-600"></td><td id="od6063-600"></td>
-          </tr>
-          <tr>
-            <th id="VL6N">6N01A-1200</th><td id="ht6N01-1200"></td><td id="tt6N01-1200"></td><td id="pl6N01-1200"></td><td id="od6N01-1200"></td>
-          </tr>
-          <tr>
-            <th id="VL6N">6N01A-600</th><td id="ht6N01-600"></td><td id="tt6N01-600"></td><td id="pl6N01-600"></td><td id="od6N01-600"></td>
-          </tr>
-        </thead>
-      </table>
-  </div> -->
   <div>
   <div>
-    <input
-style="width: 100px; text-align: left;"
-id="die_number"
-type="text"
-/>
+    <input style="width: 100px; text-align: left;" id="die_number" type="text"/>
 Press
-  <input
-  id="plan_start"
-  type="date"
-/>
+  <input id="plan_start" type="date"/>
 →
-<input
-id="plan_end"
-type="date"
-/>
-<!-- Aging -->
-  <!-- <input
-  id="aging_start"
-  type="date"
-/>
-→
-<input
-id="aging_end"
-type="date"
-/> -->
-<!-- Hardness
-  <input
-  id="hardness_start"
-  type="date"
-/>
-→
-<input
-id="hardness_end"
-type="date"
-/>
-Pack
-  <input
-  id="pack_start"
-  type="date"
-/>
-→
-<input
-id="pack_end"
-type="date"
-/> -->
+<input id="plan_end" type="date"/>
 </div>
   <table id="summary__table">
     <thead>
@@ -129,8 +27,6 @@ type="date"
         <th>Press date</th>
         <th>Production Number</th>
         <th>Die Number</th>
-        <!-- <th>Material</th> -->
-        
         <th>Qty</th>
         <th>Aging date</th>
         <th>Hardness date</th>
@@ -143,30 +39,6 @@ type="date"
     <tbody></tbody>
   </table>
 </div>
-      <!-- <table id="caculate__table">
-        <thead>
-          <tr><th>Mã VL</th><th>Tồn HT</th><th>Thực tế</th><th>Kế hoạch</th><th>Order</th></tr>
-          <tr>
-            <th>6061-1200</th><td id="ht6061-1200"></td><td id="tt6061-1200"></td><td id="pl6061-1200"></td><td id="od6061-1200"></td>
-          </tr>
-          <tr>
-            <th>6061-600</th><td id="ht6061-600"></td><td id="tt6061-600"></td><td id="pl6061-600"></td><td id="od6061-600"></td>
-          </tr>
-          <tr>
-            <th>6063-1200</th><td id="ht6063-1200"></td><td id="tt6063-1200"></td><td id="pl6063-1200"></td><td id="od6063-1200"></td>
-          </tr>
-          <tr>
-            <th>6063-600</th><td id="ht6063-600"></td><td id="tt6063-600"></td><td id="pl6063-600"></td><td id="od6063-600"></td>
-          </tr>
-          <tr>
-            <th>6N01-1200</th><td id="ht6N01-1200"></td><td id="tt6N01-1200"></td><td id="pl6N01-1200"></td><td id="od6N01-1200"></td>
-          </tr>
-          <tr>
-            <th>6N01-600</th><td id="ht6N01-600"></td><td id="tt6N01-600"></td><td id="pl6N01-600"></td><td id="od6N01-600"></td>
-          </tr>
-        </thead>
-      </table> -->
-
     </div>
     <script src="./lib/jquery.min.js"></script>
     <script src="./scr/PackPlan.js"></script>

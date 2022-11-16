@@ -1,5 +1,12 @@
 let editMode = false;
 // let deleteDialog = document.getElementById("delete__dialog");
+let formatDateComponent = function(dateComponent) {
+  return (dateComponent < 10 ? '0' : '') + dateComponent;
+};
+
+let formatDate = function(date) {
+  return date.getFullYear()  + '-' + formatDateComponent(date.getMonth() + 1) + '-' + formatDateComponent(date.getDate()) ;
+};
 const myAjax = {
   myAjax: function(fileName, sendData) {
       $.ajax({
@@ -22,13 +29,13 @@ $(function() {
   var now = new Date();
   var MonthLastDate = new Date(now.getFullYear(), now.getMonth() + 1, 0);
   var MonthFirstDate = new Date(now.getFullYear(), (now.getMonth() + 12) % 12, 1);
-  var formatDateComponent = function(dateComponent) {
-    return (dateComponent < 10 ? '0' : '') + dateComponent;
-  };
+  // var formatDateComponent = function(dateComponent) {
+  //   return (dateComponent < 10 ? '0' : '') + dateComponent;
+  // };
 
-  var formatDate = function(date) {
-    return date.getFullYear()  + '-' + formatDateComponent(date.getMonth() + 1) + '-' + formatDateComponent(date.getDate()) ;
-  };
+  // var formatDate = function(date) {
+  //   return date.getFullYear()  + '-' + formatDateComponent(date.getMonth() + 1) + '-' + formatDateComponent(date.getDate()) ;
+  // };
   var a = (new Date());
   var b = formatDate(MonthLastDate);
   var c = formatDate(new Date());
@@ -46,9 +53,11 @@ function makeSummaryTable() {
     end : $("#plan_end").val(),
     die_number : $("#die_number").val(),
   };
-  console.log(sendData);
   myAjax.myAjax(fileName, sendData);
   fillTableBody(ajaxReturnData, $("#summary__table tbody"));
+  agingDateColor();
+  hardnesDateColor();
+  packingDateColor();
 }
 function fillTableBody(data, tbodyDom) {
   $(tbodyDom).empty();
@@ -154,4 +163,33 @@ $(document).on("change", "#summary__table tbody tr td", function () {
   console.log(sendData);
   myAjax.myAjax(fileName, sendData);
   // makeSummaryTable();
+  agingDateColor();
 });
+
+function agingDateColor() {
+  // $("#summary__table tbody tr").each(function () {
+  //   if((this).getElementsByTagName("td")[6].getElementsByTagName("input")[0].value <= formatDate(new Date()) &&
+  //   ((this).getElementsByTagName("td")[6].getElementsByTagName("input")[0].value != "")) {
+  //     (this).getElementsByTagName("td")[6].getElementsByTagName("input")[0].style.backgroundColor = "#ff7b00";
+  //   }
+  // });
+  $("#summary__table tbody tr").each(function () {
+    if((this).getElementsByTagName("td")[14].innerText != "") {
+      (this).getElementsByTagName("td")[6].getElementsByTagName("input")[0].style.backgroundColor = "red";
+    }
+  });
+};
+function hardnesDateColor() {
+  $("#summary__table tbody tr").each(function () {
+    if((this).getElementsByTagName("td")[12].innerText == 1) {
+      (this).getElementsByTagName("td")[7].getElementsByTagName("input")[0].style.backgroundColor = "#00ff9d";
+    }
+  });
+};
+function packingDateColor() {
+  $("#summary__table tbody tr").each(function () {
+    if((this).getElementsByTagName("td")[13].innerText != "") {
+      (this).getElementsByTagName("td")[8].getElementsByTagName("input")[0].style.backgroundColor = "#eeff00";
+    }
+  });
+};

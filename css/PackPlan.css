@@ -4,7 +4,7 @@ body {
   display: flex;
   flex-direction: column;
   height: calc(600px - 2px);
-  width: calc(1200px - 2px);
+  width: calc(1070px - 2px);
 }
 
 .same-date {
@@ -109,7 +109,14 @@ input {
   text-align: center;
   border: none;
 }
-
+#summary__table th:nth-child(13),
+#summary__table td:nth-child(13),
+#summary__table th:nth-child(14),
+#summary__table td:nth-child(14),
+#summary__table th:nth-child(15),
+#summary__table td:nth-child(15) {
+  display: none;
+}
 .class1 {
   display: inline-block;
   align-items:center;
