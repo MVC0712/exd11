@@ -291,7 +291,7 @@ display: none;
   width: 172px;
 }
 #bundle__table tbody {
-  height: 110px;
+  height: 270px;
   width: 222px;
 }
 #bundle__table th:nth-child(1),
@@ -597,4 +597,7 @@ button {
 }
 #summary__table tr td:nth-child(21) {
   text-align: center;
+}
+#tt1, #tt2 {
+  color: red;
 }

@@ -31,7 +31,7 @@ $(function () {
   // test ボタンの表示
   $("#test__button").hide();
   setSummaryTable();
-  ErrorCode();
+  // ErrorCode();
   $("#machine-number__select").val(1).removeClass("no-input").addClass("complete-input");
 });
 // *****************************************************
@@ -538,7 +538,7 @@ $("#add_error__button").on("click", function () {
         err_note: $("#err_note").val(),
       };
       myAjax.myAjax(fileName, sendData);
-      makeErrorTable();
+      // makeErrorTable();
       $("#err_code").val("").removeClass("complete-input").addClass("no-input");
       $("#err_start").val("").removeClass("complete-input").addClass("no-input");
       $("#err_end").val("").removeClass("complete-input").addClass("no-input");
@@ -991,6 +991,7 @@ $("#add-rack__button").on("click", function () {
       $("#add-rack__button").prop("disabled", true);
       break;
   }
+  checkSum();
 });
 
 $(document).on("click", "#rack__table tbody tr", function () {
@@ -1065,6 +1066,7 @@ $(document).on("change", "#rack__table tbody tr input", function () {
   };
   console.log(sendData);
   myAjax.myAjax(fileName, sendData);
+  checkSum();
 });
 
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -1137,7 +1139,7 @@ $(document).on("click", "#summary__table tbody tr", function (e) {
     // ============= Fill Rack Data
     makeRackTable();
     makeBundleTable();
-    makeErrorTable();
+    // makeErrorTable();
 
     editMode = true;
     // button activation
@@ -1145,7 +1147,7 @@ $(document).on("click", "#summary__table tbody tr", function (e) {
     $("#preview__button").attr("disabled", false);
     // set aging rack table to edit mode
     $("#add-rack__button").text("Add");
-    $("#add_error__button").text("Add");
+    // $("#add_error__button").text("Add");
     $("#add_bundle__button").text("Add");
     $("#racknumber__input").removeClass("complete-input").addClass("no-input");
     $("#rackqty__input").removeClass("complete-input").addClass("no-input");
@@ -1154,6 +1156,7 @@ $(document).on("click", "#summary__table tbody tr", function (e) {
     // 削除問い合わせダイアログ
     // deleteDialog.showModal();
   }
+  checkSum();
 });
 
 $(document).on("click", "#error__table tbody tr", function() {
@@ -1383,6 +1386,7 @@ function checkIsDataInputed() {
       // console.log($(this));
     }
   });
+  flag = checkSum();
   return flag;
 }
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -1417,11 +1421,11 @@ $(document).on("click", "#save__button", function () {
   sendData = JSON.stringify(sendTable);
   myAjax.myAjax(fileName, sendData);
 
-  ErrorData = getTableData($("#error__table tbody tr"));
-  ErrorData.push(targetId);
-  fileName = "./php/DailyReport/InsError13.php";
-  sendData = JSON.stringify(ErrorData);
-  myAjax.myAjax(fileName, sendData);
+  // ErrorData = getTableData($("#error__table tbody tr"));
+  // ErrorData.push(targetId);
+  // fileName = "./php/DailyReport/InsError13.php";
+  // sendData = JSON.stringify(ErrorData);
+  // myAjax.myAjax(fileName, sendData);
 
   let BundleData = getTableData($("#bundle__table tbody tr"));
   BundleData.push(targetId);
@@ -1659,4 +1663,28 @@ function special_note() {
       $(trtt[itt]).css("color", "red");
     }
   }
+};
+
+function checkSum() {
+var tt1 = 0;
+if($("#add-rack__button").text()=="Save") {
+  $("#rack__table tbody tr").each(function () {
+    tt1 += Number((this).getElementsByTagName("td")[3].innerText);
+  });
+} else {
+  $("#rack__table tbody tr").each(function () {
+    tt1 += Number((this).getElementsByTagName("td")[3].getElementsByTagName("input")[0].value);
+  });
 }
+$("#tt1").html(tt1);
+// $("#rack__table tbody tr").each(function () {
+//   tt1 += Number((this).getElementsByTagName("td")[3].getElementsByTagName("input")[0].value);
+// });
+// $("#tt1").html(tt1);
+var tt2 = 0;
+$("#work-length__table tbody tr").each(function () {
+  tt2 += Number((this).getElementsByTagName("td")[1].getElementsByTagName("input")[0].value);
+});
+$("#tt2").html(tt2);
+if (tt1==tt2) return true; else return false;
+};

@@ -4,7 +4,7 @@ body {
   display: flex;
   flex-direction: column;
   height: calc(600px - 2px);
-  width: calc(1060px - 2px);
+  width: calc(1180px - 2px);
 }
 
 .main__wrapper {
@@ -62,7 +62,8 @@ button {
   justify-content: space-around;
   flex-direction: row;
 }
-.left {
+.left,
+.right {
   border-right: 1px blue dotted;
 }
 tbody tr.selected-record {
@@ -70,7 +71,7 @@ tbody tr.selected-record {
 }
 #add__table tbody {
   height: 500px;
-  width: 495px;
+  width: 400px;
   overflow: auto;
 }
 #add__table th:nth-child(1),
@@ -82,52 +83,52 @@ tbody tr.selected-record {
   width: 110px;
 }
 #add__table td:nth-child(2) select {
-  width: 110px;
+  width: 100px;
   border-width: 0;
 }
 #add__table th:nth-child(3),
 #add__table td:nth-child(3) {
-  width: 140px;
+  width: 85px;
   display: flex;
 }
 #add__table td:nth-child(3) input {
   width: 30px;
 }
 #add__table td:nth-child(3) select {
-  width: 140px;
+  width: 120px;
   border-width: 0;
 }
 #add__table th:nth-child(4),
 #add__table td:nth-child(4) {
-  width: 53px;
+  width: 43px;
 }
 #add__table td:nth-child(4) input {
-  width: 50px;
+  width: 40px;
   text-align: center;
   border: none;
 }
 #add__table th:nth-child(5),
 #add__table td:nth-child(5) {
-  width: 53px;
+  width: 43px;
 }
 #add__table td:nth-child(5) input {
-  width: 50px;
-  text-align: left;
+  width: 40px;
+  text-align: center;
   border: none;
 }
 #add__table th:nth-child(6),
 #add__table td:nth-child(6) {
-  width: 105px;
+  width: 85px;
 }
 #add__table td:nth-child(6) input {
-  width: 100px;
+  width: 80px;
   text-align: left;
   border: none;
 }
 
 #summary__table tbody {
-  height: 520px;
-  width: 550px;
+  height: 525px;
+  width: 465px;
   overflow: auto;
 }
 #summary__table th:nth-child(1),
@@ -136,7 +137,7 @@ tbody tr.selected-record {
 }
 #summary__table th:nth-child(2),
 #summary__table td:nth-child(2) {
-  width: 70px;
+  width: 65px;
 }
 
 #summary__table th:nth-child(3),
@@ -146,47 +147,40 @@ tbody tr.selected-record {
 }
 #summary__table th:nth-child(4),
 #summary__table td:nth-child(4) {
-  width: 110px;
-}
-#summary__table td:nth-child(4) input {
   width: 100px;
-  border-width: 0;
-  border: none;
-  text-align: left;
 }
 #summary__table th:nth-child(5),
 #summary__table td:nth-child(5) {
-  width: 50px;
+  width: 40px;
+  text-align: center;
 }
-#summary__table td:nth-child(5) select {
-  width: 110px;
-  border-width: 0;
-}
-
 #summary__table th:nth-child(6),
 #summary__table td:nth-child(6) {
-  width: 75px;
+  width: 45px;
 }
-#summary__table td:nth-child(6) select {
-  width: 75px;
-  border-width: 0;
-}
-
 #summary__table th:nth-child(7),
 #summary__table td:nth-child(7) {
-  width: 75px;
-}
-#summary__table td:nth-child(7) input {
-  width: 75px;
-  text-align: center;
-  border: none;
+  width: 45px;
 }
 #summary__table th:nth-child(8),
 #summary__table td:nth-child(8) {
   width: 100px;
 }
-#summary__table td:nth-child(8) input {
-  width: 100px;
-  text-align: left;
-  border: none;
+#code__table tbody {
+  height: 545px;
+  width: 305px;
+  overflow: auto;
+}
+#code__table th:nth-child(1),
+#code__table td:nth-child(1){
+  display: none;
+}
+#code__table th:nth-child(2),
+#code__table td:nth-child(2) {
+  width: 30px;
+}
+
+#code__table th:nth-child(3),
+#code__table td:nth-child(3) {
+  width: 250px;
 }

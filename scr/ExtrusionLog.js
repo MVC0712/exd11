@@ -37,7 +37,7 @@ $(function() {
   $("#plan_end").val(formatDate(new Date(a.setDate(a.getDate() + 14))))
   makeDieSelect();
   makeSummaryTable();
-  // makeProductionNumber();
+  makeCodetable();
 });
 
 function makeSummaryTable() {
@@ -49,7 +49,15 @@ function makeSummaryTable() {
   };
   myAjax.myAjax(fileName, sendData);
   fillTableBody(ajaxReturnData, $("#summary__table tbody"));
-}
+};
+function makeCodetable() {
+  let targetDom = $("<select>");
+  fileName = "./php/ExtrusionLog/SelCode.php";
+  sendData = {
+  };
+  myAjax.myAjax(fileName, sendData);
+  fillTableBody(ajaxReturnData, $("#code__table tbody"));
+};
 function fillTableBody(data, tbodyDom) {
   $(tbodyDom).empty();
     data.forEach(function(trVal) {
@@ -306,7 +314,7 @@ $(document).keyup(function(e) {
           $("#add__tr").removeAttr("id");
           $(this).attr("id", "add__tr");
         }
-    });
+    }); 
   }
 });
 

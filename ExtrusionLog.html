@@ -52,18 +52,9 @@
         </div>
 
   </div>
-  <div>
-    <div style="width: 550px; display: flex; align-items:center; justify-content: space-around;">
+  <div class="right">
+    <div style="display: flex; align-items:center; justify-content: space-around;">
   <input id="plan_start" type="date"/> → <input id="plan_end" type="date"/>
-  <!-- <div>Máy
-    <select id="machine_number">
-      <option value="0">-----</option>
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-    </select>
-  </div> -->
   <button disabled id="download_excel" style="margin: 0; padding:0;">Tải về</button>
 </div>
   <table id="summary__table">
@@ -81,6 +72,18 @@
     </thead>
     <tbody></tbody>
   </table>
+</div>
+<div>
+<table id="code__table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Code</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
 </div>
     </div>
     <script src="./lib/jquery.min.js"></script>

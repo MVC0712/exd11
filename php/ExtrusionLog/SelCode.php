@@ -17,6 +17,7 @@
       id, code, description
     FROM
     m_code
+    ORDER BY code ASC
     ");
     $prepare->execute();
     $result = $prepare->fetchALL(PDO::FETCH_ASSOC);
