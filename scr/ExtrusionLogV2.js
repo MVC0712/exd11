@@ -36,16 +36,17 @@ $(function() {
   $("#input_date").val(c);
   $("#plan_end").val(formatDate(new Date(a.setDate(a.getDate() + 14))))
   makeDieSelect();
+  makePrstypeSelect();
   makeSummaryTable();
   makeCodetable();
 });
 
 function makeSummaryTable() {
-  var fileName = "./php/ExtrusionLog/SelSummary.php";
+  var fileName = "./php/ExtrusionLog/SelSummaryV2.php";
   var sendData = {
     start : $("#plan_start").val(),
     end : $("#plan_end").val(),
-    // machine_number : $("#machine_number").val(),
+    prs_type_search : $("#prs_type_search").val(),
   };
   myAjax.myAjax(fileName, sendData);
   fillTableBody(ajaxReturnData, $("#summary__table tbody"));
@@ -54,6 +55,7 @@ function makeCodetable() {
   let targetDom = $("<select>");
   fileName = "./php/ExtrusionLog/SelCode2Row.php";
   sendData = {
+    code_search: $("#code_search").val()
   };
   myAjax.myAjax(fileName, sendData);
   fillTableBody2Row(ajaxReturnData, $("#code__table tbody"));
@@ -108,16 +110,33 @@ function makeDieSelect() {
       );
   });
 };
+function makePrstypeSelect() {
+  fileName = "./php/ExtrusionLog/SelPrsType.php";
+  sendData = {
+  };
+  myAjax.myAjax(fileName, sendData);
+  $("#prs_type_search > option").remove();
+  $("#prs_type_search").append($("<option>").val(0).html("No"));
+  ajaxReturnData.forEach(function(value) {
+      $("#prs_type_search").append(
+          $("<option>").val(value["id"]).html(value["pressing_type"])
+      );
+  });
+};
 $(document).on("change", "#input_date", function () {
   makeDieSelect();
+});
+$(document).on("keyup", "#code_search", function () {
+  makeCodetable();
 });
 $(document).on("click", "#add__button", function () {
   var newTr = $("<tr>");
       $("<td>").html(1).appendTo(newTr);
       $("<td>").append(makeDieNumberSel($("#die-number__select").val())).appendTo(newTr);
+      // $("<td>").append(makePressingTypeSel().prop('disabled', true)).appendTo(newTr);
+      $("<td>").append(makePressingTypeSel()).appendTo(newTr);
       $("<td>").append($("<input>").attr("type", "text").addClass("code-search"))
               .append(makeCodeSel("").addClass("no-input code-input")).appendTo(newTr);
-      // $("<td>").append(makeTime("").addClass("no-input time-input")).appendTo(newTr);
       // $("<td>").append(makeTime("").addClass("no-input time-input")).appendTo(newTr);
       $("<td>").append(makeInput("").addClass("no-input time-input")).appendTo(newTr);
       $("<td>").append(makeInput("").addClass("no-input time-input")).appendTo(newTr);
@@ -149,7 +168,45 @@ function makeDieNumberSel(seletedId) {
       }
   });
   return targetDom;
-}
+};
+function makePressingTypeSel() {
+  if ($("#die-number__select").val() != 0) {
+    fileName = "./php/ExtrusionLog/SelPressingTypeByDataId.php";
+    sendData = {
+      input_date : $("#input_date").val(),
+      dies_id : $("#die-number__select").val(),
+    };
+    myAjax.myAjax(fileName, sendData);
+    if (ajaxReturnData.length != 0) {
+      var selected = ajaxReturnData[0]["pressing_type_id"];
+    } else {
+      var selected = 0;
+    }
+  }
+  let targetDom = $("<select>");
+  $("<option>").html("----").val(0).appendTo(targetDom);
+    fileName = "./php/ExtrusionLog/SelPressingType.php";
+    sendData = {
+      input_date : $("#input_date").val(),
+      dies_id : $("#die-number__select").val(),
+    };
+    myAjax.myAjax(fileName, sendData);
+    ajaxReturnData.forEach(function(element) {
+      if (element["id"] == selected) {
+          $("<option>")
+              .html(element["pressing_type"])
+              .val(element["id"])
+              .prop("selected", true)
+              .appendTo(targetDom);
+      } else {
+          $("<option>")
+              .html(element["pressing_type"])
+              .val(element["id"])
+              .appendTo(targetDom);
+      }
+  });
+  return targetDom;
+};
 function makeCodeSel(seletedId) {
   let targetDom = $("<select>");
   fileName = "./php/ExtrusionLog/SelCode.php";
@@ -286,6 +343,9 @@ $(document).on("change", "#plan_start", function (e) {
 $(document).on("change", "#plan_end", function (e) {
   makeSummaryTable();
 });
+$(document).on("change", "#prs_type_search", function (e) {
+  makeSummaryTable();
+});
 function checkSave() {
   let check = true;
   if ($("#add__table tbody tr").length==0) {
@@ -352,10 +412,10 @@ $(document).on("keyup", "#add__table tbody tr td .code-search", function () {
     code_search : $(this).val(),
   };
   myAjax.myAjax(fileName, sendData);
-  $("#add__tr td:nth-child(3) select > option").remove();
-  $("<option>").html("----").val(0).appendTo("#add__tr td:nth-child(3) select");
+  $("#add__tr td:nth-child(4) select > option").remove();
+  $("<option>").html("----").val(0).appendTo("#add__tr td:nth-child(4) select");
   ajaxReturnData.forEach(function(element) {
-    $("<option>").html(element["code"]).val(element["id"]).appendTo("#add__tr td:nth-child(3) select");
+    $("<option>").html(element["code"]).val(element["id"]).appendTo("#add__tr td:nth-child(4) select");
   });
 });
 function getTableDataInput(tableTrObj) {
@@ -392,7 +452,7 @@ $(document).on("click", "#delete-dialog-delete__button", function () {
 });
 // ------------------------- Save Button -------------------------
 $(document).on("click", "#save__button", function () {
-  var fileName = "./php/ExtrusionLog/InsExtrusionLog.php";
+  var fileName = "./php/ExtrusionLog/InsExtrusionLogV2.php";
   tableData = getTableDataInput($("#add__table tbody tr"))
     jsonData = JSON.stringify(tableData);
     var sendData = {
@@ -411,26 +471,22 @@ function clearInputData() {
 }
 
 $(document).on("click", "#download_excel", function() {
-  ajaxMakeDlFile("Plan");
+  ajaxMakeDlFile("ExtrusionLog");
 });
 function ajaxMakeDlFile(phpFileName) {
   $.ajax({
-          type: "POST",
-          url: "./php/DownLoad/" + phpFileName + ".php",
-          dataType: "json",
-          data: {
-              file_name: phpFileName,
-              start : $("#plan_start").val(),
-    end : $("#plan_end").val(),
-    die_number : $("#die_number").val(),
-          },
-      })
-      .done(function(data) {
-          downloadFile(phpFileName + ".csv");
-      })
-      .fail(function(data) {
-          alert("call php program error 255");
-      });
+    type: "POST",
+    url: "./php/DownLoad/" + phpFileName + ".php",
+    dataType: "json",
+    data: {
+      file_name: phpFileName,
+      start : $("#plan_start").val(),
+      end : $("#plan_end").val(),
+    }}).done(function(data) {
+      downloadFile(phpFileName + ".csv");
+  }).fail(function(data) {
+      alert("call php program error 255");
+  });
 }
 
 function downloadFile(downloadFileName) {

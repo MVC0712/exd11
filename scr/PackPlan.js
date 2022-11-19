@@ -167,17 +167,17 @@ $(document).on("change", "#summary__table tbody tr td", function () {
 });
 
 function agingDateColor() {
-  // $("#summary__table tbody tr").each(function () {
-  //   if((this).getElementsByTagName("td")[6].getElementsByTagName("input")[0].value <= formatDate(new Date()) &&
-  //   ((this).getElementsByTagName("td")[6].getElementsByTagName("input")[0].value != "")) {
-  //     (this).getElementsByTagName("td")[6].getElementsByTagName("input")[0].style.backgroundColor = "#ff7b00";
-  //   }
-  // });
   $("#summary__table tbody tr").each(function () {
-    if((this).getElementsByTagName("td")[14].innerText != "") {
-      (this).getElementsByTagName("td")[6].getElementsByTagName("input")[0].style.backgroundColor = "red";
+    if((this).getElementsByTagName("td")[6].getElementsByTagName("input")[0].value <= formatDate(new Date()) &&
+    ((this).getElementsByTagName("td")[6].getElementsByTagName("input")[0].value != "")) {
+      (this).getElementsByTagName("td")[6].getElementsByTagName("input")[0].style.backgroundColor = "#ff7b00";
     }
   });
+  // $("#summary__table tbody tr").each(function () {
+  //   if((this).getElementsByTagName("td")[14].innerText != "") {
+  //     (this).getElementsByTagName("td")[6].getElementsByTagName("input")[0].style.backgroundColor = "red";
+  //   }
+  // });
 };
 function hardnesDateColor() {
   $("#summary__table tbody tr").each(function () {

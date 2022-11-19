@@ -13,16 +13,18 @@
       )
     );
 
+    $prepare = $dbh->prepare("SELECT 
+    id, pressing_type
+FROM
+    extrusion.m_pressing_type;
+    ");
+    $prepare->execute();
+    $result = $prepare->fetchALL(PDO::FETCH_ASSOC);
 
-    $stmt = $dbh->prepare("DELETE FROM t_press_plan WHERE id=:targetId");
-    $stmt->bindValue(':targetId', (INT)$_POST["targetId"], PDO::PARAM_INT);
-    $stmt->execute();
-
-    echo(json_encode("Deleted"));
-
+    echo json_encode($result);
   } catch (PDOException $e){
     $error = $e->getMessage();
-    print_r($error);
+    echo json_encode($error);
   }
   $dbh = null;
 ?>

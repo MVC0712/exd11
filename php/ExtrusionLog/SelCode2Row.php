@@ -1,6 +1,8 @@
 <?php
   $userid = "webuser";
   $passwd = "";
+
+  $code_search = $_POST["code_search"];
   try{
     $dbh = new PDO(
       'mysql:host=localhost; dbname=extrusion; charset=utf8',
@@ -14,10 +16,19 @@
 
     $prepare = $dbh->prepare("
     SELECT 
-      id, code, description, description_ja
-    FROM
+    id, code, description AS ds, 1 AS 'o'
+FROM
     m_code
-    ORDER BY code ASC
+WHERE
+    code LIKE '%$code_search%' OR description LIKE '%$code_search%' 
+UNION SELECT 
+    id, code, description_ja AS ds, 2 AS 'o'
+FROM
+    m_code
+WHERE
+    code LIKE '%$code_search%'
+        OR description_ja LIKE '%$code_search%'
+ORDER BY code ASC , o ASC
     ");
     $prepare->execute();
     $result = $prepare->fetchALL(PDO::FETCH_ASSOC);

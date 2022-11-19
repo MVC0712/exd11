@@ -1,6 +1,9 @@
 <?php
   $userid = "webuser";
   $passwd = "";
+
+  $input_date = $_POST["input_date"];
+  $dies_id = $_POST["dies_id"];
   try{
     $dbh = new PDO(
       'mysql:host=localhost; dbname=extrusion; charset=utf8',
@@ -12,12 +15,10 @@
       )
     );
 
-    $prepare = $dbh->prepare("
-    SELECT 
-      id, code, description, description_ja
-    FROM
-    m_code
-    ORDER BY code ASC
+    $prepare = $dbh->prepare("SELECT 
+    id, pressing_type
+FROM
+    extrusion.m_pressing_type;
     ");
     $prepare->execute();
     $result = $prepare->fetchALL(PDO::FETCH_ASSOC);
