@@ -27,7 +27,14 @@ SELECT
 	t10.total_ng,
 	t20.work_quantity - t10.total_ng AS total_ok,
 	DATE_FORMAT(t_press.dimension_check_date, '%m-%d'),
-	DATE_FORMAT(t_press.etching_check_date, '%m-%d'),
+	CASE
+        WHEN
+            t_press_sub.etching_check_staff IS NOT NULL
+                AND t_press_sub.etching_finish = 1
+        THEN
+            DATE_FORMAT(t_press.etching_check_date, '%m-%d')
+        WHEN t_press_sub.etching_check_staff IS NULL THEN DATE_FORMAT(t_press.etching_check_date, '%m-%d')
+    END AS ett,
 	DATE_FORMAT(t_press.aging_check_date, '%m-%d'),
 	DATE_FORMAT(t_press.packing_check_date, '%m-%d'),
 	t10.code_301,
@@ -59,6 +66,7 @@ SELECT
 FROM t_press
 LEFT JOIN m_pressing_type ON t_press.pressing_type_id = m_pressing_type.id
 LEFT JOIN m_dies ON t_press.dies_id = m_dies.id
+LEFT JOIN t_press_sub ON t_press.id = t_press_sub.press_id
 LEFT JOIN 
 	(
 		SELECT 
@@ -103,6 +111,7 @@ LEFT JOIN
 		GROUP BY 	t_using_aging_rack.t_press_id
 	) t20 ON t20.t_press_id = t_press.id
 WHERE m_dies.die_number LIKE :die_number
+GROUP BY t_press.id
 ORDER BY 	t_press.press_date_at DESC, t_press.press_start_at DESC
 LIMIT 75
     ");

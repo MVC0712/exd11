@@ -18,7 +18,7 @@
     IFNULL(etching_finish, 0) AS etching_finish,
     IFNULL(etching_staff, 0) AS etching_staff,
     IFNULL(etching_check_staff, 0) AS etching_check_staff,
-    IFNULL(etching_file_url, 0) AS etching_file_url
+    IFNULL(etching_file_url, 'No_image.jpg') AS etching_file_url
     FROM
       t_press_sub
     WHERE
