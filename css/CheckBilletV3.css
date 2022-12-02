@@ -1,0 +1,245 @@
+body {
+  width: calc(1080px - 2px);
+}
+
+.button__wrapper button {
+  height: 30px;
+  margin: 0;
+}
+
+input {
+  text-align: left;
+}
+/* --------- main wrapper ---------  */
+
+.main__wrapper {
+  padding-top: 15px;
+  flex-direction: row;
+  height: 50px;
+  align-content: space-around;
+  justify-content: space-around;
+}
+
+#input_area {
+  height: 70px;
+  display: flex;
+  align-content: space-around;
+  justify-content: space-around;
+  flex-direction: row;
+}
+#save__button {
+  width: 100%;
+  height: 100%;
+}
+#input_block {
+  display: flex;
+  flex-direction: column;
+}
+.main__wrapper select {
+  border-width: 1px 1px 1px 0;
+}
+
+/* production number */
+#staff_name__group{
+  width: 270px;
+  margin-left: 10px;
+}
+#staff_name__title {
+  width: 35px;
+}
+#staff_name {
+  width: 80px;
+}
+#staff_name__select{
+  width: 150px;
+}
+
+#check_at__group{
+  width: 205px;
+  margin-left: 10px;
+}
+#check_at__title {
+  width: 75px;
+}
+#check_at {
+  width: 130px;
+}
+
+#plan__group{
+  width: 285px;
+  /* margin-left: 10px; */
+}
+#plan__title {
+  width: 90px;
+}
+#plan_start,
+#plan_end {
+  width: 130px;
+}
+/* ======================        button area       ======================= */
+
+#remain__button {
+  width: 120px;
+  padding-left: 10px;
+}
+
+/* ----------button block ============== */
+.button__block {
+  position: relative;
+}
+#icon {
+  width: 24px;
+  position: absolute;
+  top: 3px;
+  left: 2px;
+}
+/* --------- button wrapper ---------  */
+
+.button__wrapper {
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+/* ======================        summary-table       ======================= */
+#input__table tbody {
+  height: 25px;
+  -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+    overflow: auto;
+}
+
+#input__table th:nth-child(1),
+#input__table td:nth-child(1),
+#input__table th:nth-child(2),
+#input__table td:nth-child(2),
+#input__table th:nth-child(3),
+#input__table td:nth-child(3),
+#input__table th:nth-child(4),
+#input__table td:nth-child(4),
+#input__table th:nth-child(5),
+#input__table td:nth-child(5),
+#input__table th:nth-child(6),
+#input__table td:nth-child(6),
+#input__table th:nth-child(7),
+#input__table td:nth-child(7),
+#input__table th:nth-child(8),
+#input__table td:nth-child(8),
+#input__table th:nth-child(9),
+#input__table td:nth-child(9),
+#input__table th:nth-child(10),
+#input__table td:nth-child(10),
+#input__table th:nth-child(11),
+#input__table td:nth-child(11),
+#input__table th:nth-child(12),
+#input__table td:nth-child(12),
+#input__table th:nth-child(13),
+#input__table td:nth-child(13),
+#input__table th:nth-child(14),
+#input__table td:nth-child(14),
+#input__table th:nth-child(15),
+#input__table td:nth-child(15),
+#input__table th:nth-child(16),
+#input__table td:nth-child(16) {
+  width: 50px;
+}
+
+#input__table td input[type="text"] {
+  width: 47px;
+  border: 0;
+  padding: 0;
+}
+
+#summary__table tbody {
+  height: 460px;
+  width: 1075px;
+  overflow: auto;
+}
+
+#summary__table td:nth-child(1),
+#summary__table th:nth-child(1) {
+  display: none;
+}
+
+#summary__table th:nth-child(2),
+#summary__table td:nth-child(2) {
+  width: 60px;
+}
+#summary__table th:nth-child(3),
+#summary__table td:nth-child(3) {
+  width: 120px;
+}
+#summary__table th:nth-child(4),
+#summary__table td:nth-child(4),
+#summary__table th:nth-child(5),
+#summary__table td:nth-child(5),
+#summary__table th:nth-child(6),
+#summary__table td:nth-child(6),
+#summary__table th:nth-child(7),
+#summary__table td:nth-child(7),
+#summary__table th:nth-child(8),
+#summary__table td:nth-child(8),
+#summary__table th:nth-child(9),
+#summary__table td:nth-child(9),
+#summary__table th:nth-child(10),
+#summary__table td:nth-child(10),
+#summary__table th:nth-child(11),
+#summary__table td:nth-child(11),
+#summary__table th:nth-child(12),
+#summary__table td:nth-child(12),
+#summary__table th:nth-child(13),
+#summary__table td:nth-child(13),
+#summary__table th:nth-child(14),
+#summary__table td:nth-child(14),
+#summary__table th:nth-child(15),
+#summary__table td:nth-child(15),
+#summary__table th:nth-child(16),
+#summary__table td:nth-child(16),
+#summary__table th:nth-child(17),
+#summary__table td:nth-child(17),
+#summary__table th:nth-child(18),
+#summary__table td:nth-child(18) {
+  width: 59px;
+  text-align: center;
+}
+
+
+#caculate__table td,
+#caculate__table th {
+    font-size: 10pt;
+    border: solid 1px blue;
+}
+#caculate__table td {
+    background-color: white;
+    color: black;
+}
+#caculate__table th:nth-child(1),
+#caculate__table td:nth-child(1) {
+    width: 80px;
+    text-align: left;
+    padding-left: 5px;
+}
+#caculate__table th:nth-child(2),
+#caculate__table td:nth-child(2),
+#caculate__table th:nth-child(3),
+#caculate__table td:nth-child(3),
+#caculate__table th:nth-child(4),
+#caculate__table td:nth-child(4),
+#caculate__table th:nth-child(5),
+#caculate__table td:nth-child(5) {
+    width: 55px;
+}
+#VL61 {
+  background-color: rgb(255, 0, 0);
+}
+#VL63 {
+  background-color: rgb(0, 4, 255);
+}
+#VL6N {
+  background-color: rgb(255, 251, 0);
+  color: rgb(0, 0, 0);
+}
