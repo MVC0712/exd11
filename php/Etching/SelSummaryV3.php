@@ -47,6 +47,8 @@ FROM
     FROM
         extrusion.t_press_sub
     GROUP BY t_press_sub.press_id) AS t20 ON t20.press_id = t_press.id
+    WHERE
+    pressing_type != '〇'
 ORDER BY t_press.press_date_at DESC , t_press.press_start_at DESC
 LIMIT 75;
     ");

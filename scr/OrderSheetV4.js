@@ -314,7 +314,7 @@ function getInputData() {
 function ajaxInsInputData(inputData) {
   $.ajax({
     type: "POST",
-    url: "./php/OrderSheet/InsInputData.php",
+    url: "./php/OrderSheet/InsInputDataV4.php",
     dataType: "json",
     async: false,
     data: inputData,
