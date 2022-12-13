@@ -95,7 +95,7 @@ FROM
         LEFT JOIN
     m_pressing_type ON t_press_directive.pressing_type_id = m_pressing_type.id
         LEFT JOIN
-    m_bolster ON t_press_directive.bolstar_id = m_bolster.id
+    m_bolster ON m_dies.bolstar_id = m_bolster.id
         LEFT JOIN
     m_staff ON t_press_directive.incharge_person_id = m_staff.id
         LEFT JOIN
