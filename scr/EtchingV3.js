@@ -72,10 +72,10 @@ function makeDataTable(targetDom, ajaxReturnData) {
         Object.keys(trVal).forEach(function(tdVal) {
             if (tdVal == "Position" || tdVal == "id") {
                 $("<td>").html(trVal[tdVal]).appendTo(newTr);
-            } else if (tdVal == "1st_code" || tdVal == "2nd_code" || tdVal == "3rd_code" || 
+            } else if (tdVal == "1st_code" || tdVal == "2nd_code" || tdVal == "3rd_code" ||
                     tdVal == "4th_code" || tdVal == "5th_code") {
                 $("<td>").append(makeNgCodeOptionDom(trVal[tdVal])).appendTo(newTr);
-            } else if (tdVal == "1st_jug" || tdVal == "2nd_jug" || tdVal == "3rd_jug" || 
+            } else if (tdVal == "1st_jug" || tdVal == "2nd_jug" || tdVal == "3rd_jug" ||
                     tdVal == "4th_jug" || tdVal == "5th_jug") {
                 $("<td>")
                     .append(makeJugCodeOptionDom(trVal[tdVal]))
@@ -224,7 +224,7 @@ $(document).on("click", "#save__button", function() {
     tableData = getTableDataInput($("#data__table tbody tr"))
     console.log(tableData);
     jsonData = JSON.stringify(tableData);
-    
+
     var sendData = {
         data : jsonData,
         press_id : press_id,
@@ -390,9 +390,9 @@ $(document).on("click", "#data__table tbody tr", function(e) {
         };
         myAjax.myAjax(fileName, sendData);
         $("#table_headder").html($("#selected__tr").find("td").eq(3).html()+" ("+$("#selected__tr").find("td").eq(1).html()+")");
-        let h = ajaxReturnData[0].hole; 
-        let n = ajaxReturnData[0].n; 
-        let m = ajaxReturnData[0].m; 
+        let h = ajaxReturnData[0].hole;
+        let n = ajaxReturnData[0].n;
+        let m = ajaxReturnData[0].m;
         press_id = $("#selected__tr").find("td").eq(0).html();
         var fileName = "./php/Etching/SelPressDataV2.php";
         var sendData = {
@@ -405,24 +405,24 @@ $(document).on("click", "#data__table tbody tr", function(e) {
             ajaxReturnData[0]["actual_billet_quantities"]
         );
         let a = ajaxReturnData[0]["actual_billet_quantities"];
-    
+
         var fileName = "./php/Etching/SelExist.php";
         var sendData = {
             press_id: press_id,
         };
         myAjax.myAjax(fileName, sendData);
         console.log(ajaxReturnData[0].exist);
-    
+
         $("#data__table tbody tr").remove();
         for (i = 0; i < Math.ceil(a * 2 * m * h); ++i) {
             let trDom = $("<tr>");
             if (n==1){
-                if (i%2==0){trDom.append($("<td>").html(Math.ceil((i-n)/(2*n) + 1) + "H"));} 
+                if (i%2==0){trDom.append($("<td>").html(Math.ceil((i-n)/(2*n) + 1) + "H"));}
                 else {trDom.append($("<td>").html(Math.ceil((i-n)/(2*n) + 1) + "E"));}
             } else if (n==2){
-                if (i%4==0){trDom.append($("<td>").html( Math.ceil((i-n-1)/(2*n) + 1) + "H"));} 
-                else if (i%4==1) {trDom.append($("<td>").html( Math.ceil((i-n-1)/(2*n) + 1) + "A"));} 
-                else if (i%4==2) {trDom.append($("<td>").html( Math.ceil((i-n-1)/(2*n) + 1) + "B"));} 
+                if (i%4==0){trDom.append($("<td>").html( Math.ceil((i-n-1)/(2*n) + 1) + "H"));}
+                else if (i%4==1) {trDom.append($("<td>").html( Math.ceil((i-n-1)/(2*n) + 1) + "A"));}
+                else if (i%4==2) {trDom.append($("<td>").html( Math.ceil((i-n-1)/(2*n) + 1) + "B"));}
                 else {trDom.append($("<td>").html( Math.ceil((i-n-1)/(2*n) + 1) + "E"));}
             } else if (n==3){
                 if (i%6==0){ trDom.append($("<td>").html( Math.ceil((i-n-2)/(2*n) + 1) + "H")); }
@@ -474,12 +474,12 @@ $(document).on("click", "#data__table tbody tr", function(e) {
                     $("<option>").val(25).html("351"),
                 ).addClass("need-clear"));
             }
-    
+
             trDom.append(tdDom);
             }
             trDom.appendTo("#data__table");
         }
-    
+
         var fileName = "./php/Etching/SelData.php";
         var sendData = {
             press_id: press_id,
@@ -569,3 +569,66 @@ function ajaxFileUpload() {
 $(document).on("click", "#preview__button", function () {
     window.open("./EtchingSub.html");
 });
+
+$(document).on("click", "#print__button", function() {
+    ajaxSelForExcel($("#selected__tr").find("td").eq(0).html());
+});
+function ajaxSelForExcel(targetId) {
+    let pressLength;
+    $.ajax({
+        type: "POST",
+        url: "./php/MakingPressDirective/SelForExcelV3.php",
+        dataType: "json",
+        async: false,
+        data: {
+            targetId: targetId,
+        },
+    })
+    .done(function(data) {
+        pressLength = calPressLength(
+            data[0]["billet_size"],
+            data[0]["billet_length"],
+            data[0]["specific_weight"],
+            data[0]["hole"]
+        );
+        data[0]["press_length"] = pressLength;
+        ajaxPyMakeExcelFile(data);
+    })
+    .fail(function() {
+        alert("DB connect error");
+    });
+}
+function ajaxPyMakeExcelFile(inputData) {
+    let data = new Object();
+    let donwloadFileName;
+    data = inputData[0];
+    data["pressing_type"] = encodeURI(data["pressing_type"]);
+    data["staff_name"] = encodeURI(data["staff_name"]);
+    data["previous_press_note"] = encodeURI(data["previous_press_note"]);
+    donwloadFileName = data["plan_date_at"] + "_" + data["die_number"] + ".xlsx";
+    let JSONdata = JSON.stringify(data);
+    $.ajax({
+            async: false,
+            url: "./py/MakingPressDirective.py",
+            type: "post",
+            data: JSONdata,
+            dataType: "json",
+        })
+        .done(function(data) {
+            console.log(data);
+            downloadExcelFile(donwloadFileName);
+        })
+        .fail(function() {
+            console.log("failed");
+        });
+}
+function downloadExcelFile(donwloadFileName) {
+    const a = document.createElement("a");
+    document.body.appendChild(a);
+
+    a.download = donwloadFileName;
+    a.href = "../PressDIrectiveFile/" + donwloadFileName;
+
+    a.click();
+    a.remove();
+}
