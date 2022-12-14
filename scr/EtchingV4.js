@@ -471,7 +471,6 @@ $(document).on("click", "#summary_table tbody tr", function(e) {
 			press_id: press_id,
 		};
 		myAjax.myAjax(fileName, sendData);
-		console.log(ajaxReturnData)
 		if (ajaxReturnData.length==0) {
 			$("#etching_finish").val(0);
 			$("#etching_staff").val(0);
@@ -487,6 +486,7 @@ $(document).on("click", "#summary_table tbody tr", function(e) {
 	} else {
 
 	}
+	$("#print__button").prop("disabled", false);
 });
 function timkiem() {
 	var input, table, tr, td, td1, td2, filter, i, txtdata, txtdata1, txtdata2, txtdata3;
@@ -544,7 +544,6 @@ $(document).on("click", "#print__button", function() {
 	ajaxSelForExcel($("#selected__tr").find("td").eq(0).html());
 });
 function ajaxSelForExcel(targetId) {
-	let pressLength;
 	$.ajax({
 		type: "POST",
 		url: "./php/Etching/SelForExcel.php",
@@ -555,10 +554,7 @@ function ajaxSelForExcel(targetId) {
 		},
 	})
 	.done(function(data) {
-		data[0]["h"] = h;
-		data[0]["n"] = n;
-		data[0]["m"] = m;
-		data[0]["a"] = a;
+		console.log(data)
 		ajaxPyMakeExcelFile(data);
 	})
 	.fail(function() {
@@ -569,10 +565,7 @@ function ajaxPyMakeExcelFile(inputData) {
 	let data = new Object();
 	let donwloadFileName;
 	data = inputData[0];
-	// data["pressing_type"] = encodeURI(data["pressing_type"]);
-	// data["staff_name"] = encodeURI(data["staff_name"]);
-	// data["previous_press_note"] = encodeURI(data["previous_press_note"]);
-	donwloadFileName = data["press_date"] + "_" + data["a"] + "_" + data["die_number"] + ".xlsx";
+	donwloadFileName = data["press_date_at"] + "_" + data["actual_billet_quantities"] + "_" + data["die_number"] + ".xlsx";
 	let JSONdata = JSON.stringify(data);
 	$.ajax({
 			async: false,
@@ -585,7 +578,7 @@ function ajaxPyMakeExcelFile(inputData) {
 			console.log(data);
 			downloadExcelFile(donwloadFileName);
 		})
-		.fail(function() {
+		.fail(function(err) {
 			console.log("failed");
 		});
 };

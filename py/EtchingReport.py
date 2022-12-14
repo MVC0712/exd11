@@ -6,7 +6,7 @@ import os
 import json
 import sys
 import io
-import urllib.parse  # url encode/decode
+import urllib.parse
 import openpyxl
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
@@ -31,18 +31,16 @@ elif params["n"] == 3:
 else:
     sheet = wb.get_sheet_by_name('4B1')
 
-sheet['d6'] = params["die_number"]
-sheet['d7'] = params["production_number"]
-sheet['d8'] = params["plan_date_at"]
-sheet['d20'] = params["billet_input_quantity"]
-sheet['d21'] = params["billet_length"]
-sheet['d22'] = params["discard_thickness"]
-sheet['d23'] = params["ram_speed"]
+sheet['f3'] = params["press_date_at"]
+sheet['o3'] = params["die_number"]
+sheet['v4'] = params["actual_billet_quantities"]
 
+picDir = "../../EtchingPicture/favicon.ico"
+# picDir = "../../EtchingPicture/" + params["etcing_file_url"]
 
-img = openpyxl.drawing.image.Image('test.jpg')
-img.anchor = 'A1'
+img = openpyxl.drawing.image.Image(picDir)
+img.anchor = 'P59'
 ws.add_image(img)
 
-wb.save("../../Etching/" + params["press_date"] + "_" +
+wb.save("../../Etching/" + params["press_date_at"] + "_" +
         params["a"] + "_" + params["die_number"] + ".xlsx")
