@@ -8,6 +8,10 @@ import sys
 import io
 import urllib.parse
 import openpyxl
+from PIL import Image
+
+width = 23
+height = 23
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 cgitb.enable()
@@ -21,26 +25,32 @@ print("\n\n")
 print(json.JSONEncoder().encode(response))
 print('\n')
 
-wb = openpyxl.load_workbook('EtchingReport.xlsx')
-if params["n"] == 1:
+if urllib.parse.unquote(params["n"]) =="1":
+    wb = openpyxl.load_workbook('EtchingReport1B1.xlsx')
     sheet = wb.get_sheet_by_name('1Bn')
-elif params["n"] == 2:
+elif urllib.parse.unquote(params["n"]) =="2":
+    wb = openpyxl.load_workbook('EtchingReport2B1.xlsx')
     sheet = wb.get_sheet_by_name('2B1')
-elif params["n"] == 3:
+elif urllib.parse.unquote(params["n"]) =="3":
+    wb = openpyxl.load_workbook('EtchingReport3B1.xlsx')
     sheet = wb.get_sheet_by_name('3B1')
-else:
+elif urllib.parse.unquote(params["n"]) =="4":
+    wb = openpyxl.load_workbook('EtchingReport4B1.xlsx')
     sheet = wb.get_sheet_by_name('4B1')
 
 sheet['f3'] = params["press_date_at"]
 sheet['o3'] = params["die_number"]
 sheet['v4'] = params["actual_billet_quantities"]
 
-picDir = "../../EtchingPicture/favicon.ico"
+img = Image.open("brain.png")
+img = img.resize((width,height),Image.NEAREST)
+img.save("brain.png")
+
+# picDir = "./brain.png"
 # picDir = "../../EtchingPicture/" + params["etcing_file_url"]
+img = Image.open("brain.png")
+img = openpyxl.drawing.image.PILImage("brain.png")
+img.anchor('P59')
+sheet.add_image(img)
 
-img = openpyxl.drawing.image.Image(picDir)
-img.anchor = 'P59'
-ws.add_image(img)
-
-wb.save("../../Etching/" + params["press_date_at"] + "_" +
-        params["a"] + "_" + params["die_number"] + ".xlsx")
+wb.save("../../Etching/" + str(params["press_date_at"]) + "_" + str(params["actual_billet_quantities"]) + "_" + str(params["die_number"]) + ".xlsx")

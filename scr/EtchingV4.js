@@ -592,3 +592,37 @@ function downloadExcelFile(donwloadFileName) {
 	a.click();
 	a.remove();
 };
+
+$(function(){
+	$('#print').click(function(){
+		start_loader()
+		var _el = $('<div>')
+		var _head = $('head').clone()
+			_head.find('title').text("Etching - Print View")
+		// var p = $('#print_out').clone()
+		// p.find('tr.text-light').removeClass("text-light bg-navy")
+		_el.append(_head)
+		_el.append('<div class="d-flex justify-content-center">'+
+				  '<div class="col-1 text-right">'+
+				  '<img src="aaaa" width="65px" height="65px" />'+
+				  '</div>'+
+				  '<div class="col-10">'+
+				  '<h4 class="text-center">bbbbb</h4>'+
+				  '<h4 class="text-center">Received Order</h4>'+
+				  '</div>'+
+				  '<div class="col-1 text-right">'+
+				  '</div>'+
+				  '</div><hr/>')
+		// _el.append(p.html())
+		var nw = window.open("","","width=1200,height=900,left=250,location=no,titlebar=yes")
+				 nw.document.write(_el.html())
+				 nw.document.close()
+				 setTimeout(() => {
+					 nw.print()
+					 setTimeout(() => {
+						nw.close()
+						end_loader()
+					 }, 200);
+				 }, 500);
+	})
+})
