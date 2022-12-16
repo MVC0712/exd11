@@ -9,46 +9,144 @@
     <link rel="stylesheet" href="./css/EtchingV4.css" />
 </head>
 
-<body style="width : 630px; height: 890px;">
-    <div style="width : 100%; height: 100%; display: flex; flex-direction: column;">
-        <div style="width: 100%; height: 5%; display: flex; border: none; flex-direction: row;">
-            <h2  style="width: 90%; border: none; padding: 0; margin: 0;">BÁO CÁO ETCHING</h2>
-            <div id="nbm" style="width: 10%;">1B2</div>
-        </div>
-        <div style="width: 100%; height: 10%">
-            <table style="overflow: auto; ">
-                <thead>
-                    <tr>
-                        <th style="width: 100px;">Ngày đùn</th>
-                        <td></td>
-                        <th style="width: 100px;">Mã khuôn</th>
-                        <td></td>
-                        <th style="width: 100px;">Số SP</th>
-                    </tr>
-                    <tr>
-                        <th style="width: 100px;">Ngày kiểm tra</th>
-                        <td></td>
-                        <th style="width: 100px;">Người kiểm tra</th>
-                        <td></td>
-                        <td></td>
-                    </tr>
-            </thead>
-            </table>
-        </div>
-        <div style="width : 100%; height: 90%; display: flex">
-            <div style="width: 25%; height: 100%">
-                
+<body style="width : 630px; height: 890px; display: flex; flex-direction: row;">
+    <div style="width : 3%; height: 100%;">
+    </div>
+    <div style="width : 97%; height: 100%; display: flex; flex-direction: column;">
+            <div style="width: 100%; height: 5%; display: flex; border: none; flex-direction: row;">
+                <h2  style="width: 90%; height: 50%; border: none; padding: 0; margin: 0;">BÁO CÁO ETCHING</h2>
+                <div id="nbm" style="width: 10%;">1B2*3</div>
             </div>
-            <div style="width: 25%; height: 100%">
-                
+            <div style="width: 100%; height: 8%">
+                <table style="overflow: auto; ">
+                    <tbody style="overflow: auto; height: 50px;">
+                        <tr>
+                            <td style="width: 100px;">Ngày đùn</td>
+                            <td style="width: 100px;"></td>
+                            <td style="width: 100px;">Mã khuôn</td>
+                            <td style="width: 100px;"></td>
+                            <td style="width: 100px;">Số SP</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 100px;">Ngày kiểm tra</td>
+                            <td style="width: 100px;"></td>
+                            <td style="width: 100px;">Người kiểm tra</td>
+                            <td style="width: 100px;"></td>
+                            <td style="width: 100px;"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div style="font-size: 12px">
+                    Quy cách đánh giá: Hàng đạt chỉ tiêu (O), bỏ hàng (X), hàng lỗi ghi mã của lỗi (ví dụ lỗi vết nứt: 320)
+                </div>
             </div>
-            <div style="width: 25%; height: 100%">
-                
+        <div style="width : 100%; height: 70%; display: flex">
+            <div style="width: 25%; height: 100%; margin-left: 5px;">
+                <table id="table_1">
+                    <thead>
+                        <tr>
+                            <th style="width: 30px;">Vị trí</th>
+                            <th style="width: 30px;">0:</th>
+                            <th style="width: 30px;">1:</th>
+                            <th style="width: 30px;">2:</th>
+                            <th style="width: 30px;">3:</th>
+                        </tr>
+                    </thead>
+                </table>
             </div>
-            <div style="width: 25%; height: 100%">
-                
+            <div style="width: 25%; height: 100%; margin-left: 5px;">
+                <table id="table_2">
+                    <thead>
+                        <tr>
+                            <th style="width: 30px;">Vị trí</th>
+                            <th style="width: 30px;">0:</th>
+                            <th style="width: 30px;">1:</th>
+                            <th style="width: 30px;">2:</th>
+                            <th style="width: 30px;">3:</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div style="width: 25%; height: 100%; margin-left: 5px;">
+                <table id="table_3">
+                    <thead>
+                        <tr>
+                            <th style="width: 30px;">Vị trí</th>
+                            <th style="width: 30px;">0:</th>
+                            <th style="width: 30px;">1:</th>
+                            <th style="width: 30px;">2:</th>
+                            <th style="width: 30px;">3:</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div style="width: 25%; height: 100%; margin-left: 5px;">
+                <table id="table_4">
+                    <thead>
+                        <tr>
+                            <th style="width: 30px;">Vị trí</th>
+                            <th style="width: 30px;">0:</th>
+                            <th style="width: 30px;">1:</th>
+                            <th style="width: 30px;">2:</th>
+                            <th style="width: 30px;">3:</th>
+                        </tr>
+                    </thead>
+                </table>
             </div>   
-        </div>       
+        </div>
+        <div style="display: flex; flex-direction: row;">
+            <div style="height: 170px; width: 300px">
+                <table style="overflow: auto; ">
+                    <tbody style="overflow: auto; height: 50px;">
+                        <tr>
+                            <td style="width: 60px;">Rack</td>
+                            <td style="width: 40px;"></td>
+                            <td style="width: 40px;"></td>
+                            <td style="width: 40px;"></td>
+                            <td style="width: 40px;"></td>
+                            <td style="width: 40px;"></td>
+                            <td style="width: 40px;"></td>
+                        </tr>
+                        <tr>
+                            <td style="width: 60px;">Số lượng</td>
+                            <td style="width: 40px;"></td>
+                            <td style="width: 40px;"></td>
+                            <td style="width: 40px;"></td>
+                            <td style="width: 40px;"></td>
+                            <td style="width: 40px;"></td>
+                            <td style="width: 40px;"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table style="overflow: auto;">
+                    <tbody style="overflow: auto; height: 25px;">
+                        <tr>
+                            <td style="width: 318px;">Kỹ sư phụ trách: </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table style="overflow: auto;">
+                    <tbody style="overflow: auto; height: 45px;">
+                        <tr>
+                            <td style="width: 318px; height: 40px;">Chú ý: </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table style="overflow: auto; ">
+                    <tbody style="overflow: auto; height: 50px;">
+                        <tr>
+                            <td style="width: 80px;">311: Lỗi ăn mòn</td>
+                            <td style="width: 80px;">319: Lỗi tạp chất</td>
+                            <td style="width: 80px;">320: lỗi vết nứt</td>
+                            <td style="width: 80px;">351: lỗi khác</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div> 
+            <div style="height: 170px; width: 300px">
+                <img src="favicon.png" alt="" style="height: 170px; width: auto;">
+            </div>
+        </div>
     </div>
 
     <script src="./lib/jquery.min.js"></script>

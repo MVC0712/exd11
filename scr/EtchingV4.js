@@ -421,6 +421,7 @@ $(document).on("click", "#summary_table tbody tr", function(e) {
 				trDom.append($("<td>").html(""));
 			} else if (j%2==1) {
 				tdDom = $("<td>").append($("<select>").append(
+					$("<option>").val(3).html(""),
 					$("<option>").val(1).html("OK"),
 					$("<option>").val(2).html("NG")
 				).addClass("need-clear"));
@@ -540,80 +541,362 @@ $(document).on("click", "#preview__button", function () {
 	window.open("./EtchingSub.html");
 });
 
-$(document).on("click", "#print__button", function() {
-	ajaxSelForExcel($("#selected__tr").find("td").eq(0).html());
-});
-function ajaxSelForExcel(targetId) {
-	$.ajax({
-		type: "POST",
-		url: "./php/Etching/SelForExcel.php",
-		dataType: "json",
-		async: false,
-		data: {
-			targetId: targetId,
-		},
-	})
-	.done(function(data) {
-		console.log(data)
-		ajaxPyMakeExcelFile(data);
-	})
-	.fail(function() {
-		alert("DB connect error");
-	});
-};
-function ajaxPyMakeExcelFile(inputData) {
-	let data = new Object();
-	let donwloadFileName;
-	data = inputData[0];
-	donwloadFileName = data["press_date_at"] + "_" + data["actual_billet_quantities"] + "_" + data["die_number"] + ".xlsx";
-	let JSONdata = JSON.stringify(data);
-	$.ajax({
-			async: false,
-			url: "./py/EtchingReport.py",
-			type: "post",
-			data: JSONdata,
-			dataType: "json",
-		})
-		.done(function(data) {
-			console.log(data);
-			downloadExcelFile(donwloadFileName);
-		})
-		.fail(function(err) {
-			console.log("failed");
-		});
-};
-function downloadExcelFile(donwloadFileName) {
-	const a = document.createElement("a");
-	document.body.appendChild(a);
-
-	a.download = donwloadFileName;
-	a.href = "../Etching/" + donwloadFileName;
-
-	a.click();
-	a.remove();
-};
-
 $(function(){
-	$('#print').click(function(){
-		start_loader()
-		var _el = $('<div>')
-		var _head = $('head').clone()
-			_head.find('title').text("Etching - Print View")
-		// var p = $('#print_out').clone()
-		// p.find('tr.text-light').removeClass("text-light bg-navy")
+	$('#print__button').click(function(){
+		var fileName = "./php/Etching/SelForExcel.php";
+		var sendData = {
+			press_id: $("#selected__tr").find("td").eq(0).html(),
+		};
+		myAjax.myAjax(fileName, sendData);
+
+		var actual_billet_quantities = ajaxReturnData[0].actual_billet_quantities;
+		var die_number = ajaxReturnData[0].die_number;
+		var press_date_at = ajaxReturnData[0].press_date_at;
+		var etcing_file_url = ajaxReturnData[0].etcing_file_url;
+		var hole = ajaxReturnData[0].hole;
+		var m = ajaxReturnData[0].m;
+		var n = ajaxReturnData[0].n;
+		var nbmh = n +"B" + m + "*" + hole;
+
+
+		// for (i = 0; i < Math.ceil(actual_billet_quantities * 2 * m * hole); ++i) {
+		// 	let trDom = $("<tr>");
+		// 	if (n==1){
+		// 		if (i%2==0){trDom.append($("<td>").html(Math.ceil((i-n)/(2*n) + 1) + "H"));}
+		// 		else {trDom.append($("<td>").html(Math.ceil((i-n)/(2*n) + 1) + "E"));}
+		// 	} else if (n==2){
+		// 		if (i%4==0){trDom.append($("<td>").html( Math.ceil((i-n-1)/(2*n) + 1) + "H"));}
+		// 		else if (i%4==1) {trDom.append($("<td>").html( Math.ceil((i-n-1)/(2*n) + 1) + "A"));}
+		// 		else if (i%4==2) {trDom.append($("<td>").html( Math.ceil((i-n-1)/(2*n) + 1) + "B"));}
+		// 		else {trDom.append($("<td>").html( Math.ceil((i-n-1)/(2*n) + 1) + "E"));}
+		// 	} else if (n==3){
+		// 		if (i%6==0){ trDom.append($("<td>").html( Math.ceil((i-n-2)/(2*n) + 1) + "H")); }
+		// 		else if (i%6==1) { trDom.append($("<td>").html( Math.ceil((i-n-2)/(2*n) + 1) + "A")); }
+		// 		else if (i%6==2) { trDom.append($("<td>").html( Math.ceil((i-n-2)/(2*n) + 1) + "B")); }
+		// 		else if (i%6==3) { trDom.append($("<td>").html( Math.ceil((i-n-2)/(2*n) + 1) + "C")); }
+		// 		else if (i%6==4) { trDom.append($("<td>").html( Math.ceil((i-n-2)/(2*n) + 1) + "D")); }
+		// 		else { trDom.append($("<td>").html( Math.ceil((i-n-2)/(2*n) + 1) + "E")); }
+		// 	} else if (n==4){
+		// 		if (i%8==0){ trDom.append($("<td>").html( Math.ceil((i-n-3)/(2*n) + 1) + "H")); }
+		// 		else if (i%8==1) { trDom.append($("<td>").html( Math.ceil((i-n-3)/(2*n) + 1) + "A")); }
+		// 		else if (i%8==2) { trDom.append($("<td>").html( Math.ceil((i-n-3)/(2*n) + 1) + "B")); }
+		// 		else if (i%8==3) { trDom.append($("<td>").html( Math.ceil((i-n-3)/(2*n) + 1) + "C")); }
+		// 		else if (i%8==4) { trDom.append($("<td>").html( Math.ceil((i-n-3)/(2*n) + 1) + "D")); }
+		// 		else if (i%8==5) { trDom.append($("<td>").html( Math.ceil((i-n-3)/(2*n) + 1) + "E")); }
+		// 		else if (i%8==6) { trDom.append($("<td>").html( Math.ceil((i-n-3)/(2*n) + 1) + "F")); }
+		// 		else { trDom.append($("<td>").html( Math.ceil((i-n-3)/(2*n) + 1) + "END")); }
+		// 	}
+		// 	for (j = 0; j < 4; ++j) {
+		// 	let tdDom;
+		// 		trDom.append($("<td>").html(""));
+		// 	trDom.append(tdDom);
+		// 	}
+		// }
+		// start_loader()
+		var _el = $('<div style="width : 790px; display: flex; flex-direction: row;">');
+		var _head = $('head').clone();
+			_head.find('title').text("Etching - Print View");
+
+		var page1 = `
+		<style>
+			body {
+				width : 790px; 
+				height: auto; 
+				display: flex; 
+				flex-direction: column;
+			}
+		</style>
+		<div style="width : 790px; height: 1120px; display: flex; flex-direction: row;">
+		<div style="width : 3%; height: 100%;">
+		</div>
+		<div style="width : 97%; height: 100%; display: flex; flex-direction: column;">
+				<div style="width: 100%; height: 5%; display: flex; border: none; flex-direction: row;">
+					<h2  style="width: 90%; height: 50%; border: none; padding: 0; margin: 0;">BÁO CÁO ETCHING</h2>
+					<div id="nbm" style="width: 10%;">${nbmh}</div>
+				</div>
+				<div style="width: 100%; height: 8%">
+					<table style="overflow: auto; ">
+						<tbody style="overflow: auto; height: 50px;">
+							<tr>
+								<td style="width: 100px;">Ngày đùn</td>
+								<td style="width: 100px;">${press_date_at}</td>
+								<td style="width: 100px;">Mã khuôn</td>
+								<td style="width: 100px;">${die_number}</td>
+								<td style="width: 100px;">Số billet</td>
+								<td style="width: 100px;">${actual_billet_quantities}</td>
+							</tr>
+							<tr>
+								<td style="width: 100px;">Ngày kiểm tra</td>
+								<td style="width: 100px;"></td>
+								<td style="width: 100px;">Người kiểm tra</td>
+								<td style="width: 100px;"></td>
+								<td style="width: 100px;">Số SP</td>
+								<td style="width: 100px;">${actual_billet_quantities*hole}</td>
+							</tr>
+						</tbody>
+					</table>
+					<div style="font-size: 12px">
+						Quy cách đánh giá: Hàng đạt chỉ tiêu (O), bỏ hàng (X), hàng lỗi ghi mã của lỗi (ví dụ lỗi vết nứt: 320)
+					</div>
+				</div>
+			<div style="width : 100%; height: 70%; display: flex">
+				<div style="width: 25%; height: 100%; margin-left: 5px;">
+					<table id="table_1">
+						<thead>
+							<tr>
+								<th style="width: 30px;">Vị trí</th>
+								<th style="width: 30px;">0:</th>
+								<th style="width: 30px;">1:</th>
+								<th style="width: 30px;">2:</th>
+								<th style="width: 30px;">3:</th>
+							</tr>
+						</thead>
+						<tbody>${makeTable1(actual_billet_quantities,m,n,hole)}</tbody>
+					</table>
+				</div>
+				<div style="width: 25%; height: 100%; margin-left: 5px;">
+					<table id="table_2">
+						<thead>
+							<tr>
+								<th style="width: 30px;">Vị trí</th>
+								<th style="width: 30px;">0:</th>
+								<th style="width: 30px;">1:</th>
+								<th style="width: 30px;">2:</th>
+								<th style="width: 30px;">3:</th>
+							</tr>
+						</thead>
+					</table>
+				</div>
+				<div style="width: 25%; height: 100%; margin-left: 5px;">
+					<table id="table_3">
+						<thead>
+							<tr>
+								<th style="width: 30px;">Vị trí</th>
+								<th style="width: 30px;">0:</th>
+								<th style="width: 30px;">1:</th>
+								<th style="width: 30px;">2:</th>
+								<th style="width: 30px;">3:</th>
+							</tr>
+						</thead>
+					</table>
+				</div>
+				<div style="width: 25%; height: 100%; margin-left: 5px;">
+					<table id="table_4">
+						<thead>
+							<tr>
+								<th style="width: 30px;">Vị trí</th>
+								<th style="width: 30px;">0:</th>
+								<th style="width: 30px;">1:</th>
+								<th style="width: 30px;">2:</th>
+								<th style="width: 30px;">3:</th>
+							</tr>
+						</thead>
+					</table>
+				</div>   
+			</div>
+			<div style="display: flex; flex-direction: row;">
+				<div style="height: 170px; width: 300px">
+					<table style="overflow: auto; ">
+						<tbody style="overflow: auto; height: 50px;">
+							<tr>
+								<td style="width: 60px;">Rack</td>
+								<td style="width: 40px;"></td>
+								<td style="width: 40px;"></td>
+								<td style="width: 40px;"></td>
+								<td style="width: 40px;"></td>
+								<td style="width: 40px;"></td>
+								<td style="width: 40px;"></td>
+							</tr>
+							<tr>
+								<td style="width: 60px;">Số lượng</td>
+								<td style="width: 40px;"></td>
+								<td style="width: 40px;"></td>
+								<td style="width: 40px;"></td>
+								<td style="width: 40px;"></td>
+								<td style="width: 40px;"></td>
+								<td style="width: 40px;"></td>
+							</tr>
+						</tbody>
+					</table>
+					<table style="overflow: auto;">
+						<tbody style="overflow: auto; height: 25px;">
+							<tr>
+								<td style="width: 318px;">Kỹ sư phụ trách: </td>
+							</tr>
+						</tbody>
+					</table>
+					<table style="overflow: auto;">
+						<tbody style="overflow: auto; height: 45px;">
+							<tr>
+								<td style="width: 318px; height: 40px;">Chú ý: </td>
+							</tr>
+						</tbody>
+					</table>
+					<table style="overflow: auto; ">
+						<tbody style="overflow: auto; height: 50px;">
+							<tr>
+								<td style="width: 80px;">311: Lỗi ăn mòn</td>
+								<td style="width: 80px;">319: Lỗi tạp chất</td>
+								<td style="width: 80px;">320: lỗi vết nứt</td>
+								<td style="width: 80px;">351: lỗi khác</td>
+							</tr>
+						</tbody>
+					</table>
+				</div> 
+				<div style="height: 170px; width: 300px">
+					<img src="favicon.png" alt="" style="height: 170px; width: auto;">
+				</div>
+			</div>
+		</div>
+		</div>`
+
+		var page2 = `<div style="break-after:page"></div>
+			<div style="width : 790px; height: 1120px; display: flex; flex-direction: row;">
+			<div style="width : 3%; height: 100%;">
+			</div>
+			<div style="width : 97%; height: 100%; display: flex; flex-direction: column;">
+					<div style="width: 100%; height: 5%; display: flex; border: none; flex-direction: row;">
+						<h2  style="width: 90%; height: 50%; border: none; padding: 0; margin: 0;">BÁO CÁO ETCHING</h2>
+						<div id="nbm" style="width: 10%;">${nbmh}</div>
+					</div>
+					<div style="width: 100%; height: 8%">
+						<table style="overflow: auto; ">
+							<tbody style="overflow: auto; height: 50px;">
+								<tr>
+									<td style="width: 100px;">Ngày đùn</td>
+									<td style="width: 100px;">${press_date_at}</td>
+									<td style="width: 100px;">Mã khuôn</td>
+									<td style="width: 100px;">${die_number}</td>
+									<td style="width: 100px;">Số billet</td>
+									<td style="width: 100px;">${actual_billet_quantities}</td>
+								</tr>
+								<tr>
+									<td style="width: 100px;">Ngày kiểm tra</td>
+									<td style="width: 100px;"></td>
+									<td style="width: 100px;">Người kiểm tra</td>
+									<td style="width: 100px;"></td>
+									<td style="width: 100px;">Số SP</td>
+									<td style="width: 100px;">${actual_billet_quantities*hole}</td>
+								</tr>
+							</tbody>
+						</table>
+						<div style="font-size: 12px">
+							Quy cách đánh giá: Hàng đạt chỉ tiêu (O), bỏ hàng (X), hàng lỗi ghi mã của lỗi (ví dụ lỗi vết nứt: 320)
+						</div>
+					</div>
+				<div style="width : 100%; height: 70%; display: flex">
+					<div style="width: 25%; height: 100%; margin-left: 5px;">
+						<table id="table_1">
+							<thead>
+								<tr>
+									<th style="width: 30px;">Vị trí</th>
+									<th style="width: 30px;">0:</th>
+									<th style="width: 30px;">1:</th>
+									<th style="width: 30px;">2:</th>
+									<th style="width: 30px;">3:</th>
+								</tr>
+							</thead>
+						</table>
+					</div>
+					<div style="width: 25%; height: 100%; margin-left: 5px;">
+						<table id="table_2">
+							<thead>
+								<tr>
+									<th style="width: 30px;">Vị trí</th>
+									<th style="width: 30px;">0:</th>
+									<th style="width: 30px;">1:</th>
+									<th style="width: 30px;">2:</th>
+									<th style="width: 30px;">3:</th>
+								</tr>
+							</thead>
+						</table>
+					</div>
+					<div style="width: 25%; height: 100%; margin-left: 5px;">
+						<table id="table_3">
+							<thead>
+								<tr>
+									<th style="width: 30px;">Vị trí</th>
+									<th style="width: 30px;">0:</th>
+									<th style="width: 30px;">1:</th>
+									<th style="width: 30px;">2:</th>
+									<th style="width: 30px;">3:</th>
+								</tr>
+							</thead>
+						</table>
+					</div>
+					<div style="width: 25%; height: 100%; margin-left: 5px;">
+						<table id="table_4">
+							<thead>
+								<tr>
+									<th style="width: 30px;">Vị trí</th>
+									<th style="width: 30px;">0:</th>
+									<th style="width: 30px;">1:</th>
+									<th style="width: 30px;">2:</th>
+									<th style="width: 30px;">3:</th>
+								</tr>
+							</thead>
+						</table>
+					</div>   
+				</div>
+				<div style="display: flex; flex-direction: row;">
+					<div style="height: 170px; width: 300px">
+						<table style="overflow: auto; ">
+							<tbody style="overflow: auto; height: 50px;">
+								<tr>
+									<td style="width: 60px;">Rack</td>
+									<td style="width: 40px;"></td>
+									<td style="width: 40px;"></td>
+									<td style="width: 40px;"></td>
+									<td style="width: 40px;"></td>
+									<td style="width: 40px;"></td>
+									<td style="width: 40px;"></td>
+								</tr>
+								<tr>
+									<td style="width: 60px;">Số lượng</td>
+									<td style="width: 40px;"></td>
+									<td style="width: 40px;"></td>
+									<td style="width: 40px;"></td>
+									<td style="width: 40px;"></td>
+									<td style="width: 40px;"></td>
+									<td style="width: 40px;"></td>
+								</tr>
+							</tbody>
+						</table>
+						<table style="overflow: auto;">
+							<tbody style="overflow: auto; height: 25px;">
+								<tr>
+									<td style="width: 318px;">Kỹ sư phụ trách: </td>
+								</tr>
+							</tbody>
+						</table>
+						<table style="overflow: auto;">
+							<tbody style="overflow: auto; height: 45px;">
+								<tr>
+									<td style="width: 318px; height: 40px;">Chú ý: </td>
+								</tr>
+							</tbody>
+						</table>
+						<table style="overflow: auto; ">
+							<tbody style="overflow: auto; height: 50px;">
+								<tr>
+									<td style="width: 80px;">311: Lỗi ăn mòn</td>
+									<td style="width: 80px;">319: Lỗi tạp chất</td>
+									<td style="width: 80px;">320: lỗi vết nứt</td>
+									<td style="width: 80px;">351: lỗi khác</td>
+								</tr>
+							</tbody>
+						</table>
+					</div> 
+					<div style="height: 170px; width: 300px">
+						<img src="favicon.png" alt="" style="height: 170px; width: auto;">
+					</div>
+				</div>
+			</div>
+		</div>`
 		_el.append(_head)
-		_el.append('<div class="d-flex justify-content-center">'+
-				  '<div class="col-1 text-right">'+
-				  '<img src="aaaa" width="65px" height="65px" />'+
-				  '</div>'+
-				  '<div class="col-10">'+
-				  '<h4 class="text-center">bbbbb</h4>'+
-				  '<h4 class="text-center">Received Order</h4>'+
-				  '</div>'+
-				  '<div class="col-1 text-right">'+
-				  '</div>'+
-				  '</div><hr/>')
-		// _el.append(p.html())
+		_el.append(page1);
+		// _el.append(page2);
+
 		var nw = window.open("","","width=1200,height=900,left=250,location=no,titlebar=yes")
 				 nw.document.write(_el.html())
 				 nw.document.close()
@@ -621,8 +904,47 @@ $(function(){
 					 nw.print()
 					 setTimeout(() => {
 						nw.close()
-						end_loader()
+						// end_loader()
 					 }, 200);
 				 }, 500);
 	})
 })
+
+function makeTable1(a,m,n,h) {
+// $("#data__table tbody tr").remove();
+	for (i = 0; i < Math.ceil(a * 2 * m * h); ++i) {
+		let trDom = $("<tr>");
+		let tdDom;
+		if (n==1){
+			if (i%2==0){trDom.append($("<td>").html(Math.ceil((i-n)/(2*n) + 1) + "H"));}
+			else {trDom.append($("<td>").html(Math.ceil((i-n)/(2*n) + 1) + "E"));}
+		} else if (n==2){
+			if (i%4==0){trDom.append($("<td>").html( Math.ceil((i-n-1)/(2*n) + 1) + "H"));}
+			else if (i%4==1) {trDom.append($("<td>").html( Math.ceil((i-n-1)/(2*n) + 1) + "A"));}
+			else if (i%4==2) {trDom.append($("<td>").html( Math.ceil((i-n-1)/(2*n) + 1) + "B"));}
+			else {trDom.append($("<td>").html( Math.ceil((i-n-1)/(2*n) + 1) + "E"));}
+		} else if (n==3){
+			if (i%6==0){ trDom.append($("<td>").html( Math.ceil((i-n-2)/(2*n) + 1) + "H")); }
+			else if (i%6==1) { trDom.append($("<td>").html( Math.ceil((i-n-2)/(2*n) + 1) + "A")); }
+			else if (i%6==2) { trDom.append($("<td>").html( Math.ceil((i-n-2)/(2*n) + 1) + "B")); }
+			else if (i%6==3) { trDom.append($("<td>").html( Math.ceil((i-n-2)/(2*n) + 1) + "C")); }
+			else if (i%6==4) { trDom.append($("<td>").html( Math.ceil((i-n-2)/(2*n) + 1) + "D")); }
+			else { trDom.append($("<td>").html( Math.ceil((i-n-2)/(2*n) + 1) + "E")); }
+		} else if (n==4){
+			if (i%8==0){ trDom.append($("<td>").html( Math.ceil((i-n-3)/(2*n) + 1) + "H")); }
+			else if (i%8==1) { trDom.append($("<td>").html( Math.ceil((i-n-3)/(2*n) + 1) + "A")); }
+			else if (i%8==2) { trDom.append($("<td>").html( Math.ceil((i-n-3)/(2*n) + 1) + "B")); }
+			else if (i%8==3) { trDom.append($("<td>").html( Math.ceil((i-n-3)/(2*n) + 1) + "C")); }
+			else if (i%8==4) { trDom.append($("<td>").html( Math.ceil((i-n-3)/(2*n) + 1) + "D")); }
+			else if (i%8==5) { trDom.append($("<td>").html( Math.ceil((i-n-3)/(2*n) + 1) + "E")); }
+			else if (i%8==6) { trDom.append($("<td>").html( Math.ceil((i-n-3)/(2*n) + 1) + "F")); }
+			else { trDom.append($("<td>").html( Math.ceil((i-n-3)/(2*n) + 1) + "END")); }
+		}
+		for (j = 0; j < 4; ++j) {
+			trDom.append($("<td>").html(""));
+		trDom.append(tdDom);
+		}
+		// trDom.appendTo("#data__table");
+		// console.log(trDom)
+	}
+};

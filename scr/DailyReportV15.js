@@ -1460,7 +1460,7 @@ $(document).on("click", "#save__button", function () {
 
   let BundleData = getTableData($("#bundle__table tbody tr"));
   BundleData.push(targetId);
-  fileName = "./php/DailyReport/InsBundle13.php";
+  fileName = "./php/DailyReport/InsBundle15.php";
   sendData = JSON.stringify(BundleData);
   myAjax.myAjax(fileName, sendData);
 

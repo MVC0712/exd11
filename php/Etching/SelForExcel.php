@@ -41,9 +41,9 @@ FROM
     LEFT JOIN m_dies ON m_dies.id = t_press_directive.dies_id
     LEFT JOIN m_nbn ON m_nbn.id = t_press_directive.nbn_id
     GROUP BY dies_id) t10 ON t10.dies_id = t_press.dies_id
-      WHERE t_press.id = :targetId
+      WHERE t_press.id = :press_id
     ");
-    $prepare->bindValue(':targetId', (INT)$_POST["targetId"], PDO::PARAM_INT);
+    $prepare->bindValue(':press_id', (INT)$_POST["press_id"], PDO::PARAM_INT);
     $prepare->execute();
     $result = $prepare->fetchAll(PDO::FETCH_ASSOC);
 
