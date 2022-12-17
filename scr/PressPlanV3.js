@@ -442,11 +442,23 @@ $(function(){
 				display: flex; 
 				flex-direction: column;
 			}
+			table thead th {
+				border: 1px solid black;
+				margin: 0px;
+				background-color: none;
+				color: black;
+			}
+			table td, table th {
+				border: 1px solid black;
+				margin: 0px;
+			}
 		</style>
 		<div style="width : 790px; height: 1100px; display: flex; flex-direction: row;">
-		<div style="width : 3%; height: 100%;">
+		<div style="width : 2%; height: 100%;">
 		</div>
 		<div style="width : 97%; height: 100%; display: flex; flex-direction: column;">
+			<div style="width : 100%; height: 5%;">
+			</div>
 				<div style="width: 100%; height: 2%; display: flex; border: none; flex-direction: row;">
 					<h3  style="width: 90%; height: 100%; border: none; padding: 0; margin: 0;">BÁO CÁO ETCHING</h3>
 					<div id="nbm" style="width: 10%;">${nbmh}</div>
@@ -595,6 +607,8 @@ $(function(){
 			<div style="width : 3%; height: 100%;">
 			</div>
 			<div style="width : 97%; height: 100%; display: flex; flex-direction: column;">
+			<div style="width : 100%; height: 5%;">
+				</div>
 				<div style="width: 100%; height: 2%; display: flex; border: none; flex-direction: row;">
 					<h3  style="width: 90%; height: 100%; border: none; padding: 0; margin: 0;">BÁO CÁO ETCHING</h3>
 					<div id="nbm" style="width: 10%;">${nbmh}</div>
