@@ -422,8 +422,9 @@ $(function(){
 		var actual_billet_quantities = ajaxReturnData[0].actual_billet_quantities;
 		var die_number = ajaxReturnData[0].die_number;
 		var press_date_at = ajaxReturnData[0].press_date_at;
-		// var etcing_file_url = "../upload/20210317-002648.JPG" + ajaxReturnData[0].etcing_file_url;
-		var etcing_file_url = "../upload/111.JPG";
+		if (ajaxReturnData[0].etcing_file_url) {
+			var etcing_file_url = "../EtchingPicture/" + ajaxReturnData[0].etcing_file_url;
+		} else {etcing_file_url = "../EtchingPicture/No_image.jpg";}
 		var hole = ajaxReturnData[0].hole;
 		var m = ajaxReturnData[0].m;
 		var n = ajaxReturnData[0].n;
