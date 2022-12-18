@@ -1088,3 +1088,237 @@ $(document).on("click", "#production-name__display", function () {
     console.log(ajaxReturnData[0].file_url);
 
 });
+
+
+
+$(function(){
+	$('#print__button').click(function(){
+		var fileName = "./php/PressPlan/SelForPrintPage.php";
+		var sendData = {
+			id: $("#selected__tr").find("td").eq(0).html(),
+		};
+		myAjax.myAjax(fileName, sendData);
+    console.log(ajaxReturnData)
+		var actual_billet_quantities = ajaxReturnData[0].actual_billet_quantities;
+		var die_number = ajaxReturnData[0].die_number;
+		var press_date_at = ajaxReturnData[0].press_date_at;
+		if (ajaxReturnData[0].etcing_file_url) {
+			var etcing_file_url = "../EtchingPicture/" + ajaxReturnData[0].etcing_file_url;
+		} else {etcing_file_url = "../EtchingPicture/No_image.jpg";}
+		var hole = ajaxReturnData[0].hole;
+		var m = ajaxReturnData[0].m;
+		var n = ajaxReturnData[0].n;
+		var nbmh = n +"B" + m + "*" + hole;
+
+		var _el = $('<div style="width : 790px; display: flex; flex-direction: row;">');
+		var _head = $('head').clone();
+			_head.find('title').text("Etching - Print View");
+
+		var page1 = `
+		<style>
+			body {
+				width : 790px; 
+				height: auto; 
+				display: flex; 
+				flex-direction: column;
+			}
+			table thead th {
+				border: 1px solid black;
+				margin: 0px;
+				background-color: none;
+				color: black;
+			}
+			table td, table th {
+				border: 1px solid black;
+				margin: 0px;
+			}
+		</style>
+		<div style="width : 790px; height: 1100px; display: flex; flex-direction: row;">
+		<div style="width : 2%; height: 100%;">
+		</div>
+		<div style="width : 97%; height: 100%; display: flex; flex-direction: column;">
+			<div style="width : 100%; height: 5%;">
+			</div>
+				<div style="width: 100%; height: 2%; display: flex; border: none; flex-direction: row;">
+					<h3  style="width: 90%; height: 100%; border: none; padding: 0; margin: 0;">BÁO CÁO ETCHING</h3>
+					<div id="nbm" style="width: 10%;">${nbmh}</div>
+				</div>
+				<div style="width: 100%; height: 6%">
+					<table style="overflow: auto; ">
+						<tbody style="overflow: auto; height: 50px;">
+							<tr>
+								<td style="width: 80px;">Ngày đùn</td>
+								<td style="width: 80px;">${press_date_at}</td>
+								<td style="width: 90px;">Mã khuôn</td>
+								<td style="width: 150px;">${die_number}</td>
+								<td style="width: 50px;">Số billet</td>
+								<td style="width: 50px;">${actual_billet_quantities}</td>
+							</tr>
+							<tr>
+								<td style="width: 80px;">Ngày kiểm tra</td>
+								<td style="width: 80px;"></td>
+								<td style="width: 90px;">Người kiểm tra</td>
+								<td style="width: 150px;"></td>
+								<td style="width: 50px;">Số SP</td>
+								<td style="width: 50px;">${actual_billet_quantities*hole}</td>
+							</tr>
+						</tbody>
+					</table>
+					<div style="font-size: 10px">
+						Quy cách đánh giá: Hàng đạt chỉ tiêu (O), bỏ hàng (X), hàng lỗi ghi mã của lỗi (ví dụ lỗi vết nứt: 320)
+					</div>
+				</div>
+			<div style="width : 100%; height: 70%; display: flex">
+				<div style="width: 25%; height: 100%;">
+					<table>
+						<thead>
+							<tr>
+								<th style="width: 30px;">Vị trí</th>
+								<th style="width: 30px;">0:</th>
+								<th style="width: 30px;">1:</th>
+								<th style="width: 30px;">2:</th>
+								<th style="width: 30px;">3:</th>
+							</tr>
+						</thead>
+						${makeTable(0,50,n)}
+					</table>
+				</div>
+				<div style="width: 25%; height: 100%;">
+					<table>
+						<thead>
+							<tr>
+								<th style="width: 30px;">Vị trí</th>
+								<th style="width: 30px;">0:</th>
+								<th style="width: 30px;">1:</th>
+								<th style="width: 30px;">2:</th>
+								<th style="width: 30px;">3:</th>
+							</tr>
+						</thead>
+						${makeTable(50,100,n)}
+					</table>
+				</div>
+				<div style="width: 25%; height: 100%;">
+					<table>
+						<thead>
+							<tr>
+								<th style="width: 30px;">Vị trí</th>
+								<th style="width: 30px;">0:</th>
+								<th style="width: 30px;">1:</th>
+								<th style="width: 30px;">2:</th>
+								<th style="width: 30px;">3:</th>
+							</tr>
+						</thead>
+						${makeTable(100,150,n)}
+					</table>
+				</div>
+				<div style="width: 25%; height: 100%;">
+					<table>
+						<thead>
+							<tr>
+								<th style="width: 30px;">Vị trí</th>
+								<th style="width: 30px;">0:</th>
+								<th style="width: 30px;">1:</th>
+								<th style="width: 30px;">2:</th>
+								<th style="width: 30px;">3:</th>
+							</tr>
+						</thead>
+						${makeTable(150,200,n)}
+					</table>
+				</div>   
+			</div>
+			<div style="display: flex; flex-direction: row;">
+				<div style="height: 150px; width: 300px">
+					<table style="overflow: auto; ">
+						<tbody style="overflow: auto; height: 40px;">
+							<tr>
+								<td style="width: 60px;">Rack</td>
+								<td style="width: 40px;"></td>
+								<td style="width: 40px;"></td>
+								<td style="width: 40px;"></td>
+								<td style="width: 40px;"></td>
+								<td style="width: 40px;"></td>
+								<td style="width: 40px;"></td>
+							</tr>
+							<tr>
+								<td style="width: 60px;">SL rút</td>
+								<td style="width: 40px;"></td>
+								<td style="width: 40px;"></td>
+								<td style="width: 40px;"></td>
+								<td style="width: 40px;"></td>
+								<td style="width: 40px;"></td>
+								<td style="width: 40px;"></td>
+							</tr>
+						</tbody>
+					</table>
+					<table style="overflow: auto;">
+						<tbody style="overflow: auto; height: 20px;">
+							<tr>
+								<td style="width: 318px;">Kỹ sư phụ trách: </td>
+							</tr>
+						</tbody>
+					</table>
+					<table style="overflow: auto;">
+						<tbody style="overflow: auto; height: 50px;">
+							<tr>
+								<td style="width: 318px; height: 40px;">Chú ý: </td>
+							</tr>
+						</tbody>
+					</table>
+					<table style="overflow: auto; ">
+						<tbody style="overflow: auto; height: 40px;">
+							<tr>
+								<td style="width: 80px;">311: Lỗi ăn mòn</td>
+								<td style="width: 80px;">319: Lỗi tạp chất</td>
+								<td style="width: 80px;">320: lỗi vết nứt</td>
+								<td style="width: 80px;">351: lỗi khác</td>
+							</tr>
+						</tbody>
+					</table>
+				</div> 
+				<div style="height: 150px; width: 300px">
+					<img src=${etcing_file_url} alt="" style="height: 150px; width: auto; margin-left: 20px;">
+				</div>
+			</div>
+		</div>
+		</div>`
+
+		_el.append(_head)
+		_el.append(page1);
+		var nw = window.open("","","width=1200,height=900,left=250,location=no,titlebar=yes")
+			nw.document.write(_el.html())
+			nw.document.close()
+		setTimeout(() => {
+			nw.print()
+			setTimeout(() => {
+			nw.close()
+			}, 200);
+		}, 500);
+	})
+});
+
+function makeTable() {
+	var tbd = ``;
+    var tr = ``;
+	var trC = `<tbody style="height: 90%; overflow: hidden;">`;
+	for (i = 1; i < 80; ++i) {
+		tr+=`<tr>
+                <td style="width: 30px; font-size: 8px;">${i}</td>
+                <td style="width: 30px;"></td>
+                <td style="width: 30px;"></td>
+                <td style="width: 30px;"></td>
+                <td style="width: 30px;"></td>
+                <td style="width: 30px;"></td>
+                <td style="width: 30px;"></td>
+                <td style="width: 30px;"></td>
+                <td style="width: 30px;"></td>
+                <td style="width: 30px;"></td>
+                <td style="width: 30px;"></td>
+                <td style="width: 30px;"></td>
+                <td style="width: 30px;"></td>
+                <td style="width: 30px;"></td>
+                <td style="width: 30px;"></td>
+            </tr>`;
+		tbd += tr;
+	}
+	return trC + tbd + "</tbody>";
+};

@@ -10,7 +10,6 @@
 
   <body>
     <header>Making Directive Sheet Page</header>
-    <!-- ================ 金型 ========================== -->
     <div class="die-set__wrapper">
       <div>
         <div id="select-die__title" class="input__title">Select Die</div>
@@ -28,8 +27,6 @@
       </div>
     </div>
 
-    <!-- ================ 入力枠 ========================== -->
-    <!-- Date -->
     <div class="main__wrapper">
       <div class="input__wrapper">
         <div class="input__title">PlnPressDate</div>
@@ -42,7 +39,6 @@
           />
         </div>
       </div>
-      <!-- Die Number -->
       <div class="input__wrapper">
         <div class="input__title">DieNumber</div>
         <div class="previous-value__display need-clear">12.3</div>
@@ -53,7 +49,6 @@
           </select>
         </div>
       </div>
-      <!-- Discard thickness -->
       <div class="input__wrapper">
         <div class="input__title">Dscd</div>
         <div class="previous-value__display need-clear u">35mm</div>
@@ -65,7 +60,6 @@
           />
         </div>
       </div>
-      <!-- Pressing Type -->
       <div class="input__wrapper">
         <div class="input__title">Press</div>
         <div class="previous-value__display need-clear u">〇</div>
@@ -80,7 +74,6 @@
           <option value="3">●</option>
         </select>
       </div>
-      <!-- Ram Speed -->
       <div class="input__wrapper">
         <div class="input__title">RamSp</div>
         <div class="previous-value__display need-clear u">12.5mm</div>
@@ -92,7 +85,6 @@
           />
         </div>
       </div>
-      <!-- Billet Length -->
       <div class="input__wrapper">
         <div class="input__title">Billet L.</div>
         <div class="previous-value__display need-clear u">1200</div>
@@ -106,7 +98,6 @@
           <option value="1200">1200</option>
         </select>
       </div>
-      <!-- Billet Temperature -->
       <div class="input__wrapper">
         <div class="input__title">Billet T.</div>
         <div class="previous-value__display need-clear u">480&#8451;</div>
@@ -118,7 +109,6 @@
           />
         </div>
       </div>
-      <!-- Billet Taper Heating -->
       <div class="input__wrapper">
         <div class="input__title">Billet Taper.</div>
         <div class="previous-value__display need-clear u">100&#8451;/1000mm</div>
@@ -136,7 +126,6 @@
           </select>
         </div>
       </div>
-      <!-- Billet Size -->
       <div class="input__wrapper">
         <div class="input__title">Billet S.</div>
         <div class="previous-value__display need-clear u">9</div>
@@ -152,7 +141,6 @@
           </select>
         </div>
       </div>
-      <!-- input billet qty-->
       <div class="input__wrapper">
         <div class="input__title">Billet Qty</div>
         <div class="previous-value__display need-clear u">16</div>
@@ -169,8 +157,6 @@
           </select>
         </div>
       </div>
-
-      <!-- Die Tempareture -->
       <div class="input__wrapper">
         <div class="input__title">Die Temp.</div>
         <div class="previous-value__display need-clear u">480&#8451;</div>
@@ -186,7 +172,6 @@
           </select>
         </div>
       </div>
-      <!-- Die heating time -->
       <div class="input__wrapper">
         <div class="input__title">Die H_Time</div>
         <div class="previous-value__display need-clear u">5.5h</div>
@@ -202,7 +187,6 @@
           </select>
         </div>
       </div>
-      <!-- Bolster -->
       <div class="input__wrapper" style="display: none;">
         <div class="input__title">Bolster</div>
         <div class="previous-value__display">B4626-1710-**</div>
@@ -217,7 +201,6 @@
           </select>
         </div>
       </div>
-      <!-- Stretch Ratio-->
       <div class="input__wrapper">
         <div class="input__title">Stretch</div>
         <div class="previous-value__display need-clear u">0.8%</div>
@@ -238,7 +221,6 @@
           </select>
         </div>
       </div>
-      <!-- incharge person -->
       <div class="input__wrapper">
         <div class="input__title">Incharge</div>
         <div class="previous-value__display need-clear u">Nguyễn Xuân Tuấn</div>
@@ -259,7 +241,6 @@
           </select>
         </div>
       </div>
-      <!-- sample position (l)-->
       <div class="input__wrapper">
         <div class="input__title">l</div>
         <div class="previous-value__display need-clear u">1.5m</div>
@@ -276,7 +257,6 @@
           </select>
         </div>
       </div>
-      <!-- sample position (m)-->
       <div class="input__wrapper">
         <div class="input__title">m</div>
         <div class="previous-value__display need-clear u">15</div>
@@ -293,7 +273,6 @@
           </select>
         </div>
       </div>
-      <!-- sample position (n)-->
       <div class="input__wrapper">
         <div class="input__title">n</div>
         <div class="previous-value__display need-clear u">16</div>
@@ -310,7 +289,6 @@
           </select>
         </div>
       </div>
-      <!-- nBn -->
       <div class="input__wrapper">
         <div class="input__title">nBn</div>
         <div class="previous-value__display need-clear u">nBn</div>
@@ -327,15 +305,12 @@
           </select>
         </div>
       </div>
-
-      <!-- note -->
       <div class="input__wrapper">
         <div class="input__title">note</div>
         <div class="previous-value__display need-clear u">
           Feb. 21th press die scratch<br />hogehoge
         </div>
         <div class="inner-input_wrapper">
-          <!-- <input id="note__input" class="need-clear no-input" type="text"> -->
           <textarea
             name=""
             id="note__textarea"
@@ -344,7 +319,6 @@
         </div>
       </div>
 
-      <!-- paramater fig -->
       <div class="input__wrapper fig">
         <img src="./img/fig_001.svg" alt="" />
       </div>
@@ -355,7 +329,6 @@
       <button id="update__button">Update</button>
       <button id="print__button">Print</button>
       <button id="test__button">TEST</button>
-      <!-- 削除確認ダイアログ -->
       <dialog class="dialog__wrapper" id="delete__dialog">
         Do you Delete?
         <button id="delete-dialog-cancel__button">Cancel</button>
@@ -388,31 +361,11 @@
           </tr>
         </thead>
         <tbody>
-          <!-- <tr>
-          <td>ID</td>
-          <td>21-10-10</td>
-          <td>85</td>
-          <td>〇</td>
-          <td>1</td>
-          <td>12.3</td>
-          <td>1200</td>
-          <td>480</td>
-          <td>100</td>
-          <td>470</td>
-          <td>5.5</td>
-          <td>B4630-1515-**</td>
-          <td>BolsterId</td>
-          <td>0.8</td>
-          <td>Nguyễn Xuân Tuấn</td>
-          <td>NameId</td>
-          <td>4</td>
-          <td>15</td>
-          <td>16</td>
-        </tr> -->
         </tbody>
       </table>
     </div>
     <script src="./lib/jquery.min.js"></script>
+    <script src="./lib/jspdf.min.js"></script>
     <script src="./scr/MakingPressDirectiveV3.js"></script>
   </body>
 </html>
