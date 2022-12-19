@@ -421,7 +421,7 @@ $(document).on("click", "#summary_table tbody tr", function(e) {
 				trDom.append($("<td>").html(""));
 			} else if (j%2==1) {
 				tdDom = $("<td>").append($("<select>").append(
-					$("<option>").val(3).html(""),
+					// $("<option>").val(3).html(""),
 					$("<option>").val(1).html("OK"),
 					$("<option>").val(2).html("NG")
 				).addClass("need-clear"));
