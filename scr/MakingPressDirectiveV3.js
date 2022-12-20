@@ -1299,7 +1299,7 @@ $(function(){
 function makeTable() {
 	var tbd = ``;
     var tr = ``;
-	var trC = `<tbody style="height: 90%; overflow: hidden;">`;
+	var trC = `<tbody style="height: 100%; overflow: hidden;">`;
 	for (i = 1; i < 80; ++i) {
 		tr+=`<tr>
                 <td style="width: 30px; font-size: 8px;">${i}</td>
