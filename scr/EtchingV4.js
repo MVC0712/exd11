@@ -35,6 +35,7 @@ function makeSummaryTable() {
 		});
 		$(newTr).appendTo("#summary_table tbody");
 	});
+	BH();
 }
 function makeSelStaff() {
 	var fileName = "./php/Etching/SelStaff.php";
@@ -517,6 +518,21 @@ function timkiem() {
 		}
 	}
 };
+function BH() {
+	var input, table, tr, td, td1, td2, filter, i, txtdata, txtdata1, txtdata2, txtdata3;
+	table = document.getElementById("summary_table");
+	var tbody = table.getElementsByTagName("tbody")[0];
+	var tr = tbody.getElementsByTagName("tr");
+	for (i = 0; i < tr.length; i++) {
+		td = tr[i].getElementsByTagName("td")[7];
+		if (td) {
+			txtdata = td.innerText;
+			if (txtdata == "BH") {
+				tr[i].style.backgroundColor = "orange";
+			}
+		}
+	}
+};
 $("input#file-upload__input").on("change", function () {
 	var file = $(this).prop("files")[0];
 	$("label").html(file.name);
@@ -584,7 +600,7 @@ $(function(){
 			}
 		</style>
 		<div style="width : 790px; height: 1100px; display: flex; flex-direction: row;">
-		<div style="width : 2%; height: 100%;">
+		<div style="width : 7%; height: 100%;">
 		</div>
 		<div style="width : 97%; height: 100%; display: flex; flex-direction: column;">
 			<div style="width : 100%; height: 5%;">
@@ -734,7 +750,7 @@ $(function(){
 
 		var page2 = `
 			<div style="width : 790px; height: 1100px; display: flex; flex-direction: row;">
-			<div style="width : 3%; height: 100%;">
+			<div style="width : 7%; height: 100%;">
 			</div>
 			<div style="width : 97%; height: 100%; display: flex; flex-direction: column;">
 				<div style="width : 100%; height: 5%;">

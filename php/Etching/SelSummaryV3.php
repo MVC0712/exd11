@@ -27,6 +27,7 @@
     END AS confirm,
     CASE
         WHEN t20.etching_finish = 1 THEN 'HT'
+        WHEN t20.etching_finish = 2 THEN 'BH'
         ELSE 'CHT'
     END AS XN
 FROM
