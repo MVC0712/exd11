@@ -10,6 +10,7 @@ $(function() {
     $("#save__button").prop("disabled", true);
     $("#update__button").prop("disabled", true);
     $("#print__button").prop("disabled", true);
+    $("#print__button_2").prop("disabled", true);
     // test ボタンの表示
     $("#test__button").hide();
     // dies select option を更新する
@@ -726,6 +727,7 @@ function ajaxInsData(inputData) {
             $("#save__button").prop("disabled", true);
             $("#update__button").prop("disabled", true);
             $("#print__button").prop("disabled", true);
+            $("#print__button_2").prop("disabled", true);
         })
         .fail(function(data) {
             alert("DB connect error");
@@ -759,6 +761,7 @@ function ajaxUpdateData(inputData) {
             clearInputData(); // データの削除と背景色の設定
             $("#update__button").prop("disabled", true); // update ボタン非活性化
             $("#print__button").prop("disabled", true); // print ボタン非活性化
+            $("#print__button_2").prop("disabled", true); // print ボタン非活性化
             // 今日の日付の代入
             $("#date__input")
                 .val(fillToday())
@@ -791,6 +794,7 @@ $(document).on("click", "#summary__table tr", function(e) {
         $("#save__button").prop("disabled", false);
         $("#update__button").prop("disabled", false);
         $("#print__button").prop("disabled", false);
+        $("#print__button_2").prop("disabled", false);
     } else {
         // 選択レコードを再度クリックした時
         // 削除問い合わせダイアログ
@@ -1174,12 +1178,10 @@ table td, table th {
 <div style="width : 790px; height: 1100px; display: flex; flex-direction: row;">
 <div style="width : 5%; height: 100%;">
 </div>
-<div style="width : 97%; height: 100%; display: flex; flex-direction: column;">
-<div style="width : 100%; height: 2%;">
-</div>
-<div style="width: 100%; height: 3%; display: flex; border: none; flex-direction: row; justify-content: space-evenly; margin-bottom : 5px">
-    <img src="./lib/logo.png" style="width : auto; height : 80%">
-    <h2  style="width: auto; height: 90%; border: none; padding: 0; margin: 0;">PHIẾU THÔNG TIN SẢN XUẤT</h2>
+<div style="width : 98%; height: 100%; display: flex; flex-direction: column;">
+<div style="width: 100%; height: 3%; display: flex; border: none; flex-direction: row; justify-content: space-evenly; margin-top : 10px">
+    <img src="./lib/logo.png" style="width : auto; height : 70%; margin-top: 10px;">
+    <h3 style="width: auto; height: 70%; border: none; padding: 0; margin: 0; margin-top: 10px;">PHIẾU THÔNG TIN SẢN XUẤT</h3>
 </div>
 <div style="width : 100%; height: 100%; display: flex; flex-direction: column;">
     <div style="width : 100%; height: 7%; display : flex; flex-direction: row">
@@ -1187,25 +1189,25 @@ table td, table th {
             <table style="overflow: auto; width : auto;">
                 <tbody style="overflow: auto; height: 60px;">
                     <tr>
-                        <td style="width: 60px;">Ngày tạo phiếu</td>
+                        <td style="width: 65px;">Ngày tạo phiếu</td>
                         <td style="width: 80px;">${issue_date}</td>
                         <td style="width: 50px;">Ngày đùn</td>
                         <td style="width: 60px;">${plan_date_at}</td>
                     </tr>
                     <tr style="border-bottom: 1px solid rgb(0, 0, 0);">
-                        <td style="width: 60px;">Người tạo phiếu</td>
+                        <td style="width: 65px;">Người tạo phiếu</td>
                         <td style="width: 80px;">${staff_name}</td>
                         <td style="width: 50px;">Loại sản xuất</td>
                         <td style="width: 60px;">${pressing_type}</td>
                     </tr>
                     <tr>
-                        <td style="width: 60px;">Mã khuôn</td>
+                        <td style="width: 65px;">Mã khuôn</td>
                         <td style="width: 80px;">${die_number}</td>
                         <td style="width: 50px;">Vòng khuôn</td>
                         <td style="width: 60px;">${die_ring}</td>
                     </tr>
                     <tr style="border-bottom: 1px solid rgb(0, 0, 0);">
-                        <td style="width: 60px;">Mã sản phẩm</td>
+                        <td style="width: 65px;">Mã sản phẩm</td>
                         <td style="width: 80px;">${production_number}</td>
                         <td style="width: 50px;">Đệm khuôn</td>
                         <td style="width: 60px;">${bolster_name}</td>
@@ -1217,27 +1219,27 @@ table td, table th {
             <table style="overflow: auto; width : auto;">
                 <tbody style="overflow: auto; height: 60px;">
                     <tr>
-                        <td style="width: 25px;"rowspan="2">Billet</td>
-                        <td style="width: 50px;">Mã vật liệu</td>
+                        <td style="width: 20px;"rowspan="2">Billet</td>
+                        <td style="width: 55px;">Mã vật liệu</td>
                         <td style="width: 35px;">${material}</td>
                         <td style="width: 45px;">Xuất xứ</td>
                         <td style="width: 30px;">DB/VN</td>
                     </tr>
                     <tr style="border-bottom: 1px solid rgb(0, 0, 0);">
-                        <td style="width: 50px;">Chiều dài</td>
+                        <td style="width: 55px;">Chiều dài</td>
                         <td style="width: 35px;">${billet_length}</td>
                         <td style="width: 45px;">Kích thước</td>
                         <td style="width: 30px;">${billet_size}</td>
                     </tr>
                     <tr>
                         <td style="width: 25px;"rowspan="2">SP đùn</td>
-                        <td style="width: 50px;">Khối lượng/m</td>
+                        <td style="width: 55px;">Khối lượng/m</td>
                         <td style="width: 35px;">${specific_weight}</td>
                         <td style="width: 45px;">Tỷ lệ đùn</td>
                         <td style="width: 30px;">${ratio}</td>
                     </tr>
                     <tr style="border-bottom: 1px solid rgb(0, 0, 0);">
-                        <td style="width: 50px;">Chiều dài đùn</td>
+                        <td style="width: 55px;">Chiều dài đùn</td>
                         <td style="width: 35px;">${press_length}</td>
                         <td style="width: 45px;">Chế độ đùn</td>
                         <td style="width: 30px;">${nbn}</td>
@@ -1592,7 +1594,7 @@ table td, table th {
                 [318] : Đen bề mặt
             </div>
         </div>
-        <div style="width:98%; height: 110px; margin-top: 5px; border: 1px solid rgb(0, 0, 0); font-size: 8px">
+        <div style="width:98%; height: 120px; margin-top: 5px; border: 1px solid rgb(0, 0, 0); font-size: 8px">
             Ghi chú:
         </div>
         </div>
@@ -1602,13 +1604,13 @@ table td, table th {
                     <tr>
                         <th style="width: 10px;">Stt</th>
                         <th style="width: 40px;">SP dài</th>
-                        <th style="width: 40px;">Kéo</th>
+                        <th style="width: 35px;">Kéo</th>
                         <th style="width: 35px;">Nhám</th>
                         <th style="width: 35px;">Die mark</th>
                         <th style="width: 39px;">Gián đoạn</th>
                         <th style="width: 60px;">Xác nhận</th>
                         <th style="width: 60px;">TG cắt</th>
-                        <th style="width: 45px;">Thành phẩm</th>
+                        <th style="width: 48px;">Thành phẩm</th>
                         <th style="width: 15px;">302</th>
                         <th style="width: 15px;">304</th>
                         <th style="width: 15px;">314</th>
@@ -1646,15 +1648,15 @@ function makeTable() {
 	var trC = `<tbody style="height: 100%; overflow: hidden;">`;
 	for (i = 1; i <= 70; ++i) {
 		tr=`<tr>
-                <td style="width: 15px; font-size: 8px;">${i}</td>
+                <td style="width: 10px; font-size: 8px;">${i}</td>
                 <td style="width: 40px;"></td>
-                <td style="width: 40px;"></td>
+                <td style="width: 35px;"></td>
                 <td style="width: 35px;"></td>
                 <td style="width: 35px;"></td>
                 <td style="width: 37px;"></td>
                 <td style="width: 60px;"></td>
-                <td style="width: 60px;"></td>
-                <td style="width: 45px;"></td>
+                <td style="width: 60px; text-align: center;">:</td>
+                <td style="width: 48px;"></td>
                 <td style="width: 15px;"></td>
                 <td style="width: 15px;"></td>
                 <td style="width: 15px;"></td>
