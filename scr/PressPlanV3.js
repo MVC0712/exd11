@@ -822,7 +822,7 @@ function makeTable(min,max,n) {
 				trDom += `<td style="width: 30px; font-size: 8px;">${Math.ceil((i-n-3)/(2*n) + 1) + "END"}</td>`;
 			}
 		}
-		trDom += `<td style="width: 30px;"></td>
+		trDom += `<td style="width: 30px; font-size: 7px;">O</td>
 		            <td style="width: 30px;"></td>
 		            <td style="width: 30px;"></td>
 		            <td style="width: 30px;"></td>

@@ -32,6 +32,7 @@ SELECT
         WHEN
             t_press_sub.etching_check_staff IS NOT NULL
                 AND t_press_sub.etching_finish = 1
+				OR t_press_sub.etching_finish = 2
         THEN
             DATE_FORMAT(t_press.etching_check_date, '%m-%d')
         WHEN t_press_sub.etching_check_staff IS NULL THEN DATE_FORMAT(t_press.etching_check_date, '%m-%d')

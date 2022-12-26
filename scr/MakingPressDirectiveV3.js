@@ -1414,39 +1414,39 @@ table td, table th {
                         <td style="width: 70px; text-align: center;"></td>
                     </tr>
                     <tr style="height: 15px">
-                        <td style="width: 60px;">Kích thước đuôi</td>
+                        <td style="width: 60px; font-size: 7px">Kích thước đuôi</td>
                         <td style="width: 70px;">${discard_thickness}</td>
-                        <td style="width: 60px;">Nhiệt độ diering</td>
+                        <td style="width: 60px; font-size: 7px">Nhiệt độ diering</td>
                         <td style="width: 70px; text-align: center;"></td>
                     </tr>
                     <tr style="height: 15px">
-                        <td style="width: 60px;">Nhiệt độ khuôn</td>
+                        <td style="width: 60px; font-size: 7px;">Nhiệt độ khuôn</td>
                         <td style="width: 70px;">${die_temperature}</td>
-                        <td style="width: 60px;">Nhiệt độ khuôn</td>
+                        <td style="width: 60px; font-size: 7px;">Nhiệt độ khuôn</td>
                         <td style="width: 70px; text-align: center;"></td>
                     </tr>
                     <tr style="height: 15px">
                         <td style="width: 60px;">Tỉ lệ kéo</td>
                         <td style="width: 70px;">${stretch_ratio}</td>
-                        <td style="width: 60px;">Nhiệt độ bolter</td>
+                        <td style="width: 60px; font-size: 7px;">Nhiệt độ bolter</td>
                         <td style="width: 70px; text-align: center;"></td>
                     </tr>
                     <tr style="height: 15px">
-                        <td style="width: 60px;">TG nung khuôn</td>
+                        <td style="width: 60px; font-size: 7px">TG nung khuôn</td>
                         <td style="width: 70px;">${die_heating_time}</td>
-                        <td style="width: 60px;">TG nung khuôn</td>
+                        <td style="width: 60px; font-size: 7px">TG nung khuôn</td>
                         <td style="width: 70px; text-align: center;">～</td>
                     </tr>
                     <tr style="height: 15px">
-                        <td style="width: 60px;">Kiểu làm mát</td>
+                        <td style="width: 60px; font-size: 7px">Kiểu làm mát</td>
                         <td style="width: 70px;">${cooling_type}</td>
-                        <td style="width: 60px;">Ngâm kiềm</td>
+                        <td style="width: 60px; font-size: 7px">Ngâm kiềm</td>
                         <td style="width: 70px; text-align: center;">Yes&#160&#160&#160&#160&#160&#160 No</td>
                     </tr>
                     <tr style="height: 15px">
-                        <td style="width: 60px;">Lực kéo Puller</td>
+                        <td style="width: 60px; font-size: 7px">Lực kéo Puller</td>
                         <td style="width: 70px;">${pullerF}</td>
-                        <td style="width: 60px;">Điều kiện ủ</td>
+                        <td style="width: 60px; font-size: 7px">Điều kiện ủ</td>
                         <td style="width: 70px; text-align: center;"></td>
                     </tr>
                 </tbody>
@@ -1594,7 +1594,7 @@ table td, table th {
                 [318] : Đen bề mặt
             </div>
         </div>
-        <div style="width:98%; height: 120px; margin-top: 5px; border: 1px solid rgb(0, 0, 0); font-size: 8px">
+        <div style="width:99%; height: 175px; margin-top: 5px; border: 1px solid rgb(0, 0, 0); font-size: 8px">
             Ghi chú:
         </div>
         </div>
