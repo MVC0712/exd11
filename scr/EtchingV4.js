@@ -596,6 +596,11 @@ $(function(){
 				background-color: none;
 				color: black;
 			}
+			@media print {
+				table tbody tr {
+					-webkit-print-color-adjust: exact;
+				}
+			}
 			table td, table th {
 				border: 1px solid black;
 				margin: 0px;
@@ -921,9 +926,8 @@ function makeTable(min,max,n) {
 	var trDomC = `<tbody style="height: 90%; overflow: hidden;">`;
 	for (i = min; i < max; ++i) {
 		if (i % 2 == 0 ) {
-			var trDom = `<tr style="background-color: red;">`;
+			var trDom = `<tr style="background-color: rgb(228, 255, 140);">`;
 		} else var trDom = `<tr>`;
-	    
 		if (n==1){
 			if (i%2==0){
 				trDom += `<td style="width: 30px; font-size: 8px;">${Math.ceil((i-n)/(2*n) + 1) + "H"}</td>`;
