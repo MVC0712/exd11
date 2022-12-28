@@ -367,18 +367,21 @@ function checkSave() {
     $("#save__button").prop("disabled", true);
   }
 };
-// $(document).on("click", "#summary__table tbody tr", function (e) {
-//   if (!$(this).hasClass("selected-record")) {
-//     $(this).parent().find("tr").removeClass("selected-record");
-//     $(this).parent().find("tr").removeClass("same-date");
-//     $(this).addClass("selected-record");
-//     $("#selected__tr").removeAttr("id");
-//     $(this).attr("id", "selected__tr");
-//     $("#selected__tr td:nth-child(3) input").attr("id", "selected__date");
-//   } else {
-//     // deleteDialog.showModal();
-//   }
-// });
+$(document).on("click", "#summary__table tbody tr", function (e) {
+  if (!$(this).hasClass("selected-record")) {
+    $(this).parent().find("tr").removeClass("selected-record");
+    $(this).addClass("selected-record");
+    $("#selected__tr").removeAttr("id");
+    $(this).attr("id", "selected__tr");
+  } else {
+    let pas = prompt("Please enter your Password", "********");
+    if (pas == '01910926') {
+      deleteDialog.showModal();
+    } else {
+      alert("Wrong pas");
+    }
+  }
+});
 $(document).on("click", "#add__table tbody tr", function (e) {
   if (!$(this).hasClass("selected-record")) {
     $(this).parent().find("tr").removeClass("selected-record");
@@ -442,7 +445,7 @@ $(document).on("click", "#delete-dialog-cancel__button", function () {
 });
 
 $(document).on("click", "#delete-dialog-delete__button", function () {
-  var fileName = "./php/ExtrusionLog/DelPlan.php";
+  var fileName = "./php/ExtrusionLog/DelRecord.php";
   var sendData = {
     targetId : $("#selected__tr td:nth-child(1)").html(),
   };

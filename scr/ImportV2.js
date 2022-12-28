@@ -342,7 +342,7 @@ var ExcelToJSON = function() {
 };
 
 function handleFileSelect(evt) {
-  var files = evt.target.files; // FileList object
+  var files = evt.target.files;
   var xl2json = new ExcelToJSON();
   xl2json.parseExcel(files[0]);
 }

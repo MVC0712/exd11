@@ -894,7 +894,7 @@ $(function(){
 							</table>
 						</div> 
 						<div style="height: 150px; width: 300px">
-							<img src=${etcing_file_url} alt="" style="height: 150px; width: auto; margin-left: 20px;">
+						<img src=${etcing_file_url} alt="" style="height: 150px; max-width: 200px; margin-left: 20px;" width="250" height="150">
 						</div>
 					</div>
 				</div>
@@ -920,7 +920,10 @@ function makeTable(min,max,n) {
 	var tbd = ``;
 	var trDomC = `<tbody style="height: 90%; overflow: hidden;">`;
 	for (i = min; i < max; ++i) {
-	    var trDom = `<tr>`;
+		if (i % 2 == 0 ) {
+			var trDom = `<tr style="background-color: red;">`;
+		} else var trDom = `<tr>`;
+	    
 		if (n==1){
 			if (i%2==0){
 				trDom += `<td style="width: 30px; font-size: 8px;">${Math.ceil((i-n)/(2*n) + 1) + "H"}</td>`;

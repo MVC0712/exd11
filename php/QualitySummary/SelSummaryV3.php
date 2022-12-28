@@ -29,12 +29,14 @@ SELECT
 	DATE_FORMAT(t_press.dimension_check_date, '%m-%d'),
 	CASE
         WHEN
-            t_press_sub.etching_check_staff IS NOT NULL
-                AND t_press_sub.etching_finish = 1
-				OR t_press_sub.etching_finish = 2
+            (t_press_sub.etching_check_staff IS NOT NULL
+                AND t_press_sub.etching_finish = 1)
+			OR
+			(t_press_sub.etching_check_staff IS NOT NULL 
+				AND t_press_sub.etching_finish = 2)
         THEN
             DATE_FORMAT(t_press.etching_check_date, '%m-%d')
-        WHEN t_press_sub.etching_check_staff IS NULL THEN DATE_FORMAT(t_press.etching_check_date, '%m-%d')
+        WHEN (t_press_sub.etching_check_staff IS NULL OR t_press_sub.etching_finish = 0) THEN ''
     END AS ett,
 	DATE_FORMAT(t_press.aging_check_date, '%m-%d'),
 	DATE_FORMAT(t_press.packing_check_date, '%m-%d'),
