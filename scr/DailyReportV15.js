@@ -1022,6 +1022,7 @@ $("#add-rack__button").on("click", function () {
       break;
   }
   checkSum();
+  checkBilletQty();
 });
 
 $(document).on("click", "#rack__table tbody tr", function () {
@@ -1097,6 +1098,7 @@ $(document).on("change", "#rack__table tbody tr input", function () {
   console.log(sendData);
   myAjax.myAjax(fileName, sendData);
   checkSum();
+  checkBilletQty();
 });
 
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -1187,6 +1189,7 @@ $(document).on("click", "#summary__table tbody tr", function (e) {
     // deleteDialog.showModal();
   }
   checkSum();
+  checkBilletQty();
 });
 
 $(document).on("click", "#error__table tbody tr", function() {
@@ -1417,7 +1420,7 @@ function checkIsDataInputed() {
       // console.log($(this));
     }
   });
-  flag = checkSum();
+  flag = (checkSum() && checkBilletQty());
   return flag;
 }
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -1719,3 +1722,13 @@ $("#work-length__table tbody tr").each(function () {
 $("#tt2").html(tt2);
 if (tt1==tt2) return true; else return false;
 };
+
+function checkBilletQty() {
+  var ttb = 0;
+  $("#bundle__table tbody tr").each(function () {
+    ttb += Number((this).getElementsByTagName("td")[2].getElementsByTagName("input")[0].value);
+  });
+  $("#ttb").html(ttb);
+  if ($("#actual-billet-qty__input").val()==ttb) return true; else return false;
+  };
+  

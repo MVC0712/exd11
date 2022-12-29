@@ -226,37 +226,32 @@ function fillTableBody(data, tbodyDom) {
       });
       $(newTr).appendTo(tbodyDom);
   });
-}
-$(document).on("click", "#summary__table tr", function (e) {
+};
+$(document).on("click", "#summary__table tbody tr", function (e) {
   if (!$(this).hasClass("selected-record")) {
     $(this).parent().find("tr").removeClass("selected-record");
     $(this).addClass("selected-record");
     $("#selected__tr").removeAttr("id");
-    $(this).attr("id", "selected__tr");    
-    // var fileName = "./php/CheckBillet/SelSelExport.php";
-    // var sendData = {
-    //     id: $("#selected__tr").find("td").eq(0).html(),
-    // };
-    // myAjax.myAjax(fileName, sendData);
-    // console.log(ajaxReturnData);
+    $(this).attr("id", "selected__tr");
   } else {
-    // deleteDialog.showModal();
+    let pas = prompt("Please enter your Password", "********");
+    if (pas == '01910926') {
+      deleteDialog.showModal();
+    } else {
+      alert("Wrong pas");
+    }
   }
-});
-$(document).on("click", "#delete__button", function () {
-  deleteDialog.showModal();
 });
 $(document).on("click", "#delete-dialog-cancel__button", function () {
   deleteDialog.close();
 });
 $(document).on("click", "#delete-dialog-delete__button", function () {
-  var fileName = "./php/CheckBillet/DelSelData.php";
-  var sendObj = new Object(); 
-  sendObj["id"] = $("#summary__table #selected__tr").find("td").eq(0).html();
-  console.log(sendObj.id);
-  myAjax.myAjax(fileName, sendObj);
+  var fileName = "./php/CheckBillet/DelRecord.php";
+  var sendData = {
+    targetId : $("#selected__tr td:nth-child(1)").html(),
+  };
+  myAjax.myAjax(fileName, sendData);
   deleteDialog.close();
-  $("#save__button").prop("disabled", true);
   makeSummaryTable();
 });
 

@@ -1,6 +1,7 @@
 <?php
   $userid = "webuser";
   $passwd = "";
+  $search = $_POST["search"];
   
   try {
       $dbh = new PDO(
@@ -49,7 +50,7 @@ FROM
         extrusion.t_press_sub
     GROUP BY t_press_sub.press_id) AS t20 ON t20.press_id = t_press.id
     WHERE
-    pressing_type != '〇'
+    pressing_type != '〇' AND m_dies.die_number LIKE '%$search%'
 ORDER BY t_press.press_date_at DESC , t_press.press_start_at DESC
 LIMIT 75;
     ");
