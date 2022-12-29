@@ -750,8 +750,8 @@ $(function(){
 								</tbody>
 							</table>
 						</div> 
-						<div style="height: 150px; width: 300px; max-width: 250px">
-							<img src=${etcing_file_url} alt="" style="height: 150px; max-width: 200px; margin-left: 20px;" width="250" height="150">
+						<div style="height: 150px; width: 300px">
+							<img src=${etcing_file_url} alt="" style="height: 150px; width: auto; margin-left: 20px;">
 						</div>
 					</div>
 				</div>
