@@ -143,6 +143,10 @@ function makeJugCodeOptionDom(seletedId) {
 		{
 			"id": 3,
 			"jug": ""
+		},
+		{
+			"id": 5,
+			"jug": "BH"
 		}
 	]
 	jugcode.forEach(function(element) {
@@ -198,7 +202,13 @@ function color() {
 			} else if (txtdata == "OK") {
 				$(td).find("select").css("background-color", "white");
 				$(td1).find("select").css("background-color", "white");
+			// } else if (txtdata != 0 && txtdata != "OK") {
+			} else if (txtdata == "BH") {
+				// $(td).find("select").css("background-color", "orange");
+				$(td).find("select").css("background-color", "green");
+			// } else if (txtdata == "BH") {
 			} else if (txtdata != 0 && txtdata != "OK") {
+				// $(td).find("select").css("background-color", "green");
 				$(td).find("select").css("background-color", "orange");
 			}
 		}
@@ -427,13 +437,15 @@ $(document).on("click", "#summary_table tbody tr", function(e) {
 				tdDom = $("<td>").append($("<select>").append(
 					// $("<option>").val(3).html(""),
 					$("<option>").val(1).html("OK"),
-					$("<option>").val(2).html("NG")
+					$("<option>").val(2).html("NG"),
+					$("<option>").val(5).html("BH")
 				).addClass("need-clear"));
 					if (j>2) {
 						tdDom = $("<td>").append($("<select>").append(
 							$("<option>").val(3).html(""),
 							$("<option>").val(1).html("OK"),
-							$("<option>").val(2).html("NG")
+							$("<option>").val(2).html("NG"),
+							$("<option>").val(5).html("BH")
 						).addClass("need-clear"));
 					}
 			} else if (j==2){
