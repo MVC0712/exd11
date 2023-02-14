@@ -33,7 +33,25 @@ function makeSummaryTable(data) {
     });
     $("#summary__table tbody").append($(newTr));
   });
+  make_action();
 }
+
+function make_action() {
+  var table, tr, i;
+  table = document.getElementById("summary__table");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+      nd = tr[i].getElementsByTagName("td")[5];
+      pk = tr[i].getElementsByTagName("td")[7];
+      if (nd) {
+          nnd = Number(nd.innerText.replace(",", ""));
+          npk = Number(pk.innerText.replace(",", ""));
+          if (nnd == npk) {
+              table.rows[i].cells[7].style.backgroundColor = "#ffc870";
+          }
+      }
+  }
+};
 
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // ------------------------- Summary Table ---------------------------------

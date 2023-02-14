@@ -9,7 +9,7 @@ body {
   height: 350px;
 }
 #summary__table {
-  width: 700px;
+  width: 770px;
 }
 #summary__table tbody {
   height: 270px;
@@ -51,11 +51,13 @@ body {
 #summary__table th:nth-child(7),
 #summary__table td:nth-child(7),
 #summary__table th:nth-child(8),
-#summary__table td:nth-child(8),
+#summary__table td:nth-child(8) {
+  width: 50px;
+}
 #summary__table th:nth-child(9),
 #summary__table td:nth-child(9),
 #summary__table th:nth-child(10),
 #summary__table td:nth-child(10) {
-  width: 50px;
+  width: 125px;
   text-align: left;
 }

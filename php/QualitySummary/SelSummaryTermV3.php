@@ -117,7 +117,7 @@ WHERE m_dies.die_number LIKE :die_number
     AND t_press.press_date_at BETWEEN :start_term AND :end_term
 GROUP BY t_press.id
 ORDER BY 	t_press.press_date_at DESC, t_press.press_start_at
-LIMIT 75
+LIMIT 400
     ");
 
       $prepare->bindValue(':die_number', $_POST["die_number"], PDO::PARAM_STR);

@@ -116,7 +116,7 @@ LEFT JOIN
 WHERE m_dies.die_number LIKE :die_number
 GROUP BY t_press.id
 ORDER BY 	t_press.press_date_at DESC, t_press.press_start_at DESC
-LIMIT 75
+LIMIT 400
     ");
 
       $prepare->bindValue(':die_number', $_POST["die_number"], PDO::PARAM_STR);

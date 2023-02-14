@@ -24,7 +24,7 @@ body {
 }
 #plan_start,
 #plan_end {
-  width: 130px;
+  width: 100px;
 }
 #ins_group {
   flex-direction: row;

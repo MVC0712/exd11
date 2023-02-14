@@ -1,5 +1,5 @@
 body {
-  width: calc(1220px - 2px);
+  width: calc(1330px - 2px);
 }
 
 .main__wrapper {
@@ -58,7 +58,7 @@ input {
 }
 
 #summary__table {
-  width: 1205px;
+  /* width: 1205px; */
 }
 
 #summary__table tbody {
@@ -264,7 +264,7 @@ input {
 #summary__table td:nth-child(37),
 #summary__table th:nth-child(38),
 #summary__table td:nth-child(38) {
-  width: 22px;
+  width: 26px;
 }
 
 #summary__table td:nth-child(14),

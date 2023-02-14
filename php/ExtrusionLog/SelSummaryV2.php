@@ -6,6 +6,7 @@
   $start = $_POST['start'];
   $end = $_POST['end'];
   $prs_type_search = $_POST['prs_type_search'];
+  $code_filter = $_POST['code_filter'];
   if ($prs_type_search == 0) {
     $add = "";
   } else {
@@ -40,7 +41,7 @@
         LEFT JOIN
     m_pressing_type ON m_pressing_type.id = t_extrusion_log.pressing_type_id
         WHERE
-            t_extrusion_log.input_date BETWEEN '$start' AND '$end' $add
+        code LIKE '%$code_filter%' AND t_extrusion_log.input_date BETWEEN '$start' AND '$end' $add
         ORDER BY t_extrusion_log.input_date DESC, t_extrusion_log.start ASC, t_extrusion_log.end ASC";
     // print_r($sql);
 

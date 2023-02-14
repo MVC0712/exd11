@@ -601,7 +601,7 @@ $(function(){
 					</table>
 				</div> 
 				<div style="height: 150px; width: 300px">
-					<img src=${etcing_file_url} alt="" style="height: 150px; width: auto; margin-left: 20px;">
+					<img src=${etcing_file_url} alt="" style="width: 100%; height: 100%; object-fit: contain;">
 				</div>
 			</div>
 		</div>
@@ -751,7 +751,7 @@ $(function(){
 							</table>
 						</div> 
 						<div style="height: 150px; width: 300px">
-							<img src=${etcing_file_url} alt="" style="height: 150px; width: auto; margin-left: 20px;">
+							<img src=${etcing_file_url} alt="" style="width: 100%; height: 100%; object-fit: contain;">
 						</div>
 					</div>
 				</div>

@@ -72,10 +72,12 @@ ORDER BY CASE die_status
     WHEN 'Grinding' THEN 9
     WHEN 'Wire cutting' THEN 8
     WHEN 'NG' THEN 7
-    WHEN 'Washing' THEN 6
-    WHEN 'OK' THEN 5
-    WHEN 'Measuring' THEN 4
-    WHEN 'On rack' THEN 3
+    WHEN 'NG Rz/Die mark' THEN 6
+    WHEN 'NG Kích thước' THEN 5
+    WHEN 'Washing' THEN 4
+    WHEN 'OK' THEN 3
+    WHEN 'Measuring' THEN 2
+    WHEN 'On rack' THEN 1
     ELSE 0
 END DESC , is_washed_die DESC , die_number ASC;
         ";

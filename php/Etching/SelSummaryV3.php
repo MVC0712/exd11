@@ -52,7 +52,7 @@ FROM
     WHERE
     pressing_type != '〇' AND m_dies.die_number LIKE '%$search%'
 ORDER BY t_press.press_date_at DESC , t_press.press_start_at DESC
-LIMIT 75;
+LIMIT 400;
     ");
 
       $prepare->execute();

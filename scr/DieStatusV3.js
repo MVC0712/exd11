@@ -134,9 +134,10 @@ $(document).on("change", "#process", function() {
     } else if ($("#process").val() == 1) {
         $("#process").removeClass("no-input").addClass("complete-input");
         document.getElementById("status_process").innerHTML = `
-            <input type="radio" checked name="check_uncheck" class="radio-button" value="1" />Measuring <br /> 
-            <input type="radio" name="check_uncheck" class="radio-button" value="2" / > OK <br />
-            <input type="radio" name="check_uncheck" class="radio-button" value="3" / > NG <br /> `;
+            <input type="radio" checked name="check_uncheck" class="radio-button" value="2" / > OK <br />
+            <input type="radio" name="check_uncheck" class="radio-button" value="31" / > NG Rz/Die mark <br /> 
+            <input type="radio" name="check_uncheck" class="radio-button" value="32" / > NG Kích thước <br /> 
+            `;
     } else if ($("#process").val() == 2) {
         $("#process").removeClass("no-input").addClass("complete-input");
         document.getElementById("status_process").innerHTML = `
@@ -219,6 +220,10 @@ function make_action() {
             table.rows[i].insertCell(7);
             if (((txt_pr_tm >= 1) && (W1P1.includes(txt_die_id))) || 
                 (txt_pr_tm >= 2)||(txt_sta_val == 3)) {
+                table.rows[i].cells[7].innerHTML = "Need wash";
+                table.rows[i].cells[7].style.backgroundColor = "#ffc870";
+                
+            } else if ((txt_sta_val == 31)||(txt_sta_val == 32)) {
                 table.rows[i].cells[7].innerHTML = "Need wash";
                 table.rows[i].cells[7].style.backgroundColor = "#ffc870";
 
