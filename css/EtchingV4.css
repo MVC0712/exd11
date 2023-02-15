@@ -249,10 +249,12 @@ button {
 #data__table #table_headder {
     font-size: 8pt;
 }
-#file-upload__input {
+#file-upload__input,
+#image-upload__input {
     display: none;
 }
-#file-upload__input + label {
+#file-upload__input + label,
+#image-upload__input + label {
 background-color: white;
 display: inline-block;
 cursor: pointer;
@@ -264,6 +266,7 @@ height: 20px;
     width: 100%;
     margin-top: 5px;
 }
-#preview__button {
+#preview__button,
+#preview_image_button {
     margin-top: 0;
 }

@@ -227,6 +227,7 @@ $(document).on("click", "#save__button", function() {
 		etching_staff : $("#etching_staff").val(),
 		etching_check_staff : $("#etching_check_staff").val(),
 		file_url : $("#file_url").html(),
+		image_url : $("#image_url").html(),
 	};
 	console.log(sendData);
 	myAjax.myAjax(fileName, sendData);
@@ -333,6 +334,9 @@ $(document).on("change", "#etching_check_staff", function() {
 $(document).on("change", "#file-upload__input", function() {
 	updateFinish();
 });
+$(document).on("change", "#image-upload__input", function() {
+	updateFinish();
+});
 $(document).on("keyup", "#die_number__input", function() {
 	makeSummaryTable();
 });
@@ -345,6 +349,7 @@ function updateFinish() {
 			etching_staff : $("#etching_staff").val(),
 			etching_check_staff : $("#etching_check_staff").val(),
 			file_url : $("#file_url").html(),
+			image_url : $("#image_url").html(),
 		};
 		myAjax.myAjax(fileName, sendData);
 	}
@@ -493,12 +498,15 @@ $(document).on("click", "#summary_table tbody tr", function(e) {
 			$("#etching_staff").val(0);
 			$("#etching_check_staff").val(0);
 			$("#file_url").html("No_image.jpg");
+			$("#image_url").html("No_image.jpg");
 		} else {
 			$("#etching_finish").val(ajaxReturnData[0].etching_finish);
 			$("#etching_staff").val(ajaxReturnData[0].etching_staff).removeClass("no-input").addClass("complete-input");
 			$("#etching_check_staff").val(ajaxReturnData[0].etching_check_staff).removeClass("no-input").addClass("complete-input");
 			$("#file_url").html(ajaxReturnData[0].etching_file_url);
-			$("#preview__button").prop("disabled", false)
+			$("#image_url").html(ajaxReturnData[0].etching_image_url);
+			$("#preview__button").prop("disabled", false);
+			$("#preview_image_button").prop("disabled", false);
 		}
 	} else {
 
@@ -552,7 +560,7 @@ function BH() {
 };
 $("input#file-upload__input").on("change", function () {
 	var file = $(this).prop("files")[0];
-	$("label").html(file.name);
+	$("#file_url").html(file.name);
 	$("#preview__button").prop("disabled", false);
 	ajaxFileUpload();
 });
@@ -572,6 +580,30 @@ function ajaxFileUpload() {
 };
 $(document).on("click", "#preview__button", function () {
 	window.open("./EtchingSub.html");
+});
+
+$("input#image-upload__input").on("change", function () {
+	var file = $(this).prop("files")[0];
+	$("#image_url").html(file.name);
+	$("#preview_image_button").prop("disabled", false);
+	ajaImageUpload();
+});
+function ajaImageUpload() {
+	var file_data = $('#image-upload__input').prop('files')[0];
+	var form_data = new FormData();
+	form_data.append('file', file_data);
+	$.ajax({
+		url: "./php/Etching/FileUpload.php",
+		dataType: 'text',
+		cache: false,
+		contentType: false,
+		processData: false,
+		data: form_data,
+		type: 'post',
+	});
+};
+$(document).on("click", "#preview_image_button", function () {
+	window.open("./EtchingSubImage.html");
 });
 
 $(function(){
