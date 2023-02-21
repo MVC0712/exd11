@@ -23,7 +23,7 @@
         m_dies.die_diamater_id,
         m_dies.bolstar_id,
         m_dies.production_number_id,
-        'dummy'
+        m_dies.die_note
       FROM m_dies
       WHERE m_dies.id = :id
     ");

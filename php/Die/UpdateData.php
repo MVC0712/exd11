@@ -26,7 +26,8 @@
         hole = :hole,
         arrival_at = :arrival_at,
         die_diameter = :die_diameter,
-        updated_at = :updated_at
+        updated_at = :updated_at,
+        die_note = :die_note
       WHERE id = :targetId
     ");
 
@@ -38,6 +39,7 @@
       $prepare->bindValue(':arrival_at', $_POST['arrival_at'], PDO::PARAM_STR);
       $prepare->bindValue(':die_diameter', (INT)$_POST['die_diamater_id'], PDO::PARAM_INT);
       $prepare->bindValue(':updated_at', $_POST['today'], PDO::PARAM_STR);
+      $prepare->bindValue(':die_note', $_POST['die_note'], PDO::PARAM_STR);
       $prepare->bindValue(':targetId', (INT)$_POST['targetId'], PDO::PARAM_INT);
 
 

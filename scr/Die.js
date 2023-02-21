@@ -459,6 +459,7 @@ function fillReadData(data) {
     $(".input__area input").eq(0).val(data["die_number"]);
     $(".input__area input").eq(1).val(data["arrival_at"]);
     $(".input__area input").eq(2).val(data["hole"]);
+    $(".input__area input").eq(3).val(data["die_note"]);
 
     $(".input__area select").eq(0).val(data["die_diamater_id"]);
     $(".input__area select").eq(1).val(data["bolstar_id"]);

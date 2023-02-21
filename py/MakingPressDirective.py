@@ -43,23 +43,12 @@ print('\n')
 #  making Press Directive Sheet
 #
 #######################################################
-
-# if urllib.parse.unquote(params["pressing_type"]) =="〇":
-#     wb=openpyxl.load_workbook('direction_test.xlsx')
-#     sheet = wb.get_sheet_by_name('input')
-# elif urllib.parse.unquote(params["pressing_type"]) =="◎":
-#     wb=openpyxl.load_workbook('direction_test.xlsx')
-#     sheet = wb.get_sheet_by_name('input')
-# else:
-#     wb=openpyxl.load_workbook('direction_mass.xlsx')
-#     sheet = wb.get_sheet_by_name('input')
 wb = openpyxl.load_workbook('direction_sheet.xlsx')
 sheet = wb.get_sheet_by_name('input')
 
 sheet['d6'] = params["die_number"]
 sheet['d7'] = params["production_number"]
 sheet['d8'] = params["plan_date_at"]  # 押出計画日
-# sheet['d9'] = urllib.parse.unquote(params["pressing_type"])
 sheet['d9'] = urllib.parse.unquote(params["pressing_type"])
 sheet['d10'] = params["press_length"]
 sheet['d11'] = params["production_length"]
@@ -90,9 +79,10 @@ sheet['d34'] = ""  # die ring
 sheet['d35'] = params["value_l"]
 sheet['d36'] = params["value_m"]
 sheet['d37'] = params["value_n"]
-
-# sheet['d9'] = para_4
-
+if params["die_note"] == None:
+        sheet['d38'] = ""
+else:
+        sheet['d38'] = "Có pin nhỏ- Nguy hiểm: Không nhìn trực tiếp vào lỗ đầu ra máy đùn"
 
 wb.save("../../PressDirectiveFile/" +
         params["plan_date_at"] + "_" + params["die_number"] + ".xlsx")

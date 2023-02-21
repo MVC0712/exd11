@@ -87,7 +87,8 @@
     t_press_directive.value_l,
     t100.max2 AS value_m,
     t100.max1 AS value_n,
-    m_dies.hole
+    m_dies.hole,
+    m_dies.die_note
 FROM
     t_press_directive
         LEFT JOIN

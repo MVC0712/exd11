@@ -612,6 +612,9 @@ function calPressLength(billetSize, billetLength, specificWeight, whole) {
     } else if (billetSize == 12) {
         billetWeight = 236.7;
         containerDimension = 999;
+    } else if (billetSize == 14) {
+        billetWeight = 236.7;
+        containerDimension = 999;
     }
     inputMaterialWeight =
         billetWeight * (billetLength / 1200) -
