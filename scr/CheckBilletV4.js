@@ -128,94 +128,12 @@ function go_check() {
 };
 
 function makeSummaryTable() {
-  var fileName = "./php/CheckBillet/SelSummaryV3.php";
+  var fileName = "./php/CheckBillet/SelSummaryV4.php";
   var sendData = {
       dummy: "dummy",
   };
   myAjax.myAjax(fileName, sendData);
   fillTableBody(ajaxReturnData, $("#summary__table tbody"));
-
-  makeLastBillet();
-  makePlanBillet();
-  makeUsedBillet();
-  makeOrderBillet();
-  orderQuantity();
-};
-
-function makeLastBillet() {
-  var fileName = "./php/CheckBillet/SelLastBilletV2.php";
-  var sendData = {
-      dummy: "dummy",
-  };
-  myAjax.myAjax(fileName, sendData);
-  $("#ht6061-1200").text(ajaxReturnData[0].A60612281200);
-  $("#ht6061-600").text(ajaxReturnData[0].A6061228600);
-  $("#ht6063-1200").text(ajaxReturnData[0].A60632281200);
-  $("#ht6063-600").text(ajaxReturnData[0].A6063228600);
-  $("#ht6N01-1200").text(ajaxReturnData[0].A6N012281200);
-  $("#ht6N01-600").text(ajaxReturnData[0].A6N01228600);
-  $("#ht6N01A-1200").text(ajaxReturnData[0].A6N01A2281200);
-  $("#ht6N01A-600").text(ajaxReturnData[0].A6N01A228600);
-};
-
-function makeUsedBillet() {
-  var fileName = "./php/CheckBillet/SelUsedBilletV2.php";
-  var sendData = {
-      start : $("#plan_start").val(),
-      end : $("#plan_end").val(),
-  };
-  myAjax.myAjax(fileName, sendData);
-  $("#tt6061-1200").text(ajaxReturnData[0].A60612281200);
-  $("#tt6061-600").text(ajaxReturnData[0].A6061228600);
-  $("#tt6063-1200").text(ajaxReturnData[0].A60632281200);
-  $("#tt6063-600").text(ajaxReturnData[0].A6063228600);
-  $("#tt6N01-1200").text(ajaxReturnData[0].A6N012281200);
-  $("#tt6N01-600").text(ajaxReturnData[0].A6N01228600);
-  $("#tt6N01A-1200").text(ajaxReturnData[0].A6N01A2281200);
-  $("#tt6N01A-600").text(ajaxReturnData[0].A6N01A228600);
-};
-
-function makePlanBillet() {
-  var fileName = "./php/CheckBillet/SelPlanBilletV2.php";
-  var sendData = {
-      start : $("#plan_start").val(),
-      end : $("#plan_end").val(),
-  };
-  myAjax.myAjax(fileName, sendData);
-  $("#pl6061-1200").text(ajaxReturnData[0].A60612281200);
-  $("#pl6061-600").text(ajaxReturnData[0].A6061228600);
-  $("#pl6063-1200").text(ajaxReturnData[0].A60632281200);
-  $("#pl6063-600").text(ajaxReturnData[0].A6063228600);
-  $("#pl6N01-1200").text(ajaxReturnData[0].A6N012281200);
-  $("#pl6N01-600").text(ajaxReturnData[0].A6N01228600);
-  $("#pl6N01A-1200").text(ajaxReturnData[0].A6N01A2281200);
-  $("#pl6N01A-600").text(ajaxReturnData[0].A6N01A228600);
-};
-
-function makeOrderBillet() {
-  $("#od6061-1200").html(orderQuantity($("#pl6061-1200").html() - $("#ht6061-1200").html()));
-  $("#od6061-600").html(orderQuantity($("#pl6061-600").html() - $("#ht6061-600").html()));
-  $("#od6063-1200").html(orderQuantity($("#pl6063-1200").html() - $("#ht6063-1200").html()));
-  $("#od6063-600").html(orderQuantity($("#pl6063-600").html() - $("#ht6063-600").html()));
-  $("#od6N01-1200").html(orderQuantity($("#pl6N01-1200").html() - $("#ht6N01-1200").html()));
-  $("#od6N01-600").html(orderQuantity($("#pl6N01-600").html() - $("#ht6N01-600").html()));
-  $("#od6N01A-1200").html(orderQuantity($("#pl6N01A-1200").html() - $("#ht6N01A-1200").html()));
-  $("#od6N01A-600").html(orderQuantity($("#pl6N01A-600").html() - $("#ht6N01A-600").html()));
-};
-
-function orderQuantity(number) {
-  if(number>0){
-    odd_part = number % 7;
-    if (odd_part==0) {
-      console.log(number);
-      return number;
-    } else {
-      console.log(Math.ceil(number / 7) * 7);
-      return Math.ceil(number / 7) * 7;
-    }
-  } else {
-    return 0;
-  }
 };
 function fillTableBody(data, tbodyDom) {
   $(tbodyDom).empty();
@@ -260,6 +178,7 @@ $(document).on("click", "#save__button", function() {
   var sendObj = new Object();
   sendObj["staff_id"] = $("#staff_name__select").val();
   sendObj["check_at"] =$("#check_at").val();
+  sendObj["billet_size_id"] =$("#billet_size_id").val();
   sendObj["vl6061_1200"] = $("#vl6061_1200").val();
   sendObj["vl6061_600"] = $("#vl6061_600").val();
   sendObj["vl6063_1200"] = $("#vl6063_1200").val();

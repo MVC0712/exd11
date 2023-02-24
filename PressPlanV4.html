@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PressPlan</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/PressPlanV4.css" />
+  </head>
+
+  <body>
+    <header>Press Plan</header>
+    <div class="summary__wrapper">
+      <dialog class="dialog__wrapper" id="delete__dialog">
+        Do you Delete?
+        <button id="delete-dialog-cancel__button">Cancel</button>
+        <button id="delete-dialog-delete__button">Delete</button>
+      </dialog>
+      <div id="hover_area" class="">
+        <table id="hover_table">
+          <thead>
+            <tr>
+              <th>did</th><th>Die</th><th>Wash</th><th>Status</th>
+            </tr>
+          </thead>
+          </thead>
+          <tbody>
+
+          </tbody>
+        </table>
+      </div>
+      <table id="production__table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th><input id="production_number" class="need-clear" type="text" /></th>
+            <th>Die</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <div>
+      <table id="add__table">
+        <thead>
+          <tr>
+            <th>Production Number id</th>
+            <th>Production Number</th>
+            <th>Die Number</th>
+            <th>Ca</th>
+            <th>Stt</th>
+            <th>Qty</th>
+            <th>Note</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+        <div style="width: 350px; display: flex; align-items:center; padding-bottom: 5px; justify-content: space-around;">
+          <input
+          id="press_date_at"
+          class="no-input save-data need-clear"
+          type="date"
+        />
+          <button disabled id="save__button">Save</button>
+        </div>
+
+<table id="caculate__table">
+        <thead>
+          <tr><th>Mã VL</th><th>Tồn HT</th><th>Thực tế</th><th>Kế hoạch</th><th>Order</th></tr>
+          <tr>
+            <th id="VL61">6061-1200</th><td id="ht6061-1200"></td><td id="tt6061-1200"></td><td id="pl6061-1200"></td><td id="od6061-1200"></td>
+          </tr>
+          <tr>
+            <th id="VL61">6061-600</th><td id="ht6061-600"></td><td id="tt6061-600"></td><td id="pl6061-600"></td><td id="od6061-600"></td>
+          </tr>
+          <tr>
+            <th id="VL63">6063-1200</th><td id="ht6063-1200"></td><td id="tt6063-1200"></td><td id="pl6063-1200"></td><td id="od6063-1200"></td>
+          </tr>
+          <tr>
+            <th id="VL63">6063-600</th><td id="ht6063-600"></td><td id="tt6063-600"></td><td id="pl6063-600"></td><td id="od6063-600"></td>
+          </tr>
+          <tr>
+            <th id="VL6N">6N01A-1200</th><td id="ht6N01-1200"></td><td id="tt6N01-1200"></td><td id="pl6N01-1200"></td><td id="od6N01-1200"></td>
+          </tr>
+          <tr>
+            <th id="VL6N">6N01A-600</th><td id="ht6N01-600"></td><td id="tt6N01-600"></td><td id="pl6N01-600"></td><td id="od6N01-600"></td>
+          </tr>
+        </thead>
+      </table>
+
+
+  </div>
+  <div>
+  <div style="display: flex;">
+  <input id="plan_start" type="date"/>→
+  <input id="plan_end" type="date"/>
+  <input style="width: 100px; text-align: left;" id="die_number" type="text"/>
+  <button id="download_excel" style="margin: 0; padding:0;">Tải về</button>
+  <button id="print__button" style="margin: 0; margin-left: 20px; padding:0;" disabled>In Etching</button>
+</div>
+  <table id="summary__table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Production Number id</th>
+        <th>Press date</th>
+        <th>Production Number</th>
+        <th>Die Number</th>
+        <th>Ca</th>
+        <th>Stt</th>
+        <th>Qty</th>
+        <th>Note</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+  <!-- <button id="download_excel" style="margin: 0; padding:0;">Tải về</button> -->
+</div>
+    </div>
+    <script src="./lib/jquery.min.js"></script>
+    <script src="./scr/PressPlanV4.js"></script>
+  </body>
+</html>

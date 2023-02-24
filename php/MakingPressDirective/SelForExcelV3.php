@@ -31,7 +31,9 @@
     t_press_directive.plan_date_at,
     m_pressing_type.pressing_type,
     ROUND((CASE t_press_directive.billet_size
-                WHEN 9 THEN 132 * (t_press_directive.billet_length - t_press_directive.discard_thickness) / t_press_directive.billet_length / m_production_numbers.specific_weight
+                WHEN 9 THEN 132.3 * (t_press_directive.billet_length - t_press_directive.discard_thickness) / t_press_directive.billet_length / m_production_numbers.specific_weight
+                WHEN 12 THEN 176.4 * (t_press_directive.billet_length - t_press_directive.discard_thickness) / t_press_directive.billet_length / m_production_numbers.specific_weight
+                WHEN 14 THEN 205.8 * (t_press_directive.billet_length - t_press_directive.discard_thickness) / t_press_directive.billet_length / m_production_numbers.specific_weight
                 ELSE 0
             END),
             1) AS press_length,
@@ -45,6 +47,8 @@
     ROUND(m_production_numbers.specific_weight, 2) AS specific_weight,
     CASE t_press_directive.billet_size
         WHEN 9 THEN (237 * 237 * 3.1415 / 4) / (m_dies.hole * m_production_numbers.cross_section_area)
+        WHEN 12 THEN (312 * 312 * 3.1415 / 4) / (m_dies.hole * m_production_numbers.cross_section_area)
+        WHEN 14 THEN (366 * 366 * 3.1415 / 4) / (m_dies.hole * m_production_numbers.cross_section_area)
         ELSE 0
     END AS ratio,
     m_nbn.nbn,
@@ -57,12 +61,16 @@
     t_press_directive.discard_thickness,
     t_press_directive.ram_speed,
     ROUND(((CASE t_press_directive.billet_size
-                WHEN 9 THEN 132
+                WHEN 9 THEN 132.3
+                WHEN 12 THEN 176.4
+                WHEN 14 THEN 205.8
                 ELSE 0
             END) * 1000 / 1200) / m_production_numbers.specific_weight * t_press_directive.ram_speed / 1000 * 60,
             1) AS work_speed2,
     ROUND((CASE t_press_directive.billet_size
                 WHEN 9 THEN (237 * 237 * 3.1415 / 4)
+                WHEN 12 THEN (312 * 312 * 3.1415 / 4)
+                WHEN 14 THEN (366 * 366 * 3.1415 / 4)
                 ELSE 0
             END) / (m_dies.hole * m_production_numbers.cross_section_area) * t_press_directive.ram_speed * 60 / 1000,
             1) AS work_speed,

@@ -1,5 +1,5 @@
 body {
-    width: calc(1080px - 2px);
+    width: calc(1110px - 2px);
   }
   
   .button__wrapper button {
@@ -156,7 +156,7 @@ body {
   
   #summary__table tbody {
     height: 460px;
-    width: 1075px;
+    width: 1105px;
     overflow: auto;
   }
   
@@ -171,10 +171,12 @@ body {
   }
   #summary__table th:nth-child(3),
   #summary__table td:nth-child(3) {
-    width: 120px;
+    width: 110px;
   }
   #summary__table th:nth-child(4),
-  #summary__table td:nth-child(4),
+  #summary__table td:nth-child(4) {
+    width: 40px;
+  }
   #summary__table th:nth-child(5),
   #summary__table td:nth-child(5),
   #summary__table th:nth-child(6),
