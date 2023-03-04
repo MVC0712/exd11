@@ -39,6 +39,9 @@
       <button id="die_data">
         DS khuôn <br />
       </button>
+      <button id="last_param">
+        Last Param<br />
+      </button>
     </div>
     <script src="./lib/jquery.min.js"></script>
     <script>
@@ -51,6 +54,9 @@
         });
         $(document).on("click", "#die_data", function() {
             ajaxMakeDlFile("DieData");
+        });
+        $(document).on("click", "#last_param", function() {
+            ajaxMakeDlFile("LastParam");
         });
 
         // 型番－月－押出形式－投入量

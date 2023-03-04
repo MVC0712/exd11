@@ -1114,10 +1114,11 @@ $(document).on("click", "#add_row__button", function () {
     let tdDom;
     tdDom = $("<td>").append($("<input>").val($("#length_exd").val()).addClass("need-clear"));
     trDom.append(tdDom);
-    tdDom = $("<td>").append($("<input>").val($("#length_exd").val()).addClass("need-clear"));
+    tdDom = $("<td>").append($("<input>").val($("#quantity_cut").val()).addClass("need-clear"));
     trDom.append(tdDom);
   // }
   trDom.appendTo("#work-length__table");
+  checkSum();
 });
 
 function setSummaryTable() {
