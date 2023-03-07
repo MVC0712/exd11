@@ -177,7 +177,7 @@ $(document).on("change", "#process", function() {
 });
 
 $(document).on("click", "#go__button", function() {
-    var fileName = "./php/DieStatus/InsStatus.php";
+    var fileName = "./php/DieStatus/InsStatusV4.php";
     var sendObj = new Object();
     $("#add__table tbody tr td:nth-child(1)").each(function(
         index,
@@ -210,7 +210,7 @@ $(document).on("click", "#go__button", function() {
         });
     }
     console.log(sendObj);
-    // myAjax.myAjax(fileName, sendObj);
+    myAjax.myAjax(fileName, sendObj);
 
     $("#add__table tbody").empty();
     document.getElementById("status_process").innerHTML = ``;
@@ -235,37 +235,37 @@ function make_action() {
             txt_die_id = Number(die_id.innerText.replace(",", ""));
             txt_pr_tm = Number(pr_tm.innerText.replace(",", ""));
             txt_sta_val = Number(sta_val.innerText.replace(",", ""));
-            table.rows[i].insertCell(7);
+            table.rows[i].insertCell(8);
             if (((txt_pr_tm >= 1) && (W1P1.includes(txt_die_id))) || 
                 (txt_pr_tm >= 2)||(txt_sta_val == 3)) {
-                table.rows[i].cells[7].innerHTML = "Need wash";
-                table.rows[i].cells[7].style.backgroundColor = "#ffc870";
+                table.rows[i].cells[8].innerHTML = "Need wash";
+                table.rows[i].cells[8].style.backgroundColor = "#ffc880";
                 
             } else if ((txt_sta_val == 31)||(txt_sta_val == 32)) {
-                table.rows[i].cells[7].innerHTML = "Need wash";
-                table.rows[i].cells[7].style.backgroundColor = "#ffc870";
+                table.rows[i].cells[8].innerHTML = "Need wash";
+                table.rows[i].cells[8].style.backgroundColor = "#ffc880";
 
             } else if (txt_sta_val == 1) {
-                table.rows[i].cells[7].innerHTML = "Wait result";
-                table.rows[i].cells[7].style.backgroundColor = "#bff542";
+                table.rows[i].cells[8].innerHTML = "Wait result";
+                table.rows[i].cells[8].style.backgroundColor = "#bff542";
 
             } else if (((txt_sta_val == 2) && (txt_pr_tm <= 1)) ||
                     ((txt_sta_val == 10) || (txt_sta_val == 2 ||(txt_sta_val == 11)))) {
-                table.rows[i].cells[7].innerHTML = "Ready press";
-                table.rows[i].cells[7].style.backgroundColor = "#b3ffe4";
+                table.rows[i].cells[8].innerHTML = "Ready press";
+                table.rows[i].cells[8].style.backgroundColor = "#b3ffe4";
 
             } else if ((txt_sta_val == 4)) {
-                table.rows[i].cells[7].innerHTML = "Washing";
-                table.rows[i].cells[7].style.backgroundColor = "#bfc1ff"
+                table.rows[i].cells[8].innerHTML = "Washing";
+                table.rows[i].cells[8].style.backgroundColor = "#bfc1ff"
 
             } else if ((txt_sta_val == 5) || (txt_sta_val == 6)) {
-                table.rows[i].cells[7].innerHTML = "Cleaning";
-                table.rows[i].cells[7].style.backgroundColor = "#bfc1ff"
+                table.rows[i].cells[8].innerHTML = "Cleaning";
+                table.rows[i].cells[8].style.backgroundColor = "#bfc1ff"
 
             } else if ((txt_sta_val == 7) || (txt_sta_val == 8) ||
                     (txt_sta_val == 9)) {
-                table.rows[i].cells[7].innerHTML = "Fixing";
-                table.rows[i].cells[7].style.backgroundColor = "red"
+                table.rows[i].cells[8].innerHTML = "Fixing";
+                table.rows[i].cells[8].style.backgroundColor = "red"
             }
         }
     }

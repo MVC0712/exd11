@@ -39,9 +39,9 @@
             1
         ELSE 0
     END) AS is_washed_die,
-    staff_name,
     t10.die_status,
     t10.die_status_id,
+    SUBSTRING_INDEX(staff_name, ' ', - 1) AS name,
     t10.note,
     DATE_FORMAT(t10.do_sth_at, '%y-%m-%d %H:%i') AS do_sth_at
 FROM
