@@ -1,8 +1,6 @@
 <?php
-  /* 21/03/26作成 */
   $userid = "webuser";
   $passwd = "";
-  // print_r($_POST);
   
   try{
     $dbh = new PDO(
@@ -20,10 +18,8 @@
         m_staff.id,
         m_staff.staff_name
       FROM m_staff
-      WHERE m_staff.staff_name LIKE :name
     ");
 
-    $prepare->bindValue(':name', $_POST["name"], PDO::PARAM_STR); 
     $prepare->execute();
     $result = $prepare->fetchAll(PDO::FETCH_ASSOC);
 
