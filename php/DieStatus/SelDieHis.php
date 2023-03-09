@@ -20,6 +20,7 @@
             t_dies_status.id,
             m_dies.die_number,
             m_die_status.die_status,
+            SUBSTRING_INDEX(staff_name, ' ', - 1) AS name,
             t_dies_status.note,
             DATE_FORMAT(t_dies_status.do_sth_at, '%y-%m-%d %H-%i') AS do_sth_at
         FROM
@@ -28,6 +29,8 @@
             m_dies ON t_dies_status.dies_id = m_dies.id
         LEFT JOIN
             m_die_status ON t_dies_status.die_status_id = m_die_status.id
+        LEFT JOIN 
+            m_staff ON t_dies_status.staff_id = m_staff.id
         WHERE
             t_dies_status.dies_id = :targetId
         ORDER BY do_sth_at DESC

@@ -279,7 +279,7 @@ const formatDate = (date) => {
     const day = getTwoDigits(date.getDate());
     const month = getTwoDigits(date.getMonth() + 1);
     const year = date.getFullYear();
-    return `${year}-${month}-${day} ${hours}:${mins}`;
+    return `${year}-${month}-${day}T${hours}:${mins}`;
 }
 
 const formatTime = (date) => {

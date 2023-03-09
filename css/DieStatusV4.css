@@ -396,7 +396,7 @@ input[type="radio" i] {
 }
 
 #die__table tbody {
-    width: 301px;
+    width: 361px;
     height: 100px;
 }
 
@@ -417,8 +417,6 @@ input[type="radio" i] {
 
 #die__table tr th:nth-child(2),
 #die__table tr td:nth-child(2) {
-    /* width: 100px;
-    text-align: left; */
     display: none;
 }
 
@@ -440,7 +438,7 @@ input[type="radio" i] {
 
 #die__table tr th:nth-child(4),
 #die__table tr td:nth-child(4) {
-    width: 120px;
+    width: 50px;
 }
 
 #die__table tr td:nth-child(4) {
@@ -449,11 +447,21 @@ input[type="radio" i] {
 
 #die__table tr th:nth-child(5),
 #die__table tr td:nth-child(5) {
-    width: 85px;
+    width: 120px;
 }
 
 #die__table tr td:nth-child(5) {
     text-align: center;
+}
+
+#die__table tr th:nth-child(6),
+#die__table tr td:nth-child(6) {
+    width: 90px;
+}
+
+#die__table tr th:nth-child(7),
+#die__table tr td:nth-child(7) {
+    width: 120px;
 }
 
 .zoom {
