@@ -167,7 +167,7 @@
 
 #summary__table th:nth-child(6),
 #summary__table td:nth-child(6) {
-    width: 70px;
+    width: 50px;
 }
 
 #summary__table td:nth-child(6) {
@@ -176,7 +176,7 @@
 
 #summary__table th:nth-child(7),
 #summary__table td:nth-child(7) {
-    width: 100px;
+    width: 120px;
 }
 
 #summary__table td:nth-child(7) {
