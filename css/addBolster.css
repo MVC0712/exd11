@@ -1,0 +1,78 @@
+body {
+  width: calc(400px + 10px);
+  height: calc(400px + 10px);
+  flex-direction: column;
+}
+
+button {
+  margin: 0px;
+}
+
+div.input-block__outer {
+  width: initial;
+}
+
+div.input__title {
+  width: 80px;
+}
+
+input#bolster__input {
+  width: 120px;
+}
+
+tbody tr.selected-record {
+  background-color: #dbdbff;
+}
+
+/* Page Layout */
+.main__wrapper {
+  height: 375px;
+}
+
+.table__wrapper {
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input__wrapper {
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+/* Table */
+/* =============== plan aging table =============== */
+#bolster__table td:nth-child(1) {
+  display: none;
+}
+#bolster__table td:nth-child(2) {
+  width: 30px;
+}
+#bolster__table td:nth-child(3) {
+  width: 120px;
+}
+#bolster__table td:nth-child(4) {
+  width: 60px;
+}
+#bolster__table tbody td:nth-child(2) {
+  text-align: right;
+}
+#bolster__table tbody td:nth-child(3) {
+  text-align: left;
+}
+#bolster__table tbody td:nth-child(4) {
+  text-align: right;
+}
+#bolster__table thead tr {
+  height: 30px;
+}
+#bolster__table tbody {
+  height: 200px;
+}
+#bolster__table tbody tr {
+  height: 23px;
+}

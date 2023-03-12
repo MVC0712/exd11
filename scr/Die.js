@@ -1,4 +1,4 @@
-// 23/03/12 Edit
+// 23/03/12 Edit Add bolster page
 // category　テーブルの編集モード
 let summaryTableEditMode = false;
 // category　テーブルの更新モード
@@ -15,7 +15,7 @@ $(function () {
   // ボタンの非活性化
   $("#update__button").prop("disabled", true);
   $("#addnew__button").prop("disabled", true);
-  $("#test__button").remove();
+  // $("#test__button").remove();
   // test ボタンの表示
 
   ajaxSelDiamater(); // Set Diamater and Bolster List
@@ -532,4 +532,10 @@ $(document).on("click", "#test__button", function () {
 
   temp = $("#production__table tbody").scrollTop(19 * 3);
   console.log(temp);
+
+  window.open(
+    "./addBolster.html",
+    null,
+    "width=430, height=430, left=300, top=200, toolbar=yes,menubar=yes,scrollbars=no"
+  );
 });

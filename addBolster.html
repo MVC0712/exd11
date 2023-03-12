@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bolster</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/addBolster.css" />
+    <!-- <link rel="stylesheet" href="./css/index.css"> -->
+  </head>
+
+  <body>
+    <header>Bolster Page</header>
+    <div class="main__wrapper">
+      <div class="table__wrapper">
+        <table id="bolster__table">
+          <thead>
+            <tr>
+              <td>id</td>
+              <td>No.</td>
+              <td>Bolster</td>
+              <td>Created</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>3</td>
+              <td>1</td>
+              <td>B4626-1010-**</td>
+              <td>20-1-1</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="input__wrapper">
+        <div class="input-block__outer">
+          <div class="input__title">Bolster</div>
+          <input
+            id="bolster__input"
+            class="need-clear input-required"
+            type="text"
+          />
+        </div>
+        <button id="update__button" disabled>Add</button>
+      </div>
+    </div>
+    <script src="./lib/jquery.min.js"></script>
+    <script src="./scr/addBolster.js"></script>
+  </body>
+</html>
