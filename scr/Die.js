@@ -185,6 +185,11 @@ $(document).on("change", "select", function () {
 $(document).on("click", "#production__table", function () {
   inputCheck();
 });
+// activalize add new button
+// for date update by mouse
+$(document).on("update", "input", function () {
+  inputCheck();
+});
 
 function inputCheck() {
   // 未入力があるときは中断
