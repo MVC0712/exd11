@@ -17,7 +17,7 @@ $(function () {
   // ボタンの非活性化
   $("#save__button").prop("disabled", true);
   $("#update__button").prop("disabled", true);
-  // $("#test__button").hide();
+  $("#test__button").hide();
   // test ボタンの表示
 
   ajaxSelCategory1();
