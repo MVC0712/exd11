@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DieStatus</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/DieStatusV4.css" />
+</head>
+<body>
+    <header>DieStatus</header>
+    <div class="main__wrapper">
+        <div class="left__wrapper column__wrapper">
+            <table id="summary__table">
+                <thead>
+                    <tr>
+                        <th>dies_id</th>
+                        <th><input id="die_number__input" placeholder="Tìm trong bảng" style="width: 95px; text-align: left;" type="text" onkeyup="timkiemkhuon();" /></th>
+                        <th>Prs</th>
+                        <th>Status</th>
+                        <th>Status_id</th>
+                        <th>Name</th>
+                        <th>Last note</th>
+                        <th>Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <div>
+                <div class="right__wrapperh">
+                    <table id="die__table">
+                        <thead>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td id="sel_die_number" style="text-align:center;" colspan="5">Die number</td>
+                            </tr>
+                            <tr>
+                                <td>id</td>
+                                <td>Die number</td>
+                                <td>Status</td>
+                                <td>Name</td>
+                                <td>Note</td>
+                                <td>Date-time</td>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                    <div id="file_area" class="zoom"></div>
+                </div>
+            </div>
+        </div>
+        <div class="center__wrapper column__wrapper">
+            <img src="./img/001.png" alt="arrow" />
+        </div>
+        <div class="right__wrapper column__wrapper">
+            <div class="right__wrapper_up">
+                <table id="add__table">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Die</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+            <div class="input__wrapper">
+                <div class="right__wrapper_down">
+                    <div class="title">Date</div>
+                    <input id="do_sth_at" type="datetime-local" />
+                    <div class="title">Staff</div>
+                    <select id="staff" class="no-input save-data need-clear">
+                        <option value="0">No select</option>
+                    </select>
+                    <div class="input-block__outer">
+                        <div class="title">Process</div>
+                        <select id="process" class="no-input save-data need-clear">
+                            <option value="0">Select Process</option>
+                            <option value="1">Measuring</option>
+                            <option value="2">Washing</option>
+                            <option value="3">Fixing</option>
+                            <option value="4">On rack</option>
+                        </select>
+                    </div>
+                </div>
+                <br>
+                <div id="status_process" class="right__wrapper_select">
+                </div>
+                <div class="title">Note</div>
+                <input type="file" value="No_image.jpg" name="myfile" id="myfile">
+                <div>
+                    <div class="title">Note</div>
+                    <textarea id="note" class="right__wrapper_text_input"></textarea>
+                    <button id="go__button" disabled>Go</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <br>
+    <script src="./lib/jquery.min.js"></script>
+    <script src="./scr/DieStatusV4.js"></script>
+</body>
+
+</html>
