@@ -46,6 +46,7 @@ $(function () {
     });
     console.log(newTr);
     $(newTr).appendTo("#bolster__table tbody");
+    number = number + 1;
   });
 
   return;

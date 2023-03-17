@@ -47,10 +47,10 @@ tbody tr.selected-record {
 /* Table */
 /* =============== plan aging table =============== */
 #bolster__table td:nth-child(1) {
-  display: none;
+  width: 30px;
 }
 #bolster__table td:nth-child(2) {
-  width: 30px;
+  display: none;
 }
 #bolster__table td:nth-child(3) {
   width: 120px;
@@ -58,7 +58,7 @@ tbody tr.selected-record {
 #bolster__table td:nth-child(4) {
   width: 60px;
 }
-#bolster__table tbody td:nth-child(2) {
+#bolster__table tbody td:nth-child(1) {
   text-align: right;
 }
 #bolster__table tbody td:nth-child(3) {
