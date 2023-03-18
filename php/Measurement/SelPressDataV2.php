@@ -19,9 +19,9 @@
       SELECT 
       t_press.actual_billet_quantities,
       m_pressing_type.pressing_type,
-      t_press.dimension_check_date,
+      t_press.measurement_check_date,
       t_press.etching_check_date,
-      t_press.aging_check_date,
+      t_press.measurement_staff,
       t_press.packing_check_date,
       t_press.hardness_check_date
   FROM
