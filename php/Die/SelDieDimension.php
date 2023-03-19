@@ -1,5 +1,5 @@
 <?php
-  /* 23/03/12作成 */
+  /* made at 19th Mar 2023 */
   $userid = "webuser";
   $passwd = "";
   // print_r($_POST);
@@ -18,13 +18,9 @@
     $prepare = $dbh->prepare("
 
       SELECT 
-        m_bolster.id, 
-        m_bolster.bolster_name, 
-        m_dies_diamater.die_diamater,
-        date_format(m_bolster.created_at, '%y-%m-%d') AS yymmdd
-      FROM m_bolster
-      LEFT JOIN m_dies_diamater ON m_bolster.die_diamater = m_dies_diamater.id
-      ORDER BY m_bolster.created_at, m_bolster.id
+        m_dies_diamater.id,
+        m_dies_diamater.die_diamater
+      FROM m_dies_diamater
 
     ");
 

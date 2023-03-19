@@ -19,6 +19,7 @@
               <td>No.</td>
               <td>id</td>
               <td>Bolster</td>
+              <td>DieDim</td>
               <td>Created</td>
             </tr>
           </thead>
@@ -27,6 +28,7 @@
               <td>3</td>
               <td>1</td>
               <td>B4626-1010-**</td>
+              <td>260</td>
               <td>20-1-1</td>
             </tr>
           </tbody>
@@ -34,17 +36,34 @@
       </div>
 
       <div class="input__wrapper">
-        <div class="input-block__outer">
-          <div class="input__title">Bolster</div>
-          <input
-            id="bolster__input"
-            class="need-clear input-required"
-            type="text"
-          />
+        <div class="input__area">
+          <div class="input-block__outer">
+            <div class="input__title">Bolster</div>
+            <input
+              id="bolster__input"
+              class="save-data need-clear input-required"
+              type="text"
+            />
+          </div>
+          <div class="input-block__outer">
+            <div class="input__title">DieDim</div>
+            <select
+              id="die_diamater__select"
+              class="save-data need-clear input-required"
+            >
+              <option value="0">No</option>
+            </select>
+          </div>
         </div>
-        <button id="update__button" disabled>Add</button>
+        <button id="add__button" disabled>Add</button>
+        <button id="delete__button" disabled>Del</button>
       </div>
     </div>
+    <dialog id="delete__dialog">
+      Delete?
+      <button id="dialog-delete__button">Del</button>
+      <button id="dialog-cancel__button">Cancel</button>
+    </dialog>
     <script src="./lib/jquery.min.js"></script>
     <script src="./scr/addBolster.js"></script>
   </body>
