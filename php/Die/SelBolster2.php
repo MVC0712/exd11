@@ -20,6 +20,7 @@
       SELECT 
         m_bolster.id, 
         m_bolster.bolster_name, 
+        m_bolster.die_diamater as die_diamater_id,
         m_dies_diamater.die_diamater,
         date_format(m_bolster.created_at, '%y-%m-%d') AS yymmdd
       FROM m_bolster

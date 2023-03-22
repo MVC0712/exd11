@@ -28,6 +28,15 @@ select {
 select.input-required {
   background-color: #ffd1bf;
 }
+tbody select {
+  border: 0px;
+  width: 60px;
+}
+
+tbody tr.selected-record select {
+  background: #dbdbff;
+}
+
 input {
   border: 0px;
   width: 117px;
@@ -90,9 +99,13 @@ tbody tr.selected-record {
   width: 120px;
 }
 #bolster__table td:nth-child(4) {
+  /* display: none; */
   width: 60px;
 }
 #bolster__table td:nth-child(5) {
+  width: 60px;
+}
+#bolster__table td:nth-child(6) {
   width: 60px;
 }
 #bolster__table tbody td:nth-child(1) {
@@ -105,6 +118,9 @@ tbody tr.selected-record {
   text-align: right;
 }
 #bolster__table tbody td:nth-child(5) {
+  text-align: right;
+}
+#bolster__table tbody td:nth-child(6) {
   text-align: right;
 }
 #bolster__table thead tr {
