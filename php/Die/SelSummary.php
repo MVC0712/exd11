@@ -36,7 +36,7 @@ LEFT JOIN m_dies_diamater ON m_dies.die_diamater_id = m_dies_diamater.id
 LEFT JOIN m_billet_size ON m_dies.billet_size_id = m_billet_size.id
 LEFT JOIN m_bolster ON m_dies.bolstar_id = m_bolster.id
 WHERE m_dies.die_number LIKE :dieName
-ORDER BY m_dies.die_number
+ORDER BY m_dies.arrival_at DESC
     ");
 
     $prepare->bindValue(':dieName', $_POST["dieName"], PDO::PARAM_STR); 

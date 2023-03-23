@@ -9,7 +9,9 @@
   $aging_date = $_POST['aging_date'];
   $start_at = $_POST['start_at'];
   $hardness = $_POST['hardness'];
+  $aging_type = $_POST['aging_type'];
   $created_at = $_POST['created_at'];
+  array_pop($_POST);
   array_pop($_POST);
   array_pop($_POST);
   array_pop($_POST);
@@ -33,8 +35,8 @@
           )
       );
 
-      $sql = "INSERT INTO t_aging (aging_date, hardness, start_at, create_at) 
-        VALUES ('$aging_date', '$hardness', '$start_at', '$created_at')";
+      $sql = "INSERT INTO t_aging (aging_date, hardness, start_at, aging_type, create_at) 
+        VALUES ('$aging_date', '$hardness', '$start_at', '$aging_type', '$created_at')";
       $prepare = $dbh->prepare($sql);
       $prepare->execute();
 

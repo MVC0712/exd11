@@ -89,19 +89,12 @@
     display: none;
   }
   /* =============== hisotry table =============== */
-  .upper__block table#history__table td:nth-child(4) {
-    display: none;
-  }
-  .upper__block table#history__table td:nth-child(6) {
-    display: none;
-  }
-  .upper__block table#history__table td:nth-child(7) {
-    display: none;
-  }
-  .upper__block table#history__table td:nth-child(8) {
-    display: none;
-  }
-  .upper__block table#history__table td:nth-child(9) {
+  .upper__block table#history__table td:nth-child(4),
+  .upper__block table#history__table td:nth-child(6),
+  .upper__block table#history__table td:nth-child(7),
+  .upper__block table#history__table td:nth-child(8),
+  .upper__block table#history__table td:nth-child(9), 
+  .upper__block table#history__table td:nth-child(10) {
     display: none;
   }
   /* ================================================== */

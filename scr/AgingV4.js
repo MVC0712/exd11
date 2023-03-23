@@ -49,7 +49,7 @@ function ajaxSelAgingRack() {
 }
 
 function ajaxSelAgingHitory() {
-  var fileName = "SelAgingHistoryV3.php";
+  var fileName = "SelAgingHistoryV4.php";
   var sendData = {
 
   };
@@ -88,6 +88,9 @@ $(document).on("click", "#history__table tbody tr", function () {
     );
     $("#start_at").val(
       $("#history__table .selected-record").eq(0).find("td").eq(8).html()
+    );
+    $("#aging_type").val(
+      $("#history__table .selected-record").eq(0).find("td").eq(9).html()
     );
   } else {
     $(this).parent().find("tr").removeClass("selected-record");
@@ -146,6 +149,7 @@ $(document).on("click", "#save__button", function () {
   sendData["aging_date"] = $("#aging_date").val();
   sendData["start_at"] = $("#start_at").val();
   sendData["hardness"] = $("#hardness").val();
+  sendData["aging_type"] = $("#aging_type").val();
   sendData["created_at"] = fillToday();
   myAjax.myAjax(fileName, sendData);
   ajaxSelAgingRack();
@@ -156,12 +160,13 @@ $(document).on("click", "#save__button", function () {
 });
 
 $(document).on("click", "#update__button", function () {
-  var fileName = "UpdateAgingV3.php";
+  var fileName = "UpdateAgingV4.php";
   var sendData = {
     id: $("#history__table .selected-record").eq(0).find("td").eq(5).html(),
     aging_date: $("#aging_date").val(),
     start_at: $("#start_at").val(),
     hardness: $("#hardness").val(),
+    aging_type: $("#aging_type").val(),
     update_at: fillToday(),
   };
   myAjax.myAjax(fileName, sendData);
