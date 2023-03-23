@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quality Summary</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/QualitySummaryV4.css" />
+  </head>
+
+  <body>
+    <header>Quality Summary Page</header>
+    <div class="main__wrapper">
+      <div class="input-block__wrapper">
+        <div class="input__title">D/E/A/P</div>
+        <select id="choice">
+          <!-- <option value="">Select column</option> -->
+          <option value="1">Dim date</option>
+          <option value="2">Etching date</option>
+          <option value="3">Aging date</option>
+          <option value="4">Packing date</option>
+          <option selected value="5">D/E/A/P</option>
+        </select>
+        <!-- <input id="date" class="date__input" type="text" onkeyup="datesearch();" /> -->
+        <input
+          id="date"
+          class="date__input"
+          type="date"
+          onchange="datesearch();"
+        />
+
+        <select id="presstype" onclick="timkiem();">
+          <option value="">Press type</option>
+          <option value="〇">〇</option>
+          <option value="◎">◎</option>
+          <option value="●">●</option>
+        </select>
+      </div>
+      <div class="input-block__wrapper">
+        <div class="input__title">Die Number</div>
+        <input id="die_number__input" class="" type="text" />
+
+        <div class="input__title">Term</div>
+        <!-- <div class="previous-value__display">12.3</div> -->
+        <input id="start_term" class="date__input" type="date" />-
+        <input id="end_term" class="date__input" type="date" />
+      </div>
+      <div class="input-block__wrapper">
+        <div class="button__wrapper">
+          <button id="quality-summary-test__button">QA V2</button>
+          <img src="./img/004.svg" alt="V2 page" id="icon" />
+        </div>
+      </div>
+    </div>
+    <div class="summary__wrapper">
+      <div>
+        <table id="total">
+          <thead>
+            <tr>
+              <th colspan="4" width="176px">Total row</th>
+              <th id="pb" width="35px">P/B</th>
+              <th id="ab" width="35px">A/B</th>
+              <th id="qty" width="35px">Qty</th>
+              <th id="tng" width="35px">T_ng</th>
+              <th id="tok" width="35px">T_ok</th>
+              <th id="tok" width="45px">Ok/Tt</th>
+              <th colspan="4" width="189px"></th>
+              <th id="t301" width="26px">301</th>
+              <th id="t302" width="26px">302</th>
+              <th id="t303" width="26px">303</th>
+              <th id="t304" width="26px">304</th>
+              <th id="t305" width="26px">305</th>
+              <th id="t306" width="26px">306</th>
+              <th id="t307" width="26px">307</th>
+              <th id="t308" width="26px">308</th>
+              <th id="t309" width="26px">309</th>
+              <th id="t310" width="26px">310</th>
+              <th id="t311" width="26px">311</th>
+              <th id="t312" width="26px">312</th>
+              <th id="t313" width="26px">313</th>
+              <th id="t314" width="26px">314</th>
+              <th id="t315" width="26px">315</th>
+              <th id="t316" width="26px">316</th>
+              <th id="t317" width="26px">317</th>
+              <th id="t318" width="26px">318</th>
+              <th id="t319" width="26px">319</th>
+              <th id="t320" width="26px">320</th>
+              <th id="t321" width="26px">321</th>
+              <th id="t322" width="26px">322</th>
+              <th id="t323" width="26px">323</th>
+              <th id="t324" width="26px">324</th>
+              <th id="t351" width="26px">351</th>
+            </tr>
+          </thead>
+        </table>
+        <table id="summary__table">
+          <thead>
+            <tr>
+              <th>t_press.id</th>
+              <th>Date</th>
+              <th>DieNumber</th>
+              <th>P/T</th>
+              <th>P/B</th>
+              <th>A/B</th>
+              <th>Qty</th>
+              <th>T_ng</th>
+              <th>T_ok</th>
+              <th>Ok/Tt</th>
+              <th>dim</th>
+              <th>etching</th>
+              <th>aging</th>
+              <th>packing</th>
+              <th>301</th>
+              <th>302</th>
+              <th>303</th>
+              <th>304</th>
+              <th>305</th>
+              <th>306</th>
+              <th>307</th>
+              <th>308</th>
+              <th>309</th>
+              <th>310</th>
+              <th>311</th>
+              <th>312</th>
+              <th>313</th>
+              <th>314</th>
+              <th>315</th>
+              <th>316</th>
+              <th>317</th>
+              <th>318</th>
+              <th>319</th>
+              <th>320</th>
+              <th>321</th>
+              <th>322</th>
+              <th>323</th>
+              <th>324</th>
+              <th>351</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>233</td>
+              <td>08-08</td>
+              <td>CQ32T-03B</td>
+              <td>●</td>
+              <td>20</td>
+              <td>15</td>
+              <td>322</td>
+              <td>100</td>
+              <td>200</td>
+              <td>10-08</td>
+              <td>11-08</td>
+              <td>12-08</td>
+              <td>15-08</td>
+              <td>10</td>
+              <td>10</td>
+              <td>303</td>
+              <td>304</td>
+              <td>305</td>
+              <td>306</td>
+              <td>307</td>
+              <td>308</td>
+              <td>309</td>
+              <td>310</td>
+              <td>311</td>
+              <td>312</td>
+              <td>313</td>
+              <td>314</td>
+              <td>315</td>
+              <td>316</td>
+              <td>317</td>
+              <td>318</td>
+              <td>319</td>
+              <td>320</td>
+              <td>321</td>
+              <td>322</td>
+              <td>323</td>
+              <td>324</td>
+              <td>351</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- <span id="tt">vl</span> -->
+    <div id="desc">
+      <div id="vn"></div>
+      <div id="jp"></div>
+    </div>
+    <div id="vll">
+      <div id="spt"></div>
+    </div>
+    <script src="./lib/jquery.min.js"></script>
+    <!-- <script
+      type="text/javascript"
+      src="./lib/jquery.mousewheel.min.js"
+    ></script> -->
+    <script src="./scr/QualitySummaryV4.js"></script>
+  </body>
+</html>
