@@ -577,10 +577,10 @@ function ajaxSelSpecificWeight(dies_id) {
                 billetWeight = 132.3;
                 containerDimension = 237;
             } else if (Number($("#billet-size__select").val()) == 12) {
-                billetWeight = 176.4;
+                billetWeight = 235;
                 containerDimension = 312;
             } else if (Number($("#billet-size__select").val()) == 14) {
-                billetWeight = 205.8;
+                billetWeight = 320;
                 containerDimension = 366;
             }
             inputMaterialWeight =
@@ -613,10 +613,10 @@ function calPressLength(billetSize, billetLength, specificWeight, whole) {
         billetWeight = 132.3;
         containerDimension = 237;
     } else if (billetSize == 12) {
-        billetWeight = 176.4;
+        billetWeight = 235;
         containerDimension = 312;
     } else if (billetSize == 14) {
-        billetWeight = 205.8;
+        billetWeight = 320;
         containerDimension = 366;
     }
     inputMaterialWeight =

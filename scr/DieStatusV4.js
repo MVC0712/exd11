@@ -91,6 +91,23 @@ $(document).on("change", "#staff", function() {
     go_check();
 });
 
+$(document).on("change", "input[name='check_uncheck']", function() {
+    console.log(this)
+    var a = $(this).val();
+    if ((a = "31") || (a = "32") || (a = "7") || (a = "9")) {
+        $("#note").removeClass("complete-input").addClass("no-input");
+    } else {
+        $("#note").removeClass("no-input").addClass("complete-input");
+    }
+    go_check();
+});
+
+$(document).on("keyup", "#note", function() {
+    if ("" != $(this).val())
+        $(this).removeClass("no-input").addClass("complete-input");
+    else $(this).removeClass("complete-input").addClass("no-input");
+    go_check();
+});
 // -------------------------   summary table tr click   -------------
 
 $(document).on("click", "#summary__table tbody tr", function() {
@@ -138,7 +155,7 @@ $(document).on("click", "#add__table tbody tr", function() {
 });
 
 function go_check() {
-    if (($("#add__table tbody tr").length == 0) || ($("#process").val() == 0) || ($("#staff").val() == 0)) {
+    if (($("#add__table tbody tr").length == 0) || ($("#process").val() == 0) || ($("#staff").val() == 0) || ($("#note").hasClass("no-input"))) {
         $("#go__button").prop("disabled", true);
     } else {
         $("#go__button").prop("disabled", false);
@@ -165,8 +182,8 @@ $(document).on("change", "#process", function() {
     } else if ($("#process").val() == 3) {
         $("#process").removeClass("no-input").addClass("complete-input");
         document.getElementById("status_process").innerHTML = `
-            <input type="radio" checked name="check_uncheck" class='radio-button' value="7" />Grinding <br />
-            <input type="radio" name="check_uncheck" class='radio-button' value="8" />Nitriding <br />
+            <input type="radio" checked name="check_uncheck" class='radio-button' value="8" />Nitriding <br />
+            <input type="radio" name="check_uncheck" class='radio-button' value="7" />Grinding <br />
             <input type="radio" name="check_uncheck" class='radio-button' value="9" />Wire cutting <br />`;
     } else if ($("#process").val() == 4) {
         $("#process").removeClass("no-input").addClass("complete-input");

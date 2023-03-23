@@ -15,14 +15,14 @@
   height: 100%;
 }
 .upper__block > div.table__wrapper {
-  width: calc(84% / 3);
+  width: calc(94% / 3);
   display: flex;
   justify-content: center;
   align-items: center;
 }
 /* column space */
 .upper__block > div.column_space {
-  width: 8%;
+  width: 6%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -33,9 +33,10 @@
 
 /* =============== upper block tables =============== */
 .upper__block table {
-  width: 208px;
+  width: 255px;
 }
 .upper__block table tbody {
+  width: 240px;
   height: 250px;
 }
 
@@ -55,13 +56,13 @@
   text-align: right;
 }
 .upper__block table td:nth-child(4) {
-  width: 40px;
+  width: 70px;
 }
 .upper__block table tbody td:nth-child(4) {
   text-align: center;
 }
 .upper__block table td:nth-child(5) {
-  width: 40px;
+  width: 70px;
 }
 .upper__block table tbody td:nth-child(5) {
   text-align: center;
@@ -74,7 +75,14 @@
   display: none;
 }
 /* =============== plan aging table =============== */
+.upper__block table#plan_aging__table thead,
+.upper__block table#plan_aging__table tbody {
+  width: 165px;
+}
 .upper__block table#plan_aging__table td:nth-child(4) {
+  display: none;
+}
+.upper__block table#plan_aging__table td:nth-child(5) {
   display: none;
 }
 .upper__block table#plan_aging__table td:nth-child(6) {

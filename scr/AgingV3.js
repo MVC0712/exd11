@@ -29,7 +29,7 @@ $(document).on("click", "test__button", function () {
 function ajaxSelAgingRack() {
   $.ajax({
     type: "POST",
-    url: "./php/Aging/SelAgingRack.php",
+    url: "./php/Aging/SelAgingRackV3.php",
     dataType: "json",
     async: false,
     data: {
@@ -354,7 +354,7 @@ $(document).on("click", "#remove-aging__button", function () {
 function ajaxUpdateRemoveAging(id) {
   $.ajax({
     type: "POST",
-    url: "./php/Aging/UpdateRemoveAging2.php",
+    url: "./php/Aging/UpdateRemoveAgingV3.php",
     dataType: "json",
     async: false,
     data: {
