@@ -61,7 +61,11 @@ function fillTableBody(data, tbodyDom) {
     data.forEach(function(trVal) {
       var newTr = $("<tr>");
       Object.keys(trVal).forEach(function(tdVal) {
-		$("<td>").html(trVal[tdVal]).appendTo(newTr);
+          if (tdVal == "note") {
+              $("<td>").append(makeInput(trVal[tdVal])).appendTo(newTr);
+          } else {
+              $("<td>").html(trVal[tdVal]).appendTo(newTr);
+          }
       });
       $(newTr).appendTo(tbodyDom);
   });
@@ -102,6 +106,8 @@ $(document).on("click", "#history__table tbody tr", function () {
   } else {
     $(this).parent().find("tr").removeClass("selected-record");
     $(this).addClass("selected-record");
+    $("#history_tr").removeAttr("id");
+    $(this).attr("id", "history_tr");
     clearInput();
     editMode = "REMOVE_AGING";
     buttonActivation();
@@ -121,6 +127,17 @@ $(document).on("click", "#not_aging__table tbody tr", function (e) {
   }
   editMode = "NEW_AGING";
   buttonActivation();
+});
+
+$(document).on("change", "#history__table tbody tr td", function () {
+  let sendData = new Object();
+  let fileName;
+  fileName = "UpdateUsingAging.php";
+  sendData = {
+    id : $("#history_tr td:nth-child(1)").html(),
+    note : $("#history_tr td:nth-child(11) input").val(),
+  };
+  myAjax.myAjax(fileName, sendData);
 });
 
 function makeInput(qty) {
