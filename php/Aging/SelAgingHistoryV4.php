@@ -25,7 +25,8 @@
         t_aging.aging_date AS aging_date_yyyymmdd,
         IFNULL(t_aging.hardness, '') AS hardness,
         t_aging.start_at AS start_at,
-        t_aging.aging_type
+        t_aging.aging_type,
+        t_using_aging_rack.note
       FROM
         t_using_aging_rack
       LEFT JOIN
@@ -36,7 +37,7 @@
         t_aging ON t_using_aging_rack.aging_id = t_aging.id
       WHERE
         t_using_aging_rack.aging_id IS NOT NULL
-      ORDER BY t_aging.aging_date DESC , m_dies.die_number;
+      ORDER BY t_aging.aging_date DESC, t_aging.start_at DESC , m_dies.die_number ASC;
         ";
 
       $prepare = $dbh->prepare($sql);

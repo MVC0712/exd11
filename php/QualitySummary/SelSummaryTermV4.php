@@ -26,7 +26,7 @@ SELECT
 	t20.work_quantity,
 	t10.total_ng,
 	t20.work_quantity - t10.total_ng AS total_ok,
-	(t20.work_quantity - t10.total_ng)/t20.work_quantity*100 AS per,
+	CONCAT(ROUND((t20.work_quantity - t10.total_ng)/t20.work_quantity*100, 1),'%') AS per,
 	DATE_FORMAT(t_press.dimension_check_date, '%m-%d'),
 	DATE_FORMAT(t_press.etching_check_date, '%m-%d'),
 	CASE
