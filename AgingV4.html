@@ -21,9 +21,9 @@
                     </tr>
                     <tr>
                         <td>using_aging_rack.id</td>
-                        <td>Die No.</td>
+                        <td><input type="text" style="width: 95px" id="die_number"></td>
                         <td>RckNo</td>
-                        <td>P.Date</td>
+                        <td><input type="date" style="width: 95px" id="press_date"></td>
                         <td>A.Date</td>
                         <td>t_aging.id</td>
                     </tr>
@@ -69,7 +69,7 @@
                         <td>RckNo</td>
                         <td>P.Date</td>
                         <td>A.Date</td>
-                        <td>t_aging.id</td>
+                        <td>Note</td>
                     </tr>
                 </thead>
                 <tbody></tbody>
@@ -92,6 +92,9 @@
                         <td>t_aging.id</td>
                         <td>A.Date yyyy-mm-dd</td>
                         <td>hardness</td>
+                        <td>Note</td>
+                        <td>Note</td>
+                        <td>Note</td>
                     </tr>
                 </thead>
                 <tbody></tbody>
@@ -127,9 +130,6 @@
                 <button id="remove-aging__button">Remove Aging</button>
                 <button id="test__button">Test</button>
             </div>
-        </div>
-        <div class="input__wrapper">
-            <div class="input__block"></div>
         </div>
     </div>
     <script src="./lib/jquery.min.js"></script>

@@ -38,11 +38,10 @@ function fillToday() {
 }
 
 function ajaxSelAgingRack() {
-  var fileName = "SelAgingRackV3.php";
+  var fileName = "SelAgingRackV4.php";
   var sendData = {
-    // start : $("#plan_start").val(),
-    // end : $("#plan_end").val(),
-    // die_number : $("#die_number").val(),
+    die_number : $("#die_number").val(),
+    press_date : $("#press_date").val(),
   };
   myAjax.myAjax(fileName, sendData);
   fillTableBody(ajaxReturnData, $("#not_aging__table tbody"));
@@ -62,11 +61,23 @@ function fillTableBody(data, tbodyDom) {
     data.forEach(function(trVal) {
       var newTr = $("<tr>");
       Object.keys(trVal).forEach(function(tdVal) {
-		$("<td>").html(trVal[tdVal]).appendTo(newTr);
+          if (tdVal == "note") {
+              $("<td>").append(makeInput(trVal[tdVal])).appendTo(newTr);
+          } else {
+              $("<td>").html(trVal[tdVal]).appendTo(newTr);
+          }
       });
       $(newTr).appendTo(tbodyDom);
   });
 };
+
+$(document).on("keyup", "#die_number", function () {
+  ajaxSelAgingRack();
+});
+
+$(document).on("change", "#press_date", function () {
+  ajaxSelAgingRack();
+});
 
 $(document).on("click", "#history__table tbody tr", function () {
   if (!$(this).hasClass("selected-record")) {
@@ -95,6 +106,8 @@ $(document).on("click", "#history__table tbody tr", function () {
   } else {
     $(this).parent().find("tr").removeClass("selected-record");
     $(this).addClass("selected-record");
+    $("#history_tr").removeAttr("id");
+    $(this).attr("id", "history_tr");
     clearInput();
     editMode = "REMOVE_AGING";
     buttonActivation();
@@ -108,11 +121,31 @@ $(document).on("click", "#not_aging__table tbody tr", function (e) {
     $("#not_aging__table__selected").removeAttr("id");
     $(this).attr("id", "not_aging__table__selected");
   } else {
-    $("#plan_aging__table tbody").append($(this).removeClass("selected-record"));
+    // $("#plan_aging__table tbody").append($(this).removeClass("selected-record"));
+    $("#plan_aging__table tbody").append($(this).append($("<td>").append(makeInput(""))).removeClass("selected-record"));
+    // $("#plan_aging__table tbody").append(makeInput(""));
   }
   editMode = "NEW_AGING";
   buttonActivation();
 });
+
+$(document).on("change", "#history__table tbody tr td", function () {
+  let sendData = new Object();
+  let fileName;
+  fileName = "UpdateUsingAging.php";
+  sendData = {
+    id : $("#history_tr td:nth-child(1)").html(),
+    note : $("#history_tr td:nth-child(11) input").val(),
+  };
+  myAjax.myAjax(fileName, sendData);
+});
+
+function makeInput(qty) {
+  let targetDom = $("<input>");
+  targetDom.attr("type", "text");
+  targetDom.val(qty);
+  return targetDom;
+}
 
 $(document).on("click", "#plan_aging__table tbody tr", function (e) {
   if (!$(this).hasClass("selected-record")) {
@@ -138,26 +171,61 @@ $(document).on("click", "tbody", function () {
 });
 
 $(document).on("click", "#save__button", function () {
-  var fileName = "InsAgingV4.php";
-  var sendData = new Object();
-    $("#plan_aging__table tbody tr td:nth-child(1)").each(function(
-        index,
-        element
-    ) {
-        sendData[index] = $(this).html();
-    });
-  sendData["aging_date"] = $("#aging_date").val();
-  sendData["start_at"] = $("#start_at").val();
-  sendData["hardness"] = $("#hardness").val();
-  sendData["aging_type"] = $("#aging_type").val();
-  sendData["created_at"] = fillToday();
-  myAjax.myAjax(fileName, sendData);
+
+  var fileName = "InsAgingV41.php";
+	tableData = getTableDataInput($("#plan_aging__table tbody tr"))
+	console.log(tableData);
+	jsonData = JSON.stringify(tableData);
+	var sendData = {
+		data : jsonData,
+		aging_date : $("#aging_date").val(),
+		start_at : $("#start_at").val(),
+		hardness : $("#hardness").val(),
+		aging_type : $("#aging_type").val(),
+		created_at : fillToday(),
+	};
+	console.log(sendData);
+	myAjax.myAjax(fileName, sendData);
+
+  // var fileName = "InsAgingV4.php";
+  // var sendData = new Object();
+  //   $("#plan_aging__table tbody tr td:nth-child(1)").each(function(
+  //       index,
+  //       element
+  //   ) {
+  //       sendData[index] = $(this).html();
+  //   });
+  // sendData["aging_date"] = $("#aging_date").val();
+  // sendData["start_at"] = $("#start_at").val();
+  // sendData["hardness"] = $("#hardness").val();
+  // sendData["aging_type"] = $("#aging_type").val();
+  // sendData["created_at"] = fillToday();
+  // myAjax.myAjax(fileName, sendData);
   ajaxSelAgingRack();
   ajaxSelAgingHitory();
   $("#plan_aging__table tbody").empty();
   editMode = "NO";
   buttonActivation();
 });
+
+function getTableDataInput(tableTrObj) {
+  var tableData = [];
+  tableTrObj.each(function (index, element) {
+    var tr = [];
+    $(this).find("td")
+      .each(function (index, element) {
+          if ($(this).find("select").length) {
+              tr.push($(this).find("select").val());
+          } else if ($(this).find("input").length) {
+              tr.push($(this).find("input").val());
+          } else {
+              tr.push($(this).html());
+          }
+      });
+      tableData.push(tr);
+  });
+  return tableData;
+};
 
 $(document).on("click", "#update__button", function () {
   var fileName = "UpdateAgingV4.php";

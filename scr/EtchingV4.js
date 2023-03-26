@@ -256,7 +256,9 @@ function getTableDataInput(tableTrObj) {
 	  $(this)
 		.find("td")
 		.each(function (index, element) {
-			if ($(this).find("select").length) {
+			if ($(this).find("input").length) {
+				tr.push($(this).find("input").val());
+			} else if ($(this).find("select").length) {
 				tr.push($(this).find("select").val());
 			} else {
 				tr.push($(this).html());
