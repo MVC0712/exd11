@@ -73,6 +73,9 @@ header > div:nth-child(5) > img {
 button {
   height: 30px;
 }
+tbody tr.selected-record {
+  background-color: #dbdbff;
+}
 /* input__wrapper */
 .input__wrapper {
   width: 200px;
@@ -176,7 +179,7 @@ table.category__table td:nth-child(1) {
 
 table.category__table th:nth-child(2),
 table.category__table td:nth-child(2) {
-  width: 150px;
+  width: 170px;
 }
 table.category__table td:nth-child(2) {
   text-align: left;
