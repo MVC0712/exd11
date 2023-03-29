@@ -2,6 +2,7 @@
 
 let summaryTableEditMode = false;
 let ajaxReturnData;
+let inputProductionNumber = "C2Q63A-AD141A20K";
 
 const myAjax = {
   myAjax: function (fileName, sendData) {
@@ -37,7 +38,7 @@ function readSummaryTable() {
     dummy: "dummy",
   };
   myAjax.myAjax(fileName, sendData);
-
+  $("#summary__table tbody").empty();
   ajaxReturnData.forEach(function (trVal) {
     var newTr = $("<tr>");
     Object.keys(trVal).forEach(function (tdVal) {
@@ -231,30 +232,39 @@ $(document).on("click", "#category2__table tbody tr", function () {
 $(document).on("click", "#save__button", function () {
   let fileName;
   let sendData = new Object();
+  let element;
+  let tableProdcutionNumber;
 
   sendData = getInputData();
+  inputProductionNumber = sendData.production_number;
   fileName = "./php/ProductionNumber/InsInputData2.php";
   myAjax.myAjax(fileName, sendData);
 
   $("#summary__table tbody").empty();
   readSummaryTable();
-});
 
-$(document).on("click", "#test__button", function () {
-  console.log("helo");
-  let tableObj = new Object();
-  let inputProductionNumber = "C2Q63A-AD141A20K";
-  let tableProdcutionNumber;
-  tableObj = $("#summary__table tbody tr");
-  tableObj.each(function (index, element) {
+  // Corsol move to new production name row
+  $(".selected").removeClass("selected");
+  $("#selected-summary__tr").removeAttr("selected-summary__tr");
+  $("#summary__table tbody tr").each(function (index, element) {
     tableProdcutionNumber = $(element).find("td").eq(3).html();
-    console.log($(element).find("td").eq(3).html());
     if ($(element).find("td").eq(3).html() == inputProductionNumber) {
-      $(element).addClass("selected-record");
+      $(element).addClass("selected-record").attr("id", "selected-summary__tr");
     }
   });
-  tableObj.scrollTop(300);
-  console.log(tableObj.scrollTop());
+
+  element = document.getElementById("selected-summary__tr");
+  element.scrollIntoView({
+    behavior: "smooth",
+  });
+});
+
+$(document).on("click", "#test__button", function () {});
+
+document.getElementById("test__button").addEventListener("click", async () => {
+  const text = await navigator.clipboard.readText();
+  // const text = navigator.clipboard.readText();
+  console.log(text);
 });
 
 function getInputData() {
