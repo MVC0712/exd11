@@ -2,6 +2,7 @@
 
 let summaryTableEditMode = false;
 let ajaxReturnData;
+let inputProductionNumber = "C2Q63A-AD141A20K";
 
 const myAjax = {
   myAjax: function (fileName, sendData) {
@@ -25,7 +26,6 @@ $(function () {
   // make summary table
   readSummaryTable();
   readCategory1Table();
-  console.log("hello");
 });
 
 function readSummaryTable() {
@@ -38,7 +38,7 @@ function readSummaryTable() {
     dummy: "dummy",
   };
   myAjax.myAjax(fileName, sendData);
-
+  $("#summary__table tbody").empty();
   ajaxReturnData.forEach(function (trVal) {
     var newTr = $("<tr>");
     Object.keys(trVal).forEach(function (tdVal) {
@@ -70,7 +70,7 @@ function readCategory1Table() {
   });
 }
 
-$(document).on("keyup", "#production_name", function () {
+$(document).on("keyup", "#production_number", function () {
   $(this).val($(this).val().toUpperCase()); // 小文字を大文字に
   if ($(this).val().length > 3) {
     $(this).removeClass("input-required");
@@ -161,19 +161,25 @@ $(document).on("change", ".top__wrapper", function () {
   }
 });
 
+$(document).on("click", ".top__wrapper", function () {
+  // console.log(checkInput());
+  if (checkInput()) {
+    $("#save__button").prop("disabled", false);
+  } else {
+    $("#save__button").prop("disabled", true);
+  }
+});
+
 function checkInput() {
   let flag = true;
-  // console.log("hello");
-  // console.log($(".save-data"));
-
   $(".save-data").each(function (index, element) {
-    // console.log(element.attr(");
-    // console.log($(element).attr("class"));
-    // console.log($(element).hasClass("input-required"));
     if ($(element).hasClass("input-required")) {
       flag = false;
     }
   });
+  if ($(".top__wrapper table tbody tr.selected-record").length != 2) {
+    flag = false;
+  }
   return flag;
 }
 
@@ -202,14 +208,15 @@ $(document).on("click", "#category1__table tbody tr", function () {
   sendData = {
     targetId: $("#category1__tr").find("td").eq(0).html(),
   };
+  console.log(sendData);
   myAjax.myAjax(fileName, sendData);
 
+  $("#category2__table tbody").empty();
   ajaxReturnData.forEach(function (trVal) {
     var newTr = $("<tr>");
     Object.keys(trVal).forEach(function (tdVal) {
       $("<td>").html(trVal[tdVal]).appendTo(newTr);
     });
-    $("#category2__table tbody").empty();
     $(newTr).appendTo("#category2__table tbody");
   });
 });
@@ -219,5 +226,67 @@ $(document).on("click", "#category2__table tbody tr", function () {
     "selected-record"
   );
   $("#category2__tr").removeAttr("id");
-  $(this).addClass("selected-record").attr("id", "categoryu__tr");
+  $(this).addClass("selected-record").attr("id", "category2__tr");
 });
+
+$(document).on("click", "#save__button", function () {
+  let fileName;
+  let sendData = new Object();
+  let element;
+  let tableProdcutionNumber;
+
+  sendData = getInputData();
+  inputProductionNumber = sendData.production_number;
+  fileName = "./php/ProductionNumber/InsInputData2.php";
+  myAjax.myAjax(fileName, sendData);
+
+  $("#summary__table tbody").empty();
+  readSummaryTable();
+
+  // Corsol move to new production name row
+  $(".selected").removeClass("selected");
+  $("#selected-summary__tr").removeAttr("selected-summary__tr");
+  $("#summary__table tbody tr").each(function (index, element) {
+    tableProdcutionNumber = $(element).find("td").eq(3).html();
+    if ($(element).find("td").eq(3).html() == inputProductionNumber) {
+      $(element).addClass("selected-record").attr("id", "selected-summary__tr");
+    }
+  });
+
+  element = document.getElementById("selected-summary__tr");
+  element.scrollIntoView({
+    behavior: "smooth",
+  });
+});
+
+$(document).on("click", "#test__button", function () {});
+
+document.getElementById("test__button").addEventListener("click", async () => {
+  const text = await navigator.clipboard.readText();
+  // const text = navigator.clipboard.readText();
+  console.log(text);
+});
+
+function getInputData() {
+  let inputData = new Object();
+  let category2 = $("#category2__tr").find("td").eq(0).html();
+  let dt = new Date();
+  // .save-dataを持っている要素から値を取り出す
+  $("input.save-data").each(function (index, element) {
+    inputData[$(this).attr("id")] = $(this).val();
+  });
+  $("select.save-data").each(function (index, element) {
+    inputData[$(this).attr("id")] = $(this).val();
+  });
+  // 日付はYY-mm-dd形式なのでYYYY-mm-dd形式に変更
+  // inputData["date__input"] = "20" + inputData["date__input"];
+  // targetId を別途保存
+  inputData["targetId"] = $("#summary__tr").find("td").eq(0).html();
+  // production category2 id の取得
+  inputData["production_category2_id"] = category2;
+  // 今日の日付の取得
+  inputData["updated_at"] =
+    dt.getFullYear() + "-" + (dt.getMonth() + 1) + "-" + dt.getDate();
+
+  return inputData;
+}
