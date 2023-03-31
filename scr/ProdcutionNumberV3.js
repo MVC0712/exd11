@@ -259,13 +259,40 @@ $(document).on("click", "#save__button", function () {
   });
 });
 
-$(document).on("click", "#test__button", function () {});
+// $(document).on("click", "#test__button", function () {
+//   const text = navigator.clipboard.readText();
+//   console.log(text);
+// });
 
-document.getElementById("test__button").addEventListener("click", async () => {
-  const text = await navigator.clipboard.readText();
-  // const text = navigator.clipboard.readText();
-  console.log(text);
+// document.getElementById("test__button").addEventListener("click", async () => {
+//   const text = await navigator.clipboard.readText();
+//   // const text = navigator.clipboard.readText();
+//   console.log(text);
+// });
+
+document.getElementById("clipboard__button").addEventListener("click", () => {
+  console.log("hello");
+  open("./AddDiesFromClipBoard.html");
 });
+
+document
+  .getElementById("test__button")
+  .addEventListener("click", function (event) {
+    console.log("hello");
+
+    console.log("[1]");
+    wait1sec(() => console.log("[2]")); // console.logを実行する関数が引数です
+    wait1sec(() => console.log("[3]"));
+    wait1sec(() => console.log("[4]"));
+    console.log("[5]");
+  });
+
+const wait1sec = (handler) => {
+  setTimeout(() => {
+    console.log("1秒経ちました");
+    handler();
+  }, 1000);
+};
 
 function getInputData() {
   let inputData = new Object();

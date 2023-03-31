@@ -1,0 +1,95 @@
+body {
+  width: 550px;
+  height: 500px;
+}
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+header > div:nth-child(1) {
+  /* background-color: aqua; */
+  width: 40px;
+}
+
+header > div:nth-child(2) {
+  /* background-color: aqua; */
+  width: 150px;
+}
+header > div:nth-child(3) {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+header > div:nth-child(4) {
+  /* background-color: aqua; */
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+header > div:nth-child(5) {
+  /* background-color: aqua; */
+  width: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+header > div:nth-child(5) > img {
+  /* background-color: aqua; */
+  width: 25px;
+  height: 25px;
+}
+.main__wrapper {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  /* align-items: center; */
+}
+.top__wrapper {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.middle__wrapper {
+  height: 50px;
+}
+.bottom__wrapper {
+  display: flex;
+}
+
+table tbody {
+  height: 140px;
+}
+
+table th {
+  font-size: 12pt;
+  font-family: "Roboto Mono", monospace;
+  font-weight: 400;
+  height: 30px;
+}
+table td {
+  font-size: 12pt;
+  font-family: "Roboto Mono", monospace;
+  font-weight: 300;
+}
+
+th:nth-child(1) {
+  width: 60px;
+}
+td:nth-child(1) {
+  text-align: right;
+  padding-right: 5px;
+  width: calc(60px - 5px);
+}
+
+th:nth-child(2),
+td:nth-child(2) {
+  width: 220px;
+}
+td:nth-child(2) {
+  text-align: left;
+}

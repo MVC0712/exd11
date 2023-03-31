@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Press Plan Page</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/AddDiesFromClipBoard.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <header>
+      <div></div>
+      <div></div>
+      <div>
+        <div>Add PN From Clip Board</div>
+      </div>
+      <div>
+        <div>
+          <div id="summary__table_record">123 items</div>
+        </div>
+      </div>
+      <div>
+        <img src="./img/close.png" alt="close button" />
+      </div>
+    </header>
+    <div class="main__wrapper">
+      <div class="top__wrapper">
+        <table class="summary__table" id="summary__table">
+          <thead>
+            <tr>
+              <th>Order</th>
+              <th>Production Number</th>
+            </tr>
+          </thead>
+          <tbody id="summary__table_body">
+            <td></td>
+            <td></td>
+          </tbody>
+        </table>
+      </div>
+      <div class="middle__wrapper"></div>
+
+      <div class="bottom__wrapper">
+        <button id="insert__button">Ins Clipboard</button>
+        <button id="check__button">Check</button>
+      </div>
+    </div>
+  </body>
+  <script src="./lib/jquery.min.js"></script>
+  <script src="./scr/AddDiesFromClipBoard.js"></script>
+</html>
