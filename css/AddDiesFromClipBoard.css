@@ -1,5 +1,5 @@
 body {
-  width: 550px;
+  width: 700px;
   height: 500px;
 }
 header {
@@ -69,12 +69,13 @@ table th {
   font-size: 12pt;
   font-family: "Roboto Mono", monospace;
   font-weight: 400;
-  height: 30px;
+  height: 32px;
 }
 table td {
   font-size: 12pt;
   font-family: "Roboto Mono", monospace;
   font-weight: 300;
+  height: 22px;
 }
 
 th:nth-child(1) {
@@ -91,5 +92,28 @@ td:nth-child(2) {
   width: 220px;
 }
 td:nth-child(2) {
+  text-align: left;
+}
+th:nth-child(3),
+td:nth-child(3) {
+  width: 180px;
+}
+th:nth-child(4),
+td:nth-child(4) {
+  width: 180px;
+}
+
+table tbody tr.duplication-tr {
+  background-color: #ffd1bf;
+}
+
+table tbody tr.duplication-tr select {
+  background-color: #ffd1bf;
+}
+
+table tbody select {
+  width: 175px;
+  border: 0px;
+  font-size: 12pt;
   text-align: left;
 }
