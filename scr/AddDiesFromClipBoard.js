@@ -177,7 +177,7 @@ $(document).on("click", "#check__button", function () {
   targetTr.each(function (index) {
     sendData[index] = {
       production_number: $(this).find("td").eq(1).html(),
-      category2_id: $(this).find("select").val(),
+      category2_id: $(this).find("select").eq(1).val(),
     };
   });
 
