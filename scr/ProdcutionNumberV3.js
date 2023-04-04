@@ -3,6 +3,10 @@
 let summaryTableEditMode = false;
 let ajaxReturnData;
 let inputProductionNumber = "C2Q63A-AD141A20K";
+let table = $("#summary__table");
+// ソート対象の列を選択
+let column = 5; // 例として、2列目を選択する場合
+let sortReverse = false;
 
 const myAjax = {
   myAjax: function (fileName, sendData) {
@@ -316,4 +320,61 @@ function getInputData() {
     dt.getFullYear() + "-" + (dt.getMonth() + 1) + "-" + dt.getDate();
 
   return inputData;
+}
+
+$(document).on("click", "#summary__table th", function () {
+  let header = $(this);
+  let order = header.data("sort-order");
+  let column_cnt = $(this).index();
+
+  if (column_cnt == column) {
+    sortReverse = true;
+  } else {
+    sortReverse = false;
+  }
+  console.log(sortReverse);
+  column = column_cnt;
+
+  if (order === undefined || order === "desc") {
+    header.data("sort-order", "asc");
+    sortTable(table, header.index());
+    // クリックした列のヘッダーに昇順を示す矢印を表示
+    header.find("i").remove();
+    header.append('<i class="fas fa-sort-up ml-1"></i>');
+  } else {
+    header.data("sort-order", "desc");
+    sortTable(table, header.index());
+    // クリックした列のヘッダーに降順を示す矢印を表示
+    header.find("i").remove();
+    header.append('<i class="fas fa-sort-down ml-1"></i>');
+  }
+});
+
+function sortTable(table, column) {
+  var rows = table.find("tr:gt(0)").toArray().sort(comparer(column));
+
+  // 降順にソートする場合は以下のコメントを解除
+  if (sortReverse) {
+    rows = rows.reverse();
+  }
+
+  for (var i = 0; i < rows.length; i++) {
+    table.append(rows[i]);
+  }
+}
+
+// ソート用の比較関数を定義
+function comparer(column) {
+  return function (a, b) {
+    var valA = getCellValue(a, column);
+    var valB = getCellValue(b, column);
+    return $.isNumeric(valA) && $.isNumeric(valB)
+      ? valA - valB
+      : valA.localeCompare(valB);
+  };
+}
+
+// セルの値を取得する関数を定義
+function getCellValue(row, column) {
+  return $(row).children("td").eq(column).text();
 }

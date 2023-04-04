@@ -30,7 +30,8 @@ SELECT
   FORMAT(m_production_numbers.production_length, 3) AS production_length,
   m_production_numbers.packing_quantity,
   IFNULL(m_production_numbers.packing_column, '') AS packing_column,
-  IFNULL(m_production_numbers.packing_row, '') AS packing_row
+  IFNULL(m_production_numbers.packing_row, '') AS packing_row,
+  DATE_FORMAT(m_production_numbers.created_at,'%y-%m-%d')  as created_at
 FROM m_production_numbers
 LEFT JOIN m_billet_material ON m_production_numbers.billet_material_id = m_billet_material.id
 LEFT JOIN m_aging_type ON m_production_numbers.aging_type_id = m_aging_type.id
