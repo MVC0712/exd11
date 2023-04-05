@@ -328,7 +328,11 @@ $(document).on("click", "#summary__table th", function () {
   let column_cnt = $(this).index();
 
   if (column_cnt == column) {
-    sortReverse = true;
+    if (sortReverse == true) {
+      sortReverse = false;
+    } else {
+      sortReverse = true;
+    }
   } else {
     sortReverse = false;
   }
