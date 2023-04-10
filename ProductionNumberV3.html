@@ -232,30 +232,46 @@
                   <div></div>
                   <div>cate 1</div>
                   <div class="sort_img">
-                    <img src="./img/arrow_down.png" />
+                    <img id="table_arrow__img" src="./img/arrow_down.png" />
                   </div>
                 </div>
               </th>
-              <th>cate 2</th>
+              <th class="sort">
+                <div class="sort">
+                  <div></div>
+                  <div>cate 2</div>
+                  <div class="sort_img"></div>
+                </div>
+              </th>
               <th class="sort">
                 <div class="sort">
                   <div></div>
                   <div>PN</div>
-                  <div class="sort_img">
-                    <img src="" />
-                  </div>
+                  <div class="sort_img"></div>
                 </div>
               </th>
               <th>Dpt</th>
               <th>Mtrl</th>
               <th>Agi</th>
               <th>Area</th>
-              <th>Weight</th>
+              <th class="sort">
+                <div class="sort">
+                  <div></div>
+                  <div>Wght</div>
+                  <div class="sort_img"></div>
+                </div>
+              </th>
               <th>W_Len</th>
               <th>Pack</th>
               <th>col</th>
               <th>row</th>
-              <th>create date</th>
+              <th class="sort">
+                <div class="sort">
+                  <div></div>
+                  <div>crt date</div>
+                  <div class="sort_img"></div>
+                </div>
+              </th>
               <!-- <th>BiletBandl</th> -->
             </tr>
           </thead>
@@ -278,6 +294,22 @@
         </table>
       </div>
     </div>
+    <dialog id="delete__dialog">
+      <div>
+        <div id="dialog_title__wrapper">
+          <div>Delete? Tẩy xóa?</div>
+        </div>
+        <button id="dialog-cancel__button">
+          Cancel <br />
+          Hủy bỏ
+        </button>
+        <div id="dialog_input__wapper">
+          <div id="dialog_input__title">Emploee No</div>
+          <input id="emploee_number" type="text" />
+        </div>
+        <button id="dialog-delete__button" disabled>Del</button>
+      </div>
+    </dialog>
     <script src="./lib/jquery.min.js"></script>
     <script src="./scr/ProdcutionNumberV3.js"></script>
   </body>

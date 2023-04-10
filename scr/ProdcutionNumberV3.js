@@ -5,8 +5,9 @@ let ajaxReturnData;
 let inputProductionNumber = "C2Q63A-AD141A20K";
 let table = $("#summary__table");
 // ソート対象の列を選択
-let column = 5; // 例として、2列目を選択する場合
+let column = 1; // 例として、2列目を選択する場合
 let sortReverse = false;
+let sameColumn = false;
 
 const myAjax = {
   myAjax: function (fileName, sendData) {
@@ -212,7 +213,7 @@ $(document).on("click", "#category1__table tbody tr", function () {
   sendData = {
     targetId: $("#category1__tr").find("td").eq(0).html(),
   };
-  console.log(sendData);
+  // console.log(sendData);
   myAjax.myAjax(fileName, sendData);
 
   $("#category2__table tbody").empty();
@@ -263,41 +264,6 @@ $(document).on("click", "#save__button", function () {
   });
 });
 
-// $(document).on("click", "#test__button", function () {
-//   const text = navigator.clipboard.readText();
-//   console.log(text);
-// });
-
-// document.getElementById("test__button").addEventListener("click", async () => {
-//   const text = await navigator.clipboard.readText();
-//   // const text = navigator.clipboard.readText();
-//   console.log(text);
-// });
-
-document.getElementById("clipboard__button").addEventListener("click", () => {
-  console.log("hello");
-  open("./AddDiesFromClipBoard.html");
-});
-
-document
-  .getElementById("test__button")
-  .addEventListener("click", function (event) {
-    console.log("hello");
-
-    console.log("[1]");
-    wait1sec(() => console.log("[2]")); // console.logを実行する関数が引数です
-    wait1sec(() => console.log("[3]"));
-    wait1sec(() => console.log("[4]"));
-    console.log("[5]");
-  });
-
-const wait1sec = (handler) => {
-  setTimeout(() => {
-    console.log("1秒経ちました");
-    handler();
-  }, 1000);
-};
-
 function getInputData() {
   let inputData = new Object();
   let category2 = $("#category2__tr").find("td").eq(0).html();
@@ -322,21 +288,66 @@ function getInputData() {
   return inputData;
 }
 
-$(document).on("click", "#summary__table th", function () {
+$(document).on("click", "#summary__table tbody tr", function () {
+  $("tr.selected-record").removeClass("selected-record");
+  $(this).addClass("selected-record");
+});
+
+$(document).on(
+  "click",
+  "#summary__table tbody tr.selected-record",
+  function () {
+    let fileName;
+    let sendData = new Object();
+
+    fileName = "./php/ProductionNumber/SelEmploeeNumber.php";
+    sendData = {
+      dummy: "dummy",
+    };
+    // console.log(sendData);
+    myAjax.myAjax(fileName, sendData);
+
+    document.getElementById("delete__dialog").showModal();
+    $("#emploee_number").val("");
+  }
+);
+
+// Dialog
+$(document).on("click", "#dialog-cancel__button", function () {
+  document.getElementById("delete__dialog").close();
+});
+
+$(document).on("click", "#dialog-delete__button", function () {
+  console.log(ajaxReturnData);
+  console.log(findValueInObject(ajaxReturnData, "2211220"));
+});
+
+$(document).on("keyup", "#emploee_number", function () {
+  if (
+    $(this).val().length == 7 &&
+    findValueInObject(ajaxReturnData, $(this).val())
+  ) {
+    $("#dialog-delete__button").attr("disabled", false);
+  }
+});
+
+// summary table sort  part from ChatGPT
+$(document).on("click", "#summary__table th.sort", function () {
   let header = $(this);
   let order = header.data("sort-order");
   let column_cnt = $(this).index();
 
   if (column_cnt == column) {
+    sameColumn = true;
     if (sortReverse == true) {
       sortReverse = false;
     } else {
       sortReverse = true;
     }
   } else {
+    sameColumn = false;
     sortReverse = false;
   }
-  console.log(sortReverse);
   column = column_cnt;
 
   if (order === undefined || order === "desc") {
@@ -352,6 +363,7 @@ $(document).on("click", "#summary__table th", function () {
     header.find("i").remove();
     header.append('<i class="fas fa-sort-down ml-1"></i>');
   }
+  displayArrowMark(header);
 });
 
 function sortTable(table, column) {
@@ -381,4 +393,51 @@ function comparer(column) {
 // セルの値を取得する関数を定義
 function getCellValue(row, column) {
   return $(row).children("td").eq(column).text();
+}
+
+// display function for arrow mark
+function displayArrowMark(header) {
+  if (sameColumn) {
+    if (sortReverse) {
+      header.find("img").attr("src", "./img/arrow_up.png");
+      // .attr("id", "table_arrow__img");
+    } else {
+      header.find("img").attr("src", "./img/arrow_down.png");
+      // .attr("id", "table_arrow__img");
+    }
+  } else {
+    $("#table_arrow__img").remove();
+    header
+      .find("div.sort_img")
+      .append(
+        $("<img>")
+          .attr("src", "./img/arrow_up.png")
+          .attr("id", "table_arrow__img")
+      );
+  }
+}
+
+$(document).on("click", "#test__button", function () {
+  console.log("hello");
+  let fileName;
+  let sendData = new Object();
+
+  fileName = "./php/ProductionNumber/SelEmploeeNumber.php";
+  sendData = {
+    dummy: "dummy",
+  };
+  // console.log(sendData);
+  myAjax.myAjax(fileName, sendData);
+  console.log(ajaxReturnData);
+
+  console.log(findValueInObject(ajaxReturnData, "2211220"));
+});
+
+function findValueInObject(obj, searchValue) {
+  for (let key in obj) {
+    if (obj[key]["emploee_number"] == searchValue) {
+      return true;
+    }
+  }
+  return false;
 }
