@@ -75,6 +75,21 @@ function readCategory1Table() {
   });
 }
 
+$(document).on("mouseover", "#window_close__mark", function () {
+  console.log("hello");
+  $("#window_close__mark").attr("src", "./img/close-2.png");
+});
+
+$(document).on("mouseout", "#window_close__mark", function () {
+  console.log("hello2");
+  $("#window_close__mark").attr("src", "./img/close.png");
+});
+
+$(document).on("click", "#window_close__mark", function () {
+  // open("about:blank", "_self").close(); // close window
+  window.close();
+});
+
 $(document).on("keyup", "#production_number", function () {
   $(this).val($(this).val().toUpperCase()); // 小文字を大文字に
   if ($(this).val().length > 3) {
@@ -264,6 +279,14 @@ $(document).on("click", "#save__button", function () {
   });
 });
 
+$(document).on("click", "#clipboard__button", function () {
+  window.open(
+    "./AddPNFromClipBoard.html",
+    null,
+    "width=720, height=530, left=280, top=200, toolbar=yes,menubar=yes,scrollbars=no"
+  );
+});
+
 function getInputData() {
   let inputData = new Object();
   let category2 = $("#category2__tr").find("td").eq(0).html();
@@ -435,7 +458,10 @@ $(document).on("click", "#test__button", function () {
 
 function findValueInObject(obj, searchValue) {
   for (let key in obj) {
-    if (obj[key]["emploee_number"] == searchValue) {
+    if (
+      obj[key]["emploee_number"] == searchValue &&
+      obj[key]["position_id"] == 1
+    ) {
       return true;
     }
   }
