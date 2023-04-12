@@ -312,9 +312,44 @@ function getInputData() {
 }
 
 $(document).on("click", "#summary__table tbody tr", function () {
+  const fileName = "./php/ProductionNumber/SelCate2_1.php";
+  const targetId = $(this).find("td").eq(0).html();
+  let sendData = new Object();
+
   $("tr.selected-record").removeClass("selected-record");
   $(this).addClass("selected-record");
+
+  $("#summary__tr").removeAttr("id");
+  $(this).attr("id", "summary__tr");
+
+  sendData = { targetId: targetId };
+  myAjax.myAjax(fileName, sendData);
+
+  setCategory(targetId);
+
+  // category1 table : select and scroll
+  if (ajaxReturnData.length != 0) {
+    $("#category1__table tbody tr").each(function () {
+      if (
+        $(this).find("td").eq(0).html() == ajaxReturnData[0]["category1_id"]
+      ) {
+        $(this).addClass("selected-record").get(0).scrollIntoView({
+          behavior: "smooth",
+        });
+      }
+    });
+  }
 });
+
+function setCategory(targetId) {
+  const fileName = "./php/ProductionNumber/SelCate2_1.php";
+  let sendData = new Object();
+
+  sendData = { targetId: targetId };
+  myAjax.myAjax(fileName, sendData);
+
+  console.log(ajaxReturnData);
+}
 
 $(document).on(
   "click",
@@ -441,19 +476,13 @@ function displayArrowMark(header) {
 }
 
 $(document).on("click", "#test__button", function () {
-  console.log("hello");
-  let fileName;
-  let sendData = new Object();
-
-  fileName = "./php/ProductionNumber/SelEmploeeNumber.php";
-  sendData = {
-    dummy: "dummy",
-  };
-  // console.log(sendData);
-  myAjax.myAjax(fileName, sendData);
-  console.log(ajaxReturnData);
-
-  console.log(findValueInObject(ajaxReturnData, "2211220"));
+  $("#category1__table tbody tr").each(function () {
+    if ($(this).find("td").eq(0).html() == 30) {
+      $(this).addClass("selected-record").get(0).scrollIntoView({
+        behavior: "smooth",
+      });
+    }
+  });
 });
 
 function findValueInObject(obj, searchValue) {
