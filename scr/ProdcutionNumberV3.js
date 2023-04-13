@@ -312,8 +312,9 @@ function getInputData() {
 }
 
 $(document).on("click", "#summary__table tbody tr", function () {
-  const fileName = "./php/ProductionNumber/SelCate2_1.php";
   const targetId = $(this).find("td").eq(0).html();
+  const category2Name = $(this).find("td").eq(2).html();
+  let fileName;
   let sendData = new Object();
 
   $("tr.selected-record").removeClass("selected-record");
@@ -322,12 +323,13 @@ $(document).on("click", "#summary__table tbody tr", function () {
   $("#summary__tr").removeAttr("id");
   $(this).attr("id", "summary__tr");
 
-  sendData = { targetId: targetId };
-  myAjax.myAjax(fileName, sendData);
+  // category1 table : select and scroll
 
+  sendData = { targetId: targetId };
+  fileName = "./php/ProductionNumber/SelCate2_1.php";
+  myAjax.myAjax(fileName, sendData);
   setCategory(targetId);
 
-  // category1 table : select and scroll
   if (ajaxReturnData.length != 0) {
     $("#category1__table tbody tr").each(function () {
       if (
@@ -339,6 +341,24 @@ $(document).on("click", "#summary__table tbody tr", function () {
       }
     });
   }
+  // category2 table : make table and select and scroll
+  sendData = { targetId: targetId };
+  fileName = "./php/ProductionNumber/SelCategory2V3.php";
+  myAjax.myAjax(fileName, sendData);
+  $("#category2__table tbody").empty();
+  ajaxReturnData.forEach(function (trVal) {
+    var newTr = $("<tr>");
+    Object.keys(trVal).forEach(function (tdVal) {
+      $("<td>").html(trVal[tdVal]).appendTo(newTr);
+    });
+    if ($(newTr).find("td").eq(1).html() == category2Name) {
+      $(newTr).addClass("selected-record");
+    }
+    $(newTr).appendTo("#category2__table tbody");
+  });
+  $("#category2__table tbody tr.selected-record").get(0).scrollIntoView({
+    behavior: "smooth",
+  });
 });
 
 function setCategory(targetId) {
@@ -347,8 +367,6 @@ function setCategory(targetId) {
 
   sendData = { targetId: targetId };
   myAjax.myAjax(fileName, sendData);
-
-  console.log(ajaxReturnData);
 }
 
 $(document).on(
