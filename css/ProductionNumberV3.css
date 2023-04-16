@@ -62,6 +62,11 @@ header > div:nth-child(1) {
 header > div:nth-child(2) {
   /* background-color: aqua; */
   width: 150px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  color: yellow;
 }
 header > div:nth-child(3) {
   width: 300px;

@@ -31,8 +31,8 @@
           GROUP BY m_production_numbers_category2.category1_id
         ) AS t1
       ON m_production_numbers_category1.id = t1.category1_id
-      WHERE m_production_numbers_category1.id != 0
     ");
+      // WHERE m_production_numbers_category1.id != 0
 
     $prepare->execute();
     $result = $prepare->fetchAll(PDO::FETCH_ASSOC);

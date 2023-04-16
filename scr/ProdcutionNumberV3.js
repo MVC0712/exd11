@@ -165,28 +165,51 @@ $(document).on("keyup", "#packing_column", function () {
 
 $(document).on("keyup", ".top__wrapper", function () {
   // console.log(checkInput());
-  if (checkInput()) {
-    $("#save__button").prop("disabled", false);
+  if ($("#mode_display").html() == "Update Mode") {
+    if (checkInput()) {
+      $("#update__button").prop("disabled", false);
+    } else {
+      $("#update__button").prop("disabled", true);
+    }
   } else {
-    $("#save__button").prop("disabled", true);
+    if (checkInput()) {
+      $("#save__button").prop("disabled", false);
+    } else {
+      $("#save__button").prop("disabled", true);
+    }
   }
 });
 
 $(document).on("change", ".top__wrapper", function () {
-  // console.log(checkInput());
-  if (checkInput()) {
-    $("#save__button").prop("disabled", false);
+  if ($("#mode_display").html() == "Update Mode") {
+    if (checkInput()) {
+      $("#update__button").prop("disabled", false);
+    } else {
+      $("#update__button").prop("disabled", true);
+    }
   } else {
-    $("#save__button").prop("disabled", true);
+    if (checkInput()) {
+      $("#save__button").prop("disabled", false);
+    } else {
+      $("#save__button").prop("disabled", true);
+    }
   }
 });
 
 $(document).on("click", ".top__wrapper", function () {
   // console.log(checkInput());
-  if (checkInput()) {
-    $("#save__button").prop("disabled", false);
+  if ($("#mode_display").html() == "Update Mode") {
+    if (checkInput()) {
+      $("#update__button").prop("disabled", false);
+    } else {
+      $("#update__button").prop("disabled", true);
+    }
   } else {
-    $("#save__button").prop("disabled", true);
+    if (checkInput()) {
+      $("#save__button").prop("disabled", false);
+    } else {
+      $("#save__button").prop("disabled", true);
+    }
   }
 });
 
@@ -279,6 +302,11 @@ $(document).on("click", "#save__button", function () {
   });
 });
 
+$(document).on("click", "#update__button", function () {
+  console.log("hello");
+  console.log(getInputData());
+});
+
 $(document).on("click", "#clipboard__button", function () {
   window.open(
     "./AddPNFromClipBoard.html",
@@ -290,6 +318,7 @@ $(document).on("click", "#clipboard__button", function () {
 function getInputData() {
   let inputData = new Object();
   let category2 = $("#category2__tr").find("td").eq(0).html();
+  console.log(category2);
   let dt = new Date();
   // .save-dataを持っている要素から値を取り出す
   $("input.save-data").each(function (index, element) {
@@ -308,6 +337,9 @@ function getInputData() {
   inputData["updated_at"] =
     dt.getFullYear() + "-" + (dt.getMonth() + 1) + "-" + dt.getDate();
 
+  if (inputData["circumscribed_circle"] == "") {
+    inputData["circumscribed_circle"] = null;
+  }
   return inputData;
 }
 
@@ -316,6 +348,9 @@ $(document).on("click", "#summary__table tbody tr", function () {
   const category2Name = $(this).find("td").eq(2).html();
   let fileName;
   let sendData = new Object();
+  let recordData = new Object();
+
+  recordData = $(this).find("td");
 
   $("tr.selected-record").removeClass("selected-record");
   $(this).addClass("selected-record");
@@ -323,8 +358,10 @@ $(document).on("click", "#summary__table tbody tr", function () {
   $("#summary__tr").removeAttr("id");
   $(this).attr("id", "summary__tr");
 
-  // category1 table : select and scroll
+  // copy to input area for edit values
+  setRecordValue2Edit(targetId);
 
+  // category1 table : select and scroll
   sendData = { targetId: targetId };
   fileName = "./php/ProductionNumber/SelCate2_1.php";
   myAjax.myAjax(fileName, sendData);
@@ -345,6 +382,7 @@ $(document).on("click", "#summary__table tbody tr", function () {
   sendData = { targetId: targetId };
   fileName = "./php/ProductionNumber/SelCategory2V3.php";
   myAjax.myAjax(fileName, sendData);
+  if (ajaxReturnData.length == 0) return;
   $("#category2__table tbody").empty();
   ajaxReturnData.forEach(function (trVal) {
     var newTr = $("<tr>");
@@ -352,14 +390,116 @@ $(document).on("click", "#summary__table tbody tr", function () {
       $("<td>").html(trVal[tdVal]).appendTo(newTr);
     });
     if ($(newTr).find("td").eq(1).html() == category2Name) {
-      $(newTr).addClass("selected-record");
+      $(newTr).addClass("selected-record").attr("id", "category2__tr");
     }
     $(newTr).appendTo("#category2__table tbody");
   });
   $("#category2__table tbody tr.selected-record").get(0).scrollIntoView({
     behavior: "smooth",
   });
+
+  // Update button Activation
+  $("#mode_display").html("Update Mode");
+  if (checkInput()) {
+    $("#update__button").prop("disabled", false);
+  } else {
+    $("#update__button").prop("disabled", true);
+  }
 });
+
+function setRecordValue2Edit(targetId) {
+  const fileName = "./php/ProductionNumber/SelSelSummary.php";
+  let sendData = new Object();
+
+  sendData = { targetId: targetId };
+  myAjax.myAjax(fileName, sendData);
+  // console.log(ajaxReturnData[0]);
+
+  // production number
+  $("#production_number")
+    .val(ajaxReturnData[0]["production_number"])
+    .removeClass("input-required");
+  // Drawng Dept.
+  if (ajaxReturnData[0]["drawn_department"] != null) {
+    $("#drawn_department")
+      .val(ajaxReturnData[0]["drawn_department"])
+      .removeClass("input-required");
+  } else {
+    $("#drawn_department").val("0").addClass("input-required");
+  }
+  // Material
+  if (ajaxReturnData[0]["billet_material_id"] != null) {
+    $("#billet_material_id")
+      .val(ajaxReturnData[0]["billet_material_id"])
+      .removeClass("input-required");
+  } else {
+    $("#billet_material_id").val("0").addClass("input-required");
+  }
+  // Aging
+  if (ajaxReturnData[0]["aging_type_id"] != null) {
+    $("#aging_type_id")
+      .val(ajaxReturnData[0]["aging_type_id"])
+      .removeClass("input-required");
+  } else {
+    $("#aging_type_id").val("0").addClass("input-required");
+  }
+  // production_length
+  if (ajaxReturnData[0]["production_length"] != null) {
+    $("#production_length")
+      .val(ajaxReturnData[0]["production_length"])
+      .removeClass("input-required");
+  } else {
+    $("#production_length").val("").addClass("input-required");
+  }
+  // circumscribed_circle
+  if (ajaxReturnData[0]["circumscribed_circle"] != "") {
+    $("#circumscribed_circle")
+      .val(ajaxReturnData[0]["circumscribed_circle"])
+      .removeClass("input-required");
+  } else {
+    $("#circumscribed_circle").val("");
+  }
+  // specific_weight
+  if (ajaxReturnData[0]["specific_weight"] != null) {
+    $("#specific_weight")
+      .val(ajaxReturnData[0]["specific_weight"])
+      .removeClass("input-required");
+  } else {
+    $("#specific_weight").val("").addClass("input-required");
+  }
+  // cross_section_area
+  if (ajaxReturnData[0]["cross_section_area"] != null) {
+    $("#cross_section_area")
+      .val(ajaxReturnData[0]["cross_section_area"])
+      .removeClass("input-required");
+  } else {
+    $("#cross_section_area").val("").addClass("input-required");
+  }
+  // packing_quantity
+  if (ajaxReturnData[0]["packing_quantity"] != "") {
+    $("#packing_quantity")
+      .val(ajaxReturnData[0]["packing_quantity"])
+      .removeClass("input-required");
+  } else {
+    $("#packing_quantity").val("").addClass("input-required");
+  }
+  // packing_row
+  if (ajaxReturnData[0]["packing_row"] != null) {
+    $("#packing_row")
+      .val(ajaxReturnData[0]["packing_row"])
+      .removeClass("input-required");
+  } else {
+    $("#packing_row").val("").addClass("input-required");
+  }
+  // packing_column
+  if (ajaxReturnData[0]["packing_column"] != null) {
+    $("#packing_column")
+      .val(ajaxReturnData[0]["packing_column"])
+      .removeClass("input-required");
+  } else {
+    $("#packing_column").val("").addClass("input-required");
+  }
+}
 
 function setCategory(targetId) {
   const fileName = "./php/ProductionNumber/SelCate2_1.php";
@@ -494,13 +634,8 @@ function displayArrowMark(header) {
 }
 
 $(document).on("click", "#test__button", function () {
-  $("#category1__table tbody tr").each(function () {
-    if ($(this).find("td").eq(0).html() == 30) {
-      $(this).addClass("selected-record").get(0).scrollIntoView({
-        behavior: "smooth",
-      });
-    }
-  });
+  console.log(checkInput());
+  console.log($(".top__wrapper table tbody tr.selected-record").length);
 });
 
 function findValueInObject(obj, searchValue) {
