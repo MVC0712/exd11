@@ -303,8 +303,30 @@ $(document).on("click", "#save__button", function () {
 });
 
 $(document).on("click", "#update__button", function () {
-  console.log("hello");
-  console.log(getInputData());
+  let fileName;
+  let sendData = new Object();
+  // const targetTr = $("#summary_tr").get(0);
+  const targetId = $("#summary__tr").find("td").eq(0).text();
+  // console.log("hello");
+  // console.log(targetId);
+  // console.log(getInputData());
+
+  // Update
+  sendData = getInputData();
+  fileName = "./php/ProductionNumber/UpdateSummaryV3.php";
+  myAjax.myAjax(fileName, sendData);
+
+  // Reload Summary Table
+  readSummaryTable();
+  $("#summary__table td:nth-child(1)").each(function () {
+    if ($(this).text() == targetId) {
+      $(this).parent().attr("id", "summary__tr").addClass("selected-record");
+    }
+  });
+  // Scroll
+  document.getElementById("summary__tr").scrollIntoView({
+    behavior: "smooth",
+  });
 });
 
 $(document).on("click", "#clipboard__button", function () {
@@ -318,7 +340,6 @@ $(document).on("click", "#clipboard__button", function () {
 function getInputData() {
   let inputData = new Object();
   let category2 = $("#category2__tr").find("td").eq(0).html();
-  console.log(category2);
   let dt = new Date();
   // .save-dataを持っている要素から値を取り出す
   $("input.save-data").each(function (index, element) {
