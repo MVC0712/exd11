@@ -58,6 +58,15 @@ header {
 header > div:nth-child(1) {
   /* background-color: aqua; */
   width: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+header > div:nth-child(1) > img {
+  /* background-color: aqua; */
+  width: 35px;
+  /* height: 25px; */
 }
 header > div:nth-child(2) {
   /* background-color: aqua; */

@@ -8,6 +8,7 @@ let table = $("#summary__table");
 let column = 1; // 例として、2列目を選択する場合
 let sortReverse = false;
 let sameColumn = false;
+let titleNames = new Object();
 
 const myAjax = {
   myAjax: function (fileName, sendData) {
@@ -76,12 +77,12 @@ function readCategory1Table() {
 }
 
 $(document).on("mouseover", "#window_close__mark", function () {
-  console.log("hello");
+  // console.log("hello");
   $("#window_close__mark").attr("src", "./img/close-2.png");
 });
 
 $(document).on("mouseout", "#window_close__mark", function () {
-  console.log("hello2");
+  // console.log("hello2");
   $("#window_close__mark").attr("src", "./img/close.png");
 });
 
@@ -94,6 +95,7 @@ $(document).on("keyup", "#production_number", function () {
   $(this).val($(this).val().toUpperCase()); // 小文字を大文字に
   if ($(this).val().length > 3) {
     $(this).removeClass("input-required");
+    $("#mode_display").html("Add New Mode");
   } else {
     $(this).addClass("input-required");
   }
@@ -300,6 +302,12 @@ $(document).on("click", "#save__button", function () {
   element.scrollIntoView({
     behavior: "smooth",
   });
+
+  // Clear input value
+  $("input.need-clear").val("").addClass("input-required");
+  $("select.need-clear").val("0").addClass("input-required");
+
+  $("#save__button").prop("disabled", true);
 });
 
 $(document).on("click", "#update__button", function () {
@@ -552,11 +560,31 @@ $(document).on(
 // Dialog
 $(document).on("click", "#dialog-cancel__button", function () {
   document.getElementById("delete__dialog").close();
+  $("#update__button").prop("disabled", true);
+  $("#dialog-delete__button").attr("disabled", true);
 });
 
 $(document).on("click", "#dialog-delete__button", function () {
-  console.log(ajaxReturnData);
-  console.log(findValueInObject(ajaxReturnData, "2211220"));
+  let fileName;
+  let sendData = new Object();
+
+  // console.log($("#summary__tr td").eq(0).text());
+
+  fileName = "./php/ProductionNumber/DelSummary.php";
+  sendData = {
+    targetId: $("#summary__tr td").eq(0).text(),
+  };
+  myAjax.myAjax(fileName, sendData);
+  document.getElementById("delete__dialog").close();
+  readSummaryTable();
+  $("#dialog-delete__button").attr("disabled", true);
+
+  // Clear input value
+  $("input.need-clear").val("").addClass("input-required");
+  $("select.need-clear").val("0").addClass("input-required");
+  $("#mode_display").html("");
+
+  $("#update__button").prop("disabled", true);
 });
 
 $(document).on("keyup", "#emploee_number", function () {
@@ -655,8 +683,34 @@ function displayArrowMark(header) {
 }
 
 $(document).on("click", "#test__button", function () {
-  console.log(checkInput());
-  console.log($(".top__wrapper table tbody tr.selected-record").length);
+  let fileName;
+  let sendData = new Object();
+  const tileLettersObject = $("div.title__letters");
+  console.log(tileLettersObject);
+  // console.log($("div.title__letters").get(0));
+
+  fileName = "./php/ProductionNumber/SelTitleName.php";
+  sendData = {
+    dummy: "dummy",
+  };
+  myAjax.myAjax(fileName, sendData);
+  // console.log(ajaxReturnData);
+
+  tileLettersObject.each(function () {
+    // console.log($(this).text());
+    let targetObj = $(this);
+    ajaxReturnData.forEach(function (titles) {
+      if (targetObj.text() == titles["english"]) {
+        console.log(titles["english"] + " : " + titles["vietnamese"]);
+        targetObj.text(titles["vietnamese"]);
+      }
+    });
+  });
+
+  ajaxReturnData.forEach(function (titles) {
+    // if(letters == tiltes["english"])
+    // console.log(titles);
+  });
 });
 
 function findValueInObject(obj, searchValue) {
