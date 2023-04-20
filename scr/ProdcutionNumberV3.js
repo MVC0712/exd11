@@ -32,6 +32,7 @@ $(function () {
   // make summary table
   readSummaryTable();
   readCategory1Table();
+  $("#test__button").remove();
 });
 
 function readSummaryTable() {
@@ -377,9 +378,6 @@ $(document).on("click", "#summary__table tbody tr", function () {
   const category2Name = $(this).find("td").eq(2).html();
   let fileName;
   let sendData = new Object();
-  let recordData = new Object();
-
-  recordData = $(this).find("td");
 
   $("tr.selected-record").removeClass("selected-record");
   $(this).addClass("selected-record");
@@ -390,6 +388,13 @@ $(document).on("click", "#summary__table tbody tr", function () {
   // copy to input area for edit values
   setRecordValue2Edit(targetId);
 
+  // Update button Activation
+  $("#mode_display").html("Update Mode");
+  if (checkInput()) {
+    $("#update__button").prop("disabled", false);
+  } else {
+    $("#update__button").prop("disabled", true);
+  }
   // category1 table : select and scroll
   sendData = { targetId: targetId };
   fileName = "./php/ProductionNumber/SelCate2_1.php";
@@ -426,14 +431,6 @@ $(document).on("click", "#summary__table tbody tr", function () {
   $("#category2__table tbody tr.selected-record").get(0).scrollIntoView({
     behavior: "smooth",
   });
-
-  // Update button Activation
-  $("#mode_display").html("Update Mode");
-  if (checkInput()) {
-    $("#update__button").prop("disabled", false);
-  } else {
-    $("#update__button").prop("disabled", true);
-  }
 });
 
 function setRecordValue2Edit(targetId) {
@@ -685,6 +682,7 @@ function displayArrowMark(header) {
 $(document).on("click", "#test__button", function () {
   let fileName;
   let sendData = new Object();
+  let language = "En";
   const tileLettersObject = $("div.title__letters");
   console.log(tileLettersObject);
   // console.log($("div.title__letters").get(0));
@@ -697,19 +695,28 @@ $(document).on("click", "#test__button", function () {
   // console.log(ajaxReturnData);
 
   tileLettersObject.each(function () {
-    // console.log($(this).text());
     let targetObj = $(this);
-    ajaxReturnData.forEach(function (titles) {
-      if (targetObj.text() == titles["english"]) {
-        console.log(titles["english"] + " : " + titles["vietnamese"]);
-        targetObj.text(titles["vietnamese"]);
+    ajaxReturnData.forEach(function (databaseLetters) {
+      console.log(targetObj.text() + "\n" + databaseLetters["english"]);
+      switch (language) {
+        case "Vn":
+          if (targetObj.text() == databaseLetters["english"]) {
+            console.log(
+              databaseLetters["english"] + " : " + databaseLetters["vietnamese"]
+            );
+            targetObj.text(databaseLetters["vietnamese"]);
+          }
+          break;
+        case "En":
+          if (targetObj.text() == databaseLetters["vietnamese"]) {
+            console.log(
+              databaseLetters["english"] + " : " + databaseLetters["vietnamese"]
+            );
+            targetObj.text(databaseLetters["english"]);
+          }
+          break;
       }
     });
-  });
-
-  ajaxReturnData.forEach(function (titles) {
-    // if(letters == tiltes["english"])
-    // console.log(titles);
   });
 });
 
@@ -724,3 +731,45 @@ function findValueInObject(obj, searchValue) {
   }
   return false;
 }
+
+$(document).on("click", "#language__mark", function () {
+  const str = $("#language__mark").attr("src");
+  const language = str.match(/\/([^.\/]+)\.\w+$/);
+  const tileLettersObject = $("div.title__letters");
+  // console.log(tileLettersObject);
+  let fileName;
+  let sendData = new Object();
+
+  fileName = "./php/ProductionNumber/SelTitleName.php";
+  sendData = {
+    dummy: "dummy",
+  };
+  myAjax.myAjax(fileName, sendData);
+
+  tileLettersObject.each(function () {
+    let targetObj = $(this);
+    ajaxReturnData.forEach(function (databaseLetters) {
+      // console.log(targetObj.text() + "\n" + databaseLetters["english"]);
+      switch (language[1]) {
+        case "En":
+          if (targetObj.text() == databaseLetters["english"]) {
+            // console.log(
+            //   databaseLetters["english"] + " : " + databaseLetters["vietnamese"]
+            // );
+            targetObj.text(databaseLetters["vietnamese"]);
+            $("#language__mark").attr("src", "./img/Vn.png");
+          }
+          break;
+        case "Vn":
+          if (targetObj.text() == databaseLetters["vietnamese"]) {
+            // console.log(
+            //   databaseLetters["english"] + " : " + databaseLetters["vietnamese"]
+            // );
+            targetObj.text(databaseLetters["english"]);
+            $("#language__mark").attr("src", "./img/En.png");
+          }
+          break;
+      }
+    });
+  });
+});
