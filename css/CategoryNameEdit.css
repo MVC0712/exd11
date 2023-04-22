@@ -1,0 +1,132 @@
+body {
+  width: 700px;
+  height: 500px;
+}
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+header > div:nth-child(1) {
+  /* background-color: aqua; */
+  width: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+header > div:nth-child(1) > img {
+  /* background-color: aqua; */
+  width: 35px;
+  /* height: 25px; */
+}
+header > div:nth-child(2) {
+  /* background-color: aqua; */
+  width: 150px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  color: yellow;
+}
+header > div:nth-child(3) {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+header > div:nth-child(4) {
+  /* background-color: aqua; */
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+header > div:nth-child(5) {
+  /* background-color: aqua; */
+  width: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+header > div:nth-child(5) > img {
+  /* background-color: aqua; */
+  width: 25px;
+  height: 25px;
+}
+.top__wrapper {
+  width: 100%;
+  height: 380px;
+  display: flex;
+}
+.left__wrapper,
+.right__wrapper {
+  height: 100%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.button__wrapper {
+  display: flex;
+}
+.input__wrapper {
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.input__wrapper input {
+  font-family: "Roboto Mono";
+  font-weight: 400;
+  font-size: 12pt;
+}
+.input__wrapper > button {
+  margin: 0px;
+  height: 27px;
+}
+.input__wrapper > .category_name__input {
+  width: 150px;
+  height: 25px;
+}
+tbody tr.selected-record {
+  background-color: #dbdbff;
+}
+/* Category Table */
+table.category__table th {
+  font-size: 12pt;
+  font-weight: bold;
+}
+
+table.category__table tbody {
+  height: 200px;
+}
+
+table.category__table td {
+  font-family: "Roboto Mono";
+  font-weight: 400;
+  font-size: 12pt;
+}
+
+table.category__table th:nth-child(1),
+table.category__table td:nth-child(1) {
+  display: none;
+}
+
+table.category__table th:nth-child(2),
+table.category__table td:nth-child(2) {
+  width: 170px;
+}
+table.category__table td:nth-child(2) {
+  text-align: left;
+}
+table.category__table th:nth-child(3),
+table.category__table td:nth-child(3) {
+  width: 40px;
+}
+table.category__table td:nth-child(3) {
+  text-align: right;
+  padding-right: 3px;
+}

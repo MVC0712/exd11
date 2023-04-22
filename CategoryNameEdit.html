@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Category Edit Page</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/CategoryNameEdit.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <header>
+      <div>
+        <img id="language__mark" src="./img/En.png" alt="Lang" />
+      </div>
+      <div></div>
+      <div>
+        <div>Category Edit Page</div>
+      </div>
+      <div>
+        <div>
+          <div id="summary__table_record"></div>
+        </div>
+      </div>
+      <div>
+        <img src="./img/close.png" alt="close button" />
+      </div>
+    </header>
+    <div class="main__wrapper">
+      <div class="top__wrapper">
+        <div class="left__wrapper">
+          <table class="category__table" id="category1__table">
+            <thead>
+              <tr>
+                <th>id</th>
+                <th colspan="2">
+                  <div class="title__letters">Category 1</div>
+                </th>
+              </tr>
+              <tr>
+                <th>id</th>
+                <th>note</th>
+                <th>qty</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="input__wrapper">
+            <input
+              id="category1__text"
+              class="category_name__input"
+              type="text"
+            />
+            <button id="category1__button"></button>
+          </div>
+        </div>
+        <div class="right__wrapper">
+          <table class="category__table" id="category2__table">
+            <thead>
+              <tr>
+                <th>id</th>
+                <th colspan="2">
+                  <div class="title__letters">Category 2</div>
+                </th>
+              </tr>
+              <tr>
+                <th>id</th>
+                <th>note</th>
+                <th>qty</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="input__wrapper">
+            <input class="category_name__input" type="text" />
+            <button id="category1__button"></button>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="middle__wrapper"></div> -->
+
+      <div class="button__wrapper">
+        <button id="insert__button">Ins From Clipboard</button>
+        <button id="save__button" disabled>Save</button>
+        <button id="check__button">Check</button>
+      </div>
+    </div>
+  </body>
+  <script src="./lib/jquery.min.js"></script>
+  <script src="./scr/CategoryNameEdit.js"></script>
+</html>

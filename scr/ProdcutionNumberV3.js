@@ -32,7 +32,7 @@ $(function () {
   // make summary table
   readSummaryTable();
   readCategory1Table();
-  $("#test__button").remove();
+  // $("#test__button").remove();
 });
 
 function readSummaryTable() {
@@ -258,13 +258,17 @@ $(document).on("click", "#category1__table tbody tr", function () {
   myAjax.myAjax(fileName, sendData);
 
   $("#category2__table tbody").empty();
-  ajaxReturnData.forEach(function (trVal) {
-    var newTr = $("<tr>");
-    Object.keys(trVal).forEach(function (tdVal) {
-      $("<td>").html(trVal[tdVal]).appendTo(newTr);
+  if (ajaxReturnData.length == 0) {
+    $("#category2__table tbody").append($("<tr>").append($("<td><td><td>")));
+  } else {
+    ajaxReturnData.forEach(function (trVal) {
+      var newTr = $("<tr>");
+      Object.keys(trVal).forEach(function (tdVal) {
+        $("<td>").html(trVal[tdVal]).appendTo(newTr);
+      });
+      $(newTr).appendTo("#category2__table tbody");
     });
-    $(newTr).appendTo("#category2__table tbody");
-  });
+  }
 });
 
 $(document).on("click", "#category2__table tbody tr", function () {
@@ -401,14 +405,19 @@ $(document).on("click", "#summary__table tbody tr", function () {
   myAjax.myAjax(fileName, sendData);
   setCategory(targetId);
 
+  $("#category1__tr").removeAttr("id");
   if (ajaxReturnData.length != 0) {
     $("#category1__table tbody tr").each(function () {
       if (
         $(this).find("td").eq(0).html() == ajaxReturnData[0]["category1_id"]
       ) {
-        $(this).addClass("selected-record").get(0).scrollIntoView({
-          behavior: "smooth",
-        });
+        $(this)
+          .addClass("selected-record")
+          .attr("id", "category1__tr")
+          .get(0)
+          .scrollIntoView({
+            behavior: "smooth",
+          });
       }
     });
   }
@@ -424,12 +433,15 @@ $(document).on("click", "#summary__table tbody tr", function () {
       $("<td>").html(trVal[tdVal]).appendTo(newTr);
     });
     if ($(newTr).find("td").eq(1).html() == category2Name) {
-      $(newTr).addClass("selected-record").attr("id", "category2__tr");
+      $(newTr)
+        .addClass("selected-record")
+        .attr("id", "category2__tr")
+        .get(0)
+        .scrollIntoView({
+          behavior: "smooth",
+        });
     }
     $(newTr).appendTo("#category2__table tbody");
-  });
-  $("#category2__table tbody tr.selected-record").get(0).scrollIntoView({
-    behavior: "smooth",
   });
 });
 
@@ -680,43 +692,12 @@ function displayArrowMark(header) {
 }
 
 $(document).on("click", "#test__button", function () {
-  let fileName;
-  let sendData = new Object();
-  let language = "En";
-  const tileLettersObject = $("div.title__letters");
-  console.log(tileLettersObject);
-  // console.log($("div.title__letters").get(0));
+  const myObj = document.getElementById("category1__tr");
 
-  fileName = "./php/ProductionNumber/SelTitleName.php";
-  sendData = {
-    dummy: "dummy",
-  };
-  myAjax.myAjax(fileName, sendData);
-  // console.log(ajaxReturnData);
+  console.log(myObj);
 
-  tileLettersObject.each(function () {
-    let targetObj = $(this);
-    ajaxReturnData.forEach(function (databaseLetters) {
-      console.log(targetObj.text() + "\n" + databaseLetters["english"]);
-      switch (language) {
-        case "Vn":
-          if (targetObj.text() == databaseLetters["english"]) {
-            console.log(
-              databaseLetters["english"] + " : " + databaseLetters["vietnamese"]
-            );
-            targetObj.text(databaseLetters["vietnamese"]);
-          }
-          break;
-        case "En":
-          if (targetObj.text() == databaseLetters["vietnamese"]) {
-            console.log(
-              databaseLetters["english"] + " : " + databaseLetters["vietnamese"]
-            );
-            targetObj.text(databaseLetters["english"]);
-          }
-          break;
-      }
-    });
+  myObj.scrollIntoView({
+    behavior: "smooth",
   });
 });
 
@@ -772,4 +753,14 @@ $(document).on("click", "#language__mark", function () {
       }
     });
   });
+});
+
+$(document).on("click", "#edit_category__button", function () {
+  console.log("Hello");
+
+  window.open(
+    "./CategoryNameEdit.html",
+    null,
+    "width=720, height=530, left=280, top=200, toolbar=yes,menubar=yes,scrollbars=no"
+  );
 });
