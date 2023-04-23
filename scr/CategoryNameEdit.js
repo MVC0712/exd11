@@ -26,6 +26,65 @@ $(function () {
   // $("#test__button").remove();
 });
 
+$(document).on("click", "#language__mark", function () {
+  const str = $("#language__mark").attr("src");
+  const language = str.match(/\/([^.\/]+)\.\w+$/);
+  const tileLettersObject = $("div.title__letters");
+  // console.log(tileLettersObject);
+  let fileName;
+  let sendData = new Object();
+
+  fileName = "./php/ProductionNumber/SelTitleName.php";
+  sendData = {
+    dummy: "dummy",
+  };
+  myAjax.myAjax(fileName, sendData);
+
+  tileLettersObject.each(function () {
+    let targetObj = $(this);
+    ajaxReturnData.forEach(function (databaseLetters) {
+      // console.log(targetObj.text() + "\n" + databaseLetters["english"]);
+      switch (language[1]) {
+        case "En":
+          if (targetObj.text() == databaseLetters["english"]) {
+            // console.log(
+            //   databaseLetters["english"] + " : " + databaseLetters["vietnamese"]
+            // );
+            targetObj.text(databaseLetters["vietnamese"]);
+            $("#language__mark").attr("src", "./img/Vn.png");
+          }
+          break;
+        case "Vn":
+          if (targetObj.text() == databaseLetters["vietnamese"]) {
+            // console.log(
+            //   databaseLetters["english"] + " : " + databaseLetters["vietnamese"]
+            // );
+            targetObj.text(databaseLetters["english"]);
+            $("#language__mark").attr("src", "./img/En.png");
+          }
+          break;
+      }
+    });
+  });
+});
+
+$("#window_close__mark").hover(
+  function () {
+    const src = $("#window_close__mark").attr("src").replace("2_1", "2_2");
+    // console.log("hello");
+    $("#window_close__mark").attr("src", src);
+  },
+  function () {
+    const src = $("#window_close__mark").attr("src").replace("2_2", "2_1");
+    // console.log("good bye");
+    $("#window_close__mark").attr("src", src);
+  }
+);
+
+$(document).on("click", "#window_close__mark", function () {
+  window.close();
+});
+
 function readCategory1Table() {
   let fileName;
   let sendData = new Object();
@@ -99,7 +158,7 @@ $(document).on("click", "#category1__table tr.selected-record", function () {
   let fileName;
   let sendData = new Object();
 
-  deleteTableName = "cagetory1";
+  deleteTableName = "category1";
   fileName = "./php/ProductionNumber/SelEmploeeNumber.php";
   sendData = {
     dummy: "dummy",
@@ -125,7 +184,7 @@ $(document).on(
     let fileName;
     let sendData = new Object();
 
-    deleteTableName = "cagetory2";
+    deleteTableName = "category2";
 
     fileName = "./php/ProductionNumber/SelEmploeeNumber.php";
     sendData = {
@@ -150,15 +209,32 @@ $(document).on("click", "#dialog-delete__button", function () {
   let sendData = new Object();
 
   // console.log($("#summary__tr td").eq(0).text());
+  console.log(deleteTableName);
+  switch (deleteTableName) {
+    case "category1":
+      fileName = "./php/ProductionNumber/DelCategory1.php";
+      sendData = {
+        targetId: $("#category1__tr td").eq(0).text(),
+      };
+      // console.log(sendData);
+      myAjax.myAjax(fileName, sendData);
+      readCategory1Table();
+      break;
+    case "category2":
+      fileName = "./php/ProductionNumber/DelCategory2.php";
+      sendData = {
+        targetId: $("#category2__tr td").eq(0).text(),
+      };
+      console.log(sendData);
+      // set category talbe
+      myAjax.myAjax(fileName, sendData);
+      setCategory2Talbe();
+      break;
+    default:
+      console.log("anything wrong");
+  }
 
-  fileName = "./php/ProductionNumber/DelCategory1.php";
-  sendData = {
-    targetId: $("#category1__tr td").eq(0).text(),
-  };
-  // console.log(sendData);
-  myAjax.myAjax(fileName, sendData);
   document.getElementById("delete__dialog").close();
-  readCategory1Table();
   $("#dialog-delete__button").attr("disabled", true);
   $("#emploee_number").val("");
 

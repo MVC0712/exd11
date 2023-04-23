@@ -66,6 +66,7 @@ header > div:nth-child(1) {
 header > div:nth-child(1) > img {
   /* background-color: aqua; */
   width: 35px;
+  cursor: pointer;
   /* height: 25px; */
 }
 header > div:nth-child(2) {
@@ -102,6 +103,7 @@ header > div:nth-child(5) > img {
   /* background-color: aqua; */
   width: 25px;
   height: 25px;
+  cursor: pointer;
 }
 .main__wrapper {
   height: 670px;

@@ -77,6 +77,7 @@ header > div:nth-child(1) {
 header > div:nth-child(1) > img {
   /* background-color: aqua; */
   width: 35px;
+  cursor: pointer;
   /* height: 25px; */
 }
 header > div:nth-child(2) {
@@ -87,6 +88,7 @@ header > div:nth-child(2) {
   flex-direction: column;
   text-align: center;
   color: yellow;
+  /* color: */
 }
 header > div:nth-child(3) {
   width: 300px;
@@ -113,6 +115,7 @@ header > div:nth-child(5) > img {
   /* background-color: aqua; */
   width: 25px;
   height: 25px;
+  cursor: pointer;
 }
 .top__wrapper {
   width: 100%;

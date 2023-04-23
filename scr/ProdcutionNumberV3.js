@@ -32,7 +32,7 @@ $(function () {
   // make summary table
   readSummaryTable();
   readCategory1Table();
-  // $("#test__button").remove();
+  $("#test__button").remove();
 });
 
 function readSummaryTable() {
