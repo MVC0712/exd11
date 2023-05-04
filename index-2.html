@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Extrusion TP</title>
+    <link rel="stylesheet" href="./css/sanitize.css" />
+    <link rel="stylesheet" href="./css/common.css" />
+    <link rel="stylesheet" href="./css/index.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <div>
+        <label for="languageMode">
+          <img src="./img/En.png" id="langualgeImage" alt="language" />
+        </label>
+        <input type="checkbox" id="languageMode" />
+        <!-- <img id="logo" src="./img/cute_wing_falcon_13843-768x640.png" alt="" /> -->
+      </div>
+      <ul class="roboto_mono500">
+        <li><a href="#">Press Plan</a></li>
+        <li><a href="#">Press Dayliy</a></li>
+        <li><a href="#">Measure</a></li>
+        <li><a href="#">Packing</a></li>
+        <li><a href="#">Cast Plan</a></li>
+        <li><a href="#">Cast Dayliy</a></li>
+      </ul>
+    </header>
+    <div class="main__wrapper">
+      <nav>
+        <dl class="menu roboto_mono400">
+          <dt>Press</dt>
+          <dd class="menu">
+            <ul>
+              <li>
+                <a class="disabled_a" href="#">Order Sheet</a>
+              </li>
+              <li><a class="disabled_a" href="#">Plan</a></li>
+              <li><a class="disabled_a" href="#">Direction</a></li>
+              <li>
+                <a href="#" id="pressReportPage" class="title__letters"
+                  >Press Daily</a
+                >
+              </li>
+              <li>
+                <a href="#" id="qualityPage" class="title__letters"
+                  >Quality Report</a
+                >
+              </li>
+              <li><a class="disabled_a" href="#">Packing Report</a></li>
+            </ul>
+          </dd>
+          <dt>Quality</dt>
+          <dd class="menu">
+            <ul>
+              <!-- <li class="active"><a href="#">Press Quality</a></li> -->
+              <li><a href="#" id="ethcingPage">Etching</a></li>
+              <li><a class="disabled_a" href="#">Hardness</a></li>
+              <li><a class="disabled_a" href="#">Press Report</a></li>
+              <li><a class="disabled_a" href="#">Packing Report</a></li>
+            </ul>
+          </dd>
+          <dt>Dies</dt>
+          <dd>
+            <ul>
+              <li><a class="disabled_a" href="#">Die Status</a></li>
+              <li><a class="disabled_a" href="#">Nitriding</a></li>
+              <li><a class="disabled_a" href="#">Die History</a></li>
+            </ul>
+          </dd>
+          <!-- <dt>Casting</dt>
+          <dd>
+            <ul>
+              <li><a class="disabled_a" href="#">Plan</a></li>
+              <li><a class="disabled_a" href="#">Casting Report</a></li>
+            </ul>
+          </dd> -->
+          <dt>Paramaters</dt>
+          <dd>
+            <ul>
+              <li><a class="disabled_a" href="#">Dies List</a></li>
+              <li><a class="disabled_a" href="#">Production Number</a></li>
+              <li><a class="disabled_a" href="#">Staff</a></li>
+            </ul>
+          </dd>
+          <dt>View</dt>
+          <dd>
+            <ul>
+              <li><a class="disabled_a" href="#">Press Plan</a></li>
+              <li><a class="disabled_a" href="#">QA</a></li>
+              <li><a class="disabled_a" href="#">Packing</a></li>
+            </ul>
+          </dd>
+        </dl>
+      </nav>
+      <main>
+        <!-- <iframe
+          src="./../../diereport/ext0.11/exd11/DailyReportV16.html"
+          frameborder="0"
+          width="100%"
+          height="100%"
+        ></iframe> -->
+      </main>
+    </div>
+
+    <script src="./lib/jquery-3.6.4.min.js"></script>
+    <script src="./scr/index.js"></script>
+  </body>
+</html>

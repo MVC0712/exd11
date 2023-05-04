@@ -1,0 +1,14 @@
+* {
+  font-family: "Segoe UI", "游ゴシック体";
+}
+
+.roboto_mono500 {
+  font-family: "Roboto Mono", monospace;
+  font-weight: 500;
+  font-size: 10pt;
+}
+.roboto_mono400 {
+  font-family: "Roboto Mono", monospace;
+  font-weight: 400;
+  font-size: 10pt;
+}
