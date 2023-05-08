@@ -120,3 +120,19 @@ function openPage(targetPage) {
     .attr("height", "100%");
   $("main").empty().append(myObj);
 }
+
+$("#extrusion_block").on("click", function () {
+  $(".extrusion_block").css("display", "block");
+  $(".casting_block").css("display", "none");
+  $(".checksheet_block").css("display", "none");
+});
+$("#casting_block").on("click", function () {
+  $(".casting_block").css("display", "block");
+  $(".extrusion_block").css("display", "none");
+  $(".checksheet_block").css("display", "none");
+});
+$("#checksheet_block").on("click", function () {
+  $(".checksheet_block").css("display", "block");
+  $(".extrusion_block").css("display", "none");
+  $(".casting_block").css("display", "none");
+});

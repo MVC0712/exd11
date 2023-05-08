@@ -102,3 +102,13 @@ main {
   margin-left: 10px;
   margin-top: 10px;
 }
+
+.extrusion_block {
+  
+}
+.casting_block {
+  display: none;
+}
+.checksheet_block {
+  display: none;
+}

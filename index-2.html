@@ -8,10 +8,10 @@
     <link rel="stylesheet" href="./css/sanitize.css" />
     <link rel="stylesheet" href="./css/common.css" />
     <link rel="stylesheet" href="./css/index.css" />
-    <link
+    <!-- <link
       href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500&display=swap"
       rel="stylesheet"
-    />
+    /> -->
   </head>
   <body>
     <header>
@@ -20,20 +20,16 @@
           <img src="./img/En.png" id="langualgeImage" alt="language" />
         </label>
         <input type="checkbox" id="languageMode" />
-        <!-- <img id="logo" src="./img/cute_wing_falcon_13843-768x640.png" alt="" /> -->
       </div>
       <ul class="roboto_mono500">
-        <li><a href="#">Extrusion</a></li>
-        <li><a href="#">Casting</a></li>
-        <li><a href="#">Check Sheet</a></li>
-        <!-- <li><a href="#">Packing</a></li>
-        <li><a href="#">Cast Plan</a></li>
-        <li><a href="#">Cast Dayliy</a></li> -->
+        <li><a id="extrusion_block" href="#">Extrusion</a></li>
+        <li><a id="casting_block" href="#">Casting</a></li>
+        <li><a id="checksheet_block" href="#">Check Sheet</a></li>
       </ul>
     </header>
     <div class="main__wrapper">
       <nav>
-        <dl class="menu roboto_mono400">
+        <dl class="menu roboto_mono400 extrusion_block">
           <dt>Press</dt>
           <dd class="menu">
             <ul>
@@ -42,7 +38,8 @@
               </li>
               <li><a class="disabled_a" href="#">Press Dailyreport</a></li>
               <li><a class="disabled_a" href="#">Print file</a></li>
-              <li><a class="disabled_a" href="#">Plan</a></li>
+              <li><a class="disabled_a" href="#">Press Plan</a></li>
+              <li><a class="disabled_a" href="#">Pack Plan</a></li>
               <li>
                 <a href="#" id="pressReportPage" class="title__letters"
                   >Press Daily</a
@@ -65,6 +62,15 @@
               <li><a class="disabled_a" href="#">Measument</a></li>
             </ul>
           </dd>
+          <dt>Dies</dt>
+          <dd class="menu">
+            <ul>
+              <li><a href="#" id="ethcingPage">Die status</a></li>
+              <li><a class="disabled_a" href="#">Die history</a></li>
+              <li><a class="disabled_a" href="#">Nitriding</a></li>
+              <li><a class="disabled_a" href="#">Nitriding</a></li>
+            </ul>
+          </dd>
           <dt>Summary</dt>
           <dd>
             <ul>
@@ -73,40 +79,72 @@
               <li><a class="disabled_a" href="#">Press Summary</a></li>
               <li><a class="disabled_a" href="#">Plan View</a></li>
               <li><a class="disabled_a" href="#">Pack View</a></li>
+              <li><a class="disabled_a" href="#">Billet</a></li>
             </ul>
           </dd>
-          <!-- <dt>Casting</dt>
-          <dd>
-            <ul>
-              <li><a class="disabled_a" href="#">Plan</a></li>
-              <li><a class="disabled_a" href="#">Casting Report</a></li>
-            </ul>
-          </dd> -->
           <dt>Paramaters</dt>
           <dd>
             <ul>
               <li><a class="disabled_a" href="#">Dies List</a></li>
               <li><a class="disabled_a" href="#">Production Number</a></li>
+              <li><a class="disabled_a" href="#">Drawing</a></li>
               <li><a class="disabled_a" href="#">Staff</a></li>
             </ul>
           </dd>
-          <dt>View</dt>
+          <dt>Side</dt>
           <dd>
             <ul>
-              <li><a class="disabled_a" href="#">Press Plan</a></li>
-              <li><a class="disabled_a" href="#">QA</a></li>
-              <li><a class="disabled_a" href="#">Packing</a></li>
+              <li><a class="disabled_a" href="#">To warehouse</a></li>
+              <li><a class="disabled_a" href="#">Export</a></li>
+              <li><a class="disabled_a" href="#">Maintenance</a></li>
+              <li><a class="disabled_a" href="#">Extrusion Log</a></li>
             </ul>
           </dd>
         </dl>
+
+        <dl class="menu roboto_mono400 casting_block">
+          <dt>Casting</dt>
+          <dd class="menu">
+          <ul>
+            <li><a class="disabled_a" href="#">Home Page</a></li>
+            <li><a class="disabled_a" href="#">DailyReport Page</a></li>
+            <li><a class="disabled_a" href="#">Homogenizing Page</a></li>
+            <li><a class="disabled_a" href="#">Cutting Page</a></li>
+            <li><a class="disabled_a" href="#">Mold History Page</a></li>
+          </ul>
+          </dd>
+          <dt>Quality</dt>
+          <dd class="menu">
+          <ul>
+            <li><a href="#" id="ethcingPage">Measurement File</a></li>
+            <li><a class="disabled_a" href="#">Plan Page</a></li>
+            <li><a class="disabled_a" href="#">Plan View Page</a></li>
+          </ul>
+          </dd>
+          <dt>Warehouse</dt>
+          <dd class="menu">
+          <ul>
+            <li><a href="#" id="ethcingPage">Import Billet Page</a></li>
+            <li><a class="disabled_a" href="#">Export Billet Page</a></li>
+          </ul>
+          </dd>
+        </dl>
+
+        <dl class="menu roboto_mono400 checksheet_block">
+          <dt>Check sheet</dt>
+          <dd class="menu">
+          <ul>
+            <li><a class="disabled_a" href="#">Add form</a></li>
+            <li><a class="disabled_a" href="#">Check page</a></li>
+            <li><a class="disabled_a" href="#">Confirm page</a></li>
+            <li><a class="disabled_a" href="#">Summary page</a></li>
+          </ul>
+          </dd>
+        </dl>
+
       </nav>
       <main>
-        <!-- <iframe
-          src="./../../diereport/ext0.11/exd11/DailyReportV16.html"
-          frameborder="0"
-          width="100%"
-          height="100%"
-        ></iframe> -->
+
       </main>
     </div>
 
