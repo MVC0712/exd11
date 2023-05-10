@@ -142,7 +142,7 @@ tbody tr.selected-record {
 
 #summary__table tbody {
   height: 525px;
-  width: 490px;
+  width: 520px;
   overflow: auto;
 }
 #summary__table th:nth-child(1),
@@ -183,11 +183,16 @@ tbody tr.selected-record {
 }
 #summary__table th:nth-child(9),
 #summary__table td:nth-child(9) {
+  width: 25px;
+  text-align: center;
+}
+#summary__table th:nth-child(10),
+#summary__table td:nth-child(10) {
   width: 100px;
 }
 #code__table tbody {
   height: 545px;
-  width: 305px;
+  width: 275px;
   overflow: auto;
 }
 #code__table th:nth-child(1),
@@ -201,7 +206,7 @@ tbody tr.selected-record {
 
 #code__table th:nth-child(3),
 #code__table td:nth-child(3) {
-  width: 250px;
+  width: 220px;
 }
 #prs_type_search {
   width: 25px;

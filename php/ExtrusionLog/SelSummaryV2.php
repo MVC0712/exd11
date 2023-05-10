@@ -31,6 +31,7 @@
     code,
     TIME_FORMAT(start, '%H:%i') AS start,
     TIME_FORMAT(end, '%H:%i') AS end,
+    ROUND(TIME_TO_SEC(timediff(end ,start))/60) AS diff,
     note
     FROM
     t_extrusion_log
