@@ -25,12 +25,9 @@ $(function () {
   let displayDate = new Object();
   var arrPlanTable = new Array();
   var titleDate = new Array();
-  // make summary table
-  // readSummaryTable();
-  // readCategory1Table();
-  // $("#test__button").remove();
-  // makePressPlan();
-  // getDisplayWeek();
+
+  sessionStorage.removeItem("active_staff");
+
   getDisplayWeek();
   arrPlanTable = getPlanTableData(planDate);
   makePlanTable(arrPlanTable);
@@ -41,36 +38,13 @@ $(function () {
   // inputSession();
 });
 
-function inputSession() {
-  if (sessionStorage.active_staff == null) {
-    let staff_code = prompt("Please enter your Emp No:", "");
-    if (staff_code === null) {
-      return;
-    }
-    var fileName = "./php/SelEmpCode.php";
-    var sendData = {
-      staff_code: staff_code,
-    };
-    myAjax.myAjax(fileName, sendData);
-    if (ajaxReturnData.length != 0) {
-      sessionStorage.setItem("active_staff", JSON.stringify(ajaxReturnData));
-      active = sessionStorage.getItem("active_staff");
-      alert(JSON.parse(active)[0].staff_name + " is activating!");
-    } else {
-      alert("Your Emp No does not exist!");
-      inputSession();
-    }
-  }
-  $("#active_staff").html(JSON.parse(active)[0].staff_name);
-}
-
 function makeTitleTr(titleDate) {
   var newTr = $("<tr>");
-  console.log(titleDate);
+  // console.log(titleDate);
   for (var i = 0; i <= 6; i++) {
     newTr.append($("<th>").text(titleDate[i]).attr("colspan", "4"));
   }
-  console.log(newTr);
+  // console.log(newTr);
   $("#weekleyPlan thead").empty().append(newTr);
 }
 
@@ -88,13 +62,15 @@ function makeDateStrings(planDate) {
     dayOfWeek = daysOfWeek[tempDate.getDay()];
     titleDate.push(day + dayOfWeek);
   }
-  console.log(titleDate);
+  // console.log(titleDate);
   return titleDate;
 }
 
 $("#press_plan__a").click(function () {
   console.log("hello");
-  makePressPlan();
+  $("main").css("background-image", "./../img/BG.jpg");
+  $("main").css("background-image", "none");
+  // makePressPlan();
 });
 
 function getDisplayWeek() {
@@ -150,7 +126,7 @@ function getPlanTableData(displayDate) {
       }
     }
   });
-  console.log(arrPlanTable);
+  // console.log(arrPlanTable);
   return arrPlanTable;
 
   // makePlanTableHeadder(arrPlanTable);
@@ -168,27 +144,40 @@ function makePlanTable(arrPlanTable) {
       maxPlanNumber = arrPlanTable[key].length;
     }
   });
+  // console.log("maxPlanNumber: " + maxPlanNumber);
   $("#weekleyPlan tbody").empty();
-  for (var i = 0; i < maxPlanNumber; i++) {
+
+  if (maxPlanNumber != 0) {
+    for (var i = 0; i < maxPlanNumber; i++) {
+      trObject = $("<tr>");
+      for (var j = 0; j <= 6; j++) {
+        if (arrPlanTable["weekDay" + j][i] != undefined) {
+          trObject.append(
+            $("<td>").text(arrPlanTable["weekDay" + j][i]["die_number"])
+          );
+          trObject.append(
+            $("<td>").text(arrPlanTable["weekDay" + j][i]["pressing_type"])
+          );
+          trObject.append(
+            $("<td>").text(arrPlanTable["weekDay" + j][i]["quantity"])
+          );
+          trObject.append($("<td>").text(""));
+        } else {
+          for (var k = 0; k <= 3; k++) {
+            trObject.append($("<td>").text(""));
+          }
+        }
+        tdObject.append(tdObject);
+      }
+      $("#weekleyPlan tbody").append(trObject);
+    }
+  } else {
     trObject = $("<tr>");
     for (var j = 0; j <= 6; j++) {
-      if (arrPlanTable["weekDay" + j][i] != undefined) {
-        trObject.append(
-          $("<td>").text(arrPlanTable["weekDay" + j][i]["die_number"])
-        );
-        trObject.append(
-          $("<td>").text(arrPlanTable["weekDay" + j][i]["pressing_type"])
-        );
-        trObject.append(
-          $("<td>").text(arrPlanTable["weekDay" + j][i]["quantity"])
-        );
-        trObject.append($("<td>").text(""));
-      } else {
-        for (var k = 0; k <= 3; k++) {
-          trObject.append($("<td>").text(""));
-        }
-      }
-      tdObject.append(tdObject);
+      trObject.append("<td>");
+      trObject.append("<td>");
+      trObject.append("<td>");
+      trObject.append("<td>");
     }
     $("#weekleyPlan tbody").append(trObject);
   }
@@ -258,15 +247,37 @@ function changeLanguage() {
 }
 
 $("#pressReportPage").on("click", function () {
-  openPage("DailyReportV16.html");
+  if (sessionStorage.getItem("active_staff") == null) {
+    if (checkStaff()) {
+      $("main").css("background-image", "none");
+      openPage("DailyReportV16.html");
+    }
+  } else {
+    openPage("DailyReportV16.html");
+  }
 });
 
 $("#qualityPage").on("click", function () {
-  openPage("QualityReportV3.html");
+  if (sessionStorage.getItem("active_staff") == null) {
+    if (checkStaff()) {
+      $("main").css("background-image", "none");
+      $("main").css("background-image", "");
+      openPage("QualityReportV3.html");
+    }
+  } else {
+    openPage("QualityReportV3.html");
+  }
 });
 
 $("#ethcingPage").on("click", function () {
-  openPage("EtchingV4.html");
+  if (sessionStorage.getItem("active_staff") == null) {
+    if (checkStaff()) {
+      $("main").css("background-image", "none");
+      openPage("EtchingV4.html");
+    }
+  } else {
+    openPage("EtchingV4.html");
+  }
 });
 
 function openPage(targetPage) {
@@ -317,4 +328,33 @@ function forwardOneWeek() {
   planDate["saturdayDate"] = new Date(
     planDate["saturdayDate"].setDate(planDate["saturdayDate"].getDate() + 7)
   );
+}
+
+function checkStaff() {
+  console.log(sessionStorage.getItem("active_staff"));
+  let flag = true;
+  let staff_code = prompt("Please enter your Emp No:", "");
+  if (staff_code === null) {
+    // return;
+    flag = false;
+  }
+  var fileName = "./php/SelEmpCode.php";
+  var sendData = {
+    staff_code: staff_code,
+  };
+  myAjax.myAjax(fileName, sendData);
+  if (ajaxReturnData.length != 0) {
+    sessionStorage.setItem("active_staff", JSON.stringify(ajaxReturnData));
+    active = sessionStorage.getItem("active_staff");
+    alert(JSON.parse(active)[0].staff_name + " is activating!");
+  } else {
+    alert("Your Emp No does not exist!");
+    // inputSession();
+    flag = false;
+  }
+  $("#active_staff").html(JSON.parse(active)[0].staff_name);
+
+  console.log(sessionStorage.getItem("active_staff"));
+  console.log(flag);
+  return flag;
 }

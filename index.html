@@ -10,7 +10,15 @@
   </head>
 
   <body>
-    <header>Extrusion Top Page</header>
+    <header>
+      <div></div>
+      <div>
+        <div>Extrusion Top Page</div>
+      </div>
+      <div>
+        <img id="balloon__img" src="./img/bxs-balloon.png" alt="heart" />
+      </div>
+    </header>
     <div class="main__wrapper">
       <!-- <div class="left__area"></div> -->
       <div class="right__area">
@@ -197,6 +205,25 @@
         window.open(
           "https://sites.google.com/view/smc3/schedule%E3%82%B9%E3%82%B1%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB"
         );
+      });
+
+      $(document).on("click", "#balloon__img", function () {
+        window.open("index-2.html");
+      });
+
+      $("#balloon__img").mouseover(function () {
+        $("#balloon__img").fadeOut(200, function () {
+          $("#balloon__img")
+            .attr("src", "./img/bxs-balloon-after.png")
+            .fadeIn(200);
+        });
+      });
+
+      $("#balloon__img").mouseout(function () {
+        $("#balloon__img").attr("src", "./img/bxs-balloon.png");
+        // $("#balloon__img").fadeOut(200, function () {
+        //   $("#balloon__img").attr("src", "./img/bxs-balloon.png").fadeIn(200);
+        // });
       });
     </script>
   </body>
