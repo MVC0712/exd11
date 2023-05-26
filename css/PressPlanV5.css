@@ -4,7 +4,7 @@ body {
   display: flex;
   flex-direction: column;
   height: calc(600px - 2px);
-  width: calc(1280px - 2px);
+  width: calc(1300px - 2px);
 }
 input,
 select {
@@ -80,7 +80,7 @@ select {
 }
 
 .main__wrapper > div:nth-child(4) {
-  width: 80px;
+  width: 20px;
 }
 
 .main__wrapper > div:nth-child(4) > div {
@@ -133,7 +133,7 @@ select {
   justify-content: space-around;
 }
 #press_date_at {
-  width: 130px;
+  width: 100px;
 }
 #save__button {
   margin: 0px;
@@ -291,27 +291,30 @@ select {
 
 #summary__table th:nth-child(4),
 #summary__table td:nth-child(4) {
-  width: 130px;
+  width: 20px;
 }
 
 #summary__table th:nth-child(5),
 #summary__table td:nth-child(5) {
-  width: 110px;
+  width: 130px;
 }
 
 #summary__table th:nth-child(6),
-#summary__table td:nth-child(6),
+#summary__table td:nth-child(6) {
+  width: 110px;
+}
 #summary__table th:nth-child(7),
 #summary__table td:nth-child(7),
 #summary__table th:nth-child(8),
-#summary__table td:nth-child(8) {
-  width: 25px;
-}
+#summary__table td:nth-child(8),
 #summary__table th:nth-child(9),
 #summary__table td:nth-child(9) {
+  width: 25px;
+}
+#summary__table th:nth-child(10),
+#summary__table td:nth-child(10) {
   width: 180px;
 }
-
 
 .class1 {
   display: inline-block;
