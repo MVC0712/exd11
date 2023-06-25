@@ -223,6 +223,30 @@ $(document).on("click", "#summary__table tbody tr", function () {
   selectProductionNumberTable();
 });
 
+$(document).on(
+  "click",
+  "#summary__table tbody tr.selected-record",
+  function () {
+    console.log("hello");
+
+    fileName = "./php/ProductionNumber/SelEmploeeNumber.php";
+    sendData = {
+      dummy: "dummy",
+    };
+    // console.log(sendData);
+    myAjax.myAjax(fileName, sendData);
+    document.getElementById("delete__dialog").showModal();
+    $("#emploee_number").val("");
+    $("#dialog-delete__button").attr("disabled", true);
+  }
+);
+
+// Dialog
+$(document).on("click", "#dialog-cancel__button", function () {
+  document.getElementById("delete__dialog").close();
+  // $("#update__button").prop("disabled", true);
+});
+
 function selectProductionNumberTable() {
   const targetPN = $("#summary__table .selected-record")
     .find("td")
