@@ -1,3 +1,19 @@
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.blink-animation {
+  animation: blink 3s infinite;
+}
+
 body {
   width: 1200px;
   height: 700px;
@@ -78,6 +94,10 @@ header > div:nth-child(2) {
   flex-direction: column;
   text-align: center;
   color: yellow;
+}
+
+.redLetters {
+  color: #baff9f;
 }
 header > div:nth-child(3) {
   width: 300px;

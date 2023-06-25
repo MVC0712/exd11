@@ -1,6 +1,8 @@
 const targetDirectory = "./";
-let ajaxReturnData;
+var ajaxReturnData;
 var productionNumberTableValues = new Object();
+var addNewDieName;
+var savedMode;
 
 const myAjax = {
   myAjax: function (fileName, sendData) {
@@ -28,7 +30,15 @@ $(function () {
   makeSummaryTalbe();
   makeDieDiamaterSelect();
   makeBolsterSelect();
+
+  // blink mode letters
+  setInterval(blinkText(), 3000);
 });
+
+// テキストを点滅させる
+function blinkText() {
+  $("#mode_display").toggleClass("blink-animation");
+}
 
 function makeDieDiamaterSelect() {
   fileName = "./php/Die/SelDiamater.php";
@@ -76,7 +86,8 @@ function makeSummaryTalbe() {
 }
 
 function makeProductionNumberTalbe() {
-  fileName = "./php/Die/SelProductionNumber.php";
+  const fileName = "./php/Die/SelProductionNumber.php";
+  var sendData = new Object();
   sendData = {
     targetId: $("#category1__tr").find("td").eq(0).html(),
     production_number: "%",
@@ -119,8 +130,14 @@ function makeYYYYMMDDtoDateObj(strDate) {
   return year + "-" + month + "-" + day;
 }
 
-$(document).on("keyup", "#production_number", function () {
-  $(this).val($(this).val().toUpperCase()); // exchenge to Large letters
+$(document).on("keyup", "#die_number", function () {
+  // Set Mode "NewAdd Mode" or "Edit Mode"
+  if ($("#mode_display").html() === "") {
+    $("#mode_display").html("New Add Mode");
+  }
+  // exchenge to Large letters
+  $(this).val($(this).val().toUpperCase());
+
   var flag = true;
   if ($(this).val().length < 3) {
     flag = false;
@@ -187,7 +204,7 @@ $(document).on("click", "#summary__table tbody tr", function () {
   $("#update__button").prop("disabled", false);
 
   // Copy values
-  $("#production_number").val(targetTr.eq(1).text());
+  $("#die_number").val(targetTr.eq(1).text());
   $("#die_diamater__select option").each(function () {
     if ($(this).text() == targetTr.eq(2).text()) {
       $("#die_diamater__select").val($(this).val());
@@ -233,10 +250,6 @@ $(document).on("click", "#production_number__table tbody tr", function () {
     "selected-record"
   );
   $(this).addClass("selected-record");
-});
-
-$(document).on("click", "#test__button", function () {
-  console.log(inputCheck());
   buttonActivaltion();
 });
 
@@ -255,7 +268,11 @@ function inputCheck() {
 
 function buttonActivaltion() {
   var mode;
+  // check selection of production table
 
+  if ($("#production_number__table .selected-record").length == 0) {
+    return;
+  }
   if ($("#mode_display").html() === "Update Mode") {
     mode = "Update";
   } else {
@@ -278,4 +295,82 @@ function buttonActivaltion() {
       }
       break;
   }
+}
+
+$(document).on("click", "#test__button", function () {
+  $("#summary__table tbody").empty();
+});
+
+$(document).on("click", "#save__button", function () {
+  var savedMode = $("#mode_display").text();
+  var saveData = new Object();
+  const fileName = "./php/Die/InsDie.php";
+
+  saveData = getSaveData();
+  addNewDieName = $("#die_number").val();
+
+  if (checkDieNameDuplication()) {
+    // when die name duplicated
+    $("#mode_display").text("Die Name Wrong").addClass("redLetters");
+    setTimeout(function () {
+      $("#mode_display").text(savedMode).removeClass("redLetters");
+    }, 10000);
+  } else {
+    // when die name normal
+    myAjax.myAjax(fileName, saveData);
+  }
+  $("#summary__table tbody").empty();
+  makeSummaryTalbe();
+  moveSelectorToNewDie(saveData);
+});
+
+function moveSelectorToNewDie(saveData) {
+  var targetObj = new Object();
+  console.log("hello");
+
+  targetObj = $("#summary__table tbody tr");
+  targetObj.each(function () {
+    if ($(this).find("td").eq(1).text() == saveData["die_number"]) {
+      $(this)
+        .addClass("selected-record")
+        .attr("id", "production_number__tr")
+        .get(0)
+        .scrollIntoView({
+          behavior: "smooth",
+        });
+    }
+  });
+}
+
+function getSaveData() {
+  var saveData = new Object();
+  var targetObj = new Object();
+  const today = new Date();
+
+  targetObj = $(".save-data");
+  targetObj.each(function () {
+    saveData[$(this).prop("id")] = $(this).val();
+  });
+  saveData["production_number_id"] = $(
+    "#production_number__table .selected-record"
+  )
+    .find("td")
+    .eq(0)
+    .text();
+  saveData["today"] = makeYYYYMMDD(today);
+  return saveData;
+}
+
+function checkDieNameDuplication() {
+  var flag = false;
+  var dieName = $("#die_number").val();
+  var targetObj = $("#summary__table tbody tr");
+  targetObj.each(function () {
+    // console.log($(this).find("td").eq(0).text());
+    if ($(this).find("td").eq(1).text() == dieName) {
+      flag = true;
+    }
+  });
+
+  return flag;
 }
