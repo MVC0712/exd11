@@ -17,8 +17,8 @@ header {
   border-bottom: dotted 1px #0000cc;
   flex-direction: row;
   height: 30px;
-  justify-content: center;
-  /* justify-content: space-between; */
+  /* justify-content: center; */
+  justify-content: space-between;
   text-align: center;
   background-color: #0000cc;
   color: white;
