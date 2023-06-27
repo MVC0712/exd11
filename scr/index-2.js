@@ -1,5 +1,6 @@
 const targetDirectory = "./";
 // const targetDirectory = "./../../diereport/ext0.11/exd11/";
+const billetChargeTime = 40; // 40 seconds for one billet charge
 let ajaxReturnData;
 let planDate = new Object();
 
@@ -42,7 +43,7 @@ function makeTitleTr(titleDate) {
   var newTr = $("<tr>");
   // console.log(titleDate);
   for (var i = 0; i <= 6; i++) {
-    newTr.append($("<th>").text(titleDate[i]).attr("colspan", "4"));
+    newTr.append($("<th>").text(titleDate[i]).attr("colspan", "3"));
   }
   // console.log(newTr);
   $("#weekleyPlan thead").empty().append(newTr);
@@ -87,10 +88,6 @@ function getDisplayWeek() {
     currentDate.getDate() - currentDay
   );
   saturdayDate.setDate(sundayDate.getDate() + 6);
-
-  // set test Date 23-2-5 ~ 23-2-11
-  // sundayDate.setFullYear(2023, 1, 5);
-  // saturdayDate.setFullYear(2023, 1, 11);
 
   // exchange Date object to yyyy-mm-dd
   planDate["sundayDate"] = sundayDate;
@@ -138,6 +135,10 @@ function makePlanTable(arrPlanTable) {
   var tdObject = new Object($("<td>"));
   var trObject = new Object($("<tr>"));
   var maxPlanNumber = 0;
+  var sumupTime = new Array();
+  for (var i = 0; i <= 6; i++) {
+    sumupTime[i] = 0;
+  }
 
   Object.keys(arrPlanTable).forEach((key) => {
     if (maxPlanNumber < arrPlanTable[key].length) {
@@ -161,7 +162,10 @@ function makePlanTable(arrPlanTable) {
           trObject.append(
             $("<td>").text(arrPlanTable["weekDay" + j][i]["quantity"])
           );
-          trObject.append($("<td>").text(""));
+          // trObject.append($("<td>").text(""));
+          trObject.append(
+            $("<td>").text(calPressingTime(arrPlanTable["weekDay" + j][i]))
+          );
         } else {
           for (var k = 0; k <= 3; k++) {
             trObject.append($("<td>").text(""));
@@ -171,6 +175,16 @@ function makePlanTable(arrPlanTable) {
       }
       $("#weekleyPlan tbody").append(trObject);
     }
+    // add last record to display sumup of pressing time
+    trObject = $("<tr>");
+    sumupTime = calSumupPressingTime();
+    for (var j = 0; j <= 6; j++) {
+      trObject.append("<td>");
+      trObject.append("<td>");
+      trObject.append("<td>");
+      trObject.append($("<td>").text(sumupTime[j]));
+    }
+    $("#weekleyPlan tbody").append(trObject);
   } else {
     trObject = $("<tr>");
     for (var j = 0; j <= 6; j++) {
@@ -181,6 +195,48 @@ function makePlanTable(arrPlanTable) {
     }
     $("#weekleyPlan tbody").append(trObject);
   }
+  console.log(sumupTime);
+}
+
+function calSumupPressingTime() {
+  const targetObj = $("#weekleyPlan tbody tr");
+  var sumupTime = new Array();
+  for (var i = 0; i <= 6; i++) {
+    sumupTime[i] = 0;
+  }
+
+  targetObj.each(function () {
+    for (var i = 0; i <= 6; i++) {
+      sumupTime[i] =
+        sumupTime[i] +
+        Number(
+          $(this)
+            .find("td")
+            .eq(4 * i + 3)
+            .text()
+        );
+    }
+  });
+  for (var i = 0; i <= 6; i++) {
+    sumupTime[i] = sumupTime[i].toFixed(1);
+  }
+  sumupTime[0] = null;
+
+  return sumupTime;
+}
+
+function calPressingTime(planData) {
+  // console.log("hello");
+  // console.log(planData);
+  let pressingTime;
+  pressingTime =
+    (planData["billet_input_quantity"] * planData["billet_length"]) /
+    planData["ram_speed"];
+  pressingTime =
+    pressingTime + planData["billet_input_quantity"] * billetChargeTime;
+  pressingTime = pressingTime / 3600;
+
+  return pressingTime.toFixed(1);
 }
 
 function isSameDate(date1, date2) {
@@ -194,13 +250,27 @@ function isSameDate(date1, date2) {
 function getPressPlan() {
   let fileName;
   let sendData = new Object();
+  let berfore3Month = new Date(planDate["sundayDate"]);
+  let after3Month = new Date(planDate["sundayDate"]);
+  berfore3Month.setMonth(berfore3Month.getMonth() - 3);
+  after3Month.setMonth(after3Month.getMonth() + 3);
 
   fileName = "./php/index/selPressPlan.php";
   sendData = {
     dummy: "dummy",
+    before3Month: makeYYYYMMDD(berfore3Month),
+    after3Month: makeYYYYMMDD(after3Month),
   };
   myAjax.myAjax(fileName, sendData);
   // console.log(ajaxReturnData);
+}
+
+function makeYYYYMMDD(dateObj) {
+  const year = dateObj.getFullYear();
+  const month = String(dateObj.getMonth() + 1).padStart(2, "0");
+  const day = String(dateObj.getDate()).padStart(2, "0");
+
+  return year + "-" + month + "-" + day;
 }
 
 $("#languageMode").on("click", function () {

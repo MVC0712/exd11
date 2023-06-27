@@ -183,14 +183,15 @@ main table#weekleyPlan td:nth-child(25) {
   width: 80pt;
 }
 /* Press type */
-/* main table#weekleyPlan td:nth-child(2), */
+main table#weekleyPlan td:nth-child(2),
 main table#weekleyPlan td:nth-child(6),
 main table#weekleyPlan td:nth-child(10),
 main table#weekleyPlan td:nth-child(14),
 main table#weekleyPlan td:nth-child(18),
 main table#weekleyPlan td:nth-child(22),
 main table#weekleyPlan td:nth-child(26) {
-  width: 10pt;
+  display: none;
+  /* width: 10pt; */
 }
 /* main table#weekleyPlan tbody td:nth-child(2), */
 main table#weekleyPlan tbody td:nth-child(6),
@@ -229,7 +230,15 @@ main table#weekleyPlan td:nth-child(16),
 main table#weekleyPlan td:nth-child(20),
 main table#weekleyPlan td:nth-child(24),
 main table#weekleyPlan td:nth-child(28) {
-  width: 30pt;
+  width: 22pt;
+}
+main table#weekleyPlan tbody td:nth-child(8),
+main table#weekleyPlan tbody td:nth-child(12),
+main table#weekleyPlan tbody td:nth-child(16),
+main table#weekleyPlan tbody td:nth-child(20),
+main table#weekleyPlan tbody td:nth-child(24),
+main table#weekleyPlan tbody td:nth-child(28) {
+  text-align: right;
 }
 /* main table#weekleyPlan tbody td:nth-child(4),
 main table#weekleyPlan tbody td:nth-child(8),
