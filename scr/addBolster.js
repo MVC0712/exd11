@@ -107,7 +107,8 @@ function readSummaryTable() {
 
 $(document).on("keyup", "#bolster__input", function () {
   $(this).val($(this).val().toUpperCase()); // 小文字を大文字に
-  if (inputCheck($(this).val()) == false) {
+  // if (inputCheck($(this).val()) == false) {
+  if ($(this).val().length <= 10) {
     $(this).addClass("input-required");
   } else {
     $(this).removeClass("input-required");
@@ -115,11 +116,11 @@ $(document).on("keyup", "#bolster__input", function () {
 });
 
 $(document).on("change", "#bolster__input", function () {
-  if ($(this).val().length != 10) {
-    $(this).addClass("input-required");
-  } else {
-    $(this).removeClass("input-required");
-  }
+  // if ($(this).val().length != 10) {
+  //   $(this).addClass("input-required");
+  // } else {
+  //   $(this).removeClass("input-required");
+  // }
   addNewButtonActivation();
 });
 
