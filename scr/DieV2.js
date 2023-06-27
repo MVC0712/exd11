@@ -24,16 +24,23 @@ const myAjax = {
 
 $(function () {
   let today = new Date();
-
   $("#arrival_date").val(makeYYYYMMDD(today)).removeClass("input-required");
   makeProductionNumberTalbe();
   makeSummaryTalbe();
   makeDieDiamaterSelect();
   makeBolsterSelect();
-
+  // display dies quantities
+  countDiesQty();
   // blink mode letters
   setInterval(blinkText(), 3000);
 });
+
+function countDiesQty() {
+  // display dies quantites
+  let diesQuantities;
+  diesQuantities = $("#summary__table tbody tr").length;
+  $("#summary__table_record").html(diesQuantities + " dies");
+}
 
 // テキストを点滅させる
 function blinkText() {
@@ -82,6 +89,7 @@ function makeSummaryTalbe() {
       val["die_diamater"] = "&oslash" + val["die_diamater"];
     }
   });
+  $("#summary__table tbody").empty();
   makeTable($("#summary__table"));
 }
 
@@ -227,8 +235,6 @@ $(document).on(
   "click",
   "#summary__table tbody tr.selected-record",
   function () {
-    console.log("hello");
-
     fileName = "./php/ProductionNumber/SelEmploeeNumber.php";
     sendData = {
       dummy: "dummy",
@@ -240,12 +246,6 @@ $(document).on(
     $("#dialog-delete__button").attr("disabled", true);
   }
 );
-
-// Dialog
-$(document).on("click", "#dialog-cancel__button", function () {
-  document.getElementById("delete__dialog").close();
-  // $("#update__button").prop("disabled", true);
-});
 
 function selectProductionNumberTable() {
   const targetPN = $("#summary__table .selected-record")
@@ -268,6 +268,21 @@ function selectProductionNumberTable() {
     }
   });
 }
+
+$(document).on("keyup", "#dieNumber__input", function () {
+  const summaryTableObj = new Object($("#summary__table tbody tr"));
+  var dieNumber;
+  // exchenge to Large letters
+  $(this).val($(this).val().toUpperCase());
+  summaryTableObj.each(function () {
+    dieNumber = $(this).find("td").eq(1).text();
+    if (dieNumber.indexOf($("#dieNumber__input").val()) == 0) {
+      $(this).css("display", "initial");
+    } else {
+      $(this).css("display", "none");
+    }
+  });
+});
 
 $(document).on("click", "#production_number__table tbody tr", function () {
   $("#production_number__table tr.selected-record").removeClass(
@@ -346,11 +361,12 @@ $(document).on("click", "#save__button", function () {
   $("#summary__table tbody").empty();
   makeSummaryTalbe();
   moveSelectorToNewDie(saveData);
+  // delete inputed values
+  deleteInputValue();
 });
 
 function moveSelectorToNewDie(saveData) {
   var targetObj = new Object();
-  console.log("hello");
 
   targetObj = $("#summary__table tbody tr");
   targetObj.each(function () {
@@ -397,4 +413,65 @@ function checkDieNameDuplication() {
   });
 
   return flag;
+}
+
+// Dialog
+$(document).on("click", "#dialog-cancel__button", function () {
+  document.getElementById("delete__dialog").close();
+  // $("#update__button").prop("disabled", true);
+});
+
+$(document).on("keyup", "#emploee_number", function () {
+  if (
+    $(this).val().length == 7 &&
+    findValueInObject(ajaxReturnData, $(this).val())
+  ) {
+    $("#dialog-delete__button").attr("disabled", false);
+  }
+});
+
+function findValueInObject(obj, searchValue) {
+  for (let key in obj) {
+    if (
+      obj[key]["emploee_number"] == searchValue &&
+      obj[key]["position_id"] == 1
+    ) {
+      return true;
+    }
+  }
+  return false;
+}
+
+$(document).on("click", "#dialog-delete__button", function () {
+  let fileName;
+  let sendData = new Object();
+
+  fileName = "./php/Die/DelDie.php";
+  sendData = {
+    id: $("#summary__table .selected-record").find("td").eq(0).text(),
+  };
+
+  myAjax.myAjax(fileName, sendData);
+  document.getElementById("delete__dialog").close();
+
+  // requery summary table
+  makeSummaryTalbe();
+  // production table unselect
+  $("#production_number__table tbody tr.selected-record").removeClass(
+    "selected-record"
+  );
+  // delete inputed values
+  deleteInputValue();
+  // delete button disabled
+  $("#dialog-delete__button").attr("disabled", true);
+  $("#update__button").prop("disabled", true);
+});
+
+function deleteInputValue() {
+  let today = new Date();
+  // Clear input value
+  $("input.need-clear").val("").addClass("input-required");
+  $("select.need-clear").val("0").addClass("input-required");
+  $("#arrival_date").val(makeYYYYMMDD(today)).removeClass("input-required");
+  $("#mode_display").html("");
 }

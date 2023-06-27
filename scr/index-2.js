@@ -315,7 +315,10 @@ function changeLanguage() {
     });
   });
 }
-
+// ----------------------------------------------------------------
+//
+//
+// ----------------------------------------------------------------
 $("#pressReportPage").on("click", function () {
   if (sessionStorage.getItem("active_staff") == null) {
     if (checkStaff()) {
@@ -347,6 +350,17 @@ $("#ethcingPage").on("click", function () {
     }
   } else {
     openPage("EtchingV4.html");
+  }
+});
+
+$("#dieInformation").on("click", function () {
+  if (sessionStorage.getItem("active_staff") == null) {
+    if (checkStaff()) {
+      $("main").css("background-image", "none");
+      openPage("DieV2.html");
+    }
+  } else {
+    openPage("DieV2.html");
   }
 });
 
