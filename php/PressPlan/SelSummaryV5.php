@@ -52,7 +52,7 @@ FROM
     m_production_numbers ON m_production_numbers.id = t_press_plan.production_number_id
 WHERE
     t_press_plan.plan_date BETWEEN '$start' AND '$end' AND m_dies.die_number LIKE '%$die_number%' $add
-ORDER BY t_press_plan.plan_date DESC, t_press_plan.shift_id ASC, t_press_plan.ordinal ASC
+ORDER BY t_press_plan.plan_date DESC, press_machine ASC, t_press_plan.shift_id ASC, t_press_plan.ordinal ASC
     ");
     $prepare->execute();
     $result = $prepare->fetchALL(PDO::FETCH_ASSOC);
