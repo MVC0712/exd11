@@ -111,6 +111,7 @@ function makeProductionNumberTalbe() {
       val["category2"] = val["category2"].substring(0, 8) + "...";
     }
   });
+  $("#production_number__table tbody").empty();
   makeTable($("#production_number__table"));
 }
 
@@ -202,7 +203,9 @@ $(document).on("keyup", "#whole__input", function () {
 
 $(document).on("click", "#summary__table tbody tr", function () {
   let targetVal;
+  let today = new Date();
   const targetTr = $(this).find("td");
+  const arrivalDate = targetTr.eq(5).text();
   $("#summary__table tr.selected-record").removeClass("selected-record");
   $(this).addClass("selected-record");
 
@@ -223,7 +226,11 @@ $(document).on("click", "#summary__table tbody tr", function () {
       $("#bolster__select").val($(this).val());
     }
   });
-  $("#arrival_date").val("20" + targetTr.eq(5).text());
+  if (arrivalDate == "00-00-00") {
+    $("#arrival_date").val("2000-01-01");
+  } else {
+    $("#arrival_date").val("20" + targetTr.eq(5).text());
+  }
   $("#whole__input").val(targetTr.eq(7).text());
   // Delete background color
   $("div.top__wrapper .input-required").removeClass("input-required");
@@ -284,6 +291,80 @@ $(document).on("keyup", "#dieNumber__input", function () {
   });
 });
 
+$(document).on("click", "table div.sort", function () {
+  let table = $("#summary__table tbody");
+  var imgAttr;
+  var sortReverse = false;
+
+  // display arrow mark
+  if ($(this).find("img").length == 0) {
+    // there is no display arrow img
+    $(this)
+      .find("div.sort__img")
+      .append(
+        $("<img>")
+          .attr("src", "./img/arrow_up.png")
+          .attr("id", "table_arrow__img")
+      );
+  } else {
+    // there is already displaid
+    imgAttr = $(this).find("img").attr("src");
+    if (imgAttr.indexOf("up") == 12) {
+      // displaied arrrow is up
+      $(this)
+        .find("div.sort__img")
+        .empty()
+        .append(
+          $("<img>")
+            .attr("src", "./img/arrow_down.png")
+            .attr("id", "table_arrow__img")
+        );
+      sortReverse = false;
+    } else {
+      // displaied arrow is down
+      $(this)
+        .find("div.sort__img")
+        .empty()
+        .append(
+          $("<img>")
+            .attr("src", "./img/arrow_up.png")
+            .attr("id", "table_arrow__img")
+        );
+      sortReverse = true;
+    }
+  }
+  sortTable(table, 3, sortReverse);
+});
+
+function sortTable(table, column, sortReverse) {
+  var rows = table.find("tr:gt(0)").toArray().sort(comparer(column));
+
+  if (sortReverse) {
+    // 降順にソートする場合は以下のコメントを解除
+    rows = rows.reverse();
+  }
+
+  for (var i = 0; i < rows.length; i++) {
+    table.append(rows[i]);
+  }
+}
+
+// ソート用の比較関数を定義
+function comparer(column) {
+  return function (a, b) {
+    var valA = getCellValue(a, column);
+    var valB = getCellValue(b, column);
+    return $.isNumeric(valA) && $.isNumeric(valB)
+      ? valA - valB
+      : valA.localeCompare(valB);
+  };
+}
+
+// セルの値を取得する関数を定義
+function getCellValue(row, column) {
+  return $(row).children("td").eq(column).text();
+}
+
 $(document).on("click", "#production_number__table tbody tr", function () {
   $("#production_number__table tr.selected-record").removeClass(
     "selected-record"
@@ -337,7 +418,33 @@ function buttonActivaltion() {
 }
 
 $(document).on("click", "#test__button", function () {
-  $("#summary__table tbody").empty();
+  // $("#summary__table tbody").empty();
+  // makeProductionNumberTalbe();
+
+  // makeProductionNumberTalbe();
+  // makeSummaryTalbe();
+
+  console.log("hello");
+  const fileName = "./php/Die/SelProductionNumber.php";
+  var sendData = new Object();
+  sendData = {
+    targetId: $("#category1__tr").find("td").eq(0).html(),
+    production_number: "%",
+  };
+  // console.log(sendData);
+  myAjax.myAjax(fileName, sendData);
+  productionNumberTableValues = ajaxReturnData;
+  ajaxReturnData.forEach(function (val) {
+    if (val["category1"] != null && val["category1"].length >= 8) {
+      val["category1"] = val["category1"].substring(0, 8) + "...";
+    }
+    if (val["category2"] != null && val["category2"].length >= 8) {
+      val["category2"] = val["category2"].substring(0, 8) + "...";
+    }
+  });
+  $("#production_number__table tbody").empty();
+  console.log(ajaxReturnData);
+  makeTable($("#production_number__table"));
 });
 
 $(document).on("click", "#save__button", function () {
@@ -398,6 +505,10 @@ function getSaveData() {
     .eq(0)
     .text();
   saveData["today"] = makeYYYYMMDD(today);
+  saveData["targetId"] = $("#summary__table tbody tr.selected-record")
+    .find("td")
+    .eq(0)
+    .text();
   return saveData;
 }
 
@@ -413,6 +524,46 @@ function checkDieNameDuplication() {
   });
 
   return flag;
+}
+
+$(document).on("click", "#update__button", function () {
+  let today = new Date();
+  var saveData = new Object(getSaveData());
+  const fileName = "./php/Die/UpdateDataV2.php";
+
+  // saveData = getSaveData();
+
+  saveData["today"] = makeYYYYMMDD(today);
+
+  myAjax.myAjax(fileName, saveData);
+  // reload tables
+  makeProductionNumberTalbe();
+  makeSummaryTalbe();
+  // set cousole
+  selectSummaryTable(saveData);
+  // Select "Production Number Table"
+  // selectProductionNumberTable();
+});
+
+function selectSummaryTable(saveData) {
+  const targetId = saveData["targetId"];
+
+  $("#summary__table tbody tr").each(function () {
+    if ($(this).find("td").eq(0).text() == targetId) {
+      console.log("hello");
+      $(this)
+        .addClass("selected-record")
+        .attr("id", "production_number__tr")
+        .get(0)
+        .scrollIntoView({
+          behavior: "smooth",
+        });
+    }
+  });
+
+  setTimeout(() => {
+    selectProductionNumberTable();
+  }, 500);
 }
 
 // Dialog

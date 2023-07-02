@@ -135,7 +135,7 @@ $(document).on("keyup", "#specific_weight", function () {
 });
 
 $(document).on("keyup", "#cross_section_area", function () {
-  if (isNumber($(this).val()) && 2 <= $(this).val() && $(this).val() <= 8000) {
+  if (isNumber($(this).val()) && 2 <= $(this).val() && $(this).val() <= 15000) {
     $(this).removeClass("input-required");
   } else {
     $(this).addClass("input-required");
@@ -643,8 +643,8 @@ $(document).on("click", "#summary__table th.sort", function () {
 function sortTable(table, column) {
   var rows = table.find("tr:gt(0)").toArray().sort(comparer(column));
 
-  // 降順にソートする場合は以下のコメントを解除
   if (sortReverse) {
+    // 降順にソートする場合は以下のコメントを解除
     rows = rows.reverse();
   }
 
