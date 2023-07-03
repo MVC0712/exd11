@@ -643,8 +643,8 @@ $(document).on("click", "#summary__table th.sort", function () {
 function sortTable(table, column) {
   var rows = table.find("tr:gt(0)").toArray().sort(comparer(column));
 
-  // 降順にソートする場合は以下のコメントを解除
   if (sortReverse) {
+    // 降順にソートする場合は以下のコメントを解除
     rows = rows.reverse();
   }
 

@@ -275,7 +275,7 @@ thead th {
 }
 /* Summary Table */
 #summary__table tbody {
-  width: 925px;
+  width: 955px;
   height: 250px;
 }
 #summary__table th {
@@ -287,6 +287,20 @@ thead th {
   font-weight: 300;
   font-size: 12pt;
 }
+table div.sort {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+table div.sort div:nth-child(1),
+table div.sort div:nth-child(3) {
+  width: 20px;
+}
+table img {
+  height: 18px;
+}
+
 /* id */
 #summary__table th:nth-child(1),
 #summary__table td:nth-child(1) {
@@ -303,7 +317,7 @@ thead th {
 /* die diamater */
 #summary__table th:nth-child(3),
 #summary__table td:nth-child(3) {
-  width: 60px;
+  width: 90px;
 }
 #summary__table td:nth-child(3) {
   text-align: right;
