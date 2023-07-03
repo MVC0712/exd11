@@ -293,6 +293,7 @@ $(document).on("keyup", "#dieNumber__input", function () {
 
 $(document).on("click", "table div.sort", function () {
   let table = $("#summary__table tbody");
+  console.log(table);
   var imgAttr;
   var sortReverse = false;
 
@@ -418,33 +419,38 @@ function buttonActivaltion() {
 }
 
 $(document).on("click", "#test__button", function () {
-  // $("#summary__table tbody").empty();
-  // makeProductionNumberTalbe();
+  // テーブルのIDを指定してテーブル要素を取得
+  const table = document.getElementById("summary__table");
 
-  // makeProductionNumberTalbe();
-  // makeSummaryTalbe();
+  // テーブルの行を走査してデータを収集
+  const rows = table.getElementsByTagName("tr");
+  const csvData = [];
 
-  console.log("hello");
-  const fileName = "./php/Die/SelProductionNumber.php";
-  var sendData = new Object();
-  sendData = {
-    targetId: $("#category1__tr").find("td").eq(0).html(),
-    production_number: "%",
-  };
-  // console.log(sendData);
-  myAjax.myAjax(fileName, sendData);
-  productionNumberTableValues = ajaxReturnData;
-  ajaxReturnData.forEach(function (val) {
-    if (val["category1"] != null && val["category1"].length >= 8) {
-      val["category1"] = val["category1"].substring(0, 8) + "...";
+  for (let i = 0; i < rows.length; i++) {
+    const row = rows[i];
+    const rowData = [];
+    const cells = row.getElementsByTagName("td");
+
+    for (let j = 0; j < cells.length; j++) {
+      const cell = cells[j];
+      rowData.push(cell.innerText);
     }
-    if (val["category2"] != null && val["category2"].length >= 8) {
-      val["category2"] = val["category2"].substring(0, 8) + "...";
-    }
-  });
-  $("#production_number__table tbody").empty();
-  console.log(ajaxReturnData);
-  makeTable($("#production_number__table"));
+
+    csvData.push(rowData.join(","));
+  }
+
+  // CSVデータをテキスト形式に変換
+  const csvText = csvData.join("\n");
+
+  // クリップボードにコピー
+  navigator.clipboard
+    .writeText(csvText)
+    .then(() => {
+      console.log("CSVデータがクリップボードにコピーされました。");
+    })
+    .catch((error) => {
+      console.error("クリップボードへのコピーに失敗しました。", error);
+    });
 });
 
 $(document).on("click", "#save__button", function () {
