@@ -135,7 +135,7 @@ $(document).on("keyup", "#specific_weight", function () {
 });
 
 $(document).on("keyup", "#cross_section_area", function () {
-  if (isNumber($(this).val()) && 2 <= $(this).val() && $(this).val() <= 8000) {
+  if (isNumber($(this).val()) && 2 <= $(this).val() && $(this).val() <= 15000) {
     $(this).removeClass("input-required");
   } else {
     $(this).addClass("input-required");
