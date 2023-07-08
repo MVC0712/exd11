@@ -292,19 +292,21 @@ $(document).on("keyup", "#dieNumber__input", function () {
 });
 
 $(document).on("click", "table div.sort", function () {
+  return;
   let table = $("#summary__table tbody");
-  console.log(table);
   var imgAttr;
   var sortReverse = false;
+  var columnCount;
 
   // display arrow mark
   if ($(this).find("img").length == 0) {
     // there is no display arrow img
+    $("#table_arrow__img").remove();
     $(this)
       .find("div.sort__img")
       .append(
         $("<img>")
-          .attr("src", "./img/arrow_up.png")
+          .attr("src", "./img/arrow_down.png")
           .attr("id", "table_arrow__img")
       );
   } else {
@@ -334,8 +336,70 @@ $(document).on("click", "table div.sort", function () {
       sortReverse = true;
     }
   }
-  sortTable(table, 3, sortReverse);
+  // sortTable(table, 3, sortReverse);
+  // sort table
+  columnCount = $(this);
+  console.log(columnCount);
 });
+
+$(document).on(
+  "click",
+  "#summary__table thead tr:nth-child(2) th",
+  function () {
+    const columnCount = $(this).index();
+    var sort = "ascending"; // "ascendign or descending"
+    sort = "descending";
+    sort = displaySortMark($(this));
+
+    sortTableByColumn(columnCount, sort);
+  }
+);
+
+function displaySortMark(targetObject) {
+  // test
+  // display arrow mark
+  var sort; // "ascendign or descending"
+
+  if (targetObject.find("img").length == 0) {
+    // there is no display arrow img
+    $("#table_arrow__img").remove();
+    targetObject
+      .find("div.sort__img")
+      .append(
+        $("<img>")
+          .attr("src", "./img/arrow_down.png")
+          .attr("id", "table_arrow__img")
+      );
+    sort = "descending";
+  } else {
+    // there is already displaid
+    imgAttr = targetObject.find("img").attr("src");
+    if (imgAttr.indexOf("up") == 12) {
+      // displaied arrrow is up
+      targetObject
+        .find("div.sort__img")
+        .empty()
+        .append(
+          $("<img>")
+            .attr("src", "./img/arrow_down.png")
+            .attr("id", "table_arrow__img")
+        );
+      sort = "descending";
+    } else {
+      // displaied arrow is down
+      targetObject
+        .find("div.sort__img")
+        .empty()
+        .append(
+          $("<img>")
+            .attr("src", "./img/arrow_up.png")
+            .attr("id", "table_arrow__img")
+        );
+      sort = "ascending";
+    }
+  }
+  return sort;
+}
 
 function sortTable(table, column, sortReverse) {
   var rows = table.find("tr:gt(0)").toArray().sort(comparer(column));
@@ -419,39 +483,61 @@ function buttonActivaltion() {
 }
 
 $(document).on("click", "#test__button", function () {
-  // テーブルのIDを指定してテーブル要素を取得
-  const table = document.getElementById("summary__table");
+  var sort = "ascending"; // "ascendign or descending"
+  sort = "descending";
+  // test
+  sortTableByColumn(6, sort);
+});
 
-  // テーブルの行を走査してデータを収集
-  const rows = table.getElementsByTagName("tr");
-  const csvData = [];
+// $(document).o
 
-  for (let i = 0; i < rows.length; i++) {
-    const row = rows[i];
-    const rowData = [];
-    const cells = row.getElementsByTagName("td");
+// =================================================
 
-    for (let j = 0; j < cells.length; j++) {
-      const cell = cells[j];
-      rowData.push(cell.innerText);
+function sortTableByColumn(sortCoumnNumber, sort) {
+  const $table = $("#summary__table");
+  const $tbody = $table.find("tbody");
+  const $rows = $tbody.find("tr").toArray();
+  // var sort = "ascending";
+  // var sortCoumnNumber = 0;
+  var strFind = "td:eq(" + sortCoumnNumber + ")";
+
+  $rows.sort(function (a, b) {
+    const aValue = $(a).find(strFind).text().toLowerCase();
+    const bValue = $(b).find(strFind).text().toLowerCase();
+
+    switch (sort) {
+      case "ascending":
+        if (aValue < bValue) {
+          return -1;
+        }
+        if (aValue > bValue) {
+          return 1;
+        }
+        break;
+      case "descending":
+        if (aValue < bValue) {
+          return 1;
+        }
+        if (aValue > bValue) {
+          return -1;
+        }
+        break;
     }
 
-    csvData.push(rowData.join(","));
-  }
+    return 0;
+  });
 
-  // CSVデータをテキスト形式に変換
-  const csvText = csvData.join("\n");
+  $.each($rows, function (index, row) {
+    $tbody.append(row);
+  });
+}
 
-  // クリップボードにコピー
-  navigator.clipboard
-    .writeText(csvText)
-    .then(() => {
-      console.log("CSVデータがクリップボードにコピーされました。");
-    })
-    .catch((error) => {
-      console.error("クリップボードへのコピーに失敗しました。", error);
-    });
+// ソートを実行するボタンなどにクリックイベントハンドラを追加
+$("#test__button").on("click", function () {
+  sortTableByColumn(0);
 });
+
+// =================================================
 
 $(document).on("click", "#save__button", function () {
   var savedMode = $("#mode_display").text();

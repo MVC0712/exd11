@@ -275,7 +275,7 @@ thead th {
 }
 /* Summary Table */
 #summary__table tbody {
-  width: 955px;
+  width: 987px;
   height: 250px;
 }
 #summary__table th {
@@ -292,9 +292,12 @@ table div.sort {
   flex-direction: row;
   justify-content: space-between;
 }
+table div.sort #thDieNumber {
+  width: 125px;
+}
 
-table div.sort div:nth-child(1),
-table div.sort div:nth-child(3) {
+table div.sort > div:nth-child(1),
+table div.sort > div:nth-child(3) {
   width: 20px;
 }
 table img {
@@ -358,7 +361,7 @@ table img {
 /* whole */
 #summary__table th:nth-child(8),
 #summary__table td:nth-child(8) {
-  width: 53px;
+  width: 85px;
 }
 #summary__table td:nth-child(8) {
   text-align: right;
