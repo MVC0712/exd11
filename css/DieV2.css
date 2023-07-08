@@ -155,10 +155,25 @@ header > div:nth-child(5) > img {
   justify-content: center;
   flex-wrap: nowrap;
 }
+/* about Button */
 button {
   height: 30px;
-  width: 120px;
+  width: 140px;
 }
+#clipboard__button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#clipboard__button > div:nth-child(1),
+#clipboard__button > div:nth-child(3) {
+  width: 30px;
+}
+#clipboard__button > div:nth-child(3) > img {
+  color: rgb(255, 255, 0);
+  width: 25px;
+}
+
 tbody tr.selected-record {
   background-color: #dbdbff;
 }

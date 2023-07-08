@@ -46,6 +46,63 @@ function countDiesQty() {
 function blinkText() {
   $("#mode_display").toggleClass("blink-animation");
 }
+// LANGUAGE CHANGE
+$(document).on("click", "#language__mark", function () {
+  const str = $("#language__mark").attr("src");
+  const language = str.match(/\/([^.\/]+)\.\w+$/);
+  const tileLettersObject = $("div.title__letters");
+  // console.log(tileLettersObject);
+  let fileName;
+  let sendData = new Object();
+
+  fileName = "./php/ProductionNumber/SelTitleName.php";
+  sendData = {
+    dummy: "dummy",
+  };
+  myAjax.myAjax(fileName, sendData);
+
+  tileLettersObject.each(function () {
+    let targetObj = $(this);
+    ajaxReturnData.forEach(function (databaseLetters) {
+      // console.log(targetObj.text() + "\n" + databaseLetters["english"]);
+      switch (language[1]) {
+        case "En":
+          if (targetObj.text() == databaseLetters["english"]) {
+            // console.log(
+            //   databaseLetters["english"] + " : " + databaseLetters["vietnamese"]
+            // );
+            targetObj.text(databaseLetters["vietnamese"]);
+            $("#language__mark").attr("src", "./img/Vn.png");
+          }
+          break;
+        case "Vn":
+          if (targetObj.text() == databaseLetters["vietnamese"]) {
+            // console.log(
+            //   databaseLetters["english"] + " : " + databaseLetters["vietnamese"]
+            // );
+            targetObj.text(databaseLetters["english"]);
+            $("#language__mark").attr("src", "./img/En.png");
+          }
+          break;
+      }
+    });
+  });
+});
+// Window Colose
+$(document).on("mouseover", "#window_close__mark", function () {
+  // console.log("hello");
+  $("#window_close__mark").attr("src", "./img/close-2.png");
+});
+
+$(document).on("mouseout", "#window_close__mark", function () {
+  // console.log("hello2");
+  $("#window_close__mark").attr("src", "./img/close.png");
+});
+
+$(document).on("click", "#window_close__mark", function () {
+  // open("about:blank", "_self").close(); // close window
+  window.close();
+});
 
 function makeDieDiamaterSelect() {
   fileName = "./php/Die/SelDiamater.php";
@@ -483,13 +540,51 @@ function buttonActivaltion() {
 }
 
 $(document).on("click", "#test__button", function () {
-  var sort = "ascending"; // "ascendign or descending"
-  sort = "descending";
-  // test
-  sortTableByColumn(6, sort);
+  // copy to clip board
+  // navigator.clipboard.writeText("test message2");
 });
 
-// $(document).o
+$(document).on("click", "#clipboard__button", function () {
+  // copy to clip board
+  // navigator.clipboard.writeText("test message2");
+  var table = $("#summary__table");
+  var csv = convertTableToCSV(table);
+
+  navigator.clipboard
+    .writeText(csv)
+    .then(function () {
+      console.log("Text copied to clipboard!");
+    })
+    .catch(function (err) {
+      console.error("Failed to copy text: ", err);
+    });
+});
+// =================================================
+
+function convertTableToCSV(table) {
+  var csv = "";
+  var rows = table.find("tr");
+
+  rows.each(function () {
+    var cells = $(this).find("td, th");
+
+    cells.each(function () {
+      var text = $(this).text().trim();
+
+      if (text.includes(",")) {
+        text = '"' + text + '"';
+      }
+
+      // csv += text + ",";
+      csv += text + "\t";
+    });
+
+    csv = csv.slice(0, -1); // 最後のカンマを削除
+    csv += "\n";
+  });
+
+  return csv;
+}
 
 // =================================================
 
