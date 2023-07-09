@@ -138,6 +138,19 @@ button {
   height: 30px;
   width: 120px;
 }
+#copyToClipboard__button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#copyToClipboard__button > div:nth-child(1),
+#copyToClipboard__button > div:nth-child(3) {
+  width: 30px;
+}
+#copyToClipboard__button > div:nth-child(3) > img {
+  color: rgb(255, 255, 0);
+  width: 25px;
+}
 tbody tr.selected-record {
   background-color: #dbdbff;
 }
