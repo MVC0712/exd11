@@ -23,6 +23,7 @@
           aging_type_id = :aging_type_id,
           billet_material_id = :billet_material_id,
           circumscribed_circle = :circumscribed_circle,
+          hardness = :hardness,
           cross_section_area = :cross_section_area,
           drawn_department = :drawn_department,
           packing_quantity = :packing_quantity,
@@ -39,6 +40,7 @@
     $prepare->bindValue(':aging_type_id', (INT)$_POST['aging_type_id'], PDO::PARAM_INT);
     $prepare->bindValue(':billet_material_id', (INT)$_POST['billet_material_id'], PDO::PARAM_INT);
     $prepare->bindValue(':circumscribed_circle', $_POST['circumscribed_circle'], PDO::PARAM_STR);
+    $prepare->bindValue(':hardness', $_POST['hardness'], PDO::PARAM_STR);
     $prepare->bindValue(':cross_section_area', $_POST['cross_section_area'], PDO::PARAM_STR);
     $prepare->bindValue(':drawn_department', (INT)$_POST['drawn_department'], PDO::PARAM_INT);
     $prepare->bindValue(':packing_quantity', (INT)$_POST['packing_quantity'], PDO::PARAM_INT);

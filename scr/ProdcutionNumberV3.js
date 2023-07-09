@@ -40,7 +40,7 @@ function readSummaryTable() {
   let sendData = new Object();
   let number = 1;
   // read ng list and fill option
-  fileName = "./php/ProductionNumber/SelSummaryV2.php";
+  fileName = "./php/ProductionNumber/SelSummaryV3.php";
   sendData = {
     dummy: "dummy",
   };
@@ -120,6 +120,14 @@ $(document).on("keyup", "#production_length", function () {
 
 $(document).on("keyup", "#circumscribed_circle", function () {
   if (isNumber($(this).val()) && 5 <= $(this).val() && $(this).val() <= 400) {
+    $(this).removeClass("input-required");
+  } else {
+    $(this).addClass("input-required");
+  }
+});
+
+$(document).on("keyup", "#hardness", function () {
+  if (isNumber($(this).val()) && 50 <= $(this).val() && $(this).val() <= 90) {
     $(this).removeClass("input-required");
   } else {
     $(this).addClass("input-required");
@@ -287,7 +295,7 @@ $(document).on("click", "#save__button", function () {
 
   sendData = getInputData();
   inputProductionNumber = sendData.production_number;
-  fileName = "./php/ProductionNumber/InsInputData2.php";
+  fileName = "./php/ProductionNumber/InsInputData3.php";
   myAjax.myAjax(fileName, sendData);
 
   $("#summary__table tbody").empty();
@@ -374,6 +382,9 @@ function getInputData() {
   if (inputData["circumscribed_circle"] == "") {
     inputData["circumscribed_circle"] = null;
   }
+  if (inputData["hardness"] == "") {
+    inputData["hardness"] = null;
+  }
   return inputData;
 }
 
@@ -446,7 +457,7 @@ $(document).on("click", "#summary__table tbody tr", function () {
 });
 
 function setRecordValue2Edit(targetId) {
-  const fileName = "./php/ProductionNumber/SelSelSummary.php";
+  const fileName = "./php/ProductionNumber/SelSelSummaryV3.php";
   let sendData = new Object();
 
   sendData = { targetId: targetId };
@@ -496,6 +507,13 @@ function setRecordValue2Edit(targetId) {
       .removeClass("input-required");
   } else {
     $("#circumscribed_circle").val("");
+  }
+  if (ajaxReturnData[0]["hardness"] != "") {
+    $("#hardness")
+      .val(ajaxReturnData[0]["hardness"])
+      .removeClass("input-required");
+  } else {
+    $("#hardness").val("");
   }
   // specific_weight
   if (ajaxReturnData[0]["specific_weight"] != null) {

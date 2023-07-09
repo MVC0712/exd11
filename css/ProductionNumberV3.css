@@ -281,14 +281,14 @@ table.summary__table td:nth-child(1) {
 }
 table.summary__table th:nth-child(2),
 table.summary__table td:nth-child(2) {
-  width: 150px;
+  width: 110px;
 }
 table.summary__table td:nth-child(2) {
   text-align: left;
 }
 table.summary__table th:nth-child(3),
 table.summary__table td:nth-child(3) {
-  width: 150px;
+  width: 110px;
 }
 table.summary__table td:nth-child(3) {
   text-align: left;
@@ -367,6 +367,10 @@ table.summary__table td:nth-child(13) {
 /* C-date */
 table.summary__table th:nth-child(14),
 table.summary__table td:nth-child(14) {
+  width: 105px;
+}
+table.summary__table th:nth-child(15),
+table.summary__table td:nth-child(15) {
   width: 100px;
 }
 table.summary__table td:nth-child(14) {
