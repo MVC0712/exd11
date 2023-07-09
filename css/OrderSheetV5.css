@@ -1,0 +1,16 @@
+.main__wrapper {
+  height: 200px;
+}
+.input__wrapper {
+  height: 80px;
+}
+.top__wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.top__wrapper > div:nth-child(2) {
+  height: 94px;
+}
+.top__wrapper > div:nth-child(2) > select {
+  border-top: none;
+}
