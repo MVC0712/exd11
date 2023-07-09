@@ -155,10 +155,25 @@ header > div:nth-child(5) > img {
   justify-content: center;
   flex-wrap: nowrap;
 }
+/* about Button */
 button {
   height: 30px;
-  width: 120px;
+  width: 140px;
 }
+#clipboard__button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#clipboard__button > div:nth-child(1),
+#clipboard__button > div:nth-child(3) {
+  width: 30px;
+}
+#clipboard__button > div:nth-child(3) > img {
+  color: rgb(255, 255, 0);
+  width: 25px;
+}
+
 tbody tr.selected-record {
   background-color: #dbdbff;
 }
@@ -275,7 +290,7 @@ thead th {
 }
 /* Summary Table */
 #summary__table tbody {
-  width: 955px;
+  width: 987px;
   height: 250px;
 }
 #summary__table th {
@@ -292,9 +307,12 @@ table div.sort {
   flex-direction: row;
   justify-content: space-between;
 }
+table div.sort #thDieNumber {
+  width: 125px;
+}
 
-table div.sort div:nth-child(1),
-table div.sort div:nth-child(3) {
+table div.sort > div:nth-child(1),
+table div.sort > div:nth-child(3) {
   width: 20px;
 }
 table img {
@@ -358,7 +376,7 @@ table img {
 /* whole */
 #summary__table th:nth-child(8),
 #summary__table td:nth-child(8) {
-  width: 53px;
+  width: 85px;
 }
 #summary__table td:nth-child(8) {
   text-align: right;

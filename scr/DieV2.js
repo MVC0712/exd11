@@ -46,6 +46,63 @@ function countDiesQty() {
 function blinkText() {
   $("#mode_display").toggleClass("blink-animation");
 }
+// LANGUAGE CHANGE
+$(document).on("click", "#language__mark", function () {
+  const str = $("#language__mark").attr("src");
+  const language = str.match(/\/([^.\/]+)\.\w+$/);
+  const tileLettersObject = $("div.title__letters");
+  // console.log(tileLettersObject);
+  let fileName;
+  let sendData = new Object();
+
+  fileName = "./php/ProductionNumber/SelTitleName.php";
+  sendData = {
+    dummy: "dummy",
+  };
+  myAjax.myAjax(fileName, sendData);
+
+  tileLettersObject.each(function () {
+    let targetObj = $(this);
+    ajaxReturnData.forEach(function (databaseLetters) {
+      // console.log(targetObj.text() + "\n" + databaseLetters["english"]);
+      switch (language[1]) {
+        case "En":
+          if (targetObj.text() == databaseLetters["english"]) {
+            // console.log(
+            //   databaseLetters["english"] + " : " + databaseLetters["vietnamese"]
+            // );
+            targetObj.text(databaseLetters["vietnamese"]);
+            $("#language__mark").attr("src", "./img/Vn.png");
+          }
+          break;
+        case "Vn":
+          if (targetObj.text() == databaseLetters["vietnamese"]) {
+            // console.log(
+            //   databaseLetters["english"] + " : " + databaseLetters["vietnamese"]
+            // );
+            targetObj.text(databaseLetters["english"]);
+            $("#language__mark").attr("src", "./img/En.png");
+          }
+          break;
+      }
+    });
+  });
+});
+// Window Colose
+$(document).on("mouseover", "#window_close__mark", function () {
+  // console.log("hello");
+  $("#window_close__mark").attr("src", "./img/close-2.png");
+});
+
+$(document).on("mouseout", "#window_close__mark", function () {
+  // console.log("hello2");
+  $("#window_close__mark").attr("src", "./img/close.png");
+});
+
+$(document).on("click", "#window_close__mark", function () {
+  // open("about:blank", "_self").close(); // close window
+  window.close();
+});
 
 function makeDieDiamaterSelect() {
   fileName = "./php/Die/SelDiamater.php";
@@ -292,19 +349,21 @@ $(document).on("keyup", "#dieNumber__input", function () {
 });
 
 $(document).on("click", "table div.sort", function () {
+  return;
   let table = $("#summary__table tbody");
-  console.log(table);
   var imgAttr;
   var sortReverse = false;
+  var columnCount;
 
   // display arrow mark
   if ($(this).find("img").length == 0) {
     // there is no display arrow img
+    $("#table_arrow__img").remove();
     $(this)
       .find("div.sort__img")
       .append(
         $("<img>")
-          .attr("src", "./img/arrow_up.png")
+          .attr("src", "./img/arrow_down.png")
           .attr("id", "table_arrow__img")
       );
   } else {
@@ -334,8 +393,70 @@ $(document).on("click", "table div.sort", function () {
       sortReverse = true;
     }
   }
-  sortTable(table, 3, sortReverse);
+  // sortTable(table, 3, sortReverse);
+  // sort table
+  columnCount = $(this);
+  console.log(columnCount);
 });
+
+$(document).on(
+  "click",
+  "#summary__table thead tr:nth-child(2) th",
+  function () {
+    const columnCount = $(this).index();
+    var sort = "ascending"; // "ascendign or descending"
+    sort = "descending";
+    sort = displaySortMark($(this));
+
+    sortTableByColumn(columnCount, sort);
+  }
+);
+
+function displaySortMark(targetObject) {
+  // test
+  // display arrow mark
+  var sort; // "ascendign or descending"
+
+  if (targetObject.find("img").length == 0) {
+    // there is no display arrow img
+    $("#table_arrow__img").remove();
+    targetObject
+      .find("div.sort__img")
+      .append(
+        $("<img>")
+          .attr("src", "./img/arrow_down.png")
+          .attr("id", "table_arrow__img")
+      );
+    sort = "descending";
+  } else {
+    // there is already displaid
+    imgAttr = targetObject.find("img").attr("src");
+    if (imgAttr.indexOf("up") == 12) {
+      // displaied arrrow is up
+      targetObject
+        .find("div.sort__img")
+        .empty()
+        .append(
+          $("<img>")
+            .attr("src", "./img/arrow_down.png")
+            .attr("id", "table_arrow__img")
+        );
+      sort = "descending";
+    } else {
+      // displaied arrow is down
+      targetObject
+        .find("div.sort__img")
+        .empty()
+        .append(
+          $("<img>")
+            .attr("src", "./img/arrow_up.png")
+            .attr("id", "table_arrow__img")
+        );
+      sort = "ascending";
+    }
+  }
+  return sort;
+}
 
 function sortTable(table, column, sortReverse) {
   var rows = table.find("tr:gt(0)").toArray().sort(comparer(column));
@@ -419,39 +540,99 @@ function buttonActivaltion() {
 }
 
 $(document).on("click", "#test__button", function () {
-  // テーブルのIDを指定してテーブル要素を取得
-  const table = document.getElementById("summary__table");
+  // copy to clip board
+  // navigator.clipboard.writeText("test message2");
+});
 
-  // テーブルの行を走査してデータを収集
-  const rows = table.getElementsByTagName("tr");
-  const csvData = [];
+$(document).on("click", "#clipboard__button", function () {
+  // copy to clip board
+  // navigator.clipboard.writeText("test message2");
+  var table = $("#summary__table");
+  var csv = convertTableToCSV(table);
 
-  for (let i = 0; i < rows.length; i++) {
-    const row = rows[i];
-    const rowData = [];
-    const cells = row.getElementsByTagName("td");
-
-    for (let j = 0; j < cells.length; j++) {
-      const cell = cells[j];
-      rowData.push(cell.innerText);
-    }
-
-    csvData.push(rowData.join(","));
-  }
-
-  // CSVデータをテキスト形式に変換
-  const csvText = csvData.join("\n");
-
-  // クリップボードにコピー
   navigator.clipboard
-    .writeText(csvText)
-    .then(() => {
-      console.log("CSVデータがクリップボードにコピーされました。");
+    .writeText(csv)
+    .then(function () {
+      console.log("Text copied to clipboard!");
     })
-    .catch((error) => {
-      console.error("クリップボードへのコピーに失敗しました。", error);
+    .catch(function (err) {
+      console.error("Failed to copy text: ", err);
     });
 });
+// =================================================
+
+function convertTableToCSV(table) {
+  var csv = "";
+  var rows = table.find("tr");
+
+  rows.each(function () {
+    var cells = $(this).find("td, th");
+
+    cells.each(function () {
+      var text = $(this).text().trim();
+
+      if (text.includes(",")) {
+        text = '"' + text + '"';
+      }
+
+      // csv += text + ",";
+      csv += text + "\t";
+    });
+
+    csv = csv.slice(0, -1); // 最後のカンマを削除
+    csv += "\n";
+  });
+
+  return csv;
+}
+
+// =================================================
+
+function sortTableByColumn(sortCoumnNumber, sort) {
+  const $table = $("#summary__table");
+  const $tbody = $table.find("tbody");
+  const $rows = $tbody.find("tr").toArray();
+  // var sort = "ascending";
+  // var sortCoumnNumber = 0;
+  var strFind = "td:eq(" + sortCoumnNumber + ")";
+
+  $rows.sort(function (a, b) {
+    const aValue = $(a).find(strFind).text().toLowerCase();
+    const bValue = $(b).find(strFind).text().toLowerCase();
+
+    switch (sort) {
+      case "ascending":
+        if (aValue < bValue) {
+          return -1;
+        }
+        if (aValue > bValue) {
+          return 1;
+        }
+        break;
+      case "descending":
+        if (aValue < bValue) {
+          return 1;
+        }
+        if (aValue > bValue) {
+          return -1;
+        }
+        break;
+    }
+
+    return 0;
+  });
+
+  $.each($rows, function (index, row) {
+    $tbody.append(row);
+  });
+}
+
+// ソートを実行するボタンなどにクリックイベントハンドラを追加
+$("#test__button").on("click", function () {
+  sortTableByColumn(0);
+});
+
+// =================================================
 
 $(document).on("click", "#save__button", function () {
   var savedMode = $("#mode_display").text();

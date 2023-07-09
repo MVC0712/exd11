@@ -103,13 +103,15 @@
           <thead>
             <tr>
               <th></th>
-              <th colspan="4">Production Number List</th>
+              <th colspan="4">
+                <div class="title__letters">Production Number</div>
+              </th>
             </tr>
             <tr>
               <th>id</th>
-              <th>Cate1</th>
-              <th>Cate2</th>
-              <th>Production Number</th>
+              <th><div class="title__letters">Category 1</div></th>
+              <th><div class="title__letters">Category 2</div></th>
+              <th><div class="title__letters">Production Number</div></th>
               <th>Lnk</th>
               <th>dummy</th>
             </tr>
@@ -125,11 +127,15 @@
         <button id="update__button" disabled>
           <div class="title__letters">Update</div>
         </button>
-        <!-- <button id="clipboard__button">
-          <div class="title__letters">from Clipboard</div>
-        </button> -->
-
-        <button id="test__button">To ClipBoard</button>
+        <button id="clipboard__button">
+          <div></div>
+          <div class="title__letters">Clipboard</div>
+          <div>
+            <img id="clipboard__mark" src="./img/bx-clipboard.png" alt="clip" />
+          </div>
+        </button>
+        <!-- <button id="test__button">Test</button> -->
+        <!-- <button id></button> -->
       </div>
       <div class="table__wrapper">
         <table id="summary__table">
@@ -141,9 +147,13 @@
             <tr>
               <th>id</th>
               <th>
-                <div class="title__filter">
-                  <div>Die Number</div>
-                  <input id="dieNumber__input" class="" type="text" />
+                <div class="sort">
+                  <div></div>
+                  <div id="thDieNumber" class="title__filter">
+                    <div>Die</div>
+                    <input id="dieNumber__input" class="" type="text" />
+                  </div>
+                  <div class="sort__img"></div>
                 </div>
               </th>
               <th>
@@ -153,11 +163,41 @@
                   <div class="sort__img"></div>
                 </div>
               </th>
-              <th>Bolster</th>
-              <th>PN</th>
-              <th>Arrival</th>
-              <th>Edit</th>
-              <th>Whole</th>
+              <th>
+                <div class="sort">
+                  <div></div>
+                  <div>Bolster</div>
+                  <div class="sort__img"></div>
+                </div>
+              </th>
+              <th>
+                <div class="sort">
+                  <div></div>
+                  <div>PN</div>
+                  <div class="sort__img"></div>
+                </div>
+              </th>
+              <th>
+                <div class="sort">
+                  <div></div>
+                  <div>Arrival</div>
+                  <div class="sort__img"></div>
+                </div>
+              </th>
+              <th>
+                <div class="sort">
+                  <div></div>
+                  <div>Edit</div>
+                  <div class="sort__img"></div>
+                </div>
+              </th>
+              <th>
+                <div class="sort">
+                  <div></div>
+                  <div>Hole</div>
+                  <div class="sort__img"></div>
+                </div>
+              </th>
             </tr>
           </thead>
           <tbody></tbody>
