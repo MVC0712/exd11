@@ -90,6 +90,13 @@ footer {
   padding-top: 5px;
   text-align: center;
 }
+.table__wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: self-start;
+  justify-content: center;
+  flex-wrap: nowrap;
+}
 /* ボタンの設定 */
 button {
   width: 100px;
@@ -140,13 +147,18 @@ thead th {
   border: solid 1px white;
   color: white;
   text-align: center;
-  font-size: 9pt;
+  /* font-size: 9pt; */
   font-weight: normal;
+  font-family: "Roboto";
+  font-size: 12pt;
 }
 tbody td {
   border: solid 1px rgb(243, 243, 243);
-  font-size: 9pt;
+  /* font-size: 9pt; */
   font-weight: normal;
+  font-family: "Roboto Mono", monospace;
+  font-weight: 300;
+  font-size: 12pt;
 }
 
 tbody tr.selected-record {
@@ -191,7 +203,10 @@ input {
   font-weight: 300;
   font-size: 12pt;
 }
-
+input[type="date"] {
+  /* date型のスタイル指定 */
+  text-align: right;
+}
 select {
   width: calc(183px - 1px);
   height: 27px;

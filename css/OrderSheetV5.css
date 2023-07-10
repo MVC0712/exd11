@@ -1,16 +1,44 @@
 .main__wrapper {
-  height: 200px;
+  /* height: 150px; */
 }
 .input__wrapper {
   height: 80px;
 }
 .top__wrapper {
+  height: 190px;
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
+  align-content: space-around;
 }
 .top__wrapper > div:nth-child(2) {
   height: 94px;
 }
 .top__wrapper > div:nth-child(2) > select {
   border-top: none;
+}
+/* BUTTON area */
+.button__wrapper {
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+}
+button {
+  height: 30px;
+  width: 120px;
+}
+/* SUMMARY TABLE */
+#summary__table th:nth-child(1),
+#summary__table td:nth-child(1) {
+  display: none;
+}
+#summary__table th:nth-child(2),
+#summary__table td:nth-child(2) {
+  width: 110px;
+}
+#summary__table td:nth-child(2) {
+  text-align: left;
 }
