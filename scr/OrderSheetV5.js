@@ -10,7 +10,7 @@ function readSummaryTable() {
   let sendData = new Object();
   let number = 1;
   // read ng list and fill option
-  fileName = "./php/OrderSheet/SelSummaryV4.php";
+  fileName = "./php/OrderSheet/SelSummaryV5.php";
   sendData = {
     dummy: "dummy",
   };
