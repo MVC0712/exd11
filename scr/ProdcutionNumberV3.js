@@ -774,11 +774,40 @@ $(document).on("click", "#language__mark", function () {
 });
 
 $(document).on("click", "#edit_category__button", function () {
-  console.log("Hello");
-
   window.open(
     "./CategoryNameEdit.html",
     null,
     "width=720, height=530, left=280, top=200, toolbar=yes,menubar=yes,scrollbars=no"
   );
 });
+
+$(document).on("click", "#copyToClipboard__button", function () {
+  var targetTable = $("#summary__table");
+  var strTable = convertHTMLTableToStrTable(targetTable);
+  // console.log(strTable);
+
+  navigator.clipboard
+    .writeText(strTable)
+    .then(function () {
+      console.log("Text copied to clipboard!");
+    })
+    .catch(function (err) {
+      console.error("Failed to copy text: ", err);
+    });
+});
+
+function convertHTMLTableToStrTable(targetTable) {
+  var strTable = "";
+  var rows = targetTable.find("tr");
+
+  rows.each(function () {
+    var cells = $(this).find("td, th");
+    cells.each(function () {
+      var text = $(this).text().trim();
+      strTable += text + "\t";
+    });
+    strTable += "\n";
+  });
+
+  return strTable;
+}

@@ -11,7 +11,9 @@ header > div:nth-child(1) {
   /* background-color: aqua; */
   width: 40px;
 }
-
+#mode_display {
+  color: yellow;
+}
 header > div:nth-child(2) {
   /* background-color: aqua; */
   width: 150px;
@@ -63,6 +65,7 @@ header > div:nth-child(5) > img {
 
 table tbody {
   height: 140px;
+  width: 670px;
 }
 
 table th {

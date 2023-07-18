@@ -1,0 +1,162 @@
+.main__wrapper {
+  /* height: 150px; */
+  height: 100%;
+}
+.input__wrapper {
+  height: 80px;
+}
+.top__wrapper {
+  height: 190px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: space-around;
+}
+.top__wrapper > div:nth-child(2) {
+  height: 94px;
+}
+.top__wrapper > div:nth-child(2) > select {
+  border-top: none;
+}
+/* Input elemment */
+#production_qunatity {
+  text-align: right;
+}
+/* BUTTON area */
+.button__wrapper {
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+}
+button {
+  height: 30px;
+  width: 120px;
+}
+/* SUMMARY TABLE */
+#summary__table tbody {
+  width: 1086px;
+  height: 385px;
+}
+
+#summary__table th:nth-child(1),
+#summary__table td:nth-child(1) {
+  display: none;
+}
+/* Order Sheet Number */
+#summary__table th:nth-child(2),
+#summary__table td:nth-child(2) {
+  width: 120px;
+}
+#summary__table td:nth-child(2) {
+  text-align: left;
+}
+/* Delivery Date */
+#summary__table th:nth-child(3),
+#summary__table td:nth-child(3) {
+  width: 57px;
+}
+#summary__table td:nth-child(3) {
+  text-align: right;
+}
+/* Issue Date */
+#summary__table th:nth-child(4),
+#summary__table td:nth-child(4) {
+  width: 55px;
+}
+#summary__table td:nth-child(4) {
+  text-align: right;
+}
+/* Production Number */
+#summary__table th:nth-child(5),
+#summary__table td:nth-child(5) {
+  width: 180px;
+}
+#summary__table td:nth-child(5) {
+  width: 178px;
+  text-align: left;
+  padding-left: 3px;
+}
+/* Qty */
+#summary__table th:nth-child(6),
+#summary__table td:nth-child(6) {
+  width: 60px;
+}
+#summary__table td:nth-child(6) {
+  text-align: right;
+}
+/* Cut */
+#summary__table th:nth-child(7),
+#summary__table td:nth-child(7) {
+  width: 60px;
+}
+#summary__table td:nth-child(7) {
+  text-align: right;
+}
+/* NG */
+#summary__table th:nth-child(8),
+#summary__table td:nth-child(8) {
+  width: 60px;
+}
+#summary__table td:nth-child(8) {
+  text-align: right;
+}
+/* OK */
+#summary__table th:nth-child(9),
+#summary__table td:nth-child(9) {
+  width: 60px;
+}
+#summary__table td:nth-child(9) {
+  text-align: right;
+}
+/* OK-Ord */
+#summary__table th:nth-child(10),
+#summary__table td:nth-child(10) {
+  width: 60px;
+}
+#summary__table td:nth-child(10) {
+  text-align: right;
+}
+/* Packed */
+#summary__table th:nth-child(11),
+#summary__table td:nth-child(11) {
+  width: 60px;
+}
+#summary__table td:nth-child(11) {
+  text-align: right;
+}
+/* Order-Packed */
+#summary__table th:nth-child(12),
+#summary__table td:nth-child(12) {
+  width: 60px;
+}
+#summary__table td:nth-child(12) {
+  text-align: right;
+}
+/* Note */
+#summary__table th:nth-child(13),
+#summary__table td:nth-child(13) {
+  width: 140px;
+}
+#summary__table td:nth-child(13) {
+  text-align: left;
+}
+/* Update */
+#summary__table th:nth-child(14),
+#summary__table td:nth-child(14) {
+  width: 55px;
+}
+#summary__table td:nth-child(14) {
+  text-align: right;
+}
+/* about Mainul Value */
+#summary__table td.mainus-value {
+  background-color: #ffd1bf;
+  color: red;
+  font-weight: 500;
+}
+#summary__table td.plus-value {
+  background-color: #dbdbff;
+}

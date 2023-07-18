@@ -17,30 +17,41 @@ const myAjax = {
   },
 };
 
-document
-  .getElementById("insert__button")
-  .addEventListener("click", async () => {
-    let itemData;
-    const cate1Sel = returnCate1Select();
-    const text = await navigator.clipboard.readText();
-
-    itemData = text.split("\r\n");
-    $("#summary__table_body").empty();
-    itemData.forEach(function (element, index) {
-      let newTr = $("<tr>");
-      newTr.append($("<td>").html(index + 1));
-      newTr.append($("<td>").html(element));
-      newTr.append(
-        $("<td>").addClass("category1__select").append(returnCate1Select())
-      );
-      newTr.append($("<td>"));
-      // newTr.append($("<td>").append(cate1Sel));  <--- why this don't work?
-      if (element.length != 0) {
-        newTr.appendTo($("#summary__table_body"));
-      }
+$(document).on("click", "#insert__button", function () {
+  // read production number from Clip board
+  // console.log("hello");
+  navigator.clipboard
+    .readText()
+    .then(function (text) {
+      // insert clipboard list to table
+      insertTextToTable(text);
+      // check dublication
+      checkDublication();
+    })
+    .catch(function (error) {
+      console.error("Can't access to Clipboard", error);
+      alert("Can't access to Clipboard");
     });
-    checkDublication();
+});
+
+function insertTextToTable(text) {
+  const itemText = text.split("\r\n");
+  $("#summary__table_body").empty();
+  itemText.forEach(function (element, index) {
+    if (element.length != 0) {
+      var newTr = $("<tr>")
+        .append($("<td>").html(index + 1))
+        .append($("<td>").html(element).addClass("save-data"))
+        .append(
+          $("<td>")
+            .addClass("category1__select save-data")
+            .append(returnCate1Select())
+        )
+        .append($("<td>"))
+        .appendTo($("#summary__table_body"));
+    }
   });
+}
 
 function checkDublication() {
   let fileName;
@@ -66,7 +77,6 @@ function checkDublication() {
   });
 }
 
-// document.getElementById("test__button").addEventListener("click", () => {});
 $(document).on("change", "tbody td.category1__select select", function () {
   let fileName;
   let sendData = new Object();
@@ -80,7 +90,7 @@ $(document).on("change", "tbody td.category1__select select", function () {
   myAjax.myAjax(fileName, sendData);
   // console.log(ajaxReturnData);
 
-  targetTd.addClass("category2__select");
+  targetTd.addClass("category2__select save-data");
   targetTd.empty();
 
   ajaxReturnData.forEach(function (recordData) {
@@ -109,7 +119,6 @@ function returnCate1Select() {
 }
 
 $(document).on("change", "tbody td.category2__select select", function () {
-  console.log("hello");
   if (checkSelectCompleted() && $(".duplication-tr").length == 0) {
     $("#save__button").prop("disabled", false);
   } else {
@@ -133,55 +142,89 @@ function checkSelectCompleted() {
     }
   });
 
-  console.log(flag);
   return flag;
 }
 
-document.getElementById("check__button").addEventListener("click", function () {
-  // check category2 select element was selected
-  let flag = true;
-  const targetDom = $(".category2__select select");
-  const recordCnt = $("#summary__table_body tr").length;
-
-  if (targetDom.length != recordCnt) {
-    flag = false;
-  }
-
-  targetDom.each(function () {
-    if ($(this).val() == 0) {
-      flag = false;
-    }
-  });
-
-  console.log(flag);
-});
-
-$(document).on("click", "#check__button", function () {
-  console.log("hello");
-  const fileName = "./php/ProductionNumber/test3.php";
-  const targetTr = $("#summary__table_body tr");
+$(document).on("click", "#save__button", function () {
+  // save new production data to SQL
+  const targetObj = new Object($("#mode_display"));
+  const str = "Saved";
+  let fileName;
   let sendData = new Object();
 
-  let object = {
-    1: { x: 1, y: 2 },
-    2: { x: 3, y: 4 },
-  };
+  sendData = getSaveData();
+  fileName = "./php/ProductionNumber/InsProductionNumberFromClipboard.php";
 
-  // targetTr.each(function (index) {
-  //   sendData[index] = {
-  //     production_name: "aaa",
-  //     category2_id: index,
-  //   };
-  // });
-
-  targetTr.each(function (index) {
-    sendData[index] = {
-      production_number: $(this).find("td").eq(1).html(),
-      category2_id: $(this).find("select").eq(1).val(),
-    };
+  Object.keys(sendData).forEach(function (key) {
+    // console.log(sendData[key]);
+    myAjax.myAjax(fileName, sendData[key]);
   });
-
-  console.log(sendData);
-
-  myAjax.myAjax(fileName, sendData);
+  $("#summary__table tbody").empty();
+  $("#save__button").prop("disabled", true);
+  blinkDisplay(targetObj, str);
 });
+
+function getSaveData() {
+  var sendData = new Object();
+  var recordData = new Object();
+  var today = new Date();
+
+  $("#summary__table tbody tr").each(function (index, element) {
+    recordData = {
+      production_number: $(element).find("td:eq(1)").text(),
+      category1: parseInt($(element).find("td:eq(2) select").val()),
+      category2: parseInt($(element).find("td:eq(3) select").val()),
+      create_at: makeYYYYMMDD(today),
+    };
+    sendData[index] = recordData;
+  });
+  return sendData;
+}
+
+function makeYYYYMMDD(dateObj) {
+  const year = dateObj.getFullYear();
+  const month = String(dateObj.getMonth() + 1).padStart(2, "0");
+  const day = String(dateObj.getDate()).padStart(2, "0");
+
+  return year + "-" + month + "-" + day;
+}
+
+$(document).on("click", "#test__button", function () {});
+
+// Window Colose
+$(document).on("mouseover", "#window_close__mark", function () {
+  // console.log("hello");
+  $("#window_close__mark").attr("src", "./img/close-2.png");
+});
+
+$(document).on("mouseout", "#window_close__mark", function () {
+  // console.log("hello2");
+  $("#window_close__mark").attr("src", "./img/close.png");
+});
+
+$(document).on("click", "#window_close__mark", function () {
+  // open("about:blank", "_self").close(); // close window
+  window.close();
+});
+
+$(document).on("click", "#test__button", function () {
+  // $("#mode_display").html("Saved");
+  // displayModeDisplay("Saved");
+  const targetObj = new Object($("#mode_display"));
+  const str = "Saved";
+  blinkDisplay(targetObj, str);
+});
+
+function blinkDisplay(targetObj, str) {
+  var count = 10;
+  var interval = setInterval(function () {
+    if (count <= 0) {
+      clearInterval(interval);
+    }
+    targetObj.html(str);
+    setTimeout(function () {
+      targetObj.html("");
+    }, 300);
+    count--;
+  }, 500);
+}
