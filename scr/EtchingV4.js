@@ -22,7 +22,7 @@ $(function() {
 	makeSelStaff();
 });
 function makeSummaryTable() {
-	var fileName = "./php/Etching/SelSummaryV3.php";
+	var fileName = "./php/Etching/SelSummaryV4.php";
 	var sendData = {
 		search : $("#die_number__input").val(),
 	};
@@ -431,6 +431,31 @@ $(document).on("click", "#summary_table tbody tr", function(e) {
 				else if (i%8==5) { trDom.append($("<td>").html( Math.ceil((i-n-3)/(2*n) + 1) + "E")); }
 				else if (i%8==6) { trDom.append($("<td>").html( Math.ceil((i-n-3)/(2*n) + 1) + "F")); }
 				else { trDom.append($("<td>").html( Math.ceil((i-n-3)/(2*n) + 1) + "END")); }
+			} else if (n==5){
+				if (i%10==0){ trDom.append($("<td>").html( Math.ceil((i-n-4)/(2*n) + 1) + "H")); }
+				else if (i%10==1) { trDom.append($("<td>").html( Math.ceil((i-n-4)/(2*n) + 1) + "A")); }
+				else if (i%10==2) { trDom.append($("<td>").html( Math.ceil((i-n-4)/(2*n) + 1) + "B")); }
+				else if (i%10==3) { trDom.append($("<td>").html( Math.ceil((i-n-4)/(2*n) + 1) + "C")); }
+				else if (i%10==4) { trDom.append($("<td>").html( Math.ceil((i-n-4)/(2*n) + 1) + "D")); }
+				else if (i%10==5) { trDom.append($("<td>").html( Math.ceil((i-n-4)/(2*n) + 1) + "E")); }
+				else if (i%10==6) { trDom.append($("<td>").html( Math.ceil((i-n-4)/(2*n) + 1) + "F")); }
+				else if (i%10==7) { trDom.append($("<td>").html( Math.ceil((i-n-4)/(2*n) + 1) + "I")); }
+				else if (i%10==8) { trDom.append($("<td>").html( Math.ceil((i-n-4)/(2*n) + 1) + "K")); }
+				else { trDom.append($("<td>").html( Math.ceil((i-n-4)/(2*n) + 1) + "END")); }
+			} else if (n==6){
+				if (i%12==0){ trDom.append($("<td>").html( Math.ceil((i-n-5)/(2*n) + 1) + "H")); }
+				else if (i%12==1) { trDom.append($("<td>").html( Math.ceil((i-n-5)/(2*n) + 1) + "A")); }
+				else if (i%12==2) { trDom.append($("<td>").html( Math.ceil((i-n-5)/(2*n) + 1) + "B")); }
+				else if (i%12==3) { trDom.append($("<td>").html( Math.ceil((i-n-5)/(2*n) + 1) + "C")); }
+				else if (i%12==4) { trDom.append($("<td>").html( Math.ceil((i-n-5)/(2*n) + 1) + "D")); }
+				else if (i%12==5) { trDom.append($("<td>").html( Math.ceil((i-n-5)/(2*n) + 1) + "E")); }
+				else if (i%12==6) { trDom.append($("<td>").html( Math.ceil((i-n-5)/(2*n) + 1) + "F")); }
+				else if (i%12==7) { trDom.append($("<td>").html( Math.ceil((i-n-5)/(2*n) + 1) + "F")); }
+				else if (i%12==8) { trDom.append($("<td>").html( Math.ceil((i-n-5)/(2*n) + 1) + "I")); }
+				else if (i%12==9) { trDom.append($("<td>").html( Math.ceil((i-n-5)/(2*n) + 1) + "K")); }
+				else if (i%12==10) { trDom.append($("<td>").html( Math.ceil((i-n-5)/(2*n) + 1) + "L")); }
+				else if (i%12==11) { trDom.append($("<td>").html( Math.ceil((i-n-5)/(2*n) + 1) + "M")); }
+				else { trDom.append($("<td>").html( Math.ceil((i-n-5)/(2*n) + 1) + "END")); }
 			}
 			for (j = 0; j < 11; ++j) {
 			let tdDom;
@@ -517,7 +542,7 @@ function BH() {
 	var tbody = table.getElementsByTagName("tbody")[0];
 	var tr = tbody.getElementsByTagName("tr");
 	for (i = 0; i < tr.length; i++) {
-		td = tr[i].getElementsByTagName("td")[7];
+		td = tr[i].getElementsByTagName("td")[8];
 		if (td) {
 			txtdata = td.innerText;
 			if (txtdata == "BH") {
