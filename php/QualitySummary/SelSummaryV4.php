@@ -3,7 +3,12 @@
   $userid = "webuser";
   $passwd = "";
   // print_r($_POST);
-  
+  $machine = $_POST['machine'];
+  if ($machine == 0) {
+    $add = "";
+  } else {
+    $add = " AND press_machine_no LIKE '$machine'";
+  };
   try {
       $dbh = new PDO(
           'mysql:host=localhost; dbname=extrusion; charset=utf8',
@@ -114,7 +119,7 @@ LEFT JOIN
 		FROM t_using_aging_rack
 		GROUP BY 	t_using_aging_rack.t_press_id
 	) t20 ON t20.t_press_id = t_press.id
-WHERE m_dies.die_number LIKE :die_number
+WHERE m_dies.die_number LIKE :die_number $add
 GROUP BY t_press.id
 ORDER BY 	t_press.press_date_at DESC, t_press.press_start_at DESC
 LIMIT 400

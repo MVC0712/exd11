@@ -256,34 +256,55 @@ $(document).on("click", "#summary_table tbody tr", function(e) {
         for (i = 0; i < Math.ceil(a * 2 * m * h); ++i) {
             let trDom = $("<tr>");
             if (n==1){
-                if (i%2==0){trDom.append($("<td>").html(Math.ceil((i-n)/(2*n) + 1) + "H"));} 
-                else {trDom.append($("<td>").html(Math.ceil((i-n)/(2*n) + 1) + "E"));}
-
-            } else if (n==2){
-                if (i%4==0){trDom.append($("<td>").html( Math.ceil((i-n-1)/(2*n) + 1) + "H"));} 
-                else if (i%4==1) {trDom.append($("<td>").html( Math.ceil((i-n-1)/(2*n) + 1) + "A"));} 
-                else if (i%4==2) {trDom.append($("<td>").html( Math.ceil((i-n-1)/(2*n) + 1) + "B"));} 
-                else {trDom.append($("<td>").html( Math.ceil((i-n-1)/(2*n) + 1) + "E"));}
-
-            } else if (n==3){
-                if (i%6==0){ trDom.append($("<td>").html( Math.ceil((i-n-2)/(2*n) + 1) + "H")); }
-                else if (i%6==1) { trDom.append($("<td>").html( Math.ceil((i-n-2)/(2*n) + 1) + "A")); }
-                else if (i%6==2) { trDom.append($("<td>").html( Math.ceil((i-n-2)/(2*n) + 1) + "B")); }
-                else if (i%6==3) { trDom.append($("<td>").html( Math.ceil((i-n-2)/(2*n) + 1) + "C")); }
-                else if (i%6==4) { trDom.append($("<td>").html( Math.ceil((i-n-2)/(2*n) + 1) + "D")); }
-                else { trDom.append($("<td>").html( Math.ceil((i-n-2)/(2*n) + 1) + "E")); }
-
-            } else if (n==4){
-                if (i%8==0){ trDom.append($("<td>").html( Math.ceil((i-n-3)/(2*n) + 1) + "H")); }
-                else if (i%8==1) { trDom.append($("<td>").html( Math.ceil((i-n-3)/(2*n) + 1) + "A")); }
-                else if (i%8==2) { trDom.append($("<td>").html( Math.ceil((i-n-3)/(2*n) + 1) + "B")); }
-                else if (i%8==3) { trDom.append($("<td>").html( Math.ceil((i-n-3)/(2*n) + 1) + "C")); }
-                else if (i%8==4) { trDom.append($("<td>").html( Math.ceil((i-n-3)/(2*n) + 1) + "D")); }
-                else if (i%8==5) { trDom.append($("<td>").html( Math.ceil((i-n-3)/(2*n) + 1) + "E")); }
-                else if (i%8==6) { trDom.append($("<td>").html( Math.ceil((i-n-3)/(2*n) + 1) + "F")); }
-                else { trDom.append($("<td>").html( Math.ceil((i-n-3)/(2*n) + 1) + "END")); }
-
-            }
+				if (i%2==0){trDom.append($("<td>").html(Math.ceil((i-n)/(2*n) + 1) + "H"));}
+				else {trDom.append($("<td>").html(Math.ceil((i-n)/(2*n) + 1) + "E"));}
+			} else if (n==2){
+				if (i%4==0){trDom.append($("<td>").html( Math.ceil((i-n-1)/(2*n) + 1) + "H"));}
+				else if (i%4==1) {trDom.append($("<td>").html( Math.ceil((i-n-1)/(2*n) + 1) + "A"));}
+				else if (i%4==2) {trDom.append($("<td>").html( Math.ceil((i-n-1)/(2*n) + 1) + "B"));}
+				else {trDom.append($("<td>").html( Math.ceil((i-n-1)/(2*n) + 1) + "E"));}
+			} else if (n==3){
+				if (i%6==0){ trDom.append($("<td>").html( Math.ceil((i-n-2)/(2*n) + 1) + "H")); }
+				else if (i%6==1) { trDom.append($("<td>").html( Math.ceil((i-n-2)/(2*n) + 1) + "A")); }
+				else if (i%6==2) { trDom.append($("<td>").html( Math.ceil((i-n-2)/(2*n) + 1) + "B")); }
+				else if (i%6==3) { trDom.append($("<td>").html( Math.ceil((i-n-2)/(2*n) + 1) + "C")); }
+				else if (i%6==4) { trDom.append($("<td>").html( Math.ceil((i-n-2)/(2*n) + 1) + "D")); }
+				else { trDom.append($("<td>").html( Math.ceil((i-n-2)/(2*n) + 1) + "E")); }
+			} else if (n==4){
+				if (i%8==0){ trDom.append($("<td>").html( Math.ceil((i-n-3)/(2*n) + 1) + "H")); }
+				else if (i%8==1) { trDom.append($("<td>").html( Math.ceil((i-n-3)/(2*n) + 1) + "A")); }
+				else if (i%8==2) { trDom.append($("<td>").html( Math.ceil((i-n-3)/(2*n) + 1) + "B")); }
+				else if (i%8==3) { trDom.append($("<td>").html( Math.ceil((i-n-3)/(2*n) + 1) + "C")); }
+				else if (i%8==4) { trDom.append($("<td>").html( Math.ceil((i-n-3)/(2*n) + 1) + "D")); }
+				else if (i%8==5) { trDom.append($("<td>").html( Math.ceil((i-n-3)/(2*n) + 1) + "E")); }
+				else if (i%8==6) { trDom.append($("<td>").html( Math.ceil((i-n-3)/(2*n) + 1) + "F")); }
+				else { trDom.append($("<td>").html( Math.ceil((i-n-3)/(2*n) + 1) + "END")); }
+			} else if (n==5){
+				if (i%10==0){ trDom.append($("<td>").html( Math.ceil((i-n-4)/(2*n) + 1) + "H")); }
+				else if (i%10==1) { trDom.append($("<td>").html( Math.ceil((i-n-4)/(2*n) + 1) + "A")); }
+				else if (i%10==2) { trDom.append($("<td>").html( Math.ceil((i-n-4)/(2*n) + 1) + "B")); }
+				else if (i%10==3) { trDom.append($("<td>").html( Math.ceil((i-n-4)/(2*n) + 1) + "C")); }
+				else if (i%10==4) { trDom.append($("<td>").html( Math.ceil((i-n-4)/(2*n) + 1) + "D")); }
+				else if (i%10==5) { trDom.append($("<td>").html( Math.ceil((i-n-4)/(2*n) + 1) + "E")); }
+				else if (i%10==6) { trDom.append($("<td>").html( Math.ceil((i-n-4)/(2*n) + 1) + "F")); }
+				else if (i%10==7) { trDom.append($("<td>").html( Math.ceil((i-n-4)/(2*n) + 1) + "I")); }
+				else if (i%10==8) { trDom.append($("<td>").html( Math.ceil((i-n-4)/(2*n) + 1) + "K")); }
+				else { trDom.append($("<td>").html( Math.ceil((i-n-4)/(2*n) + 1) + "END")); }
+			} else if (n==6){
+				if (i%12==0){ trDom.append($("<td>").html( Math.ceil((i-n-5)/(2*n) + 1) + "H")); }
+				else if (i%12==1) { trDom.append($("<td>").html( Math.ceil((i-n-5)/(2*n) + 1) + "A")); }
+				else if (i%12==2) { trDom.append($("<td>").html( Math.ceil((i-n-5)/(2*n) + 1) + "B")); }
+				else if (i%12==3) { trDom.append($("<td>").html( Math.ceil((i-n-5)/(2*n) + 1) + "C")); }
+				else if (i%12==4) { trDom.append($("<td>").html( Math.ceil((i-n-5)/(2*n) + 1) + "D")); }
+				else if (i%12==5) { trDom.append($("<td>").html( Math.ceil((i-n-5)/(2*n) + 1) + "E")); }
+				else if (i%12==6) { trDom.append($("<td>").html( Math.ceil((i-n-5)/(2*n) + 1) + "F")); }
+				else if (i%12==7) { trDom.append($("<td>").html( Math.ceil((i-n-5)/(2*n) + 1) + "F")); }
+				else if (i%12==8) { trDom.append($("<td>").html( Math.ceil((i-n-5)/(2*n) + 1) + "I")); }
+				else if (i%12==9) { trDom.append($("<td>").html( Math.ceil((i-n-5)/(2*n) + 1) + "K")); }
+				else if (i%12==10) { trDom.append($("<td>").html( Math.ceil((i-n-5)/(2*n) + 1) + "L")); }
+				else if (i%12==11) { trDom.append($("<td>").html( Math.ceil((i-n-5)/(2*n) + 1) + "M")); }
+				else { trDom.append($("<td>").html( Math.ceil((i-n-5)/(2*n) + 1) + "END")); }
+			}
             for (j = 0; j < 8; ++j) {
             let tdDom;
             if (j==0) {

@@ -40,6 +40,7 @@ function makeSummaryTable() {
   var fileName = "./php/QualitySummary/SelSummaryV4.php";
   var sendData = {
     die_number: $("#die_number__input").val() + "%",
+    machine:  $("#machine").val()
   };
   // read n
   myAjax.myAjax(fileName, sendData);
@@ -67,11 +68,18 @@ $(document).on("change", "input.date__input", function () {
     makeTableWithTerm();
   }
 });
-
+$(document).on("change", "#machine", function () {
+  if (checkInput()) {
+    makeTableWithTerm();
+  } else {
+    makeSummaryTable();
+  }
+});
 function makeTableWithTerm() {
   var fileName = "./php/QualitySummary/SelSummaryTermV4.php";
   var sendData = {
     die_number: $("#die_number__input").val() + "%",
+    machine:  $("#machine").val(),
     start_term: $("#start_term").val(),
     end_term: $("#end_term").val(),
   };
