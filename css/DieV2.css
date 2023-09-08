@@ -180,7 +180,7 @@ tbody tr.selected-record {
 /* input__wrapper */
 .input__wrapper {
   width: 200px;
-  height: 70px;
+  height: 60px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -231,6 +231,7 @@ select option {
 }
 div.hidden {
   visibility: hidden;
+  display: none;
 }
 /* Table */
 table {
@@ -290,7 +291,7 @@ thead th {
 }
 /* Summary Table */
 #summary__table tbody {
-  width: 987px;
+  width: 1197px;
   height: 250px;
 }
 #summary__table th {
@@ -327,7 +328,7 @@ table img {
 /* die number */
 #summary__table th:nth-child(2),
 #summary__table td:nth-child(2) {
-  width: 220px;
+  width: 150px;
 }
 #summary__table td:nth-child(2) {
   text-align: left;
@@ -335,7 +336,7 @@ table img {
 /* die diamater */
 #summary__table th:nth-child(3),
 #summary__table td:nth-child(3) {
-  width: 90px;
+  width: 80px;
 }
 #summary__table td:nth-child(3) {
   text-align: right;
@@ -376,12 +377,19 @@ table img {
 /* whole */
 #summary__table th:nth-child(8),
 #summary__table td:nth-child(8) {
-  width: 85px;
+  width: 80px;
 }
 #summary__table td:nth-child(8) {
   text-align: right;
 }
-
+#summary__table th:nth-child(9),
+#summary__table td:nth-child(9) {
+  width: 120px;
+}
+#summary__table th:nth-child(10),
+#summary__table td:nth-child(10) {
+  width: 175px;
+}
 #summary__table div.title__filter {
   display: flex;
   flex-direction: row;
@@ -389,6 +397,18 @@ table img {
 }
 
 #dieNumber__input {
-  width: 50px;
+  width: 90px;
   background-color: #e6e6ff;
+}
+svg {
+  display: block;
+  width: 170px;
+  height: 20px;
+}
+#die_pos_barcode {
+  width: 100%;
+  height: 60px;
+}
+.big {
+  height: 150px;
 }

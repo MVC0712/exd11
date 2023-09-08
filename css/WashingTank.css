@@ -4,7 +4,7 @@ body {
     display: flex;
     flex-direction: column;
     height: calc(600px - 2px);
-    width: calc(1100px - 2px);
+    width: calc(1150px - 2px);
 }
 .wrapper {
     display: flex;
@@ -331,7 +331,7 @@ img {
 }
 
 #change_staff,
-#wasshing_tank_change,
+#wasshing_tank_change_at,
 #do_sth_at,
 #staff {
     width: 160px;
@@ -529,8 +529,8 @@ object {
 }
 
 #washing_tank__history tbody {
-    width: 292px;
-    height: 280px;
+    width: 340px;
+    height: 275px;
     /* overflow: hidden; */
 }
 
@@ -549,7 +549,7 @@ object {
 }
 #washing_tank__history tr th:nth-child(3),
 #washing_tank__history tr td:nth-child(3) {
-    width: 110px;
+    width: 95px;
     text-align: center;
 }
 
@@ -557,9 +557,13 @@ object {
     text-align: left;
 }
 #washing_tank__history tr th:nth-child(4),
-#washing_tank__history tr td:nth-child(4),
+#washing_tank__history tr td:nth-child(4) {
+    width: 60px;
+}
 #washing_tank__history tr th:nth-child(5),
-#washing_tank__history tr td:nth-child(5) {
+#washing_tank__history tr td:nth-child(5),
+#washing_tank__history tr th:nth-child(6),
+#washing_tank__history tr td:nth-child(6) {
     width: 55px;
 }
 
@@ -569,7 +573,7 @@ object {
 }
 
 #washing_tank__summary tbody {
-    width: 250px;
+    width: 220px;
     height: 100px;
     overflow: hidden;
 }

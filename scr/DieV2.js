@@ -178,10 +178,19 @@ function makeTable(targetId) {
     Object.keys(trVal).forEach(function (tdVal) {
       $("<td>").html(trVal[tdVal]).appendTo(newTr);
     });
+    // (makeBarcode(trVal["die_postition"])).appendTo(newTr);
     $(newTr).appendTo(targetId);
   });
+  // JsBarcode(".barcode").init();
 }
-
+function makeBarcode(val) {
+  let targetDom = $("<svg>");
+  targetDom.attr("jsbarcode-value", val);
+  targetDom.attr("class", "barcode");
+  targetDom.attr("displayValue", false);
+  targetDom.attr("height", 20);
+  return targetDom;
+}
 function makeYYYYMMDD(dateObj) {
   const year = dateObj.getFullYear();
   const month = String(dateObj.getMonth() + 1).padStart(2, "0");
@@ -289,10 +298,18 @@ $(document).on("click", "#summary__table tbody tr", function () {
     $("#arrival_date").val("20" + targetTr.eq(5).text());
   }
   $("#whole__input").val(targetTr.eq(7).text());
+  $("#die_postition").val(targetTr.eq(8).text());
   // Delete background color
   $("div.top__wrapper .input-required").removeClass("input-required");
   // Select "Production Number Table"
   selectProductionNumberTable();
+  if ($("#die_postition").val() !== "") {
+    JsBarcode("#die_pos_barcode", $("#die_postition").val(), {
+      width: 8,
+      height: 200,
+      displayValue: true
+    });
+  } else $("#die_pos_barcode").empty();
 });
 
 $(document).on(
@@ -341,6 +358,21 @@ $(document).on("keyup", "#dieNumber__input", function () {
   summaryTableObj.each(function () {
     dieNumber = $(this).find("td").eq(1).text();
     if (dieNumber.indexOf($("#dieNumber__input").val()) == 0) {
+      $(this).css("display", "initial");
+    } else {
+      $(this).css("display", "none");
+    }
+  });
+});
+
+$(document).on("keyup", "#production_number_search", function () {
+  const summaryTableObj = new Object($("#production_number__table tbody tr"));
+  var dieNumber;
+  // exchenge to Large letters
+  $(this).val($(this).val().toUpperCase());
+  summaryTableObj.each(function () {
+    dieNumber = $(this).find("td").eq(3).text();
+    if (dieNumber.indexOf($("#production_number_search").val()) == 0) {
       $(this).css("display", "initial");
     } else {
       $(this).css("display", "none");
@@ -637,7 +669,7 @@ $("#test__button").on("click", function () {
 $(document).on("click", "#save__button", function () {
   var savedMode = $("#mode_display").text();
   var saveData = new Object();
-  const fileName = "./php/Die/InsDie.php";
+  const fileName = "./php/Die/InsDieV2.php";
 
   saveData = getSaveData();
   addNewDieName = $("#die_number").val();

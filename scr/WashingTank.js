@@ -20,6 +20,8 @@ const myAjax = {
 
 $(function() {
     makeSummaryTable();
+    makeSummaryTankTable();
+    makeHistoryTankTable();
     makeStaff();
     $("#save__button").prop("disabled", true);
     $("#update__button").prop("disabled", true);
@@ -50,13 +52,21 @@ function makeSummaryTable() {
     fillTableBody(ajaxReturnData, $("#summary__table tbody"));
     make_action();
 }
-
-function returnToday() {
-    var month;
-    var dt = new Date();
-    month = dt.getMonth() + 1;
-    if (month < 9) month = "0" + month;
-    return dt.getFullYear() + "-" + month + "-" + dt.getDate() + " " + dt.getHours() + ":" + dt.getMinutes();
+function makeHistoryTankTable() {
+    var fileName = "./php/WashingTank/SelTankHistory.php";
+    var sendData = {
+        dummy: "dummy",
+    };
+    myAjax.myAjax(fileName, sendData);
+    fillTableBody(ajaxReturnData, $("#washing_tank__history tbody"));
+}
+function makeSummaryTankTable() {
+    var fileName = "./php/WashingTank/SelSummaryTank.php";
+    var sendData = {
+        dummy: "dummy",
+    };
+    myAjax.myAjax(fileName, sendData);
+    fillTableBody(ajaxReturnData, $("#washing_tank__summary tbody"));
 }
 
 function fillTableBody(data, tbodyDom) {
@@ -258,7 +268,7 @@ $(document).on("change", "#process", function() {
 });
 
 $(document).on("click", "#go__button", function() {
-    var fileName = "./php/WashingTank/InsStatusV4.php";
+    var fileName = "./php/WashingTank/InsStatus.php";
     var sendObj = new Object();
     $("#add__table tbody tr td:nth-child(1)").each(function(
         index,
@@ -269,6 +279,7 @@ $(document).on("click", "#go__button", function() {
     sendObj["die_status_id"] = $('input[name="check_uncheck"]:checked').val();
     sendObj["do_sth_at"] = $("#do_sth_at").val();
     sendObj["staff"] = $("#staff").val();
+    sendObj["tank"] = $("#tank").val();
     sendObj["note"] = $("#note").val();
     if (document.getElementById("myfile").files.length == 0) {
         console.log("khong co file");
@@ -301,6 +312,28 @@ $(document).on("click", "#go__button", function() {
     $("#note").val("");
     $("#myfile").val("");
     makeSummaryTable();
+    makeSummaryTankTable();
+});
+
+$(document).on("click", "#change_tank_button", function() {
+    var fileName = "./php/WashingTank/InsChangeTank.php";
+    var sendObj = new Object();
+    sendObj["wasshing_tank"] = $("#wasshing_tank").val();
+    sendObj["naoh_weight"] = $("#naoh_weight").val();
+    sendObj["gluconat_weight"] = $("#gluconat_weight").val();
+    sendObj["change_staff"] = $("#change_staff").val();
+    sendObj["wasshing_tank_change_at"] = $("#wasshing_tank_change_at").val();
+
+    myAjax.myAjax(fileName, sendObj);
+
+    $("#change_tank_button").prop("disabled", true);
+    $("#wasshing_tank").val("0").removeClass("complete-input").addClass("no-input");
+    $("#naoh_weight").val("0").removeClass("complete-input").addClass("no-input");
+    $("#gluconat_weight").val("0").removeClass("complete-input").addClass("no-input");
+    $("#change_staff").val("0").removeClass("complete-input").addClass("no-input");
+
+    makeSummaryTankTable();
+    makeHistoryTankTable();
 });
 
 function make_action() {
@@ -371,7 +404,7 @@ const formatTime = (date) => {
 
 const date = new Date();
 document.getElementById('do_sth_at').value = formatDate(date);
-document.getElementById('wasshing_tank_change').value = formatDate(date);
+document.getElementById('wasshing_tank_change_at').value = formatDate(date);
 
 function fillTableBodyh(data, tbodyDom) {
     $(tbodyDom).empty();
