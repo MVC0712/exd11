@@ -43,6 +43,25 @@ $(function() {
     }
 });
 
+const getTwoDigits = (value) => value < 10 ? `0${value}` : value;
+const formatDate = (date) => {
+    const hours = getTwoDigits(date.getHours());
+    const mins = getTwoDigits(date.getMinutes());
+    const day = getTwoDigits(date.getDate());
+    const month = getTwoDigits(date.getMonth() + 1);
+    const year = date.getFullYear();
+    return `${year}-${month}-${day}T${hours}:${mins}`;
+}
+const formatTime = (date) => {
+    const hours = getTwoDigits(date.getHours());
+    const mins = getTwoDigits(date.getMinutes());
+    return `${hours}:${mins}`;
+}
+const date = new Date();
+document.getElementById('do_sth_at').value = formatDate(date);
+document.getElementById('wasshing_tank_change_at').value = formatDate(date);
+document.getElementById('wasshing_shot_change_at').value = formatDate(date);
+
 function makeSummaryTable() {
     var fileName = "./php/WashingTank/SelSummary.php";
     var sendData = {
@@ -100,6 +119,14 @@ function makeStaff() {
             $("<option>").val(value["id"]).html(value["staff_name"])
         );
     });
+
+    $("#change_shot_staff > option").remove();
+    $("#change_shot_staff").append($("<option>").val(0).html("NO select"));
+    ajaxReturnData.forEach(function(value) {
+        $("#change_shot_staff").append(
+            $("<option>").val(value["id"]).html(value["staff_name"])
+        );
+    });
 };
 
 $(document).on("change", "#staff", function() {
@@ -116,6 +143,13 @@ $(document).on("change", "#change_staff", function() {
     change_check();
 });
 
+$(document).on("change", "#change_shot_staff", function() {
+    if (0 != $(this).val())
+        $(this).removeClass("no-input").addClass("complete-input");
+    else $(this).removeClass("complete-input").addClass("no-input");
+    change_shot_check();
+});
+
 $(document).on("keyup", "#naoh_weight", function() {
     if ((20 < $(this).val()) && 300 > $(this).val())
         $(this).removeClass("no-input").addClass("complete-input");
@@ -123,8 +157,15 @@ $(document).on("keyup", "#naoh_weight", function() {
     change_check();
 });
 
+$(document).on("keyup", "#glass_weight", function() {
+    if ((10 <= $(this).val()) && 100 >= $(this).val())
+        $(this).removeClass("no-input").addClass("complete-input");
+    else $(this).removeClass("complete-input").addClass("no-input");
+    change_shot_check();
+});
+
 $(document).on("keyup", "#gluconat_weight", function() {
-    if ((1 < $(this).val()) && 10 > $(this).val())
+    if ((1 < $(this).val()) && 20 > $(this).val())
         $(this).removeClass("no-input").addClass("complete-input");
     else $(this).removeClass("complete-input").addClass("no-input");
     change_check();
@@ -230,6 +271,15 @@ function change_check() {
     }
 };
 
+function change_shot_check() {
+    if (($("#change_shot_staff").val() == 0) ||
+        ($("#glass_weight").hasClass("no-input"))) {
+        $("#change_shot_button").prop("disabled", true);
+    } else {
+        $("#change_shot_button").prop("disabled", false);
+    }
+};
+
 $(document).on("change", "#process", function() {
     if ($("#process").val() == 0) {
         $("#process").removeClass("complete-input").addClass("no-input");
@@ -328,9 +378,27 @@ $(document).on("click", "#change_tank_button", function() {
 
     $("#change_tank_button").prop("disabled", true);
     $("#wasshing_tank").val("0").removeClass("complete-input").addClass("no-input");
-    $("#naoh_weight").val("0").removeClass("complete-input").addClass("no-input");
-    $("#gluconat_weight").val("0").removeClass("complete-input").addClass("no-input");
+    $("#naoh_weight").val().removeClass("complete-input").addClass("no-input");
+    $("#gluconat_weight").val().removeClass("complete-input").addClass("no-input");
     $("#change_staff").val("0").removeClass("complete-input").addClass("no-input");
+
+    makeSummaryTankTable();
+    makeHistoryTankTable();
+});
+
+$(document).on("click", "#change_shot_button", function() {
+    var fileName = "./php/WashingTank/InsChangeShot.php";
+    var sendObj = new Object();
+    sendObj["wasshing_shot"] = $("#wasshing_shot").val();
+    sendObj["glass_weight"] = $("#glass_weight").val();
+    sendObj["change_shot_staff"] = $("#change_shot_staff").val();
+    sendObj["wasshing_shot_change_at"] = $("#wasshing_shot_change_at").val();
+
+    myAjax.myAjax(fileName, sendObj);
+
+    $("#change_shot_button").prop("disabled", true);
+    $("#glass_weight").val("0").removeClass("complete-input").addClass("no-input");
+    $("#change_shot_staff").val("0").removeClass("complete-input").addClass("no-input");
 
     makeSummaryTankTable();
     makeHistoryTankTable();
@@ -384,27 +452,6 @@ function make_action() {
         }
     }
 };
-
-const getTwoDigits = (value) => value < 10 ? `0${value}` : value;
-
-const formatDate = (date) => {
-    const hours = getTwoDigits(date.getHours());
-    const mins = getTwoDigits(date.getMinutes());
-    const day = getTwoDigits(date.getDate());
-    const month = getTwoDigits(date.getMonth() + 1);
-    const year = date.getFullYear();
-    return `${year}-${month}-${day}T${hours}:${mins}`;
-}
-
-const formatTime = (date) => {
-    const hours = getTwoDigits(date.getHours());
-    const mins = getTwoDigits(date.getMinutes());
-    return `${hours}:${mins}`;
-}
-
-const date = new Date();
-document.getElementById('do_sth_at').value = formatDate(date);
-document.getElementById('wasshing_tank_change_at').value = formatDate(date);
 
 function fillTableBodyh(data, tbodyDom) {
     $(tbodyDom).empty();

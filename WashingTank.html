@@ -139,8 +139,29 @@
                     </select>
                     <div class="title">Date</div>
                     <input id="wasshing_tank_change_at" type="datetime-local" />
+                    <button id="change_tank_button" disabled>Change</button>
                 </div>
-                <button id="change_tank_button" disabled>Change</button>
+                <div style="margin-left: 20px; border-left: dotted 1px #0000cc;">
+                    <div class="input-block__outer">
+                        <div class="title">Shot</div>
+                        <select id="wasshing_shot" class="save-data need-clear">
+                            <option value="1">Shot 1</option>
+                            <!-- <option value="2">Shot 2</option> -->
+                        </select>
+                    </div>
+                    <div class="input-block__outer">
+                        <div class="title">Shot material</div>
+                        <input id="glass_weight" type="number" class="no-input save-data need-clear"/>
+                    </div>
+                    <div class="title">Staff</div>
+                    <select id="change_shot_staff" class="no-input save-data need-clear">
+                        <option value="0">No select</option>
+                    </select>
+                    <div class="title">Date</div>
+                    <input id="wasshing_shot_change_at" type="datetime-local" />
+                    <button id="change_shot_button" disabled>Change</button>
+                </div>
+                
             </div>
             <table id="washing_tank__summary">
                 <thead>
@@ -162,7 +183,9 @@
                         <th>Date</th>
                         <th>Staff</th>
                         <th>NaOH</th>
-                        <th>Gluconate</th>
+                        <th>Gluco</th>
+                        <th>Glass</th>
+                        <th>Qty</th>
                     </tr>
                 </thead>
                 <tbody></tbody>

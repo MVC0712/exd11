@@ -145,6 +145,10 @@ function makeJugCodeOptionDom(seletedId) {
 			"jug": ""
 		},
 		{
+			"id": 4,
+			"jug": "Rút"
+		},
+		{
 			"id": 5,
 			"jug": "BH"
 		}
@@ -181,6 +185,9 @@ $(document).on("change", "#data__table tbody td", function() {
 			} else if (txtdata == "OK") {
 				$(td).find("select").css("background-color", "white");
 				$(td1).find("select").css("background-color", "white");
+			} else if (txtdata == "Rút") {
+				$(td).find("select").css("background-color", "lime");
+				// $(td1).find("select").css("background-color", "white");
 			}
 		}
 	  }

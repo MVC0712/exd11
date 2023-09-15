@@ -6,11 +6,17 @@
   $start = $_POST['start'];
   $end = $_POST['end'];
   $prs_type_search = $_POST['prs_type_search'];
+  $mcn_type_search = $_POST['mcn_type_search'];
   $code_filter = $_POST['code_filter'];
   if ($prs_type_search == 0) {
     $add = "";
   } else {
     $add = " AND m_pressing_type.id LIKE '$prs_type_search'";
+  };
+  if ($mcn_type_search == 0) {
+    $add2 = "";
+  } else {
+    $add2 = " AND machine_number LIKE '$mcn_type_search'";
   };
   try{
     $dbh = new PDO(
@@ -42,7 +48,7 @@
         LEFT JOIN
     m_pressing_type ON m_pressing_type.id = t_extrusion_log.pressing_type_id
         WHERE
-        code LIKE '%$code_filter%' AND t_extrusion_log.input_date BETWEEN '$start' AND '$end' $add
+        code LIKE '%$code_filter%' AND t_extrusion_log.input_date BETWEEN '$start' AND '$end' $add $add2
         ORDER BY t_extrusion_log.input_date DESC, t_extrusion_log.start ASC, t_extrusion_log.end ASC";
     // print_r($sql);
 

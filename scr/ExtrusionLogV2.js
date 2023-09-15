@@ -47,6 +47,7 @@ function makeSummaryTable() {
     start : $("#plan_start").val(),
     end : $("#plan_end").val(),
     prs_type_search : $("#prs_type_search").val(),
+    mcn_type_search : $("#mcn_type_search").val(),
     code_filter : $("#code_filter").val(),
   };
   myAjax.myAjax(fileName, sendData);
@@ -345,6 +346,9 @@ $(document).on("change", "#plan_end", function (e) {
   makeSummaryTable();
 });
 $(document).on("change", "#prs_type_search", function (e) {
+  makeSummaryTable();
+});
+$(document).on("change", "#mcn_type_search", function (e) {
   makeSummaryTable();
 });
 $(document).on("keyup", "#code_filter", function (e) {

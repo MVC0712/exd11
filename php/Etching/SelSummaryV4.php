@@ -31,6 +31,7 @@
         WHEN t20.etching_finish = 1 THEN 'HT'
         WHEN t20.etching_finish = 2 THEN 'BH'
         WHEN t20.etching_finish = 3 THEN 'KN'
+        WHEN t20.etching_finish = 4 THEN 'ĐN'
         ELSE 'CHT'
     END AS XN
 FROM
