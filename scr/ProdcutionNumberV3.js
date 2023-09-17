@@ -2,13 +2,14 @@
 
 let summaryTableEditMode = false;
 let ajaxReturnData;
-let inputProductionNumber = "C2Q63A-AD141A20K";
+// let inputProductionNumber = "C2Q63A-AD141A20K";
 let table = $("#summary__table");
 // ソート対象の列を選択
 let column = 1; // 例として、2列目を選択する場合
 let sortReverse = false;
 let sameColumn = false;
 let titleNames = new Object();
+let summaryTable = new Object();
 
 const myAjax = {
   myAjax: function (fileName, sendData) {
@@ -31,31 +32,37 @@ const myAjax = {
 $(function () {
   // make summary table
   readSummaryTable();
+  summaryTable = ajaxReturnData;
+  makeSummaryTable(summaryTable);
+  $("#summary__table_record").html(
+    $("#summary__table tbody tr").length + " items"
+  );
+  // make category1 table
   readCategory1Table();
-  $("#test__button").remove();
+  // $("#test__button").remove();
 });
 
 function readSummaryTable() {
   let fileName;
   let sendData = new Object();
-  let number = 1;
   // read ng list and fill option
   fileName = "./php/ProductionNumber/SelSummaryV3.php";
   sendData = {
     dummy: "dummy",
   };
   myAjax.myAjax(fileName, sendData);
+  // summaryTable = ajaxReturnData;
+}
+
+function makeSummaryTable(tableObj) {
   $("#summary__table tbody").empty();
-  ajaxReturnData.forEach(function (trVal) {
+  tableObj.forEach(function (trVal) {
     var newTr = $("<tr>");
     Object.keys(trVal).forEach(function (tdVal) {
       $("<td>").html(trVal[tdVal]).appendTo(newTr);
     });
     $(newTr).appendTo("#summary__table tbody");
   });
-  $("#summary__table_record").html(
-    $("#summary__table tbody tr").length + " items"
-  );
 }
 
 function readCategory1Table() {
@@ -388,6 +395,27 @@ function getInputData() {
   return inputData;
 }
 
+$(document).on("keyup", "#production_number_sort", function () {
+  $(this).val($(this).val().toUpperCase()); // 小文字を大文字に
+  const text = $(this).val();
+
+  $("#summary__table tbody").empty();
+
+  summaryTable.forEach(function (trVal) {
+    if (trVal["production_number"].includes(text, 0)) {
+      var newTr = $("<tr>");
+      Object.keys(trVal).forEach(function (tdVal) {
+        $("<td>").html(trVal[tdVal]).appendTo(newTr);
+      });
+      $(newTr).appendTo("#summary__table tbody");
+    }
+  });
+
+  $("#summary__table_record").html(
+    $("#summary__table tbody tr").length + " items"
+  );
+});
+
 $(document).on("click", "#summary__table tbody tr", function () {
   const targetId = $(this).find("td").eq(0).html();
   const category2Name = $(this).find("td").eq(2).html();
@@ -709,16 +737,6 @@ function displayArrowMark(header) {
   }
 }
 
-$(document).on("click", "#test__button", function () {
-  const myObj = document.getElementById("category1__tr");
-
-  console.log(myObj);
-
-  myObj.scrollIntoView({
-    behavior: "smooth",
-  });
-});
-
 function findValueInObject(obj, searchValue) {
   for (let key in obj) {
     if (
@@ -811,3 +829,7 @@ function convertHTMLTableToStrTable(targetTable) {
 
   return strTable;
 }
+
+// $(document).on("click", "#test__button", function () {
+//   $("#summary__table tbody").empty();
+// });

@@ -405,4 +405,13 @@ table.summary__table th.sort > div.sort {
   display: flex;
   justify-content: space-between;
   flex-direction: row;
+  align-items: center;
+}
+#production_number_sort {
+  width: 50px;
+  background-color: #e6e6ff;
+}
+div.sort_img {
+  width: 15px;
+  height: 20px;
 }
