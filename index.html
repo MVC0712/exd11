@@ -63,6 +63,7 @@
         <button id="die_number">Edit<br />Die</button>
         <button id="maintenance">Bảo trì TB</button>
         <button id="log">LS máy đùn</button>
+        <button id="raspberrypi">Raspberrypi</button>
       </div>
 
       <div class="right__area">
@@ -86,6 +87,10 @@
       $(document).on("click", "#log", function () {
         window.open("ExtrusionLogV2.html");
       });
+ 
+      $(document).on("click", "#raspberrypi", function () {
+        window.open("RaspberryPi.html");
+      });
 
       $(document).on("click", "#etching", function () {
         window.open("EtchingV4.html");
@@ -100,7 +105,7 @@
       });
 
       $(document).on("click", "#making-press-directive", function () {
-        window.open("MakingPressDirectiveV4.html");
+        window.open("MakingPressDirectiveV5.html");
       });
 
       $(document).on("click", "#staff-page", function () {

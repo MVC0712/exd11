@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RaspberryPi Summary</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/RaspberryPi.css" />
+</head>
+
+<body>
+    <header>RaspberryPi Summary</header>
+    <div class="button__wrapper">
+        <div class="input-block__outer">
+            <div class="input__title">Die Number</div>
+            <input id="die-number__input" class="need-clear input-required save-data" type="text" />
+            <select id="machine">
+                <option value="0">All</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select>
+        </div>
+    </div>
+    <div class="summary__wrapper">
+        <table id="summary__table">
+            <thead>
+                <tr>
+                    <th colspan="5"></th>
+                    <th colspan="4">Container temperature</th>
+                </tr>
+                <tr>
+                    <th>Start</th>
+                    <th>End</th>
+                    <th>Die number</th>
+                    <th>Qty</th>
+                    <th>Machine</th>
+                    <th>Die up</th>
+                    <th>Die down</th>
+                    <th>Stem up</th>
+                    <th>Stem down</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+    <script src="./lib/jquery.min.js"></script>
+    <script src="./scr/RaspberryPi.js"></script>
+</body>
+
+</html>

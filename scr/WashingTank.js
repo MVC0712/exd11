@@ -86,6 +86,7 @@ function makeSummaryTankTable() {
     };
     myAjax.myAjax(fileName, sendData);
     fillTableBody(ajaxReturnData, $("#washing_tank__summary tbody"));
+    make_actiontank();
 }
 
 function fillTableBody(data, tbodyDom) {
@@ -448,6 +449,21 @@ function make_action() {
                     (txt_sta_val == 9)) {
                 table.rows[i].cells[8].innerHTML = "Fixing";
                 table.rows[i].cells[8].style.backgroundColor = "red"
+            }
+        }
+    }
+};
+
+function make_actiontank() {
+    var table, tr, vvv, i;
+    table = document.getElementById("washing_tank__summary");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+        vvv = tr[i].getElementsByTagName("td")[4];
+        if (vvv) {
+            vvv = Number(vvv.innerText.replace(",", ""));
+            if (vvv >= 5000) {
+                table.rows[i].style.backgroundColor = "lime";
             }
         }
     }

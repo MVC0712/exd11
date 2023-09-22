@@ -20,6 +20,11 @@ body>div {
 #etching__date {
     width: 130px;
 }
+#etching_note {
+    width: 130px;
+    height: 80px;
+    text-align: left;
+}
 
 #data__table tbody {
     height: 500px;

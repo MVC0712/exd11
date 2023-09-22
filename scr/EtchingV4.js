@@ -231,6 +231,7 @@ $(document).on("click", "#save__button", function() {
 		etching_check_staff : $("#etching_check_staff").val(),
 		file_url : $("#file_url").html(),
 		image_url : $("#image_url").html(),
+		etching_note : $("#etching_note").val(),
 	};
 	console.log(sendData);
 	myAjax.myAjax(fileName, sendData);
@@ -342,6 +343,9 @@ $(document).on("change", "#file-upload__input", function() {
 $(document).on("change", "#image-upload__input", function() {
 	updateFinish();
 });
+$(document).on("change", "#etching_note", function() {
+	updateFinish();
+});
 $(document).on("keyup", "#die_number__input", function() {
 	makeSummaryTable();
 });
@@ -355,6 +359,7 @@ function updateFinish() {
 			etching_check_staff : $("#etching_check_staff").val(),
 			file_url : $("#file_url").html(),
 			image_url : $("#image_url").html(),
+			etching_note : $("#etching_note").val(),
 		};
 		myAjax.myAjax(fileName, sendData);
 	}
@@ -527,6 +532,7 @@ $(document).on("click", "#summary_table tbody tr", function(e) {
 			$("#etching_finish").val(0);
 			$("#etching_staff").val(0);
 			$("#etching_check_staff").val(0);
+			$("#etching_note").val("");
 			$("#file_url").html("No_image.jpg");
 			$("#image_url").html("No_image.jpg");
 		} else {
@@ -535,6 +541,7 @@ $(document).on("click", "#summary_table tbody tr", function(e) {
 			$("#etching_check_staff").val(ajaxReturnData[0].etching_check_staff).removeClass("no-input").addClass("complete-input");
 			$("#file_url").html(ajaxReturnData[0].etching_file_url);
 			$("#image_url").html(ajaxReturnData[0].etching_image_url);
+			$("#etching_note").val(ajaxReturnData[0].etching_note);
 			$("#preview__button").prop("disabled", false);
 			$("#preview_image_button").prop("disabled", false);
 		}
@@ -558,6 +565,8 @@ function BH() {
 				tr[i].style.backgroundColor = "orange";
 			} else if (txtdata == "KN") {
 				tr[i].style.backgroundColor = "#fc0394";
+			} else if (txtdata == "ĐN") {
+				tr[i].style.backgroundColor = "#f5e342";
 			}
 		}
 	}

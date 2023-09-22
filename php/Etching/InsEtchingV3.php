@@ -12,6 +12,7 @@
   $etching_check_staff = $_POST['etching_check_staff'];
   $file_url = $_POST['file_url'];
   $image_url = $_POST['image_url'];
+  $etching_note = $_POST['etching_note'];
   $data_json = json_decode($data);
 
   try {
@@ -34,8 +35,8 @@
       $prepare = $dbh->prepare($sql);
       $prepare->execute();
 
-      $sql1 = "INSERT INTO t_press_sub (press_id, etching_finish, etching_staff, etching_check_staff, etching_file_url, etching_image_url) VALUES 
-                                      ('{$press_id}','{$etching_finish}', '{$etching_staff}','{$etching_check_staff}','{$file_url}','{$image_url}')";
+      $sql1 = "INSERT INTO t_press_sub (press_id, etching_finish, etching_staff, etching_check_staff, etching_file_url, etching_image_url, etching_note) VALUES 
+                                      ('{$press_id}','{$etching_finish}', '{$etching_staff}','{$etching_check_staff}','{$file_url}','{$image_url}','{$etching_note}')";
       $prepare = $dbh->prepare($sql1);
       $prepare->execute();
 

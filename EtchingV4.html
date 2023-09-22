@@ -66,7 +66,7 @@
                         </tr>
                     </thead>
                 </table>
-                <br>
+                <!-- <br> -->
                     <div class="input__title">Ngày ngâm</div>
                     <input type="date" id="etching__date" class="need-clear no-input save-data">
                 <div class="input__title">Hoàn thành</div>
@@ -89,15 +89,16 @@
                 <input type="file" id="file-upload__input" />
                 <label id="file_url" for="file-upload__input">No_image.jpg</label>
                 <button id="preview__button" disabled>Preview</button>
-
-                <div class="input__title">Image</div>
-                <input type="file" id="image-upload__input" />
-                <label id="image_url" for="image-upload__input">No_image.jpg</label>
-                <button id="preview_image_button" disabled>Preview</button>
-
+                <div class="input__title">Note</div>
+                <input type="text" id="etching_note" />
+                <div style="display: none;">
+                    <div class="input__title">Image</div>
+                    <input type="file" id="image-upload__input" />
+                    <label id="image_url" for="image-upload__input">No_image.jpg</label>
+                    <button id="preview_image_button" disabled>Preview</button>
+                </div>
             </div>
           </div>
-          
         </div>
 
     <script src="./lib/jquery.min.js"></script>

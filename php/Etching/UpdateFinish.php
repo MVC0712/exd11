@@ -8,6 +8,7 @@
   $etching_check_staff = $_POST['etching_check_staff'];
   $file_url = $_POST['file_url'];
   $image_url = $_POST['image_url'];
+  $etching_note = $_POST['etching_note'];
 
   try {
       $dbh = new PDO(
@@ -26,7 +27,8 @@
         etching_staff = '$etching_staff',
         etching_check_staff = '$etching_check_staff',
         etching_file_url = '$file_url',
-        etching_image_url = '$image_url'
+        etching_image_url = '$image_url',
+        etching_note = '$etching_note'
       WHERE press_id = $press_id ";
 // print_r($sql);
     $prepare = $dbh->prepare($sql);
