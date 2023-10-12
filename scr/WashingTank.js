@@ -152,7 +152,7 @@ $(document).on("change", "#change_shot_staff", function() {
 });
 
 $(document).on("keyup", "#naoh_weight", function() {
-    if ((20 < $(this).val()) && 300 > $(this).val())
+    if ((20 < $(this).val()) && 450 > $(this).val())
         $(this).removeClass("no-input").addClass("complete-input");
     else $(this).removeClass("complete-input").addClass("no-input");
     change_check();
@@ -455,15 +455,18 @@ function make_action() {
 };
 
 function make_actiontank() {
-    var table, tr, vvv, i;
+    var table, tr, vvv, ww, i;
     table = document.getElementById("washing_tank__summary");
     tr = table.getElementsByTagName("tr");
     for (i = 0; i < tr.length; i++) {
         vvv = tr[i].getElementsByTagName("td")[4];
+        ww = tr[i].getElementsByTagName("td")[5];
         if (vvv) {
+            ww = Number(ww.innerText.replace(",", ""));
             vvv = Number(vvv.innerText.replace(",", ""));
-            if (vvv >= 5000) {
-                table.rows[i].style.backgroundColor = "lime";
+            if (ww*4700/250 < vvv) {
+                console.log(ww*4700/250, vvv)
+                table.rows[i].style.backgroundColor = "red";
             }
         }
     }

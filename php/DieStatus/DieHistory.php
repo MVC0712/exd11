@@ -48,6 +48,7 @@
     WHERE
         m_dies.die_number LIKE '%$die_number__input%'
     ORDER BY do_sth_at DESC , die_number ASC
+    LIMIT 1000
         ";
 
       $prepare = $dbh->prepare($sql);

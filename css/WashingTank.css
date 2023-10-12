@@ -614,6 +614,10 @@ object {
     width: 55px;
 }
 #washing_tank__summary tr th:nth-child(5),
-#washing_tank__summary tr td:nth-child(5) {
+#washing_tank__summary tr td:nth-child(5),
+#washing_tank__summary tr th:nth-child(6),
+#washing_tank__summary tr td:nth-child(6),
+#washing_tank__summary tr th:nth-child(7),
+#washing_tank__summary tr td:nth-child(7) {
     display: none;
 }

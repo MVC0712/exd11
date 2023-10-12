@@ -15,22 +15,24 @@
       )
       );
 
-      $sql = "SELECT 
+      $sql = "
+        SELECT 
             t_import.id,
             m_ordersheet.id AS order_id,
             m_ordersheet.ordersheet_number,
             m_production_numbers.production_number,
-            DATE_FORMAT(t_import.import_at, '%y-%m-%d') AS import_at,
-            t_import.quantity
+            DATE_FORMAT(MAX(t_import.import_at), '%y-%m-%d') AS import_at ,
+            SUM(quantity) AS Total
         FROM
             extrusion.t_import
         LEFT JOIN
             m_ordersheet ON m_ordersheet.id = t_import.ordersheet_id
         LEFT JOIN
             m_production_numbers ON m_production_numbers.id = m_ordersheet.production_numbers_id
-            WHERE m_ordersheet.ordersheet_number LIKE '$search'
+        WHERE m_ordersheet.ordersheet_number LIKE '$search'
             OR m_production_numbers.production_number LIKE '$search'
-        ORDER BY import_at DESC;
+        GROUP BY ordersheet_id
+        ORDER BY issue_date_at DESC , delivery_date_at DESC , ordersheet_number DESC;
         ";
 
       $prepare = $dbh->prepare($sql);

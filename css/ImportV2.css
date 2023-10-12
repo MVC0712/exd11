@@ -1,18 +1,29 @@
 .button__wrapper button {
-  height: 30px;
+  height: 20px;
   margin: 0;
 }
 
 input {
   text-align: left;
 }
-
+#form,
+#add__button,
+#delete__button,
+#update__button, 
+#save__button {
+  padding: 0;
+  margin: 0;
+  height: 22px;
+}
+#add__button {
+  width: 30px;
+}
 /* --------- main wrapper ---------  */
 
 .main__wrapper {
-  padding-top: 15px;
+  padding-top: 5px;
   flex-direction: row;
-  height: 50px;
+  height: 30px;
   align-content: space-around;
   justify-content: space-around;
 }
@@ -67,6 +78,7 @@ input {
 }
 
 #note__group{
+  display: none;
   width: 110px;
 }
 #note__title {
@@ -96,17 +108,23 @@ input {
 /* --------- button wrapper ---------  */
 
 .button__wrapper {
-  height: 60px;
+  height: 20px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
 }
-
+.excel__wrapper {
+  height: 200px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
 /* --------- summary wrapper ---------  */
 
 .summary__wrapper {
-  height: calc(598px - 165px);
+  height: calc(598px - 290px);
   display: flex;
   align-content: space-around;
   justify-content: space-around;
@@ -115,12 +133,12 @@ input {
 
 /* ======================        summary-table       ======================= */
 #summary__table__ordersheet tbody {
-  height: 400px;
+  height: 270px;
   border-left: 1px dotted #0000ff;
 }
 
 #summary__table tbody {
-  height: 400px;
+  height: 270px;
 }
 
 #summary__table th:nth-child(1),
@@ -196,7 +214,7 @@ input {
 
 #summary__table__ordersheet th:nth-child(5),
 #summary__table__ordersheet td:nth-child(5){
-  width: 35px;
+  width: 100px;
 }
 
 #summary__table__ordersheet td:nth-child(5){
@@ -205,9 +223,58 @@ input {
 
 #summary__table__ordersheet th:nth-child(6),
 #summary__table__ordersheet td:nth-child(6) {
-  width: 100px;
+  width: 35px;
 }
 
 #summary__table__ordersheet td:nth-child(6) {
   text-align: left;
+}
+
+#excel_table tbody {
+  height: 170px;
+  width: 510px;
+}
+
+#excel_table th:nth-child(1),
+#excel_table td:nth-child(1) {
+  width: 40px;
+}
+#excel_table th:nth-child(2),
+#excel_table td:nth-child(2) {
+  width: 120px;
+}
+#excel_table th:nth-child(3),
+#excel_table td:nth-child(3) {
+  width: 140px;
+}
+
+#excel_table th:nth-child(4),
+#excel_table td:nth-child(4) {
+  width: 110px;
+}
+#excel_table th:nth-child(4) input,
+#excel_table td:nth-child(4) input {
+  width: 106px;
+}
+
+#excel_table th:nth-child(5),
+#excel_table td:nth-child(5){
+  width: 45px;
+}
+#excel_table th:nth-child(6),
+#excel_table td:nth-child(6){
+  width: 20px;
+}
+.remove_button {
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+#fileupload {
+  width:auto;
+}
+.add-record {
+  background-color: aqua;
 }

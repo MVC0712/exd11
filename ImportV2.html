@@ -50,25 +50,29 @@
           type="text"
         />
       </div>
-
-      <input id="fileupload" type=file name="files[]">
-
-      <table id="tblItems" class="table w3-table-all w3-hoverable">
+      <button disabled id="add__button">Add</button>
+    </div>
+    <div class="excel__wrapper">
+      <div>
+        <button id="form">Tải form</button>
+        <input id="fileupload" type=file name="files[]">
+      </div>
+      <table id="excel_table" class="table w3-table-all w3-hoverable">
         <thead>
           <tr>
-            <th>Item ID</th>
-            <th>Item Name</th>
-            <th>Cost Price</th>
-            <th>Sales Price</th>
-            <th>Item Discontinued?</th>
+            <th>ODSId</th>
+            <th>OrderSheet</th>
+            <th>Production number</th>
+            <th>Import at</th>
+            <th>Qty</th>
+            <th>Rm</th>
           </tr>
         </thead>
         <tbody></tbody>
       </table>
-
     </div>
     <div class="button__wrapper">
-      <input id="search_input" placeholder="Tìm trong bảng" style="width: 100px; text-align: left;" type="text" onkeyup="timkiemkhuon();" />
+      <input id="search_input" placeholder="Tìm trong bảng" style="width: 100px; text-align: left;" type="text"/>
       <button disabled id="save__button">Save</button>
       <button disabled id="update__button">Update</button>
       <button disabled id="delete__button">Delete</button>
@@ -80,7 +84,24 @@
         <button id="delete-dialog-delete__button">Delete</button>
       </dialog>
       <div>
-        <div>To warehouse history</div>
+        <div>To warehouse sum by Ordersheet</div>
+        <table id="summary__table__ordersheet">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>OrderSheet_id</th>
+              <th>OrderSheet</th>
+              <th>Production Number</th>
+              <th>Import at</th>
+              <th>Qty</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+    </div>
+<div>
+
+      <div>To warehouse history</div>
       <table id="summary__table">
         <thead>
           <tr>
@@ -90,22 +111,6 @@
             <th>Production Number</th>
             <th>Import at</th>
             <th>Qty</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-    </div>
-<div>
-  <div>To warehouse sum by Ordersheet</div>
-      <table id="summary__table__ordersheet">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>OrderSheet_id</th>
-            <th>OrderSheet</th>
-            <th>Production Number</th>
-            <th>Qty</th>
-            <th>Import at</th>
           </tr>
         </thead>
         <tbody></tbody>

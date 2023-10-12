@@ -142,7 +142,7 @@ $(document).on("keyup", "#hardness", function () {
 });
 
 $(document).on("keyup", "#specific_weight", function () {
-  if (isNumber($(this).val()) && 0.5 <= $(this).val() && $(this).val() <= 40) {
+  if (isNumber($(this).val()) && 0.1 <= $(this).val() && $(this).val() <= 40) {
     $(this).removeClass("input-required");
   } else {
     $(this).addClass("input-required");

@@ -1,7 +1,7 @@
 <?php
   $userid = "webuser";
   $passwd = "";
-  
+  $die_number__input = $_POST['die_number__input'];
   try {
       $dbh = new PDO(
           'mysql:host=localhost; dbname=extrusion; charset=utf8',
@@ -47,6 +47,8 @@ FROM
     FROM
         extrusion.t_press_sub
     GROUP BY t_press_sub.press_id) AS t20 ON t20.press_id = t_press.id
+    WHERE
+    die_number LIKE '$die_number__input'
 ORDER BY t_press.press_date_at DESC , t_press.press_start_at DESC
 limit 350;
     ");

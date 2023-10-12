@@ -61,6 +61,7 @@ $(document).on("change", "#ordersheet_number__select", function (e) {
     $("#production_number").html('Production number');
   }
   go_check();
+  add_check();
 });
 
 $(document).on("change", "#ordersheet_number__select", function (e) {
@@ -97,6 +98,7 @@ $(document).on("change", "#import_at", function() {
       $(this).removeClass("complete-input").addClass("no-input");
   }
   go_check();
+  add_check();
 });
 
 // quantity
@@ -108,28 +110,33 @@ $(document).on("keyup", "#quantity", function (e) {
     $(this).removeClass("complete-input").addClass("no-input");
   }
   go_check();
+  add_check();
 });
 
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // ------------------------- Summary Table ---------------------------------
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 function makeSummaryTableByOrderSheet() {
-  var fileName = "./php/Import/SelSummaryByOrderSheet.php";
+  var fileName = "./php/Import/SelSummaryByOrderSheetV2.php";
   var sendData = {
-      dummy: "dummy",
+    search: "%" + $("#search_input").val() + "%",
   };
   myAjax.myAjax(fileName, sendData);
   fillTableBody(ajaxReturnData, $("#summary__table__ordersheet tbody"));
 }
 
 function makeSummaryTable() {
-  var fileName = "./php/Import/SelSummary.php";
+  var fileName = "./php/Import/SelSummaryV2.php";
   var sendData = {
-      dummy: "dummy",
+      search: "%" + $("#search_input").val() + "%",
   };
   myAjax.myAjax(fileName, sendData);
   fillTableBody(ajaxReturnData, $("#summary__table tbody"));
 }
+$(document).on("keyup", "#search_input", function () {
+  makeSummaryTableByOrderSheet();
+  makeSummaryTable();
+});
 
 function fillTableBody(data, tbodyDom) {
   $(tbodyDom).empty();
@@ -146,36 +153,52 @@ function fillTableBody(data, tbodyDom) {
 // ------------------------- Save Button -------------------------
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 function go_check() {
-  if (($("#import_at").val() == "")|| 
-      ($("#ordersheet_number__select").val() == 0)||
-      ($("#quantity").val() <= 0)){
+  if ($("#excel_table tbody tr").length == 0){
       $("#save__button").prop("disabled", true);
   } else {
       $("#save__button").prop("disabled", false);
   }
 };
 
+function add_check() {
+  if (($("#import_at").val() == "")|| 
+      ($("#ordersheet_number__select").val() == 0)||
+      ($("#quantity").val() <= 0)){
+      $("#add__button").prop("disabled", true);
+  } else {
+      $("#add__button").prop("disabled", false);
+  }
+};
+function getTableData(tableTrObj) {
+  var tableData = [];
+  tableTrObj.each(function (index, element) {
+    var tr = [];
+    $(this)
+      .find("td")
+      .each(function (index, element) {
+        if ($(this).find("input").length) {
+          tr.push($(this).find("input").val());
+        } else if ($(this).find("select").length) {
+          tr.push($(this).find("select").val());
+        } else {
+          tr.push($(this).html());
+        }
+      });
+    tableData.push(tr);
+  });
+  return tableData;
+};
 $(document).on("click", "#save__button", function() {
-  var fileName = "./php/Import/InsImport.php";
-  var sendObj = new Object();
-  sendObj["import_at"] =getDateTime(new Date($("#import_at").val()));
-  sendObj["ordersheet_number__select"] = $("#ordersheet_number__select").val();
-  sendObj["quantity"] = $("#quantity").val();
-  sendObj["note"] = $("#note").val();
-  myAjax.myAjax(fileName, sendObj);
-  console.log(sendObj)
+  var fileName = "./php/Import/InsImportV2.php";
+  tableData = getTableData($("#excel_table tbody tr"));
+  jsonData = JSON.stringify(tableData);
+  var sendData = {
+      data : jsonData,
+  };
+  console.log(sendData);
+  myAjax.myAjax(fileName, sendData);
+  $("#excel_table tbody").empty();
 
-  $("#save__button").prop("disabled", true);
-  $("#delete__button").prop("disabled", true);
-  $("#update__button").prop("disabled", true);
-  $("#ordersheet_number__select").val(0);
-  $("#ordersheet_number__select").removeClass("complete-input").addClass("no-input");
-  $("#quantity").val("");
-  $("#quantity").removeClass("complete-input").addClass("no-input");
-  $("#note").val("");
-  $("#import_at").val("");
-  $("#import_at").removeClass("complete-input").addClass("no-input");
-  $("#production_number").html('Production number');
   makeSummaryTableByOrderSheet();
   makeSummaryTable();
 });
@@ -311,26 +334,33 @@ var ExcelToJSON = function() {
     reader.onload = function(e) {
       var data = e.target.result;
       var workbook = XLSX.read(data, {
-        type: 'binary'
+        type: 'binary',
+        cellDates: true,
+        cellNF: false,
+        cellText: false
       });
+      const options = {
+        raw: false, 
+        dateNF: 'yyyy-mm-dd',
+      };
       workbook.SheetNames.forEach(function(sheetName) {
-        var XL_row_object = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
+        var XL_row_object = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName], options);
         var productList = JSON.parse(JSON.stringify(XL_row_object));
-
-        var rows = $('#tblItems tbody');
+        console.log(productList)
+        var rows = $('#excel_table tbody');
         for (i = 0; i < productList.length; i++) {
           var columns = Object.values(productList[i])
           rows.append(`
             <tr>
-              <td>${columns[0]}</td>
-              <td>${columns[1]}</td>
-              <td>${columns[2]}</td>
-              <td>${columns[3]}</td>
-              <td>${columns[4]}</td>
+              <td>${makeOrderSheetId(columns[0].replace( /\s/g, ''))}</td>
+              <td>${columns[0].replace( /\s/g, '')}</td>
+              <td>${makeProductionNumber(columns[0].replace( /\s/g, ''))}</td>
+              <td><input type="date" value="${columns[1].replace( /\s/g, '')}"</td>
+              <td><input type="number" value="${columns[2].replace( /\s/g, '')}"</td>
+              <td><button class="remove_button">X</button></td>
             </tr>
         `);
         }
-
       })
     };
     reader.onerror = function(ex) {
@@ -345,6 +375,99 @@ function handleFileSelect(evt) {
   var files = evt.target.files;
   var xl2json = new ExcelToJSON();
   xl2json.parseExcel(files[0]);
-}
+};
 
 document.getElementById('fileupload').addEventListener('change', handleFileSelect, false);
+
+$(document).on("click", "#form", function() {
+  const a = document.createElement("a");
+  document.body.appendChild(a);
+
+  a.download = "ToWarehouseForm.xlsx";
+  a.href = "../../../diereport/ex0.11/py/ToWarehouseForm.xlsx";
+
+  a.click();
+  a.remove();
+}); 
+
+function makeOrderSheetId(orderS) {
+  fileName = "./php/Import/SelOrderSheetId.php";
+  sendData = {
+    orderS: orderS,
+  };
+  myAjax.myAjax(fileName, sendData);
+  go_check();
+  return ajaxReturnData[0].id;
+};
+
+function makeOrderSheetNumber(id) {
+  fileName = "./php/Import/SelOrderSheetNumber.php";
+  sendData = {
+    id: id,
+  };
+  myAjax.myAjax(fileName, sendData);
+  return ajaxReturnData[0].ordersheet_number;
+};
+
+function makeProductionNumber(orderS) {
+  fileName = "./php/Import/SelProductionNumberByOrderSheet.php";
+  sendData = {
+    orderS: orderS,
+  };
+  myAjax.myAjax(fileName, sendData);
+  return ajaxReturnData[0].production_number;
+};
+
+function makeInput(qty) {
+  let targetDom = $("<input>");
+  targetDom.attr("type", "text");
+  targetDom.val(qty);
+  return targetDom;
+};
+
+function makeDateInput(qty) {
+  let targetDom = $("<input>");
+  targetDom.attr("type", "date");
+  targetDom.val(qty);
+  return targetDom;
+}
+
+$(document).on("click", "#add__button", function() {
+  var newTr = $("<tr>");
+  $("<td>").html($("#ordersheet_number__select").val()).appendTo(newTr);
+  $("<td>").html(makeOrderSheetNumber($("#ordersheet_number__select").val())).appendTo(newTr);
+  $("<td>").html($("#production_number").text()).appendTo(newTr);
+  $("<td>").append(makeDateInput($("#import_at").val())).appendTo(newTr);
+  $("<td>").append(makeInput($("#quantity").val())).appendTo(newTr);
+  $("<td>").append("<button class='remove_button'>X</button>").appendTo(newTr);
+  $(newTr).appendTo("#excel_table tbody");
+
+  $("#ordersheet_number__select").val(0);
+  $("#ordersheet_number__select").removeClass("complete-input").addClass("no-input");
+  $("#quantity").val("");
+  $("#quantity").removeClass("complete-input").addClass("no-input");
+  $("#note").val("");
+  $("#import_at").val("");
+  $("#import_at").removeClass("complete-input").addClass("no-input");
+  $("#production_number").html('Production number');
+  $("#add__button").prop("disabled", true);
+  go_check();
+});
+$(document).on("click", "#excel_table tbody tr", function (e) {
+  if (!$(this).hasClass("add-record")) {
+    $(this).parent().find("tr").removeClass("add-record");
+    $(this).addClass("add-record");
+    $("#add__tr").removeAttr("id");
+    $(this).attr("id", "add__tr");
+  } else {
+      // $(this).remove();
+  }
+  go_check();
+});
+$(document).on("click", "#excel_table tbody tr td button", function (e) {
+  console.log($(this).parent().parent());
+  if ($(this).parent().parent().hasClass("add-record")) {
+    $(this).parent().parent().remove();
+  }
+  go_check();
+});

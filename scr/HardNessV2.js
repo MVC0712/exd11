@@ -29,6 +29,10 @@ $(document).on("change", "#dcyc", function () {
     else $(this).removeClass("complete-input").addClass("no-input");
 });
 
+$(document).on("keyup", "#die_number__input", function () {
+    makeSummaryTable();
+});
+
 $(document).on("change", "#ght", function () {
     if ($(this).val() != 0)
         $(this).removeClass("no-input").addClass("complete-input");
@@ -57,7 +61,7 @@ $(document).on("change", "#hardness__date", function() {
 function makeSummaryTable() {
     var fileName = "./php/HardNess/SelSummary.php";
     var sendData = {
-        dummy: "dummy",
+        die_number__input: "%" + $("#die_number__input").val() + "%",
     };
     myAjax.myAjax(fileName, sendData);
     $("#summary_table tbody").empty();
@@ -511,34 +515,34 @@ $(document).on("click", "#jugmm", function(e) {
     jugment();
 });
 
-function timkiem() {
-    var input, table, tr, td, td1, td2, filter, i, txtdata, txtdata1, txtdata2, txtdata3;
-    input = document.getElementById("die_number__input");
-    filter = input.value.toUpperCase();
-    table = document.getElementById("summary_table");
-    var tbody = table.getElementsByTagName("tbody")[0];
-    var tr = tbody.getElementsByTagName("tr");
-    for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td")[1];
-        td1 = tr[i].getElementsByTagName("td")[2];
-        td2 = tr[i].getElementsByTagName("td")[3];
-        td3 = tr[i].getElementsByTagName("td")[4];
-        if (td||td1||td2) {
-            txtdata = td.innerText;
-            txtdata1 = td1.innerText;
-            txtdata2 = td2.innerText;
-            txtdata3 = td3.innerText;
-            if (txtdata.toUpperCase().indexOf(filter) > -1||
-                txtdata1.toUpperCase().indexOf(filter) > -1||
-                txtdata2.toUpperCase().indexOf(filter) > -1||
-                txtdata3.toUpperCase().indexOf(filter) > -1) {
-                tr[i].style.display = "";
-            } else {
-                tr[i].style.display = "none";
-            }
-        }
-    }
-};
+// function timkiem() {
+//     var input, table, tr, td, td1, td2, filter, i, txtdata, txtdata1, txtdata2, txtdata3;
+//     input = document.getElementById("die_number__input");
+//     filter = input.value.toUpperCase();
+//     table = document.getElementById("summary_table");
+//     var tbody = table.getElementsByTagName("tbody")[0];
+//     var tr = tbody.getElementsByTagName("tr");
+//     for (i = 0; i < tr.length; i++) {
+//         td = tr[i].getElementsByTagName("td")[1];
+//         td1 = tr[i].getElementsByTagName("td")[2];
+//         td2 = tr[i].getElementsByTagName("td")[3];
+//         td3 = tr[i].getElementsByTagName("td")[4];
+//         if (td||td1||td2) {
+//             txtdata = td.innerText;
+//             txtdata1 = td1.innerText;
+//             txtdata2 = td2.innerText;
+//             txtdata3 = td3.innerText;
+//             if (txtdata.toUpperCase().indexOf(filter) > -1||
+//                 txtdata1.toUpperCase().indexOf(filter) > -1||
+//                 txtdata2.toUpperCase().indexOf(filter) > -1||
+//                 txtdata3.toUpperCase().indexOf(filter) > -1) {
+//                 tr[i].style.display = "";
+//             } else {
+//                 tr[i].style.display = "none";
+//             }
+//         }
+//     }
+// };
 
 function jugment() {
     var table, tr, td, i, j, txtdata, tt=0, avr=0, co=0;

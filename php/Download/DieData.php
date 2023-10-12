@@ -18,7 +18,7 @@
       $file_path = "../../download/" . $_POST["file_name"] . ".csv";
       // print_r($file_path);
       $export_csv_title = [
-        "die number", "production number", "arrival at", "die diamater", "bolster"
+        "die number", "production number", "arrival at", "die diamater", "bolster", "die_postition"
       ];
       $export_sql = "
       SELECT 
@@ -26,7 +26,7 @@
     m_production_numbers.production_number,
     m_dies.arrival_at,
     m_dies_diamater.die_diamater,
-    IFNULL(m_bolster.bolster_name, '') AS bolster_name
+    IFNULL(m_bolster.bolster_name, '') AS bolster_name, die_postition
 FROM
     m_dies
         LEFT JOIN

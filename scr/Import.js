@@ -125,7 +125,7 @@ function makeSummaryTableByOrderSheet() {
 function makeSummaryTable() {
   var fileName = "./php/Import/SelSummary.php";
   var sendData = {
-      dummy: "dummy",
+      search: "%" + $("#search_input").val() + "%",
   };
   myAjax.myAjax(fileName, sendData);
   fillTableBody(ajaxReturnData, $("#summary__table tbody"));
@@ -215,6 +215,9 @@ $(document).on("click", "#summary__table tr", function (e) {
   } else {
     // deleteDialog.showModal();
   }
+});
+$(document).on("keyup", "#search_input", function () {
+  makeSummaryTable();
 });
 
 $(document).on("click", "#delete__button", function () {

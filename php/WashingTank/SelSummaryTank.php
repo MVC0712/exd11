@@ -51,7 +51,15 @@
           THEN
               (m_dies_diamater.die_diamater)
           ELSE 0
-      END) AS ddd
+      END) AS ddd,
+      (SELECT 
+              naoh_weight
+          FROM
+              t_washing_tank
+          WHERE
+              t_washing_tank.wasshing_tank = t_dies_status.tank
+          ORDER BY t_washing_tank.wasshing_tank_change_at DESC
+          LIMIT 1) AS w
   FROM
       t_dies_status
           LEFT JOIN
@@ -61,7 +69,7 @@
   WHERE
       t_dies_status.die_status_id = 4
           AND t_dies_status.tank IS NOT NULL
-  GROUP BY t_dies_status.tank 
+  GROUP BY t_dies_status.tank
   UNION SELECT 
       '' AS id,
       'Shot 1' AS tank,
@@ -87,11 +95,12 @@
               1
           ELSE 0
       END) AS die_w,
-      0 AS ddd
+      0 AS ddd,
+      0 AS w
   FROM
       t_dies_status
   WHERE
-      t_dies_status.die_status_id = 10
+      t_dies_status.die_status_id = 4
           AND t_dies_status.tank IS NOT NULL
   ORDER BY tank ASC;
         ";
