@@ -32,7 +32,7 @@
     LEFT JOIN
         m_dies ON t_dies_status.dies_id = m_dies.id 
     WHERE
-        m_dies.die_number LIKE '%$die_number__input%'
+        m_dies.die_number LIKE '%$die_number__input%' OR die_status LIKE '%$die_number__input%'
     UNION SELECT 
         t_press.id,
         m_dies.die_number,

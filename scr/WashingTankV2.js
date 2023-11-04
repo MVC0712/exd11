@@ -72,7 +72,7 @@ document.getElementById('wasshing_tank_change_at').value = formatDate(date);
 document.getElementById('wasshing_shot_change_at').value = formatDate(date);
 
 function makeSummaryTable() {
-    var fileName = "./php/WashingTank/SelSummary.php";
+    var fileName = "./php/WashingTank/SelSummaryV2.php";
     var sendData = {
         dummy: "dummy",
     };
@@ -195,17 +195,43 @@ $(document).on("change", "#wasshing_tank", function() {
     change_check();
 });
 
+$(document).on("change", "#myfile", function() {
+    if ($('#myfile').get(0).files.length === 0) {
+        $("#myfile").removeClass("complete-input").addClass("no-input");
+    } else {
+        $("#myfile").removeClass("no-input").addClass("complete-input");
+    }
+    change_check();
+});
+
 $(document).on("change", "input[name='check_uncheck']", function() {
     console.log(this)
     var a = $(this).val();
-    if ((a = "31") || (a = "32") || (a = "7") || (a = "9")) {
+    if ((a == "31") || (a == "32") || (a == "7") || (a == "9")) {
         $("#note").removeClass("complete-input").addClass("no-input");
+        $("#specific_value").removeClass("complete-input").addClass("no-input");
+        $("#myfile").removeClass("complete-input").addClass("no-input");
     } else {
         $("#note").removeClass("no-input").addClass("complete-input");
+        $("#specific_value").removeClass("no-input").addClass("complete-input");
+        $("#myfile").removeClass("no-input").addClass("complete-input");
     }
     go_check();
 });
-
+$(document).on("keyup change", "#specific_value", function() {
+    var a = $("#specific_value").val();
+    console.log($(this).attr("type"))
+    if ($(this).attr("type") == "number") {
+        if ((a > 0) && (a <= 4))
+            $(this).removeClass("no-input").addClass("complete-input");
+        else $(this).removeClass("complete-input").addClass("no-input");
+    } else if ($(this).attr("type") == "date") {
+        if (a != "")
+            $(this).removeClass("no-input").addClass("complete-input");
+        else $(this).removeClass("complete-input").addClass("no-input");
+    }
+    go_check();
+});
 $(document).on("keyup", "#note", function() {
     if ("" != $(this).val())
         $(this).removeClass("no-input").addClass("complete-input");
@@ -263,6 +289,8 @@ function go_check() {
         ($("#process").val() == 0) || 
         ($("#staff").val() == 0) || 
         ($("#note").hasClass("no-input")) || 
+        ($("#specific_value").hasClass("no-input")) || 
+        ($("#myfile").hasClass("no-input")) || 
         ($("#tank").hasClass("no-input"))) {
         $("#go__button").prop("disabled", true);
     } else {
@@ -294,6 +322,8 @@ $(document).on("change", "#process", function() {
     if ($("#process").val() == 0) {
         $("#process").removeClass("complete-input").addClass("no-input");
         document.getElementById("status_process").innerHTML = ``;
+        $("#specific_value").prop('type', 'text');
+        $("#specific_value").prop("disabled", true);
     } else if ($("#process").val() == 1) {
         $("#process").removeClass("no-input").addClass("complete-input");
         document.getElementById("status_process").innerHTML = `
@@ -301,20 +331,32 @@ $(document).on("change", "#process", function() {
             <input type="radio" name="check_uncheck" class="radio-button" value="31" / > NG Rz/Die mark <br /> 
             <input type="radio" name="check_uncheck" class="radio-button" value="32" / > NG Kích thước <br /> 
             `;
+        $("#specific_value").prop('type', 'number');
+        $("#special").html("Prioritize");
+        $("#specific_value").prop("disabled", false);
     } else if ($("#process").val() == 2) {
         $("#process").removeClass("no-input").addClass("complete-input");
         document.getElementById("status_process").innerHTML = `
             <input type="radio" checked name="check_uncheck" class='radio-button' value="4" />Washing <br />`;
+        $("#specific_value").prop('type', 'text');
+        $("#specific_value").prop("disabled", true);
+        $("#special").html("No need");
     } else if ($("#process").val() == 3) {
         $("#process").removeClass("no-input").addClass("complete-input");
         document.getElementById("status_process").innerHTML = `
             <input type="radio" checked name="check_uncheck" class='radio-button' value="8" />Nitriding <br />
             <input type="radio" name="check_uncheck" class='radio-button' value="7" />Grinding <br />
             <input type="radio" name="check_uncheck" class='radio-button' value="9" />Wire cutting <br />`;
+        $("#special").html("Finish");
+        $("#specific_value").prop('type', 'date');
+        $("#specific_value").prop("disabled", false);
     } else if ($("#process").val() == 4) {
         $("#process").removeClass("no-input").addClass("complete-input");
         document.getElementById("status_process").innerHTML = `
             <input type="radio" checked name="check_uncheck" class='radio-button' value="10" />On rack <br />`;
+        $("#specific_value").prop('type', 'text');
+        $("#specific_value").prop("disabled", true);
+        $("#special").html("No need");
     }
     if ($("#process").val() == 2) {
         $("#tank").prop("disabled", false);
@@ -328,7 +370,7 @@ $(document).on("change", "#process", function() {
 });
 
 $(document).on("click", "#go__button", function() {
-    var fileName = "./php/WashingTank/InsStatus.php";
+    var fileName = "./php/WashingTank/InsStatusV2.php";
     var sendObj = new Object();
     $("#add__table tbody tr td:nth-child(1)").each(function(
         index,
@@ -340,6 +382,7 @@ $(document).on("click", "#go__button", function() {
     sendObj["do_sth_at"] = $("#do_sth_at").val();
     sendObj["staff"] = $("#staff").val();
     sendObj["tank"] = $("#tank").val();
+    sendObj["specific_value"] = $("#specific_value").val();
     sendObj["note"] = $("#note").val();
     if (document.getElementById("myfile").files.length == 0) {
         console.log("khong co file");
@@ -372,6 +415,7 @@ $(document).on("click", "#go__button", function() {
     $("#process").val("0");
     $("#note").val("");
     $("#myfile").val("");
+    $("#specific_value").val("");
     makeSummaryTable();
     makeSummaryTankTable();
 });
@@ -428,37 +472,37 @@ function make_action() {
             txt_die_id = Number(die_id.innerText.replace(",", ""));
             txt_pr_tm = Number(pr_tm.innerText.replace(",", ""));
             txt_sta_val = Number(sta_val.innerText.replace(",", ""));
-            table.rows[i].insertCell(8);
+            table.rows[i].insertCell(9);
             if (((txt_pr_tm >= 1) && (W1P1.includes(txt_die_id))) || 
                 (txt_pr_tm >= 2)||(txt_sta_val == 3)) {
-                table.rows[i].cells[8].innerHTML = "Need wash";
-                table.rows[i].cells[8].style.backgroundColor = "#ffc880";
+                table.rows[i].cells[9].innerHTML = "Need wash";
+                table.rows[i].cells[9].style.backgroundColor = "#ffc880";
                 
             } else if ((txt_sta_val == 31)||(txt_sta_val == 32)) {
-                table.rows[i].cells[8].innerHTML = "Need wash";
-                table.rows[i].cells[8].style.backgroundColor = "#ffc880";
+                table.rows[i].cells[9].innerHTML = "Need wash";
+                table.rows[i].cells[9].style.backgroundColor = "#ffc880";
 
             } else if (txt_sta_val == 1) {
-                table.rows[i].cells[8].innerHTML = "Wait result";
-                table.rows[i].cells[8].style.backgroundColor = "#bff542";
+                table.rows[i].cells[9].innerHTML = "Wait result";
+                table.rows[i].cells[9].style.backgroundColor = "#bff542";
 
             } else if (((txt_sta_val == 2) && (txt_pr_tm <= 1)) ||
                     ((txt_sta_val == 10) || (txt_sta_val == 2 ||(txt_sta_val == 11)))) {
-                table.rows[i].cells[8].innerHTML = "Ready press";
-                table.rows[i].cells[8].style.backgroundColor = "#b3ffe4";
+                table.rows[i].cells[9].innerHTML = "Ready press";
+                table.rows[i].cells[9].style.backgroundColor = "#b3ffe4";
 
             } else if ((txt_sta_val == 4)) {
-                table.rows[i].cells[8].innerHTML = "Washing";
-                table.rows[i].cells[8].style.backgroundColor = "#bfc1ff"
+                table.rows[i].cells[9].innerHTML = "Washing";
+                table.rows[i].cells[9].style.backgroundColor = "#bfc1ff"
 
             } else if ((txt_sta_val == 5) || (txt_sta_val == 6)) {
-                table.rows[i].cells[8].innerHTML = "Cleaning";
-                table.rows[i].cells[8].style.backgroundColor = "#bfc1ff"
+                table.rows[i].cells[9].innerHTML = "Cleaning";
+                table.rows[i].cells[9].style.backgroundColor = "#bfc1ff"
 
             } else if ((txt_sta_val == 7) || (txt_sta_val == 8) ||
                     (txt_sta_val == 9)) {
-                table.rows[i].cells[8].innerHTML = "Fixing";
-                table.rows[i].cells[8].style.backgroundColor = "red"
+                table.rows[i].cells[9].innerHTML = "Fixing";
+                table.rows[i].cells[9].style.backgroundColor = "red"
             }
         }
     }

@@ -44,7 +44,8 @@
   height: 420px;
 }
 #summary__table tbody td.nitriding {
-  color: red;
+  /* color: red; */
+  background-color: red;
 }
 /* id */
 #summary__table th:nth-child(1),
