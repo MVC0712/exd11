@@ -187,7 +187,7 @@ body {
 
 #summary__table th:nth-child(6),
 #summary__table td:nth-child(6) {
-    width: 50px;
+    width: 45px;
 }
 
 #summary__table td:nth-child(6) {
@@ -214,7 +214,7 @@ body {
 
 #summary__table th:nth-child(9),
 #summary__table td:nth-child(9) {
-    width: 60px;
+    width: 65px;
 }
 
 #summary__table td:nth-child(9) {
@@ -440,7 +440,7 @@ input[type="radio" i] {
 }
 
 #die__table tbody {
-    width: 361px;
+    width: 430px;
     height: 100px;
 }
 
@@ -505,7 +505,7 @@ input[type="radio" i] {
 
 #die__table tr th:nth-child(7),
 #die__table tr td:nth-child(7) {
-    width: 120px;
+    width: 65px;
 }
 
 .zoom {

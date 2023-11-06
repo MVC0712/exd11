@@ -20,9 +20,15 @@ const myAjax = {
 
 $(function() {
     makeSummaryTable();
+});
+$(function() {
     makeSummaryTankTable();
     makeHistoryTankTable();
+});$(function() {
     makeStaff();
+});
+
+$(function() {
     $("#save__button").prop("disabled", true);
     $("#update__button").prop("disabled", true);
     $("#test__button").remove();
@@ -241,7 +247,7 @@ $(document).on("keyup", "#note", function() {
 // -------------------------   summary table tr click   -------------
 
 $(document).on("click", "#summary__table tbody tr", function() {
-    var fileName = "./php/WashingTank/SelDieHis.php";
+    var fileName = "./php/WashingTank/SelDieHisV2.php";
     var sendData = new Object();
     if (!$(this).hasClass("selected-record")) {
         $(this).parent().find("tr").removeClass("selected-record");
@@ -340,7 +346,7 @@ $(document).on("change", "#process", function() {
             <input type="radio" checked name="check_uncheck" class='radio-button' value="4" />Washing <br />`;
         $("#specific_value").prop('type', 'text');
         $("#specific_value").prop("disabled", true);
-        $("#special").html("No need");
+        $("#special").html("Non");
     } else if ($("#process").val() == 3) {
         $("#process").removeClass("no-input").addClass("complete-input");
         document.getElementById("status_process").innerHTML = `
@@ -356,7 +362,7 @@ $(document).on("change", "#process", function() {
             <input type="radio" checked name="check_uncheck" class='radio-button' value="10" />On rack <br />`;
         $("#specific_value").prop('type', 'text');
         $("#specific_value").prop("disabled", true);
-        $("#special").html("No need");
+        $("#special").html("Non");
     }
     if ($("#process").val() == 2) {
         $("#tank").prop("disabled", false);
