@@ -3,6 +3,8 @@ var ajaxReturnData;
 var productionNumberTableValues = new Object();
 var addNewDieName;
 var savedMode;
+let summaryTable = new Object();
+let productionNumberTable = new Object();
 
 const myAjax = {
   myAjax: function (fileName, sendData) {
@@ -26,7 +28,9 @@ $(function () {
   let today = new Date();
   $("#arrival_date").val(makeYYYYMMDD(today)).removeClass("input-required");
   makeProductionNumberTalbe();
+  productionNumberTable = ajaxReturnData;
   makeSummaryTalbe();
+  summaryTable = ajaxReturnData;
   makeDieDiamaterSelect();
   makeBolsterSelect();
   // display dies quantities
@@ -51,7 +55,6 @@ $(document).on("click", "#language__mark", function () {
   const str = $("#language__mark").attr("src");
   const language = str.match(/\/([^.\/]+)\.\w+$/);
   const tileLettersObject = $("div.title__letters");
-  // console.log(tileLettersObject);
   let fileName;
   let sendData = new Object();
 
@@ -307,7 +310,7 @@ $(document).on("click", "#summary__table tbody tr", function () {
     JsBarcode("#die_pos_barcode", $("#die_postition").val(), {
       width: 8,
       height: 200,
-      displayValue: true
+      displayValue: true,
     });
   } else $("#die_pos_barcode").empty();
 });
@@ -351,31 +354,35 @@ function selectProductionNumberTable() {
 }
 
 $(document).on("keyup", "#dieNumber__input", function () {
-  const summaryTableObj = new Object($("#summary__table tbody tr"));
-  var dieNumber;
-  // exchenge to Large letters
-  $(this).val($(this).val().toUpperCase());
-  summaryTableObj.each(function () {
-    dieNumber = $(this).find("td").eq(1).text();
-    if (dieNumber.indexOf($("#dieNumber__input").val()) == 0) {
-      $(this).css("display", "initial");
-    } else {
-      $(this).css("display", "none");
+  $(this).val($(this).val().toUpperCase()); // 小文字を大文字に
+  const text = $(this).val();
+
+  $("#summary__table tbody").empty();
+
+  summaryTable.forEach(function (trVal) {
+    if (trVal["die_number"].includes(text, 0)) {
+      var newTr = $("<tr>");
+      Object.keys(trVal).forEach(function (tdVal) {
+        $("<td>").html(trVal[tdVal]).appendTo(newTr);
+      });
+      $(newTr).appendTo("#summary__table tbody");
     }
   });
 });
 
 $(document).on("keyup", "#production_number_search", function () {
-  const summaryTableObj = new Object($("#production_number__table tbody tr"));
-  var dieNumber;
-  // exchenge to Large letters
-  $(this).val($(this).val().toUpperCase());
-  summaryTableObj.each(function () {
-    dieNumber = $(this).find("td").eq(3).text();
-    if (dieNumber.indexOf($("#production_number_search").val()) == 0) {
-      $(this).css("display", "initial");
-    } else {
-      $(this).css("display", "none");
+  $(this).val($(this).val().toUpperCase()); // 小文字を大文字に
+  const text = $(this).val();
+
+  $("#production_number__table tbody").empty();
+
+  productionNumberTable.forEach(function (trVal) {
+    if (trVal["production_number"].includes(text, 0)) {
+      var newTr = $("<tr>");
+      Object.keys(trVal).forEach(function (tdVal) {
+        $("<td>").html(trVal[tdVal]).appendTo(newTr);
+      });
+      $(newTr).appendTo("#production_number__table tbody");
     }
   });
 });

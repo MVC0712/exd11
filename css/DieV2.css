@@ -207,8 +207,6 @@ input {
   width: calc(180px - 0px);
   height: 25px;
   padding: 0 1px 0 0;
-  /* font-family: "Courier New", Courier, monospace; */
-
   font-family: "Roboto Mono", monospace;
   font-weight: 300;
   font-size: 12pt;
@@ -242,6 +240,11 @@ thead th {
   font-size: 12pt;
 }
 /* prodution number table */
+#production_number_search {
+  width: 80px;
+  margin-left: 10px;
+  background-color: #e6e6ff;
+}
 #production_number__table tbody {
   width: 608px;
   height: 170px;
@@ -291,7 +294,7 @@ thead th {
 }
 /* Summary Table */
 #summary__table tbody {
-  width: 1197px;
+  width: 1024px;
   height: 250px;
 }
 #summary__table th {
