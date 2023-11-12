@@ -12,9 +12,17 @@
   <body>
     <header>
       <div></div>
+      <div></div>
       <div>
         <div>Extrusion Top Page</div>
       </div>
+      <div id="machine_status">
+        <div class="machine_number">No1:</div>
+        <div class="machine_status" id="number1_status"></div>
+        <div class="machine_number">No2:</div>
+        <div class="machine_status" id="number2_status"></div>
+      </div>
+
       <div>
         <img id="balloon__img" src="./img/bxs-balloon.png" alt="heart" />
       </div>
@@ -87,7 +95,7 @@
       $(document).on("click", "#log", function () {
         window.open("ExtrusionLogV2.html");
       });
- 
+
       $(document).on("click", "#raspberrypi", function () {
         window.open("RaspberryPi.html");
       });
@@ -231,5 +239,6 @@
         // });
       });
     </script>
+    <script src="./scr/indexV2.js"></script>
   </body>
 </html>

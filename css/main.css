@@ -25,16 +25,45 @@ header {
   font-weight: bold;
 }
 header > div:nth-child(1),
-header > div:nth-child(3) {
-  width: 50px;
+header > div:nth-child(5) {
+  width: 40px;
 }
-header > div:nth-child(2) {
+header > div:nth-child(2),
+header > div:nth-child(4) {
+  width: 230px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+header > div:nth-child(3) {
+  /* width: 50px; */
+}
+header > div:nth-child(3) {
   display: flex;
   align-items: center;
 }
-header > div:nth-child(3) > img {
-  width: 24px;
+#machine_status {
+  font-weight: normal;
   cursor: pointer;
+}
+.machine_number {
+  width: 40px;
+}
+.machine_status {
+  width: 70px;
+  height: 20px;
+}
+#number1_status {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #0000cc;
+  /* border: greenyellow; */
+}
+#number2_status {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #0000cc;
+  /* border: greenyellow; */
 }
 footer {
   width: 100%;
