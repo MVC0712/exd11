@@ -174,11 +174,11 @@ $(document).on("click", "#delete-dialog-delete__button", function () {
 });
 
 $(document).on("click", "#save__button", function() {
-  var fileName = "./php/CheckBillet/InsCheckBilletV3.php";
+  var fileName = "./php/CheckBillet/InsCheckBilletV4.php";
   var sendObj = new Object();
   sendObj["staff_id"] = $("#staff_name__select").val();
   sendObj["check_at"] =$("#check_at").val();
-  sendObj["billet_size_id"] =$("#billet_size_id").val();
+  sendObj["billet_size_id"] = $("#billet_size_id").val();
   sendObj["vl6061_1200"] = $("#vl6061_1200").val();
   sendObj["vl6061_600"] = $("#vl6061_600").val();
   sendObj["vl6063_1200"] = $("#vl6063_1200").val();
@@ -202,5 +202,6 @@ $(document).on("click", "#save__button", function() {
     $(this).val("");
     $(this).removeClass("complete-input").addClass("no-input");
   });
+  $("#billet_size_id").val(1).removeClass("no-input").addClass("complete-input")
   makeSummaryTable();
 });

@@ -18,70 +18,163 @@
       )
       );
 
-      $sql = "
-      SELECT 
-      t_press.id,
-      SUM(CASE
-          WHEN
-              billet_size = 9 AND billet_length = 1200
-                  AND m_billet_material.billet_material = 'A6063'
-          THEN
-              t_press.actual_billet_quantities
-          ELSE 0
-      END) AS 'A60632281200',
-      SUM(CASE
-          WHEN
-              billet_size = 9 AND billet_length = 600
-                  AND m_billet_material.billet_material = 'A6063'
-          THEN
-              t_press.actual_billet_quantities
-          ELSE 0
-      END) AS 'A6063228600',
-      SUM(CASE
-          WHEN
-              billet_size = 9 AND billet_length = 1200
-                  AND m_billet_material.billet_material = 'A6061'
-          THEN
-              t_press.actual_billet_quantities
-          ELSE 0
-      END) AS 'A60612281200',
-      SUM(CASE
-          WHEN
-              billet_size = 9 AND billet_length = 600
-                  AND m_billet_material.billet_material = 'A6061'
-          THEN
-              t_press.actual_billet_quantities
-          ELSE 0
-      END) AS 'A6061228600',
-      SUM(CASE
-          WHEN
-              billet_size = 9 AND billet_length = 1200
-                  AND m_billet_material.billet_material = '6N01A'
-          THEN
-              t_press.actual_billet_quantities
-          ELSE 0
-      END) AS 'A6N01A2281200',
-      SUM(CASE
-          WHEN
-              billet_size = 9 AND billet_length = 600
-                  AND m_billet_material.billet_material = '6N01A'
-          THEN
-              t_press.actual_billet_quantities
-          ELSE 0
-      END) AS 'A6N01A228600'
-  FROM
-      t_press
-          LEFT JOIN
-      m_dies ON m_dies.id = t_press.dies_id
-          LEFT JOIN
-      m_production_numbers ON m_production_numbers.id = m_dies.production_number_id
-          LEFT JOIN
-      m_billet_material ON m_billet_material.id = m_production_numbers.billet_material_id
-  WHERE
-      t_press.press_date_at BETWEEN '$start' AND '$end'
-  ORDER BY id DESC
-  ;
-        ";
+      $sql = "SELECT 
+    SUM(CASE
+        WHEN
+            billet_size = 9 AND billet_length = 1200
+                AND m_billet_material.billet_material = 'A6063'
+        THEN
+            t_press.actual_billet_quantities
+        ELSE 0
+    END) AS 'A60632281200',
+    SUM(CASE
+        WHEN
+            billet_size = 9 AND billet_length = 600
+                AND m_billet_material.billet_material = 'A6063'
+        THEN
+            t_press.actual_billet_quantities
+        ELSE 0
+    END) AS 'A6063228600',
+    SUM(CASE
+        WHEN
+            billet_size = 9 AND billet_length = 1200
+                AND m_billet_material.billet_material = 'A6061'
+        THEN
+            t_press.actual_billet_quantities
+        ELSE 0
+    END) AS 'A60612281200',
+    SUM(CASE
+        WHEN
+            billet_size = 9 AND billet_length = 600
+                AND m_billet_material.billet_material = 'A6061'
+        THEN
+            t_press.actual_billet_quantities
+        ELSE 0
+    END) AS 'A6061228600',
+    SUM(CASE
+        WHEN
+            billet_size = 9 AND billet_length = 1200
+                AND m_billet_material.billet_material = '6N01A'
+        THEN
+            t_press.actual_billet_quantities
+        ELSE 0
+    END) AS 'A6N01A2281200',
+    SUM(CASE
+        WHEN
+            billet_size = 9 AND billet_length = 600
+                AND m_billet_material.billet_material = '6N01A'
+        THEN
+            t_press.actual_billet_quantities
+        ELSE 0
+    END) AS 'A6N01A228600',
+
+    SUM(CASE
+        WHEN
+            billet_size = 12 AND billet_length = 1200
+                AND m_billet_material.billet_material = 'A6063'
+        THEN
+            t_press.actual_billet_quantities
+        ELSE 0
+    END) AS 'A60633051200',
+    SUM(CASE
+        WHEN
+            billet_size = 12 AND billet_length = 600
+                AND m_billet_material.billet_material = 'A6063'
+        THEN
+            t_press.actual_billet_quantities
+        ELSE 0
+    END) AS 'A6063305600',
+    SUM(CASE
+        WHEN
+            billet_size = 12 AND billet_length = 1200
+                AND m_billet_material.billet_material = 'A6061'
+        THEN
+            t_press.actual_billet_quantities
+        ELSE 0
+    END) AS 'A60613051200',
+    SUM(CASE
+        WHEN
+            billet_size = 12 AND billet_length = 600
+                AND m_billet_material.billet_material = 'A6061'
+        THEN
+            t_press.actual_billet_quantities
+        ELSE 0
+    END) AS 'A6061305600',
+    SUM(CASE
+        WHEN
+            billet_size = 12 AND billet_length = 1200
+                AND m_billet_material.billet_material = '6N01A'
+        THEN
+            t_press.actual_billet_quantities
+        ELSE 0
+    END) AS 'A6N01A3051200',
+    SUM(CASE
+        WHEN
+            billet_size = 12 AND billet_length = 600
+                AND m_billet_material.billet_material = '6N01A'
+        THEN
+            t_press.actual_billet_quantities
+        ELSE 0
+    END) AS 'A6N01A305600',
+
+    SUM(CASE
+        WHEN
+            billet_size = 14 AND billet_length = 1200
+                AND m_billet_material.billet_material = 'A6063'
+        THEN
+            t_press.actual_billet_quantities
+        ELSE 0
+    END) AS 'A60633551200',
+    SUM(CASE
+        WHEN
+            billet_size = 14 AND billet_length = 600
+                AND m_billet_material.billet_material = 'A6063'
+        THEN
+            t_press.actual_billet_quantities
+        ELSE 0
+    END) AS 'A6063355600',
+    SUM(CASE
+        WHEN
+            billet_size = 14 AND billet_length = 1200
+                AND m_billet_material.billet_material = 'A6061'
+        THEN
+            t_press.actual_billet_quantities
+        ELSE 0
+    END) AS 'A60613551200',
+    SUM(CASE
+        WHEN
+            billet_size = 14 AND billet_length = 600
+                AND m_billet_material.billet_material = 'A6061'
+        THEN
+            t_press.actual_billet_quantities
+        ELSE 0
+    END) AS 'A6061355600',
+    SUM(CASE
+        WHEN
+            billet_size = 14 AND billet_length = 1200
+                AND m_billet_material.billet_material = '6N01A'
+        THEN
+            t_press.actual_billet_quantities
+        ELSE 0
+    END) AS 'A6N01A3551200',
+    SUM(CASE
+        WHEN
+            billet_size = 14 AND billet_length = 600
+                AND m_billet_material.billet_material = '6N01A'
+        THEN
+            t_press.actual_billet_quantities
+        ELSE 0
+    END) AS 'A6N01A355600'
+FROM
+    t_press
+        LEFT JOIN
+    m_dies ON m_dies.id = t_press.dies_id
+        LEFT JOIN
+    m_production_numbers ON m_production_numbers.id = m_dies.production_number_id
+        LEFT JOIN
+    m_billet_material ON m_billet_material.id = m_production_numbers.billet_material_id
+WHERE
+    t_press.press_date_at BETWEEN '$start' AND '$end';";
 
       $prepare = $dbh->prepare($sql);
       $prepare->execute();

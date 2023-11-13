@@ -22,8 +22,8 @@
       SUM(CASE
           WHEN
               t10.billet_size = 9
-                  AND t10.billet_length = 1200
-                  AND t10.billet_material = 'A6063'
+              AND t10.billet_length = 1200
+              AND t10.billet_material = 'A6063'
           THEN
               t_press_plan.quantity
           ELSE 0
@@ -31,8 +31,8 @@
       SUM(CASE
           WHEN
               t10.billet_size = 9
-                  AND t10.billet_length = 600
-                  AND t10.billet_material = 'A6063'
+              AND t10.billet_length = 600
+              AND t10.billet_material = 'A6063'
           THEN
               t_press_plan.quantity
           ELSE 0
@@ -40,8 +40,8 @@
       SUM(CASE
           WHEN
               t10.billet_size = 9
-                  AND t10.billet_length = 1200
-                  AND t10.billet_material = 'A6061'
+              AND t10.billet_length = 1200
+              AND t10.billet_material = 'A6061'
           THEN
               t_press_plan.quantity
           ELSE 0
@@ -49,8 +49,8 @@
       SUM(CASE
           WHEN
               t10.billet_size = 9
-                  AND t10.billet_length = 600
-                  AND t10.billet_material = 'A6061'
+              AND t10.billet_length = 600
+              AND t10.billet_material = 'A6061'
           THEN
               t_press_plan.quantity
           ELSE 0
@@ -58,8 +58,8 @@
       SUM(CASE
           WHEN
               t10.billet_size = 9
-                  AND t10.billet_length = 1200
-                  AND t10.billet_material = '6N01A'
+              AND t10.billet_length = 1200
+              AND t10.billet_material = '6N01A'
           THEN
               t_press_plan.quantity
           ELSE 0
@@ -67,8 +67,8 @@
       SUM(CASE
           WHEN
               t10.billet_size = 9
-                  AND t10.billet_length = 600
-                  AND t10.billet_material = '6N01A'
+              AND t10.billet_length = 600
+              AND t10.billet_material = '6N01A'
           THEN
               t_press_plan.quantity
           ELSE 0
@@ -76,8 +76,8 @@
       SUM(CASE
           WHEN
               t10.billet_size = 12
-                  AND t10.billet_length = 1200
-                  AND t10.billet_material = 'A6063'
+              AND t10.billet_length = 1200
+              AND t10.billet_material = 'A6063'
           THEN
               t_press_plan.quantity
           ELSE 0
@@ -85,8 +85,8 @@
       SUM(CASE
           WHEN
               t10.billet_size = 12
-                  AND t10.billet_length = 600
-                  AND t10.billet_material = 'A6063'
+              AND t10.billet_length = 600
+              AND t10.billet_material = 'A6063'
           THEN
               t_press_plan.quantity
           ELSE 0
@@ -94,8 +94,8 @@
       SUM(CASE
           WHEN
               t10.billet_size = 12
-                  AND t10.billet_length = 1200
-                  AND t10.billet_material = 'A6061'
+              AND t10.billet_length = 1200
+              AND t10.billet_material = 'A6061'
           THEN
               t_press_plan.quantity
           ELSE 0
@@ -103,8 +103,8 @@
       SUM(CASE
           WHEN
               t10.billet_size = 12
-                  AND t10.billet_length = 600
-                  AND t10.billet_material = 'A6061'
+              AND t10.billet_length = 600
+              AND t10.billet_material = 'A6061'
           THEN
               t_press_plan.quantity
           ELSE 0
@@ -112,8 +112,8 @@
       SUM(CASE
           WHEN
               t10.billet_size = 12
-                  AND t10.billet_length = 1200
-                  AND t10.billet_material = '6N01A'
+              AND t10.billet_length = 1200
+              AND t10.billet_material = '6N01A'
           THEN
               t_press_plan.quantity
           ELSE 0
@@ -121,8 +121,8 @@
       SUM(CASE
           WHEN
               t10.billet_size = 12
-                  AND t10.billet_length = 600
-                  AND t10.billet_material = '6N01A'
+              AND t10.billet_length = 600
+              AND t10.billet_material = '6N01A'
           THEN
               t_press_plan.quantity
           ELSE 0
@@ -130,8 +130,8 @@
       SUM(CASE
           WHEN
               t10.billet_size = 14
-                  AND t10.billet_length = 1200
-                  AND t10.billet_material = 'A6063'
+              AND t10.billet_length = 1200
+              AND t10.billet_material = 'A6063'
           THEN
               t_press_plan.quantity
           ELSE 0
@@ -139,8 +139,8 @@
       SUM(CASE
           WHEN
               t10.billet_size = 14
-                  AND t10.billet_length = 600
-                  AND t10.billet_material = 'A6063'
+              AND t10.billet_length = 600
+              AND t10.billet_material = 'A6063'
           THEN
               t_press_plan.quantity
           ELSE 0
@@ -148,8 +148,8 @@
       SUM(CASE
           WHEN
               t10.billet_size = 14
-                  AND t10.billet_length = 1200
-                  AND t10.billet_material = 'A6061'
+              AND t10.billet_length = 1200
+              AND t10.billet_material = 'A6061'
           THEN
               t_press_plan.quantity
           ELSE 0
@@ -157,8 +157,8 @@
       SUM(CASE
           WHEN
               t10.billet_size = 14
-                  AND t10.billet_length = 600
-                  AND t10.billet_material = 'A6061'
+              AND t10.billet_length = 600
+              AND t10.billet_material = 'A6061'
           THEN
               t_press_plan.quantity
           ELSE 0
@@ -166,8 +166,8 @@
       SUM(CASE
           WHEN
               t10.billet_size = 14
-                  AND t10.billet_length = 1200
-                  AND t10.billet_material = '6N01A'
+              AND t10.billet_length = 1200
+              AND t10.billet_material = '6N01A'
           THEN
               t_press_plan.quantity
           ELSE 0
@@ -175,8 +175,8 @@
       SUM(CASE
           WHEN
               t10.billet_size = 14
-                  AND t10.billet_length = 600
-                  AND t10.billet_material = '6N01A'
+              AND t10.billet_length = 600
+              AND t10.billet_material = '6N01A'
           THEN
               t_press_plan.quantity
           ELSE 0
@@ -187,7 +187,7 @@
       m_dies ON m_dies.id = t_press_plan.dies_id
           LEFT JOIN
       (SELECT 
-          max_user.production_number_id,
+          production_number_id,
               billet_size,
               billet_length,
               billet_material
@@ -195,17 +195,8 @@
           t_press
       LEFT JOIN m_dies ON m_dies.id = t_press.dies_id
       LEFT JOIN m_production_numbers ON m_production_numbers.id = m_dies.production_number_id
-      LEFT JOIN m_billet_material ON m_billet_material.id = m_production_numbers.billet_material_id, (SELECT 
-          production_number_id, MAX(press_date_at) AS press_date_at
-      FROM
-          t_press
-      LEFT JOIN m_dies ON m_dies.id = t_press.dies_id
-      LEFT JOIN m_production_numbers ON m_production_numbers.id = m_dies.production_number_id
       LEFT JOIN m_billet_material ON m_billet_material.id = m_production_numbers.billet_material_id
-      GROUP BY production_number_id) max_user
-      WHERE
-          m_dies.production_number_id = max_user.production_number_id
-              AND t_press.press_date_at = max_user.press_date_at) t10 ON t10.production_number_id = t_press_plan.production_number_id
+      GROUP BY m_production_numbers.id) t10 ON t10.production_number_id = t_press_plan.production_number_id
   WHERE
       t_press_plan.plan_date BETWEEN '$start' AND '$end';";
 

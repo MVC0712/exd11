@@ -236,6 +236,11 @@ select {
   border: none;
 }
 
+#caculate__table tbody {
+    height: 350px;
+    
+}
+
 #caculate__table td,
 #caculate__table th {
     font-size: 10pt;

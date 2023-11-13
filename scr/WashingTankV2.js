@@ -207,7 +207,7 @@ $(document).on("change", "#myfile", function() {
     } else {
         $("#myfile").removeClass("no-input").addClass("complete-input");
     }
-    change_check();
+    go_check();
 });
 
 $(document).on("change", "input[name='check_uncheck']", function() {

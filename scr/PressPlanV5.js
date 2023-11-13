@@ -89,7 +89,7 @@ function makeSummaryTable() {
   $("#hover_area").addClass("notshow");
 }
 function makeLastBillet() {
-  var fileName = "./php/CheckBillet/SelLastBillet.php";
+  var fileName = "./php/PressPlan/SelLastBillet.php";
   var sendData = {
       dummy: "dummy",
   };
@@ -103,7 +103,7 @@ function makeLastBillet() {
 };
 
 function makeUsedBillet() {
-  var fileName = "./php/CheckBillet/SelUsedBillet.php";
+  var fileName = "./php/PressPlan/SelUsedBillet.php";
   var sendData = {
       start : $("#plan_start").val(),
       end : $("#plan_end").val(),
@@ -118,7 +118,7 @@ function makeUsedBillet() {
 };
 
 function makePlanBillet() {
-  var fileName = "./php/CheckBillet/SelPlanBillet.php";
+  var fileName = "./php/PressPlan/SelPlanBillet.php";
   var sendData = {
       start : $("#plan_start").val(),
       end : $("#plan_end").val(),
