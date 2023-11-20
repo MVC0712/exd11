@@ -141,6 +141,15 @@ function checkRecordNormal(dateObject) {
   var today = new Date();
   var flag = true;
 
+  // タイムゾーンオフセットを取得（分単位）
+  const timeZoneOffset = new Date().getTimezoneOffset();
+
+  if (timeZoneOffset == -540) {
+    // 日本からアクセスしているとき
+    // 2時間引く
+    today.setHours(today.getHours() - 2);
+  }
+
   // 分単位での差を計算
   diffInMilliseconds = Math.abs(today - dateObject);
   diffInMinutes = Math.floor(diffInMilliseconds / (1000 * 60));
