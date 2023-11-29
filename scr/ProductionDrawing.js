@@ -50,8 +50,10 @@ $(document).on("click", "#summary__table tbody tr", function() {
       myAjax.myAjax(fileName, sendData);
 
       var filename = ajaxReturnData[0].file_url;
-      var fileType = filename.substr(filename.lastIndexOf(".") + 1, 3);
-      if (filename.length !== 0) {
+      if (filename !== null) {
+        var fileType = filename.substr(filename.lastIndexOf(".") + 1, 3);
+        // $("#file").prop("disabled", true);
+        console.log(filename)
           switch (fileType) {
               case "pdf":
               case "PDF":
@@ -73,9 +75,10 @@ $(document).on("click", "#summary__table tbody tr", function() {
                       .attr("type", "image/jpeg")
                       .appendTo("#file_area");
                   break;
-          }
+          } 
       } else if (filename === null) {
           document.getElementById("file_area").innerHTML = ``;
+          // $("#file").prop("disabled", false);
       }
   } else {
       $(this).removeClass("selected-record");
@@ -83,6 +86,34 @@ $(document).on("click", "#summary__table tbody tr", function() {
   }
 });
 
+$("input#file").on("change", function () {
+	var file = $(this).prop("files")[0];
+	$("#file_url").html(file.name);
+	ajaxFileUpload();
+  var fileName = "./php/ProductionDrawing/InsFileName.php";
+  var sendData = new Object();
+  file_url = $("#file_url").html();
+  file_url = file_url.replace(/#/g, '');
+  sendData = {
+    targetId: $("#production__selected").find("td").eq(0).html(),
+    file_url: file_url
+  };
+  myAjax.myAjax(fileName, sendData);
+});
+function ajaxFileUpload() {
+	var file_data = $('#file').prop('files')[0];
+	var form_data = new FormData();
+	form_data.append('file', file_data);
+	$.ajax({
+		url: "./php/ProductionDrawing/FileUpload.php",
+		dataType: 'text',
+		cache: false,
+		contentType: false,
+		processData: false,
+		data: form_data,
+		type: 'post',
+	});
+};
 
 function timkiem() {
   var input, table, tr, td, filter, i, txtdata;

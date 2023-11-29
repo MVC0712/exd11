@@ -1176,14 +1176,17 @@ $(function(){
 		var k = ajaxReturnData[0].k == null ? "": ajaxReturnData[0].k;
 		var end = ajaxReturnData[0].end == null ? "": ajaxReturnData[0].end;
 		
-		var prsTimePL = Math.round(Number(ajaxReturnData[0].press_length)*Number(ajaxReturnData[0].billet_input_quantity)/Number(ajaxReturnData[0].work_speed)) + "min";
+		var prsTimePL = Math.round(Number(ajaxReturnData[0].press_length)*Number(ajaxReturnData[0].billet_input_quantity)/Number(ajaxReturnData[0].work_speed) + Number(ajaxReturnData[0].billet_input_quantity)*25/60 + 6+5) + "min";
+		// var prsTimePL = Math.round(Number(ajaxReturnData[0].press_length)*Number(ajaxReturnData[0].billet_input_quantity)/Number(ajaxReturnData[0].work_speed)) + "min";
 
         let pullerF;
-        if(ajaxReturnData[0].specific_weight >= 12) {
-            pullerF = 130;
-        } else if(5 <= ajaxReturnData[0].specific_weight < 12) {
+        if(ajaxReturnData[0].specific_weight >= 20) {
+            pullerF = 140;
+        } else if((12 <= ajaxReturnData[0].specific_weight) && (ajaxReturnData[0].specific_weight < 20)) {
+            pullerF = 120;
+        } else if((5 <= ajaxReturnData[0].specific_weight) && (ajaxReturnData[0].specific_weight < 12)) {
             pullerF = 90;
-        } else if(3 <= ajaxReturnData[0].specific_weight < 5) {
+        } else if((3 <= ajaxReturnData[0].specific_weight) && (ajaxReturnData[0].specific_weight < 5)) {
             pullerF = 70;
         } else if(ajaxReturnData[0].specific_weight < 3) {
             pullerF = 50;
@@ -1771,7 +1774,7 @@ $(function(){
                   [318] : Đen bề mặt
               </div>
           </div>
-          <div style="width: 100%; height: 180px; margin-top: 5px; border: 1px solid rgb(0, 0, 0); font-size: 8px">
+          <div style="width: 100%; height: 180px; margin-top: 5px; border: 1px solid rgb(0, 0, 0); font-size: 15px">
               Ghi chú: ${plan_note}
           </div>
           </div>

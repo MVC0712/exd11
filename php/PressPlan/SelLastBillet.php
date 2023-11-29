@@ -15,19 +15,27 @@
       )
       );
 
-      $sql = "
-      SELECT 
-      t_checkbillet.A60612281200,
-      t_checkbillet.A6061228600,
-      t_checkbillet.A60632281200,
-      t_checkbillet.A6063228600,
-      t_checkbillet.A6N01A2281200,
-      t_checkbillet.A6N01A228600
+      $sql = "SELECT 
+      m_billet_size.billet_size,
+      A6061228600,
+      A60612281200,
+      A6063228600,
+      A60632281200,
+      A6N01A228600,
+      A6N01A2281200
   FROM
-      extrusion.t_checkbillet
-  ORDER BY check_at DESC , create_at DESC
-  LIMIT 1;
-        ";
+      t_checkbillet
+          LEFT JOIN
+      m_billet_size ON m_billet_size.id = t_checkbillet.billet_size_id,
+      (SELECT 
+          billet_size_id, MAX(check_at) AS check_at
+      FROM
+          t_checkbillet
+      GROUP BY billet_size_id) max_user
+  WHERE
+      t_checkbillet.billet_size_id = max_user.billet_size_id
+          AND t_checkbillet.check_at = max_user.check_at
+  ORDER BY billet_size ASC;";
 
       $prepare = $dbh->prepare($sql);
       $prepare->execute();

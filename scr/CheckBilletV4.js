@@ -205,3 +205,26 @@ $(document).on("click", "#save__button", function() {
   $("#billet_size_id").val(1).removeClass("no-input").addClass("complete-input")
   makeSummaryTable();
 });
+
+$(document).on("change", "#billet_size_id", function (e) {
+  if ($(this).val() != 0) {
+    $(this).removeClass("no-input").addClass("complete-input");
+  } else {
+    $(this).removeClass("complete-input").addClass("no-input");
+  }
+  if (($(this).val() == 2) || ($(this).val() == 3)) {
+    $("#vl6061_1200_vn").val(0).removeClass("no-input").addClass("complete-input");
+    $("#vl6061_600_vn").val(0).removeClass("no-input").addClass("complete-input");
+    $("#vl6063_1200_vn").val(0).removeClass("no-input").addClass("complete-input");
+    $("#vl6063_600_vn").val(0).removeClass("no-input").addClass("complete-input");
+    $("#vl6N01A_1200_vn").val(0).removeClass("no-input").addClass("complete-input");
+    $("#vl6N01A_600_vn").val(0).removeClass("no-input").addClass("complete-input");
+  } else {
+    $("#vl6061_1200_vn").val("").removeClass("complete-input").addClass("no-input");
+    $("#vl6061_600_vn").val("").removeClass("complete-input").addClass("no-input");
+    $("#vl6063_1200_vn").val("").removeClass("complete-input").addClass("no-input");
+    $("#vl6063_600_vn").val("").removeClass("complete-input").addClass("no-input");
+    $("#vl6N01A_1200_vn").val("").removeClass("complete-input").addClass("no-input");
+    $("#vl6N01A_600_vn").val("").removeClass("complete-input").addClass("no-input");
+  }
+});

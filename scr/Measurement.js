@@ -5,6 +5,9 @@ let meaStaff =[{id: 30, staff_name: "Trần Thị Thảo"},
                 {id: 41, staff_name: "Nguyễn Thị Vui"},
                 {id: 60, staff_name: "Đinh Kiều Diễm"},
             ];
+
+let imageList = [];
+
 const myAjax = {
     myAjax: function(fileName, sendData) {
         $.ajax({
@@ -353,6 +356,15 @@ $(document).on("click", "#summary_table tbody tr", function(e) {
             $("#die_mark_3").html("-");
             $("#note").html("-");
         }
+
+        var fileName = "./php/Measurement/SelUrl.php";
+        var sendData = {
+            press_id: press_id,
+        };
+        myAjax.myAjax(fileName, sendData);
+        imageList = [];
+        imageList = ajaxReturnData;
+        console.log(imageList);
     } else {
     }
 });
@@ -386,3 +398,37 @@ function ulitycall() {
     jug_column(7, "die_mark_3");
     console.log(1);
 };
+
+$(document).on("change", "#file", function () {
+    var totalfiles = document.getElementById("file").files.length;
+    var formData = new FormData();
+    for (var index = 0; index < totalfiles; index++) {
+      formData.append("files[]", document.getElementById("file").files[index]);
+    }
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("POST", "./php/Measurement/FileUploadMultiple.php", true);
+    xhttp.onreadystatechange = function() {
+       if (this.readyState == 4 && this.status == 200) {
+          var response = this.responseText;
+          alert(response + " File uploaded.");
+       }
+    };
+    xhttp.send(formData);
+
+    var sendFileName = new Object();
+    var inp = document.getElementById('file');
+    for (var i = 0; i < inp.files.length; ++i) {
+      var name = inp.files.item(i).name;
+      console.log("here is a file name: " + name);
+      sendFileName[i] = name;
+    }
+    sendFileName["press_id"] = press_id;
+    console.log(sendFileName);
+    var InsFileName = "./php/Measurement/InsFileName.php";
+    myAjax.myAjax(InsFileName, sendFileName);
+});
+
+$(document).on("click", "#preview__button", function () {
+	window.open("./PictureView.html");
+    window.localStorage.setItem("file_url", JSON.stringify(imageList));
+});

@@ -21,32 +21,36 @@
       );
 
       $sql = "SELECT 
-      t10.start_time,
-      t10.end_time,
+      start_time,
+      MAX(end_time) AS end_time,
       t_plc_web.die_name,
-      t10.billet_quantity,
+      MAX(t_plc_web.billet_quantity),
       t_plc_web.machine,
-      tempdieup,
-      tempdiedown,
-      tempstemup,
-      tempstemdown
+      MAX(tempdieup),
+      MAX(tempdiedown),
+      MAX(tempstemup),
+      MAX(tempstemdown)
   FROM
       t_plc_web
           LEFT JOIN
-      t_plc_web_log ON t_plc_web_log.date_time = t_plc_web.end_time
-          LEFT JOIN
       (SELECT 
-          start_time,
-              MAX(end_time) AS end_time,
-              MAX(billet_quantity) AS billet_quantity
+          die_name,
+              MAX(date_time) AS date_time,
+              tempdieup,
+              tempdiedown,
+              tempstemup,
+              tempstemdown,
+              t_plc_web_log.machine,
+              billet_counter
       FROM
-          t_plc_web
-      GROUP BY t_plc_web.start_time) AS t10 ON t10.start_time = t_plc_web.start_time
+          t_plc_web_log
+      GROUP BY billet_counter , DATE_FORMAT(date_time, '%y-%m-%d') , machine
+      ORDER BY date_time DESC
+      LIMIT 2000) t10 ON t_plc_web.end_time = t10.date_time
   WHERE
       t_plc_web.die_name LIKE :die_number $add
-  GROUP BY t_plc_web.start_time , machine
-  ORDER BY end_time DESC;
-      ";
+      GROUP BY start_time
+        ORDER BY end_time DESC;";
 
       $prepare = $dbh->prepare($sql);
 

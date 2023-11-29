@@ -19,6 +19,9 @@ const myAjax = {
 };
 const shiftSel =[
 	{
+		id : 4,
+		shift : "HC"
+	},{
 		id : 1,
 		shift : 1
 	},
@@ -28,11 +31,18 @@ const shiftSel =[
 	},{
 		id : 3,
 		shift : 3
-	},{
-		id : 4,
-		shift : "HC"
+	}
+];
+const nitrideSel =[
+	{
+		id : 0,
+		nitride : "No"
 	},
-]
+	{
+		id : 1,
+		nitride : "Yes"
+	}
+];
 
 $(function() {
   var now = new Date();
@@ -72,7 +82,7 @@ function makeProductionNumber() {
   fillTableBody(ajaxReturnData, $("#production__table tbody"));
 }
 function makeSummaryTable() {
-  var fileName = "./php/PressPlan/SelSummaryV5.php";
+  var fileName = "./php/PressPlan/SelSummaryV6.php";
   var sendData = {
     start : $("#plan_start").val(),
     end : $("#plan_end").val(),
@@ -237,7 +247,26 @@ function makeShift(seletedId) {
 		}
 	});
 	return targetDom;
-  }
+};
+function makeNitride(seletedId) {
+	let targetDom = $("<select>");
+  
+	nitrideSel.forEach(function(element) {
+		if (element["id"] == seletedId) {
+			$("<option>")
+				.html(element["nitride"])
+				.val(element["id"])
+				.prop("selected", true)
+				.appendTo(targetDom);
+		} else {
+			$("<option>")
+				.html(element["nitride"])
+				.val(element["id"])
+				.appendTo(targetDom);
+		}
+	});
+	return targetDom;
+}
 function makeDieNumberSel(seletedId, id) {
   let targetDom = $("<select>");
 
@@ -383,6 +412,7 @@ $(document).on("click", "#production__table tbody tr", function (e) {
       $("<td>").append(makeShift()).appendTo(newTr);
       $("<td>").append(makeInput(rowCount + 1)).appendTo(newTr);
       $("<td>").append(makeInput("0")).appendTo(newTr);
+      $("<td>").append(makeNitride(0)).appendTo(newTr);
       $("<td>").append(makeInput("")).appendTo(newTr);
       $(newTr).appendTo("#add__table tbody");
       $(this).remove();
@@ -434,7 +464,7 @@ $(document).on("click", "#delete-dialog-delete__button", function () {
 
 // ------------------------- Save Button -------------------------
 $(document).on("click", "#save__button", function () {
-  var fileName = "./php/PressPlan/InsPressPlanV5.php";
+  var fileName = "./php/PressPlan/InsPressPlanV6.php";
   tableData = getTableDataInput($("#add__table tbody tr"))
     console.log(tableData); 
     jsonData = JSON.stringify(tableData);
