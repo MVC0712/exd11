@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MeasurementPosition</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/MeasurementPosition.css" />
+</head>
+
+<body>
+    <header>MeasurementPosition</header>
+    <div class="buttom__wrapper">
+            <table id="summary_table">
+                <thead>
+                    <tr>
+                        <th>press_id</th>
+                        <th>Ngày</th>
+                        <th>die_id</th>
+                        <th><input id="die_number__input" placeholder="Tìm trong bảng" style="width: 105px; text-align: left;" type="text"/></th>
+                        <th>Stl</th>
+                        <th>Sl</th>
+                        <th>XN</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+    <div style="width: 560px">
+        <table id="data__table">
+            <thead>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <table id="add_new_data">
+        <thead>
+            <tr>
+                <th>Vị trí</th>
+                <th>Rz</th>
+                <th>Dấu khuôn</th>
+                <th>Rz</th>
+                <th>Dấu khuôn</th>
+                <th>Rz</th>
+                <th>Dấu khuôn</th>
+                <th><button id="add_new" disabled>+</button></th>
+              </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input id="new_pos" class="need-clear" type="text" /></td>
+                <td><input id="new_1_data" class="need-clear" type="text" /></td>
+                <td><input id="new_2_data" class="need-clear" type="text" /></td>
+                <td><input id="new_3_data" class="need-clear" type="text" /></td>
+                <td><input id="new_4_data" class="need-clear" type="text" /></td>
+                <td><input id="new_5_data" class="need-clear" type="text" /></td>
+                <td><input id="new_6_data" class="need-clear" type="text" /></td>
+                <td><input id="new_7_data" class="need-clear" type="text" /></td>
+            </tr>
+        </tbody>
+        </table> 
+        <div id="jud_con">
+            <button id="save__button" disabled>Lưu</button>
+            <input type="date" id="MeasurementPosition__date" class="need-clear no-input save-data">
+            <select id="name__select" class="need-clear no-input save-data">
+                <option value="0">--------------</option>
+            </select>
+
+            <input id="file" type="file" multiple style="width:auto"/>
+            <button id="preview__button">Xem</button>
+        </div>
+        </div>
+        </div>         
+    <script src="./lib/jquery.min.js"></script>
+    <script src="./scr/MeasurementPosition.js"></script>
+</body>
+
+</html>

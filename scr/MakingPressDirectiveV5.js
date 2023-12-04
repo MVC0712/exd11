@@ -1131,6 +1131,7 @@ $(function(){
 		// var press_lengthth = ajaxReturnData[0].press_length + "m";
 		var press_lengthth = calPressLength(ajaxReturnData[0].billet_size, ajaxReturnData[0].billet_length, ajaxReturnData[0].specific_weight, ajaxReturnData[0].hole) + "m";
 		var production_length = Number(ajaxReturnData[0].production_length)*1000 + "mm";
+        var aging = ajaxReturnData[0].aging;
         var material = ajaxReturnData[0].material;
 		var specific_weight = ajaxReturnData[0].specific_weight + "kg/m";
 		var ratio =  Math.round(ajaxReturnData[0].ratio,2);
@@ -1578,7 +1579,7 @@ $(function(){
                           <td style="width: 60px; font-size: 7px">Lực kéo Puller</td>
                           <td style="width: 70px;">${pullerF}</td>
                           <td style="width: 60px; font-size: 7px">Điều kiện ủ</td>
-                          <td style="width: 70px; text-align: center;"></td>
+                          <td style="width: 70px; text-align: center;">${aging}</td>
                       </tr>
                   </tbody>
               </table>

@@ -9,35 +9,37 @@
     <link rel="stylesheet" href="./css/Maintenance.css" />
 </head>
 <body>
-    <header>Maintenance</header>
-    <div class="main__wrapper">
-        <div class="left__wrapper column__wrapper">
-            <!-- <input id="die_number__input" placeholder="Tìm trong bảng" style="width: 100px; text-align: left;" type="text" onkeyup="timkiemkhuon();" /> -->
-            <table id="summary__table">
-                <thead>
-                    <tr>
-                        <th>id</th>
-                        <th>Machine_id</th>
-                        <th>Machine</th>
-                        <th>Part_position_id</th>
-                        <th>Work</th>
-                        <th>Ma_start</th>
-                        <th>Ma_finish</th>
-                        <th>Note</th>
-                        <th>File_url</th>
-                        <th>TTN</th>
-                        <th>Ittime</th>
-                        <th>WT</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-                <div>
-                    <div class="right__wrapperh">
-                        <table id="ma__table">
+    <div>
+            <header>Maintenance</header>
+            <div class="main__wrapper">
+                <div class="upper__wrapper">
+                    <div class="left__wrapper">
+                        <table id="summary__table">
                             <thead>
                                 <tr>
-                                    <td></td>
+                                    <th>id</th>
+                                    <th>line_id</th>
+                                    <th>Line</th>
+                                    <th>machine_id</th>
+                                    <th>Machine</th>
+                                    <th>Work_id</th>
+                                    <th>Work</th>
+                                    <th>Nor</th>
+                                    <th>Start</th>
+                                    <th>Next_T</th>
+                                    <th>Ttn</th>
+                                    <th>IT</th>
+                                    <th>Note</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="right__wrapper">
+                        <table id="history__summary">
+                            <thead>
+                                <tr>
                                     <td></td>
                                     <td></td>
                                     <td id="ma_po" style="text-align:center;" colspan="5">Machine-Position</td>
@@ -47,43 +49,102 @@
                                     <td>Machine</td>
                                     <td>Work</td>
                                     <td>Ma_start</td>
-                                    <td>Ma_stop</td>
                                     <td>Note</td>
                                 </tr>
                             </thead>
-                            <tbody></tbody>
+                            <tbody>
+                            </tbody>
                         </table>
-                        <div id="file_area" class="zoom"></div>
                     </div>
                 </div>
-        </div>
-        <div class="center__wrapper column__wrapper">
-            <img src="./img/001.png" alt="arrow" />
-        </div>
-        <div class="right__wrapper column__wrapper" style="display:flex">
-            <div id="ins__data">
-                <div class="title">Line</div>
-                <select id="line" class="no-input save-data need-clear">
-                </select>
-                <div class="title">Machine</div>
-                <select id="machine" class="no-input save-data need-clear">
-                </select>
-                <div class="title">Work</div>
-                <select id="part_position" class="no-input save-data need-clear">
-                    <option value="0">Select Part</option>
-                </select>
-                <div class="title">Start</div>
-                <input id="maintenance_start" class="no-input" type="datetime-local" />
-                <div class="title">Finish</div>
-                <input id="maintenance_finish" class="no-input" type="datetime-local" />
-                <input type="file" value="No_image.jpg" name="myfile" id="myfile">
-                <div class="title">Note</div>
-                <textarea id="note" class="right__wrapper_text_input">
-                </textarea>
-                <button id="go__button" disabled>Insert</button>
+                <div class="lower__wrapper">
+                <div>
+                    <table id="line"> 
+                        <thead>
+                            <th>id</th>
+                            <th>Line</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+
+                        </tbody>
+                    </table>
+                    <div class="input-block__outer">
+                        <input id="ins_line" class="no-input" type="text">
+                        <button id="Insert_line" disabled>Cate 1</button>
+                    </div>
+                </div>
+                <div>
+                    <table id="machine"> 
+                        <thead>
+                            <th>id</th>
+                            <th>Machine</th>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                    <div class="input-block__outer">
+                        <input id="ins_machine" class="no-input" type="text">
+                        <button id="Insert_machine" disabled>Cate 2</button>
+                    </div>
+                </div>
+                <div>
+                    <table id="work"> 
+                        <thead>
+                            <th>id</th>
+                            <th>Work</th>
+                            <th>KTG</th>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                    <div class="input-block__outer">
+                        <input id="ins_work" class="no-input" type="text">
+                        <input id="duration" class="no-input" type="text">
+                        <button id="Insert_work" disabled>Work</button>
+                    </div>
+                </div>
+                    <div id="left">
+                        <div class="title">Start</div>
+                        <input id="maintenance_start" class="no-input" type="date" />
+                    <div>
+                        <div class="title">Staff</div>
+                        <select id="staff" class="no-input need-clear">
+                            <option value="0">Select</option>
+                        </select>
+                    </div>
+                    <div>
+                    <div class="title">Normal</div>
+                    <select id="normal" class="save-data need-clear">
+                        <option value="0">Yes</option>
+                        <option value="1">No</option>
+                    </select>
+                </div>
+                </div>
+                <div id="right">
+                    <div class="title">Filename</div>
+                    <input id="file" type="file" multiple />
+
+                <div class="title">Notes</div>
+                <input id="note" type="text"/>
+                <div id="button__area">
+                    <button id="insert" disabled>
+                        Insert
+                    </button>
+                    <button id="update" disabled>
+                        Update
+                    </button>
+                    <button id="download">
+                        Tải file
+                    </button>
+                </div>
+            </div>
             </div>
         </div>
     </div>
+		<div id="file_area"></div>
     <script src="./lib/jquery.min.js"></script>
     <script src="./scr/Maintenance.js"></script>
 </body>

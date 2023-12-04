@@ -286,11 +286,11 @@ object {
 }
 
 #history__summary {
-    width: 205px;
+    width: 235px;
 }
 
 #history__summary tbody {
-    height: 200px;
+    height: 300px;
 }
 
 #history__summary th:nth-child(1),
@@ -305,7 +305,7 @@ object {
 #history__summary td:nth-child(3),
 #history__summary th:nth-child(4),
 #history__summary td:nth-child(4) {
-    width: 65px;
+    width: 80px;
 }
 
 #history__summary td:nth-child(3) {
