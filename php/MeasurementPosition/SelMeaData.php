@@ -16,7 +16,7 @@
       );
 
       $prepare = $dbh->prepare("SELECT 
-      position, value
+      position, value, t_measurement_position.id
     FROM
       extrusion.t_measurement_position
     LEFT JOIN

@@ -36,16 +36,20 @@ function selMeaPos() {
     var sendData = {
     };
     myAjax.myAjax(fileName, sendData);
-    const result = Object.assign(...Object.keys(ajaxReturnData[0]).map( key =>
-        ({ [key]: ajaxReturnData.map( o => o[key] ) })
-    ));
-    $.each(result, function(key,valueObj){
-        let newTr = $("<tr>");
-        $("<td>").html(key).appendTo(newTr);
-        valueObj.forEach(function(val) {
-            $("<td>").html(val).appendTo(newTr);
-    });
-    $(newTr).appendTo("#data__table thead");
+    
+    result = groupBy(ajaxReturnData);
+    result.forEach(function(trVal) {
+        var newTr = $("<tr>");
+        Object.keys(trVal).forEach(function(tdVal) {
+            if (tdVal == "data") {
+                trVal[tdVal].forEach(function(Val) {
+                    $("<th>").html(Val).appendTo(newTr);
+                });
+            } else {
+                $("<td>").html(trVal[tdVal]).appendTo(newTr);
+            }
+        });
+        $(newTr).appendTo("#data__table thead");
     });
 }
 function selMeaData() {
@@ -53,21 +57,44 @@ function selMeaData() {
     var sendData = {
     };
     myAjax.myAjax(fileName, sendData);
-    console.log(ajaxReturnData);
-    const result = Object.assign(...Object.keys(ajaxReturnData[0]).map( key =>
-        ({ [key]: ajaxReturnData.map( o => o[key] ) })
-    ));
-    console.log(result);
-    $.each(result, function(key,valueObj){
-        let newTr = $("<tr>");
-        console.log(valueObj);
-        $("<td>").html(key).appendTo(newTr);
-        valueObj.forEach(function(val) {
-            $("<td>").html(val).appendTo(newTr);
-    });
-    $(newTr).appendTo("#data__table tbody");
+    result = groupBy(ajaxReturnData, 'position', 'value');
+    result.forEach(function(trVal) {
+        var newTr = $("<tr>");
+        Object.keys(trVal).forEach(function(tdVal) {
+            if (tdVal == "data") {
+                trVal[tdVal].forEach(function(Val) {
+                    $("<td>").html(Val).appendTo(newTr);
+                });
+            } else {
+                $("<td>").html(trVal[tdVal]).appendTo(newTr);
+            }
+        });
+        $(newTr).appendTo("#data__table tbody");
     });
 }
+
+function groupBy(array, name, value) {
+    const
+        groupByNameValue = (r, o) => {
+            var object = r.find(p => p.name === o[name]);
+            if (!object) {
+                r.push(object = { name: o[name], data: [] });
+            }
+            object.data.push(o[value]);
+            return r;
+        },
+        groupByAllKeys = (r, o) => {
+            Object.entries(o).forEach(([name, value]) => {
+                var object = r.find(p => p.name === name);
+                if (!object) {
+                    r.push(object = { name, data: [] });
+                }
+                object.data.push(value);
+            });
+            return r;
+        }
+    return array.reduce(name && value ? groupByNameValue : groupByAllKeys, []);
+};
 $(document).on("change", "#name__select", function() {
     if (press_id) {
         var fileName = "./php/MeasurementPosition/InsMeasurementStaff.php";
@@ -453,8 +480,53 @@ $(document).on("click", "#preview__button", function () {
     window.localStorage.setItem("file_url", JSON.stringify(imageList));
 });
 
-// var myData =[{"value":15.2,"upper_limit":0.13,"lower_limit":-0.13},{"value":14.3,"upper_limit":0.13,"lower_limit":-0.13},{"value":14.3,"upper_limit":0.13,"lower_limit":-0.13},{"value":14.3,"upper_limit":0.13,"lower_limit":-0.13}]
-// const result = Object.assign(...Object.keys(myData[0]).map( key =>
-//   ({ [key]: myData.map( o => o[key] ) })
-// ));
-// console.log(result);
+var ExcelToJSON = function() {
+    this.parseExcel = function(file) {
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+			var data = e.target.result;
+			var workbook = XLSX.read(data, {
+					type: 'binary',
+					cellDates: true,
+					cellNF: false,
+					cellText: false
+			});
+			const options = {
+					raw: false, 
+					dateNF: 'yyyy-mm-dd',
+			};
+			workbook.SheetNames.forEach(function(sheetName) {
+					var XL_row_object = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName], options);
+					var productList = JSON.parse(JSON.stringify(XL_row_object));
+					console.log(productList)
+					var rows = $('#excel_table tbody');
+					for (i = 0; i < productList.length; i++) {
+					var columns = Object.values(productList[i])
+					rows.append(`
+							<tr>
+							<td>${makeOrderSheetId(columns[0].replace( /\s/g, ''))}</td>
+							<td>${columns[0].replace( /\s/g, '')}</td>
+							<td>${makeProductionNumber(columns[0].replace( /\s/g, ''))}</td>
+							<td><input type="date" value="${columns[1].replace( /\s/g, '')}"</td>
+							<td><input type="number" value="${columns[2].replace( /\s/g, '')}"</td>
+							<td><button class="remove_button">X</button></td>
+							</tr>
+					`);
+					}
+			})
+    };
+    reader.onerror = function(ex) {
+    console.log(ex);
+    };
+    reader.readAsBinaryString(file);
+};
+};
+  
+function handleFileSelect(evt) {
+    var files = evt.target.files;
+    var xl2json = new ExcelToJSON();
+    xl2json.parseExcel(files[0]);
+};
+
+document.getElementById('fileupload').addEventListener('change', handleFileSelect, false);
