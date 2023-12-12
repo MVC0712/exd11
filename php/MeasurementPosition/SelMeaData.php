@@ -2,7 +2,7 @@
   /* 21/08/01作成 */
   $userid = "webuser";
   $passwd = "";
-//   print_r($_POST);
+  $press_id = $_POST['press_id'];
   
   try {
       $dbh = new PDO(
@@ -21,7 +21,7 @@
       extrusion.t_measurement_position
     LEFT JOIN
       t_press ON t_press.id = t_measurement_position.press_id
-    WHERE press_id=1021
+      WHERE press_id = '$press_id'
     ORDER BY position ASC , measurement_position_id ASC;
       ");
 

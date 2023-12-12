@@ -1394,7 +1394,7 @@ $(function(){
                           <td style="width: 45px;"></td>
                       </tr>
                       <tr>
-                          <td style="width: 40px;">KL pp cắt</td>
+                          <td style="width: 40px;"></td>
                           <td style="width: 55px;"></td>
                           <td style="width: 35px;">Mẫu</td>
                           <td style="width: 45px; text-align: right;">/50mm</td>

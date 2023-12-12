@@ -2,7 +2,7 @@
   /* 21/08/01作成 */
   $userid = "webuser";
   $passwd = "";
-//   print_r($_POST);
+  $production_number_id = $_POST['production_number_id'];
   
   try {
       $dbh = new PDO(
@@ -16,11 +16,14 @@
       );
 
       $prepare = $dbh->prepare("SELECT 
-      value AS Value, upper_limit AS Upper, lower_limit AS Lower
+      id, pos_on_drawing AS Pos, 
+      value AS Value,
+      ROUND((value + upper_limit), 4) AS Upper, 
+      ROUND((value + lower_limit), 4) AS Lower
   FROM
       extrusion.m_measurement_position
   WHERE
-      production_number_id = 119;
+  production_number_id = '$production_number_id';
       ");
 
       $prepare->execute();

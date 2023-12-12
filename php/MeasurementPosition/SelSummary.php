@@ -23,23 +23,13 @@
     t_press.dies_id,
     m_dies.die_number,
     m_pressing_type.pressing_type,
-    t_press.actual_billet_quantities,
-    CASE
-        WHEN t10.exist > 0 THEN 'Đã lưu'
-        ELSE 'C lưu'
-    END AS confirm
+    t_press.actual_billet_quantities
 FROM
     t_press
         LEFT JOIN
     m_pressing_type ON t_press.pressing_type_id = m_pressing_type.id
         LEFT JOIN
     m_dies ON t_press.dies_id = m_dies.id
-        LEFT JOIN
-    (SELECT 
-        t_measurement.press_id, COUNT(*) AS exist
-    FROM
-        extrusion.t_measurement
-    GROUP BY t_measurement.press_id) AS t10 ON t10.press_id = t_press.id
     WHERE
     die_number LIKE '%$die_number__input%'
 ORDER BY t_press.press_date_at DESC , t_press.press_start_at DESC
