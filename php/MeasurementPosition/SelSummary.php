@@ -20,7 +20,7 @@
       SELECT 
     t_press.id AS press_id,
     DATE_FORMAT(t_press.press_date_at, '%y-%m-%d') AS press_date_at,
-    t_press.dies_id,
+    m_dies.production_number_id,
     m_dies.die_number,
     m_pressing_type.pressing_type,
     t_press.actual_billet_quantities

@@ -2,7 +2,7 @@
   /* 21/07/26作成 */
   $userid = "webuser";
   $passwd = "";
-//   print_r($_POST);
+  $production_number = $_POST['production_number'];
   
   try {
       $dbh = new PDO(
@@ -15,20 +15,11 @@
       )
       );
 
-      $prepare = $dbh->prepare("
-
-select 
-      m_dies.id,
-      m_dies.die_number
-from t_press
-left join m_dies on t_press.dies_id = m_dies.id
-where t_press.press_date_at = :press_date
-order by m_dies.die_number
-  
-        
-      ");
-
-      $prepare->bindValue(':press_date', $_POST["press_date"], PDO::PARAM_STR);
+      $prepare = $dbh->prepare("SELECT 
+          *
+        FROM m_production_numbers
+        WHERE production_number LIKE '%$production_number%'
+        ORDER BY production_number ASC");
       $prepare->execute();
       $result = $prepare->fetchAll(PDO::FETCH_ASSOC);
 

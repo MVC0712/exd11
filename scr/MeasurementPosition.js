@@ -21,16 +21,19 @@ const myAjax = {
 
 $(function() {
     makeSummaryTable();
-    selHeader();
-    selMeaData();
+    // selHeader();
+    makeStaff();
+	makeProductionNumber();
 });
 function selHeader() {
 	var fileName = "SelHeader.php";
 	var sendData = {
-		production_number_id : 119,
+		production_number_id : $("#selected__tr").find("td").eq(2).html(),
 	};
+	console.log(sendData)
 	myAjax.myAjax(fileName, sendData);
-	
+	$("#data__table thead").empty();
+	$("#data__table tbody").empty();
 	result = groupBy(ajaxReturnData);
 	result.forEach(function(trVal) {
 		var newTr = $("<tr>");
@@ -49,7 +52,7 @@ function selHeader() {
 function selMeaData() {
 	var fileName = "SelMeaData.php";
 	var sendData = {
-		press_id : '1021',
+		press_id : $("#selected__tr").find("td").eq(0).html(),
 	};
 	myAjax.myAjax(fileName, sendData);
 	result = groupBy(ajaxReturnData, 'position', 'value');
@@ -58,17 +61,43 @@ function selMeaData() {
 		Object.keys(trVal).forEach(function(tdVal) {
 			if (tdVal == "data") {
 				trVal[tdVal].forEach(function(Val) {
-					$("<td>").html(Val).appendTo(newTr);
+					$("<td>").append($("<input>").val(Val)).appendTo(newTr);
 				});
 			} else {
-				$("<td>").html(trVal[tdVal]).appendTo(newTr);
+				$("<td>").append($("<input>").val(trVal[tdVal])).appendTo(newTr);
 			}
 		});
 		$(newTr).appendTo("#data__table tbody");
 	});
 	compareValue();
-}
-
+};
+function makeProductionNumber() {
+    var fileName = "SelProductionNumber.php";
+    var sendData = {
+		production_number : $("#pro_search").val(),
+    };
+    myAjax.myAjax(fileName, sendData);
+    $("#production_number > option").remove();
+    $("#production_number").append($("<option>").val(0).html("NO select"));
+    ajaxReturnData.forEach(function(value) {
+        $("#production_number").append(
+            $("<option>").val(value["id"]).html(value["production_number"])
+        );
+    });
+};
+function makeStaff() {
+    var fileName = "SelStaff.php";
+    var sendData = {
+    };
+    myAjax.myAjax(fileName, sendData);
+    $("#staff_id > option").remove();
+    $("#staff_id").append($("<option>").val(0).html("NO select"));
+    ajaxReturnData.forEach(function(value) {
+        $("#staff_id").append(
+            $("<option>").val(value["id"]).html(value["staff_name"])
+        );
+    });
+};
 function groupBy(array, name, value) {
 	const
 		groupByNameValue = (r, o) => {
@@ -93,6 +122,27 @@ function groupBy(array, name, value) {
 };
 $(document).on("keyup", "#die_number__input", function() {
     makeSummaryTable();
+});
+$(document).on("keyup", "#pro_search", function() {
+    makeProductionNumber();
+});
+$(document).on("change", "#measurement_date", function() {
+	if ("" != $(this).val())
+	$(this).removeClass("no-input").addClass("complete-input");
+else $(this).removeClass("complete-input").addClass("no-input");
+    checkSaveMeaData();
+});
+$(document).on("change", "#staff_id", function() {
+	if (0 != $(this).val())
+        $(this).removeClass("no-input").addClass("complete-input");
+    else $(this).removeClass("complete-input").addClass("no-input");
+    checkSaveMeaData();
+});
+$(document).on("change", "#production_number", function() {
+	if (0 != $(this).val())
+        $(this).removeClass("no-input").addClass("complete-input");
+    else $(this).removeClass("complete-input").addClass("no-input");
+	checkSavePosData();
 });
 function makeSummaryTable() {
 	var fileName = "SelSummary.php";
@@ -154,6 +204,8 @@ $(document).on("click", "#summary_table tbody tr", function(e) {
 		$(this).addClass("selected-record");
 		$("#selected__tr").removeAttr("id");
 		$(this).attr("id", "selected__tr");
+		selHeader();
+		checkSaveMeaData();
 	} else {
 	}
 });
@@ -180,6 +232,12 @@ excel_file.addEventListener('change', (event) => {
 	// 	excel_file.value = '';
 	// 	return false;
 	// }
+	$("#data__table tbody").empty();
+	var from_row = $("#from_row").val();
+	if (from_row == "") {
+		from_row = 9;
+	} else {from_row = $("#from_row").val()}
+	// var to_row = $("#to_row").val();
 	const options = {
 		raw: false, 
 		dateNF: 'yyyy-mm-dd',
@@ -196,18 +254,20 @@ excel_file.addEventListener('change', (event) => {
 			let newTr = $("<tr>");
 			if(sheet_data[row].length !== 0) {
 				// console.log(sheet_data[row]);
-				if(row >= 9) {
+				if(row >= from_row) {
 					$.each(sheet_data[row], function(key,valueObj){
 						if((key == 4) || (key > 6)) {
-							$("<td>").html(valueObj).appendTo(newTr);
+							$("<td>").append($("<input>").val(valueObj)).appendTo(newTr);
+							$(newTr).appendTo("#data__table tbody");
 						}
 					});
 				}
-				$(newTr).appendTo("#data__table tbody");
 			}
 		}
+		compareValue();
 		excel_file.value = '';
 	}
+	checkSaveMeaData();
 });
 
 function getSaveData() {
@@ -224,7 +284,7 @@ function getSaveData() {
 	$("#data__table tbody tr").each(function (index, element) {
 		var tr = [];
 		$(this).find("td").each(function (index, element) {
-			tr.push($(this).html());
+			tr.push($(this).find("input").val());
 		});
 		valueArray.push(tr);
 	});
@@ -251,9 +311,70 @@ function compareValue() {
 	lowerValue = limitValue[4];
 	$("#data__table tbody tr").each(function (index, element) {
 		$(this).find("td").each(function (index, element) {
-			if ((index != 0) && (($(this).html() >= upperValue[index]) || ($(this).html() <= lowerValue[index]))){
-				$(this).css("color", "red");
+			if ((index != 0) && (($(this).find("input").val() >= upperValue[index]) || ($(this).find("input").val() <= lowerValue[index]))){
+				$(this).find("input").css("color", "red");
 			}
 		});
 	});
 };
+
+function checkSaveMeaData() {
+	if (($("#data__table thead tr").length == 0) || 
+		($("#data__table tbody tr").length == 0) || 
+		(($("#data__table thead tr:first th").length) != ($("#data__table tbody tr:first td").length)) || 
+		($("#measurement_date").hasClass("no-input")) || 
+		($("#staff_id").hasClass("no-input"))) {
+		$("#save__button").prop("disabled", true);
+	} else {
+		$("#save__button").prop("disabled", false);
+	}
+};
+function checkSavePosData() {
+	if (($("#add_value tbody tr").length == 0) || 
+		($("#production_number").hasClass("no-input"))) {
+		$("#save_new_value").prop("disabled", true);
+	} else {
+		$("#save_new_value").prop("disabled", false);
+	}
+};
+
+
+$(document).on("click", "#add_new_value", function() {
+	var newTr = $("<tr>");
+	$("<td>").append(makeNumberInput($("#pos_on_drawing").val())).appendTo(newTr);
+	$("<td>").append(makeNumberInput($("#value").val())).appendTo(newTr);
+	$("<td>").append(makeNumberInput($("#upper_limit").val())).appendTo(newTr);
+	$("<td>").append(makeNumberInput($("#lower_limit").val())).appendTo(newTr);
+	$(newTr).appendTo("#add_value tbody");
+	checkSavePosData();
+});
+function makeNumberInput(qty) {
+	let targetDom = $("<input>");
+	targetDom.attr("type", "number");
+	targetDom.val(qty);
+	return targetDom;
+}
+
+
+$(document).on("click", "#save_new_value", function() {
+	let production_number_id = $("#production_number").val();
+	let dataS = getTableDataInput($("#add_value tbody tr"));
+  dataS.push(production_number_id);
+  fileName = "InsMeaPosValue.php";
+  sendData = JSON.stringify(dataS);
+  myAjax.myAjax(fileName, sendData);
+});
+
+$(document).on("click", "#save__button", function() {
+	let measurement_date = $("#measurement_date").val();
+	let staff_id = $("#staff_id").val();
+	let press_id = $("#selected__tr").find("td").eq(0).html();
+	var sendData = new Object();
+  var fileName = "InsMeaPosValueOnPress.php";
+	sendData["dataS"] = getSaveData();
+	sendData["measurement_date"] = measurement_date;
+	sendData["staff_id"] = staff_id;
+	sendData["press_id"] = press_id;
+
+  myAjax.myAjax(fileName, sendData);
+});

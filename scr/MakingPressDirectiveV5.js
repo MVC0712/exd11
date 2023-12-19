@@ -1130,7 +1130,7 @@ $(function(){
 		var pressing_type = ajaxReturnData[0].pressing_type;
 		// var press_lengthth = ajaxReturnData[0].press_length + "m";
 		var press_lengthth = calPressLength(ajaxReturnData[0].billet_size, ajaxReturnData[0].billet_length, ajaxReturnData[0].specific_weight, ajaxReturnData[0].hole) + "m";
-		var production_length = Number(ajaxReturnData[0].production_length)*1000 + "mm";
+		var production_length = Math.round(Number(ajaxReturnData[0].production_length)*1000) + "mm";
         var aging = ajaxReturnData[0].aging;
         var material = ajaxReturnData[0].material;
 		var specific_weight = ajaxReturnData[0].specific_weight + "kg/m";

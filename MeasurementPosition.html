@@ -12,6 +12,47 @@
 <body>
     <header>MeasurementPosition</header>
     <div class="buttom__wrapper">
+        <div style="width: 210px;">
+            <table id="add_value">
+                <thead>
+                    <tr>
+                        <th>Pos</th>
+                        <th>Value</th>
+                        <th>Upper</th>
+                        <th>Lower</th>
+                    </tr>
+                    <tr>
+                        <th><input type="text" id="pro_search"></th>
+                        <th colspan="4"><select id="production_number" class="no-input"></select></th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <table>
+                <thead>
+                    <tr><th colspan="2"><button id="save_new_value" disabled>Save</button></th></tr>
+                    <tr>
+                        <th>Pos on drawing</th>
+                        <th><input type="number" id="pos_on_drawing"></th>
+                    </tr>
+                    <tr>
+                        <th>Value</th>
+                        <th><input type="number" id="value"></th>
+                    </tr>
+                    <tr>
+                        <th>Upper limit</th>
+                        <th><input type="number" id="upper_limit"></th>
+                    </tr>
+                    <tr>
+                        <th>Lower limit</th>
+                        <th><input type="number" id="lower_limit"></th>
+                    </tr>
+                    <tr><th colspan="2"><button id="add_new_value">Add</button></th></tr>
+                </thead>
+            </table>
+        </div>
+        <div style="width: 210px;">
             <table id="summary_table">
                 <thead>
                     <tr>
@@ -26,25 +67,25 @@
                 <tbody>
                 </tbody>
             </table>
-    <div style="width: 560px">
+            <div>
+                <input type="number" id="from_row">
+                <input id="file" type="file"/>
+                <input type="date" id="measurement_date" class="need-clear no-input save-data">
+                <select id="staff_id" class="need-clear no-input save-data">
+                    <option value="0">--------------</option>
+                </select>
+                <button id="save__button" disabled>Lưu</button>
+            </div>
+        </div>
+    <!-- <div style="width: 560px"> -->
         <table id="data__table">
             <thead>
             </thead>
             <tbody>
             </tbody>
         </table>
-        <div id="jud_con">
-            <button id="save__button" disabled>Lưu</button>
-            <input type="date" id="MeasurementPosition__date" class="need-clear no-input save-data">
-            <select id="name__select" class="need-clear no-input save-data">
-                <option value="0">--------------</option>
-            </select>
-
-            <input id="file" type="file" style="width:auto"/>
-            <button id="preview__button">Xem</button>
-        </div>
-        </div>
-        </div>
+    <!-- </div> -->
+</div>
     <script src="./lib/excel.js"></script>
     <script src="./lib/jquery.min.js"></script>
     <script src="./scr/MeasurementPosition.js"></script>

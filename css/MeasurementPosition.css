@@ -5,6 +5,7 @@ body>div {
     width: 100%;
 }
 table td,
+table td input,
 table th {
     font-size: 8pt;
 }
@@ -46,7 +47,7 @@ input[type=number]::-webkit-inner-spin-button,
 }
 
 #data__table tbody {
-    height: 420px;
+    height: 490px;
     width: 1180px;
     overflow: auto;
 }
@@ -71,7 +72,7 @@ input[type=number]::-webkit-inner-spin-button,
     margin: 0;
 }
 #summary_table tbody {
-    height: 540px;
+    height: 425px;
     width: 210px;
 }
 
@@ -133,6 +134,51 @@ input[type=number]::-webkit-inner-spin-button,
     margin: 5px;
     /* padding: 5px; */
 }
-#name__select {
+
+
+#add_value tbody {
+    height: 385px;
+    width: 220px;
+}
+
+#add_value th:nth-child(1),
+#add_value td:nth-child(1){
+    width: 45px;
+}
+
+#add_value th:nth-child(2),
+#add_value td:nth-child(2) {
+    width: 45px;
+}
+
+#add_value th:nth-child(3),
+#add_value td:nth-child(3) {
+    width: 45px;
+}
+
+#add_value th:nth-child(4),
+#add_value td:nth-child(4) {
+    width: 45px;
+}
+#save_new_value,
+#add_new_value {
     width: 180px;
+    padding: 0;
+    margin: 0;
+}
+#pos_on_drawing,
+#value,
+#upper_limit,
+#lower_limit {
+    width: 100px;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+#MeasurementPosition__date,
+#staff_id {
+    width: 180px;
+}
+#production_number {
+    width: 150px;
 }
