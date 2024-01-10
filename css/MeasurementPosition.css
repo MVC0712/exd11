@@ -48,7 +48,7 @@ input[type=number]::-webkit-inner-spin-button,
 
 #data__table tbody {
     height: 490px;
-    width: 1180px;
+    width: 980px;
     overflow: auto;
 }
 #data__table thead tr:nth-child(1) {

@@ -24,7 +24,9 @@
 
     if(count($dataS) > 0){
       foreach($dataS as $val){
-        $sql_paramater[] = "('{$press_id}', '{$measurement_date}', '{$staff_id}', '{$val["measurement_position_id"]}', '{$val["position"]}', '{$val["value"]}')";
+        if (isset($val["measurement_position_id"])) {
+          $sql_paramater[] = "('{$press_id}', '{$measurement_date}', '{$staff_id}', '{$val["measurement_position_id"]}', '{$val["position"]}', '{$val["value"]}')";
+        }
       }
       $sql = "INSERT INTO t_measurement_position(press_id, measurement_date, staff_id, measurement_position_id, position, value) VALUES ".join(",", $sql_paramater);
       $prepare = $dbh->prepare($sql);

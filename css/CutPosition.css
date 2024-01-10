@@ -1,0 +1,146 @@
+body {
+  margin: 4px;
+  border: solid 1px #0000cc;
+  display: flex;
+  flex-direction: column;
+  height: calc(600px - 2px);
+  width: calc(930px - 2px);
+}
+input,
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 1px;
+  text-overflow: '';
+}
+/* --------- main wrapper ---------  */
+
+.main__wrapper {
+  padding-top: 15px;
+  flex-direction: row;
+  height: 70px;
+  align-content: space-around;
+  justify-content: space-around;
+}
+
+#production_number {
+  width: 100%;
+  height: 16px;
+  text-align: left;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+.button__wrapper {
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#plan__group{
+  width: 285px;
+  /* margin-left: 10px; */
+}
+#plan__title {
+  width: 90px;
+}
+#plan_start,
+#plan_end {
+  width: 100px;
+}
+#ins_group {
+  flex-direction: row;
+  align-items: center;
+  align-content: space-around;
+  justify-content: space-around;
+}
+#press_date_at {
+  width: 100px;
+}
+#save__button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  width: 100%;
+}
+/* --------- summary wrapper ---------  */
+
+.summary__wrapper {
+  height: calc(598px - 165px);
+  display: flex;
+  align-content: space-around;
+  justify-content: space-around;
+  flex-direction: row;
+}
+
+#data__table tbody {
+  height: 360px;
+  width: 90px;
+  overflow: auto;
+}
+#data__table th:nth-child(1),
+#data__table td:nth-child(1) {
+  width: 30px;
+}
+#data__table th:nth-child(2),
+#data__table td:nth-child(2) {
+  width: 50px;
+}
+#data__table td:nth-child(2) input {
+  width: 50px;
+  text-align: center;
+  border: none;
+  padding: 0;
+}
+
+#production__table tbody {
+  height: 545px;
+  width: 150px;
+}
+#production__table th:nth-child(1),
+#production__table td:nth-child(1) {
+  display: none;
+}
+#production__table th:nth-child(2),
+#production__table td:nth-child(2) {
+  width: 130px;
+}
+#production__table th:nth-child(3),
+#production__table td:nth-child(3) {
+  width: 110px;
+}
+#production__table th:nth-child(3),
+#production__table td:nth-child(3) {
+  width: 60px;
+}
+
+#summary__table tbody {
+  height: 545px;
+  width: 680px;
+}
+#summary__table th:nth-child(1),
+#summary__table td:nth-child(1) {
+  display: none;
+}
+#summary__table th:nth-child(2),
+#summary__table td:nth-child(2) {
+  width: 130px;
+}
+#summary__table th:nth-child(n + 3),
+#summary__table td:nth-child(n + 3) {
+  width: 50px;
+}
+#summary__table th:nth-child(n + 3) input,
+#summary__table td:nth-child(n + 3) input {
+  width: 50px;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+button {
+  width:90px;
+  height:20px;
+}

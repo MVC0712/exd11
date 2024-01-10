@@ -68,6 +68,7 @@
         <button id="diestasus">Die Status</button>
         <button id="diehistory">Die History</button>
         <button id="production_number">Edit<br />PN</button>
+        <button id="cut_position">Cut position</button>
         <button id="die_number">Edit<br />Die</button>
         <button id="maintenance">Bảo trì TB</button>
         <button id="log">LS máy đùn</button>
@@ -122,6 +123,10 @@
 
       $(document).on("click", "#production_number", function () {
         window.open("ProductionNumberV3.html");
+      });
+
+      $(document).on("click", "#cut_position", function () {
+        window.open("CutPosition.html");
       });
 
       $(document).on("click", "#die_number", function () {
