@@ -38,7 +38,7 @@ function fillToday() {
 }
 
 function ajaxSelAgingRack() {
-  var fileName = "SelAgingRackV4.php";
+  var fileName = "SelAgingRackV41.php";
   var sendData = {
     die_number : $("#die_number").val(),
     press_date : $("#press_date").val(),
@@ -48,7 +48,7 @@ function ajaxSelAgingRack() {
 }
 
 function ajaxSelAgingHitory() {
-  var fileName = "SelAgingHistoryV4.php";
+  var fileName = "SelAgingHistoryV41.php";
   var sendData = {
 
   };
