@@ -18,15 +18,10 @@ const myAjax = {
     },
 };
 
-$(function() {
-    makeSummaryTable();
-});
-$(function() {
-    makeSummaryTankTable();
-    makeHistoryTankTable();
-});$(function() {
-    makeStaff();
-});
+makeSummaryTable();
+makeSummaryTankTable();
+makeHistoryTankTable();
+makeStaff();
 
 $(function() {
     $("#save__button").prop("disabled", true);

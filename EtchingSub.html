@@ -37,6 +37,8 @@
               break;
             case "jpg":
             case "JPG":
+            case "jpeg":
+            case "JPEG":
               $("<object>")
                 .attr("data", reader.result)
                 .attr("type", "image/jpeg")
@@ -62,6 +64,8 @@
             break;
           case "jpg":
           case "JPG":
+          case "jpe":
+          case "JPE":
             $("<object>")
               .attr("data", "../upload/Etching/" + filename)
               .attr("type", "image/jpeg")

@@ -41,6 +41,9 @@ $(function () {
   setSummaryTable();
   // ErrorCode();
   $("#machine-number__select").val(1).removeClass("no-input").addClass("complete-input");
+  $("#billet-length__select").select2({
+    tags: true
+  });
 });
 // *****************************************************
 // *****************************************************
@@ -1735,27 +1738,3 @@ function checkBilletQty() {
   if ($("#actual-billet-qty__input").val()==ttb) return true; else return false;
   };
   
-$("#download_data").on("click", function () {
-  let fileName;
-  let sendData = new Object();
-  fileName = "./php/DailyReport/DownloadSummary.php";
-  sendData = {
-    die_number: $("#die-number-fileter").val(),
-    start_date: $("#start-term").val(),
-    end_date: $("#end-term").val(),
-    press_type: $("#press-type-filter").val(),
-  };
-  myAjax.myAjax(fileName, sendData);
-  downloadFile();
-});
-
-function downloadFile() {
-  // 指定したファイル名のファイルをダウンロードする。
-  const a = document.createElement("a");
-  document.body.appendChild(a);
-  a.download = "prsdt.csv";
-  a.href = "./../../../diereport/ex0.11/download/prsdt.csv";
-
-  a.click();
-  a.remove();
-}
