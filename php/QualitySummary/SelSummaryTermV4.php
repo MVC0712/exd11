@@ -71,6 +71,7 @@ SELECT
 	t10.code_323,
 	t10.code_324,
 	t10.code_351,
+	t10.code_401,
 	t_press.special_note
 FROM t_press
 LEFT JOIN m_pressing_type ON t_press.pressing_type_id = m_pressing_type.id
@@ -105,7 +106,8 @@ LEFT JOIN
 		  SUM(CASE WHEN m_quality_code.quality_code = 322 THEN t_press_quality.ng_quantities ELSE 0 END) AS code_322,
 		  SUM(CASE WHEN m_quality_code.quality_code = 323 THEN t_press_quality.ng_quantities ELSE 0 END) AS code_323,
 		  SUM(CASE WHEN m_quality_code.quality_code = 324 THEN t_press_quality.ng_quantities ELSE 0 END) AS code_324,
-		  SUM(CASE WHEN m_quality_code.quality_code = 351 THEN t_press_quality.ng_quantities ELSE 0 END) AS code_351
+		  SUM(CASE WHEN m_quality_code.quality_code = 351 THEN t_press_quality.ng_quantities ELSE 0 END) AS code_351,
+		  SUM(CASE WHEN m_quality_code.quality_code = 401 THEN t_press_quality.ng_quantities ELSE 0 END) AS code_401
 		FROM t_using_aging_rack
 		LEFT JOIN t_press_quality ON t_press_quality.using_aging_rack_id = t_using_aging_rack.id
 		LEFT JOIN m_quality_code ON t_press_quality.quality_code_id = m_quality_code.id

@@ -1,5 +1,5 @@
 body {
-    width: calc(1380px - 2px);
+    width: calc(1400px - 2px);
   }
   
   .main__wrapper {
@@ -270,7 +270,9 @@ body {
   #summary__table th:nth-child(38),
   #summary__table td:nth-child(38),
   #summary__table th:nth-child(39),
-  #summary__table td:nth-child(39) {
+  #summary__table td:nth-child(39),
+  #summary__table th:nth-child(40),
+  #summary__table td:nth-child(40) {
     width: 26px;
   }
   
@@ -299,10 +301,11 @@ body {
   #summary__table td:nth-child(36),
   #summary__table td:nth-child(37),
   #summary__table td:nth-child(38), 
-    #summary__table td:nth-child(39) {
+  #summary__table td:nth-child(39),
+  #summary__table td:nth-child(40) {
     text-align: right;
   }
-  #summary__table td:nth-child(40) {
+  #summary__table td:nth-child(41) {
    display: none;
   }
   #date {

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Im_Ex-Anod</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/index.css" />
+  </head>
+  <body>
+    <header>Im_Ex-Anod</header>
+    <div class="summary__wrapper">
+      <dialog class="dialog__wrapper" id="delete__dialog">
+        Do you want to Delete?
+        <button id="delete-dialog-cancel__button">Cancel</button>
+        <button id="delete-dialog-delete__button">Delete</button>
+      </dialog>
+      <table id="production_number">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th><input id="production_number_input"></th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <div>
+      <table id="add__table">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>Code</th>
+            <th>Length</th>
+            <th>Note</th>
+            <th>RM</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+        <div style="display: flex; align-items:center; padding-bottom: 5px; justify-content: space-around;">
+          <div style="display: flex;">
+            <div style="width: 70px; background-color: blue; color: white;">Export at</div>
+              <input id="export_date" class="no-input save-data need-clear" type="date" />
+          </div>
+          <button disabled id="save__button">Save</button>
+        </div>
+        <table id="stock_table">
+          <thead>
+            <tr>
+              <th>Material Type</th>
+              <th>Qty</th>
+              <th>Weight (Kg)</th>
+            </tr>
+          </thead>
+          <thead id="total">
+          </thead>
+          <thead id="sum">
+          </thead>
+          <tbody></tbody>
+        </table>
+  </div>
+  <div>
+  <div>
+  <input id="export_start_date" type="date"/>→
+  <input id="export_end_date" type="date"/>
+  <input id="export_code" type="text"/>
+</div>
+  <table id="summary__table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Exp date</th>
+        <th>Lot</th>
+        <th>Bundle</th>
+        <th>Pos</th>
+        <th>Material</th>
+        <th>Length</th>
+        <th>Qty</th>
+        <th>Note</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
+    </div>
+
+    <script src="../../../../diereport/ex0.11/lib/jquery.min.js"></script>
+    <script src="./scr/index.js"></script>
+  </body>
+</html>

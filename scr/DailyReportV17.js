@@ -327,7 +327,7 @@ $(document).on("keyup", "#actual-die-temp__input", function () {
     !isNaN($(this).val()) &&
     $(this).val().length != 0 &&
     400 <= $(this).val() &&
-    $(this).val() <= 500
+    $(this).val() <= 510
   ) {
     $(this).removeClass("no-input").addClass("complete-input");
   } else {

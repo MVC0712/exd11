@@ -43,7 +43,8 @@
           SUM(CASE WHEN t1.quality_code = 322 THEN t1.ng_quantities ELSE 0 END) AS code_322,
           SUM(CASE WHEN t1.quality_code = 323 THEN t1.ng_quantities ELSE 0 END) AS code_323,
           SUM(CASE WHEN t1.quality_code = 324 THEN t1.ng_quantities ELSE 0 END) AS code_324,
-          SUM(CASE WHEN t1.quality_code = 351 THEN t1.ng_quantities ELSE 0 END) AS code_351
+          SUM(CASE WHEN t1.quality_code = 351 THEN t1.ng_quantities ELSE 0 END) AS code_351,
+          SUM(CASE WHEN t1.quality_code = 401 THEN t1.ng_quantities ELSE 0 END) AS code_401
         FROM
         (
           SELECT

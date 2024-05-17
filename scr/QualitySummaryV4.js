@@ -354,7 +354,8 @@ function ulitycall() {
   total_row(36, "t323");
   total_row(37, "t324");
   total_row(38, "t351");
-  special_note(39);
+  total_row(39, "t401");
+  special_note(40);
   per(9);
 }
 
