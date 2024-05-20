@@ -149,6 +149,9 @@ dialog button {
 }
 .bottom__wrapper {
   height: calc(100% - 30px - 400px - 40px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* input elements */
@@ -486,5 +489,73 @@ div.hidden {
   th:nth-child(3),
   td:nth-child(3) {
     width: 60px;
+  }
+}
+
+#summary__table {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  input {
+    width: 100%;
+    border-width: 0;
+    text-align: right;
+  }
+  tbody {
+    width: 199px;
+    height: 110px;
+  }
+  th,
+  td {
+    border: solid 1px white;
+  }
+  th {
+    border-bottom: 0;
+  }
+  td {
+    border-color: #0000ff;
+  }
+  th:last-child {
+    /* border-width: 1px 0px 0px 1px; */
+    border-right: 1px solid #0000ff;
+  }
+  /* id */
+  th:nth-child(1),
+  td:nth-child(1) {
+    width: 50px;
+    background-color: #0000ff;
+    color: white;
+    font-size: 12pt;
+    display: none;
+  }
+  /* date */
+  th:nth-child(2),
+  td:nth-child(2) {
+    width: 50px;
+  }
+  /* press number */
+  th:nth-child(3),
+  td:nth-child(3) {
+    width: 30px;
+  }
+
+  /* press number */
+  th:nth-child(3),
+  td:nth-child(3) {
+    width: 30px;
+  }
+  /* Die name */
+  th:nth-child(4),
+  td:nth-child(4) {
+    width: 150px;
+  } /* Die id */
+  th:nth-child(5),
+  td:nth-child(5) {
+    /* width: 150px; */
+    display: none;
+  }
+  /* order sheet number */
+  th:nth-child(6),
+  td:nth-child(6) {
+    width: 100px;
   }
 }
