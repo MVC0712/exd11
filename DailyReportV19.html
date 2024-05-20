@@ -425,19 +425,19 @@
         <table id="rack__table">
           <thead>
             <tr>
-              <td></td>
-              <td colspan="3" id="tt1">Rack</td>
+              <th></th>
+              <th colspan="3" id="tt1">Rack</th>
             </tr>
             <tr>
-              <td>id</td>
-              <td>Order</td>
-              <td>Rack</td>
-              <td>Qty</td>
+              <th>id</th>
+              <th>Order</th>
+              <th>Rack</th>
+              <th>Qty</th>
             </tr>
           </thead>
           <tbody></tbody>
         </table>
-        <div class="rack_input__wrapper">
+        <div class="sub_input__wrapper">
           <div class="input__wrapper" id="">
             <div class="title__wrapper">Rack</div>
             <input
@@ -489,9 +489,51 @@
             </tr>
           </tbody>
         </table>
+
+        <div class="sub_input__wrapper">
+          <div class="input__wrapper" id="">
+            <div class="title__wrapper">Row</div>
+            <input
+              id="profile_length__input"
+              class="need-clear input-required"
+              type="text"
+            />
+            <input
+              id="profile_qty__input"
+              class="need-clear input-required"
+              type="text"
+            />
+          </div>
+
+          <div class="rack_input_button__wrapper">
+            <button id="add_rack__button">Add</button>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="middle__wrapper"></div>
+    <div class="middle__wrapper">
+      <button id="save__button">Save</button>
+      <button id="update__button">Update</button>
+      <div class="input__wrapper" id="">
+        <div class="title__wrapper">P-type</div>
+        <select id="filter_press_type__select" class="need-clear">
+          <option value="0">-</option>
+          <option value="1">〇</option>
+          <option value="2">◎</option>
+          <option value="3">●</option>
+        </select>
+      </div>
+      <div class="input__wrapper" id="">
+        <div class="title__wrapper">Qty</div>
+        <input id="filter_die__input" class="need-clear" type="text" />
+      </div>
+      <div class="input__wrapper" id="">
+        <div class="title__wrapper">Term</div>
+        <input id="filter_date_start__input" class="need-clear" type="date" />
+        -
+        <input id="filter_date_end__input" class="need-clear" type="date" />
+      </div>
+    </div>
     <div class="bottom__wrapper"></div>
     <dialog id="delete__dialog">
       <div>

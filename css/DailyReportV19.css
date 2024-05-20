@@ -104,7 +104,11 @@ dialog button {
 }
 .top__wrapper > .right__wrapper {
   width: calc(100% - 600px - 300px);
-  .rack_input__wrapper {
+  border-left: 1px dotted #0000ff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .sub_input__wrapper {
     .input__wrapper {
       margin: 0;
     }
@@ -128,10 +132,23 @@ dialog button {
   }
 }
 .middle__wrapper {
-  height: 30px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  button {
+    height: 30px;
+    margin: 0 100px 0 100px;
+  }
+  input {
+    width: 50px;
+  }
+
+  select {
+    width: 50px;
+  }
 }
 .bottom__wrapper {
-  height: calc(100% - 30px - 400px - 30px);
+  height: calc(100% - 30px - 400px - 40px);
 }
 
 /* input elements */
@@ -263,6 +280,13 @@ div.hidden {
 #memo__input {
   width: 250px;
 }
+#profile_length__input {
+  border-right: 0;
+}
+#filter_date_start__input,
+#filter_date_end__input {
+  width: 150px;
+}
 /* table setting */
 
 #container-temperature__table {
@@ -328,7 +352,7 @@ div.hidden {
   }
   th:nth-child(1),
   td:nth-child(1) {
-    width: 40px;
+    width: 50px;
     background-color: #0000ff;
     color: white;
     font-size: 12pt;
@@ -345,7 +369,7 @@ div.hidden {
   td:nth-child(6),
   th:nth-child(7),
   td:nth-child(7) {
-    width: 40px;
+    width: 44px;
   }
   th:last-child {
     /* border-width: 1px 0px 0px 1px; */
@@ -354,6 +378,7 @@ div.hidden {
 }
 #bundle__table {
   margin-top: 5px;
+  margin-bottom: 5px;
   tbody {
     width: 273px;
     height: 150px;
@@ -389,5 +414,77 @@ div.hidden {
     width: 30px;
     border-width: 0;
     text-align: right;
+  }
+}
+
+#rack__table {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  tbody {
+    width: 209px;
+    height: 100px;
+  }
+  th,
+  td {
+    border: solid 1px white;
+  }
+  th {
+    border-bottom: 0;
+  }
+  td {
+    border-color: #0000ff;
+  }
+  th:nth-child(1),
+  td:nth-child(1) {
+    display: none;
+  }
+  th:nth-child(2),
+  td:nth-child(2),
+  th:nth-child(3),
+  td:nth-child(3),
+  th:nth-child(4),
+  td:nth-child(4) {
+    width: 60px;
+  }
+}
+
+#work-length__table {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  input {
+    width: 100%;
+    border-width: 0;
+    text-align: right;
+  }
+  tbody {
+    width: 199px;
+    height: 110px;
+  }
+  th,
+  td {
+    border: solid 1px white;
+  }
+  th {
+    border-bottom: 0;
+  }
+  td {
+    border-color: #0000ff;
+  }
+  th:last-child {
+    /* border-width: 1px 0px 0px 1px; */
+    border-right: 1px solid #0000ff;
+  }
+  th:nth-child(1),
+  td:nth-child(1) {
+    width: 50px;
+    background-color: #0000ff;
+    color: white;
+    font-size: 12pt;
+  }
+  th:nth-child(2),
+  td:nth-child(2),
+  th:nth-child(3),
+  td:nth-child(3) {
+    width: 60px;
   }
 }
