@@ -442,6 +442,14 @@ $(document).on("keyup", "#work-length__table input", function () {
   } else {
     $(this).removeClass("complete-input").addClass("no-input");
   }
+  if (checkIsDataInputed() && !editMode) {
+    $("#save__button").prop("disabled", false);
+  } else if (checkIsDataInputed() && editMode) {
+    $("#update__button").prop("disabled", false);
+  } else {
+    $("#save__button").prop("disabled", true);
+    $("#update__button").prop("disabled", true);
+  }
 });
 
 // add error code
@@ -686,6 +694,14 @@ $("#add_bundle__button").on("click", function () {
       $("#lot_no").val("").removeClass("complete-input").addClass("no-input");
       $("#add_bundle__button").prop("disabled", true);
       break;
+  }
+  if (checkIsDataInputed() && !editMode) {
+    $("#save__button").prop("disabled", false);
+  } else if (checkIsDataInputed() && editMode) {
+    $("#update__button").prop("disabled", false);
+  } else {
+    $("#save__button").prop("disabled", true);
+    $("#update__button").prop("disabled", true);
   }
 });
 function makeMfg(seletedId) {
@@ -1023,6 +1039,14 @@ $("#add-rack__button").on("click", function () {
   }
   checkSum();
   checkBilletQty();
+  if (checkIsDataInputed() && !editMode) {
+    $("#save__button").prop("disabled", false);
+  } else if (checkIsDataInputed() && editMode) {
+    $("#update__button").prop("disabled", false);
+  } else {
+    $("#save__button").prop("disabled", true);
+    $("#update__button").prop("disabled", true);
+  }
 });
 
 $(document).on("click", "#rack__table tbody tr", function () {
@@ -1037,6 +1061,14 @@ $(document).on("click", "#rack__table tbody tr", function () {
   } else {
     // clicked same record
     deleteDialog.showModal();
+  }
+  if (checkIsDataInputed() && !editMode) {
+    $("#save__button").prop("disabled", false);
+  } else if (checkIsDataInputed() && editMode) {
+    $("#update__button").prop("disabled", false);
+  } else {
+    $("#save__button").prop("disabled", true);
+    $("#update__button").prop("disabled", true);
   }
 });
 
@@ -1058,27 +1090,17 @@ $(document).on("click", "#delete-rack-delete__button", function () {
   deleteDialog.close();
   // refill rack table
   makeRackTable();
+  checkSum();
+  checkBilletQty();
+  if (checkIsDataInputed() && !editMode) {
+    $("#save__button").prop("disabled", false);
+  } else if (checkIsDataInputed() && editMode) {
+    $("#update__button").prop("disabled", false);
+  } else {
+    $("#save__button").prop("disabled", true);
+    $("#update__button").prop("disabled", true);
+  }
 });
-
-function makeRackTable() {
-  fileName = "./php/DailyReport/SelRack2.php";
-  sendData = {
-    id: $("#selected__tr").find("td").eq(0).html(),
-  };
-  myAjax.myAjax(fileName, sendData);
-  $("#rack__table tbody").empty();
-  ajaxReturnData.forEach(function (trVal) {
-    var newTr = $("<tr>");
-    Object.keys(trVal).forEach(function (tdVal) {
-      if (tdVal == "rack_number" || tdVal == "work_quantity") {
-        $("<td>").append($("<input>").val(trVal[tdVal])).appendTo(newTr);
-      } else {
-        $("<td>").html(trVal[tdVal]).appendTo(newTr);
-      }
-    });
-    $(newTr).appendTo("#rack__table tbody");
-  });
-}
 
 function renumberTableColumn() {
   $("#rack__table tbody tr td:nth-child(1)").each(function (index, val) {
@@ -1119,6 +1141,15 @@ $(document).on("click", "#add_row__button", function () {
   // }
   trDom.appendTo("#work-length__table");
   checkSum();
+  checkBilletQty();
+  if (checkIsDataInputed() && !editMode) {
+    $("#save__button").prop("disabled", false);
+  } else if (checkIsDataInputed() && editMode) {
+    $("#update__button").prop("disabled", false);
+  } else {
+    $("#save__button").prop("disabled", true);
+    $("#update__button").prop("disabled", true);
+  }
 });
 
 function setSummaryTable() {
@@ -1273,6 +1304,34 @@ $(document).on("click", "#delete-dialog-delete__button", function () {
   deleteDialog.close();
 });
 
+function makeRackTable() {
+  fileName = "./php/DailyReport/SelRack2.php";
+  sendData = {
+    id: $("#selected__tr").find("td").eq(0).html(),
+  };
+  myAjax.myAjax(fileName, sendData);
+  $("#rack__table tbody").empty();
+  ajaxReturnData.forEach(function (trVal) {
+    var newTr = $("<tr>");
+    Object.keys(trVal).forEach(function (tdVal) {
+      if ($("#summary__table tbody tr").hasClass("selected-record")) {
+        if (tdVal == "rack_number" || tdVal == "work_quantity") {
+          $("<td>").append($("<input>").val(trVal[tdVal]).attr('disabled', true)).appendTo(newTr);
+        } else {
+          $("<td>").html(trVal[tdVal]).appendTo(newTr);
+        }
+      } else {
+        if (tdVal == "rack_number" || tdVal == "work_quantity") {
+          $("<td>").append($("<input>").val(trVal[tdVal])).appendTo(newTr);
+        } else {
+          $("<td>").html(trVal[tdVal]).appendTo(newTr);
+        }
+      }
+    });
+    $(newTr).appendTo("#rack__table tbody");
+  });
+}
+
 function fillWorkInformation(data) {
   $("#work-length__table tbody").empty();
   data.forEach(function (element, index) {
@@ -1403,6 +1462,39 @@ $(document).on("change", ".left__wrapper", function () {
 });
 
 $(document).on("change", "#work-length__table input", function () {
+  if (checkIsDataInputed() && !editMode) {
+    $("#save__button").prop("disabled", false);
+  } else if (checkIsDataInputed() && editMode) {
+    $("#update__button").prop("disabled", false);
+  } else {
+    $("#save__button").prop("disabled", true);
+    $("#update__button").prop("disabled", true);
+  }
+});
+
+$(document).on("change", "#rack__table input", function () {
+  if (checkIsDataInputed() && !editMode) {
+    $("#save__button").prop("disabled", false);
+  } else if (checkIsDataInputed() && editMode) {
+    $("#update__button").prop("disabled", false);
+  } else {
+    $("#save__button").prop("disabled", true);
+    $("#update__button").prop("disabled", true);
+  }
+});
+
+$(document).on("change", ".mid__wrapper", function () {
+  if (checkIsDataInputed() && !editMode) {
+    $("#save__button").prop("disabled", false);
+  } else if (checkIsDataInputed() && editMode) {
+    $("#update__button").prop("disabled", false);
+  } else {
+    $("#save__button").prop("disabled", true);
+    $("#update__button").prop("disabled", true);
+  }
+});
+
+$(document).on("change", ".right__wrapper", function () {
   if (checkIsDataInputed() && !editMode) {
     $("#save__button").prop("disabled", false);
   } else if (checkIsDataInputed() && editMode) {

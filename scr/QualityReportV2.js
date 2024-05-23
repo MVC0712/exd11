@@ -125,7 +125,7 @@ function makeAgingRackTable(data, tbodyDom) {
         var newTr = $("<tr>");
         Object.keys(trVal).forEach(function(tdVal) {
             if (tdVal == "work_quantity") {
-                $("<td>").append($("<input>").val(trVal[tdVal])).appendTo(newTr);
+                $("<td>").append($("<input>").val(trVal[tdVal]).attr('disabled', true)).appendTo(newTr);
             } else {
                 $("<td>").html(trVal[tdVal]).appendTo(newTr);
             }
