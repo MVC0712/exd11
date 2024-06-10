@@ -386,6 +386,15 @@ div.hidden {
     width: 273px;
     height: 150px;
   }
+  select {
+    width: 100%;
+    border: none;
+  }
+  input {
+    border: none;
+    width: 100%;
+    height: 22px;
+  }
   th,
   td {
     border: solid 1px white;
@@ -394,21 +403,33 @@ div.hidden {
     border-bottom: 0;
   }
   td {
-    border-color: #0000ff;
+    border-color: #eaeaff;
   }
   th:nth-child(1),
   td:nth-child(1) {
     display: none;
   }
   th:nth-child(2),
-  td:nth-child(2),
+  td:nth-child(2) {
+    width: 40px;
+  }
+  td:nth-child(2) input {
+    text-align: right;
+  }
   th:nth-child(3),
-  td:nth-child(3),
+  td:nth-child(3) {
+    width: 35px;
+  }
+  td:nth-child(3) input {
+    text-align: right;
+  }
   th:nth-child(4),
-  td:nth-child(4),
+  td:nth-child(4) {
+    width: 92px;
+  }
   th:nth-child(5),
   td:nth-child(5) {
-    width: 60px;
+    width: 78px;
   }
 }
 #work-length__table {
@@ -425,7 +446,7 @@ div.hidden {
   margin-bottom: 5px;
   tbody {
     width: 209px;
-    height: 100px;
+    height: 80px;
   }
   th,
   td {
@@ -500,9 +521,14 @@ div.hidden {
     border-width: 0;
     text-align: right;
   }
+  input.thFilterInput {
+    width: 70px;
+    height: 20px;
+    background-color: #e6e6ff;
+  }
   tbody {
-    width: 199px;
-    height: 110px;
+    width: 1185px;
+    height: 175px;
   }
   th,
   td {
@@ -512,7 +538,7 @@ div.hidden {
     border-bottom: 0;
   }
   td {
-    border-color: #0000ff;
+    border-color: #eaeaff;
   }
   th:last-child {
     /* border-width: 1px 0px 0px 1px; */
@@ -530,12 +556,19 @@ div.hidden {
   /* date */
   th:nth-child(2),
   td:nth-child(2) {
-    width: 50px;
+    border-left: solid 1px #eaeaff;
+    width: 52px;
+  }
+  td:nth-child(2) {
+    text-align: center;
   }
   /* press number */
   th:nth-child(3),
   td:nth-child(3) {
     width: 30px;
+  }
+  td:nth-child(3) {
+    text-align: right;
   }
 
   /* press number */
@@ -556,6 +589,134 @@ div.hidden {
   /* order sheet number */
   th:nth-child(6),
   td:nth-child(6) {
-    width: 100px;
+    width: 105px;
+  }
+  /* Press Type */
+  th:nth-child(7),
+  td:nth-child(7) {
+    width: 30px;
+    text-align: center;
+  }
+  /* Press Type ID*/
+  th:nth-child(8),
+  td:nth-child(8) {
+    /* width: 30px; */
+    display: none;
+  }
+  /* is Washed*/
+  th:nth-child(9),
+  td:nth-child(9) {
+    width: 60px;
+    /* display: none; */
+  }
+  /* is Washed ID*/
+  th:nth-child(10),
+  td:nth-child(10) {
+    /* width: 60px; */
+    display: none;
+  }
+  /* Bandl Name */
+  th:nth-child(11),
+  td:nth-child(11) {
+    width: 150px;
+    /* display: none; */
+  }
+  /* Billet Size */
+  th:nth-child(12),
+  td:nth-child(12) {
+    width: 30px;
+    /* text-align: right; */
+  }
+  td:nth-child(12) {
+    text-align: right;
+  }
+  /* Billet Length */
+  th:nth-child(13),
+  td:nth-child(13) {
+    width: 48px;
+    /* display: none; */
+  }
+  td:nth-child(13) {
+    text-align: right;
+    /* display: none; */
+  }
+
+  /* Plan Qty */
+  th:nth-child(14),
+  td:nth-child(14) {
+    width: 38px;
+    /* display: none; */
+  }
+  td:nth-child(14) {
+    text-align: right;
+  }
+  /* Accual Qty */
+  th:nth-child(15),
+  td:nth-child(15) {
+    width: 38px;
+    /* display: none; */
+  }
+  td:nth-child(15) {
+    text-align: right;
+  }
+  /* Stop Cause */
+  th:nth-child(16),
+  td:nth-child(16) {
+    width: 120px;
+    /* display: none; */
+  }
+  /* Start Time */
+  th:nth-child(17),
+  td:nth-child(17) {
+    width: 54px;
+    /* display: none; */
+  }
+  td:nth-child(17) {
+    text-align: center;
+    /* display: none; */
+  }
+  /* Stop Time */
+  th:nth-child(18),
+  td:nth-child(18) {
+    width: 54px;
+    /* display: none; */
+  }
+  td:nth-child(18) {
+    /* display: none; */
+    text-align: center;
+  }
+  /* Ram speed */
+  th:nth-child(19),
+  td:nth-child(19) {
+    width: 45px;
+    /* display: none; */
+  }
+  td:nth-child(19) {
+    text-align: right;
+  }
+  /* Die Temp */
+  th:nth-child(20),
+  td:nth-child(20) {
+    width: 65px;
+    /* display: none; */
+  }
+  td:nth-child(20) {
+    text-align: right;
+  }
+  /* Press Directive Sheet */
+  th:nth-child(21),
+  td:nth-child(21) {
+    width: 58px;
+    /* display: none; */
+  }
+  td:nth-child(21) {
+    text-align: center;
+    /* display: none; */
+  }
+  /* Press Directive Sheet */
+  th:nth-child(22),
+  td:nth-child(22) {
+    /* width: 65px; */
+    display: none;
   }
 }
