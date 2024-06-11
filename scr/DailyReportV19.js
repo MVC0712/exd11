@@ -140,6 +140,9 @@ $(document).on("click", "#summary__table tbody tr", function () {
 
   makeBundleTable(targetId);
   makeWorkInformation(targetId);
+  makeRackTable(targetId);
+  getSelectData(targetId);
+  // console.log(ajaxReturnData);
 });
 
 function makeBundleTable(targetId) {
@@ -208,5 +211,52 @@ function fillWorkInformation(data) {
       }
     });
     $("#work-length__table tbody").append(trDom);
+  });
+}
+
+function makeRackTable(targetId) {
+  const fileName = "./php/DailyReport/SelRack2.php";
+  sendData = {
+    id: targetId,
+  };
+  myAjax.myAjax(fileName, sendData);
+  $("#rack__table tbody").empty();
+  ajaxReturnData.forEach(function (trVal) {
+    var newTr = $("<tr>");
+    Object.keys(trVal).forEach(function (tdVal) {
+      if (tdVal == "rack_number" || tdVal == "work_quantity") {
+        $("<td>").append($("<input>").val(trVal[tdVal])).appendTo(newTr);
+      } else {
+        $("<td>").html(trVal[tdVal]).appendTo(newTr);
+      }
+    });
+    $(newTr).appendTo("#rack__table tbody");
+  });
+}
+
+function getSelectData(targetId) {
+  const fileName = "./php/DailyReport/SelSelData14.php";
+  const sendData = {
+    targetId: targetId,
+  };
+  myAjax.myAjax(fileName, sendData);
+
+  fillReadData(ajaxReturnData);
+}
+
+function fillReadData() {
+  console.log(ajaxReturnData[0]);
+  ajaxReturnData.forEach(function (element, index) {
+    console.log(element);
+    // $("#" + element).val()
+  });
+  // ajaxReturnData[0].forEach(function (element, index) {
+  //   console.log(element);
+  //   // $("#" + element).val()
+  // });
+  Object.keys(ajaxReturnData[0]).forEach(function (element) {
+    // $("<td>").html(trVal[element]).appendTo(newTr);
+    console.log(element + " : " + ajaxReturnData[0][element]);
+    $("#" + element).val(ajaxReturnData[0][element]);
   });
 }
