@@ -76,6 +76,7 @@ $(document).on("click", "#language__mark", function () {
     });
   });
 });
+
 // Window Colose
 $(document).on("mouseover", "#window_close__mark", function () {
   // console.log("hello");
@@ -104,12 +105,28 @@ function makeTable(targetId, sourceData) {
   });
   // JsBarcode(".barcode").init();
 }
-
+//
 $(function () {
+  makeStaffList("");
   makeSummaryTable();
   // console.log(ajaxReturnData);
   makeTable($("#summary__table"), ajaxSummaryTable);
 });
+
+function makeStaffList(inputValue) {
+  const fileName = "./php/DailyReport/SelStaff.php";
+  const sendData = {
+    name_s: "%" + inputValue + "%",
+  };
+  myAjax.myAjax(fileName, sendData);
+  $("#staff_id option").remove();
+  $("#staff_id").append($("<option>").val(0).html("no"));
+  ajaxReturnData.forEach(function (value) {
+    $("#staff_id").append(
+      $("<option>").val(value["id"]).html(value["staff_name"])
+    );
+  });
+}
 
 function makeSummaryTable() {
   fileName = "./php/DailyReport/SelSummary19.php";
@@ -235,7 +252,7 @@ function makeRackTable(targetId) {
 }
 
 function getSelectData(targetId) {
-  const fileName = "./php/DailyReport/SelSelData14.php";
+  const fileName = "./php/DailyReport/SelSelData19.php";
   const sendData = {
     targetId: targetId,
   };

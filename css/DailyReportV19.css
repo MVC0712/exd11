@@ -239,7 +239,7 @@ div.hidden {
 #pressing_type_id {
   width: 55px;
 }
-#machine_number__select {
+#press_machine_no {
   width: 55px;
 }
 #billet_size__select {
@@ -248,24 +248,31 @@ div.hidden {
 #billet_length__select {
   width: 60px;
 }
-#plan_billet_qty__input {
+#plan_billet_quantities {
   width: 60px;
+  text-align: right;
 }
-#actual_billet_qty__input {
+#actual_billet_quantities {
   width: 60px;
+  text-align: right;
 }
 #press_start_time__input,
 #press_end_time__input {
   width: 60px;
 }
-#ram_speed__input {
+#actual_ram_speed {
   width: 60px;
+  text-align: right;
 }
-#die_temp__input {
+#actual_die_temperature {
   width: 50px;
+  text-align: right;
 }
 #name__input {
   width: 70px;
+}
+#staff_id {
+  width: 185px;
 }
 #directive__input {
   width: 50px;
