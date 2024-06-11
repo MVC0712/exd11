@@ -291,6 +291,7 @@ div.hidden {
   width: 150px;
 }
 /* table setting */
+/* ----------------------------------------------------- */
 
 #container-temperature__table {
   margin-left: 5px;
@@ -331,6 +332,7 @@ div.hidden {
     border-right: 1px solid #0000ff;
   }
 }
+/* ----------------------------------------------------- */
 
 #ram-values__table {
   margin-top: 5px;
@@ -379,6 +381,7 @@ div.hidden {
     border-right: 1px solid #0000ff;
   }
 }
+/* ----------------------------------------------------- */
 #bundle__table {
   margin-top: 5px;
   margin-bottom: 5px;
@@ -432,14 +435,7 @@ div.hidden {
     width: 78px;
   }
 }
-#work-length__table {
-  input {
-    /* width: 100%; */
-    width: 30px;
-    border-width: 0;
-    text-align: right;
-  }
-}
+/* ----------------------------------------------------- */
 
 #rack__table {
   margin-top: 5px;
@@ -479,20 +475,24 @@ div.hidden {
     width: 100%;
     border-width: 0;
     text-align: right;
+    padding: 0 1px 0 1px;
+    height: 16px;
   }
   tbody {
     width: 199px;
-    height: 110px;
+    height: 130px;
   }
   th,
   td {
+    padding: 0 1px 0 1px;
     border: solid 1px white;
   }
   th {
     border-bottom: 0;
   }
   td {
-    border-color: #0000ff;
+    /* border-color: #0000ff; */
+    border-color: #eaeaff;
   }
   th:last-child {
     /* border-width: 1px 0px 0px 1px; */

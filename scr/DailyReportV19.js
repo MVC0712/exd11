@@ -139,6 +139,7 @@ $(document).on("click", "#summary__table tbody tr", function () {
   console.log("Hello");
 
   makeBundleTable(targetId);
+  makeWorkInformation(targetId);
 });
 
 function makeBundleTable(targetId) {
@@ -178,4 +179,34 @@ function makeMfg(seletedId) {
     }
   });
   return targetDom;
+}
+
+function makeWorkInformation(seletedId) {
+  // let
+  fileName = "./php/DailyReport/SelWorkInformation3.php";
+  sendData = {
+    id: seletedId,
+  };
+  myAjax.myAjax(fileName, sendData);
+  fillWorkInformation(ajaxReturnData);
+}
+
+function fillWorkInformation(data) {
+  $("#work-length__table tbody").empty();
+  data.forEach(function (element, index) {
+    var trDom = $("<tr>");
+    Object.keys(element).forEach(function (key, index) {
+      var val;
+      if (index == 0) {
+        // ビレット番号を No1, No2, ,,,とする
+        val = "No." + element[key];
+        trDom.append($("<th>").html(val));
+      } else {
+        // ビレット番号以外の処理 input.valueに値を格納する
+        val = $("<input>").val(element[key]).addClass("need-clear");
+        trDom.append($("<td>").html(val));
+      }
+    });
+    $("#work-length__table tbody").append(trDom);
+  });
 }
