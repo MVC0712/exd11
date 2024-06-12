@@ -262,6 +262,8 @@ function getSelectData(targetId) {
 }
 
 function fillReadData() {
+  const billetLength = ajaxReturnData[0]["billet_length"];
+  const billetSize = ajaxReturnData[0]["billet_size"];
   console.log(ajaxReturnData[0]);
   ajaxReturnData.forEach(function (element, index) {
     console.log(element);
@@ -276,4 +278,14 @@ function fillReadData() {
     console.log(element + " : " + ajaxReturnData[0][element]);
     $("#" + element).val(ajaxReturnData[0][element]);
   });
+  console.log(billetLength);
+  $("#billet_length__select option:contains('" + billetLength + "')").prop(
+    "selected",
+    true
+  );
+
+  $("#billet_size__select option:contains('" + billetSize + "')").prop(
+    "selected",
+    true
+  );
 }

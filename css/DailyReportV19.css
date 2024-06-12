@@ -235,18 +235,21 @@ div.hidden {
 }
 #is_washed_die {
   width: 55px;
+  text-align: center;
 }
 #pressing_type_id {
   width: 55px;
 }
 #press_machine_no {
   width: 55px;
+  text-align: center;
 }
 #billet_size__select {
   width: 55px;
+  text-align: center;
 }
 #billet_length__select {
-  width: 60px;
+  width: 70px;
 }
 #plan_billet_quantities {
   width: 60px;
@@ -256,9 +259,10 @@ div.hidden {
   width: 60px;
   text-align: right;
 }
-#press_start_time__input,
-#press_end_time__input {
+#press_start_at,
+#press_finish_at {
   width: 60px;
+  text-align: center;
 }
 #actual_ram_speed {
   width: 60px;
