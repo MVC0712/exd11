@@ -51,8 +51,6 @@ dialog > div {
   font-size: 14pt;
   font-weight: bold;
 }
-#dialog_input__wapper {
-}
 #dialog_input__title {
   /* border: 1px 1px 0px 1px solid #0000ff; */
   border-style: solid;
