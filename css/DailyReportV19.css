@@ -282,14 +282,15 @@ div.hidden {
 #directive__select {
   width: 120px;
 }
-#file__input {
-  width: 150px;
+#press_directive_scan_file_name {
+  width: 200px;
+  text-align: center;
 }
 #preview__button {
   width: 50px;
   height: 27px;
 }
-#memo__input {
+#special_note {
   width: 250px;
 }
 #profile_length__input {

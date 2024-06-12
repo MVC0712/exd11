@@ -107,10 +107,11 @@ function makeTable(targetId, sourceData) {
 }
 //
 $(function () {
+  // read initial data
   makeStaffList("");
   makeSummaryTable();
-  // console.log(ajaxReturnData);
   makeTable($("#summary__table"), ajaxSummaryTable);
+  special_note();
 });
 
 function makeStaffList(inputValue) {
@@ -152,13 +153,12 @@ $(document).on("click", "#summary__table tbody tr", function () {
   const targetId = targetTr.eq(0).text();
   $("#summary__table tr.selected-record").removeClass("selected-record");
   $(this).addClass("selected-record");
-  console.log(targetId);
-  console.log("Hello");
 
   makeBundleTable(targetId);
   makeWorkInformation(targetId);
   makeRackTable(targetId);
   getSelectData(targetId);
+  makeDirectiveSelect(targetId);
   // console.log(ajaxReturnData);
 });
 
@@ -257,7 +257,6 @@ function getSelectData(targetId) {
     targetId: targetId,
   };
   myAjax.myAjax(fileName, sendData);
-
   fillReadData(ajaxReturnData);
 }
 
@@ -288,4 +287,22 @@ function fillReadData() {
     "selected",
     true
   );
+}
+
+function special_note() {
+  var tablett, trtt, tdtt, itt, tt;
+  tablett = document.getElementById("summary__table");
+  trtt = tablett.getElementsByTagName("tr");
+  for (itt = 1; itt < trtt.length; itt++) {
+    tdtt = trtt[itt].getElementsByTagName("td")[21];
+    var aaa = tdtt.innerText;
+    if (aaa != "") {
+      $(trtt[itt]).css("color", "red");
+    }
+  }
+}
+
+function makeDirectiveSelect(targetId) {
+  // const $("#")
+  console.log(targetId);
 }
