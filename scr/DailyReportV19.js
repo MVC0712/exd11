@@ -111,7 +111,8 @@ $(function () {
   makeStaffList("");
   makeSummaryTable();
   makeTable($("#summary__table"), ajaxSummaryTable);
-  special_note();
+  fillSpecialNote();
+  makeDieSelect();
 });
 
 function makeStaffList(inputValue) {
@@ -159,7 +160,13 @@ $(document).on("click", "#summary__table tbody tr", function () {
   makeRackTable(targetId);
   getSelectData(targetId);
   makeDirectiveSelect(targetId);
-  // console.log(ajaxReturnData);
+  // input die number
+  $("#die_number__input").val("");
+  makeDieSelect();
+  $("#die_number__select").val(targetTr.eq(4).text());
+  // input press directive
+  makePressDirectiveSelect(targetId);
+  console.log(targetTr);
 });
 
 function makeBundleTable(targetId) {
@@ -263,33 +270,35 @@ function getSelectData(targetId) {
 function fillReadData() {
   const billetLength = ajaxReturnData[0]["billet_length"];
   const billetSize = ajaxReturnData[0]["billet_size"];
-  console.log(ajaxReturnData[0]);
-  ajaxReturnData.forEach(function (element, index) {
-    console.log(element);
-    // $("#" + element).val()
-  });
+  // console.log(ajaxReturnData[0]);
+  // ajaxReturnData.forEach(function (element, index) {
+  //   console.log(element);
+  //   // $("#" + element).val()
+  // });
   // ajaxReturnData[0].forEach(function (element, index) {
   //   console.log(element);
   //   // $("#" + element).val()
   // });
+  // fill input elements
   Object.keys(ajaxReturnData[0]).forEach(function (element) {
-    // $("<td>").html(trVal[element]).appendTo(newTr);
-    console.log(element + " : " + ajaxReturnData[0][element]);
     $("#" + element).val(ajaxReturnData[0][element]);
   });
-  console.log(billetLength);
   $("#billet_length__select option:contains('" + billetLength + "')").prop(
     "selected",
     true
   );
-
+  // select billet select
   $("#billet_size__select option:contains('" + billetSize + "')").prop(
     "selected",
     true
   );
+  // set press directive
+  const pressDirectiveDate = ajaxReturnData[0]["press_directive_plan_date_at"];
+  $("#directive__select").find("option").remove();
+  $("#directive__select").append($("<option>").val(0).html(pressDirectiveDate));
 }
 
-function special_note() {
+function fillSpecialNote() {
   var tablett, trtt, tdtt, itt, tt;
   tablett = document.getElementById("summary__table");
   trtt = tablett.getElementsByTagName("tr");
@@ -306,3 +315,46 @@ function makeDirectiveSelect(targetId) {
   // const $("#")
   console.log(targetId);
 }
+
+function makeDieSelect() {
+  const targetObj = $("#die_number__select");
+  let fileName = "./php/DailyReport/SelDieNumber.php";
+  let sendData = {
+    die_number: $("#die_number__input").val() + "%",
+  };
+  myAjax.myAjax(fileName, sendData);
+
+  targetObj.find("option").remove();
+  targetObj.append($("<option>").val(0).html("NO select"));
+  ajaxReturnData.forEach(function (value, index) {
+    targetObj.append($("<option>").val(value["id"]).html(value["die_number"]));
+    $("#number_of_die").html(index);
+  });
+}
+
+function selectDieName(targetId) {
+  // select die name
+}
+
+function makePressDirectiveSelect(targetId) {
+  console.log(targetId);
+}
+
+// ------------------------- action for each elements
+
+$(document).on("click", "#order_number", function () {
+  window.open(
+    "./DailiReport_OrderSheetV2.html",
+    null,
+    "width=1200, height=800,top=50px, left=50px, toolbar=no, menubar=no, scrollbars=no"
+  );
+});
+
+$(document).on("keyup", "#die_number__input", function () {
+  makeDieSelect();
+});
+
+$(document).on("click", "#save__button", function () {
+  console.log("hello");
+  makeDieSelect();
+});

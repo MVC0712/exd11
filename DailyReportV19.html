@@ -38,7 +38,7 @@
       <div class="left__wrapper">
         <div class="input__wrapper" id="order__input">
           <div class="title__wrapper">
-            <div class="title__letters">OrdNo</div>
+            <div class="title__letters">ONo</div>
           </div>
           <input id="order_number" class="need-clear" type="text" />
           <select
@@ -50,7 +50,7 @@
         </div>
         <div class="input__wrapper" id="">
           <div class="title__wrapper">
-            <div class="title__letters">Date</div>
+            <div class="title__letters">Dte</div>
           </div>
           <input
             id="press_date_at"
@@ -62,12 +62,19 @@
           <div class="title__wrapper">
             <div class="title__letters">Die</div>
           </div>
+          <input id="die_number__input" class="need-clear" type="text" /
+          inputmode="none">
           <select
             id="die_number__select"
             class="save-data need-clear input-required"
           >
             <option value="0">no</option>
           </select>
+          <div
+            class="title__wrapper"
+            id="number_of_die"
+            style="ime-mode: inactive"
+          ></div>
         </div>
         <div class="input__wrapper" id="">
           <div class="title__wrapper">is Washed?</div>
@@ -206,11 +213,7 @@
         </div>
         <div class="input__wrapper" id="">
           <div class="title__wrapper">SP dài</div>
-          <input
-            id="first_actual_length__input"
-            class="need-clear"
-            type="text"
-          />
+          <input id="first_actual_length" class="need-clear" type="text" />
         </div>
         <div class="input__wrapper" id="note">
           <div class="title__wrapper">Ghi chú đặc biệt</div>
@@ -507,7 +510,7 @@
               type="text"
             />
             <input
-              id="profile_qty__input"
+              id="profile_number__input"
               class="need-clear input-required"
               type="text"
             />

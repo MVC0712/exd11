@@ -212,24 +212,25 @@ div.hidden {
 }
 
 /* element setting */
-#order__input {
+# {
   input {
-    width: 30px;
+    width: 20px;
   }
   select {
     width: 110px;
   }
 }
-#order__input {
-  input {
-    width: 30px;
-  }
-  select {
-    width: 110px;
-  }
+#press_date_at {
+  width: 120px;
+}
+#die_number__input {
+  width: 20px;
 }
 #die_number__select {
-  width: 125px;
+  width: 130px;
+}
+#number_of_die {
+  width: 25px;
 }
 #is_washed_die {
   width: 55px;
