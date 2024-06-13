@@ -166,7 +166,6 @@ $(document).on("click", "#summary__table tbody tr", function () {
   $("#die_number__select").val(targetTr.eq(4).text());
   // input press directive
   makePressDirectiveSelect(targetId);
-  console.log(targetTr);
 });
 
 function makeBundleTable(targetId) {
@@ -313,7 +312,6 @@ function fillSpecialNote() {
 
 function makeDirectiveSelect(targetId) {
   // const $("#")
-  console.log(targetId);
 }
 
 function makeDieSelect() {
@@ -336,9 +334,7 @@ function selectDieName(targetId) {
   // select die name
 }
 
-function makePressDirectiveSelect(targetId) {
-  console.log(targetId);
-}
+function makePressDirectiveSelect(targetId) {}
 
 // ------------------------- action for each elements
 

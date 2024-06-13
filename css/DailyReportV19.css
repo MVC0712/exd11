@@ -212,7 +212,7 @@ div.hidden {
 }
 
 /* element setting */
-# {
+#order__input {
   input {
     width: 20px;
   }
