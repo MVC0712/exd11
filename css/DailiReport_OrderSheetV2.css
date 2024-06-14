@@ -10,10 +10,10 @@ body {
   #summary__table {
     /* width: 900px; */
     thead {
-      width: 800px;
+      width: 820px;
     }
     tbody {
-      width: 800px;
+      width: 850px;
     }
     th,
     td {
@@ -42,12 +42,26 @@ body {
     th:nth-child(4),
     td:nth-child(4) {
       /* display: none; */
-      width: 108px;
+      width: 125px;
     }
     th:nth-child(5),
     td:nth-child(5) {
       /* display: none; */
       width: 200px;
+    }
+    th:nth-child(6),
+    td:nth-child(6),
+    th:nth-child(7),
+    td:nth-child(7),
+    th:nth-child(8),
+    td:nth-child(8) {
+      /* display: none; */
+      width: 55px;
+    }
+    th:nth-child(9),
+    td:nth-child(9) {
+      /* display: none; */
+      width: 100px;
     }
   }
 }
