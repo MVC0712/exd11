@@ -17,7 +17,6 @@
 
     $prepare = $dbh->prepare("
 
-
 with subT1 as (
 SELECT 
     t_press.ordersheet_id as ordersheet_id,
@@ -71,7 +70,7 @@ from
 left join subT1 on subT1.ordersheet_id = m_ordersheet.id
 left join subT2 on subT2.ordersheet_id = m_ordersheet.id
 left join m_production_numbers on m_ordersheet.production_numbers_id = m_production_numbers.id
-WHERE YEAR(m_ordersheet.delivery_date_at) = YEAR(CURDATE())
+WHERE m_ordersheet.delivery_date_at >= date_sub(curdate(), interval 1 year)
 order by m_ordersheet.id desc
         ;
     ");
