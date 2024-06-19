@@ -29,25 +29,17 @@ $(function () {
 });
 
 function ajaxSelSummary() {
-  $.ajax({
-    type: "POST",
-    url: "./php/OrderSheet/SelSummarySubV2.php",
-    dataType: "json",
-    async: false,
-    data: {
-      die_number: "dummy",
-    },
-  })
-    .done(function (data) {
-      makeSummaryTable(data);
-    })
-    .fail(function () {
-      alert("DB connect error");
-    });
+  const fileName = "./php/OrderSheet/SelSummarySubV2.php";
+  const sendData = {
+    die_number: "dummy",
+  };
+  myAjax.myAjax(fileName, sendData);
+  makeSummaryTable();
 }
 
-function makeSummaryTable(data) {
+function makeSummaryTable() {
   let intQty;
+  let data = ajaxReturnData;
   $("#summary__table tbody").empty();
   data.forEach(function (trVal) {
     var newTr = $("<tr>");
@@ -59,15 +51,12 @@ function makeSummaryTable(data) {
     Object.keys(data[0]).forEach(function (tdVal, index) {
       if (index == 5) {
         intQty = trVal[tdVal];
-        // console.log(intQty);
       }
       if (index != 7) {
         $("<td>").html(trVal[tdVal]).appendTo(newTr);
       } else {
-        // console.log(trVal[tdVal] + ":" + intQty);
-        if (trVal[tdVal] <= intQty) {
+        if (trVal[tdVal] >= intQty) {
           $("<td>").html(trVal[tdVal]).addClass("packedOk").appendTo(newTr);
-          // console.log("OK");
         } else {
           $("<td>").html(trVal[tdVal]).appendTo(newTr);
         }
@@ -75,7 +64,6 @@ function makeSummaryTable(data) {
     });
     $("#summary__table tbody").append($(newTr));
   });
-  // make_action();
 }
 
 $(document).on("click", "#summary__table tbody tr", function () {
