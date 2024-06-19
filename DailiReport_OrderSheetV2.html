@@ -22,16 +22,23 @@
           <tr>
             <th>ID</th>
             <th>
-              <input
-                id="die_number__input"
-                placeholder="Tìm trong bảng"
-                type="text"
-                onkeyup="timkiem();"
-              />
+              <div class="wrapper">
+                <div>OrdNo</div>
+                <input id="die_number__input" placeholder="Tìm" type="text" />
+              </div>
             </th>
             <th>Delivery</th>
             <th>Issue</th>
-            <th>Production Number</th>
+            <th>
+              <div class="wrapper">
+                <div>PN</div>
+                <input
+                  id="priduction_number__input"
+                  placeholder="PN"
+                  type="text"
+                />
+              </div>
+            </th>
             <th>Qty.</th>
             <th>OK</th>
             <th>Pckd</th>

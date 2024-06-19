@@ -12,6 +12,14 @@ body {
     /* width: 900px; */
     thead {
       /* width: 820px; */
+      .wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+      }
+      input {
+        width: 30px;
+      }
     }
     tbody {
       width: 690px;
