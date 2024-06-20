@@ -34,6 +34,7 @@ function ajaxSelSummary() {
     die_number: "dummy",
   };
   myAjax.myAjax(fileName, sendData);
+  ajaxSummaryTable = ajaxReturnData;
   makeSummaryTable();
 }
 
@@ -71,4 +72,29 @@ $(document).on("click", "#summary__table tbody tr", function () {
   const targetId = targetTr.eq(0).text();
   $("#summary__table tr.selected-record").removeClass("selected-record");
   $(this).addClass("selected-record");
+});
+
+$(document).on("keyup", "#priduction_number_sort", function () {
+  $(this).val($(this).val().toUpperCase()); // 小文字を大文字に
+  const text = $(this).val();
+
+  $("#summary__table tbody").empty();
+
+  ajaxSummaryTable.forEach(function (trVal) {
+    // console.log(trVal);
+    if (trVal["production_number"].includes(text, 0)) {
+      var newTr = $("<tr>");
+      console.log(
+        trVal["production_quantity"] + " : " + trVal["sum_packed_qty"]
+      );
+      Object.keys(trVal).forEach(function (tdVal) {
+        $("<td>").html(trVal[tdVal]).appendTo(newTr);
+      });
+      $(newTr).appendTo("#summary__table tbody");
+    }
+  });
+
+  $("#summary__table_record").html(
+    $("#summary__table tbody tr").length + " items"
+  );
 });
