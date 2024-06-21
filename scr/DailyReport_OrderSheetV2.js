@@ -35,36 +35,8 @@ function ajaxSelSummary() {
   };
   myAjax.myAjax(fileName, sendData);
   ajaxSummaryTable = ajaxReturnData;
-  makeSummaryTable();
-}
-
-function makeSummaryTable() {
-  let intQty;
-  let data = ajaxReturnData;
-  $("#summary__table tbody").empty();
-  data.forEach(function (trVal) {
-    var newTr = $("<tr>");
-    trVal["production_quantity"] = String(trVal["production_quantity"]).replace(
-      /(\d)(?=(\d\d\d)+(?!\d))/g,
-      "$1,"
-    );
-
-    Object.keys(data[0]).forEach(function (tdVal, index) {
-      if (index == 5) {
-        intQty = trVal[tdVal];
-      }
-      if (index != 7) {
-        $("<td>").html(trVal[tdVal]).appendTo(newTr);
-      } else {
-        if (trVal[tdVal] >= intQty) {
-          $("<td>").html(trVal[tdVal]).addClass("packedOk").appendTo(newTr);
-        } else {
-          $("<td>").html(trVal[tdVal]).appendTo(newTr);
-        }
-      }
-    });
-    $("#summary__table tbody").append($(newTr));
-  });
+  makeTable(ajaxSummaryTable, $("#summary__table tbody"), "");
+  // makeSummaryTable();
 }
 
 $(document).on("click", "#summary__table tbody tr", function () {
@@ -75,26 +47,34 @@ $(document).on("click", "#summary__table tbody tr", function () {
 });
 
 $(document).on("keyup", "#priduction_number_sort", function () {
+  var flag;
   $(this).val($(this).val().toUpperCase()); // 小文字を大文字に
   const text = $(this).val();
 
-  $("#summary__table tbody").empty();
+  // console.log(ajaxSummaryTable);
 
-  ajaxSummaryTable.forEach(function (trVal) {
-    // console.log(trVal);
-    if (trVal["production_number"].includes(text, 0)) {
+  makeTable(ajaxSummaryTable, $("#summary__table tbody"), text);
+});
+
+function makeTable(tableDataObj, targetDomObj, inputText) {
+  var flag;
+  targetDomObj.empty();
+
+  tableDataObj.forEach(function (trVal) {
+    flag = false;
+    if (trVal["production_number"].includes(inputText, 0)) {
       var newTr = $("<tr>");
-      console.log(
-        trVal["production_quantity"] + " : " + trVal["sum_packed_qty"]
-      );
+      if (trVal["production_quantity"] <= trVal["sum_packed_qty"]) {
+        flag = true;
+      }
       Object.keys(trVal).forEach(function (tdVal) {
-        $("<td>").html(trVal[tdVal]).appendTo(newTr);
+        if (flag) {
+          $("<td>").html(trVal[tdVal]).appendTo(newTr).addClass("packedOk");
+        } else {
+          $("<td>").html(trVal[tdVal]).appendTo(newTr);
+        }
       });
       $(newTr).appendTo("#summary__table tbody");
     }
   });
-
-  $("#summary__table_record").html(
-    $("#summary__table tbody tr").length + " items"
-  );
-});
+}

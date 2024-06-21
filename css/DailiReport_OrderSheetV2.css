@@ -33,7 +33,8 @@ body {
       border-color: #eaeaff;
     }
     td.packedOk {
-      background-color: #f6dbd1;
+      /* background-color: #f6dbd1; */
+      color: #0000ff;
     }
     th {
       border-bottom: 0;
