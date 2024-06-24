@@ -35,7 +35,12 @@ function ajaxSelSummary() {
   };
   myAjax.myAjax(fileName, sendData);
   ajaxSummaryTable = ajaxReturnData;
-  makeTable(ajaxSummaryTable, $("#summary__table tbody"), "");
+  makeTable(
+    ajaxSummaryTable,
+    $("#summary__table tbody"),
+    "production_number",
+    ""
+  );
   // makeSummaryTable();
 }
 
@@ -46,6 +51,22 @@ $(document).on("click", "#summary__table tbody tr", function () {
   $(this).addClass("selected-record");
 });
 
+$(document).on("keyup", "#order-number__sort", function () {
+  var flag;
+  $(this).val($(this).val().toUpperCase()); // 小文字を大文字に
+  const text = $(this).val();
+
+  // console.log(ajaxSummaryTable);
+
+  // return;
+  makeTable(
+    ajaxSummaryTable,
+    $("#summary__table tbody"),
+    "ordersheet_number",
+    text
+  );
+});
+
 $(document).on("keyup", "#priduction_number_sort", function () {
   var flag;
   $(this).val($(this).val().toUpperCase()); // 小文字を大文字に
@@ -53,16 +74,23 @@ $(document).on("keyup", "#priduction_number_sort", function () {
 
   // console.log(ajaxSummaryTable);
 
-  makeTable(ajaxSummaryTable, $("#summary__table tbody"), text);
+  makeTable(
+    ajaxSummaryTable,
+    $("#summary__table tbody"),
+    "production_number",
+    text
+  );
 });
 
-function makeTable(tableDataObj, targetDomObj, inputText) {
+function makeTable(tableDataObj, targetDomObj, filterColumnName, inputText) {
   var flag;
   targetDomObj.empty();
 
+  // console.log(tableDataObj);
+
   tableDataObj.forEach(function (trVal) {
     flag = false;
-    if (trVal["production_number"].includes(inputText, 0)) {
+    if (trVal[filterColumnName].includes(inputText, 0)) {
       var newTr = $("<tr>");
       if (trVal["production_quantity"] <= trVal["sum_packed_qty"]) {
         flag = true;
