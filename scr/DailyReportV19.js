@@ -339,11 +339,12 @@ function makePressDirectiveSelect(targetId) {}
 // ------------------------- action for each elements
 
 $(document).on("click", "#order_number", function () {
-  window.open(
-    "./DailiReport_OrderSheetV2.html",
-    null,
-    "width=1200, height=800,top=50px, left=50px, toolbar=no, menubar=no, scrollbars=no"
-  );
+  window.open("./DailiReport_OrderSheetV2.html");
+  // window.open(
+  //   "./DailiReport_OrderSheetV2.html",
+  //   null,
+  //   "width=1200, height=800,top=50px, left=50px, toolbar=no, menubar=no, scrollbars=no"
+  // );
 });
 
 $(document).on("keyup", "#die_number__input", function () {
@@ -353,4 +354,82 @@ $(document).on("keyup", "#die_number__input", function () {
 $(document).on("click", "#save__button", function () {
   console.log("hello");
   makeDieSelect();
+});
+
+// ------------------------- action for die select
+//  die_number__select
+$(document).on("change", "#die_number__select", function () {
+  const targetDom = $("#press-directive__select");
+  let fileName = "./php/DailyReport/SelDirective.php";
+  let sendData = {
+    targetId: $(this).val(),
+  };
+
+  if ($(this).val() === "0") return;
+
+  myAjax.myAjax(fileName, sendData);
+
+  targetDom.find("option").remove();
+  targetDom.append($("<option>").val("0").html("-"));
+  ajaxReturnData.forEach(function (value) {
+    targetDom.append(
+      $("<option>").val(value["id"]).html(value["plan_date_at"])
+    );
+  });
+  targetDom.removeClass("no-input").addClass("complete-input");
+});
+
+//   press-directive__select
+// ------------------------- action for PRESS directive
+$(document).on("change", "#press-directive__select", function () {
+  let fileName = "./php/Ordersheet/SelPressDirective.php";
+  let sendData = {
+    targetId: $(this).val(),
+  };
+  let targetObj;
+
+  if ($(this).val() === "0") return;
+  myAjax.myAjax(fileName, sendData);
+
+  targetObj = ajaxReturnData[0];
+
+  Object.keys(targetObj).forEach((key) => {
+    $("#" + key).val(targetObj[key]);
+  });
+  selectOptionByText("billet_size__select", targetObj["billet_size__select"]);
+  selectOptionByText("billet_length__select", targetObj["billet_length"]);
+});
+
+function selectOptionByText(selectId, text) {
+  $(`#${selectId} option`).each(function () {
+    if ($(this).text() == text) {
+      $(this).prop("selected", true);
+      return false; // break out of the each loop
+    }
+  });
+}
+
+//   press-date__input
+// ------------------------- action for Press date input
+$(document).on("change", "#press_date_at", function () {
+  let selectedDieName = $("#die_number__select").find("option:selected").text();
+  let fileName = "./php/DailyReport/SelRaspberrypiData.php";
+  let sendData = {
+    machineNumber: 1,
+    dieName: selectedDieName,
+    pressDate: $(this).val(),
+  };
+  let targetObj;
+
+  selectedDieName = selectedDieName.split("-")[0];
+  if ($(this).val() === "0") return;
+  myAjax.myAjax(fileName, sendData);
+  if (ajaxReturnData.length != 0) {
+    targetObj = ajaxReturnData[0];
+    Object.keys(targetObj).forEach((key) => {
+      $("#" + key).val(targetObj[key]);
+    });
+  } else {
+    $("#container-temperature__table input").val("");
+  }
 });

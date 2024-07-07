@@ -24,6 +24,19 @@ const myAjax = {
   },
 };
 
+// Window Colose
+$(document).on("mouseover", "#window_close__mark", function () {
+  $("#window_close__mark").attr("src", "./img/close-2.png");
+});
+
+$(document).on("mouseout", "#window_close__mark", function () {
+  $("#window_close__mark").attr("src", "./img/close.png");
+});
+
+$(document).on("click", "#window_close__mark", function () {
+  window.close();
+});
+
 $(function () {
   ajaxSelSummary();
 });
@@ -46,19 +59,57 @@ function ajaxSelSummary() {
 
 $(document).on("click", "#summary__table tbody tr", function () {
   const targetTr = $(this).find("td");
-  const targetId = targetTr.eq(0).text();
+  const ordersheetId = targetTr.eq(0).html();
+  const ordersheetNumber = targetTr.eq(1).html();
+  const ordersheetPN = targetTr.eq(4).html();
+
+  if ($(this).hasClass("selected-record")) {
+    // window.close();
+  }
+
   $("#summary__table tr.selected-record").removeClass("selected-record");
   $(this).addClass("selected-record");
+
+  // Copy data to Master Page
+  $(window.opener.document)
+    .find("#order_number__select")
+    .empty()
+    .append($("<option>").val(ordersheetId).html(ordersheetNumber));
+  $(window.opener.document)
+    .find("#production_number__value")
+    .html(ordersheetPN);
+
+  makeProductionNumberOption(ordersheetPN);
 });
+
+function makeProductionNumberOption(ordesheetPN) {
+  var targetDom = $(window.opener.document).find("#die_number__select");
+  var optionList;
+  var i = 0;
+  const fileName = "./php/OrderSheet/SelDieName.php";
+  const sendData = {
+    die_number: "dummy",
+  };
+  myAjax.myAjax(fileName, sendData);
+  optionList = ajaxReturnData;
+  targetDom.find("option").remove();
+  targetDom.append($("<option>").val(0).html("-"));
+
+  optionList.forEach(function (element, index) {
+    if (element["production_number"] == ordesheetPN) {
+      targetDom.append(
+        $("<option>").val(element["id"]).html(element["die_number"])
+      );
+      i = i + 1;
+    }
+  });
+  $(window.opener.document).find("#number_of_die").text(i);
+}
 
 $(document).on("keyup", "#order-number__sort", function () {
   var flag;
   $(this).val($(this).val().toUpperCase()); // 小文字を大文字に
   const text = $(this).val();
-
-  // console.log(ajaxSummaryTable);
-
-  // return;
   makeTable(
     ajaxSummaryTable,
     $("#summary__table tbody"),
@@ -71,9 +122,6 @@ $(document).on("keyup", "#priduction_number_sort", function () {
   var flag;
   $(this).val($(this).val().toUpperCase()); // 小文字を大文字に
   const text = $(this).val();
-
-  // console.log(ajaxSummaryTable);
-
   makeTable(
     ajaxSummaryTable,
     $("#summary__table tbody"),
@@ -85,9 +133,6 @@ $(document).on("keyup", "#priduction_number_sort", function () {
 function makeTable(tableDataObj, targetDomObj, filterColumnName, inputText) {
   var flag;
   targetDomObj.empty();
-
-  // console.log(tableDataObj);
-
   tableDataObj.forEach(function (trVal) {
     flag = false;
     if (trVal[filterColumnName].includes(inputText, 0)) {
@@ -105,4 +150,8 @@ function makeTable(tableDataObj, targetDomObj, filterColumnName, inputText) {
       $(newTr).appendTo("#summary__table tbody");
     }
   });
+
+  $("#summary__table_record").text(
+    $("#summary__table tbody tr").length + "items"
+  );
 }

@@ -1,5 +1,5 @@
 <?php
-  /* 21/05/10作成 */
+  /* June 24 made */
   $userid = "webuser";
   $passwd = "";
   // print_r($_POST);
@@ -16,20 +16,18 @@
     );
 
     $prepare = $dbh->prepare("
-
       SELECT 
-        t_press_directive.id,
-        DATE_FORMAT(t_press_directive.plan_date_at, '%y-%m-%d') as plan_date_at
-      FROM t_press_directive
-      WHERE t_press_directive.dies_id = :targetId
-      ORDER BY t_press_directive.plan_date_at DESC, t_press_directive.id  
-      LIMIT 5
-
+        m_dies.id,
+        m_production_numbers.production_number,
+        m_dies.die_number
+      FROM 
+        m_dies
+      LEFT JOIN m_production_numbers
+        ON m_dies.production_number_id = m_production_numbers.id
     ");
 
-    $prepare->bindValue(':targetId', $_POST["targetId"], (INT)PDO::PARAM_INT); 
     $prepare->execute();
-    $result = $prepare->fetchAll(PDO::FETCH_ASSOC);
+    $result = $prepare->fetchALL(PDO::FETCH_ASSOC);
 
     echo json_encode($result);
   } catch (PDOException $e){

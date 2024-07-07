@@ -217,7 +217,7 @@ div.hidden {
     width: 20px;
   }
   select {
-    width: 110px;
+    width: 120px;
   }
 }
 #press_date_at {
@@ -280,7 +280,7 @@ div.hidden {
 #directive__input {
   width: 50px;
 }
-#directive__select {
+#press-directive__select {
   width: 120px;
 }
 #press_directive_scan_file_name {
@@ -293,6 +293,9 @@ div.hidden {
 }
 #special_note {
   width: 250px;
+}
+#production_number__value {
+  /* display: none; */
 }
 #profile_length__input {
   border-right: 0;

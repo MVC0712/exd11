@@ -15,7 +15,23 @@
   </head>
 
   <body>
-    <header>Ordersheet V2</header>
+    <header>
+      <div>
+        <img id="language__mark" src="./img/En.png" alt="Lang" />
+      </div>
+      <div><div class="title__letters" id="mode_display"></div></div>
+      <div>
+        <div>Ordersheet V2</div>
+      </div>
+      <div>
+        <div>
+          <div id="summary__table_record">??? items</div>
+        </div>
+      </div>
+      <div>
+        <img id="window_close__mark" src="./img/close.png" alt="close button" />
+      </div>
+    </header>
     <div class="main__wrapper">
       <table id="summary__table">
         <thead>
@@ -23,7 +39,7 @@
             <th>ID</th>
             <th>
               <div class="wrapper">
-                <div>OrdNo</div>
+                <div>OrdNo.</div>
                 <input id="order-number__sort" placeholder="Tìm" type="text" />
               </div>
             </th>
@@ -49,6 +65,6 @@
       </table>
     </div>
     <script src="./lib/jquery-3.3.1.min.js"></script>
-    <!-- <script src="./scr/DailyReport_OrderSheetV2.js"></script> -->
+    <script src="./scr/DailyReport_OrderSheetV2.js"></script>
   </body>
 </html>
