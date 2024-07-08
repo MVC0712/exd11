@@ -480,6 +480,7 @@ $(document).on("click", "#summary_table tbody tr", function(e) {
         };
         myAjax.myAjax(fileName, sendData);
         $("#dcyc").val(ajaxReturnData[0].hardness).removeClass("no-input").addClass("complete-input");
+        $("#hardness_note").html(ajaxReturnData[0].hardness_note);
 
         var fileName = "./php/HardNess/SelFinish.php";
         var sendData = {

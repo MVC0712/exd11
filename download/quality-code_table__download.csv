@@ -27,3 +27,4 @@ quality_code,description_vn,note_vn,description_jp,note_jp
 351,"Lỗi khác","Mục này để ghi những lỗi không mong muốn_ cụ thể phải được ghi chú rõ ràng",他不良,本工序内　上记项目以外的不良。（备注中须明确记录不良现象）
 0,"Không có lỗi SP",,,
 ,,,,
+401,"Lỗi xi mạ","Hàng nhận từ xi mạ về bị lỗi",陽極酸化欠陥,陽極酸化欠陥

@@ -231,3 +231,9 @@ input[type=number]::-webkit-inner-spin-button,
 #data__table #table_headder {
     font-size: 8pt;
 }
+
+#hardness_note {
+    border: #0000ff solid 1px;
+    width: 100%;
+    height: 200px;
+}

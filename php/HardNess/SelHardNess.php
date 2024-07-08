@@ -17,7 +17,8 @@
 
       $prepare = $dbh->prepare("
       SELECT 
-      hardness
+      hardness,
+      hardness_note
   FROM
       m_dies
           LEFT JOIN

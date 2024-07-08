@@ -346,6 +346,8 @@ $(document).on("click", "#update__button", function () {
 
   // Reload Summary Table
   readSummaryTable();
+  summaryTable = ajaxReturnData;
+  makeSummaryTable(summaryTable);
   $("#summary__table td:nth-child(1)").each(function () {
     if ($(this).text() == targetId) {
       $(this).parent().attr("id", "summary__tr").addClass("selected-record");
@@ -542,6 +544,13 @@ function setRecordValue2Edit(targetId) {
       .removeClass("input-required");
   } else {
     $("#hardness").val("");
+  }
+  if (ajaxReturnData[0]["hardness_note"] != "") {
+    $("#hardness_note")
+      .val(ajaxReturnData[0]["hardness_note"])
+      .removeClass("input-required");
+  } else {
+    $("#hardness_note").val("");
   }
   // specific_weight
   if (ajaxReturnData[0]["specific_weight"] != null) {

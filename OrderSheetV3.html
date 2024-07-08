@@ -3,100 +3,107 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ordersheet Input Page</title>
-    <link rel="stylesheet" href="./css/main.css" />
+    <title>Order Sheet V3</title>
+    <link rel="stylesheet" href="./css/main2.css" />
     <link rel="stylesheet" href="./css/OrderSheetV3.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
   </head>
 
   <body>
-    <header>Ordersheet Input Page V3</header>
+    <header>
+      <div>
+        <img id="language__mark" src="./img/En.png" alt="Lang" />
+      </div>
+      <div><div class="title__letters" id="mode_display"></div></div>
+      <div>
+        <div>Order Sheet V3</div>
+      </div>
+      <div>
+        <div>
+          <div id="summary__table_record">??? items</div>
+        </div>
+      </div>
+      <div>
+        <img id="window_close__mark" src="./img/close.png" alt="close button" />
+      </div>
+    </header>
+
     <div class="main__wrapper">
-      <!-- ordersheet number -->
-      <div class="input-block__outer">
-        <div class="input__title">Order Sheet No</div>
-        <input
-          id="ordersheet_number"
-          class="need-clear save-data no-input"
-          type="text"
-        />
+      <div class="top__wrapper">
+        <table id="excel_table" class="table w3-table-all w3-hoverable">
+          <thead>
+            <tr>
+              <th>OrderSheet</th>
+              <th>Production number</th>
+              <th>PNid</th>
+              <th>Issue at</th>
+              <th>Delivery at</th>
+              <th>Qty</th>
+              <th>Note</th>
+              <th>Rm</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
       </div>
-      <!-- production number -->
-      <div class="input-block__outer">
-        <div class="input__title">Production Number</div>
-        <input id="production_number" class="need-clear" type="text" />
-        <select
-          name=""
-          id="production_number__select"
-          class="no-input save-data need-clear"
-        ></select>
+      <div class="button__wrapper">
+        <button id="save__button" disabled>
+          <div class="title__letters">Save</div>
+        </button>
+        <button id="update__button" disabled>
+          <div class="title__letters">Update</div>
+        </button>
+        <button id="form">Form</button>
+        <label for="fileupload" class="custom-file-upload">
+          Upload
+      </label>
+        <input id="fileupload" type=file name="files[]" class="custom-file-upload">
       </div>
-      <!-- issue -->
-      <div class="input-block__outer">
-        <div class="input__title">Issue at</div>
-        <input
-          id="issue_date_at"
-          class="need-clear save-data no-input"
-          type="date"
-        />
-      </div>
-      <!-- Delivery date -->
-      <div class="input-block__outer">
-        <div class="input__title">Delivery at</div>
-        <input
-          id="delivery_date_at"
-          class="need-clear save-data no-input"
-          type="date"
-        />
-      </div>
-      <!-- Production Quantity -->
-      <div class="input-block__outer">
-        <div class="input__title">Prodcution Qty</div>
-        <input
-          id="production_quantity"
-          class="need-clear save-data no-input"
-          type="text"
-        />
-      </div>
-    </div>
-    <div class="button__wrapper">
-      <input id="search_input" placeholder="Tìm trong bảng" style="width: 100px; text-align: left;" type="text" onkeyup="timkiemkhuon();" />
-      <button disabled id="save__button">Save</button>
-      <button disabled id="update__button">Update</button>
-      <div class="button__block">
-        <button id="remain__button">Chk Remain</button>
-        <img id="icon" src="./img/002.svg" alt="icon" />
-      </div>
-      <button id="test__button">TEST</button>
-    </div>
-    <div class="summary__wrapper">
-      <!-- 削除確認ダイアログ -->
-      <dialog class="dialog__wrapper" id="delete__dialog">
-        Do you Delete?
-        <button id="delete-dialog-cancel__button">Cancel</button>
-        <button id="delete-dialog-delete__button">Delete</button>
-      </dialog>
-      <table id="summary__table">
-        <thead>
-          <tr>
-            <th>ID</th>
+      <div class="table__wrapper">
+        <table id="summary__table">
+          <thead>
+            <th>id</th>
             <th>OrderSheet</th>
             <th>Delivery</th>
             <th>Issue</th>
             <th>Production Number</th>
-            <th>Order</th>
+            <th>qty</th>
             <th>Cut</th>
             <th>NG</th>
             <th>OK</th>
             <th>OK-Ord</th>
             <th>Packed</th>
-            <th>Ord-Pac</th>
+            <th>Ord-Pck</th>
+            <th>Note</th>
             <th>Update</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
     </div>
+
+    <dialog id="delete__dialog">
+      <div>
+        <div id="dialog_title__wrapper">
+          <div>Delete? Tẩy xóa?</div>
+        </div>
+        <button id="dialog-cancel__button">
+          Cancel <br />
+          Hủy bỏ
+        </button>
+        <div id="dialog_input__wapper">
+          <div id="dialog_input__title">Emploee No</div>
+          <input id="emploee_number" type="text" />
+        </div>
+        <button id="dialog-delete__button" disabled>Del</button>
+      </div>
+    </dialog>
+    <script src="./lib/excel.js"></script>
     <script src="./lib/jquery.min.js"></script>
+    <script src="./lib/base.js"></script>
     <script src="./scr/OrderSheetV3.js"></script>
   </body>
 </html>

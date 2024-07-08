@@ -36,6 +36,7 @@ SELECT
   m_production_numbers.packing_column,
   m_production_numbers.packing_row,
   IFNULL(m_production_numbers.hardness, '') AS hardness,
+  IFNULL(m_production_numbers.hardness_note, '') AS hardness_note,
   'dummy'
 FROM m_production_numbers
 LEFT JOIN m_billet_material ON m_production_numbers.billet_material_id = m_billet_material.id

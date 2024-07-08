@@ -1,447 +1,331 @@
-let editMode = false;
-
-// 削除確認ダイアログ
-// let deleteDialog = document.getElementById("delete__dialog");
+var ordersheetTableData;
+var productionNumberTableData;
 
 $(function () {
-  $("#test__button").remove();
-  ajaxSelSummary();
+  readSummaryTable();
+  readProductionNumberTable();
+  makeProductionNumberToSelect();
 });
 
-function ajaxSelSummary() {
-  $.ajax({
-    type: "POST",
-    url: "./php/OrderSheet/SelSummaryV3.php",
-    dataType: "json",
-    async: false,
-    data: {
-      die_number: "dummy",
-    },
-  })
-    .done(function (data) {
-      // console.log(data);
-      makeSummaryTable(data);
-    })
-    .fail(function () {
-      alert("DB connect error");
-    });
-}
-
-function makeSummaryTable(data) {
+function readSummaryTable() {
+  let fileName;
+  let sendData = new Object();
+  let number = 1;
+  // read ng list and fill option
+  fileName = "./php/OrderSheet/SelSummaryV53.php";
+  sendData = {
+    dummy: "dummy",
+  };
+  myAjax.myAjax(fileName, sendData);
   $("#summary__table tbody").empty();
-  data.forEach(function (trVal) {
+  ajaxReturnData.forEach(function (trVal) {
     var newTr = $("<tr>");
-    trVal["production_quantity"] = String(trVal["production_quantity"]).replace(
-      /(\d)(?=(\d\d\d)+(?!\d))/g,
-      "$1,"
-    );
-    if (trVal["work_quantity"])
-      trVal["work_quantity"] = String(trVal["work_quantity"]).replace(
-        /(\d)(?=(\d\d\d)+(?!\d))/g,
-        "$1,"
-      );
-    if (trVal["total_ok"])
-      trVal["total_ok"] = String(trVal["total_ok"]).replace(
-        /(\d)(?=(\d\d\d)+(?!\d))/g,
-        "$1,"
-      );
-    Object.keys(data[0]).forEach(function (tdVal) {
-      $("<td>").html(trVal[tdVal]).appendTo(newTr);
+    Object.keys(trVal).forEach(function (tdVal, index) {
+      var text = trVal[tdVal];
+      switch (index) {
+        case 9: // "OK-Ord" Value
+          if (parseInt(text) < 0) {
+            $("<td>").html(text).addClass("mainus-value").appendTo(newTr);
+          } else {
+            $("<td>").html(text).addClass("plus-value").appendTo(newTr);
+          }
+          break;
+        case 11:
+          if (parseInt(text) < 0) {
+            $("<td>").html(text).addClass("mainus-value").appendTo(newTr);
+          } else {
+            $("<td>").html(text).addClass("plus-value").appendTo(newTr);
+          }
+          break;
+        default:
+          $("<td>").html(text).appendTo(newTr);
+          break;
+      }
     });
-    $("#summary__table tbody").append($(newTr));
+    $(newTr).appendTo("#summary__table tbody");
   });
-  Color();
-}
-
-// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-// ------------------------- input check from here -------------------------
-// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-// order sheet nuumber :
-$(document).on("keyup", "#ordersheet_number", function (e) {
-  if ($(this).val().length > 3) {
-    $(this).removeClass("no-input").addClass("complete-input");
-  } else {
-    $(this).removeClass("complete-input").addClass("no-input");
-  }
-  chekInputButtonActivete();
-});
-
-// production number
-$(document).on("focus", "#production_number", function (e) {
-  ajaxSelProductionNumber($(this).val());
-});
-
-$(document).on("keyup", "#production_number", function (e) {
-  ajaxSelProductionNumber($(this).val());
-});
-
-function ajaxSelProductionNumber(str) {
-  str = str + "%";
-  $.ajax({
-    type: "POST",
-    url: "./php/OrderSheet/SelProductionNumber.php",
-    dataType: "json",
-    async: false,
-    data: {
-      production_number: str,
-    },
-  })
-    .done(function (data) {
-      $("#production_number__select")
-        .empty()
-        .append($("<option>").val(0).html("no"));
-      data.forEach(function (value) {
-        $("<option>")
-          .val(value["id"])
-          .html(value["production_number"])
-          .appendTo("#production_number__select");
-      });
-    })
-    .fail(function () {
-      alert("DB connect error");
-    });
-}
-// production number select
-$(document).on("change", "#production_number__select", function (e) {
-  if ($(this).val() != 0 && $(this).val() != "") {
-    $(this).removeClass("no-input").addClass("complete-input");
-  } else {
-    $(this).removeClass("complete-input").addClass("no-input");
-  }
-  chekInputButtonActivete();
-});
-
-// date input
-$(document).on("change", "input[type='date']", function (e) {
-  if ($(this).val() != 0 && $(this).val() != "") {
-    $(this).removeClass("no-input").addClass("complete-input");
-  } else {
-    $(this).removeClass("complete-input").addClass("no-input");
-  }
-  chekInputButtonActivete();
-});
-
-// production qty
-$(document).on("keyup", "#production_quantity", function (e) {
-  if ($(this).val() > 1 && $(this).val() != "") {
-    $(this).removeClass("no-input").addClass("complete-input");
-  } else {
-    $(this).removeClass("complete-input").addClass("no-input");
-  }
-  chekInputButtonActivete();
-});
-
-// カーソル移動
-$(document).on("keydown", ".main__wrapper input", function (e) {
-  chkMoveNext(
-    e,
-    $(this),
-    getNextTargetIdName($(".main__wrapper input"), $(this).attr("id"))
+  $("#summary__table_record").html(
+    $("#summary__table tbody tr").length + " items"
   );
-});
-
-function getNextTargetIdName(targetObject, thisIdName) {
-  let nextIndexFlag = false;
-  let nextTargetDom;
-
-  targetObject.each(function (index, element) {
-    if (nextIndexFlag == true) {
-      nextTargetDom = $(element);
-    }
-    if ($(element).attr("id") == thisIdName) {
-      nextIndexFlag = true;
-    } else {
-      nextIndexFlag = false;
-    }
-  });
-  return nextTargetDom;
 }
 
-function chkMoveNext(e, thisDom, nextDom) {
-  // thisDOM がcomplete-inputクラスなら改行キーでnextDomにフォーカスを移動する
-  if (e.keyCode == 13 && thisDom.hasClass("complete-input")) {
-    e.preventDefault(); // 入力をキャンセル。これをしないと、移動後、ボタンをクリックしてしまう
-    $(nextDom).focus();
+$(document).on("click", "#summary__table tbody tr", function () {
+  let targetVal;
+  let today = new Date();
+  const targetTr = $(this).find("td");
+  const selecedtId = parseInt(targetTr.eq(0).text());
+  const arrivalDate = targetTr.eq(5).text();
+  // first make select option
+  readProductionNumberTable();
+  makeProductionNumberToSelect();
+  // addClass "selected-record"
+  $("#summary__table tr.selected-record").removeClass("selected-record");
+  $(this).addClass("selected-record");
+
+  // when ordersheet data has not read, read table
+  if (!ordersheetTableData) {
+    fileName = "./php/OrderSheet/SelSummarySub2.php";
+    sendData = {
+      dummy: "dummy",
+    };
+    myAjax.myAjax(fileName, sendData);
+    ordersheetTableData = ajaxReturnData;
+  }
+  // copy data to input element
+  ordersheetTableData.forEach(function (value) {
+    // console.log(value);
+    if (value["id"] == selecedtId) {
+      console.log(value);
+      $("#ordersheet_number")
+        .removeClass("input-required")
+        .val(value["ordersheet_number"]);
+      $("#input_production_number")
+        .removeClass("input-required")
+        .val(value["production_number"]);
+      $("#production_number")
+        .val(value["production_numbers_id"])
+        .removeClass("input-required");
+      $("#issue_at").removeClass("input-required").val(value["issue_date_at"]);
+      $("#delivery_at")
+        .removeClass("input-required")
+        .val(value["delivery_date_at"]);
+      $("#production_qunatity")
+        .removeClass("input-required")
+        .val(value["production_quantity"]);
+      $("#note").removeClass("input-required").val(value["note"]);
+    }
+  });
+  $("#mode_display").text("Edit Mode");
+});
+
+function readProductionNumberTable() {
+  let fileName;
+  let sendData = new Object();
+
+  if (!ordersheetTableData) {
+    fileName = "./php/OrderSheet/SelProductionNumberV2.php";
+    sendData = {
+      dummy: "dummy",
+    };
+    myAjax.myAjax(fileName, sendData);
+    productionNumberTableData = ajaxReturnData;
   }
 }
 
-$(".main__wrapper input").on("keyup", function () {
-  chekInputButtonActivete();
-});
+function makeProductionNumberToSelect() {
+  // var mySelect = $("<select>").append($("<option>").val(0).html("no"));
+  var targetObj = $("#production_number");
+  targetObj.empty().append($("<option>").val(0).html("no"));
 
-// 必要入力箇所の入力が終わっているときsaveボタンを活性化する
-function chekInputButtonActivete() {
-  var flag = true;
-  $(".save-data").each(function (index, element) {
-    if ($(this).hasClass("no-input")) {
-      flag = false;
-    }
-  });
-  if (flag && editMode == false) {
-    $("#save__button").prop("disabled", false);
-  } else {
-    $("#save__button").prop("disabled", true);
-  }
-}
-
-// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-// ------------------------- input check to here -------------------------
-// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-// ------------------------- Summary Table ---------------------------------
-// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-$(document).on("click", "#summary__table tr", function (e) {
-  if (!$(this).hasClass("selected-record")) {
-    // tr に class を付与し、選択状態の background colorを付ける
-    $(this).parent().find("tr").removeClass("selected-record");
-    $(this).addClass("selected-record");
-    // tr に id を付与する
-    $("#selected__tr").removeAttr("id");
-    $(this).attr("id", "selected__tr");
-    ajaxSelSelData($("#selected__tr").find("td").eq(0).html()); // 選択レコードのデータ読出
-    editMode = true;
-  } else {
-    // 選択レコードを再度クリックした時
-    // 削除問い合わせダイアログ
-    deleteDialog.showModal();
-  }
-});
-
-function ajaxSelSelData(targetId) {
-  $.ajax({
-    type: "POST",
-    url: "./php/OrderSheet/SelSelData.php",
-    dataType: "json",
-    // async: false,
-    data: {
-      targetId: targetId,
-    },
-  })
-    .done(function (sqlData) {
-      fillReadData(sqlData);
-      // 背景色を変更すする
-      $(".need-clear").removeClass("no-input").addClass("complete-input");
-      editMode = true;
-      $("#update__button").prop("disabled", false);
-    })
-    .fail(function (data) {
-      alert("DB connect error");
-      // console.log(data);
-    });
-}
-
-function fillReadData(sqlData) {
-  Object.keys(sqlData).forEach(function (data, index) {
-    $("#" + data).val(sqlData[data]);
-  });
-  // production number の値は、selectで別途値を入れる
-  $("#production_number").val("");
-  $("#production_number__select")
-    .empty()
-    .append(
-      $("<option>")
-        .html(sqlData["production_number"])
-        .val(sqlData["production_number_id"])
+  productionNumberTableData.forEach(function (recordData) {
+    targetObj.append(
+      $("<option>").val(recordData.id).html(recordData.production_number)
     );
+  });
+  // targetTd.empty().append(mySelect);
 }
 
-// deleteダイアログのキャンセルボタンが押されたとき
-$(document).on("click", "#delete-dialog-cancel__button", function () {
-  deleteDialog.close();
+$(document).on("keyup", "#input_production_number", function () {
+  const targetObj = $(this);
+  // var newProductionNumberTableData = new Object();
+  var strIndex;
+  var selectObj = $("#production_number");
+  selectObj.empty().append($("<option>").val(0).html("no"));
+
+  // requery option list by inputed letters
+  $(this).val($(this).val().toUpperCase()); // 小文字を大文字に
+
+  productionNumberTableData.forEach(function (value, index) {
+    strIndex = value["production_number"].indexOf(targetObj.val());
+    if (strIndex != -1) {
+      selectObj.append(
+        $("<option>").val(value["id"]).html(value["production_number"])
+      );
+    }
+  });
 });
-
-// deleteダイアログの削除ボタンが押されたとき
-$(document).on("click", "#delete-dialog-delete__button", function () {
-  let targetId;
-  targetId = $("#selected__tr").find("td").eq(0).text();
-  ajaxDelSelData(targetId);
-  deleteDialog.close();
-});
-
-function ajaxDelSelData(targetId) {
-  $.ajax({
-    type: "POST",
-    url: "./php/Ordersheet/DelSelData.php",
-    dataType: "json",
-    // async: false,
-    data: {
-      id: targetId,
-    },
-  })
-    .done(function () {
-      ajaxSelSummary(); // summary tebale の読み出し
-      $("#update__button").prop("disabled", true);
-      // clearInputData(); // 入力枠の削除
-    })
-    .fail(function () {
-      alert("DB connect error");
-    });
-}
-
-// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-// ------------------------- Save Button -------------------------
-// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-$(document).on("click", "#save__button", function () {
-  // console.log(getInputData());
-  ajaxInsInputData(getInputData());
-});
-
-function getInputData() {
-  let inputData = new Object();
-  // 今日の日付の取得
-  let dt = new Date();
-  inputData["created_at"] =
-    dt.getFullYear() + "-" + (dt.getMonth() + 1) + "-" + dt.getDate();
-
-  if ($(".save-data").hasClass("complete-input")) {
-    // .save-dataを持っている要素から値を取り出す
-    $("input.save-data").each(function (index, element) {
-      inputData[$(this).attr("id")] = $(this).val();
-    });
-    $("select.save-data").each(function (index, element) {
-      inputData[$(this).attr("id")] = $(this).val();
-    });
-  }
-  // targetId を別途保存
-  inputData["targetId"] = $("#selected__tr").find("td").eq(0).html();
-  // 配列のキーが無いと困るので
-
-  return inputData;
-}
-
-function ajaxInsInputData(inputData) {
-  $.ajax({
-    type: "POST",
-    url: "./php/OrderSheet/InsInputData.php",
-    dataType: "json",
-    async: false,
-    data: inputData,
-  })
-    .done(function (data) {
-      ajaxSelSummary();
-      clearInputData();
-    })
-    .fail(function () {
-      alert("DB connect error");
-    });
-}
-
-// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-// ------------------------- update button -------------------------
-// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-$(document).on("click", "#update__button", function () {
-  console.log(getInputData());
-  ajaxUpdateInputData(getInputData());
-});
-
-function ajaxUpdateInputData(inputData) {
-  editMode = false;
-  $("#update__button").prop("disabled", true);
-  $.ajax({
-    type: "POST",
-    url: "./php/OrderSheet/UpdateInputData.php",
-    dataType: "json",
-    async: false,
-    data: inputData,
-  })
-    .done(function (data) {
-      ajaxSelSummary();
-      clearInputData();
-    })
-    .fail(function () {
-      alert("DB connect error");
-    });
-}
-
-function clearInputData() {
-  $("input.save-data")
-    .val("")
-    .removeClass("complete-input")
-    .addClass("no-input");
-  $("input.need-clear").val("");
-  $("select.need-clear")
-    .val(0)
-    .removeClass("complete-input")
-    .addClass("no-input");
-  // ビレット2本目情報は入力しなくてもいい。
-  $("#ram-values__table tbody .not-required")
-    .removeClass("no-input")
-    .addClass("complete-input");
-  // ファイル添付
-  $("label").html("");
-}
-
-// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-// ------------------------- check remain button -------------------------
-// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-$(document).on("click", "#remain__button", function () {
-  window.open(
-    "./OrderSheetSub.html",
-    null,
-    "width=630, height=580, top=100,left=100, toolbar=yes,menubar=yes,scrollbars=no"
-  );
-  // window.open("./OrderSheetSub.html");
-});
-
-// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-// ------------------------- test button -------------------------
-// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 $(document).on("click", "#test__button", function () {
-  clearInputData();
+  // test button
+  console.log(ordersheetTableData);
+
+  $("#production_number").val("122");
 });
 
-function Color() {
-  var table, tr, td, tdod, tdok, txtod, txtok, i, diff;
-  table = document.getElementById("summary__table");
-  tr = table.getElementsByTagName("tr");
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[9];
-    tp = tr[i].getElementsByTagName("td")[11];
-    if (td) {
-      txttd = Number(td.innerText.replace(",", ""));
-      txttp = Number(tp.innerText.replace(",", ""));
-      if (txttd >= 0) {
-        table.rows[i].cells[9].style.backgroundColor = "#ffa1bd";
-      } else {
-        table.rows[i].cells[9].style.backgroundColor = "#d1fff9";
-      }
-      if (txttp > 0) {
-        table.rows[i].cells[11].style.backgroundColor = "#ffa1bd";
-      }
-    }
-  }
+function makeProductionNumber(ordersheetnumber) {
+  var fileName = "./php/OrderSheet/CheckOrderSheetNumber.php";
+  var sendData = {
+    ordersheetnumber
+  };
+  myAjax.myAjax(fileName, sendData);
+  return ajaxReturnData.length
 }
 
-function timkiemkhuon() {
-  var input, table, tr, td, td1, td2, filter, i, txtdata, txtdata1, txtdata2, txtdata3;
-  input = document.getElementById("search_input");
-  console.log(input)
-  filter = input.value.toUpperCase();
-  table = document.getElementById("summary__table");
-  var tbody = table.getElementsByTagName("tbody")[0];
-  var tr = tbody.getElementsByTagName("tr");
-  for (i = 0; i < tr.length; i++) {
-      td = tr[i].getElementsByTagName("td")[1];
-      td1 = tr[i].getElementsByTagName("td")[2];
-      td2 = tr[i].getElementsByTagName("td")[3];
-      td3 = tr[i].getElementsByTagName("td")[4];
-      if (td||td1||td2) {
-          txtdata = td.innerText;
-          txtdata1 = td1.innerText;
-          txtdata2 = td2.innerText;
-          txtdata3 = td3.innerText;
-          if (txtdata.toUpperCase().indexOf(filter) > -1||
-              txtdata1.toUpperCase().indexOf(filter) > -1||
-              txtdata2.toUpperCase().indexOf(filter) > -1||
-              txtdata3.toUpperCase().indexOf(filter) > -1) {
-              tr[i].style.display = "";
+var ExcelToJSON = function() {
+  this.parseExcel = function(file) {
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+      var data = e.target.result;
+      var workbook = XLSX.read(data, {
+        type: 'binary',
+        cellDates: true,
+        cellNF: false,
+        cellText: false
+      });
+      const options = {
+        raw: false, 
+        dateNF: 'yyyy-mm-dd',
+      };
+      workbook.SheetNames.forEach(function(sheetName) {
+        var XL_row_object = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName], options);
+        var productList = JSON.parse(JSON.stringify(XL_row_object));
+        var rows = $('#excel_table tbody');
+        for (i = 0; i < productList.length; i++) {
+          var columns = Object.values(productList[i])
+          if (makeProductionNumber(columns[0]) == 0) {
+            rows.append(`
+              <tr>
+                <td>${columns[0].replace( /\s/g, '')}</td>
+                <td>${columns[1].replace( /\s/g, '')}</td>
+                <td>${makeProductionNumberId(columns[1].replace( /\s/g, ''))}</td>
+                <td><input type="date" value="${columns[2].replace( /\s/g, '')}"</td>
+                <td><input type="date" value="${columns[3].replace( /\s/g, '')}"</td>
+                <td><input type="number" value="${columns[4].replace( /\s/g, '')}"</td>
+                <td><input type="text" value="${columns[5].replace( /\s/g, '')}"</td>
+                <td><button class="remove_button">X</button></td>
+              </tr>
+            `);
           } else {
-              tr[i].style.display = "none";
+            alert(columns[0] + " đã tồn tại!");
           }
-      }
+        }
+      })
+      go_check();
+    };
+    reader.onerror = function(ex) {
+      console.log(ex);
+    };
+
+    reader.readAsBinaryString(file);
+  };
+};
+
+function handleFileSelect(evt) {
+  var files = evt.target.files;
+  var xl2json = new ExcelToJSON();
+  xl2json.parseExcel(files[0]);
+};
+
+document.getElementById('fileupload').addEventListener('change', handleFileSelect, false);
+
+$(document).on("click", "#form", function() {
+  const a = document.createElement("a");
+  document.body.appendChild(a);
+
+  a.download = "ImportOrderSheet.xlsx";
+  a.href = "../../../diereport/ex0.11/py/ImportOrderSheet.xlsx";
+
+  a.click();
+  a.remove();
+});
+
+function makeProductionNumberId(pro) {
+  fileName = "./php/OrderSheet/SelProductionNumberId.php";
+  sendData = {
+    pro: pro,
+  };
+  myAjax.myAjax(fileName, sendData);
+  return ajaxReturnData[0].idd;
+};
+
+$(document).on("click", "#add__button", function() {
+  var newTr = $("<tr>");
+  $("<td>").html($("#ordersheet_number__select").val()).appendTo(newTr);
+  $("<td>").html(makeOrderSheetNumber($("#ordersheet_number__select").val())).appendTo(newTr);
+  $("<td>").html($("#production_number").text()).appendTo(newTr);
+  $("<td>").append(makeDateInput($("#import_at").val())).appendTo(newTr);
+  $("<td>").append(makeInput($("#quantity").val())).appendTo(newTr);
+  $("<td>").append("<button class='remove_button'>X</button>").appendTo(newTr);
+  $(newTr).appendTo("#excel_table tbody");
+
+  $("#ordersheet_number__select").val(0);
+  $("#ordersheet_number__select").removeClass("complete-input").addClass("no-input");
+  $("#quantity").val("");
+  $("#quantity").removeClass("complete-input").addClass("no-input");
+  $("#note").val("");
+  $("#import_at").val("");
+  $("#import_at").removeClass("complete-input").addClass("no-input");
+  $("#production_number").html('Production number');
+  $("#add__button").prop("disabled", true);
+  go_check();
+});
+$(document).on("click", "#excel_table tbody tr", function (e) {
+  if (!$(this).hasClass("add-record")) {
+    $(this).parent().find("tr").removeClass("add-record");
+    $(this).addClass("add-record");
+    $("#add__tr").removeAttr("id");
+    $(this).attr("id", "add__tr");
+  } else {
+      // $(this).remove();
   }
-} 
+  go_check();
+});
+$(document).on("click", "#excel_table tbody tr td button", function (e) {
+  console.log($(this).parent().parent());
+  if ($(this).parent().parent().hasClass("add-record")) {
+    $(this).parent().parent().remove();
+  }
+  go_check();
+});
+
+function go_check() {
+  if ($("#excel_table tbody tr").length == 0){
+      $("#save__button").prop("disabled", true);
+  } else {
+      $("#save__button").prop("disabled", false);
+  }
+};
+
+function add_check() {
+  if (($("#import_at").val() == "")|| 
+      ($("#ordersheet_number__select").val() == 0)||
+      ($("#quantity").val() <= 0)){
+      $("#add__button").prop("disabled", true);
+  } else {
+      $("#add__button").prop("disabled", false);
+  }
+};
+function getTableData(tableTrObj) {
+  var tableData = [];
+  tableTrObj.each(function (index, element) {
+    var tr = [];
+    $(this)
+      .find("td")
+      .each(function (index, element) {
+        if ($(this).find("input").length) {
+          tr.push($(this).find("input").val());
+        } else if ($(this).find("select").length) {
+          tr.push($(this).find("select").val());
+        } else {
+          tr.push($(this).html());
+        }
+      });
+    tableData.push(tr);
+  });
+  return tableData;
+};
+$(document).on("click", "#save__button", function() {
+  var fileName = "./php/OrderSheet/InsImport.php";
+  tableData = getTableData($("#excel_table tbody tr"));
+  jsonData = JSON.stringify(tableData);
+  var sendData = {
+      data : jsonData,
+  };
+  console.log(sendData);
+  myAjax.myAjax(fileName, sendData);
+  $("#excel_table tbody").empty();
+
+  makeSummaryTableByOrderSheet();
+  makeSummaryTable();
+});
