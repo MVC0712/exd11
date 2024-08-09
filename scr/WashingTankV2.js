@@ -54,7 +54,6 @@ const formatDate = (date) => {
     return `${year}-${month}-${day}T${hours}:${mins}`;
 }
 const getYYYYmmdd = (date = new Date()) => {
-    // date = new Date($("#do_sth_at").val());
     const hours = getTwoDigits(date.getHours());
     const mins = getTwoDigits(date.getMinutes());
     const day = getTwoDigits(date.getDate());

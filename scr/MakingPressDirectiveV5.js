@@ -1177,8 +1177,8 @@ $(function(){
 		var k = ajaxReturnData[0].k == null ? "": ajaxReturnData[0].k;
 		var end = ajaxReturnData[0].end == null ? "": ajaxReturnData[0].end;
 		
-		var prsTimePL = Math.round(Number(ajaxReturnData[0].press_length)*Number(ajaxReturnData[0].billet_input_quantity)/Number(ajaxReturnData[0].work_speed) + Number(ajaxReturnData[0].billet_input_quantity)*25/60 + 6+5) + "min";
-		// var prsTimePL = Math.round(Number(ajaxReturnData[0].press_length)*Number(ajaxReturnData[0].billet_input_quantity)/Number(ajaxReturnData[0].work_speed)) + "min";
+		var prsTimePL = Math.round(Number(calPressLength(ajaxReturnData[0].billet_size, ajaxReturnData[0].billet_length, ajaxReturnData[0].specific_weight, ajaxReturnData[0].hole))*Number(ajaxReturnData[0].billet_input_quantity)/Number(ajaxReturnData[0].work_speed) + 
+                        10+5) + "min";
 
         let pullerF;
         if(ajaxReturnData[0].specific_weight >= 20) {

@@ -31,10 +31,10 @@ function readSummaryTable() {
           }
           break;
         case 11:
-          if (parseInt(text) < 0) {
-            $("<td>").html(text).addClass("mainus-value").appendTo(newTr);
-          } else {
+          if (parseInt(text) > 0) {
             $("<td>").html(text).addClass("plus-value").appendTo(newTr);
+          } else {
+            $("<td>").html(text).addClass("").appendTo(newTr);
           }
           break;
         default:
@@ -152,7 +152,7 @@ $(document).on("click", "#test__button", function () {
   $("#production_number").val("122");
 });
 
-function makeProductionNumber(ordersheetnumber) {
+function CheckOrderSheetNumber(ordersheetnumber) {
   var fileName = "./php/OrderSheet/CheckOrderSheetNumber.php";
   var sendData = {
     ordersheetnumber
@@ -183,7 +183,7 @@ var ExcelToJSON = function() {
         var rows = $('#excel_table tbody');
         for (i = 0; i < productList.length; i++) {
           var columns = Object.values(productList[i])
-          if (makeProductionNumber(columns[0]) == 0) {
+          if ((makeProductionNumberId(columns[1]) != "KTT") || (CheckOrderSheetNumber(columns[0]) == 0)) {
             rows.append(`
               <tr>
                 <td>${columns[0].replace( /\s/g, '')}</td>
@@ -197,7 +197,7 @@ var ExcelToJSON = function() {
               </tr>
             `);
           } else {
-            alert(columns[0] + " đã tồn tại!");
+            alert(columns[0] + " đã tồn tại! Hoặc " + columns[1] + " không tồn tại!");
           }
         }
       })
@@ -236,7 +236,7 @@ function makeProductionNumberId(pro) {
     pro: pro,
   };
   myAjax.myAjax(fileName, sendData);
-  return ajaxReturnData[0].idd;
+  return ajaxReturnData.length == 1 ? ajaxReturnData[0].idd: "KTT";
 };
 
 $(document).on("click", "#add__button", function() {
@@ -316,7 +316,7 @@ function getTableData(tableTrObj) {
   return tableData;
 };
 $(document).on("click", "#save__button", function() {
-  var fileName = "./php/OrderSheet/InsImport.php";
+  var fileName = "./php/OrderSheet/InsOrderSheetV3.php";
   tableData = getTableData($("#excel_table tbody tr"));
   jsonData = JSON.stringify(tableData);
   var sendData = {
@@ -326,6 +326,5 @@ $(document).on("click", "#save__button", function() {
   myAjax.myAjax(fileName, sendData);
   $("#excel_table tbody").empty();
 
-  makeSummaryTableByOrderSheet();
-  makeSummaryTable();
+  readSummaryTable();
 });
