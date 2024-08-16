@@ -460,7 +460,7 @@ $(document).on("click", "#change_shot_button", function() {
 });
 
 function make_action() {
-    var table, tr, pr_tm, sta_val, txt_pr_tm, txt_sta_val, i;
+    var table, tr, pr_tm, sta_val, txt_pr_tm, txt_sta_val, i, d_date, n_date;
     var W1P1 =[];
     table = document.getElementById("summary__table");
     tr = table.getElementsByTagName("tr");
@@ -468,12 +468,15 @@ function make_action() {
         die_id = tr[i].getElementsByTagName("td")[0];
         pr_tm = tr[i].getElementsByTagName("td")[2];
         sta_val = tr[i].getElementsByTagName("td")[4];
+        d_date = tr[i].getElementsByTagName("td")[7];
+        n_date = new Date();
         if (pr_tm) {
             txt_die_id = Number(die_id.innerText.replace(",", ""));
             txt_pr_tm = Number(pr_tm.innerText.replace(",", ""));
             txt_sta_val = Number(sta_val.innerText.replace(",", ""));
+            txt_d_date = d_date.innerText.replace(",", "");
             table.rows[i].insertCell(9);
-            if (((txt_pr_tm >= 1) && (W1P1.includes(txt_die_id))) || 
+            if (((txt_pr_tm >= 1) && (W1P1.includes(txt_die_id))) || ((Math.ceil(Math.abs(parseDate(txt_d_date) - n_date)/(1000 * 60 * 60 * 24)) >= 12*30) && (txt_sta_val == 10) && (txt_pr_tm == 0)) ||
                 (txt_pr_tm >= 2)||(txt_sta_val == 3)) {
                 table.rows[i].cells[9].innerHTML = "Need wash";
                 table.rows[i].cells[9].style.backgroundColor = "#ffc880";
@@ -508,6 +511,24 @@ function make_action() {
     }
 };
 
+function parseDate(input) {
+    var parts = input.split(" ");
+    if(parts.length !== 2) return null;
+
+    var dateParts = parts[0].split("-");
+    var timeParts = parts[1].split(":");
+
+    if(dateParts.length !== 3 || timeParts.length !== 2) return null;
+
+    var year = parseInt(dateParts[0], 10) + 2000;
+    var month = parseInt(dateParts[1], 10) - 1;
+    var day = parseInt(dateParts[2], 10);
+    var hour = parseInt(timeParts[0], 10);
+    var minute = parseInt(timeParts[1], 10);
+
+    return new Date(year, month, day, hour, minute);
+};
+
 function make_actiontank() {
     var table, tr, vvv, ww, i;
     table = document.getElementById("washing_tank__summary");
@@ -519,7 +540,7 @@ function make_actiontank() {
             ww = Number(ww.innerText.replace(",", ""));
             vvv = Number(vvv.innerText.replace(",", ""));
             if (ww*4700/250 < vvv) {
-                console.log(ww*4700/250, vvv)
+                // console.log(ww*4700/250, vvv)
                 table.rows[i].style.backgroundColor = "red";
             }
         }
