@@ -388,7 +388,7 @@ $(document).on("keyup", "#bolter_temp", function () {
   if (
     !isNaN($(this).val()) &&
     $(this).val().length != 0 &&
-    200 <= $(this).val() &&
+    0 <= $(this).val() &&
     $(this).val() <= 510
   ) {
     $(this).removeClass("no-input").addClass("complete-input");
@@ -1000,7 +1000,7 @@ function makeRamTable() {
     if (tdVal == "id") {
       $("<td>").html(trVal[tdVal]).appendTo(newTr);
     } else if (tdVal == "number") {
-      $("<th>").html(trVal[tdVal]).appendTo(newTr);
+      $("<td>").html(trVal[tdVal]).appendTo(newTr);
     } else {
       $("<td>").append($("<input>").val(trVal[tdVal])).appendTo(newTr);
     }   
@@ -1039,7 +1039,6 @@ $(document).on("change", "#dies_id", function() {
     var issue_date = ajaxReturnData[0].issue_date;
 		var plan_pressing_time = ajaxReturnData[0].plan_pressing_time;
 		var billet_input_quantity = ajaxReturnData[0].billet_input_quantity + "billet";
-    $("#init_billet_plan").val(billet_input_quantity);
 		var billet_length = ajaxReturnData[0].billet_length + "mm";
 		var discard_thickness = ajaxReturnData[0].discard_thickness + "mm";
     $("#init_press_discard").val(discard_thickness);
@@ -1048,8 +1047,9 @@ $(document).on("change", "#dies_id", function() {
 		var work_speed2 = ajaxReturnData[0].work_speed2 + "m/min";
 		var work_speed = ajaxReturnData[0].work_speed + "m/min";
 		var billet_temperature = ajaxReturnData[0].billet_temperature + "°C";
-		var billet_taper_heating = ajaxReturnData[0].billet_taper_heating + "°C/m";
+		var billet_taper_heating = ajaxReturnData[0].billet_taper_heating + "°C/m-";
     var billet_t = billet_temperature + "-" + billet_taper_heating;
+    $("#init_billet_plan").val(billet_t + billet_input_quantity);
 		var die_temperature = ajaxReturnData[0].die_temperature + "°C";
     $("#init_die_temp").val(die_temperature);
     var die_heating_time = ajaxReturnData[0].die_heating_time + "h";
@@ -1624,8 +1624,7 @@ $(document).on("click", "#summary__table tbody tr", function (e) {
 		var staff_name = ajaxReturnData[0].staff_name;
     var issue_date = ajaxReturnData[0].issue_date;
 		var plan_pressing_time = ajaxReturnData[0].plan_pressing_time;
-		var billet_input_quantity = ajaxReturnData[0].billet_input_quantity + "billet";
-    $("#init_billet_plan").val(billet_input_quantity);
+		var billet_input_quantity = ajaxReturnData[0].billet_input_quantity + " billet";
 		var billet_length = ajaxReturnData[0].billet_length + "mm";
 		var discard_thickness = ajaxReturnData[0].discard_thickness + "mm";
     $("#init_press_discard").val(discard_thickness);
@@ -1634,8 +1633,9 @@ $(document).on("click", "#summary__table tbody tr", function (e) {
 		var work_speed2 = ajaxReturnData[0].work_speed2 + "m/min";
 		var work_speed = ajaxReturnData[0].work_speed + "m/min";
 		var billet_temperature = ajaxReturnData[0].billet_temperature + "°C";
-		var billet_taper_heating = ajaxReturnData[0].billet_taper_heating + "°C/m";
+		var billet_taper_heating = ajaxReturnData[0].billet_taper_heating + "°C/m -- ";
     var billet_t = billet_temperature + "-" + billet_taper_heating;
+    $("#init_billet_plan").val(billet_t + billet_input_quantity);
 		var die_temperature = ajaxReturnData[0].die_temperature + "°C";
     $("#init_die_temp").val(die_temperature);
     var die_heating_time = ajaxReturnData[0].die_heating_time + "h";
@@ -1713,6 +1713,40 @@ $(document).on("click", "#ram-values__table tbody tr", function() {
       // $(this).removeAttr("id");
   }
 });
+$(document).on("dblclick", "#ram-values__table tbody tr", function() {
+  let deleteDialog = document.getElementById("delete_ram_data_dialog");
+  if ($(this).hasClass("selected-record") && ($("#summary__table tbody tr").hasClass("selected-record"))) {
+    deleteDialog.showModal();
+  } else {
+    $(this).remove()
+  }
+});
+$(document).on("click", "#delete_ram_data_cancle", function () {
+  let deleteDialog = document.getElementById("delete_ram_data_dialog");
+  deleteDialog.close();
+});
+
+$(document).on("click", "#delete_ram_data", function () {
+  let deleteDialog = document.getElementById("delete_ram_data_dialog");
+  let sendData = new Object();
+  let fileName;
+  fileName = "./php/DailyReport1/DelRamData.php";
+  sendData = {
+    id: $("#ram__selected").find("td").eq(0).html(),
+  };
+  myAjax.myAjax(fileName, sendData);
+  deleteDialog.close();
+  makeRamTable();
+  if (checkIsDataInputed() && !editMode) {
+    $("#save__button").prop("disabled", false);
+  } else if (checkIsDataInputed() && editMode) {
+    $("#update__button").prop("disabled", false);
+  } else {
+    $("#save__button").prop("disabled", true);
+    $("#update__button").prop("disabled", true);
+  }
+});
+
 
 $(document).on("change", "#error__table tbody tr", function () {
   let sendData = new Object();

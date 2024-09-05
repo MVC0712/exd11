@@ -210,6 +210,7 @@ $(document).on("click", "#summary_table tbody tr", function(e) {
   myAjax.myAjax(fileName, sendData);
   makeDataTable($("#data__table"), ajaxReturnData);
   getNo();
+  addCheck();
 });
 
 $(document).on("keyup", "#length", function() {
@@ -228,6 +229,7 @@ $(document).on("keyup", "#no", function() {
 
 function addCheck() {
   if (($("#length").hasClass("no-input")) || 
+      (!($("#summary_table tbody tr").hasClass("selected-record"))) ||
       ($("#no").hasClass("no-input"))) {
       $("#add_new").prop("disabled", true);
   } else {

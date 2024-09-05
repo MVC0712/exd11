@@ -142,6 +142,13 @@ input[type=number]::-webkit-inner-spin-button,
   width: 150px;
   text-align: center;
 }
+#data__table th:nth-child(3),
+#data__table td:nth-child(3),
+#add_new_data th:nth-child(2),
+#add_new_data td:nth-child(2) {
+  display: none;
+}
+
 #add_new,
 #new_7_data {
   width: 150px;

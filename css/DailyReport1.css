@@ -807,3 +807,11 @@ button {
   -webkit-appearance: none;
   text-align: center;
 }
+
+#init_press_type,
+#init_puller_force,
+#init_ram_speed {
+  background-color: yellow;
+  color: red;
+  font-weight: 800;
+}
