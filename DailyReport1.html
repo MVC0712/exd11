@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Extrusion Dailyreport</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/DailyReport1.css" />
+  </head>
+
+  <body>
+    <header>Press Dailyreport</header>
+    <div class="main__wrapper">
+      <div class="left__wrapper">
+        <table id="initial_data">
+          <thead>
+            <tr>
+              <th>Press directive</th>
+              <th>
+                <select id="press_directive_id" class="save-data need-clear no-input">
+                  <option value="0">-</option>
+                </select>
+              </th>
+            </tr>
+            <tr>
+              <th>Khối lượng</th>
+              <th><input type="text" disabled id="init_specific_weight"></th>
+            </tr>
+            <tr>
+              <th>Tỷ lệ đùn</th>
+              <th><input type="text" disabled id="init_ratio"></th>
+            </tr>
+            <tr>
+              <th>Chiều dài đùn</th>
+              <th><input type="text" disabled id="init_length"></th>
+            </tr>
+            <tr>
+              <th>Chế độ đùn</th>
+              <th><input type="text" disabled id="init_press_type"></th>
+            </tr>
+            <tr>
+              <th>Diering</th>
+              <th><input type="text" disabled id="init_diering"></th>
+            </tr>
+            <tr>
+              <th>Bolster</th>
+              <th><input type="text" disabled id="init_bolster"></th>
+            </tr>
+            <tr>
+              <th>Loại vật liệu</th>
+              <th><input type="text" disabled id="init_billet_material"></th>
+            </tr>
+            <!-- <tr>
+              <th>Đường kính bl</th>
+              <th><input type="text" disabled id="init_billet_dimention"></th>
+            </tr> -->
+            <!-- <tr>
+              <th>Chiều dài bl</th>
+              <th><input type="text" disabled id="init_billet_length"></th>
+            </tr> -->
+            <tr>
+              <th>TG đùn dự kiến</th>
+              <th><input type="text" disabled id="init_press_time"></th>
+            </tr>
+            <tr>
+              <th>Billet dự kiến</th>
+              <th><input type="text" disabled id="init_billet_plan"></th>
+            </tr>
+            <tr>
+              <th>Tốc độ RAM</th>
+              <th><input type="text" disabled id="init_ram_speed"></th>
+            </tr>
+            <tr>
+              <th>Discard</th>
+              <th><input type="text" disabled id="init_press_discard"></th>
+            </tr>
+            <tr>
+              <th>Lực kéo puller</th>
+              <th><input type="text" disabled id="init_puller_force"></th>
+            </tr>
+            <tr>
+              <th>Làm mát</th>
+              <th><input type="text" disabled id="init_cooling_type"></th>
+            </tr>
+            <tr>
+              <th>Điều kiện ủ</th>
+              <th><input type="text" disabled id="init_aging_type"></th>
+            </tr>
+            <tr>
+              <th>Nhiệt độ khuôn</th>
+              <th><input type="text" disabled id="init_die_temp"></th>
+            </tr>
+            <tr>
+              <th>TG GN khuôn</th>
+              <th><input type="text" disabled id="init_die_heating_time"></th>
+            </tr>
+            <tr>
+              <th>Note</th>
+              <th><input type="text" disabled id="init_press_note"></th>
+            </tr>
+          </thead>
+        </table>
+        <table id="input_data">
+          <thead>
+            <tr>
+              <th>CTSX</th>
+              <th style="display: inline-flex;">
+                <button id="directive__input">+</button>
+                <select id="ordersheet_id" class="save-data need-clear"></select>
+              </th>
+            </tr>
+            <tr>
+              <th>Ngày đùn</th>
+              <th style="display: inline-flex;">
+                <input type="date" id="press_date_at" class="save-data need-clear no-input" style="width: 80%;">
+                <select id="press_machine_no" style="width: 20%; height: 20px;" class="save-data need-clear no-input">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                </select>
+              </th>
+            </tr>
+            <tr>
+              <th>Mã khuôn</th>
+              <th style="display: inline-flex;">
+                <input type="text" id="die__input" style="width: 20%;">
+                <select id="dies_id" style="width: 80%; height: 20px;" class="save-data need-clear no-input"></select>
+              </th>
+            </tr>
+            <tr>
+              <th>Mã sản phẩm</th>
+              <th style="display: inline-flex;">
+                <input type="text" id="init_production_number" disabled style="width: 75%;">
+                <select id="pressing_type_id" style="width: 25%; height: 20px;" class="save-data need-clear no-input">
+                  <option value="0">-</option>
+                  <option value="1">〇</option>
+                  <option value="2">◎</option>
+                  <option value="3">●</option>
+                </select>
+              </th>
+            </tr>
+            <tr>
+              <th>Người thao tác</th>
+              <th style="display: inline-flex;">
+                <input type="text" id="name__input" style="width: 20%;">
+                <select id="staff_id" style="width: 80%; height: 20px;" class="save-data need-clear no-input"></select>
+              </th>
+            </tr>
+            <tr>
+              <th>TG đùn</th>
+              <th style="display: inline-flex;">
+                <input type="text" id="press_start_at" style="width: 49%;" class="save-data need-clear no-input">
+                <input type="text" id="press_finish_at" style="width: 49%;" class="save-data need-clear no-input">
+              </th>
+            </tr>
+            <tr>
+              <th>Tốc độ RAM</th>
+              <th><input type="text" id="actual_ram_speed" class="save-data need-clear no-input"></th>
+            </tr>
+            <tr>
+              <th>Ngâm kiềm</th>
+              <th>
+                <select id="is_washed_die" class="save-data need-clear no-input">
+                  <option value="0">-</option>
+                  <option value="1">No</option>
+                  <option value="2">Yes</option>
+              </select>
+            </th>
+            </tr>
+            <tr>
+              <th>TG GN khuôn tt</th>
+              <th style="display: inline-flex;">
+                <input type="text" id="die_heating_start" style="width: 49%;" class="save-data need-clear no-input">
+                <input type="text" id="die_heating_finished" style="width: 49%;" class="save-data need-clear no-input">
+              </th>
+            </tr>
+            <tr>
+              <th>Nđ khuôn</th>
+              <th><input type="text" id="actual_die_temperature" class="save-data need-clear no-input"></th>
+            </tr>
+            <tr>
+              <th>Nđ diering</th>
+              <th><input type="text" id="diering_temp" class="save-data need-clear no-input"></th>
+            </tr>
+            <tr>
+              <th>Nđ bolster</th>
+              <th><input type="text" id="bolter_temp" class="save-data need-clear no-input"></th>
+            </tr>
+            <tr>
+              <th>Billet</th>
+              <th style="display: inline-flex;">
+                <select id="billet_size" style="width: 50%" class="save-data need-clear no-input">
+                  <option value="0">-</option>
+                  <option value="9">9</option>
+                  <option value="12">12</option>
+                  <option value="14">14</option>
+                </select>
+                <select id="billet_length" style="width: 50%" class="save-data need-clear no-input">
+                  <option value="0">-</option>
+                  <option value="600">600</option>
+                  <option value="1200">1200</option>
+                </select>
+              </th>
+            </tr>
+            <tr>
+              <th>Nhiệt độ billet</th>
+              <th><input type="text" id="billet_temp" class="save-data need-clear no-input"></th>
+            </tr>
+            <tr>
+              <th>Nđ container</th>
+              <th>Stem-----------Die</th>
+            </tr>
+            <tr>
+              <th>Trên</th>
+              <th style="display: inline-flex;">
+                <input type="text" id="container_upside_stemside_temperature" class="save-data need-clear no-input" style="width: 50%">
+                <input type="text" id="container_upside_dieside_temperature" class="save-data need-clear no-input" style="width: 50%">
+              </th>
+            </tr>
+            <tr>
+              <th>Dưới</th>
+              <th style="display: inline-flex;">
+                <input type="text" id="container_downside_stemside_temperature" class="save-data need-clear no-input" style="width: 50%">
+                <input type="text" id="container_downside_dieide_temperature" class="save-data need-clear no-input" style="width: 50%">
+              </th>
+            </tr>
+            <!-- <tr>
+              <th>Trên khuôn</th>
+              <th><input type="text" id="container_upside_dieside_temperature" class="save-data need-clear no-input"></th>
+            </tr>
+            <tr>
+              <th>Dưới khuôn</th>
+              <th><input type="text" id="container_downside_dieide_temperature" class="save-data need-clear no-input"></th>
+            </tr>
+            <tr> -->
+              <th>Note</th>
+              <th><input type="text" id="special_note" class="save-data need-clear complete-input"></th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+      <div class="mid__wrapper">
+        <!-- ラム速等テーブル -->
+      <div style="display: flex;   flex-direction: column; height: 200px;">
+        <table id="ram-values__table">
+          <thead>
+            <tr>
+              <td>id</td>
+              <th></th>
+              <th colspan="3">1000/400mm</th>
+              <th colspan="3">200mm</th>
+            </tr>
+            <tr>
+              <td>id</td>
+              <th>No.</th>
+              <th>spd</th>
+              <th>press</th>
+              <th>temp</th>
+              <th>spd</th>
+              <th>press</th>
+              <th>temp</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>id</td>
+              <td>1</td>
+              <td>
+                <input type="text" class="save-data need-clear no-input ram_speed" />
+              </td>
+              <td>
+                <input type="text" class="save-data need-clear no-input ram_pressure" />
+              </td>
+              <td>
+                <input type="text" class="save-data need-clear no-input work_temperature" />
+              </td>
+              <td>
+                <input type="text" class="save-data need-clear no-input ram_speed" />
+              </td>
+              <td>
+                <input type="text" class="save-data need-clear no-input ram_pressure" />
+              </td>
+              <td>
+                <input type="text" class="save-data need-clear no-input work_temperature" />
+              </td>
+            </tr>
+            <tr>
+              <td>id</td>
+              <td>2</td>
+              <td>
+                <input type="text" class="save-data need-clear ram_speed" />
+              </td>
+              <td>
+                <input type="text" class="save-data need-clear ram_pressure" />
+              </td>
+              <td>
+                <input type="text" class="save-data need-clear work_temperature" />
+              </td>
+              <td>
+                <input type="text" class="save-data need-clear ram_speed" />
+              </td>
+              <td>
+                <input type="text" class="save-data need-clear ram_pressure" />
+              </td>
+              <td>
+                <input type="text" class="save-data need-clear work_temperature" />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <table id="add_ram-values__table">
+          <tbody>
+            <tr>
+              <th></th>
+              <th colspan="3">1000/400mm</th>
+              <th colspan="3">200mm</th>
+            </tr>
+            <tr>
+              <th>No.</th>
+              <th>spd</th>
+              <th>press</th>
+              <th>temp</th>
+              <th>spd</th>
+              <th>press</th>
+              <th>temp</th>
+            </tr>
+            <tr>
+              <td><input type="text" class="no-input ram" id="ram_no"></td>
+              <td><input type="text" class="no-input ram" id="ram_1000_spd"></td>
+              <td><input type="text" class="no-input ram" id="ram_1000_prs"></td>
+              <td><input type="text" class="no-input ram work_temperature" id="ram_1000_temp"></td>
+              <td><input type="text" class="no-input ram" id="ram_200_spd"></td>
+              <td><input type="text" class="no-input ram" id="ram_200_prs"></td>
+              <td><input type="text" class="no-input ram work_temperature" id="ram_200_temp"></td>
+              <td><button id="add_ram_data" disabled>Save</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="right__wrapper">
+      
+      <table id="bundle__table">
+        <thead>
+          <tr>
+            <td></td>
+            <td colspan="4" id="ttb">Bundle No</td>
+          </tr>
+          <tr>
+            <td>id</td>
+            <td>Lot</td>
+            <td>Bundle</td>
+            <td>Qty</td>
+            <td>Mfg</td>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+      <table id="add_bundle__table">
+        <thead>
+          <tr>
+            <td>import_billet_id</td>
+            <td>Lot</td>
+            <td>Bundle</td>
+            <td>Qty</td>
+            <td>Mfg</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input id="import_billet_id" class="no-input"/></td>
+            <td><input id="lot_no" class="no-input"/></td>
+            <td>
+              <select id="bundle_no" class="no-input"></select>
+            </td>
+            <td><input id="quantity" class="no-input"/></td>
+            <td><select id="mfg">
+              <option value="1">Dubai</option>
+              <option value="2">VN</option>
+            </select></td>
+            <td><button id="add_bundle__button" disabled>Save</button></td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- <button id="add_bundle__button" disabled>Save</button> -->
+    </div>
+  </div>
+
+    <div class="button__wrapper">
+      <button id="save__button" disabled>Save</button>
+      <button id="update__button" disabled>Update</button>
+      <button id="test__button">TEST</button>
+      <div class="input-block__outer">
+        <div class="input__title">P Type</div>
+        <select id="press-type-filter">
+          <option value=""></option>
+          <option value="1">〇</option>
+          <option value="2">◎</option>
+          <option value="3">●</option>
+        </select>
+      </div>
+      <div class="input-block__outer">
+        <div class="input__title">Die</div>
+        <input id="die-number-fileter" class="need-clear" type="text" />
+      </div>
+      <div class="input-block__outer">
+        <div class="input__title">Term</div>
+        <input id="start-term" class="need-clear" type="date" />-
+        <input id="end-term" class="need-clear" type="date" />
+      </div>
+      <button id="download_data">Download</button>
+    </div>
+    <div class="summary__wrapper">
+      <table id="summary__table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Date</th>
+            <th>Prs</th>
+            <th>Die</th>
+            <th>Die_id</th>
+            <th>O/S</th>
+            <th>Typ</th>
+            <th>Typ_id</th>
+            <th>isWshd</th>
+            <th>isWshd_id</th>
+            <th>BiletBandl</th>
+            <th>B/S</th>
+            <th>B/L</th>
+            <th>PQty</th>
+            <th>AQty</th>
+            <th>StopCu</th>
+            <th>Start</th>
+            <th>Stop</th>
+            <th>RamSpd</th>
+            <th>DieTmp</th>
+            <th>P/D/S</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <!-- 削除確認ダイアログ -->
+    <dialog class="dialog__wrapper" id="delete__dialog">
+      Do you Delete?
+      <button id="delete-dialog-cancel__button">Cancel</button>
+      <button id="delete-dialog-delete__button">Delete</button>
+    </dialog>
+    <!-- rack delete dialog -->
+    <dialog class="dialog__wrapper" id="delete-rack__dialog">
+      Do you Delete?
+      <button id="delete-rack-cancel__button">Cancel</button>
+      <button id="delete-rack-delete__button">Delete</button>
+    </dialog>
+
+    <script src="./lib/jquery.min.js"></script>
+    <script src="./scr/DailyReport1.js"></script>
+  </body>
+</html>

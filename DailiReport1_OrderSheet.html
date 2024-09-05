@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ordersheet Input Page</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/DailiReport_OrderSheet.css" />
+  </head>
+
+  <body>
+    <header>Ordersheet</header>
+    <div class="summary__wrapper">
+      <table id="summary__table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th><input id="die_number__input" placeholder="Tìm trong bảng" style="width: 95px; text-align: left;" type="text" onkeyup="timkiem();" /></th>
+            <th>Delivery</th>
+            <th>Issue</th>
+            <th>Production Number</th>
+            <th>Qty.</th>
+            <th>OK</th>
+            <th>Packed</th>
+            <th>Note</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <script src="./lib/jquery-3.3.1.min.js"></script>
+    <script src="./scr/DailiReport1_OrderSheet.js"></script>
+  </body>
+</html>

@@ -31,6 +31,9 @@
       <!-- <div class="left__area"></div> -->
       <div class="right__area">
         <!-- <div class="title">Report</div> -->
+        <button id="ex_daily_report1">ExtrusionN<br />Daily Input</button>
+        <button id="ex_daily_report2">ExtrusionN<br />Diemark</button>
+        <button id="ex_daily_report3">ExtrusionN<br />Cutting</button>
         <button id="ex_daily_report">Extrusion<br />Daily Input</button>
         <button id="ordersheet">OrderSheet</button>
         <button id="quality_report">Quality<br />Report</button>
@@ -77,6 +80,7 @@
 
       <div class="right__area">
         <button id="check_billet">Check SL billet</button>
+        <button id="import_billet">Import billet</button>
         <!-- <button id="check_temp">Check nhiệt độ</button> -->
         <button id="staff-page">Staff<br />QA Code</button>
         <button id="csv_download">CSV<br />Down load</button>
@@ -88,7 +92,15 @@
       $(document).on("click", "#ex_daily_report", function () {
         window.open("DailyReportV17.html");
       });
-
+      $(document).on("click", "#ex_daily_report1", function () {
+        window.open("DailyReport1.html");
+      });
+      $(document).on("click", "#ex_daily_report2", function () {
+        window.open("DailyReport2.html");
+      });
+      $(document).on("click", "#ex_daily_report3", function () {
+        window.open("DailyReport3.html");
+      });
       $(document).on("click", "#maintenance", function () {
         window.open("Maintenance.html");
       });
@@ -211,6 +223,10 @@
 
       $(document).on("click", "#check_billet", function () {
         window.open("CheckBilletV4.html");
+      });
+
+      $(document).on("click", "#import_billet", function () {
+        window.open("ImportBillet.html");
       });
 
       $(document).on("click", "#check_temp", function () {

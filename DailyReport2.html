@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rz-Diemark</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/DailyReport2.css" />
+</head>
+
+<body>
+    <header>Rz-Diemark</header>
+    <div class="buttom__wrapper">
+            <table id="summary_table">
+                <thead>
+                    <tr>
+                        <th>press_id</th>
+                        <th>Ngày</th>
+                        <th>die_id</th>
+                        <th><input id="die_number__input" placeholder="Tìm trong bảng" style="width: 105px; text-align: left;" type="text"/></th>
+                        <th>Stl</th>
+                        <th>Sl</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+    <div style="width: 560px">
+        <table id="data__table">
+            <thead>
+                <tr>
+                  <th>id</th>
+                  <th>No.</th>
+                  <th>Chiều dài</th>
+                  <th>Độ nhám</th>
+                  <th>Dấu khuôn</th>
+                  <th>Người đo</th>
+                  <th>Kết quả</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <table id="add_new_data">
+        <thead>
+            <tr>
+              <th>No.</th>
+              <th>Chiều dài</th>
+              <th>Độ nhám</th>
+              <th>Dấu khuôn</th>
+              <th>Người đo</th>
+              <th>Kết quả</th>
+              <th><button id="add_new" disabled>+</button></th>
+              </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input id="no" class="need-clear" type="text" disabled/></td>
+                <td><input id="length" class="need-clear no-input" type="text" /></td>
+                <td><input id="rz" class="need-clear" type="text" /></td>
+                <td><input id="die_mark" class="need-clear" type="text" /></td>
+                <td>
+                  <select id="name__select" class="need-clear" >
+                  </select>
+                </td>
+                <td>
+                  <select id="result" class="need-clear" >
+                    <!-- <option value="0">--</option> -->
+                    <option value="1">OK</option>
+                    <option value="0">NG</option>
+                  </select>
+                </td>
+            </tr>
+        </tbody>
+        </table>
+      </div>
+    </div>         
+    <script src="./lib/jquery.min.js"></script>
+    <script src="./scr/DailyReport2.js"></script>
+</body>
+
+</html>

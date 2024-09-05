@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cutting</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/DailyReport3.css" />
+</head>
+
+<body>
+    <header>Cutting</header>
+    <div class="buttom__wrapper">
+      <table id="summary_table">
+        <thead>
+          <tr>
+            <th>press_id</th>
+            <th>Ngày</th>
+            <th>die_id</th>
+            <th><input id="die_number__input" placeholder="Tìm trong bảng" style="width: 105px; text-align: left;" type="text"/></th>
+            <th>Stl</th>
+            <th>Sl</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+      <div style="display: flex; flex-direction: row">
+        <div>
+          <table id="data__table">
+            <thead>
+              <tr>
+                <th>id</th>
+                <th>No.</th>
+                <th>SP dài</th>
+                <th>Kéo</th>
+                <th>SL SP</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+          <table id="add_new_data">
+            <thead>
+                <tr>
+                  <th>No.</th>
+                  <th>SP dài</th>
+                  <th>Kéo</th>
+                  <th>SL SP</th>
+                  <th><button id="add_new" disabled>+</button></th>
+                  </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input id="no" class="need-clear" type="text" disabled/></td>
+                <td><input id="work_length" class="need-clear no-input" type="text" /></td>
+                <td><input id="stretch_length" class="need-clear" type="text" /></td>
+                <td><input id="work_quantity" class="need-clear" type="text" /></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="height: 100%;">
+          <table id="input_table">
+            <thead>
+              <tr>
+                <th>SP dài YC</th>
+                <th><input type="text" disabled id="production_length"></th>
+                <th>SP dài TT</th>
+                <th><input type="text" id="first_actual_length" class="save-data need-clear "></th>
+              </tr>
+              <tr>
+                <th>Người cắt</th>
+                <th><select id="cutting_staff_id" class="save-data need-clear "></select></th>
+                <th>Ngày cắt</th>
+                <th><input type="date" id="cutting_date" class="save-data need-clear "></th>
+              </tr>
+              <tr>
+                <th>Bắt đầu</th>
+                <th><input type="time" id="cutting_start" class="save-data need-clear "></th>
+                <th>Kết thúc</th>
+                <th><input type="time" id="cutting_finish" class="save-data need-clear "></th>
+              </tr>
+              <tr>
+                <th colspan="2">Chiều dài cắt bỏ</th>
+                <th>SL cắt</th>
+                <th><input type="text" disabled id="mn"></th>
+              </tr>
+              <tr>
+                <th>H</th>
+                <th><input type="text" disabled id="h"></th>
+              </tr>
+              <tr>
+                <th>A</th>
+                <th><input type="text" disabled id="a"></th>
+              </tr>
+              <tr>
+                <th>B</th>
+                <th><input type="text" disabled id="b"></th>
+              </tr>
+              <tr>
+                <th>C</th>
+                <th><input type="text" disabled id="c"></th>
+              </tr>
+              <tr>
+                <th>D</th>
+                <th><input type="text" disabled id="d"></th>
+              </tr><tr>
+                <th>E</th>
+                <th><input type="text" disabled id="e"></th>
+              </tr>
+              <tr>
+                <th>F</th>
+                <th><input type="text" disabled id="f"></th>
+              </tr>
+              <tr>
+                <th>END</th>
+                <th><input type="text" disabled id="end"></th>
+              </tr>
+            </thead>
+          </table>
+
+          <table id="rack__table">
+            <thead>
+              <tr>
+                <th></th>
+                <th colspan="3" id="tt1">Rack</th>
+              </tr>
+              <tr>
+                <th>id</th>
+                <th>Order</th>
+                <th>Rack</th>
+                <th>Qty</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+          <table id="rack__table_input">
+            <thead>
+              <tr>
+                <th>Order</th>
+                <th>Rack</th>
+                <th><button id="add-rack__button" disabled>+</button></th>
+              </tr>
+              <tr>
+                <th><input type="text" id="order" disabled></th>
+                <th><input id="racknumber__input" class="need-clear no-input" type="text"/></th>
+                <th><input id="rackqty__input" class="need-clear no-input" type="text" /></th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+      </div>
+    </div>         
+  <script src="./lib/jquery.min.js"></script>
+  <script src="./scr/DailyReport3.js"></script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ImportBillet</title>
+    <link rel="stylesheet" href="./css/main2.css" />
+    <link rel="stylesheet" href="./css/ImportBillet.css" />
+  </head>
+
+  <body>
+    <header>ImportBillet</header>
+
+    <div class="main__wrapper">
+      <div class="top__wrapper">
+        <table id="excel_table" class="table w3-table-all w3-hoverable">
+          <thead>
+            <tr>
+              <th>Lot</th>
+              <th>Bundle</th>
+              <th>Qty</th>
+              <th>Size</th>
+              <th>Material</th>
+              <th>Length</th>
+              <th>Mfg</th>
+              <th>X</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div class="button__wrapper">
+        <button id="save__button" disabled>
+          <div class="title__letters">Save</div>
+        </button>
+        <!-- <button id="update__button" disabled>
+          <div class="title__letters">Update</div>
+        </button> -->
+        <button id="form">Form</button>
+        <label for="fileupload" class="custom-file-upload">
+          Upload
+      </label>
+        <input id="fileupload" type=file name="files[]" class="custom-file-upload">
+      </div>
+      <div class="table__wrapper">
+        <table id="summary__table">
+          <thead>
+            <tr>
+              <th>id</th>
+              <th>Lot</th>
+              <th>Bundle</th>
+              <th>Qty</th>
+              <th>Size</th>
+              <th>Material</th>
+              <th>Length</th>
+              <th>Mfg</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+    <script src="./lib/excel.js"></script>
+    <script src="./lib/jquery.min.js"></script>
+    <script src="./lib/base.js"></script>
+    <script src="./scr/ImportBillet.js"></script>
+  </body>
+</html>

@@ -1,0 +1,60 @@
+body {
+  height: 450px;
+}
+/* ======================        summary-table       ======================= */
+.summary__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 350px;
+}
+#summary__table {
+  width: 770px;
+}
+#summary__table tbody {
+  height: 270px;
+}
+/* id */
+#summary__table th:nth-child(1),
+#summary__table td:nth-child(1) {
+  display: none;
+}
+/* ordersheet number */
+#summary__table th:nth-child(2),
+#summary__table td:nth-child(2) {
+  width: 100px;
+}
+/* Delivery Date */
+#summary__table th:nth-child(3),
+#summary__table td:nth-child(3) {
+  width: 100px;
+}
+#summary__table td:nth-child(3) {
+  text-align: center;
+}
+/* Issue Date */
+#summary__table th:nth-child(4),
+#summary__table td:nth-child(4) {
+  width: 100px;
+}
+#summary__table td:nth-child(4) {
+  text-align: center;
+}
+/* production number */
+#summary__table th:nth-child(5),
+#summary__table td:nth-child(5) {
+  width: 150px;
+}
+/* production Qty */
+#summary__table th:nth-child(6),
+#summary__table td:nth-child(6),
+#summary__table th:nth-child(7),
+#summary__table td:nth-child(7),
+#summary__table th:nth-child(8),
+#summary__table td:nth-child(8) {
+  width: 50px;
+}
+#summary__table th:nth-child(8),
+#summary__table td:nth-child(8) {
+  display: none;
+}

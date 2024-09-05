@@ -76,3 +76,9 @@ body {
 .dropdown:hover .dropbtn {
   background-color: #00a2ff;
 }
+
+button {
+  width: 100px;
+  height: 30px;
+  margin: 5px auto 10px auto;
+}
