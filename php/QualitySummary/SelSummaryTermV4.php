@@ -20,31 +20,35 @@
       )
       );
 
-      $prepare = $dbh->prepare("
-SELECT 
-	t_press.id,
-	DATE_FORMAT(t_press.press_date_at, '%m-%d'),
-	m_dies.die_number,
-	m_pressing_type.pressing_type,
-	t_press.plan_billet_quantities,
-	t_press.actual_billet_quantities,
-	t20.work_quantity,
-	t10.total_ng,
-	t20.work_quantity - t10.total_ng AS total_ok,
-	CONCAT(ROUND((t20.work_quantity - t10.total_ng + t10.code_401)/t20.work_quantity*100, 1),'%') AS per,
-	DATE_FORMAT(t_press.dimension_check_date, '%m-%d'),
-	DATE_FORMAT(t_press.etching_check_date, '%m-%d'),
-	CASE
+      $prepare = $dbh->prepare("SELECT 
+    t_press.id,
+    DATE_FORMAT(t_press.press_date_at, '%m-%d') AS prs_d,
+    m_dies.die_number,
+    m_pressing_type.pressing_type,
+    t_press_directive.billet_input_quantity,
+    t30.prs_quantity,
+    t20.work_quantity,
+    t10.total_ng,
+    t20.work_quantity - t10.total_ng AS total_ok,
+    CONCAT(ROUND((t20.work_quantity - t10.total_ng + t10.code_401) / t20.work_quantity * 100,
+                    1),
+            '%') AS per,
+    DATE_FORMAT(t_press.dimension_check_date, '%m-%d') AS dcd,
+    CASE
         WHEN
             (t_press_sub.etching_check_staff IS NOT NULL
                 AND t_press_sub.etching_finish = 1)
-			OR
-			(t_press_sub.etching_check_staff IS NOT NULL 
-				AND t_press_sub.etching_finish = 2)
+                OR (t_press_sub.etching_check_staff IS NOT NULL
+                AND t_press_sub.etching_finish = 2)
         THEN
             DATE_FORMAT(t_press.etching_check_date, '%m-%d')
-			WHEN (t_press_sub.etching_check_staff IS NULL OR t_press_sub.etching_finish = 0) THEN ''
+        WHEN
+            (t_press_sub.etching_check_staff IS NULL
+                OR t_press_sub.etching_finish = 0)
+        THEN
+            ''
     END AS ett,
+	DATE_FORMAT(t_press.aging_check_date, '%m-%d'),
 	DATE_FORMAT(t_press.packing_check_date, '%m-%d'),
 	t10.code_301,
 	t10.code_302,
@@ -113,14 +117,19 @@ LEFT JOIN
 		LEFT JOIN m_quality_code ON t_press_quality.quality_code_id = m_quality_code.id
 		GROUP BY t_using_aging_rack.t_press_id
 	) t10 ON t10.t_press_id = t_press.id 
-LEFT JOIN 
-	(
-		SELECT 
-			t_using_aging_rack.t_press_id,
-			SUM(t_using_aging_rack.work_quantity) AS work_quantity
-		FROM t_using_aging_rack
-		GROUP BY 	t_using_aging_rack.t_press_id
-	) t20 ON t20.t_press_id = t_press.id
+LEFT JOIN
+    (SELECT 
+        t_using_aging_rack.t_press_id,
+            SUM(t_using_aging_rack.work_quantity) AS work_quantity
+    FROM
+        t_using_aging_rack
+    GROUP BY t_using_aging_rack.t_press_id) t20 ON t20.t_press_id = t_press.id
+        LEFT JOIN
+    (SELECT 
+        t_bundle.press_id, SUM(t_bundle.quantity) AS prs_quantity
+    FROM
+        t_bundle
+    GROUP BY t_bundle.press_id) t30 ON t30.press_id = t_press.id
 WHERE m_dies.die_number LIKE :die_number
     AND t_press.press_date_at BETWEEN :start_term AND :end_term $add
 GROUP BY t_press.id

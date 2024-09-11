@@ -1,6 +1,7 @@
 // 2021/09/10 start to edit
 // 削除確認ダイアログ
 let deleteDialog = document.getElementById("delete__dialog");
+let deletePressDialog = document.getElementById("delete_press_dialog");
 
 // 初期値
 let ajaxReturnData;
@@ -1586,9 +1587,12 @@ $(document).on("click", "#summary__table tbody tr", function (e) {
     $("#racknumber__input").removeClass("complete-input").addClass("no-input");
     $("#rackqty__input").removeClass("complete-input").addClass("no-input");
   } else {
-    // 選択レコードを再度クリックした時
-    // 削除問い合わせダイアログ
-    // deleteDialog.showModal();
+    let pas = prompt("Please enter your Password", "********");
+    if ((pas == '01910926') || (pas == '02216872')) {
+      deleteDialog.showModal();
+    } else {
+      alert("Wrong pas");
+    }
   }
   checkSum();
   checkBilletQty();
@@ -2347,3 +2351,17 @@ function downloadFile() {
   a.click();
   a.remove();
 }
+
+$(document).on("click", "#delete-dialog-cancel__button", function () {
+  deletePressDialog.close();
+});
+$(document).on("click", "#delete-dialog-delete__button", function () {
+  let fileName = "DelPressData.php";
+  sendData = {
+    targetId: $("#selected__tr").find("td").eq(0).html(),
+  };
+  console.log(sendData);
+  myAjax.myAjax(fileName, sendData);
+  deletePressDialog.close();
+  setSummaryTable();
+});

@@ -16,14 +16,13 @@
       )
       );
 
-      $prepare = $dbh->prepare("
-      SELECT 
+      $prepare = $dbh->prepare("SELECT 
     t_press.id AS press_id,
     DATE_FORMAT(t_press.press_date_at, '%Y-%m-%d') AS press_date_at,
     t_press.dies_id,
     m_dies.die_number,
     m_pressing_type.pressing_type,
-    t_press.actual_billet_quantities
+    t30.prs_quantity
 FROM
     t_press
         LEFT JOIN
@@ -36,7 +35,13 @@ FROM
     FROM
         extrusion.t_measurement
     GROUP BY t_measurement.press_id) AS t10 ON t10.press_id = t_press.id
-    WHERE
+        LEFT JOIN
+    (SELECT 
+        t_bundle.press_id, SUM(t_bundle.quantity) AS prs_quantity
+    FROM
+        t_bundle
+    GROUP BY t_bundle.press_id) t30 ON t30.press_id = t_press.id
+WHERE
     die_number LIKE '%$die_number__input%'
 ORDER BY t_press.press_date_at DESC , t_press.press_start_at DESC
 LIMIT 100;
