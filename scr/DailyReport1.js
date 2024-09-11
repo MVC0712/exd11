@@ -2358,7 +2358,7 @@ $(document).on("click", "#delete-dialog-cancel__button", function () {
 $(document).on("click", "#delete-dialog-delete__button", function () {
   let fileName = "DelPressData.php";
   sendData = {
-    targetId: $("#selected__tr").find("td").eq(0).html(),
+    press_id: $("#selected__tr").find("td").eq(0).html(),
   };
   console.log(sendData);
   myAjax.myAjax(fileName, sendData);
