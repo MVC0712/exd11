@@ -79,6 +79,7 @@
 	t_press.special_note
 FROM t_press
 LEFT JOIN m_pressing_type ON t_press.pressing_type_id = m_pressing_type.id
+LEFT JOIN t_press_directive ON t_press_directive.id = t_press.press_directive_id
 LEFT JOIN m_dies ON t_press.dies_id = m_dies.id
 LEFT JOIN t_press_sub ON t_press.id = t_press_sub.press_id
 LEFT JOIN 
