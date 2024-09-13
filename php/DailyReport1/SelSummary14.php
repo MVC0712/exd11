@@ -79,7 +79,7 @@ FROM
         LEFT JOIN
     t_press_directive ON t_press_directive.id = t_press.press_directive_id
           WHERE m_dies.die_number LIKE :die_number
-          AND pressing_type_id LIKE :press_type
+          AND t_press.pressing_type_id LIKE :press_type
           GROUP BY t_press.id
       ORDER BY t_press.press_date_at DESC , t_press.press_start_at
       LIMIT 100
@@ -153,7 +153,7 @@ FROM
           WHERE m_dies.die_number LIKE :die_number
                         AND
                         t_press.press_date_at BETWEEN :start_date AND :end_date
-                        AND pressing_type_id LIKE :press_type
+                        AND t_press.pressing_type_id LIKE :press_type
             GROUP BY t_press.id
       ORDER BY t_press.press_date_at DESC , t_press.press_start_at
       LIMIT 100
