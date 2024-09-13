@@ -15,6 +15,9 @@
       )
     );
 
+    $stmt = $dbh->prepare("SET FOREIGN_KEY_CHECKS = 0;");
+    $stmt->execute();
+
     $stmt = $dbh->prepare("DELETE FROM t_press_sub_data WHERE press_id = $press_id");
     $stmt->execute();
 
@@ -22,6 +25,12 @@
     $stmt->execute();
 
     $stmt = $dbh->prepare("DELETE FROM t_using_aging_rack WHERE t_press_id = $press_id");
+    $stmt->execute();
+
+    $stmt = $dbh->prepare("DELETE FROM t_press WHERE id = $press_id");
+    $stmt->execute();
+
+    $stmt = $dbh->prepare("SET FOREIGN_KEY_CHECKS = 1;");
     $stmt->execute();
 
     echo(json_encode("Deleted"));
