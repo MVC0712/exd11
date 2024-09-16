@@ -2352,10 +2352,10 @@ function downloadFile() {
   a.remove();
 }
 
-$(document).on("click", "#delete-dialog-cancel__button", function () {
+$(document).on("click", "#delete_press_cancel", function () {
   deletePressDialog.close();
 });
-$(document).on("click", "#delete-dialog-delete__button", function () {
+$(document).on("click", "#delete_press", function () {
   let fileName = "DelPressData.php";
   sendData = {
     press_id: $("#selected__tr").find("td").eq(0).html(),
