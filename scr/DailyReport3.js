@@ -250,7 +250,14 @@ $(document).on("click", "#summary_table tbody tr", function(e) {
   };
   myAjax.myAjax(fileName, sendData);
   makeDataTable($("#data__table tbody"), ajaxReturnData);
-  
+
+  ileName = "./php/DailyReport3/SelScretch.php";
+  sendData = {
+    press_id: press_id,
+  };
+  myAjax.myAjax(fileName, sendData);
+  $("#stretch_ratio").val(ajaxReturnData[0].stretch_ratio);
+
   fileName = "./php/DailyReport3/SelPrsData.php";
   sendData = {
     press_id: press_id,

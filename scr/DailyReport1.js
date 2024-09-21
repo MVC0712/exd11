@@ -968,7 +968,7 @@ function makeQuantity(id) {
   $("#quantity").val(ajaxReturnData[0].quantity).removeClass("no-input").addClass("complete-input");;
 };
 function makeBundleTable() {
-  fileName = "./php/DailyReport1/SelBundleV15.php";
+  fileName = "./php/DailyReport1/SelBundleV151.php";
   sendData = {
     id: $("#selected__tr").find("td").eq(0).html(),
   };
@@ -1547,7 +1547,7 @@ function setSummaryTable() {
 // ------------------------- Summary Table ---------------------------------
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 $(document).on("click", "#summary__table tbody tr", function (e) {
-  let fileName = "./php/DailyReport1/SelSelData14.php";
+  let fileName = "./php/DailyReport1/SelSelData144.php";
   let sendData;
   if (!$(this).hasClass("selected-record")) {
     // tr に class を付与し、選択状態の background colorを付ける

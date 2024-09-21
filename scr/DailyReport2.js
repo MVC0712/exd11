@@ -221,9 +221,9 @@ $(document).on("keyup", "#length", function() {
 });
 
 $(document).on("keyup", "#no", function() {
-  if ((5 < $(this).val()) && 60 > $(this).val())
-      $(this).removeClass("no-input").addClass("complete-input");
-  else $(this).removeClass("complete-input").addClass("no-input");
+  // if ((5 < $(this).val()) && 60 > $(this).val())
+  //     $(this).removeClass("no-input").addClass("complete-input");
+  // else $(this).removeClass("complete-input").addClass("no-input");
   addCheck();
 });
 
