@@ -44,7 +44,7 @@ function makeSelStaff() {
 	};
 	myAjax.myAjax(fileName, sendData);
 	stafSelect(ajaxReturnData, "etching_staff", 2);
-	stafSelect(ajaxReturnData, "etching_check_staff", 1);
+	stafSelect(ajaxReturnData, "etching_check_staff", 2);
 };
 function stafSelect(data, dom, pos) {
 	$("#" + dom + " > option").remove();
