@@ -38,7 +38,7 @@
         "aging_check_date", "packing_check_date", "code_301", "code_302", "code_303", "code_304",
         "code_305", "code_306", "code_307", "code_308", "code_309", "code_310", "code_311", "code_312",
         "code_313", "code_314", "code_315", "code_316", "code_317", "code_318", "code_319", "code_320",
-        "code_321", "code_322", "code_323", "code_324", "code_351"];
+        "code_321", "code_322", "code_323", "code_324", "code_351", "code_401"];
       $export_sql = "
 			SELECT 
 			DATE_FORMAT(t_press.press_date_at, '%Y-%m-%d') AS press_date,
@@ -86,7 +86,8 @@
 			t10.code_322,
 			t10.code_323,
 			t10.code_324,
-			t10.code_351
+			t10.code_351,
+			t10.code_401
 		FROM t_press
 		LEFT JOIN m_pressing_type ON t_press.pressing_type_id = m_pressing_type.id
 		LEFT JOIN m_dies ON t_press.dies_id = m_dies.id
@@ -121,7 +122,8 @@
 					SUM(CASE WHEN m_quality_code.quality_code = 322 THEN t_press_quality.ng_quantities ELSE 0 END) AS code_322,
 					SUM(CASE WHEN m_quality_code.quality_code = 323 THEN t_press_quality.ng_quantities ELSE 0 END) AS code_323,
 					SUM(CASE WHEN m_quality_code.quality_code = 324 THEN t_press_quality.ng_quantities ELSE 0 END) AS code_324,
-					SUM(CASE WHEN m_quality_code.quality_code = 351 THEN t_press_quality.ng_quantities ELSE 0 END) AS code_351
+					SUM(CASE WHEN m_quality_code.quality_code = 351 THEN t_press_quality.ng_quantities ELSE 0 END) AS code_351,
+					SUM(CASE WHEN m_quality_code.quality_code = 401 THEN t_press_quality.ng_quantities ELSE 0 END) AS code_401
 				FROM t_using_aging_rack
 				LEFT JOIN t_press_quality ON t_press_quality.using_aging_rack_id = t_using_aging_rack.id
 				LEFT JOIN m_quality_code ON t_press_quality.quality_code_id = m_quality_code.id
