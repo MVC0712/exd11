@@ -4,6 +4,8 @@ let meaStaff =[{id: 30, staff_name: "Trần Thị Thảo"},
                 {id: 72, staff_name: "Hồ Thị Thủy"},
                 {id: 41, staff_name: "Nguyễn Thị Vui"},
                 {id: 60, staff_name: "Đinh Kiều Diễm"},
+                {id: 82, staff_name: "Trần Thị Mỹ Hà"},
+                {id: 83, staff_name: "Nguyễn Thị Diễm Trinh"},
             ];
 
 let imageList = [];
