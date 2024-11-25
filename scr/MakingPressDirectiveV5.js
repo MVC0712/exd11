@@ -1149,7 +1149,7 @@ $(function(){
 		var billet_temperature = ajaxReturnData[0].billet_temperature + "°C";
 		var billet_taper_heating = ajaxReturnData[0].billet_taper_heating + "°C/m";
         var billet_t = billet_temperature + "-" + billet_taper_heating;
-		var die_temperature = ajaxReturnData[0].die_temperature + "°C";
+		var die_temperature = ajaxReturnData[0].die_temperature + " ± 5°C";
         var die_heating_time = ajaxReturnData[0].die_heating_time + "h";
 		var stretch_ratio = ajaxReturnData[0].stretch_ratio + "%";
 		var cooling_type = ajaxReturnData[0].cooling_type;
