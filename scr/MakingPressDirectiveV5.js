@@ -1327,16 +1327,18 @@ $(function(){
               <table style="overflow: auto; width : auto;">
                   <tbody style="overflow: auto; height: 40px;">
                       <tr>
-                          <td style="width: 45px;">Mã khuôn</td>
+                          <td style="width: 35px;">Mã khuôn</td>
                           <td ><strong style="font-size: 10px; ">${die_number}</strong></td>
                           <td style="width: 35px;">Vòng khuôn</td>
                           <td style="width: 70px;"><strong style="font-size: 10px; ">${die_ring}</strong></td>
+                          <td> XN khuôn</td>
                       </tr>
                       <tr style="border-bottom: 1px solid rgb(0, 0, 0);">
-                          <td style="width: 45px;">Mã sản phẩm</td>
+                          <td style="width: 35px;">Mã sản phẩm</td>
                           <td ><strong style="font-size: 10px; ">${production_number}</strong></td>
                           <td style="width: 35px;">Đệm khuôn</td>
                           <td style="width: 70px;"><strong style="font-size: 10px; ">${bolster_name}</strong></td>
+                          <td> YES &#160&#160&#160&#160 NO</td>
                       </tr>
                   </tbody>
               </table>
@@ -1784,14 +1786,15 @@ $(function(){
                   <thead>
                       <tr>
                           <th style="width: 10px;">Stt</th>
-                          <th style="width: 40px;">Chiều dài</th>
+                          <th style="width: 37px;">Chiều dài</th>
                           <th style="width: 35px;">Lượng kéo</th>
                           <th style="width: 40px;">Độ nhám (Rz)</th>
                           <th style="width: 35px;">Dấu khuôn</th>
-                          <th style="width: 39px;">Gián đoạn</th>
-                          <th style="width: 60px;">Xác nhận</th>
-                          <th style="width: 60px;">TG cắt</th>
-                          <th style="width: 48px;">Thành phẩm</th>
+                          <th style="width: 35px;">Gián đoạn</th>
+                          <th style="width: 30px;">OK /NG</th>
+                          <th style="width: 55px;">Xác nhận</th>
+                          <th style="width: 55px;">TG cắt</th>
+                          <th style="width: 35px;">Thành phẩm</th>
                           <th style="width: 17px;">302</th>
                           <th style="width: 17px;">304</th>
                           <th style="width: 17px;">314</th>
@@ -1829,14 +1832,15 @@ function makeTable() {
 	for (i = 1; i <= 65; ++i) {
 		tr=`<tr style="height: 14.8px">
                 <td style="width: 10px; font-size: 8px;">${i}</td>
-                <td style="width: 40px;"></td>
-                <td style="width: 35px;"></td>
-                <td style="width: 40px;"></td>
-                <td style="width: 35px;"></td>
                 <td style="width: 37px;"></td>
-                <td style="width: 60px;"></td>
-                <td style="width: 60px; text-align: center;">:</td>
-                <td style="width: 48px;"></td>
+                <td style="width: 35px;"></td>
+                <td style="width: 40px;"></td>
+                <td style="width: 35px;"></td>
+                <td style="width: 35px;"></td>
+                <td style="width: 30px;"></td>
+                <td style="width: 55px;"></td>
+                <td style="width: 55px; text-align: center;">:</td>
+                <td style="width: 35px;"></td>
                 <td style="width: 17px;"></td>
                 <td style="width: 17px;"></td>
                 <td style="width: 17px;"></td>
@@ -1845,6 +1849,5 @@ function makeTable() {
             </tr>`;
 		tbd += tr;
 	}
-    // console.log(trC + tbd + "</tbody>");
 	return trC + tbd + "</tbody>";
 };
