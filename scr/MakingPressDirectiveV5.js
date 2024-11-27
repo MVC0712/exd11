@@ -224,11 +224,9 @@ $(document).on("keydown", "#billet-size__select", function(e) {
 
 // Billet Input Qty  ====================================================
 $(document).on("keyup", "#billet-input-qty__input", function() {
-    if (
-        0 < Number($(this).val()) &&
-        Number($(this).val()) < 100 &&
-        $(this).val() != ""
-    )
+    if (0 <= Number($(this).val()) &&
+        Number($(this).val()) < 1000 &&
+        $(this).val() != "" )
         $(this).removeClass("no-input").addClass("complete-input");
     else $(this).removeClass("complete-input").addClass("no-input");
 });
