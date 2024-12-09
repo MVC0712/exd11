@@ -1703,6 +1703,7 @@ $(document).on("click", "#bundle__table tbody tr", function() {
       $(this).attr("id", "bundle__selected");
   } else {
       // $(this).removeClass("selected-record");
+      
       // $(this).removeAttr("id");
   }
 });
