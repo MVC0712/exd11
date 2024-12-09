@@ -1,6 +1,6 @@
 quality_code,description_vn,note_vn,description_jp,note_jp
 品質コード,内容（ベトナム語）,説明（ベトナム語）,内容（日本語）,内容（日本語）
-301,"Lỗi hình dạng","Hình dạng của sản phẩm không khớp bản vẽ",成形不良,制品形状与图纸不符
+301,"Lỗi tạo hình","Hình dạng của sản phẩm không khớp bản vẽ",成形不良,制品形状与图纸不符
 302,"Lỗi dấu khuôn","Vết cấn trên bề mặt sản phẩm do khuôn",ダイスマーク,由于模具原因造成的型材表面连续超过图纸设定的纵线伤
 303,"Lỗi mặt trong bóng khí","Bị sần sùi hoặc lỗ gây ra bởi bóng khí bên mặt trong sản phẩm",内面フクレ,因型材内壁有气泡造成的凸起或凹坑
 304,"Lỗi trầy xước","Bị trầy xước trên bề mặt hoặc trong góc khi vận chuyển cấp hàng",搬送で付く打痕,在传送、下料或天车搬运等过程中由人为原因造成的型材表面或边角的磕碰伤不良
