@@ -1,0 +1,275 @@
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.blink-animation {
+  animation: blink 3s infinite;
+}
+
+body {
+  width: 1200px;
+  height: 700px;
+}
+input {
+  width: calc(100% - 2px);
+  padding: 0;
+}
+select {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  width: 100%;
+  font-weight: initial;
+}
+select option {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+th {
+  font-weight: normal;
+}
+dialog {
+  width: 250px;
+  height: 250px;
+  border: solid;
+  border-color: red;
+  border-width: 5px;
+  /* display: flex; */
+  /* flex-direction: column; */
+}
+dialog > div {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+#dialog_title__wrapper {
+  width: 180px;
+  height: 30px;
+  background-color: red;
+  display: flex;
+  /* flex-direction: row; */
+  align-items: center;
+  justify-content: center;
+}
+#dialog_title__wrapper > div {
+  color: white;
+  font-size: 14pt;
+  font-weight: bold;
+}
+#dialog_input__title {
+  /* border: 1px 1px 0px 1px solid #0000ff; */
+  border-style: solid;
+  border-width: 1px 1px 0px 1px;
+  border-color: #0000ff;
+  height: 25px;
+  background-color: #0000ff;
+  color: white;
+  text-align: center;
+}
+dialog input {
+  width: 110px;
+}
+dialog button {
+  width: 90px;
+}
+.title__wrapper {
+  height: 25px;
+  width: initial;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid;
+  border-color: #0000ff;
+  background-color: #0000ff;
+  color: white;
+  font-size: 12pt;
+  padding: 0px 5px 0px 5px;
+}
+.unit__wrapper {
+  height: 25px;
+  width: initial;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 12pt;
+}
+.display__wrapper {
+  height: 25px;
+  width: initial;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid;
+  border-color: #0000ff;
+  font-size: 12pt;
+}
+.input__wrapper {
+  width: initial;
+}
+/* body part */
+.top__wrapper {
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  div.input__wrapper {
+    display: flex;
+    flex-direction: row;
+  }
+  #die_number__input {
+    width: 100px;
+    border-right: none;
+  }
+  #die_number__select {
+    width: 200px;
+  }
+  #die_number__div {
+    text-align: right;
+    width: 70px;
+  }
+  #die_size__div {
+    width: 100px;
+  }
+  #production_number__div {
+    width: 200px;
+  }
+  #production_weight__div {
+    width: 80px;
+  }
+  #production_length__div {
+    width: 50px;
+  }
+}
+.middle__wrapper {
+  height: 400px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+
+  input {
+    border-width: 0 1px 1px 1px;
+  }
+  select {
+    border-width: 0 1px 1px 1px;
+  }
+  .pre_directive_input__wrapper {
+    height: 25px;
+    width: initial;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid;
+    border-color: #0000ff;
+    font-size: 12pt;
+  }
+  .directive_input__wrapper {
+    margin: 0 10px 0 10px;
+  }
+  #press_date {
+    width: 120px;
+  }
+  #press_type {
+    width: 80px;
+    option,
+    select {
+      text-align: center;
+      font-family: "ＭＳ ゴシック";
+    }
+    .pre_directive_input__wrapper {
+      div {
+        font-family: "ＭＳ ゴシック";
+      }
+    }
+  }
+  #ram_speed {
+    width: 80px;
+  }
+  #billet_length {
+    width: 80px;
+  }
+  #billet_temp {
+    width: 100px;
+  }
+  #billet_taper {
+    width: 100px;
+    option {
+      text-align: right;
+    }
+  }
+  #billet_size {
+    width: 100px;
+    option {
+      text-align: right;
+    }
+  }
+  #billet_qty {
+    width: 100px;
+  }
+  #die_temp {
+    width: 100px;
+  }
+  #die_heattime {
+    width: 100px;
+  }
+
+  #stretch {
+    width: 100px;
+  }
+
+  #person_in_charge {
+    width: 200px;
+    option {
+      text-align: left;
+    }
+  }
+
+  #profile_length {
+    width: 100px;
+  }
+
+  #profile_cut {
+    width: 100px;
+    option {
+      text-align: center;
+    }
+  }
+
+  #machine_number {
+    width: 100px;
+    option {
+      text-align: center;
+    }
+  }
+
+  #press_note {
+    width: 200px;
+    textarea {
+      width: calc(100% - 2px);
+      height: 50px;
+      padding: 0;
+      border-width: 0 1px 1px 1px;
+      border-color: #0000ff;
+    }
+    .pre_directive_input__wrapper {
+      text-align: left;
+    }
+  }
+}
+
+img#cutting_img {
+  width: 700px;
+}

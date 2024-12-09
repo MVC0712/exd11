@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Press Directive Page V7</title>
+
+    <link rel="stylesheet" href="./css/main2.css" />
+    <link rel="stylesheet" href="./css/MakingPressDirectiveV7.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <header>
+      <div>
+        <img id="language__mark" src="./img/En.png" alt="Lang" />
+      </div>
+      <div><div class="title__letters" id="mode_display"></div></div>
+      <div>
+        <div>Making Directive Sheet Page</div>
+      </div>
+      <div>
+        <div>
+          <!-- <div id="summary__table_record">??? items</div> -->
+        </div>
+      </div>
+      <div>
+        <img id="window_close__mark" src="./img/close.png" alt="close button" />
+      </div>
+    </header>
+    <div class="top__wrapper">
+      <div class="input__wrapper">
+        <div class="title__wrapper">
+          <div class="title__letters">DieNumber</div>
+        </div>
+        <input id="die_number__input" type="text" />
+        <select
+          name=""
+          class="save-data need-clear input-required"
+          id="die_number__select"
+        >
+          <option value="0">No</option>
+        </select>
+        <div class="unit__wrapper">
+          <div id="die_number__div">0 dies</div>
+        </div>
+      </div>
+      <div class="input__wrapper">
+        <div class="title__wrapper">Size</div>
+        <div class="display__wrapper" id="die_size__div">&phi;300</div>
+      </div>
+      <div class="input__wrapper">
+        <div class="title__wrapper">PN</div>
+        <div class="display__wrapper" id="production_number__div"></div>
+      </div>
+      <div class="input__wrapper">
+        <div class="title__wrapper">WT</div>
+        <div class="display__wrapper" id="production_weight__div"></div>
+        <div class="unit__wrapper">
+          <div>kg/m</div>
+        </div>
+      </div>
+      <div class="input__wrapper">
+        <div class="title__wrapper">Len</div>
+        <div class="display__wrapper" id="production_length__div"></div>
+        <div class="unit__wrapper">
+          <div>m</div>
+        </div>
+      </div>
+    </div>
+    <div class="middle__wrapper">
+      <div class="directive_input__wrapper" id="press_date">
+        <div class="title__wrapper">PlanPressDate</div>
+        <div class="pre_directive_input__wrapper"><div>24-01-01</div></div>
+        <input type="text" />
+      </div>
+      <div class="directive_input__wrapper" id="dicard">
+        <div class="title__wrapper">Dscd</div>
+        <div class="pre_directive_input__wrapper"><div>35mm</div></div>
+        <input type="text" />
+      </div>
+      <div class="directive_input__wrapper" id="press_type">
+        <div class="title__wrapper">Press</div>
+        <div class="pre_directive_input__wrapper"><div>●</div></div>
+        <select name="" class="save-data need-clear" id="press__select">
+          <!-- <option value="0">No</option> -->
+          <option value="1">〇</option>
+          <option value="2">◎</option>
+          <option value="3">●</option>
+        </select>
+      </div>
+      <div class="directive_input__wrapper" id="ram_speed">
+        <div class="title__wrapper">RamSp</div>
+        <div class="pre_directive_input__wrapper">
+          <div>35</div>
+          mm/s
+        </div>
+        <input type="text" />
+      </div>
+      <div class="directive_input__wrapper" id="billet_length">
+        <div class="title__wrapper">Billet L.</div>
+        <div class="pre_directive_input__wrapper">
+          <div>1200</div>
+          mm
+        </div>
+        <input type="text" />
+      </div>
+      <div class="directive_input__wrapper" id="billet_temp">
+        <div class="title__wrapper">Billet Temp.</div>
+        <div class="pre_directive_input__wrapper">
+          <div>480</div>
+          &deg;C
+        </div>
+        <input type="text" />
+      </div>
+      <div class="directive_input__wrapper" id="billet_taper">
+        <div class="title__wrapper">Billet Taper</div>
+        <div class="pre_directive_input__wrapper">
+          <div>100</div>
+          &deg;C
+        </div>
+        <select name="" class="save-data need-clear" id="billet_taper__select">
+          <option value="0">0 &deg;C</option>
+          <option value="50">50 &deg;C</option>
+          <option value="100">100 &deg;C</option>
+        </select>
+      </div>
+      <div class="directive_input__wrapper" id="billet_size">
+        <div class="title__wrapper">Billet Size</div>
+        <div class="pre_directive_input__wrapper">
+          <div>14</div>
+          inch
+        </div>
+        <select name="" class="save-data need-clear" id="billet_size__select">
+          <option value="0">-</option>
+          <option value="9">9 inch</option>
+          <option value="12">12 inch</option>
+          <option value="14">14 inch</option>
+          <option disabled value="16">16 inch</option>
+        </select>
+      </div>
+      <div class="directive_input__wrapper" id="billet_qty">
+        <div class="title__wrapper">Billet Qty</div>
+        <div class="pre_directive_input__wrapper">
+          <div>12</div>
+          pics
+        </div>
+        <input type="text" />
+      </div>
+      <div class="directive_input__wrapper" id="die_temp">
+        <div class="title__wrapper">Die Temp.</div>
+        <div class="pre_directive_input__wrapper">
+          <div>480</div>
+          &deg;C
+        </div>
+        <input type="text" />
+      </div>
+      <div class="directive_input__wrapper" id="die_heattime">
+        <div class="title__wrapper">Die H Time</div>
+        <div class="pre_directive_input__wrapper">
+          <div>5.0</div>
+          h
+        </div>
+        <input type="text" />
+      </div>
+
+      <div class="directive_input__wrapper" id="stretch">
+        <div class="title__wrapper">Stretch</div>
+        <div class="pre_directive_input__wrapper">
+          <div>0.80</div>
+          %
+        </div>
+        <input type="text" />
+      </div>
+
+      <div class="directive_input__wrapper" id="person_in_charge">
+        <div class="title__wrapper">PersonInCharge</div>
+        <div class="pre_directive_input__wrapper">
+          <div>Trần Nhật Duy</div>
+        </div>
+        <select name="" class="save-data need-clear" id="billet_size__select">
+          <option value="0">-</option>
+        </select>
+      </div>
+
+      <div class="directive_input__wrapper" id="profile_length">
+        <div class="title__wrapper">l</div>
+        <div class="pre_directive_input__wrapper">
+          <div>1.5</div>
+          m
+        </div>
+        <input type="text" />
+      </div>
+
+      <div class="directive_input__wrapper" id="profile_length">
+        <div class="title__wrapper">m</div>
+        <div class="pre_directive_input__wrapper">
+          <div>18</div>
+          pics
+        </div>
+        <input type="text" />
+      </div>
+
+      <div class="directive_input__wrapper" id="profile_length">
+        <div class="title__wrapper">n</div>
+        <div class="pre_directive_input__wrapper">
+          <div>17</div>
+          pics
+        </div>
+        <input type="text" />
+      </div>
+
+      <div class="directive_input__wrapper" id="profile_cut">
+        <div class="title__wrapper">nBn</div>
+        <div class="pre_directive_input__wrapper">
+          <div>1B1</div>
+        </div>
+        <select name="" class="save-data need-clear" id="nBn__select">
+          <option value="0">-</option>
+          <option value="1">1B1</option>
+          <option value="2">1B2</option>
+          <option value="3">1B3</option>
+          <option value="4">1B4</option>
+          <option value="5">1B5</option>
+          <option value="6">2B1</option>
+          <option value="7">3B1</option>
+          <option value="8">4B1</option>
+          <option value="9">5B1</option>
+        </select>
+      </div>
+
+      <div class="directive_input__wrapper" id="machine_number">
+        <div class="title__wrapper">No.</div>
+        <div class="pre_directive_input__wrapper">
+          Number:
+          <div>2</div>
+        </div>
+        <select name="" class="save-data need-clear" id="nBn__select">
+          <option value="0">-</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option disabled value="4">4</option>
+        </select>
+      </div>
+
+      <div class="directive_input__wrapper" id="press_note">
+        <div class="title__wrapper">Note</div>
+        <div class="pre_directive_input__wrapper">Masproduction</div>
+        <textarea name="" id="press_note__textarea"></textarea>
+      </div>
+
+      <div>
+        <img id="cutting_img" src="./img/fig_001.svg" alt="" />
+      </div>
+    </div>
+
+    <div class="bottom__wrapper"></div>
+
+    <script src="./lib/jquery.min.js"></script>
+    <script src="./lib/jspdf.min.js"></script>
+    <script src="./lib/select2.min.js"></script>
+    <script src="./scr/MakingPressDirectiveV7.js"></script>
+  </body>
+</html>
