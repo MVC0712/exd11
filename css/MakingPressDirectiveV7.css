@@ -179,8 +179,11 @@ dialog button {
   .directive_input__wrapper {
     margin: 0 10px 0 10px;
   }
-  #press_date {
+  div#press_date {
     width: 120px;
+  }
+  div#discard {
+    width: 100px;
   }
   #press_type {
     width: 80px;
@@ -238,11 +241,11 @@ dialog button {
   }
 
   #profile_length {
-    width: 100px;
+    width: 80px;
   }
 
   #profile_cut {
-    width: 100px;
+    width: 90px;
     option {
       text-align: center;
     }
@@ -270,6 +273,132 @@ dialog button {
   }
 }
 
+div#cooling-time {
+  width: 100px;
+  select {
+    text-align: center;
+  }
+  option {
+    text-align: center;
+  }
+}
+
 img#cutting_img {
   width: 700px;
+}
+
+div.bottom__wrapper {
+  height: 210px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  table#summary__table {
+    tbody {
+      width: 1000px;
+      height: 150px;
+    }
+    th {
+      height: 24px;
+    }
+
+    th:nth-child(1),
+    td:nth-child(1) {
+      display: none;
+    }
+    /* Press Date */
+    th:nth-child(2),
+    td:nth-child(2) {
+      width: 110px;
+    }
+    /* Discard */
+    th:nth-child(3),
+    td:nth-child(3) {
+      width: 60px;
+    }
+    /* Press type */
+    th:nth-child(4),
+    td:nth-child(4) {
+      width: 60px;
+    }
+    /* Press type ID */
+    th:nth-child(5),
+    td:nth-child(5) {
+      display: none;
+    }
+    /* speed */
+    th:nth-child(6),
+    td:nth-child(6) {
+      width: 70px;
+    }
+    /* B-length */
+    th:nth-child(7),
+    td:nth-child(7) {
+      width: 70px;
+    }
+    /* B-temp */
+    th:nth-child(8),
+    td:nth-child(8) {
+      width: 70px;
+    }
+    /* B-taper */
+    th:nth-child(9),
+    td:nth-child(9) {
+      width: 70px;
+    }
+    /* die temp */
+    th:nth-child(10),
+    td:nth-child(10) {
+      width: 70px;
+    }
+    /* die heat time */
+    th:nth-child(11),
+    td:nth-child(11) {
+      width: 110px;
+      display: none;
+    }
+    /* bolster */
+    th:nth-child(12),
+    td:nth-child(12) {
+      width: 110px;
+      display: none;
+    }
+    /* bolster id*/
+    th:nth-child(13),
+    td:nth-child(13) {
+      width: 110px;
+      display: none;
+    }
+    /* stretch */
+    th:nth-child(14),
+    td:nth-child(14) {
+      width: 60px;
+    }
+    /* Name */
+    th:nth-child(15),
+    td:nth-child(15) {
+      width: 110px;
+    }
+    /* Name ID */
+    th:nth-child(16),
+    td:nth-child(16) {
+      /* width: 110px; */
+      display: none;
+    }
+    /* l */
+    th:nth-child(17),
+    td:nth-child(17) {
+      width: 60px;
+    }
+    /* m */
+    th:nth-child(18),
+    td:nth-child(18) {
+      width: 60px;
+    }
+    /* n */
+    th:nth-child(19),
+    td:nth-child(19) {
+      width: 60px;
+    }
+  }
 }

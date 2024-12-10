@@ -73,13 +73,14 @@
         </div>
       </div>
     </div>
+
     <div class="middle__wrapper">
       <div class="directive_input__wrapper" id="press_date">
         <div class="title__wrapper">PlanPressDate</div>
         <div class="pre_directive_input__wrapper"><div>24-01-01</div></div>
         <input type="text" />
       </div>
-      <div class="directive_input__wrapper" id="dicard">
+      <div class="directive_input__wrapper" id="discard">
         <div class="title__wrapper">Dscd</div>
         <div class="pre_directive_input__wrapper"><div>35mm</div></div>
         <input type="text" />
@@ -235,7 +236,7 @@
       </div>
 
       <div class="directive_input__wrapper" id="machine_number">
-        <div class="title__wrapper">No.</div>
+        <div class="title__wrapper">Machine</div>
         <div class="pre_directive_input__wrapper">
           Number:
           <div>2</div>
@@ -246,6 +247,20 @@
           <option value="2">2</option>
           <option value="3">3</option>
           <option disabled value="4">4</option>
+        </select>
+      </div>
+
+      <div class="directive_input__wrapper" id="cooling-time">
+        <div class="title__wrapper">Cooling</div>
+        <div class="pre_directive_input__wrapper">
+          Air
+          <div></div>
+        </div>
+        <select name="" class="save-data need-clear" id="cooling__select">
+          <option value="0">-</option>
+          <option value="1">Air</option>
+          <option value="2">Mist</option>
+          <option value="3">Water</option>
         </select>
       </div>
 
@@ -260,7 +275,34 @@
       </div>
     </div>
 
-    <div class="bottom__wrapper"></div>
+    <div class="bottom__wrapper">
+      <table id="summary__table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>PDate</th>
+            <th>DisTh</th>
+            <th>PTyp</th>
+            <th>PressTypeId</th>
+            <th>Spd</th>
+            <th>B_Len</th>
+            <th>B_Temp</th>
+            <th>B_Taper</th>
+            <th>DieTmp</th>
+            <th>DieHeat</th>
+            <th>Bolster</th>
+            <th>BolsterId</th>
+            <th>StrR</th>
+            <th>Name</th>
+            <th>NameId</th>
+            <th>l</th>
+            <th>m</th>
+            <th>n</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
 
     <script src="./lib/jquery.min.js"></script>
     <script src="./lib/jspdf.min.js"></script>
