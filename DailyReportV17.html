@@ -111,14 +111,22 @@
           <div class="input-block__outer">
             <div class="input__title">Billet length</div>
             <input id="billet-length__input" class="need-clear" type="text" />
-            <select
+            <!-- <select
               id="billet-length__select"
               class="no-input save-data need-clear"
             >
               <option value="0">-</option>
               <option value="600">600</option>
               <option value="1200">1200</option>
-            </select>
+            </select> -->
+
+            <input type="text" list="billet-length__selects" id="billet-length__select" class="no-input save-data need-clear"/>
+            <datalist id="billet-length__selects" >
+              <option value="0">-</option>
+              <option value="600">600</option>
+              <option value="1200">1200</option>
+            </datalist>
+
           </div>
           <!-- Plan Billet Qty -->
           <div class="input-block__outer">

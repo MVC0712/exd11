@@ -190,8 +190,12 @@ button {
 .main__wrapper > div:nth-child(6) > div:nth-child(2) {
   text-align: right;
 }
+.main__wrapper > div:nth-child(6) > input:nth-child(1) {
+  text-align: right;
+  width: 70px;
+}
 .main__wrapper > div:nth-child(6) > div > input {
-  border-right: 0;
+  /* border-right: 0; */
   width: 100%;
 }
 /* Billet Temperature */
@@ -369,19 +373,30 @@ button {
   width: 100%;
   display: none;
 }
-
-/* =========  note  ========= */
+/* =========  Machine  ========= */
 .main__wrapper > div:nth-child(21) {
+  width: 90px;
+}
+.main__wrapper > div:nth-child(21) > div:nth-child(2) {
+  text-align: right;
+}
+.main__wrapper > div:nth-child(21) > div > input {
+  border-right: 0;
+  width: 100%;
+  display: none;
+}
+/* =========  note  ========= */
+.main__wrapper > div:nth-child(22) {
   height: 130px;
   width: 270px;
 }
-.main__wrapper > div:nth-child(21) > div:nth-child(2) {
+.main__wrapper > div:nth-child(22) > div:nth-child(2) {
   text-align: left;
   display: block;
   height: 30px;
   overflow-y: scroll;
 }
-.main__wrapper > div:nth-child(21) textarea {
+.main__wrapper > div:nth-child(22) textarea {
   resize: none;
   display: block;
   height: 50px;
@@ -389,11 +404,11 @@ button {
   overflow-y: scroll;
 }
 /* =========  fig  ========= */
-.main__wrapper > div:nth-child(22) {
+.main__wrapper > div:nth-child(23) {
   height: 130px;
   width: 430px;
 }
-.main__wrapper > div:nth-child(22) img {
+.main__wrapper > div:nth-child(23) img {
   height: 130px;
   width: 410px;
 }
@@ -583,20 +598,4 @@ div.summary__wrapper {
 }
 #summary__table tr td:nth-child(19) {
   text-align: right;
-}
-
-
-.select2-container--default .select2-selection--single {
-  background-color: #fff;
-  border: 1px solid #0020ff;
-  border-radius: 0;
-}
-
-.select2-container .select2-selection--single {
-  box-sizing: border-box;
-  cursor: pointer;
-  display: block;
-  height: 24px;
-  user-select: none;
-  -webkit-user-select: none;
 }

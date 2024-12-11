@@ -190,8 +190,12 @@ button {
 .main__wrapper > div:nth-child(6) > div:nth-child(2) {
   text-align: right;
 }
+.main__wrapper > div:nth-child(6) > input:nth-child(1) {
+  text-align: right;
+  width: 70px;
+}
 .main__wrapper > div:nth-child(6) > div > input {
-  border-right: 0;
+  /* border-right: 0; */
   width: 100%;
 }
 /* Billet Temperature */

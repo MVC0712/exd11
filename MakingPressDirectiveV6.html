@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Making Directive Page V5</title>
+    <title>Making Directive Page V6</title>
     <link rel="stylesheet" href="./css/main.css" />
     <link rel="stylesheet" href="./lib/select2.min.css" />
     <link rel="stylesheet" href="./css/MakingPressDirectiveV6.css" />
@@ -89,7 +89,7 @@
       <div class="input__wrapper">
         <div class="input__title">Billet L.</div>
         <div class="previous-value__display need-clear u">1200</div>
-        <select
+        <!-- <select
           name=""
           id="billet-length__select"
           class="save-data need-clear no-input for-work-length u"
@@ -97,7 +97,15 @@
           <option value="0">-</option>
           <option value="600">600</option>
           <option value="1200">1200</option>
-        </select>
+        </select> -->
+
+        <input type="text" list="billet-length__selects" id="billet-length__select" class="no-input save-data need-clear" style="border: 1px solid #0000ff; width: 46px;"/>
+        <datalist id="billet-length__selects" >
+          <option value="0">-</option>
+          <option value="600">600</option>
+          <option value="1200">1200</option>
+        </datalist>
+
       </div>
       <div class="input__wrapper">
         <div class="input__title">Billet T.</div>
@@ -322,6 +330,21 @@
           </select>
         </div>
       </div>
+
+      <div class="input__wrapper">
+        <div class="input__title">Cooling</div>
+        <div class="previous-value__display need-clear u">1</div>
+        <div class="inner-input_wrapper">
+          <!-- <input id="nbn__input" class="need-clear no-input u" type="text" /> -->
+          <select id="cooling_type" class="save-data need-clear no-input u">
+            <option value="0">-</option>
+            <option value="1">Air</option>
+            <option value="2">Water</option>
+            <option value="3">Mist/shower</option>
+          </select>
+        </div>
+      </div>
+
       <div class="input__wrapper">
         <div class="input__title">note</div>
         <div class="previous-value__display need-clear u">

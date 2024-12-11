@@ -386,3 +386,32 @@ $( "#summary__table thead tr th" ).hover(function(e) {
    });
   }
 );
+
+$(document).on("click", "#download", function() {
+  ajaxMakeDlFile("quality-summmary_table__download2");
+});
+function ajaxMakeDlFile(phpFileName) {
+  $.ajax({
+    type: "POST",
+    url: "./php/DownLoad/" + phpFileName + ".php",
+    dataType: "json",
+    data: {
+      file_name: phpFileName,
+      start : $("#start_term").val(),
+      end : $("#end_term").val(),
+    }}).done(function(data) {
+      downloadFile(phpFileName + ".csv");
+  }).fail(function(data) {
+      alert("call php program error 255");
+  });
+}
+
+function downloadFile(downloadFileName) {
+  const a = document.createElement("a");
+  document.body.appendChild(a);
+  a.download = downloadFileName;
+  a.href = "./download/" + downloadFileName;
+
+  a.click();
+  a.remove();
+}

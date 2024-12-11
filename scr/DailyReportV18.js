@@ -41,9 +41,9 @@ $(function () {
   setSummaryTable();
   // ErrorCode();
   $("#machine-number__select").val(1).removeClass("no-input").addClass("complete-input");
-  $("#billet-length__select").select2({
-    tags: true
-  });
+  // $("#billet-length__select").select2({
+  //   tags: true
+  // });
 });
 // *****************************************************
 // *****************************************************
@@ -1441,45 +1441,45 @@ $(document).on("click", "#save__button", function () {
   // ======= Input Data ==================
   inputData = getInputData();
   console.log(inputData);
-  fileName = "./php/DailyReport/InsPd17.php";
-  sendData = inputData;
-  myAjax.myAjax(fileName, sendData);
-  targetId = ajaxReturnData["id"];
-  // 1:get table data
-  tableData = getTableData($("#rack__table tbody tr"));
-  tableData.push(targetId);
-  // 2:Insert into database
-  fileName = "./php/DailyReport/InsUsedRack.php";
-  sendData = JSON.stringify(tableData);
-  myAjax.myAjax(fileName, sendData);
-  // 1:get and adjust table data
-  workInfrmationTable = getTableDataInput($("#work-length__table tbody tr"));
-  sendTable = makeSendData(workInfrmationTable);
-  sendTable.push(targetId);
-  // 2:Insert into database
-  fileName = "./php/DailyReport/InsWorkInformation3.php";
-  sendData = JSON.stringify(sendTable);
-  myAjax.myAjax(fileName, sendData);
-
-  // ErrorData = getTableData($("#error__table tbody tr"));
-  // ErrorData.push(targetId);
-  // fileName = "./php/DailyReport/InsError13.php";
-  // sendData = JSON.stringify(ErrorData);
+  // fileName = "./php/DailyReport/InsPd17.php";
+  // sendData = inputData;
+  // myAjax.myAjax(fileName, sendData);
+  // targetId = ajaxReturnData["id"];
+  // // 1:get table data
+  // tableData = getTableData($("#rack__table tbody tr"));
+  // tableData.push(targetId);
+  // // 2:Insert into database
+  // fileName = "./php/DailyReport/InsUsedRack.php";
+  // sendData = JSON.stringify(tableData);
+  // myAjax.myAjax(fileName, sendData);
+  // // 1:get and adjust table data
+  // workInfrmationTable = getTableDataInput($("#work-length__table tbody tr"));
+  // sendTable = makeSendData(workInfrmationTable);
+  // sendTable.push(targetId);
+  // // 2:Insert into database
+  // fileName = "./php/DailyReport/InsWorkInformation3.php";
+  // sendData = JSON.stringify(sendTable);
   // myAjax.myAjax(fileName, sendData);
 
-  let BundleData = getTableData($("#bundle__table tbody tr"));
-  BundleData.push(targetId);
-  fileName = "./php/DailyReport/InsBundle15.php";
-  sendData = JSON.stringify(BundleData);
-  myAjax.myAjax(fileName, sendData);
+  // // ErrorData = getTableData($("#error__table tbody tr"));
+  // // ErrorData.push(targetId);
+  // // fileName = "./php/DailyReport/InsError13.php";
+  // // sendData = JSON.stringify(ErrorData);
+  // // myAjax.myAjax(fileName, sendData);
 
-  setSummaryTable();
+  // let BundleData = getTableData($("#bundle__table tbody tr"));
+  // BundleData.push(targetId);
+  // fileName = "./php/DailyReport/InsBundle15.php";
+  // sendData = JSON.stringify(BundleData);
+  // myAjax.myAjax(fileName, sendData);
+
+  // setSummaryTable();
   
-  clearInputData(); // データの削除と背景色の設定
-  // $("#special_note").removeClass("no-input").addClass("complete-input");
-  $("#save__button").prop("disabled", true); // save ボタン非活性化
-  $("#die__input").prop("disabled", false); // enable die_input frame
-  readNewFile = false;
+  // clearInputData(); // データの削除と背景色の設定
+  // // $("#special_note").removeClass("no-input").addClass("complete-input");
+  // $("#save__button").prop("disabled", true); // save ボタン非活性化
+  // $("#die__input").prop("disabled", false); // enable die_input frame
+  // readNewFile = false;
 });
 
 function clearInputData() {

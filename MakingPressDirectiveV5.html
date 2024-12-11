@@ -89,7 +89,7 @@
       <div class="input__wrapper">
         <div class="input__title">Billet L.</div>
         <div class="previous-value__display need-clear u">1200</div>
-        <select
+        <!-- <select
           name=""
           id="billet-length__select"
           class="save-data need-clear no-input for-work-length u"
@@ -97,7 +97,15 @@
           <option value="0">-</option>
           <option value="600">600</option>
           <option value="1200">1200</option>
-        </select>
+        </select> -->
+
+        <input type="text" list="billet-length__selects" id="billet-length__select" class="no-input save-data need-clear" style="border: 1px solid #0000ff; width: 46px;"/>
+        <datalist id="billet-length__selects" >
+          <option value="0">-</option>
+          <option value="600">600</option>
+          <option value="1200">1200</option>
+        </datalist>
+
       </div>
       <div class="input__wrapper">
         <div class="input__title">Billet T.</div>

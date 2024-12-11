@@ -22,10 +22,6 @@ $(function() {
     ajaxSelBolster();
     ajaxSelDie($(this).val());
     clearInputData();
-
-    $("#billet-length__select").select2({
-        tags: true
-      });
 });
 
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -228,11 +224,9 @@ $(document).on("keydown", "#billet-size__select", function(e) {
 
 // Billet Input Qty  ====================================================
 $(document).on("keyup", "#billet-input-qty__input", function() {
-    if (
-        0 < Number($(this).val()) &&
-        Number($(this).val()) < 100 &&
-        $(this).val() != ""
-    )
+    if (0 <= Number($(this).val()) &&
+        Number($(this).val()) < 1000 &&
+        $(this).val() != "" )
         $(this).removeClass("no-input").addClass("complete-input");
     else $(this).removeClass("complete-input").addClass("no-input");
 });
@@ -468,7 +462,11 @@ $(document).on("change", "#press_machine", function() {
         $(this).removeClass("no-input").addClass("complete-input");
     else $(this).removeClass("complete-input").addClass("no-input");
 });
-
+$(document).on("change", "#cooling_type", function() {
+    if (0 != $(this).val())
+        $(this).removeClass("no-input").addClass("complete-input");
+    else $(this).removeClass("complete-input").addClass("no-input");
+});
 $(document).on("keydown", "#nbn__select", function(e) {
     chkMoveNext(e, $(this), $("#press_machine"));
 });
@@ -478,10 +476,10 @@ $(document).on("keydown", "#nbn__select", function(e) {
 });
 
 $(document).on("keydown", "#press_machine", function(e) {
-    chkMoveNext(e, $(this), $("#note__textarea"));
+    chkMoveNext(e, $(this), $("#cooling_type"));
 });
 
-$(document).on("keydown", "#press_machine", function(e) {
+$(document).on("keydown", "#cooling_type", function(e) {
     chkMoveNext(e, $(this), $("#note__textarea"));
 });
 // note  ====================================================
@@ -733,7 +731,7 @@ function getInputData() {
 function ajaxInsData(inputData) {
     $.ajax({
             type: "POST",
-            url: "./php/MakingPressDirective/InsDataV4.php",
+            url: "./php/MakingPressDirective/InsDataV6.php",
             dataType: "json",
             // async: false,
             data: inputData,
@@ -775,7 +773,7 @@ $(document).on("click", "#update__button", function() {
 function ajaxUpdateData(inputData) {
     $.ajax({
             type: "POST",
-            url: "./php/MakingPressDirective/UpdateDataV4.php",
+            url: "./php/MakingPressDirective/UpdateDataV6.php",
             dataType: "json",
             // async: false,
             data: inputData,
@@ -862,7 +860,7 @@ function ajaxDelSelData(targetId) {
 function ajaxSelSelData(targetId) {
     $.ajax({
             type: "POST",
-            url: "./php/MakingPressDirective/SelSelDataV4.php",
+            url: "./php/MakingPressDirective/SelSelDataV6.php",
             dataType: "json",
             async: false,
             data: {
@@ -913,7 +911,8 @@ function fillReadData(data) {
     targetDom.eq(17).html(data[0]["value_n"] + "pic");
     targetDom.eq(18).html(data[0]["nbn"]);
     targetDom.eq(19).html(data[0]["press_machine"]);
-    targetDom.eq(20).html(data[0]["previous_press_note"]);
+    targetDom.eq(20).html(data[0]["cooling_type2"]);
+    targetDom.eq(21).html(data[0]["previous_press_note"]);
 
     // --- input select 要素への書き込み ----
     targetDom = $(".main__wrapper .save-data");
@@ -937,7 +936,8 @@ function fillReadData(data) {
     targetDom.eq(16).val(data[0]["value_n"]);
     targetDom.eq(17).val(data[0]["nbn_id"]);
     targetDom.eq(18).val(data[0]["press_machine"]);
-    targetDom.eq(19).val(data[0]["previous_press_note"]);
+    targetDom.eq(19).val(data[0]["cooling_type"]);
+    targetDom.eq(20).val(data[0]["previous_press_note"]);
 
     // 背景色を変更すする
     $(".need-clear").removeClass("no-input").addClass("complete-input");
@@ -1123,7 +1123,7 @@ $(document).on("click", "#production-name__display", function () {
 
 $(function(){
 	$('#print__button_2').click(function(){
-		var fileName = "./php/MakingPressDirective/SelForPrintPage.php";
+		var fileName = "./php/MakingPressDirective/SelForPrintPageV6.php";
 		var sendData = {
 			targetId: $("#selected__tr").find("td").eq(0).html(),
 		};
@@ -1153,7 +1153,7 @@ $(function(){
 		var billet_temperature = ajaxReturnData[0].billet_temperature + "°C";
 		var billet_taper_heating = ajaxReturnData[0].billet_taper_heating + "°C/m";
         var billet_t = billet_temperature + "-" + billet_taper_heating;
-		var die_temperature = ajaxReturnData[0].die_temperature + "°C";
+		var die_temperature = ajaxReturnData[0].die_temperature + " ± 5°C";
         var die_heating_time = ajaxReturnData[0].die_heating_time + "h";
 		var stretch_ratio = ajaxReturnData[0].stretch_ratio + "%";
 		var cooling_type = ajaxReturnData[0].cooling_type;
@@ -1181,8 +1181,8 @@ $(function(){
 		var k = ajaxReturnData[0].k == null ? "": ajaxReturnData[0].k;
 		var end = ajaxReturnData[0].end == null ? "": ajaxReturnData[0].end;
 		
-		var prsTimePL = Math.round(Number(ajaxReturnData[0].press_length)*Number(ajaxReturnData[0].billet_input_quantity)/Number(ajaxReturnData[0].work_speed) + Number(ajaxReturnData[0].billet_input_quantity)*25/60 + 6+5) + "min";
-		// var prsTimePL = Math.round(Number(ajaxReturnData[0].press_length)*Number(ajaxReturnData[0].billet_input_quantity)/Number(ajaxReturnData[0].work_speed)) + "min";
+		var prsTimePL = Math.round(Number(calPressLength(ajaxReturnData[0].billet_size, ajaxReturnData[0].billet_length, ajaxReturnData[0].specific_weight, ajaxReturnData[0].hole))*Number(ajaxReturnData[0].billet_input_quantity)/Number(ajaxReturnData[0].work_speed) + 
+                        10+5) + "min";
 
         let pullerF;
         if(ajaxReturnData[0].specific_weight >= 20) {
@@ -1331,16 +1331,18 @@ $(function(){
               <table style="overflow: auto; width : auto;">
                   <tbody style="overflow: auto; height: 40px;">
                       <tr>
-                          <td style="width: 45px;">Mã khuôn</td>
+                          <td style="width: 35px;">Mã khuôn</td>
                           <td ><strong style="font-size: 10px; ">${die_number}</strong></td>
                           <td style="width: 35px;">Vòng khuôn</td>
                           <td style="width: 70px;"><strong style="font-size: 10px; ">${die_ring}</strong></td>
+                          <td> XN khuôn</td>
                       </tr>
                       <tr style="border-bottom: 1px solid rgb(0, 0, 0);">
-                          <td style="width: 45px;">Mã sản phẩm</td>
+                          <td style="width: 35px;">Mã sản phẩm</td>
                           <td ><strong style="font-size: 10px; ">${production_number}</strong></td>
                           <td style="width: 35px;">Đệm khuôn</td>
                           <td style="width: 70px;"><strong style="font-size: 10px; ">${bolster_name}</strong></td>
+                          <td> YES &#160&#160&#160&#160 NO</td>
                       </tr>
                   </tbody>
               </table>
@@ -1788,14 +1790,15 @@ $(function(){
                   <thead>
                       <tr>
                           <th style="width: 10px;">Stt</th>
-                          <th style="width: 40px;">Chiều dài</th>
+                          <th style="width: 37px;">Chiều dài</th>
                           <th style="width: 35px;">Lượng kéo</th>
                           <th style="width: 40px;">Độ nhám (Rz)</th>
                           <th style="width: 35px;">Dấu khuôn</th>
-                          <th style="width: 39px;">Gián đoạn</th>
-                          <th style="width: 60px;">Xác nhận</th>
-                          <th style="width: 60px;">TG cắt</th>
-                          <th style="width: 48px;">Thành phẩm</th>
+                          <th style="width: 35px;">Gián đoạn</th>
+                          <th style="width: 30px;">OK /NG</th>
+                          <th style="width: 55px;">Xác nhận</th>
+                          <th style="width: 55px;">TG cắt</th>
+                          <th style="width: 35px;">Thành phẩm</th>
                           <th style="width: 17px;">302</th>
                           <th style="width: 17px;">304</th>
                           <th style="width: 17px;">314</th>
@@ -1833,14 +1836,15 @@ function makeTable() {
 	for (i = 1; i <= 65; ++i) {
 		tr=`<tr style="height: 14.8px">
                 <td style="width: 10px; font-size: 8px;">${i}</td>
-                <td style="width: 40px;"></td>
-                <td style="width: 35px;"></td>
-                <td style="width: 40px;"></td>
-                <td style="width: 35px;"></td>
                 <td style="width: 37px;"></td>
-                <td style="width: 60px;"></td>
-                <td style="width: 60px; text-align: center;">:</td>
-                <td style="width: 48px;"></td>
+                <td style="width: 35px;"></td>
+                <td style="width: 40px;"></td>
+                <td style="width: 35px;"></td>
+                <td style="width: 35px;"></td>
+                <td style="width: 30px;"></td>
+                <td style="width: 55px;"></td>
+                <td style="width: 55px; text-align: center;">:</td>
+                <td style="width: 35px;"></td>
                 <td style="width: 17px;"></td>
                 <td style="width: 17px;"></td>
                 <td style="width: 17px;"></td>
@@ -1849,6 +1853,5 @@ function makeTable() {
             </tr>`;
 		tbd += tr;
 	}
-    // console.log(trC + tbd + "</tbody>");
 	return trC + tbd + "</tbody>";
 };

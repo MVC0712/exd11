@@ -56,7 +56,12 @@ body {
     align-items: center;
     justify-content: center;
   }
-  
+  #download {
+    margin: 0;
+    padding: 0;
+    height: 22px;
+    width: 60px;
+  }
   #summary__table {
     /* width: 1205px; */
   }
