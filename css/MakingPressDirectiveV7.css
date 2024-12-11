@@ -127,27 +127,27 @@ dialog button {
     display: flex;
     flex-direction: row;
   }
-  #die_number__input {
+  #die-number__input {
     width: 100px;
     border-right: none;
   }
-  #die_number__select {
+  #die-number__select {
     width: 200px;
   }
-  #die_number__div {
+  #die-number__div {
     text-align: right;
     width: 70px;
   }
   #die_size__div {
     width: 100px;
   }
-  #production_number__div {
+  #production-number__div {
     width: 200px;
   }
-  #production_weight__div {
+  #production-weight__div {
     width: 80px;
   }
-  #production_length__div {
+  #production-length__div {
     width: 50px;
   }
 }
@@ -295,7 +295,7 @@ div.bottom__wrapper {
 
   table#summary__table {
     tbody {
-      width: 1000px;
+      width: 1100px;
       height: 150px;
     }
     th {
@@ -311,15 +311,16 @@ div.bottom__wrapper {
     td:nth-child(2) {
       width: 110px;
     }
+
     /* Discard */
     th:nth-child(3),
     td:nth-child(3) {
-      width: 60px;
+      width: 50px;
     }
     /* Press type */
     th:nth-child(4),
     td:nth-child(4) {
-      width: 60px;
+      width: 50px;
     }
     /* Press type ID */
     th:nth-child(5),
@@ -329,22 +330,22 @@ div.bottom__wrapper {
     /* speed */
     th:nth-child(6),
     td:nth-child(6) {
-      width: 70px;
+      width: 60px;
     }
     /* B-length */
     th:nth-child(7),
     td:nth-child(7) {
-      width: 70px;
+      width: 60px;
     }
     /* B-temp */
     th:nth-child(8),
     td:nth-child(8) {
-      width: 70px;
+      width: 60px;
     }
     /* B-taper */
     th:nth-child(9),
     td:nth-child(9) {
-      width: 70px;
+      width: 60px;
     }
     /* die temp */
     th:nth-child(10),
@@ -354,8 +355,7 @@ div.bottom__wrapper {
     /* die heat time */
     th:nth-child(11),
     td:nth-child(11) {
-      width: 110px;
-      display: none;
+      width: 70px;
     }
     /* bolster */
     th:nth-child(12),
@@ -377,12 +377,12 @@ div.bottom__wrapper {
     /* Name */
     th:nth-child(15),
     td:nth-child(15) {
-      width: 110px;
+      width: 200px;
     }
     /* Name ID */
     th:nth-child(16),
     td:nth-child(16) {
-      /* width: 110px; */
+      /* width: 200px; */
       display: none;
     }
     /* l */
@@ -399,6 +399,24 @@ div.bottom__wrapper {
     th:nth-child(19),
     td:nth-child(19) {
       width: 60px;
+    }
+    td:nth-child(3),
+    td:nth-child(5),
+    td:nth-child(6),
+    td:nth-child(7),
+    td:nth-child(8),
+    td:nth-child(9),
+    td:nth-child(10),
+    td:nth-child(11),
+    td:nth-child(14),
+    td:nth-child(17),
+    td:nth-child(18),
+    td:nth-child(19) {
+      text-align: right;
+    }
+    td:nth-child(2),
+    td:nth-child(4) {
+      text-align: center;
     }
   }
 }
