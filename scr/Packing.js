@@ -393,7 +393,7 @@ $(document).on("keyup", "#packing-start__input", function () {
 
 $(document).on("keydown", "#packing-start__input", function (e) {
 	if (
-		e.keyCode == 13 &&
+		((e.keyCode == 13) || (e.keyCode == 9)) &&
 		$("#packing-start__input").hasClass("complete-input")
 	) {
 		$(this).val(addColon($(this).val()));
@@ -416,7 +416,9 @@ $(document).on("keyup", "#packing-end__input", function () {
 });
 
 $(document).on("keydown", "#packing-end__input", function (e) {
-	if (e.keyCode == 13 && $("#packing-end__input").hasClass("complete-input")) {
+	if (
+		((e.keyCode == 13) || (e.keyCode == 9)) &&
+		$("#packing-end__input").hasClass("complete-input")) {
 		$(this).val(addColon($(this).val()));
 		cancelKeyupEvent = true;
 		e.preventDefault(); // 入力をキャンセル。これをしないと、移動後、ボタンをクリックしてしまう
