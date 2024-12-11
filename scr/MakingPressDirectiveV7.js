@@ -79,3 +79,27 @@ $(function () {});
 $(document).on("input", "#die_number__input", function () {
   $(this).val($(this).val().toUpperCase());
 });
+
+$(document).on("keyup", "#die_number__input", function () {
+  const filename = "./php/MakingPressDirective/SelDie.php";
+  const sendData = {
+    die_number: $(this).val() + "%",
+  };
+  var val;
+
+  // console.log($(this).val());
+  myAjax.myAjax(filename, sendData);
+  // console.log(ajaxReturnData);
+
+  $("#die_number__select").empty();
+  ajaxReturnData.forEach(function (value) {
+    $("<option>")
+      .val(value["id"])
+      .html(value["die_number"])
+      .appendTo("#die_number__select");
+  });
+  console.log($("#die_number__select option").length);
+  // console.log(val);
+  val = $("#die_number__select option").length;
+  $("#die_number__div").html(val + " dies");
+});
