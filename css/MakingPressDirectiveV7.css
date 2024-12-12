@@ -198,10 +198,10 @@ dialog button {
       }
     }
   }
-  #ram_speed {
+  #ram_speed__div {
     width: 80px;
   }
-  #billet_length {
+  #billet_length__div {
     width: 80px;
   }
   #billet_temp {
@@ -213,7 +213,7 @@ dialog button {
       text-align: right;
     }
   }
-  #billet_size {
+  #billet_size__div {
     width: 100px;
     option {
       text-align: right;

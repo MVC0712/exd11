@@ -96,15 +96,10 @@ $(document).on("keyup", "#die-number__input", function () {
       .html(value["die_number"])
       .appendTo("#die-number__select");
   });
-  // console.log($("#die-number__select option").length);
-
   val = $("#die-number__select option").length;
   $("#die-number__div").html(val + " dies");
 
-  console.log($(".die-infomation"));
-  console.log($("div.die-information"));
   $("div.die-information").html("");
-  // console.log($(".die-infomation"));
 });
 
 $(document).on("change", "#die-number__select", function () {
@@ -147,4 +142,63 @@ function makeTable(targetId, sourceData) {
     $(newTr).appendTo(targetId);
   });
   // JsBarcode(".barcode").init();
+}
+
+// when element is clicked
+$(document).on("click", "#summary__table tbody tr", function () {
+  let targetVal;
+  let today = new Date();
+  const targetTr = $(this).find("td");
+  const targetId = targetTr.eq(0).text();
+  $("#summary__table tr.selected-record").removeClass("selected-record");
+  $(this).addClass("selected-record");
+
+  getPressDirection(targetId);
+
+  // fill each ajax value to display
+  console.log(ajaxReturnData[0]);
+  obj = ajaxReturnData[0];
+  $.each(obj, function (key, value) {
+    $("#" + key).html(value);
+  });
+  return;
+
+  ajaxReturnData.forEach(function (trVal) {
+    var newTr = $("<tr>");
+    Object.keys(trVal).forEach(function (tdVal) {
+      $("<td>").html(trVal[tdVal]).appendTo(newTr);
+    });
+    if ($(newTr).find("td").eq(1).html() == category2Name) {
+      $(newTr)
+        .addClass("selected-record")
+        .attr("id", "category2__tr")
+        .get(0)
+        .scrollIntoView({
+          behavior: "smooth",
+        });
+    }
+    $(newTr).appendTo("#category2__table tbody");
+  });
+
+  makeBundleTable(targetId);
+  makeWorkInformation(targetId);
+  makeRackTable(targetId);
+  getSelectData(targetId);
+  makeDirectiveSelect(targetId);
+  // input die number
+  $("#die_number__input").val("");
+  makeDieSelect();
+  $("#die_number__select").val(targetTr.eq(4).text());
+  // input press directive
+  makePressDirectiveSelect(targetId);
+});
+
+function getPressDirection(targetId) {
+  const filename = "./php/MakingPressDirective/SelSelDataV4.php";
+  const sendData = {
+    targetId: targetId,
+  };
+
+  myAjax.myAjax(filename, sendData);
+  console.log(ajaxReturnData);
 }
