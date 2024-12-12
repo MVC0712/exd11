@@ -59,6 +59,8 @@
                   LEFT JOIN m_production_numbers ON m_dies.production_number_id = m_production_numbers.id
               ) AS t10 ON t_packing_box.using_aging_rack_id = t10.t_using_aging_rack_id
           ) AS t20 ON t_packing_box.id = t20.t_packing_box_id
+        WHERE
+          t_packing.packing_date >= DATE_SUB(CURDATE(), INTERVAL 1 YEAR)
         GROUP BY
           t_packing.id
         ORDER BY t_packing.packing_date DESC

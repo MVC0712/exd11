@@ -76,30 +76,75 @@ $(document).on("click", "#window_close__mark", function () {
 
 $(function () {});
 
-$(document).on("input", "#die_number__input", function () {
+$(document).on("input", "#die-number__input", function () {
   $(this).val($(this).val().toUpperCase());
 });
 
-$(document).on("keyup", "#die_number__input", function () {
+$(document).on("keyup", "#die-number__input", function () {
   const filename = "./php/MakingPressDirective/SelDie.php";
   const sendData = {
     die_number: $(this).val() + "%",
   };
   var val;
 
-  // console.log($(this).val());
   myAjax.myAjax(filename, sendData);
-  // console.log(ajaxReturnData);
 
-  $("#die_number__select").empty();
+  $("#die-number__select").empty();
   ajaxReturnData.forEach(function (value) {
     $("<option>")
       .val(value["id"])
       .html(value["die_number"])
-      .appendTo("#die_number__select");
+      .appendTo("#die-number__select");
   });
-  console.log($("#die_number__select option").length);
-  // console.log(val);
-  val = $("#die_number__select option").length;
-  $("#die_number__div").html(val + " dies");
+  // console.log($("#die-number__select option").length);
+
+  val = $("#die-number__select option").length;
+  $("#die-number__div").html(val + " dies");
+
+  console.log($(".die-infomation"));
+  console.log($("div.die-information"));
+  $("div.die-information").html("");
+  // console.log($(".die-infomation"));
 });
+
+$(document).on("change", "#die-number__select", function () {
+  getProductionNumber($("#die-number__select").val());
+  makeSummaryTalbe($("#die-number__select").val());
+});
+
+function getProductionNumber(dies_id) {
+  const filename = "./php/MakingPressDirective/SelProductionNumber.php";
+  const sendData = {
+    dies_id: dies_id,
+  };
+
+  myAjax.myAjax(filename, sendData);
+
+  $("#die_size__div").html("&phi;" + ajaxReturnData[0]["die_diamater"]);
+  $("#production-number__div").html(ajaxReturnData[0]["production_number"]);
+  $("#production-weight__div").html(ajaxReturnData[0]["specific_weight"]);
+}
+
+function makeSummaryTalbe(dies_id) {
+  const filename = "./php/MakingPressDirective/SelSummaryV4.php";
+  const sendData = {
+    dies_id: dies_id,
+  };
+
+  myAjax.myAjax(filename, sendData);
+  console.log(ajaxReturnData);
+  makeTable($("#summary__table"), ajaxReturnData);
+}
+
+// making table
+function makeTable(targetId, sourceData) {
+  ajaxReturnData.forEach(function (trVal) {
+    var newTr = $("<tr>");
+    Object.keys(trVal).forEach(function (tdVal) {
+      $("<td>").html(trVal[tdVal]).appendTo(newTr);
+    });
+    // (makeBarcode(trVal["die_postition"])).appendTo(newTr);
+    $(newTr).appendTo(targetId);
+  });
+  // JsBarcode(".barcode").init();
+}
