@@ -891,7 +891,7 @@ $("#racknumber__input").on("keyup", function () {
     !isNaN($(this).val()) &&
     $(this).val() != "" &&
     0 < $(this).val() &&
-    $(this).val() <= 200 &&
+    $(this).val() <= 1000 &&
     checkDuplicateLackNumber()
   ) {
     $(this).removeClass("no-input").addClass("complete-input");
