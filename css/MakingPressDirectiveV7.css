@@ -26,6 +26,7 @@ select {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   width: 100%;
   font-weight: initial;
+  height: 25px;
 }
 select option {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -133,6 +134,7 @@ dialog button {
   }
   #die-number__select {
     width: 200px;
+    height: 27px;
   }
   #die-number__div {
     text-align: right;
@@ -151,14 +153,14 @@ dialog button {
     width: 50px;
   }
 }
-.middle__wrapper {
+div.middle__wrapper {
   height: 400px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  align-items: center;
+  /* align-items: center; */
   flex-wrap: wrap;
-
+  padding-top: 30px;
   input {
     border-width: 0 1px 1px 1px;
   }
@@ -202,7 +204,14 @@ dialog button {
     width: 80px;
   }
   #billet_length__div {
-    width: 80px;
+    width: 85px;
+
+    input#billet-other__input {
+      /* disabled: true; */
+    }
+    select {
+      text-align: center;
+    }
   }
   #billet_temp {
     width: 100px;
@@ -269,6 +278,42 @@ dialog button {
     }
     .pre_directive_input__wrapper {
       text-align: left;
+    }
+  }
+  table#profile-length__table {
+    td,
+    th {
+      height: 25px;
+    }
+    td {
+      border-color: #0000ff;
+    }
+    /* th:nth-child(1) {
+      width: 297px;
+    } */
+    td:nth-child(1),
+    td:nth-child(2) {
+      width: 130px;
+    }
+    tr#profile_quantity__tr td {
+      text-align: center;
+    }
+    input {
+      border-width: 0;
+    }
+    thead {
+      width: 283px;
+      tr:nth-child(1) th {
+        border-width: 1px 0 1px 0;
+      }
+    }
+    tbody {
+      width: 300px;
+      height: 88px;
+      overflow-y: hidden;
+      tr:nth-child(1) td {
+        text-align: right;
+      }
     }
   }
 }

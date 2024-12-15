@@ -1,3 +1,5 @@
+var dieHoleNumber;
+
 const myAjax = {
   myAjax: function (fileName, sendData) {
     $.ajax({
@@ -125,9 +127,8 @@ function makeSummaryTalbe(dies_id) {
   const sendData = {
     dies_id: dies_id,
   };
-
   myAjax.myAjax(filename, sendData);
-  console.log(ajaxReturnData);
+  $("#summary__table tbody").empty();
   makeTable($("#summary__table"), ajaxReturnData);
 }
 
@@ -141,7 +142,6 @@ function makeTable(targetId, sourceData) {
     // (makeBarcode(trVal["die_postition"])).appendTo(newTr);
     $(newTr).appendTo(targetId);
   });
-  // JsBarcode(".barcode").init();
 }
 
 // when element is clicked
@@ -155,42 +155,17 @@ $(document).on("click", "#summary__table tbody tr", function () {
 
   getPressDirection(targetId);
 
-  // fill each ajax value to display
+  // fill each press condition data value to display
   console.log(ajaxReturnData[0]);
   obj = ajaxReturnData[0];
   $.each(obj, function (key, value) {
     $("#" + key).html(value);
   });
-  return;
-
-  ajaxReturnData.forEach(function (trVal) {
-    var newTr = $("<tr>");
-    Object.keys(trVal).forEach(function (tdVal) {
-      $("<td>").html(trVal[tdVal]).appendTo(newTr);
-    });
-    if ($(newTr).find("td").eq(1).html() == category2Name) {
-      $(newTr)
-        .addClass("selected-record")
-        .attr("id", "category2__tr")
-        .get(0)
-        .scrollIntoView({
-          behavior: "smooth",
-        });
-    }
-    $(newTr).appendTo("#category2__table tbody");
-  });
-
-  makeBundleTable(targetId);
-  makeWorkInformation(targetId);
-  makeRackTable(targetId);
-  getSelectData(targetId);
-  makeDirectiveSelect(targetId);
-  // input die number
-  $("#die_number__input").val("");
-  makeDieSelect();
-  $("#die_number__select").val(targetTr.eq(4).text());
-  // input press directive
-  makePressDirectiveSelect(targetId);
+  // get die hole number and fill it by press_directive_id
+  getHoleNumber(targetId);
+  $("#die_hole_number__th").html("Profile Length (" + dieHoleNumber + "whole)");
+  // get last profile length
+  getLastProfileQty(targetId);
 });
 
 function getPressDirection(targetId) {
@@ -198,7 +173,58 @@ function getPressDirection(targetId) {
   const sendData = {
     targetId: targetId,
   };
+  myAjax.myAjax(filename, sendData);
+}
+
+function getHoleNumber(targetId) {
+  const filename = "./php/DailyReport/SelHoleNumber.php";
+  const sendData = {
+    targetId: Number(targetId),
+  };
+
+  myAjax.myAjax(filename, sendData);
+
+  dieHoleNumber = ajaxReturnData[0]["hole"];
+}
+
+function getLastProfileQty(targetId) {
+  // targetId = 8184;
+  var n, firstProfileMin, firstProfileMax, otherProfileMin, otherProfileMax;
+  var keys;
+  var firstProfileQtyeArray = [];
+  var otherProfileQtyeArray = [];
+  const filename = "./php/MakingPressDirective/SelProfileLength.php";
+  const sendData = {
+    targetId: targetId,
+  };
+
+  n = $("#nbn").html().slice(-1);
+  console.log("n=" + n);
 
   myAjax.myAjax(filename, sendData);
   console.log(ajaxReturnData);
+  console.log(ajaxReturnData["work_quantity"]);
+
+  ajaxReturnData.forEach(function (val, index) {
+    // console.log(index + ":" + val);
+  });
+
+  for (let i = 0; i < n; i++) {
+    // console.log(i + ":" + ajaxReturnData[i]["work_quantity"]);
+    firstProfileQtyeArray.push(Number(ajaxReturnData[i]["work_quantity"]));
+  }
+  console.log(firstProfileQtyeArray);
+  firstProfileMin = Math.min(...firstProfileQtyeArray);
+  firstProfileMax = Math.max(...firstProfileQtyeArray);
+  console.log("min = " + firstProfileMin);
+  console.log("max = " + firstProfileMax);
+  $("#first_profile_quantity").html(firstProfileMin + " - " + firstProfileMax);
+
+  for (let i = n; i < ajaxReturnData.length; i++) {
+    // console.log(i + ":" + ajaxReturnData[i]["work_quantity"]);
+    otherProfileQtyeArray.push(Number(ajaxReturnData[i]["work_quantity"]));
+  }
+  otherProfileMin = Math.min(...otherProfileQtyeArray);
+  otherProfileMax = Math.max(...otherProfileQtyeArray);
+  $("#other_profile_quantity").html(otherProfileMin + " - " + otherProfileMax);
 }
