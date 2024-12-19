@@ -102,12 +102,26 @@ $(document).on("keyup", "#die-number__input", function () {
   $("#die-number__div").html(val + " dies");
 
   $("div.die-information").html("");
+  // select top die number and make summary talbe
+  getProductionNumber($("#die-number__select").val());
+  makeSummaryTalbe($("#die-number__select").val());
+
+  setFocutToTop();
 });
 
 $(document).on("change", "#die-number__select", function () {
   getProductionNumber($("#die-number__select").val());
   makeSummaryTalbe($("#die-number__select").val());
+
+  setFocutToTop();
 });
+
+function setFocutToTop() {
+  var val = new Object();
+  val = $("#summary__table tbody tr").first();
+
+  val.trigger("click");
+}
 
 function getProductionNumber(dies_id) {
   const filename = "./php/MakingPressDirective/SelProductionNumber.php";
@@ -131,6 +145,22 @@ function makeSummaryTalbe(dies_id) {
   $("#summary__table tbody").empty();
   makeTable($("#summary__table"), ajaxReturnData);
 }
+
+$(document).on("change", "#billet-length__select", function () {
+  console.log($(this).val());
+  if ($(this).val() != 1) {
+    $("#billet-other__input")
+      .prop("disabled", true)
+      .removeClass("input-required");
+
+    $(this).addClass("input-required");
+  } else {
+    $("#billet-other__input")
+      .prop("disabled", false)
+      .addClass("input-required");
+    $(this).removeClass("input-required");
+  }
+});
 
 // making table
 function makeTable(targetId, sourceData) {
@@ -197,27 +227,23 @@ function getLastProfileQty(targetId) {
   const sendData = {
     targetId: targetId,
   };
-
+  // get hole qty
   n = $("#nbn").html().slice(-1);
   console.log("n=" + n);
 
   myAjax.myAjax(filename, sendData);
-  console.log(ajaxReturnData);
-  console.log(ajaxReturnData["work_quantity"]);
-
-  ajaxReturnData.forEach(function (val, index) {
-    // console.log(index + ":" + val);
-  });
+  // console.log(ajaxReturnData);
+  // console.log(ajaxReturnData["work_quantity"]);
 
   for (let i = 0; i < n; i++) {
     // console.log(i + ":" + ajaxReturnData[i]["work_quantity"]);
     firstProfileQtyeArray.push(Number(ajaxReturnData[i]["work_quantity"]));
   }
-  console.log(firstProfileQtyeArray);
+  // console.log(firstProfileQtyeArray);
   firstProfileMin = Math.min(...firstProfileQtyeArray);
   firstProfileMax = Math.max(...firstProfileQtyeArray);
-  console.log("min = " + firstProfileMin);
-  console.log("max = " + firstProfileMax);
+  // console.log("min = " + firstProfileMin);
+  // console.log("max = " + firstProfileMax);
   $("#first_profile_quantity").html(firstProfileMin + " - " + firstProfileMax);
 
   for (let i = n; i < ajaxReturnData.length; i++) {

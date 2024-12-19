@@ -91,7 +91,7 @@
         <div class="pre_directive_input__wrapper">
           <div id="plan_date_at"></div>
         </div>
-        <input type="text" />
+        <input class="input-required" type="date" />
       </div>
       <div class="directive_input__wrapper" id="discard">
         <div class="title__wrapper">Dscd</div>
@@ -99,14 +99,14 @@
           <div id="discard_thickness"></div>
           mm
         </div>
-        <input type="text" />
+        <input class="input-required" type="text" />
       </div>
       <div class="directive_input__wrapper" id="press_type">
         <div class="title__wrapper">Press</div>
         <div class="pre_directive_input__wrapper">
           <div id="pressing_type"></div>
         </div>
-        <select name="" class="save-data need-clear" id="press__select">
+        <select name="" class="input-required need-clear" id="press__select">
           <!-- <option value="0">No</option> -->
           <option value="1">〇</option>
           <option value="2">◎</option>
@@ -119,7 +119,7 @@
           <div id="ram_speed"></div>
           mm/s
         </div>
-        <input type="text" />
+        <input class="input-required need-clear save-data" type="text" />
       </div>
       <div class="directive_input__wrapper" id="billet_length__div">
         <div class="title__wrapper">Billet L.</div>
@@ -127,12 +127,16 @@
           <div id="billet_length"></div>
           mm
         </div>
-        <select name="" class="save-data need-clear" id="billet-length__select">
+        <select
+          name=""
+          class="input-required save-data need-clear"
+          id="billet-length__select"
+        >
           <!-- <option value="0">No</option> -->
           <option value="0">-</option>
-          <option value="1">600</option>
-          <option value="2">1200</option>
-          <option value="3">other</option>
+          <option value="600">600</option>
+          <option value="1200">1200</option>
+          <option value="1">other</option>
         </select>
 
         <input id="billet-other__input" disabled type="text" />
@@ -140,7 +144,10 @@
       <div class="directive_input__wrapper" id="billet_temp">
         <div class="title__wrapper">Billet Temp.</div>
         <div class="pre_directive_input__wrapper">
-          <div id="billet_temperature"></div>
+          <div
+            class="input-required need-clear save-data"
+            id="billet_temperature"
+          ></div>
           &deg;C
         </div>
         <input type="text" />
@@ -151,7 +158,11 @@
           <div id="billet_taper_heating"></div>
           &deg;C
         </div>
-        <select name="" class="save-data need-clear" id="billet_taper__select">
+        <select
+          name=""
+          class="input-required need-clear save-data"
+          id="billet_taper__select"
+        >
           <option value="0">0 &deg;C</option>
           <option value="50">50 &deg;C</option>
           <option value="100">100 &deg;C</option>
@@ -163,7 +174,11 @@
           <div id="billet_size"></div>
           inch
         </div>
-        <select name="" class="save-data need-clear" id="billet_size__select">
+        <select
+          name=""
+          class="input-required need-clear save-data"
+          id="billet_size__select"
+        >
           <option value="0">-</option>
           <option value="9">9 inch</option>
           <option value="12">12 inch</option>
@@ -177,7 +192,7 @@
           <div id="billet_input_quantity"></div>
           pics
         </div>
-        <input type="text" />
+        <input class="input-required need-clear save-data" type="text" />
       </div>
       <div class="directive_input__wrapper" id="die_temp">
         <div class="title__wrapper">Die Temp.</div>
@@ -185,7 +200,7 @@
           <div id="die_temperature"></div>
           &deg;C
         </div>
-        <input type="text" />
+        <input class="input-required need-clear save-data" type="text" />
       </div>
       <div class="directive_input__wrapper" id="die_heattime">
         <div class="title__wrapper">Die H Time</div>
@@ -193,7 +208,7 @@
           <div id="die_heating_time"></div>
           h
         </div>
-        <input type="text" />
+        <input class="input-required need-clear save-data" type="text" />
       </div>
 
       <div class="directive_input__wrapper" id="stretch">
@@ -202,7 +217,7 @@
           <div id="stretch_ratio"></div>
           %
         </div>
-        <input type="text" />
+        <input class="input-required need-clear save-data" type="text" />
       </div>
 
       <div class="directive_input__wrapper" id="person_in_charge">
@@ -210,7 +225,11 @@
         <div class="pre_directive_input__wrapper">
           <div id="staff_name"></div>
         </div>
-        <select name="" class="save-data need-clear" id="billet_size__select">
+        <select
+          name=""
+          class="input-required need-clear save-data"
+          id="billet_size__select"
+        >
           <option value="0">-</option>
         </select>
       </div>
@@ -220,7 +239,11 @@
         <div class="pre_directive_input__wrapper">
           <div id="nbn"></div>
         </div>
-        <select name="" class="save-data need-clear" id="nBn__select">
+        <select
+          name=""
+          class="input-required need-clear save-data"
+          id="nBn__select"
+        >
           <option value="0">-</option>
           <option value="1">1B1</option>
           <option value="2">1B2</option>
@@ -240,7 +263,11 @@
           Number:
           <div id="press_machine"></div>
         </div>
-        <select name="" class="save-data need-clear" id="nBn__select">
+        <select
+          name=""
+          class="input-required need-clear save-data"
+          id="nBn__select"
+        >
           <option value="0">-</option>
           <option value="1">1</option>
           <option value="2">2</option>
@@ -254,7 +281,11 @@
         <div class="pre_directive_input__wrapper">
           <div></div>
         </div>
-        <select name="" class="save-data need-clear" id="cooling__select">
+        <select
+          name=""
+          class="input-required need-clear save-data"
+          id="cooling__select"
+        >
           <option value="0">-</option>
           <option value="1">Air</option>
           <option value="2">Mist</option>
@@ -265,7 +296,11 @@
       <div class="directive_input__wrapper" id="press_note">
         <div class="title__wrapper">Note</div>
         <div class="pre_directive_input__wrapper"></div>
-        <textarea name="" id="previous_press_note"></textarea>
+        <textarea
+          name=""
+          class="input-required need-clear save-data"
+          id="previous_press_note"
+        ></textarea>
       </div>
 
       <div>
@@ -273,7 +308,7 @@
           <thead>
             <tr>
               <th colspan="2" id="die_hole_number__th">
-                Profile Length (whole)
+                Profile Length (Hole)
               </th>
             </tr>
             <tr>
@@ -287,8 +322,18 @@
               <td id="other_profile_quantity">2nd 3rd ...</td>
             </tr>
             <tr>
-              <td><input type="text" /></td>
-              <td><input type="text" /></td>
+              <td>
+                <input
+                  class="input-required need-clear save-data"
+                  type="text"
+                />
+              </td>
+              <td>
+                <input
+                  class="input-required need-clear save-data"
+                  type="text"
+                />
+              </td>
             </tr>
           </tbody>
         </table>
