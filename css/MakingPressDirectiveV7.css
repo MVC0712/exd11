@@ -163,6 +163,7 @@ div.middle__wrapper {
   padding-top: 30px;
   input {
     border-width: 0 1px 1px 1px;
+    text-align: center;
   }
   select {
     border-width: 0 1px 1px 1px;
@@ -300,6 +301,7 @@ div.middle__wrapper {
     }
     input {
       border-width: 0;
+      width: 100%;
     }
     thead {
       width: 283px;

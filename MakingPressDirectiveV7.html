@@ -91,7 +91,7 @@
         <div class="pre_directive_input__wrapper">
           <div id="plan_date_at"></div>
         </div>
-        <input class="input-required" type="date" />
+        <input id="plan-press-date__input" class="input-required" type="date" />
       </div>
       <div class="directive_input__wrapper" id="discard">
         <div class="title__wrapper">Dscd</div>
@@ -99,15 +99,24 @@
           <div id="discard_thickness"></div>
           mm
         </div>
-        <input class="input-required" type="text" />
+        <input
+          id="discard_thickness__input"
+          class="input-required"
+          type="text"
+        />
       </div>
       <div class="directive_input__wrapper" id="press_type">
         <div class="title__wrapper">Press</div>
         <div class="pre_directive_input__wrapper">
           <div id="pressing_type"></div>
         </div>
-        <select name="" class="input-required need-clear" id="press__select">
+        <select
+          name=""
+          class="input-required need-clear"
+          id="press-type__select"
+        >
           <!-- <option value="0">No</option> -->
+          <option value="0">-</option>
           <option value="1">〇</option>
           <option value="2">◎</option>
           <option value="3">●</option>
@@ -144,13 +153,10 @@
       <div class="directive_input__wrapper" id="billet_temp">
         <div class="title__wrapper">Billet Temp.</div>
         <div class="pre_directive_input__wrapper">
-          <div
-            class="input-required need-clear save-data"
-            id="billet_temperature"
-          ></div>
+          <div class="need-clear" id="billet_temperature"></div>
           &deg;C
         </div>
-        <input type="text" />
+        <input class="input-required need-clear save-data" type="text" />
       </div>
       <div class="directive_input__wrapper" id="billet_taper">
         <div class="title__wrapper">Billet Taper</div>
@@ -228,7 +234,7 @@
         <select
           name=""
           class="input-required need-clear save-data"
-          id="billet_size__select"
+          id="staff-name__select"
         >
           <option value="0">-</option>
         </select>
@@ -266,7 +272,7 @@
         <select
           name=""
           class="input-required need-clear save-data"
-          id="nBn__select"
+          id="machine-number__select"
         >
           <option value="0">-</option>
           <option value="1">1</option>

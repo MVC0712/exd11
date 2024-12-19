@@ -110,6 +110,11 @@ $(document).on("keyup", "#die-number__input", function () {
 });
 
 $(document).on("change", "#die-number__select", function () {
+  if ($(this).val() == 0) {
+    $(this).addClass("input-required");
+    return;
+  }
+  $(this).removeClass("input-required");
   getProductionNumber($("#die-number__select").val());
   makeSummaryTalbe($("#die-number__select").val());
 
@@ -254,3 +259,51 @@ function getLastProfileQty(targetId) {
   otherProfileMax = Math.max(...otherProfileQtyeArray);
   $("#other_profile_quantity").html(otherProfileMin + " - " + otherProfileMax);
 }
+
+// validation
+$(document).on("blur", "#plan-press-date__input", function () {
+  var dateValue;
+
+  console.log("Hello");
+  dateValue = $(this).val();
+  console.log(dateValue);
+});
+
+$(document).on("change", "#plan-press-date__input", function () {
+  var dateValue = $(this).val();
+  // check input date
+  if (dateValue) {
+    var inputDate = new Date(dateValue);
+    var today = new Date();
+    var oneWeekAgo = new Date();
+    var oneMonthLater = new Date();
+    oneWeekAgo.setDate(today.getDate() - 7);
+    oneMonthLater.setMonth(today.getMonth() + 1);
+
+    if (inputDate >= oneWeekAgo && inputDate <= oneMonthLater) {
+      // correct
+      $(this).removeClass("input-required");
+    } else {
+      // in-correct
+      $(this).addClass("input-required");
+    }
+  }
+});
+
+$(document).on("change", "#discard_thickness__input", function () {
+  var inputValue = $(this).val();
+  if (inputValue >= 1 && inputValue <= 150) {
+    $(this).removeClass("input-required");
+  } else {
+    $(this).addClass("input-required");
+  }
+});
+
+$(document).on("change", "#press-type__select", function () {
+  var inputValue = $(this).val();
+  if (inputValue != "0") {
+    $(this).removeClass("input-required");
+  } else {
+    $(this).addClass("input-required");
+  }
+});
