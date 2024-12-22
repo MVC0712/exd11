@@ -128,7 +128,11 @@
           <div id="ram_speed"></div>
           mm/s
         </div>
-        <input class="input-required need-clear save-data" type="text" />
+        <input
+          id="ram_speed__input"
+          class="input-required need-clear save-data"
+          type="text"
+        />
       </div>
       <div class="directive_input__wrapper" id="billet_length__div">
         <div class="title__wrapper">Billet L.</div>
@@ -156,7 +160,11 @@
           <div class="need-clear" id="billet_temperature"></div>
           &deg;C
         </div>
-        <input class="input-required need-clear save-data" type="text" />
+        <input
+          id="billet-temp__input"
+          class="input-required need-clear save-data"
+          type="text"
+        />
       </div>
       <div class="directive_input__wrapper" id="billet_taper">
         <div class="title__wrapper">Billet Taper</div>
@@ -169,6 +177,7 @@
           class="input-required need-clear save-data"
           id="billet_taper__select"
         >
+          <option value="-1">-</option>
           <option value="0">0 &deg;C</option>
           <option value="50">50 &deg;C</option>
           <option value="100">100 &deg;C</option>
@@ -198,7 +207,11 @@
           <div id="billet_input_quantity"></div>
           pics
         </div>
-        <input class="input-required need-clear save-data" type="text" />
+        <input
+          id="billet-qty__input"
+          class="input-required need-clear save-data"
+          type="text"
+        />
       </div>
       <div class="directive_input__wrapper" id="die_temp">
         <div class="title__wrapper">Die Temp.</div>
@@ -206,7 +219,11 @@
           <div id="die_temperature"></div>
           &deg;C
         </div>
-        <input class="input-required need-clear save-data" type="text" />
+        <input
+          id="die-temp__input"
+          class="input-required need-clear save-data"
+          type="text"
+        />
       </div>
       <div class="directive_input__wrapper" id="die_heattime">
         <div class="title__wrapper">Die H Time</div>
@@ -214,7 +231,11 @@
           <div id="die_heating_time"></div>
           h
         </div>
-        <input class="input-required need-clear save-data" type="text" />
+        <input
+          id="die-heat-time__input"
+          class="input-required need-clear save-data"
+          type="text"
+        />
       </div>
 
       <div class="directive_input__wrapper" id="stretch">
@@ -223,7 +244,11 @@
           <div id="stretch_ratio"></div>
           %
         </div>
-        <input class="input-required need-clear save-data" type="text" />
+        <input
+          id="stretch__input"
+          class="input-required need-clear save-data"
+          type="text"
+        />
       </div>
 
       <div class="directive_input__wrapper" id="person_in_charge">
@@ -314,7 +339,10 @@
           <thead>
             <tr>
               <th colspan="2" id="die_hole_number__th">
-                Profile Length (Hole)
+                Profile Length (
+                <div id="die_hole_number__div"></div>
+                Hole)
+                <div id="last-press-comment__div"></div>
               </th>
             </tr>
             <tr>
@@ -330,12 +358,14 @@
             <tr>
               <td>
                 <input
+                  id="first-profile__input"
                   class="input-required need-clear save-data"
                   type="text"
                 />
               </td>
               <td>
                 <input
+                  id="other-profile__input"
                   class="input-required need-clear save-data"
                   type="text"
                 />
@@ -343,6 +373,12 @@
             </tr>
           </tbody>
         </table>
+      </div>
+
+      <div class="button__wrapper">
+        <button id="save__button">Save</button>
+        <button id="update__button">Update</button>
+        <button id="make-pdf__button">PDF</button>
       </div>
     </div>
 
