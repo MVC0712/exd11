@@ -76,38 +76,77 @@ $(document).on("click", "#window_close__mark", function () {
   window.close();
 });
 
-$(function () {});
+$(function () {
+  const filename = "./php/MakingPressDirective/SelMemberName.php";
+  const sendData = {
+    die_number: "dummy",
+  };
+
+  myAjax.myAjax(filename, sendData);
+
+  const $select = $("#staff-name__select")
+    .empty()
+    .append($("<option>").val("0").html("-"));
+  const options = ajaxReturnData.map((value) =>
+    $("<option>").val(value["id"]).html(value["staff_name"])
+  );
+  $select.append(options);
+});
 
 $(document).on("input", "#die-number__input", function () {
   $(this).val($(this).val().toUpperCase());
 });
 
 $(document).on("keyup", "#die-number__input", function () {
+  const $select = $("#die-number__select");
   const filename = "./php/MakingPressDirective/SelDie.php";
   const sendData = {
     die_number: $(this).val() + "%",
   };
-  var val;
 
   myAjax.myAjax(filename, sendData);
 
-  $("#die-number__select").empty();
+  $select.empty();
   ajaxReturnData.forEach(function (value) {
-    $("<option>")
-      .val(value["id"])
-      .html(value["die_number"])
-      .appendTo("#die-number__select");
+    $("<option>").val(value["id"]).html(value["die_number"]).appendTo($select);
   });
-  val = $("#die-number__select option").length;
+  const val = $select.find("option").length;
+  $select
+    .toggleClass("input-required", val === 0)
+    .prop("selectedIndex", val ? 0 : -1);
   $("#die-number__div").html(val + " dies");
 
   $("div.die-information").html("");
+  // select top die number and make summary talbe
+  getProductionNumber($("#die-number__select").val());
+  makeSummaryTalbe($("#die-number__select").val());
+
+  setFocusToTop();
 });
 
 $(document).on("change", "#die-number__select", function () {
+  if ($(this).val() == 0) {
+    $(this).addClass("input-required");
+    return;
+  }
+  $(this).removeClass("input-required");
   getProductionNumber($("#die-number__select").val());
   makeSummaryTalbe($("#die-number__select").val());
+
+  setFocusToTop();
 });
+
+// $(document).on("focus", "#die-number__select", function () {
+//   console.log("hello");
+//   $(this).click();
+// });
+
+function setFocusToTop() {
+  var val = new Object();
+  val = $("#summary__table tbody tr").first();
+
+  val.trigger("click");
+}
 
 function getProductionNumber(dies_id) {
   const filename = "./php/MakingPressDirective/SelProductionNumber.php";
@@ -156,14 +195,13 @@ $(document).on("click", "#summary__table tbody tr", function () {
   getPressDirection(targetId);
 
   // fill each press condition data value to display
-  console.log(ajaxReturnData[0]);
   obj = ajaxReturnData[0];
   $.each(obj, function (key, value) {
     $("#" + key).html(value);
   });
   // get die hole number and fill it by press_directive_id
   getHoleNumber(targetId);
-  $("#die_hole_number__th").html("Profile Length (" + dieHoleNumber + "whole)");
+  $("#die_hole_number__div").html(dieHoleNumber);
   // get last profile length
   getLastProfileQty(targetId);
 });
@@ -197,34 +235,248 @@ function getLastProfileQty(targetId) {
   const sendData = {
     targetId: targetId,
   };
-
+  console.log("targetID = " + targetId);
+  // get hole qty
   n = $("#nbn").html().slice(-1);
-  console.log("n=" + n);
+  // console.log("n=" + n);
 
   myAjax.myAjax(filename, sendData);
   console.log(ajaxReturnData);
-  console.log(ajaxReturnData["work_quantity"]);
+  console.log(ajaxReturnData.length);
+  // console.log(ajaxReturnData["work_quantity"]);
+  if (ajaxReturnData.length == 0) {
+    $("#last-press-comment__div").html("No Data");
+    $("#first_profile_quantity").html("");
+    $("#other_profile_quantity").html("");
+  } else {
+    const billetQty = Number(ajaxReturnData.length);
+    $("#last-press-comment__div").html(billetQty + " Profiles");
+    // if(ajaxReturnData.length)
+    for (let i = 0; i < n; i++) {
+      // console.log(i + ":" + ajaxReturnData[i]["work_quantity"]);
+      firstProfileQtyeArray.push(Number(ajaxReturnData[i]["work_quantity"]));
+    }
+    // console.log(firstProfileQtyeArray);
+    firstProfileMin = Math.min(...firstProfileQtyeArray);
+    firstProfileMax = Math.max(...firstProfileQtyeArray);
+    // console.log("min = " + firstProfileMin);
+    // console.log("max = " + firstProfileMax);
+    $("#first_profile_quantity").html(
+      firstProfileMin + " - " + firstProfileMax
+    );
 
-  ajaxReturnData.forEach(function (val, index) {
-    // console.log(index + ":" + val);
-  });
-
-  for (let i = 0; i < n; i++) {
-    // console.log(i + ":" + ajaxReturnData[i]["work_quantity"]);
-    firstProfileQtyeArray.push(Number(ajaxReturnData[i]["work_quantity"]));
+    for (let i = n; i < ajaxReturnData.length; i++) {
+      // console.log(i + ":" + ajaxReturnData[i]["work_quantity"]);
+      otherProfileQtyeArray.push(Number(ajaxReturnData[i]["work_quantity"]));
+    }
+    otherProfileMin = Math.min(...otherProfileQtyeArray);
+    otherProfileMax = Math.max(...otherProfileQtyeArray);
+    $("#other_profile_quantity").html(
+      otherProfileMin + " - " + otherProfileMax
+    );
   }
-  console.log(firstProfileQtyeArray);
-  firstProfileMin = Math.min(...firstProfileQtyeArray);
-  firstProfileMax = Math.max(...firstProfileQtyeArray);
-  console.log("min = " + firstProfileMin);
-  console.log("max = " + firstProfileMax);
-  $("#first_profile_quantity").html(firstProfileMin + " - " + firstProfileMax);
-
-  for (let i = n; i < ajaxReturnData.length; i++) {
-    // console.log(i + ":" + ajaxReturnData[i]["work_quantity"]);
-    otherProfileQtyeArray.push(Number(ajaxReturnData[i]["work_quantity"]));
-  }
-  otherProfileMin = Math.min(...otherProfileQtyeArray);
-  otherProfileMax = Math.max(...otherProfileQtyeArray);
-  $("#other_profile_quantity").html(otherProfileMin + " - " + otherProfileMax);
 }
+
+// validation
+$(document).on("blur", "#plan-press-date__input", function () {
+  var dateValue;
+
+  console.log("Hello");
+  dateValue = $(this).val();
+  console.log(dateValue);
+});
+
+$(document).on("change", "#plan-press-date__input", function () {
+  var dateValue = $(this).val();
+  // check input date
+  if (dateValue) {
+    var inputDate = new Date(dateValue);
+    var today = new Date();
+    var oneWeekAgo = new Date();
+    var oneMonthLater = new Date();
+    oneWeekAgo.setDate(today.getDate() - 7);
+    oneMonthLater.setMonth(today.getMonth() + 1);
+
+    if (inputDate >= oneWeekAgo && inputDate <= oneMonthLater) {
+      // correct
+      $(this).removeClass("input-required");
+    } else {
+      // in-correct
+      $(this).addClass("input-required");
+    }
+  }
+});
+
+$(document).on("keyup", "#discard_thickness__input", function () {
+  var inputValue = $(this).val();
+  if (inputValue >= 1 && inputValue <= 150) {
+    $(this).removeClass("input-required");
+  } else {
+    $(this).addClass("input-required");
+  }
+});
+
+$(document).on("change", "#press-type__select", function () {
+  var inputValue = $(this).val();
+  if (inputValue != "0") {
+    $(this).removeClass("input-required");
+  } else {
+    $(this).addClass("input-required");
+  }
+});
+
+$(document).on("keyup", "#ram_speed__input", function () {
+  var inputValue = Number($(this).val());
+  if (inputValue > 0 && inputValue <= 40) {
+    $(this).removeClass("input-required");
+  } else {
+    $(this).addClass("input-required");
+  }
+});
+
+$(document).on("change", "#billet-length__select", function () {
+  if ($(this).val() != 1) {
+    $("#billet-other__input")
+      .prop("disabled", true)
+      .removeClass("input-required");
+    $(this).removeClass("input-required");
+  } else {
+    $("#billet-other__input")
+      .prop("disabled", false)
+      .addClass("input-required")
+      .focus();
+    $(this).addClass("input-required");
+  }
+});
+
+$(document).on("keyup", "#billet-other__input", function () {
+  var inputValue = Number($(this).val());
+  if (inputValue >= 300 && inputValue <= 1200) {
+    $(this).removeClass("input-required");
+  } else {
+    $(this).addClass("input-required");
+  }
+});
+
+$(document).on("keyup", "#billet-temp__input", function () {
+  var inputValue = Number($(this).val());
+  if (inputValue > 400 && inputValue < 550) {
+    $(this).removeClass("input-required");
+  } else {
+    $(this).addClass("input-required");
+  }
+});
+
+$(document).on("keyup", "#billet-temp__input", function () {
+  var inputValue = Number($(this).val());
+  if (inputValue > 400 && inputValue < 550) {
+    $(this).removeClass("input-required");
+  } else {
+    $(this).addClass("input-required");
+  }
+});
+
+$(document).on("change", "#billet_taper__select", function () {
+  var inputValue = Number($(this).val());
+  if (inputValue != -1) {
+    $(this).removeClass("input-required");
+  } else {
+    $(this).addClass("input-required");
+  }
+});
+
+$(document).on("change", "#billet_size__select", function () {
+  var inputValue = Number($(this).val());
+  if (inputValue != 0) {
+    $(this).removeClass("input-required");
+  } else {
+    $(this).addClass("input-required");
+  }
+});
+
+$(document).on("keyup", "#billet-qty__input", function () {
+  var inputValue = Number($(this).val());
+  if (inputValue > 0 && inputValue <= 100) {
+    $(this).removeClass("input-required");
+  } else {
+    $(this).addClass("input-required");
+  }
+});
+
+$(document).on("keyup", "#die-temp__input", function () {
+  var inputValue = Number($(this).val());
+  if (inputValue > 400 && inputValue < 550) {
+    $(this).removeClass("input-required");
+  } else {
+    $(this).addClass("input-required");
+  }
+});
+
+$(document).on("keyup", "#die-temp__input", function () {
+  var inputValue = Number($(this).val());
+  if (inputValue > 400 && inputValue < 550) {
+    $(this).removeClass("input-required");
+  } else {
+    $(this).addClass("input-required");
+  }
+});
+
+$(document).on("keyup", "#die-heat-time__input", function () {
+  var inputValue = Number($(this).val());
+  console.log(inputValue);
+  if (inputValue >= 3 && inputValue <= 6) {
+    $(this).removeClass("input-required");
+  } else {
+    $(this).addClass("input-required");
+  }
+});
+
+$(document).on("keyup", "#stretch__input", function () {
+  var inputValue = Number($(this).val());
+  if (inputValue >= 0 && inputValue <= 2) {
+    $(this).removeClass("input-required");
+  } else {
+    $(this).addClass("input-required");
+  }
+});
+
+$(document).on("change", "#staff-name__select", function () {
+  const inputValue = Number($(this).val());
+  $(this).toggleClass("input-required", inputValue === 0);
+});
+
+$(document).on("change", "#nBn__select", function () {
+  const inputValue = Number($(this).val());
+  $(this).toggleClass("input-required", inputValue === 0);
+});
+
+$(document).on("change", "#machine-number__select", function () {
+  const inputValue = Number($(this).val());
+  $(this).toggleClass("input-required", inputValue === 0);
+});
+
+$(document).on("change", "#cooling__select", function () {
+  const inputValue = Number($(this).val());
+  $(this).toggleClass("input-required", inputValue === 0);
+});
+
+$(document).on("keyup", "#previous_press_note", function () {
+  const inputValue = $(this).val().length;
+  $(this).toggleClass("input-required", inputValue < 5);
+});
+
+$(document).on("keyup", "#first-profile__input", function () {
+  const inputValue = $(this).val();
+  const isNumeric = $.isNumeric(inputValue);
+  const isValid = isNumeric && inputValue > 0 && inputValue < 100;
+
+  $(this).toggleClass("input-required", !isValid);
+});
+
+$(document).on("keyup", "#other-profile__input", function () {
+  const inputValue = $(this).val();
+  const isNumeric = $.isNumeric(inputValue);
+  const isValid = isNumeric && inputValue > 0 && inputValue < 100;
+
+  $(this).toggleClass("input-required", !isValid);
+});

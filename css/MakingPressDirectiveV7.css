@@ -163,6 +163,7 @@ div.middle__wrapper {
   padding-top: 30px;
   input {
     border-width: 0 1px 1px 1px;
+    text-align: center;
   }
   select {
     border-width: 0 1px 1px 1px;
@@ -182,7 +183,7 @@ div.middle__wrapper {
     margin: 0 10px 0 10px;
   }
   div#press_date {
-    width: 120px;
+    width: 140px;
   }
   div#discard {
     width: 100px;
@@ -281,6 +282,14 @@ div.middle__wrapper {
     }
   }
   table#profile-length__table {
+    div#die_hole_number__div {
+      display: inline;
+    }
+    div#last-press-comment__div {
+      display: inline;
+      color: red;
+      font-weight: bold;
+    }
     td,
     th {
       height: 25px;
@@ -293,16 +302,17 @@ div.middle__wrapper {
     } */
     td:nth-child(1),
     td:nth-child(2) {
-      width: 130px;
+      width: 160px;
     }
     tr#profile_quantity__tr td {
       text-align: center;
     }
     input {
       border-width: 0;
+      width: 100%;
     }
     thead {
-      width: 283px;
+      width: 300px;
       tr:nth-child(1) th {
         border-width: 1px 0 1px 0;
       }
