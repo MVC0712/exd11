@@ -1,4 +1,5 @@
 var dieHoleNumber;
+var billetLength;
 
 const myAjax = {
   myAjax: function (fileName, sendData) {
@@ -340,12 +341,14 @@ $(document).on("change", "#billet-length__select", function () {
       .prop("disabled", true)
       .removeClass("input-required");
     $(this).removeClass("input-required");
+    billetLength = $(this).val();
   } else {
     $("#billet-other__input")
       .prop("disabled", false)
       .addClass("input-required")
       .focus();
     $(this).addClass("input-required");
+    billetLength = null;
   }
 });
 
@@ -353,8 +356,12 @@ $(document).on("keyup", "#billet-other__input", function () {
   var inputValue = Number($(this).val());
   if (inputValue >= 300 && inputValue <= 1200) {
     $(this).removeClass("input-required");
+    $("#billet-length__select").val(inputValue);
+    billetLength = $(this).val();
   } else {
     $(this).addClass("input-required");
+    $("#billet-length__select").val("0");
+    billetLength = null;
   }
 });
 
@@ -480,3 +487,29 @@ $(document).on("keyup", "#other-profile__input", function () {
 
   $(this).toggleClass("input-required", !isValid);
 });
+
+$(document).on("click", "#save__button", function () {
+  const billetSize = Number($("#billet_size__select").val());
+  const discardThickness = Number($("#discard_thickness__input").val());
+  const productionWeight = Number($("#production-weight__div").val());
+  const billetWeight =
+    ((((billetSize * 2.54) ** 2 * Math.PI) / 4) * 2.7 * billetLength) / 10000;
+  const discardWeight =
+    ((((billetSize * 2.54 * 1.02) ** 2 * Math.PI) / 4) *
+      2.7 *
+      discardThickness) /
+    10000;
+
+  const profileLength = (billetWeight - discardWeight) / productionWeight;
+  console.log(billetWeight);
+  console.log(billetLength);
+  console.log(profileLength);
+});
+
+$(document).on("click", "#update__button", function () {
+  console.log("hello");
+  const inputRequiredObject = $(".save-data");
+  console.log(inputRequiredObject);
+});
+
+$(document).on("click", "#make-pdf__button", function () {});
