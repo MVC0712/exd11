@@ -203,6 +203,7 @@ $(document).on("click", "#summary__table tbody tr", function () {
   getPressDirection(targetId);
 
   // fill each press condition data value to display
+  console.log(ajaxReturnData[0]);
   obj = ajaxReturnData[0];
   $.each(obj, function (key, value) {
     $("#" + key).html(value);
@@ -336,19 +337,23 @@ $(document).on("keyup", "#ram_speed__input", function () {
 });
 
 $(document).on("change", "#billet-length__select", function () {
-  if ($(this).val() != 1) {
-    $("#billet-other__input")
-      .prop("disabled", true)
-      .removeClass("input-required");
-    $(this).removeClass("input-required");
-    billetLength = $(this).val();
-  } else {
-    $("#billet-other__input")
-      .prop("disabled", false)
-      .addClass("input-required")
-      .focus();
-    $(this).addClass("input-required");
-    billetLength = null;
+  const selectedValue = Number($(this).val());
+  switch (selectedValue) {
+    case 0:
+      $(this).addClass("input-required").addClass("save-data");
+      break;
+    case 1:
+      $(this).removeClass("input-required").removeClass("save-data");
+      $("#billet-other__input")
+        .prop("disabled", false)
+        .addClass("input-required")
+        .addClass("save-data");
+      break;
+    default:
+      $(this).removeClass("input-required").addClass("save-data");
+      $("#billet-other__input")
+        .prop("disabled", true)
+        .removeClass("input-required");
   }
 });
 
@@ -467,7 +472,7 @@ $(document).on("change", "#cooling__select", function () {
   $(this).toggleClass("input-required", inputValue === 0);
 });
 
-$(document).on("keyup", "#previous_press_note", function () {
+$(document).on("keyup", "#previous-press-note__textarea", function () {
   const inputValue = $(this).val().length;
   $(this).toggleClass("input-required", inputValue < 5);
 });
@@ -497,15 +502,13 @@ $(document).on("click", "#update__button", function () {
   const inputRequiredObject = $(".save-data");
   console.log(inputRequiredObject);
 
-  checkAllinputed();
+  console.log(checkAllInputed());
 });
 
-function checkAllinputed() {
+function checkAllInputed() {
   const elementOfInputRequired = $(".save-data");
   const n = elementOfInputRequired.filter(".input-required").length;
-  console.log(elementOfInputRequired);
-  console.log(elementOfInputRequired.filter(".input-required"));
-  console.log(n);
+  return n === 0;
 }
 
 $(document).on("click", "#make-pdf__button", function () {});
