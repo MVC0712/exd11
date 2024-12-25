@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chart</title>
+    <link rel="stylesheet" href="../../ex0.11/css/main.css" />
+    <link rel="stylesheet" href="./css/index.css" />
+  </head>
+  <body>
+    <header>Chart</header>
+    <div class="button__wrapper">
+      <div class="input-block__outer">
+        <div class="input__title">Search</div>
+        <input id="search" class="need-clear" type="text" />
+      </div>
+      <div class="input-block__outer">
+        <div class="input__title">Term</div>
+        <input id="month" class="need-clear" type="month"/>
+      </div>
+    </div>
+    <div class="main__wrapper">
+      <div class="left__wrapper">
+        <div>
+          <canvas id="chart_area"></canvas>
+        </div>
+      </div>
+      <div class="mid__wrapper">
+        <table id="summary__table">
+          <thead>
+            <tr>
+              <th>Ordersheet</th>
+              <th>Delivery date</th>
+              <th>Issue date</th>
+              <th>Production number</th>
+              <th>Die</th>
+              <th>Order</th>
+              <th>Cut</th>
+              <th>NG</th>
+              <th>OK</th>
+              <th>OK/Order</th>
+              <th>Packed</th>
+              <th>Packed/Order</th>
+              <th>Import</th>
+              <th>Import/Order</th>
+            </tr>
+            <tr>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th id="order">Order</th>
+              <th id="cut">Cut</th>
+              <th id="ng">NG</th>
+              <th id="ok">OK</th>
+              <th id="ok_order">OK/Order</th>
+              <th id="packed">Packed</th>
+              <th id="packed_order">Packed/Order</th>
+              <th id="import">Import</th>
+              <th id="import_order">Import/Order</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <!-- <div class="right__wrapper">
+      </div> -->
+    </div>
+    <script src="../../ex0.11/lib/jquery.min.js"></script>
+    <script src="../../ex0.11/lib/chart.min.js"></script>
+    <script src="./scr/index.js"></script>
+  </body>
+</html>

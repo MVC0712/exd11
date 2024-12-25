@@ -1,4 +1,12 @@
 var dieHoleNumber;
+var billetLength;
+
+const elementToChange = [
+  "#discard_thickness__input",
+  "#billet-length__select",
+  "#billet-other__input",
+  "#billet_size__select",
+];
 
 const myAjax = {
   myAjax: function (fileName, sendData) {
@@ -241,9 +249,6 @@ function getLastProfileQty(targetId) {
   // console.log("n=" + n);
 
   myAjax.myAjax(filename, sendData);
-  console.log(ajaxReturnData);
-  console.log(ajaxReturnData.length);
-  // console.log(ajaxReturnData["work_quantity"]);
   if (ajaxReturnData.length == 0) {
     $("#last-press-comment__div").html("No Data");
     $("#first_profile_quantity").html("");
@@ -256,17 +261,13 @@ function getLastProfileQty(targetId) {
       // console.log(i + ":" + ajaxReturnData[i]["work_quantity"]);
       firstProfileQtyeArray.push(Number(ajaxReturnData[i]["work_quantity"]));
     }
-    // console.log(firstProfileQtyeArray);
     firstProfileMin = Math.min(...firstProfileQtyeArray);
     firstProfileMax = Math.max(...firstProfileQtyeArray);
-    // console.log("min = " + firstProfileMin);
-    // console.log("max = " + firstProfileMax);
     $("#first_profile_quantity").html(
       firstProfileMin + " - " + firstProfileMax
     );
 
     for (let i = n; i < ajaxReturnData.length; i++) {
-      // console.log(i + ":" + ajaxReturnData[i]["work_quantity"]);
       otherProfileQtyeArray.push(Number(ajaxReturnData[i]["work_quantity"]));
     }
     otherProfileMin = Math.min(...otherProfileQtyeArray);
@@ -340,12 +341,14 @@ $(document).on("change", "#billet-length__select", function () {
       .prop("disabled", true)
       .removeClass("input-required");
     $(this).removeClass("input-required");
+    billetLength = $(this).val();
   } else {
     $("#billet-other__input")
       .prop("disabled", false)
       .addClass("input-required")
       .focus();
     $(this).addClass("input-required");
+    billetLength = null;
   }
 });
 
@@ -353,8 +356,12 @@ $(document).on("keyup", "#billet-other__input", function () {
   var inputValue = Number($(this).val());
   if (inputValue >= 300 && inputValue <= 1200) {
     $(this).removeClass("input-required");
+    $("#billet-length__select").val(inputValue);
+    billetLength = $(this).val();
   } else {
     $(this).addClass("input-required");
+    $("#billet-length__select").val("0");
+    billetLength = null;
   }
 });
 
@@ -480,3 +487,49 @@ $(document).on("keyup", "#other-profile__input", function () {
 
   $(this).toggleClass("input-required", !isValid);
 });
+
+$(document).on("click", "#save__button", function () {
+  getWorkLength();
+});
+
+$(document).on("click", "#update__button", function () {
+  console.log("hello");
+  const inputRequiredObject = $(".save-data");
+  console.log(inputRequiredObject);
+
+  checkAllinputed();
+});
+
+function checkAllinputed() {
+  const elementOfInputRequired = $(".save-data");
+  const n = elementOfInputRequired.filter(".input-required").length;
+  console.log(elementOfInputRequired);
+  console.log(elementOfInputRequired.filter(".input-required"));
+  console.log(n);
+}
+
+$(document).on("click", "#make-pdf__button", function () {});
+
+$(document).on("change", elementToChange, function () {
+  getWorkLength();
+});
+
+$(document).on("keyup", elementToChange, function () {
+  getWorkLength();
+});
+
+function getWorkLength() {
+  const billetSize = Number($("#billet_size__select").val());
+  const discardThickness = Number($("#discard_thickness__input").val());
+  const productionWeight = Number($("#production-weight__div").html());
+  const billetWeight =
+    ((((billetSize * 2.54) ** 2 * Math.PI) / 4) * 2.7 * billetLength) / 10000;
+  const discardWeight =
+    ((((billetSize * 2.54 * 1.02) ** 2 * Math.PI) / 4) *
+      2.7 *
+      discardThickness) /
+    10000;
+
+  const profileLength = (billetWeight - discardWeight) / productionWeight;
+  $("#production-length__div").html(profileLength.toFixed(1));
+}

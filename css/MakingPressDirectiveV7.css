@@ -326,6 +326,11 @@ div.middle__wrapper {
       }
     }
   }
+  div.button__wrapper {
+    display: flex;
+    width: 500px;
+    justify-content: space-between;
+  }
 }
 
 div#cooling-time {
