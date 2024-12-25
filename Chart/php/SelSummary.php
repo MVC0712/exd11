@@ -17,20 +17,20 @@ try {
     DATE_FORMAT(m_ordersheet.issue_date_at, '%y-%m-%d') AS issue_date_at,
     m_production_numbers.production_number,
     LEFT(m_dies.die_number, CHAR_LENGTH(m_dies.die_number) - 5) AS die_number,
-    IFNULL(FORMAT(m_ordersheet.production_quantity,
+    REPLACE(IFNULL(FORMAT(m_ordersheet.production_quantity,
                 0),
-            0) AS production_quantity,
-    IFNULL(FORMAT(SUM(t10.work_quantity), 0), 0) AS work_quantity,
-    IFNULL(FORMAT(SUM(t10.total_ng), 0), 0) AS total_ng,
-    IFNULL(FORMAT((SUM(t10.work_quantity) - SUM(t10.total_ng)),
+            0), ',', '') AS production_quantity,
+    REPLACE(IFNULL(FORMAT(SUM(t10.work_quantity), 0), 0), ',', '') AS work_quantity,
+    REPLACE(IFNULL(FORMAT(SUM(t10.total_ng), 0), 0), ',', '') AS total_ng,
+    REPLACE(IFNULL(FORMAT((SUM(t10.work_quantity) - SUM(t10.total_ng)),
                 0),
-            0) AS total_ok,
+            0), ',', '') AS total_ok,
     CONCAT((ROUND((IFNULL(REPLACE(FORMAT((SUM(t10.work_quantity) - SUM(t10.total_ng)), 0), ',', ''), 0) / 
     IFNULL(REPLACE(FORMAT(m_ordersheet.production_quantity, 0), ',', ''), 0))* 100, 0)), '%') AS 'ok/order',
-    FORMAT(t20.packed_work_quantitiy, 0) AS packed,
+    REPLACE(FORMAT(t20.packed_work_quantitiy, 0), ',', '') AS packed,
     CONCAT(ROUND(((REPLACE(FORMAT(t20.packed_work_quantitiy, 0), ',', '') /
     IFNULL(REPLACE(FORMAT(m_ordersheet.production_quantity, 0), ',', ''), 0))*100), 0), '%') AS 'pack/order',
-    IFNULL(t1010.import_q, 0) AS import_q,
+    REPLACE(IFNULL(t1010.import_q, 0), ',', '') AS import_q,
     CONCAT(ROUND(((REPLACE(IFNULL(t1010.import_q, 0), ',', '') /
     IFNULL(REPLACE(IFNULL(m_ordersheet.production_quantity, 0), ',', ''), 0))*100), 0), '%') AS 'import/order'
 FROM
