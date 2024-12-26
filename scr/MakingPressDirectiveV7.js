@@ -494,7 +494,7 @@ $(document).on("keyup", "#other-profile__input", function () {
 });
 
 $(document).on("click", "#save__button", function () {
-  getWorkLength();
+  getAllInputValues();
 });
 
 $(document).on("click", "#update__button", function () {
@@ -509,6 +509,26 @@ function checkAllInputed() {
   const elementOfInputRequired = $(".save-data");
   const n = elementOfInputRequired.filter(".input-required").length;
   return n === 0;
+}
+
+function getAllInputValues() {
+  var inputValues = new Object();
+  const elementOfSaveData = $(".save-data");
+  // inputValues = elementOfSaveData;
+  // console.log(inputValues);
+  $(".save-data").each(function (index, element) {
+    inputValues[$(this).attr("id")] = $(this).val();
+  });
+  console.log(inputValues);
+
+  return;
+
+  $("input.save-data").each(function (index, element) {
+    inputData[$(this).attr("id")] = $(this).val();
+  });
+  $("select.save-data").each(function (index, element) {
+    inputData[$(this).attr("id")] = $(this).val();
+  });
 }
 
 $(document).on("click", "#make-pdf__button", function () {});
@@ -536,3 +556,10 @@ function getWorkLength() {
   const profileLength = (billetWeight - discardWeight) / productionWeight;
   $("#production-length__div").html(profileLength.toFixed(1));
 }
+
+// check input complete
+
+$(document).on("keyup change", "div.middle__wrapper", function () {
+  const allInputed = checkAllInputed();
+  // $("#save__button").prop("disabled", !allInputed);
+});
