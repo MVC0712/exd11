@@ -219,6 +219,30 @@ function calculateColumnAverage(columnIndex, type) {
   } else {
     return count > 0 ? Math.ceil(total / count) : 0; // Trả về 0 nếu không có giá trị
   }
-  
-}
+};
 
+$("#summary__table th").on("click", function () {
+  let table = $("#summary__table");
+  let tbody = table.find("tbody");
+  let rows = tbody.find("tr").toArray();
+  let columnIndex = $(this).data("column");
+  let order = $(this).data("order");
+  // Sắp xếp các hàng
+  rows.sort(function (rowA, rowB) {
+    let cellA = $(rowA).find("td").eq(columnIndex).text().trim();
+    let cellB = $(rowB).find("td").eq(columnIndex).text().trim();
+
+    // Kiểm tra nếu là số
+    if ($.isNumeric(cellA) && $.isNumeric(cellB)) {
+        return (order === "asc" ? 1 : -1) * (parseFloat(cellA) - parseFloat(cellB));
+    }
+    // Nếu không phải số thì sắp xếp theo chuỗi
+    return (order === "asc" ? 1 : -1) * cellA.localeCompare(cellB);
+  });
+  // Thay đổi thứ tự sắp xếp (ASC <-> DESC)
+  $(this).data("order", order === "asc" ? "desc" : "asc");
+  // Gắn lại các hàng đã sắp xếp
+  $.each(rows, function (index, row) {
+      tbody.append(row);
+  });
+});

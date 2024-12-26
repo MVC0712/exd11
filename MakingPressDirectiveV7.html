@@ -156,7 +156,12 @@
           <option value="1">other</option>
         </select>
 
-        <input id="billet-other__input" disabled type="text" />
+        <input
+          id="billet-other__input"
+          class="need-clear"
+          disabled
+          type="text"
+        />
       </div>
       <div class="directive_input__wrapper" id="billet_temp">
         <div class="title__wrapper">Billet Temp.</div>
@@ -330,11 +335,13 @@
 
       <div class="directive_input__wrapper" id="press_note">
         <div class="title__wrapper">Note</div>
-        <div class="pre_directive_input__wrapper"></div>
-        <textarea
-          name=""
-          class="input-required need-clear save-data"
+        <div
           id="previous_press_note"
+          class="pre_directive_input__wrapper"
+        ></div>
+        <textarea
+          id="previous-press-note__textarea"
+          class="input-required need-clear save-data"
         ></textarea>
       </div>
 
