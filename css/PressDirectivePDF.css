@@ -1,0 +1,95 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #fafafa;
+  font: "Tahoma";
+  width: 21cm;
+  height: 29.7cm;
+  /* //   border: solid 1px black; */
+  font-size: 8px;
+}
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  font-size: 8px;
+}
+.page {
+  width: 21cm;
+  min-height: 29.7cm;
+  border: 1px #d3d3d3 solid;
+  border-radius: 5px;
+  background: white;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+@page {
+  size: A4;
+  margin: 0;
+}
+@media print {
+  * {
+    overflow: visible !important;
+  }
+  .page {
+    margin: 0;
+    border: initial;
+    border-radius: initial;
+    width: initial;
+    min-height: initial;
+    box-shadow: initial;
+    background: initial;
+    page-break-after: always;
+  }
+}
+.dp-f {
+  display: flex;
+}
+.fd-c {
+  flex-direction: column;
+}
+.fd-r {
+  flex-direction: row;
+}
+.bd {
+  border: solid 1px black;
+}
+.fw {
+  width: 100%;
+}
+.fh {
+  height: 29.7cm;
+}
+.t-ct {
+  text-align: center;
+}
+tr {
+  /* //   font-size: xx-small; */
+  height: 15px;
+}
+table {
+  padding: 0;
+  margin: 0;
+  border-spacing: 0;
+  border-top: 1px solid black;
+  border-right: 1px solid black;
+}
+td,
+th {
+  padding: 0;
+  margin: 0;
+  border-spacing: 0;
+  text-align: center;
+  border-bottom: 1px solid black;
+  border-left: 1px solid black;
+  /* //   border: 1px solid black; */
+}
+tr,
+td,
+th {
+  padding: 0;
+  margin: 0;
+  border-spacing: 0;
+  text-align: center;
+  /* //   border-bottom: 1px solid black; */
+  /* //   border-left: 1px solid black; */
+  /* // border: 1px solid black; */
+}

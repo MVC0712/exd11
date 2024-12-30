@@ -1,3 +1,11 @@
+const today = new Date();
+const yyyy = today.getFullYear();
+const mm = String(today.getMonth() + 1).padStart(2, "0"); // 月は0から始まるので+1が必要
+const dd = String(today.getDate()).padStart(2, "0");
+
+const formattedDate = `${yyyy}-${mm}-${dd}`;
+// console.log(formattedDate); // 例: "2024-12-27"
+
 var dieHoleNumber;
 var billetLength;
 
@@ -108,20 +116,21 @@ $(document).on("input", "#die-number__input", function () {
 $(document).on("keyup", "#die-number__input", function () {
   const $select = $("#die-number__select");
   const filename = "./php/MakingPressDirective/SelDie.php";
+  const newOption = $("<option></option>").val("0").text("no");
   const sendData = {
     die_number: $(this).val() + "%",
   };
 
   myAjax.myAjax(filename, sendData);
 
-  $select.empty();
+  $select.empty().append(newOption);
   ajaxReturnData.forEach(function (value) {
     $("<option>").val(value["id"]).html(value["die_number"]).appendTo($select);
   });
   const val = $select.find("option").length;
-  $select
-    .toggleClass("input-required", val === 0)
-    .prop("selectedIndex", val ? 0 : -1);
+  // $select
+  //   .toggleClass("input-required", val === 0)
+  //   .prop("selectedIndex", val ? 0 : -1);
   $("#die-number__div").html(val + " dies");
 
   $("div.die-information").html("");
@@ -129,12 +138,13 @@ $(document).on("keyup", "#die-number__input", function () {
   getProductionNumber($("#die-number__select").val());
   makeSummaryTalbe($("#die-number__select").val());
 
-  setFocusToTop();
+  // setFocusToTop();
 });
 
 $(document).on("change", "#die-number__select", function () {
   if ($(this).val() == 0) {
     $(this).addClass("input-required");
+    $("#summary__table tbody").empty();
     return;
   }
   $(this).removeClass("input-required");
@@ -494,15 +504,36 @@ $(document).on("keyup", "#other-profile__input", function () {
 });
 
 $(document).on("click", "#save__button", function () {
-  getAllInputValues();
+  const inputValues = getAllInputValues();
+  const deleteElements = $(".need-clear");
+  const deleteUpperAreaElements = $("div.top__wrapper div.display__wrapper");
+  const deleteLastPressCondition = $(
+    "div.middle__wrapper div.pre_directive_input__wrapper"
+  );
+  const summaryTableBody = $("#summary__table tbody");
+  // console.log(inputValues);
+
+  fileName = "./php/MakingPressDirective/InsDataV7.php";
+  sendData = inputValues;
+  myAjax.myAjax(fileName, sendData);
+  // delete input value and color
+  deleteElements.val("").addClass("input-required");
+  // delete inserted value
+  deleteUpperAreaElements.html("");
+  deleteLastPressCondition.html("");
+  // delete summary table body
+  summaryTableBody.empty();
+
+  $(this).prop("disabled", true);
 });
 
 $(document).on("click", "#update__button", function () {
-  console.log("hello");
-  const inputRequiredObject = $(".save-data");
-  console.log(inputRequiredObject);
-
-  console.log(checkAllInputed());
+  var summaryTableBody = new Object();
+  summaryTableBody = $("#summary__table tbody");
+  // summaryTableBody = $("#summary__table");
+  console.log($("#summary__table"));
+  console.log($("#summary__table tbody"));
+  summaryTableBody.empty();
 });
 
 function checkAllInputed() {
@@ -519,19 +550,37 @@ function getAllInputValues() {
   $(".save-data").each(function (index, element) {
     inputValues[$(this).attr("id")] = $(this).val();
   });
-  console.log(inputValues);
+  inputValues["created_at"] = formattedDate;
 
-  return;
-
-  $("input.save-data").each(function (index, element) {
-    inputData[$(this).attr("id")] = $(this).val();
-  });
-  $("select.save-data").each(function (index, element) {
-    inputData[$(this).attr("id")] = $(this).val();
-  });
+  return inputValues;
 }
 
-$(document).on("click", "#make-pdf__button", function () {});
+$(document).on("click", "#make-pdf__button", function () {
+  const printContent = $("#content").html();
+  const newWindow = window.open(
+    "",
+    "",
+    "width=1200,height=900,left=250,location=no,titlebar=yes"
+  );
+  newWindow.document.write(`
+          <!DOCTYPE html>
+          <html lang="ja">
+          <head>
+            <meta charset="UTF-8">
+            <title>印刷プレビュー</title>
+          </head>
+          <body>
+            ${printContent}
+          </body>
+          </html>
+        `);
+  newWindow.document.close();
+  newWindow.focus();
+  setTimeout(() => {
+    newWindow.print();
+    newWindow.close();
+  }, 500);
+});
 
 $(document).on("change", elementToChange, function () {
   getWorkLength();
@@ -561,5 +610,5 @@ function getWorkLength() {
 
 $(document).on("keyup change", "div.middle__wrapper", function () {
   const allInputed = checkAllInputed();
-  // $("#save__button").prop("disabled", !allInputed);
+  $("#save__button").prop("disabled", !allInputed);
 });
