@@ -556,31 +556,99 @@ function getAllInputValues() {
 }
 
 $(document).on("click", "#make-pdf__button", function () {
-  const printContent = $("#content").html();
-  const newWindow = window.open(
-    "",
-    "",
-    "width=1200,height=900,left=250,location=no,titlebar=yes"
-  );
-  newWindow.document.write(`
-          <!DOCTYPE html>
-          <html lang="ja">
-          <head>
-            <meta charset="UTF-8">
-            <title>印刷プレビュー</title>
-          </head>
-          <body>
-            ${printContent}
-          </body>
-          </html>
-        `);
-  newWindow.document.close();
-  newWindow.focus();
-  setTimeout(() => {
-    newWindow.print();
-    newWindow.close();
-  }, 500);
+  makeNewPage();
 });
+
+function makeNewPage() {
+  // 読み込むHTMLファイルのパス
+  // const htmlFilePath = "../exd11/PressDirectiveSheetPDF.html";
+  const htmlFilePath = "../exd11/PressDSPDF.html";
+  // 置き換える文字列を宣言する
+  const replacements = {
+    "${issue_date}": "24/12/28",
+    "${planed_at}": "24/12/20",
+    "${plan_date_at}": "24/12/20",
+    "${staff_name}": "Huỳnh Võ Nguyễn Tiến",
+    "${pressing_type}": "◎",
+    "${press_machine}": "2",
+    "${die_number}": "M1B80T-V02D",
+    "${T_die_number}": "M1B80T-V02D",
+    "${die_ring}": "DR4626",
+    "${production_number}": "S370A63T26X20X20",
+    "${bolster_name}": "B4626-1710-**",
+    "${material}": "A6063",
+    "${billet_length}": "1200",
+    "${billet_size}": "9",
+    "${specific_weight}": "12.3",
+    "${ratio}": "21.0",
+    "${press_lengthth}": "45.4",
+    "${nbn}": "1B1",
+    "${previous_press_note}": "Check surface",
+    "${production_length}": "48.2m",
+    "${die_note}": "This is Die note",
+    "${prsTimePL}": "0.65h",
+    "${billet_input_quantity}": "12",
+    "${work_speed}": "12.5",
+    "${ram_speed}": "3.5",
+    "${billet_t}": "480&#176;C-50&#176;C/m",
+    "${discard_thickness}": "85",
+    "${die_temperature}": "480",
+    "${stretch_ratio}": "0.8%",
+    "${die_heating_time}": "5.5h",
+    "${cooling_type}": "Air",
+    "${pullerF}": "150kgf",
+    "${aging}": "9.5h",
+    "${plan_note}": "This is checking process of surface",
+    "${makeTable()}": makeProfileTable(),
+  };
+
+  $.get(htmlFilePath, function (htmlContent) {
+    let processedContent = htmlContent;
+    for (const [key, value] of Object.entries(replacements)) {
+      processedContent = processedContent.replace(key, value);
+    }
+    // 新しいウィンドウを開く
+    const newWindow = window.open(
+      "",
+      "_blank",
+      "width=1200,height=900, left=250, location = no , titlebar=yes"
+    );
+    console.log(plan_date_at);
+    // 新しいウィンドウにHTMLを挿入
+    newWindow.document.write(processedContent);
+    // ドキュメントの書き込みを終了
+    newWindow.document.close();
+  }).fail(function () {
+    alert("HTMLファイルの読み込みに失敗しました。");
+  });
+}
+
+function makeProfileTable() {
+  var tbd = ``;
+  var tr = ``;
+  var trC = `<tbody style="height: 100%; overflow: hidden;">`;
+  for (i = 1; i <= 62; ++i) {
+    tr = `<tr style="height: 14.8px">
+                <td style="width: 10px; font-size: 8px;">${i}</td>
+                <td style="width: 37px;"></td>
+                <td style="width: 35px;"></td>
+                <td style="width: 40px;"></td>
+                <td style="width: 35px;"></td>
+                <td style="width: 35px;"></td>
+                <td style="width: 30px;"></td>
+                <td style="width: 55px;"></td>
+                <td style="width: 55px; text-align: center;">:</td>
+                <td style="width: 35px;"></td>
+                <td style="width: 17px;"></td>
+                <td style="width: 17px;"></td>
+                <td style="width: 17px;"></td>
+                <td style="width: 17px;"></td>
+                <td style="width: 17px;"></td>
+            </tr>`;
+    tbd += tr;
+  }
+  return trC + tbd + "</tbody>";
+}
 
 $(document).on("change", elementToChange, function () {
   getWorkLength();
@@ -607,7 +675,6 @@ function getWorkLength() {
 }
 
 // check input complete
-
 $(document).on("keyup change", "div.middle__wrapper", function () {
   const allInputed = checkAllInputed();
   $("#save__button").prop("disabled", !allInputed);
