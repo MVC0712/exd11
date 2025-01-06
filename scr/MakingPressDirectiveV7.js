@@ -174,7 +174,9 @@ function getProductionNumber(dies_id) {
 
   myAjax.myAjax(filename, sendData);
 
-  console.log(ajaxReturnData);
+  if (!ajaxReturnData.length) {
+    return;
+  }
 
   $("#die_size__div").html("&phi;" + ajaxReturnData[0]["die_diamater"]);
   $("#production-number__div").html(ajaxReturnData[0]["production_number"]);
@@ -217,7 +219,6 @@ $(document).on("click", "#summary__table tbody tr", function () {
   getPressDirection(targetId);
 
   // fill each press condition data value to display
-  console.log(ajaxReturnData[0]);
   obj = ajaxReturnData[0];
   $.each(obj, function (key, value) {
     $("#" + key).html(value);
@@ -258,7 +259,6 @@ function getLastProfileQty(targetId) {
   const sendData = {
     targetId: targetId,
   };
-  console.log("targetID = " + targetId);
   // get hole qty
   n = $("#nbn").html().slice(-1);
   // console.log("n=" + n);
@@ -353,10 +353,10 @@ $(document).on("keyup", "#ram_speed__input", function () {
 $(document).on("change", "#billet-length__select", function () {
   const selectedValue = Number($(this).val());
   switch (selectedValue) {
-    case 0:
+    case 0: // when select "-"
       $(this).addClass("input-required").addClass("save-data");
       break;
-    case 1:
+    case 1: // when select other billet length
       $(this).removeClass("input-required").removeClass("save-data");
       $("#billet-other__input")
         .prop("disabled", false)
@@ -368,6 +368,7 @@ $(document).on("change", "#billet-length__select", function () {
       $("#billet-other__input")
         .prop("disabled", true)
         .removeClass("input-required");
+      billetLength = $(this).val();
   }
 });
 
@@ -565,48 +566,8 @@ $(document).on("click", "#make-pdf__button", function () {
 
 function makeNewPage() {
   // 読み込むHTMLファイルのパス
-  // const htmlFilePath = "../exd11/PressDirectiveSheetPDF.html";
   // const htmlFilePath = "../exd11/PressDSPDF.html";
   const htmlFilePath = "../ex0.11/PressDSPDF.html";
-  // 置き換える文字列を宣言する
-
-  // var replacements = {
-  //   "${issue_date}": "24/12/28",
-  //   "${planed_at}": "24/12/20",
-  //   "${plan_date_at}": "24/12/20",
-  //   "${staff_name}": "Huỳnh Võ Nguyễn Tiến",
-  //   "${pressing_type}": "◎",
-  //   "${press_machine}": "2",
-  //   "${die_number}": "M1B80T-V02D",
-  //   "${T_die_number}": "M1B80T-V02D",
-  //   "${die_ring}": "DR4626",
-  //   "${production_number}": "S370A63T26X20X20",
-  //   "${bolster_name}": "B4626-1710-**",
-  //   "${material}": "A6063",
-  //   "${billet_length}": "1200",
-  //   "${billet_size}": "9",
-  //   "${specific_weight}": "12.3",
-  //   "${ratio}": "21.0",
-  //   "${press_lengthth}": "45.4",
-  //   "${nbn}": "1B1",
-  //   "${previous_press_note}": "Check surface",
-  //   "${production_length}": "48.2m",
-  //   "${die_note}": "This is Die note",
-  //   "${prsTimePL}": "0.65h",
-  //   "${billet_input_quantity}": "12",
-  //   "${work_speed}": "12.5",
-  //   "${ram_speed}": "3.5",
-  //   "${billet_t}": "480&#176;C-50&#176;C/m",
-  //   "${discard_thickness}": "85",
-  //   "${die_temperature}": "480",
-  //   "${stretch_ratio}": "0.8%",
-  //   "${die_heating_time}": "5.5h",
-  //   "${cooling_type}": "Air",
-  //   "${pullerF}": "150kgf",
-  //   "${aging}": "9.5h",
-  //   "${plan_note}": "This is checking process of surface",
-  //   "${makeTable()}": makeProfileTable(),
-  // };
 
   const replacements = getPrintData();
   // return;
@@ -615,7 +576,6 @@ function makeNewPage() {
     for (const [key, value] of Object.entries(replacements)) {
       processedContent = processedContent.replace(key, value);
     }
-    makeProfileTable();
     // 新しいウィンドウを開く
     const newWindow = window.open(
       "",
@@ -657,21 +617,21 @@ function getPrintData() {
   printDataValues["${specific_weight}"] = readDataValues["specific_weight"];
   // printDataValues["${ratio}"] = readDataValues["ratio"];
   printDataValues["${ratio}"] = ratioValue;
-  printDataValues["nbn"] = readDataValues["nbn"];
-  printDataValues["previous_press_note"] =
-    readDataValues["previous_press_note"];
-  printDataValues["staff_name"] = readDataValues["staff_name"];
+  printDataValues["${nbn}"] = readDataValues["nbn"];
+  printDataValues["${previous_press_note}"] =
+    readDataValues["${previous_press_note}"];
+  printDataValues["${staff_name}"] = readDataValues["staff_name"];
   // printDataValues["issue_date"] = readDataValues["issue_date"];
-  printDataValues["issue_date"] = issueDateAt;
-  printDataValues["prsTimePL"] = readDataValues["plan_pressing_time"] + " h";
-  printDataValues["billet_input_quantity"] =
-    readDataValues["billet_input_quantity"];
-  printDataValues["billet_length"] = readDataValues["billet_length"];
-  printDataValues["discard_thickness"] = readDataValues["discard_thickness"];
-  printDataValues["ram_speed"] = readDataValues["ram_speed"];
-  printDataValues["work_spped2"] = readDataValues["work_speed2"];
-  printDataValues["work_speed"] = readDataValues["work_speed"];
-  printDataValues["billet_t"] =
+  printDataValues["${issue_date}"] = issueDateAt;
+  printDataValues["${prsTimePL}"] = readDataValues["plan_pressing_time"] + " h";
+  printDataValues["${billet_input_quantity}"] =
+    readDataValues["${billet_input_quantity}"];
+  printDataValues["${billet_length}"] = readDataValues["billet_length"];
+  printDataValues["${discard_thickness}"] = readDataValues["discard_thickness"];
+  printDataValues["${ram_speed}"] = readDataValues["ram_speed"];
+  printDataValues["${work_spped2}"] = readDataValues["work_speed2"];
+  printDataValues["${work_speed}"] = readDataValues["work_speed"];
+  printDataValues["${billet_t}"] =
     readDataValues["billet_temperature"] +
     "&#8451;" +
     "-" +
@@ -691,20 +651,21 @@ function getPrintData() {
   // printDataValues[""] = readDataValues["hole"];
   printDataValues["${press_machine}"] = readDataValues["press_machine"];
   printDataValues["${die_note}"] = readDataValues["die_note"];
-  // printDataValues[""] = readDataValues["h"];
-  // printDataValues[""] = readDataValues["a"];
-  // printDataValues[""] = readDataValues["b"];
-  // printDataValues[""] = readDataValues["c"];
-  // printDataValues[""] = readDataValues["d"];
-  // printDataValues[""] = readDataValues["e"];
-  // printDataValues[""] = readDataValues["f"];
-  // printDataValues[""] = readDataValues["i"];
-  // printDataValues[""] = readDataValues["k"];
-  // printDataValues[""] = readDataValues["end"];
+  printDataValues["${h}"] = readDataValues["h"];
+  printDataValues["${a}"] = readDataValues["a"];
+  printDataValues["${b}"] = readDataValues["b"];
+  printDataValues["${c}"] = readDataValues["c"];
+  printDataValues["${d}"] = readDataValues["d"];
+  printDataValues["${e}"] = readDataValues["e"];
+  printDataValues["${f}"] = readDataValues["f"];
+  printDataValues["${i}"] = readDataValues["i"];
+  printDataValues["${k}"] = readDataValues["k"];
+  printDataValues["${end}"] = readDataValues["end"];
   printDataValues["${plan_note}"] = readDataValues["plan_note"];
   // printDataValues[""] = readDataValues["die_diamater"];
+  printDataValues["${makeTable()}"] = makeProfileTable();
 
-  console.log(printDataValues);
+  // console.log(printDataValues);
   return printDataValues;
 }
 
@@ -762,8 +723,8 @@ function getWorkLength() {
       2.7 *
       discardThickness) /
     10000;
-
   const profileLength = (billetWeight - discardWeight) / productionWeight;
+
   $("#production-length__div").html(profileLength.toFixed(1));
 }
 
