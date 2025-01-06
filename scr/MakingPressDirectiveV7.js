@@ -566,7 +566,8 @@ $(document).on("click", "#make-pdf__button", function () {
 function makeNewPage() {
   // 読み込むHTMLファイルのパス
   // const htmlFilePath = "../exd11/PressDirectiveSheetPDF.html";
-  const htmlFilePath = "../exd11/PressDSPDF.html";
+  // const htmlFilePath = "../exd11/PressDSPDF.html";
+  const htmlFilePath = "../ex0.11/PressDSPDF.html";
   // 置き換える文字列を宣言する
 
   // var replacements = {
@@ -614,6 +615,7 @@ function makeNewPage() {
     for (const [key, value] of Object.entries(replacements)) {
       processedContent = processedContent.replace(key, value);
     }
+    makeProfileTable();
     // 新しいウィンドウを開く
     const newWindow = window.open(
       "",
