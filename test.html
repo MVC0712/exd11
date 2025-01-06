@@ -3,26 +3,32 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Press Plan Page</title>
-    <link rel="stylesheet" href="./css/main.css" />
-    <!-- <link rel="stylesheet" href="./css/index.css"> -->
-  </head>
+    <title>Load HTML and Open Window</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("#loadAndOpen").on("click", function () {
+          // 読み込むHTMLファイルのパス
+          const htmlFilePath = "../exd11/PressDirectiveSheetPDF.html";
+          // HTMLファイルを取得
+          $.get(htmlFilePath, function (data) {
+            // 新しいウィンドウを開く
+            const newWindow = window.open("", "_blank", "width=800,height=600");
 
+            // 新しいウィンドウにHTMLを挿入
+            newWindow.document.write(data);
+
+            // ドキュメントの書き込みを終了
+            newWindow.document.close();
+          }).fail(function () {
+            alert("HTMLファイルの読み込みに失敗しました。");
+          });
+        });
+      });
+    </script>
+  </head>
   <body>
-    <header>Press Plan Page</header>
-    <div class="main__wrapper">
-      <div class="input__wrapper">
-        <div class="input__title">Date</div>
-        <div class="innner-input_wrapper">
-          <div class="previous-value__display">12.3</div>
-          <input
-            id="date__input"
-            class="need-clear no-input input-required save-data"
-            type="text"
-          />
-        </div>
-      </div>
-    </div>
-    <dialog>test</dialog>
+    <h1>HTMLファイルを読み込んで新しいウィンドウを開く</h1>
+    <button id="loadAndOpen">HTMLを読み込んで新しいウィンドウで表示</button>
   </body>
 </html>

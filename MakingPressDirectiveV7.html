@@ -52,24 +52,19 @@
       </div>
       <div class="input__wrapper">
         <div class="title__wrapper">Size</div>
-        <div
-          class="display__wrapper die-information need-clear"
-          id="die_size__div"
-        >
-          &phi;300
-        </div>
+        <div class="display__wrapper die-information" id="die_size__div"></div>
       </div>
       <div class="input__wrapper">
         <div class="title__wrapper">PN</div>
         <div
-          class="display__wrapper die-information need-clear"
+          class="display__wrapper die-information"
           id="production-number__div"
         ></div>
       </div>
       <div class="input__wrapper">
         <div class="title__wrapper">WT</div>
         <div
-          class="display__wrapper die-information need-clear"
+          class="display__wrapper die-information"
           id="production-weight__div"
         ></div>
         <div class="unit__wrapper">
@@ -93,7 +88,7 @@
         </div>
         <input
           id="plan-press-date__input"
-          class="input-required save-data"
+          class="input-required save-data need-clear"
           type="date"
         />
       </div>
@@ -101,13 +96,9 @@
         <div class="title__wrapper">Dscd</div>
         <div class="pre_directive_input__wrapper">
           <div id="discard_thickness"></div>
-          mm
         </div>
-        <input
-          id="discard_thickness__input"
-          class="input-required save-data"
-          type="text"
-        />
+        <input id="discard_thickness__input" class="input-required save-data
+        need-clear type="text" />
       </div>
       <div class="directive_input__wrapper" id="press_type">
         <div class="title__wrapper">Press</div>
@@ -116,7 +107,7 @@
         </div>
         <select
           name=""
-          class="input-required save-data"
+          class="input-required save-data need-clear"
           id="press-type__select"
         >
           <!-- <option value="0">No</option> -->
@@ -130,7 +121,6 @@
         <div class="title__wrapper">RamSp</div>
         <div class="pre_directive_input__wrapper">
           <div id="ram_speed"></div>
-          mm/s
         </div>
         <input
           id="ram_speed__input"
@@ -142,7 +132,6 @@
         <div class="title__wrapper">Billet L.</div>
         <div class="pre_directive_input__wrapper">
           <div id="billet_length"></div>
-          mm
         </div>
         <select
           name=""
@@ -167,7 +156,6 @@
         <div class="title__wrapper">Billet Temp.</div>
         <div class="pre_directive_input__wrapper">
           <div class="need-clear" id="billet_temperature"></div>
-          &deg;C
         </div>
         <input
           id="billet-temp__input"
@@ -179,7 +167,6 @@
         <div class="title__wrapper">Billet Taper</div>
         <div class="pre_directive_input__wrapper">
           <div id="billet_taper_heating"></div>
-          &deg;C
         </div>
         <select
           name=""
@@ -196,7 +183,6 @@
         <div class="title__wrapper">Billet Size</div>
         <div class="pre_directive_input__wrapper">
           <div id="billet_size"></div>
-          inch
         </div>
         <select
           name=""
@@ -214,7 +200,6 @@
         <div class="title__wrapper">Billet Qty</div>
         <div class="pre_directive_input__wrapper">
           <div id="billet_input_quantity"></div>
-          pics
         </div>
         <input
           id="billet-qty__input"
@@ -226,7 +211,6 @@
         <div class="title__wrapper">Die Temp.</div>
         <div class="pre_directive_input__wrapper">
           <div id="die_temperature"></div>
-          &deg;C
         </div>
         <input
           id="die-temp__input"
@@ -238,7 +222,6 @@
         <div class="title__wrapper">Die H Time</div>
         <div class="pre_directive_input__wrapper">
           <div id="die_heating_time"></div>
-          h
         </div>
         <input
           id="die-heat-time__input"
@@ -251,7 +234,6 @@
         <div class="title__wrapper">Stretch</div>
         <div class="pre_directive_input__wrapper">
           <div id="stretch_ratio"></div>
-          %
         </div>
         <input
           id="stretch__input"
@@ -300,7 +282,6 @@
       <div class="directive_input__wrapper" id="machine_number">
         <div class="title__wrapper">Machine</div>
         <div class="pre_directive_input__wrapper">
-          Number:
           <div id="press_machine"></div>
         </div>
         <select
@@ -387,9 +368,9 @@
       </div>
 
       <div class="button__wrapper">
-        <button id="save__button">Save</button>
+        <button disabled id="save__button">Save</button>
         <button id="update__button">Update</button>
-        <button id="make-pdf__button">PDF</button>
+        <button id="make-pdf__button">Print</button>
       </div>
     </div>
 

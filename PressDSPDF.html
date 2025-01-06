@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Phiếu đùn ngày ${plan_date_at}-${T_die_number}</title>
+    <!-- <link rel="stylesheet" href="./css/main2.css" /> -->
+    <link rel="stylesheet" href="./css/PressDirectivePDF.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div id="headder__wrapper">
+      <div class="headder-space__wrapper">
+        <img id="logo__img" alt="log mark" src="./lib/logo.png" />
+      </div>
+      <div id="title__div">PHIẾU THÔNG TIN SẢN XUẤT</div>
+      <div class="headder-space__wrapper"></div>
+    </div>
+    <div id="table__wrapper">
+      <div id="top-table__wrapper">
+        <div id="top-left-table__wrapper">
+          <table id="press-date__table">
+            <tbody>
+              <tr>
+                <td>Ngày tạo</td>
+                <td>${issue_date}</td>
+                <td>Ngày đùn</td>
+                <td>${planed_at}</td>
+                <td>Máy</td>
+              </tr>
+              <tr>
+                <td>Người tạo</td>
+                <td>${staff_name}</td>
+                <td>Loại</td>
+                <td>${pressing_type}</td>
+                <td>${press_machine}</td>
+              </tr>
+            </tbody>
+          </table>
+          <table id="die-information__table">
+            <tbody style="overflow: auto; height: 40px">
+              <tr>
+                <td>Mã khuôn</td>
+                <td>${die_number}</td>
+                <td>Vòng khuôn</td>
+                <td>${die_ring}</td>
+                <td>XN khuôn</td>
+              </tr>
+              <tr>
+                <td style="width: 35px">Mã sản phẩm</td>
+                <td>${production_number}</td>
+                <td>Đệm khuôn</td>
+                <td>${bolster_name}</td>
+                <td>YES / NO</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="height: 100%; margin-left: 5px">
+          <table style="overflow: auto; width: auto">
+            <tbody style="overflow: auto; height: 60px">
+              <tr>
+                <td style="width: 20px" rowspan="2">Billet</td>
+                <td style="width: 55px">Mã vật liệu</td>
+                <td style="width: 35px">${material}</td>
+                <td style="width: 45px">Xuất xứ</td>
+                <td style="width: 30px">DB/VN</td>
+              </tr>
+              <tr>
+                <td style="width: 55px">Chiều dài</td>
+                <td style="width: 35px">${billet_length}</td>
+                <td style="width: 45px">Kích thước</td>
+                <td style="width: 30px">${billet_size}</td>
+              </tr>
+              <tr>
+                <td style="width: 25px" rowspan="2">SP đùn</td>
+                <td style="width: 55px">Khối lượng/m</td>
+                <td style="width: 35px">${specific_weight}</td>
+                <td style="width: 45px">Tỷ lệ đùn</td>
+                <td style="width: 30px">${ratio}</td>
+              </tr>
+              <tr>
+                <td style="width: 55px">Chiều dài đùn</td>
+                <td style="width: 35px">${press_lengthth}</td>
+                <td style="width: 45px">Chế độ đùn</td>
+                <td style="width: 30px">${nbn}</td>
+              </tr>
+              <tr style="height: 15px">
+                <td colspan="5">${previous_press_note}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="height: 100%; margin-left: 5px">
+          <table style="overflow: auto; width: auto">
+            <tbody style="overflow: auto; height: 60px">
+              <tr>
+                <td style="width: 40px">Ngày cắt</td>
+                <td style="width: 55px"></td>
+                <td style="width: 35px">Bắt đầu</td>
+                <td style="width: 45px"></td>
+                <td style="width: 35px">Kết thúc</td>
+                <td style="width: 45px"></td>
+              </tr>
+              <tr>
+                <td style="width: 40px">Tên NV</td>
+                <td style="width: 55px" colspan="2"></td>
+                <td style="width: 35px" colspan="2">Tổng thành phẩm</td>
+                <td style="width: 45px"></td>
+              </tr>
+              <tr>
+                <td style="width: 40px"></td>
+                <td style="width: 55px"></td>
+                <td style="width: 35px">Mẫu</td>
+                <td style="width: 45px; text-align: right">/50mm</td>
+                <td style="width: 35px">SL Rack</td>
+                <td style="width: 45px"></td>
+              </tr>
+              <tr>
+                <td style="width: 40px">SP dài YC</td>
+                <td style="width: 55px">${production_length}</td>
+                <td style="width: 35px">SP dài TT</td>
+                <td style="width: 45px"></td>
+                <td style="width: 35px">SL cắt TB</td>
+                <td style="width: 45px">${cut}</td>
+              </tr>
+              <tr style="height: 15px">
+                <td colspan="6">${die_note}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div id="middle-table__wrapper">
+        <div id="middle-left-table__warpper">
+          <table id="billet-information__table">
+            <thead>
+              <tr>
+                <th>Số bundle</th>
+                <th>Số lượng</th>
+                <th>Lot</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <table id="press-condition__table">
+            <thead>
+              <tr>
+                <th colspan="4">Thông số đùn</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td colspan="2">Thiết đặt</td>
+                <td colspan="2">Thực tế</td>
+              </tr>
+              <tr>
+                <td>Thời gian đùn</td>
+                <td>${prsTimePL}</td>
+                <td>Thời gian đùn</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td>Billet dự kiến</td>
+                <td>${billet_input_quantity}</td>
+                <td>Billet thực tế</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Tốc độ SP</td>
+                <td>${work_speed}</td>
+                <td>Ngày đùn</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Tốc độ đùn</td>
+                <td>${ram_speed}</td>
+                <td>Người thao tác</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Nhiệt độ billet</td>
+                <td>${billet_t}</td>
+                <td>Nhiệt độ billet</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Kích thước đuôi</td>
+                <td>${discard_thickness}</td>
+                <td>Nhiệt độ diering</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Nhiệt độ khuôn</td>
+                <td>${die_temperature}</td>
+                <td>Nhiệt độ khuôn</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Tỉ lệ kéo</td>
+                <td>${stretch_ratio}</td>
+                <td>Nhiệt độ bolter</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>TG nung khuôn</td>
+                <td>${die_heating_time}</td>
+                <td>TG nung khuôn</td>
+                <td>～</td>
+              </tr>
+              <tr>
+                <td>Kiểu làm mát</td>
+                <td>${cooling_type}</td>
+                <td>Ngâm kiềm</td>
+                <td>Yes / No</td>
+              </tr>
+              <tr>
+                <td>Lực kéo Puller</td>
+                <td>${pullerF}</td>
+                <td>Điều kiện ủ</td>
+                <td>${aging}</td>
+              </tr>
+            </tbody>
+          </table>
+          <table id="container-temp__table">
+            <thead>
+              <tr>
+                <th colspan="3">Nhiệt độ container</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Vị trí đo</td>
+                <td>Phía stem</td>
+                <td>Phía khuôn</td>
+              </tr>
+              <tr>
+                <td>Trước đùn</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Sau đùn</td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <table id="ram-information__table">
+            <thead>
+              <tr>
+                <th colspan="7">Theo dõi quá trình đùn</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td rowspan="2">Hạng mục</td>
+                <td colspan="3">Vị trí Ram 1000/400mm</td>
+                <td colspan="3">Vị trí Ram 200mm</td>
+              </tr>
+              <tr>
+                <td>Tốc độ đùn</td>
+                <td>Áp suất Main Ram</td>
+                <td>Nhiệt độ cửa ra</td>
+                <td>Tốc độ đùn</td>
+                <td>Áp suất Main Ram</td>
+                <td>Nhiệt độ cửa ra</td>
+              </tr>
+              <tr>
+                <td>No.1 billet</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>No.2 billet</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td colspan="2">Sub initial hight</td>
+                <td colspan="5"></td>
+              </tr>
+              <tr>
+                <td colspan="2">Initial hight</td>
+                <td colspan="5"></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div style="display: flex; flex-direction: row">
+            <table style="overflow: auto; width: 130px; margin-top: 5px">
+              <thead>
+                <tr>
+                  <th style="width: 20px">Stt</th>
+                  <th style="width: 50px">Mã số Rack</th>
+                  <th style="width: 50px">Số SP/Rack</th>
+                </tr>
+              </thead>
+              <tbody style="overflow: auto; height: auto; width: 130px">
+                <tr style="height: 15px">
+                  <td style="width: 20px">1</td>
+                  <td style="width: 50px"></td>
+                  <td style="width: 50px"></td>
+                </tr>
+                <tr style="height: 15px">
+                  <td style="width: 20px">2</td>
+                  <td style="width: 50px"></td>
+                  <td style="width: 50px"></td>
+                </tr>
+                <tr style="height: 15px">
+                  <td style="width: 20px">3</td>
+                  <td style="width: 50px"></td>
+                  <td style="width: 50px"></td>
+                </tr>
+                <tr style="height: 15px">
+                  <td style="width: 20px">4</td>
+                  <td style="width: 50px"></td>
+                  <td style="width: 50px"></td>
+                </tr>
+                <tr style="height: 15px">
+                  <td style="width: 20px">5</td>
+                  <td style="width: 50px"></td>
+                  <td style="width: 50px"></td>
+                </tr>
+                <tr style="height: 15px">
+                  <td style="width: 20px">6</td>
+                  <td style="width: 50px"></td>
+                  <td style="width: 50px"></td>
+                </tr>
+                <tr style="height: 15px">
+                  <td style="width: 20px">7</td>
+                  <td style="width: 50px"></td>
+                  <td style="width: 50px"></td>
+                </tr>
+                <tr style="height: 15px">
+                  <td style="width: 20px">8</td>
+                  <td style="width: 50px"></td>
+                  <td style="width: 50px"></td>
+                </tr>
+                <tr style="height: 15px">
+                  <td style="width: 20px">9</td>
+                  <td style="width: 50px"></td>
+                  <td style="width: 50px"></td>
+                </tr>
+                <tr style="height: 15px">
+                  <td style="width: 20px">10</td>
+                  <td style="width: 50px"></td>
+                  <td style="width: 50px"></td>
+                </tr>
+              </tbody>
+            </table>
+            <table
+              style="
+                overflow: auto;
+                width: 80px;
+                margin-top: 5px;
+                margin-left: 5px;
+              "
+            >
+              <thead>
+                <tr>
+                  <th colspan="2">Chiều dài cắt đầu đuôi</th>
+                </tr>
+              </thead>
+              <tbody style="overflow: auto; height: auto; width: 80px">
+                <tr style="height: 15px">
+                  <td style="width: 15px">H</td>
+                  <td style="width: 40px">${h}</td>
+                </tr>
+                <tr style="height: 15px">
+                  <td style="width: 15px">A</td>
+                  <td style="width: 40px">${a}</td>
+                </tr>
+                <tr style="height: 15px">
+                  <td style="width: 15px">B</td>
+                  <td style="width: 40px">${b}</td>
+                </tr>
+                <tr style="height: 15px">
+                  <td style="width: 15px">C</td>
+                  <td style="width: 40px">${c}</td>
+                </tr>
+                <tr style="height: 15px">
+                  <td style="width: 15px">D</td>
+                  <td style="width: 40px">${d}</td>
+                </tr>
+                <tr style="height: 15px">
+                  <td style="width: 15px">E</td>
+                  <td style="width: 40px">${e}</td>
+                </tr>
+                <tr style="height: 15px">
+                  <td style="width: 15px">F</td>
+                  <td style="width: 40px">${f}</td>
+                </tr>
+                <tr style="height: 15px">
+                  <td style="width: 15px">I</td>
+                  <td style="width: 40px">${i}</td>
+                </tr>
+                <tr style="height: 15px">
+                  <td style="width: 15px">K</td>
+                  <td style="width: 40px">${k}</td>
+                </tr>
+                <tr style="height: 15px">
+                  <td style="width: 15px">END</td>
+                  <td style="width: 40px">${end}</td>
+                </tr>
+              </tbody>
+            </table>
+            <div
+              style="
+                width: 120px;
+                height: 95%;
+                margin-top: 5px;
+                margin-left: 5px;
+                font-size: 8px;
+              "
+            >
+              Phân loại lỗi SP:<br />
+              [302] : Cấn móp bề mặt<br />
+              [304] : Lỗi trầy xước<br />
+              [314] : Vết sần sùi<br />
+              [316] : Rỗ bề mặt<br />
+              [318] : Đen bề mặt
+            </div>
+          </div>
+          <div
+            style="
+              width: 100%;
+              height: 180px;
+              margin-top: 5px;
+              border: 1px solid rgb(0, 0, 0);
+              font-size: 15px;
+            "
+          >
+            Ghi chú: ${plan_note}
+          </div>
+        </div>
+        <div style="width: 66%; height: 100%; margin-top: 5px">
+          <table style="overflow: auto; width: auto">
+            <thead>
+              <tr>
+                <th style="width: 10px">Stt</th>
+                <th style="width: 37px">Chiều dài</th>
+                <th style="width: 35px">Lượng kéo</th>
+                <th style="width: 40px">Độ nhám (Rz)</th>
+                <th style="width: 35px">Dấu khuôn</th>
+                <th style="width: 35px">Gián đoạn</th>
+                <th style="width: 30px">OK /NG</th>
+                <th style="width: 55px">Xác nhận</th>
+                <th style="width: 55px">TG cắt</th>
+                <th style="width: 35px">Thành phẩm</th>
+                <th style="width: 17px">302</th>
+                <th style="width: 17px">304</th>
+                <th style="width: 17px">314</th>
+                <th style="width: 17px">316</th>
+                <th style="width: 17px">318</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${makeTable()}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div style="width: 1%; height: 100%"></div>
+  </body>
+</html>

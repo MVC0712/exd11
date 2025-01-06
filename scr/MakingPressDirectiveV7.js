@@ -1,3 +1,11 @@
+const today = new Date();
+const yyyy = today.getFullYear();
+const mm = String(today.getMonth() + 1).padStart(2, "0"); // 月は0から始まるので+1が必要
+const dd = String(today.getDate()).padStart(2, "0");
+
+const formattedDate = `${yyyy}-${mm}-${dd}`;
+// console.log(formattedDate); // 例: "2024-12-27"
+
 var dieHoleNumber;
 var billetLength;
 
@@ -108,20 +116,21 @@ $(document).on("input", "#die-number__input", function () {
 $(document).on("keyup", "#die-number__input", function () {
   const $select = $("#die-number__select");
   const filename = "./php/MakingPressDirective/SelDie.php";
+  const newOption = $("<option></option>").val("0").text("no");
   const sendData = {
     die_number: $(this).val() + "%",
   };
 
   myAjax.myAjax(filename, sendData);
 
-  $select.empty();
+  $select.empty().append(newOption);
   ajaxReturnData.forEach(function (value) {
     $("<option>").val(value["id"]).html(value["die_number"]).appendTo($select);
   });
   const val = $select.find("option").length;
-  $select
-    .toggleClass("input-required", val === 0)
-    .prop("selectedIndex", val ? 0 : -1);
+  // $select
+  //   .toggleClass("input-required", val === 0)
+  //   .prop("selectedIndex", val ? 0 : -1);
   $("#die-number__div").html(val + " dies");
 
   $("div.die-information").html("");
@@ -129,12 +138,13 @@ $(document).on("keyup", "#die-number__input", function () {
   getProductionNumber($("#die-number__select").val());
   makeSummaryTalbe($("#die-number__select").val());
 
-  setFocusToTop();
+  // setFocusToTop();
 });
 
 $(document).on("change", "#die-number__select", function () {
   if ($(this).val() == 0) {
     $(this).addClass("input-required");
+    $("#summary__table tbody").empty();
     return;
   }
   $(this).removeClass("input-required");
@@ -163,6 +173,8 @@ function getProductionNumber(dies_id) {
   };
 
   myAjax.myAjax(filename, sendData);
+
+  console.log(ajaxReturnData);
 
   $("#die_size__div").html("&phi;" + ajaxReturnData[0]["die_diamater"]);
   $("#production-number__div").html(ajaxReturnData[0]["production_number"]);
@@ -198,7 +210,9 @@ $(document).on("click", "#summary__table tbody tr", function () {
   const targetTr = $(this).find("td");
   const targetId = targetTr.eq(0).text();
   $("#summary__table tr.selected-record").removeClass("selected-record");
-  $(this).addClass("selected-record");
+  $("#selected__tr").removeAttr("id");
+
+  $(this).addClass("selected-record").attr("id", "selected__tr");
 
   getPressDirection(targetId);
 
@@ -494,15 +508,36 @@ $(document).on("keyup", "#other-profile__input", function () {
 });
 
 $(document).on("click", "#save__button", function () {
-  getWorkLength();
+  const inputValues = getAllInputValues();
+  const deleteElements = $(".need-clear");
+  const deleteUpperAreaElements = $("div.top__wrapper div.display__wrapper");
+  const deleteLastPressCondition = $(
+    "div.middle__wrapper div.pre_directive_input__wrapper"
+  );
+  const summaryTableBody = $("#summary__table tbody");
+  // console.log(inputValues);
+
+  fileName = "./php/MakingPressDirective/InsDataV7.php";
+  sendData = inputValues;
+  myAjax.myAjax(fileName, sendData);
+  // delete input value and color
+  deleteElements.val("").addClass("input-required");
+  // delete inserted value
+  deleteUpperAreaElements.html("");
+  deleteLastPressCondition.html("");
+  // delete summary table body
+  summaryTableBody.empty();
+
+  $(this).prop("disabled", true);
 });
 
 $(document).on("click", "#update__button", function () {
-  console.log("hello");
-  const inputRequiredObject = $(".save-data");
-  console.log(inputRequiredObject);
-
-  console.log(checkAllInputed());
+  var summaryTableBody = new Object();
+  summaryTableBody = $("#summary__table tbody");
+  // summaryTableBody = $("#summary__table");
+  console.log($("#summary__table"));
+  console.log($("#summary__table tbody"));
+  summaryTableBody.empty();
 });
 
 function checkAllInputed() {
@@ -511,7 +546,200 @@ function checkAllInputed() {
   return n === 0;
 }
 
-$(document).on("click", "#make-pdf__button", function () {});
+function getAllInputValues() {
+  var inputValues = new Object();
+  const elementOfSaveData = $(".save-data");
+  // inputValues = elementOfSaveData;
+  // console.log(inputValues);
+  $(".save-data").each(function (index, element) {
+    inputValues[$(this).attr("id")] = $(this).val();
+  });
+  inputValues["created_at"] = formattedDate;
+
+  return inputValues;
+}
+
+$(document).on("click", "#make-pdf__button", function () {
+  makeNewPage();
+});
+
+function makeNewPage() {
+  // 読み込むHTMLファイルのパス
+  // const htmlFilePath = "../exd11/PressDirectiveSheetPDF.html";
+  const htmlFilePath = "../exd11/PressDSPDF.html";
+  // 置き換える文字列を宣言する
+
+  // var replacements = {
+  //   "${issue_date}": "24/12/28",
+  //   "${planed_at}": "24/12/20",
+  //   "${plan_date_at}": "24/12/20",
+  //   "${staff_name}": "Huỳnh Võ Nguyễn Tiến",
+  //   "${pressing_type}": "◎",
+  //   "${press_machine}": "2",
+  //   "${die_number}": "M1B80T-V02D",
+  //   "${T_die_number}": "M1B80T-V02D",
+  //   "${die_ring}": "DR4626",
+  //   "${production_number}": "S370A63T26X20X20",
+  //   "${bolster_name}": "B4626-1710-**",
+  //   "${material}": "A6063",
+  //   "${billet_length}": "1200",
+  //   "${billet_size}": "9",
+  //   "${specific_weight}": "12.3",
+  //   "${ratio}": "21.0",
+  //   "${press_lengthth}": "45.4",
+  //   "${nbn}": "1B1",
+  //   "${previous_press_note}": "Check surface",
+  //   "${production_length}": "48.2m",
+  //   "${die_note}": "This is Die note",
+  //   "${prsTimePL}": "0.65h",
+  //   "${billet_input_quantity}": "12",
+  //   "${work_speed}": "12.5",
+  //   "${ram_speed}": "3.5",
+  //   "${billet_t}": "480&#176;C-50&#176;C/m",
+  //   "${discard_thickness}": "85",
+  //   "${die_temperature}": "480",
+  //   "${stretch_ratio}": "0.8%",
+  //   "${die_heating_time}": "5.5h",
+  //   "${cooling_type}": "Air",
+  //   "${pullerF}": "150kgf",
+  //   "${aging}": "9.5h",
+  //   "${plan_note}": "This is checking process of surface",
+  //   "${makeTable()}": makeProfileTable(),
+  // };
+
+  const replacements = getPrintData();
+  // return;
+  $.get(htmlFilePath, function (htmlContent) {
+    let processedContent = htmlContent;
+    for (const [key, value] of Object.entries(replacements)) {
+      processedContent = processedContent.replace(key, value);
+    }
+    // 新しいウィンドウを開く
+    const newWindow = window.open(
+      "",
+      "_blank",
+      "width=1200,height=900, left=250, location = no , titlebar=yes"
+    );
+    console.log(plan_date_at);
+    // 新しいウィンドウにHTMLを挿入
+    newWindow.document.write(processedContent);
+    // ドキュメントの書き込みを終了
+    newWindow.document.close();
+  }).fail(function () {
+    alert("HTMLファイルの読み込みに失敗しました。");
+  });
+}
+
+function getPrintData() {
+  const fileName = "./php/MakingPressDirective/SelForPrintPageV6.php";
+  const sendData = {
+    targetId: $("#selected__tr").find("td").eq(0).html(),
+  };
+  myAjax.myAjax(fileName, sendData);
+  const readDataValues = ajaxReturnData[0];
+  const printDataValues = new Object();
+
+  const planDateAt = convertDateFormat(readDataValues["plan_date_at"]);
+  const issueDateAt = convertDateFormat(readDataValues["issue_date"]);
+  const ratioValue = Number(readDataValues["ratio"].toFixed(1));
+
+  printDataValues["${die_number}"] = readDataValues["die_number"];
+  printDataValues["${production_number}"] = readDataValues["production_number"];
+  // printDataValues["${planed_at}"] = readDataValues["plan_date_at"];
+  printDataValues["${planed_at}"] = planDateAt;
+  printDataValues["${pressing_type}"] = readDataValues["pressing_type"];
+  printDataValues["${press_length}"] = readDataValues["press_length"];
+
+  printDataValues["${production_length}"] = readDataValues["production_length"];
+  printDataValues["${material}"] = readDataValues["material"];
+  printDataValues["${specific_weight}"] = readDataValues["specific_weight"];
+  // printDataValues["${ratio}"] = readDataValues["ratio"];
+  printDataValues["${ratio}"] = ratioValue;
+  printDataValues["nbn"] = readDataValues["nbn"];
+  printDataValues["previous_press_note"] =
+    readDataValues["previous_press_note"];
+  printDataValues["staff_name"] = readDataValues["staff_name"];
+  // printDataValues["issue_date"] = readDataValues["issue_date"];
+  printDataValues["issue_date"] = issueDateAt;
+  printDataValues["prsTimePL"] = readDataValues["plan_pressing_time"] + " h";
+  printDataValues["billet_input_quantity"] =
+    readDataValues["billet_input_quantity"];
+  printDataValues["billet_length"] = readDataValues["billet_length"];
+  printDataValues["discard_thickness"] = readDataValues["discard_thickness"];
+  printDataValues["ram_speed"] = readDataValues["ram_speed"];
+  printDataValues["work_spped2"] = readDataValues["work_speed2"];
+  printDataValues["work_speed"] = readDataValues["work_speed"];
+  printDataValues["billet_t"] =
+    readDataValues["billet_temperature"] +
+    "&#8451;" +
+    "-" +
+    readDataValues["billet_taper_heating"] +
+    "&#8451;";
+  printDataValues["${die_temperature}"] = readDataValues["die_temperature"];
+  printDataValues["${die_heating_time}"] = readDataValues["die_heating_time"];
+  printDataValues["${stretch_ratio}"] = readDataValues["stretch_ratio"];
+  printDataValues["${cooling_type}"] = readDataValues["cooling_type"];
+  printDataValues["${billet_size}"] = readDataValues["billet_size"];
+  printDataValues["${bolster_name}"] = readDataValues["bolster_name"];
+  printDataValues["${aging}"] = readDataValues["aging"];
+  printDataValues["${die_ring}"] = readDataValues["die_ring"];
+  // printDataValues[""] = readDataValues["value_l"];
+  // printDataValues[""] = readDataValues["value_m"];
+  // printDataValues[""] = readDataValues["value_n"];
+  // printDataValues[""] = readDataValues["hole"];
+  printDataValues["${press_machine}"] = readDataValues["press_machine"];
+  printDataValues["${die_note}"] = readDataValues["die_note"];
+  // printDataValues[""] = readDataValues["h"];
+  // printDataValues[""] = readDataValues["a"];
+  // printDataValues[""] = readDataValues["b"];
+  // printDataValues[""] = readDataValues["c"];
+  // printDataValues[""] = readDataValues["d"];
+  // printDataValues[""] = readDataValues["e"];
+  // printDataValues[""] = readDataValues["f"];
+  // printDataValues[""] = readDataValues["i"];
+  // printDataValues[""] = readDataValues["k"];
+  // printDataValues[""] = readDataValues["end"];
+  printDataValues["${plan_note}"] = readDataValues["plan_note"];
+  // printDataValues[""] = readDataValues["die_diamater"];
+
+  console.log(printDataValues);
+  return printDataValues;
+}
+
+function convertDateFormat(dateStr) {
+  var parts = dateStr.split("-");
+  var yy = parts[0].slice(2); // 年の部分をyyに変換
+  var mm = parts[1];
+  var dd = parts[2];
+  return yy + "-" + mm + "-" + dd;
+}
+
+function makeProfileTable() {
+  var tbd = ``;
+  var tr = ``;
+  var trC = `<tbody style="height: 100%; overflow: hidden;">`;
+  for (i = 1; i <= 62; ++i) {
+    tr = `<tr style="height: 14.8px">
+                <td style="width: 10px; font-size: 8px;">${i}</td>
+                <td style="width: 37px;"></td>
+                <td style="width: 35px;"></td>
+                <td style="width: 40px;"></td>
+                <td style="width: 35px;"></td>
+                <td style="width: 35px;"></td>
+                <td style="width: 30px;"></td>
+                <td style="width: 55px;"></td>
+                <td style="width: 55px; text-align: center;">:</td>
+                <td style="width: 35px;"></td>
+                <td style="width: 17px;"></td>
+                <td style="width: 17px;"></td>
+                <td style="width: 17px;"></td>
+                <td style="width: 17px;"></td>
+                <td style="width: 17px;"></td>
+            </tr>`;
+    tbd += tr;
+  }
+  return trC + tbd + "</tbody>";
+}
 
 $(document).on("change", elementToChange, function () {
   getWorkLength();
@@ -536,3 +764,9 @@ function getWorkLength() {
   const profileLength = (billetWeight - discardWeight) / productionWeight;
   $("#production-length__div").html(profileLength.toFixed(1));
 }
+
+// check input complete
+$(document).on("keyup change", "div.middle__wrapper", function () {
+  const allInputed = checkAllInputed();
+  $("#save__button").prop("disabled", !allInputed);
+});
