@@ -566,8 +566,8 @@ $(document).on("click", "#make-pdf__button", function () {
 
 function makeNewPage() {
   // 読み込むHTMLファイルのパス
-  // const htmlFilePath = "../exd11/PressDSPDF.html";
-  const htmlFilePath = "../ex0.11/PressDSPDF.html";
+  const htmlFilePath = "../exd11/PressDSPDF.html";
+  // const htmlFilePath = "../ex0.11/PressDSPDF.html";
 
   const replacements = getPrintData();
   // return;
@@ -598,12 +598,34 @@ function getPrintData() {
     targetId: $("#selected__tr").find("td").eq(0).html(),
   };
   myAjax.myAjax(fileName, sendData);
+  // console.log(ajaxReturnData);
   const readDataValues = ajaxReturnData[0];
   const printDataValues = new Object();
 
   const planDateAt = convertDateFormat(readDataValues["plan_date_at"]);
   const issueDateAt = convertDateFormat(readDataValues["issue_date"]);
   const ratioValue = Number(readDataValues["ratio"].toFixed(1));
+  const prsTimePL = Math.round(
+    (Number(
+      calPressLength(
+        ajaxReturnData[0].billet_size,
+        ajaxReturnData[0].billet_length,
+        ajaxReturnData[0].specific_weight,
+        ajaxReturnData[0].hole
+      )
+    ) *
+      Number(ajaxReturnData[0].billet_input_quantity)) /
+      Number(ajaxReturnData[0].work_speed) +
+      10 +
+      5
+  );
+
+  const a = calPressLength(
+    ajaxReturnData[0].billet_size,
+    ajaxReturnData[0].billet_length,
+    ajaxReturnData[0].specific_weight,
+    ajaxReturnData[0].hole
+  );
 
   printDataValues["${die_number}"] = readDataValues["die_number"];
   printDataValues["${production_number}"] = readDataValues["production_number"];
@@ -614,7 +636,8 @@ function getPrintData() {
 
   printDataValues["${production_length}"] = readDataValues["production_length"];
   printDataValues["${material}"] = readDataValues["material"];
-  printDataValues["${specific_weight}"] = readDataValues["specific_weight"];
+  printDataValues["${specific_weight}"] =
+    readDataValues["specific_weight"] + " kg/m";
   // printDataValues["${ratio}"] = readDataValues["ratio"];
   printDataValues["${ratio}"] = ratioValue;
   printDataValues["${nbn}"] = readDataValues["nbn"];
@@ -623,10 +646,10 @@ function getPrintData() {
   printDataValues["${staff_name}"] = readDataValues["staff_name"];
   // printDataValues["issue_date"] = readDataValues["issue_date"];
   printDataValues["${issue_date}"] = issueDateAt;
-  printDataValues["${prsTimePL}"] = readDataValues["plan_pressing_time"] + " h";
+  printDataValues["${prsTimePL}"] = prsTimePL + " min";
   printDataValues["${billet_input_quantity}"] =
     readDataValues["${billet_input_quantity}"];
-  printDataValues["${billet_length}"] = readDataValues["billet_length"];
+  printDataValues["${billet_length}"] = readDataValues["billet_length"] + " mm";
   printDataValues["${discard_thickness}"] = readDataValues["discard_thickness"];
   printDataValues["${ram_speed}"] = readDataValues["ram_speed"];
   printDataValues["${work_spped2}"] = readDataValues["work_speed2"];
@@ -667,6 +690,38 @@ function getPrintData() {
 
   // console.log(printDataValues);
   return printDataValues;
+}
+
+function calPressLength(billetSize, billetLength, specificWeight, whole) {
+  let workLength;
+  let billetWeight;
+  let containerDimension;
+  let inputMaterialWeight;
+
+  if (billetSize == 9) {
+    billetWeight = 132.3;
+    containerDimension = 237;
+  } else if (billetSize == 12) {
+    billetWeight = 235;
+    containerDimension = 312;
+  } else if (billetSize == 14) {
+    billetWeight = 320;
+    containerDimension = 366;
+  }
+  inputMaterialWeight =
+    billetWeight * (billetLength / 1200) -
+    (((containerDimension ** 2 / 4) *
+      3.142 *
+      $("#discard_thickness__input").val()) /
+      10 ** 6) *
+      2.7;
+
+  workLength = inputMaterialWeight / specificWeight;
+  workLength = workLength / whole;
+  workLength = Math.round(workLength * 10) / 10;
+  workLength = workLength.toFixed(1);
+
+  return workLength;
 }
 
 function convertDateFormat(dateStr) {
