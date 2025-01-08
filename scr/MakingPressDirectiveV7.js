@@ -145,11 +145,13 @@ $(document).on("change", "#die-number__select", function () {
   if ($(this).val() == 0) {
     $(this).addClass("input-required");
     $("#summary__table tbody").empty();
+    $("#make-pdf__button").prop("disabled", true);
     return;
   }
   $(this).removeClass("input-required");
   getProductionNumber($("#die-number__select").val());
   makeSummaryTalbe($("#die-number__select").val());
+  $("#make-pdf__button").prop("disabled", false);
 
   setFocusToTop();
 });
@@ -566,8 +568,8 @@ $(document).on("click", "#make-pdf__button", function () {
 
 function makeNewPage() {
   // 読み込むHTMLファイルのパス
-  // const htmlFilePath = "../exd11/PressDSPDF.html";
-  const htmlFilePath = "../ex0.11/PressDSPDF.html";
+  const htmlFilePath = "../exd11/PressDSPDF.html";
+  // const htmlFilePath = "../ex0.11/PressDSPDF.html";
 
   const replacements = getPrintData();
   // return;
@@ -582,7 +584,7 @@ function makeNewPage() {
       "_blank",
       "width=1200,height=900, left=250, location = no , titlebar=yes"
     );
-    console.log(plan_date_at);
+    // console.log(plan_date_at);
     // 新しいウィンドウにHTMLを挿入
     newWindow.document.write(processedContent);
     // ドキュメントの書き込みを終了
@@ -598,7 +600,7 @@ function getPrintData() {
     targetId: $("#selected__tr").find("td").eq(0).html(),
   };
   myAjax.myAjax(fileName, sendData);
-  // console.log(ajaxReturnData);
+  console.log(ajaxReturnData[0]);
   const readDataValues = ajaxReturnData[0];
   const printDataValues = new Object();
 
@@ -620,12 +622,34 @@ function getPrintData() {
       5
   );
 
-  const a = calPressLength(
-    ajaxReturnData[0].billet_size,
-    ajaxReturnData[0].billet_length,
-    ajaxReturnData[0].specific_weight,
-    ajaxReturnData[0].hole
-  );
+  // const a = calPressLength(
+  //   ajaxReturnData[0].billet_size,
+  //   ajaxReturnData[0].billet_length,
+  //   ajaxReturnData[0].specific_weight,
+  //   ajaxReturnData[0].hole
+  // );
+
+  let pullerF;
+  if (readDataValues.specific_weight >= 20) {
+    pullerF = 140;
+  } else if (
+    12 <= readDataValues.specific_weight &&
+    readDataValues.specific_weight < 20
+  ) {
+    pullerF = 120;
+  } else if (
+    5 <= readDataValues.specific_weight &&
+    readDataValues.specific_weight < 12
+  ) {
+    pullerF = 90;
+  } else if (
+    3 <= readDataValues.specific_weight &&
+    readDataValues.specific_weight < 5
+  ) {
+    pullerF = 70;
+  } else if (readDataValues.specific_weight < 3) {
+    pullerF = 50;
+  }
 
   printDataValues["${die_number}"] = readDataValues["die_number"];
   printDataValues["${production_number}"] = readDataValues["production_number"];
@@ -648,7 +672,7 @@ function getPrintData() {
   printDataValues["${issue_date}"] = issueDateAt;
   printDataValues["${prsTimePL}"] = prsTimePL + " min";
   printDataValues["${billet_input_quantity}"] =
-    readDataValues["${billet_input_quantity}"];
+    readDataValues["billet_input_quantity"];
   printDataValues["${billet_length}"] = readDataValues["billet_length"] + " mm";
   printDataValues["${discard_thickness}"] = readDataValues["discard_thickness"];
   printDataValues["${ram_speed}"] = readDataValues["ram_speed"];
@@ -667,25 +691,35 @@ function getPrintData() {
   printDataValues["${billet_size}"] = readDataValues["billet_size"];
   printDataValues["${bolster_name}"] = readDataValues["bolster_name"];
   printDataValues["${aging}"] = readDataValues["aging"];
-  printDataValues["${die_ring}"] = readDataValues["die_ring"];
-  // printDataValues[""] = readDataValues["value_l"];
-  // printDataValues[""] = readDataValues["value_m"];
-  // printDataValues[""] = readDataValues["value_n"];
-  // printDataValues[""] = readDataValues["hole"];
+  printDataValues["${die_ring}"] =
+    "DR" +
+    readDataValues.bolster_name.substring(1, 3) +
+    readDataValues.die_diamater / 10;
+  printDataValues["${pullerF}"] = pullerF;
   printDataValues["${press_machine}"] = readDataValues["press_machine"];
   printDataValues["${die_note}"] = readDataValues["die_note"];
-  printDataValues["${h}"] = readDataValues["h"];
-  printDataValues["${a}"] = readDataValues["a"];
-  printDataValues["${b}"] = readDataValues["b"];
-  printDataValues["${c}"] = readDataValues["c"];
-  printDataValues["${d}"] = readDataValues["d"];
-  printDataValues["${e}"] = readDataValues["e"];
-  printDataValues["${f}"] = readDataValues["f"];
-  printDataValues["${i}"] = readDataValues["i"];
-  printDataValues["${k}"] = readDataValues["k"];
-  printDataValues["${end}"] = readDataValues["end"];
+  printDataValues["${h}"] =
+    readDataValues["h"] === null ? "" : readDataValues["h"];
+  printDataValues["${a}"] =
+    readDataValues["a"] === null ? "" : readDataValues["a"];
+  printDataValues["${b}"] =
+    readDataValues["b"] === null ? "" : readDataValues["b"];
+  printDataValues["${c}"] =
+    readDataValues["c"] === null ? "" : readDataValues["c"];
+  printDataValues["${d}"] =
+    readDataValues["d"] === null ? "" : readDataValues["d"];
+  printDataValues["${e}"] =
+    readDataValues["e"] === null ? "" : readDataValues["e"];
+  printDataValues["${f}"] =
+    readDataValues["f"] === null ? "" : readDataValues["f"];
+  printDataValues["${i}"] =
+    readDataValues["i"] === null ? "" : readDataValues["i"];
+  printDataValues["${k}"] =
+    readDataValues["k"] === null ? "" : readDataValues["k"];
+  printDataValues["${end}"] =
+    readDataValues["end"] === null ? "" : readDataValues["end"];
+
   printDataValues["${plan_note}"] = readDataValues["plan_note"];
-  // printDataValues[""] = readDataValues["die_diamater"];
   printDataValues["${makeTable()}"] = makeProfileTable();
 
   // console.log(printDataValues);
@@ -736,7 +770,7 @@ function makeProfileTable() {
   var tbd = ``;
   var tr = ``;
   var trC = `<tbody style="height: 100%; overflow: hidden;">`;
-  for (i = 1; i <= 62; ++i) {
+  for (i = 1; i <= 58; ++i) {
     tr = `<tr style="height: 14.8px">
                 <td style="width: 10px; font-size: 8px;">${i}</td>
                 <td style="width: 37px;"></td>

@@ -9,7 +9,7 @@ body {
   /* font: "Tahoma"; */
   /* width: (21 * 0.93) cm; */
   width: 195mm;
-  height: 29.7cm;
+  height: 28.7cm;
   /* //   border: solid 1px black; */
   font-size: 8px;
   display: flex;
@@ -22,7 +22,7 @@ body {
 }
 .page {
   width: 21cm;
-  min-height: 29.7cm;
+  min-height: 28.7cm;
   border: 1px #d3d3d3 solid;
   border-radius: 5px;
   background: white;
