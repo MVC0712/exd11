@@ -41,13 +41,15 @@
         m_nbn.nbn,
         t_press_directive.nbn_id,
         t_press_directive.press_machine,
-        t_press_directive.previous_press_note
+        t_press_directive.previous_press_note,
+        m_cooling_type.cooling_type
       FROM t_press_directive
       LEFT JOIN m_dies ON t_press_directive.dies_id = m_dies.id
       LEFT JOIN m_pressing_type ON t_press_directive.pressing_type_id = m_pressing_type.id
       LEFT JOIN m_bolster ON t_press_directive.bolstar_id = m_bolster.id
       LEFT JOIN m_staff ON t_press_directive.incharge_person_id = m_staff.id
       LEFT JOIN m_nbn ON t_press_directive.nbn_id = m_nbn.id
+      LEFT JOIN m_cooling_type ON t_press_directive.cooling_type = m_cooling_type.id
       WHERE t_press_directive.id = :targetId
     ");
       // $_POST["targetId"] = 1;

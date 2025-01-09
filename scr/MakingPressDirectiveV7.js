@@ -8,6 +8,7 @@ const formattedDate = `${yyyy}-${mm}-${dd}`;
 
 var dieHoleNumber;
 var billetLength;
+var modeValue;
 
 const elementToChange = [
   "#discard_thickness__input",
@@ -209,18 +210,20 @@ function makeTable(targetId, sourceData) {
 
 // when element is clicked
 $(document).on("click", "#summary__table tbody tr", function () {
-  let targetVal;
-  let today = new Date();
   const targetTr = $(this).find("td");
   const targetId = targetTr.eq(0).text();
+  const filename = "./php/MakingPressDirective/SelSelDataV4.php";
+  const sendData = {
+    targetId: targetId,
+  };
+  var obj;
+
   $("#summary__table tr.selected-record").removeClass("selected-record");
   $("#selected__tr").removeAttr("id");
 
   $(this).addClass("selected-record").attr("id", "selected__tr");
-
-  getPressDirection(targetId);
-
-  // fill each press condition data value to display
+  myAjax.myAjax(filename, sendData);
+  // fill  press condition data value to display
   obj = ajaxReturnData[0];
   $.each(obj, function (key, value) {
     $("#" + key).html(value);
@@ -231,14 +234,6 @@ $(document).on("click", "#summary__table tbody tr", function () {
   // get last profile length
   getLastProfileQty(targetId);
 });
-
-function getPressDirection(targetId) {
-  const filename = "./php/MakingPressDirective/SelSelDataV4.php";
-  const sendData = {
-    targetId: targetId,
-  };
-  myAjax.myAjax(filename, sendData);
-}
 
 function getHoleNumber(targetId) {
   const filename = "./php/DailyReport/SelHoleNumber.php";
@@ -299,9 +294,7 @@ function getLastProfileQty(targetId) {
 $(document).on("blur", "#plan-press-date__input", function () {
   var dateValue;
 
-  console.log("Hello");
   dateValue = $(this).val();
-  console.log(dateValue);
 });
 
 $(document).on("change", "#plan-press-date__input", function () {
@@ -515,7 +508,7 @@ $(document).on("click", "#save__button", function () {
   const deleteElements = $(".need-clear");
   const deleteUpperAreaElements = $("div.top__wrapper div.display__wrapper");
   const deleteLastPressCondition = $(
-    "div.middle__wrapper div.pre_directive_input__wrapper"
+    "div.middle__wrapper div.pre_directive_input__wrapper div"
   );
   const summaryTableBody = $("#summary__table tbody");
   // console.log(inputValues);
@@ -535,12 +528,18 @@ $(document).on("click", "#save__button", function () {
 });
 
 $(document).on("click", "#update__button", function () {
-  var summaryTableBody = new Object();
-  summaryTableBody = $("#summary__table tbody");
-  // summaryTableBody = $("#summary__table");
-  console.log($("#summary__table"));
-  console.log($("#summary__table tbody"));
-  summaryTableBody.empty();
+  const elementOfDate = $("#press_date div:nth-child(2)");
+  console.log(elementOfDate);
+
+  const elementOfUpdate = $(
+    "div.middle__wrapper div.directive_input__wrapper div:nth-child(2)"
+  );
+  console.log(elementOfUpdate);
+
+  const elementOfInput = $(
+    "div.middle__wrapper div.directive_input__wrapper input"
+  );
+  console.log(elementOfInput);
 });
 
 function checkAllInputed() {
