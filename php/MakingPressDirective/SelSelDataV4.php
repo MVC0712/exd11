@@ -45,7 +45,9 @@
         t_press_directive.press_machine,
         t_press_directive.previous_press_note,
         t_press_directive.cooling_type as cooling_id,
-        m_cooling_type.cooling_type
+        m_cooling_type.cooling_type,
+        t_press_directive.first_profile as first_profile_quantity,
+        t_press_directive.other_profile as other_profile_quantity
       FROM t_press_directive
       LEFT JOIN m_dies ON t_press_directive.dies_id = m_dies.id
       LEFT JOIN m_pressing_type ON t_press_directive.pressing_type_id = m_pressing_type.id
