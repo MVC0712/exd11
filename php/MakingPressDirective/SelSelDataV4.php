@@ -32,16 +32,19 @@
         t_press_directive.die_temperature,
         t_press_directive.die_heating_time,
         t_press_directive.stretch_ratio,
+        t_press_directive.incharge_person_id AS staff_id,
         m_staff.id,
         m_staff.staff_name,
         t_press_directive.incharge_person_id,
         t_press_directive.value_l,
         t_press_directive.value_m,
         t_press_directive.value_n,
+        t_press_directive.nbn_id,
         m_nbn.nbn,
         t_press_directive.nbn_id,
         t_press_directive.press_machine,
         t_press_directive.previous_press_note,
+        t_press_directive.cooling_type as cooling_id,
         m_cooling_type.cooling_type
       FROM t_press_directive
       LEFT JOIN m_dies ON t_press_directive.dies_id = m_dies.id
