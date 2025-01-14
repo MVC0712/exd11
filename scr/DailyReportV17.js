@@ -1357,13 +1357,13 @@ function fillReadData(data) {
   // console.log(data);
   targetDom.eq(1).val(data[0]["press_date_at"]);
   // targetDom.eq(6).val(data[0]["billet_lot_number"]);
-  targetDom.eq(8).val(data[0]["plan_billet_quantities"]);
-  targetDom.eq(9).val(data[0]["actual_billet_quantities"]);
+  targetDom.eq(9).val(data[0]["plan_billet_quantities"]);
+  targetDom.eq(10).val(data[0]["actual_billet_quantities"]);
   // targetDom.eq(11).val(data[0]["stop_code"]);
-  targetDom.eq(10).val(data[0]["press_start_at"]);
-  targetDom.eq(11).val(data[0]["press_finish_at"]);
-  targetDom.eq(12).val(data[0]["actual_ram_speed"]);
-  targetDom.eq(13).val(data[0]["actual_die_temperature"]);
+  targetDom.eq(11).val(data[0]["press_start_at"]);
+  targetDom.eq(12).val(data[0]["press_finish_at"]);
+  targetDom.eq(13).val(data[0]["actual_ram_speed"]);
+  targetDom.eq(14).val(data[0]["actual_die_temperature"]);
 
   targetDom = $("#container-temperature__table input");
   targetDom.eq(0).val(data[0]["container_upside_stemside_temperature"]);
