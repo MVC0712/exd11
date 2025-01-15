@@ -8,6 +8,7 @@ const formattedDate = `${yyyy}-${mm}-${dd}`;
 
 var dieHoleNumber;
 var billetLength;
+var modeValue;
 
 const elementToChange = [
   "#discard_thickness__input",
@@ -209,36 +210,55 @@ function makeTable(targetId, sourceData) {
 
 // when element is clicked
 $(document).on("click", "#summary__table tbody tr", function () {
-  let targetVal;
-  let today = new Date();
+  const elementInput = $("div.middle__wrapper div.directive_input__wrapper");
   const targetTr = $(this).find("td");
   const targetId = targetTr.eq(0).text();
+  const filename = "./php/MakingPressDirective/SelSelDataV4.php";
+  const sendData = {
+    targetId: targetId,
+  };
+  var obj;
+
   $("#summary__table tr.selected-record").removeClass("selected-record");
   $("#selected__tr").removeAttr("id");
 
   $(this).addClass("selected-record").attr("id", "selected__tr");
-
-  getPressDirection(targetId);
-
-  // fill each press condition data value to display
+  myAjax.myAjax(filename, sendData);
+  // fill  press condition data value to display
   obj = ajaxReturnData[0];
+  console.log(obj);
+
+  // fill html part
   $.each(obj, function (key, value) {
     $("#" + key).html(value);
   });
+  // fill selection part
+  $("#press-type__select").val(obj["pressing_type_id"]);
+  $("#billet_size__select").val(obj["billet_size"]);
+  $("#billet_taper__select").val(obj["billet_taper_heating"]);
+  $("#staff-name__select").val(obj["staff_id"]);
+  $("#nBn__select").val(obj["nbn_id"]);
+  $("#machine-number__select").val(obj["press_machine"]);
+  $("#cooling__select").val(obj["cooling_id"]);
+  // fill input part
+  elementInput.each(function () {
+    const $this = $(this); // 先に$(this)をキャッシュしておく
+    const inputVal = $this.find("div.pre_directive_input__wrapper div").html();
+    $this.find("input").val(inputVal); // 再度のDOMアクセスを避ける
+  });
+
   // get die hole number and fill it by press_directive_id
   getHoleNumber(targetId);
   $("#die_hole_number__div").html(dieHoleNumber);
   // get last profile length
   getLastProfileQty(targetId);
+  // change back ground color
+  $("div.middle__wrapper input").removeClass("input-required");
+  $("div.middle__wrapper select").removeClass("input-required");
+  $("div.middle__wrapper textarea").removeClass("input-required");
+  $("#billet-length__select").addClass("input-required");
+  $("#previous-press-note__textarea").addClass("input-required");
 });
-
-function getPressDirection(targetId) {
-  const filename = "./php/MakingPressDirective/SelSelDataV4.php";
-  const sendData = {
-    targetId: targetId,
-  };
-  myAjax.myAjax(filename, sendData);
-}
 
 function getHoleNumber(targetId) {
   const filename = "./php/DailyReport/SelHoleNumber.php";
@@ -299,9 +319,7 @@ function getLastProfileQty(targetId) {
 $(document).on("blur", "#plan-press-date__input", function () {
   var dateValue;
 
-  console.log("Hello");
   dateValue = $(this).val();
-  console.log(dateValue);
 });
 
 $(document).on("change", "#plan-press-date__input", function () {
@@ -515,10 +533,10 @@ $(document).on("click", "#save__button", function () {
   const deleteElements = $(".need-clear");
   const deleteUpperAreaElements = $("div.top__wrapper div.display__wrapper");
   const deleteLastPressCondition = $(
-    "div.middle__wrapper div.pre_directive_input__wrapper"
+    "div.middle__wrapper div.pre_directive_input__wrapper div"
   );
   const summaryTableBody = $("#summary__table tbody");
-  // console.log(inputValues);
+  console.log(inputValues);
 
   fileName = "./php/MakingPressDirective/InsDataV7.php";
   sendData = inputValues;
@@ -535,12 +553,12 @@ $(document).on("click", "#save__button", function () {
 });
 
 $(document).on("click", "#update__button", function () {
-  var summaryTableBody = new Object();
-  summaryTableBody = $("#summary__table tbody");
-  // summaryTableBody = $("#summary__table");
-  console.log($("#summary__table"));
-  console.log($("#summary__table tbody"));
-  summaryTableBody.empty();
+  const elementTest = $("div.middle__wrapper div.directive_input__wrapper");
+  elementTest.each(function () {
+    const $this = $(this); // 先に$(this)をキャッシュしておく
+    const inputVal = $this.find("div.pre_directive_input__wrapper div").html();
+    $this.find("input").val(inputVal); // 再度のDOMアクセスを避ける
+  });
 });
 
 function checkAllInputed() {

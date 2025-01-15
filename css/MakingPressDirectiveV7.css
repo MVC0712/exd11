@@ -177,11 +177,16 @@ div.middle__wrapper {
     align-items: center;
     border: 1px solid;
     border-color: #0000ff;
+    background-color: #dbdbff;
     font-size: 12pt;
   }
-  .directive_input__wrapper {
+  div.directive_input__wrapper {
     margin: 0 10px 0 10px;
   }
+  /* div.directive_input__wrapper input,
+  div.directive_input__wrapper select {
+    background-color: red;
+  } */
   div#press_date {
     width: 140px;
   }
@@ -290,6 +295,10 @@ div.middle__wrapper {
       color: red;
       font-weight: bold;
     }
+    #profile_quantity__tr {
+      background-color: #dbdbff;
+    }
+
     td,
     th {
       height: 25px;

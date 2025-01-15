@@ -35,7 +35,9 @@
       incharge_person_id,
       nbn_id,
       press_machine,
-      cooling_type
+      cooling_type,
+      first_profile,
+      other_profile
         ) VALUES (
       :dies_id,
       :plan_date_at,
@@ -56,8 +58,10 @@
       :incharge_person_id,
       :nbn,
       :press_machine,
-      :cooling_type
-        )"
+      :cooling_type,
+      :first_profile,
+      :other_profile
+      )"
     );
 
     $prepare->bindValue(':dies_id', (INT)$_POST["die-number__select"],PDO::PARAM_INT);
@@ -80,6 +84,8 @@
     $prepare->bindValue(':nbn' , (INT)$_POST['nBn__select' ],PDO::PARAM_INT);
     $prepare->bindValue(':press_machine' , (INT)$_POST['machine-number__select' ],PDO::PARAM_INT);
     $prepare->bindValue(':cooling_type' , (INT)$_POST['cooling__select' ],PDO::PARAM_INT);
+    $prepare->bindValue(':first_profile' , (INT)$_POST['first-profile__input' ],PDO::PARAM_INT);
+    $prepare->bindValue(':other_profile' , (INT)$_POST['other-profile__input' ],PDO::PARAM_INT);
 
     // print_r($sql);
     $prepare->execute();
