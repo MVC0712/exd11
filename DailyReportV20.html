@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Extrusion Dailyreport</title>
     <link rel="stylesheet" href="./css/main.css" />
-    <link rel="stylesheet" href="./css/DailyReportV17.css" />
+    <link rel="stylesheet" href="./css/DailyReportV20.css" />
   </head>
 
   <body>
-    <header>Press Dailyreport Input Page V15</header>
+    <header>Press Dailyreport Input Page V20</header>
     <div class="main__wrapper">
       <div class="left__wrapper">
         <div class="input__wrapper">
@@ -85,16 +85,6 @@
               <option value="4">4</option>
             </select>
           </div>
-          <!-- Billet Lot Number -->
-          <!-- <div class="input-block__outer" style="display: none;">
-            <div class="input__title">Bundle No</div>
-            <input
-              id="billet-lot-number__input"
-              class="need-clear complete-input save-data_new"
-              type="text"
-              value="1"
-            />
-          </div> -->
           <!-- Billet Size -->
           <div class="input-block__outer">
             <div class="input__title">Billet S.</div>
@@ -113,15 +103,6 @@
           <div class="input-block__outer">
             <div class="input__title">Billet length</div>
             <input id="billet-length__input" class="need-clear" type="text" />
-            <!-- <select
-              id="billet-length__select"
-              class="no-input save-data need-clear"
-            >
-              <option value="0">-</option>
-              <option value="600">600</option>
-              <option value="1200">1200</option>
-            </select> -->
-
             <input type="text" list="billet-length__selects" id="billet-length__select" class="no-input save-data need-clear"/>
             <datalist id="billet-length__selects" >
               <option value="0">-</option>
@@ -148,18 +129,6 @@
               type="text"
             />pic.
           </div>
-          <!-- press stop cause -->
-          <!-- <div style="display: none;" class="input-block__outer">
-            <div class="input__title">Stop cause</div>
-            <input id="stop-cause__input" class="need-clear" type="text" />
-            <select
-              id="stop-cause__select"
-              class="save-data_new need-clear complete-input"
-            >
-              <option value="0">-</option>
-              <option value="1" selected>100</option>
-            </select>
-          </div> -->
           <!-- press work time -->
           <div class="input-block__outer">
             <div class="input__title">Press Tm</div>
@@ -226,11 +195,6 @@
             </select>
             <button id="preview__button" disabled>Preview</button>
           </div>
-          <!-- end -->
-          <!-- <div class="input-block__outer">
-            <div class="input__title">KL phế phẩm cắt</div>
-            <input style="width: 70px" id="scrap_weight__input" class="need-clear no-input save-data" type="text"/>
-          </div> -->
           <div class="input-block__outer">
             <div class="input__title">SP dài</div>
             <input style="width: 70px" id="first_actual_length" class="need-clear no-input save-data" type="text"/>
@@ -405,14 +369,14 @@
           <thead>
             <tr>
               <td></td>
-              <td colspan="4" id="ttb">Bundle No</td>
+              <td colspan="5" id="ttb">Bundle No</td>
             </tr>
             <tr>
               <td>id</td>
-              <!-- <td>Stt</td> -->
               <td>Bundle</td>
               <td>Qty</td>
               <td>Lot</td>
+              <td>Len</td>
               <td>Mfg</td>
             </tr>
           </thead>
@@ -425,6 +389,7 @@
               <td>Bundle</td>
               <td>Qty</td>
               <td>Lot</td>
+              <td>Len</td>
               <td>Mfg</td>
             </tr>
           </thead>
@@ -433,6 +398,7 @@
               <td><input id="bundle_no" class="no-input"/></td>
               <td><input id="quantity" class="no-input"/></td>
               <td><input id="lot_no" class="no-input"/></td>
+              <td><input id="len"/></td>
               <td><select id="mfg">
                 <option value="1">Dubai</option>
                 <option value="2">VN</option>
@@ -441,45 +407,6 @@
           </tbody>
         </table>
         <button id="add_bundle__button" disabled>Save</button>
-        <!-- <table id="error__table">
-          <thead>
-            <tr>
-              <td></td>
-              <td colspan="4">Error record</td>
-            </tr>
-            <tr>
-              <td>id</td>
-              <td>Code</td>
-              <td>Start</td>
-              <td>End</td>
-              <td>Note</td>
-            </tr>
-          </thead>
-          <tbody>
-          </tbody>
-        </table>
-        <table id="add_error__table">
-          <thead>
-            <tr>
-              <td>Code</td>
-              <td>Start</td>
-              <td>End</td>
-              <td>Note</td>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <select id="err_code" class="no-input">
-                </select>
-              </td>
-              <td><input id="err_start" class="no-input"/></td>
-              <td><input id="err_end" class="no-input"/></td>
-              <td><input id="err_note"/></td>
-            </tr>
-          </tbody>
-        </table>
-        <button id="add_error__button" disabled>Save</button> -->
       </div>
       <div class="right__wrapper">
         <table id="rack__table">
@@ -615,6 +542,6 @@
     </dialog>
 
     <script src="./lib/jquery.min.js"></script>
-    <script src="./scr/DailyReportV17.js"></script>
+    <script src="./scr/DailyReportV20.js"></script>
   </body>
 </html>
