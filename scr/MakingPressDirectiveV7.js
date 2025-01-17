@@ -226,7 +226,7 @@ $(document).on("click", "#summary__table tbody tr", function () {
   myAjax.myAjax(filename, sendData);
   // fill  press condition data value to display
   obj = ajaxReturnData[0];
-  console.log(obj);
+  // console.log(obj);
 
   // fill html part
   $.each(obj, function (key, value) {
@@ -246,7 +246,8 @@ $(document).on("click", "#summary__table tbody tr", function () {
     const inputVal = $this.find("div.pre_directive_input__wrapper div").html();
     $this.find("input").val(inputVal); // 再度のDOMアクセスを避ける
   });
-
+  $("#first-profile__input").val(obj["first_profile_quantity"]);
+  $("#other-profile__input").val(obj["other_profile_quantity"]);
   // get die hole number and fill it by press_directive_id
   getHoleNumber(targetId);
   $("#die_hole_number__div").html(dieHoleNumber);
@@ -258,6 +259,9 @@ $(document).on("click", "#summary__table tbody tr", function () {
   $("div.middle__wrapper textarea").removeClass("input-required");
   $("#billet-length__select").addClass("input-required");
   $("#previous-press-note__textarea").addClass("input-required");
+  // activate update button
+  modeValue = "update";
+  $("#update__button").prop("disabled", false);
 });
 
 function getHoleNumber(targetId) {
@@ -536,10 +540,13 @@ $(document).on("click", "#save__button", function () {
     "div.middle__wrapper div.pre_directive_input__wrapper div"
   );
   const summaryTableBody = $("#summary__table tbody");
-  console.log(inputValues);
+
+  inputValues["billet-length__select"] = inputValues["billet-other__input"];
+  // console.log(inputValues);
 
   fileName = "./php/MakingPressDirective/InsDataV7.php";
   sendData = inputValues;
+
   myAjax.myAjax(fileName, sendData);
   // delete input value and color
   deleteElements.val("").addClass("input-required");
