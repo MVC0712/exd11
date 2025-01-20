@@ -317,5 +317,31 @@ div#table__wrapper {
         }
       }
     }
+    table#racking__table {
+      width: 130px;
+      margin-top: 5px;
+
+      tbody {
+        width: 130px;
+      }
+      tbody tr {
+        height: 15px;
+      }
+      th:nth-child(1),
+      td:nth-child(1) {
+        width: 20px;
+      }
+      th:nth-child(2),
+      td:nth-child(2),
+      th:nth-child(3),
+      td:nth-child(3) {
+        width: 50px;
+      }
+    }
+    table#cut-position__table {
+      width: 80px;
+      margin-top: 5px;
+      margin-left: 5px;
+    }
   }
 }

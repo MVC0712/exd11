@@ -259,9 +259,9 @@ $(document).on("click", "#summary__table tbody tr", function () {
   $("div.middle__wrapper textarea").removeClass("input-required");
   $("#billet-length__select").addClass("input-required");
   $("#previous-press-note__textarea").addClass("input-required");
-  // activate update button
-  modeValue = "update";
-  $("#update__button").prop("disabled", false);
+  // // activate update button
+  // modeValue = "update";
+  // $("#update__button").prop("disabled", false);
 });
 
 function getHoleNumber(targetId) {
@@ -534,6 +534,7 @@ $(document).on("keyup", "#other-profile__input", function () {
 
 $(document).on("click", "#save__button", function () {
   const inputValues = getAllInputValues();
+  const billetLength = $("#billet-length__select").val();
   const deleteElements = $(".need-clear");
   const deleteUpperAreaElements = $("div.top__wrapper div.display__wrapper");
   const deleteLastPressCondition = $(
@@ -542,7 +543,12 @@ $(document).on("click", "#save__button", function () {
   const summaryTableBody = $("#summary__table tbody");
 
   inputValues["billet-length__select"] = inputValues["billet-other__input"];
-  // console.log(inputValues);
+
+  if (billetLength == 600 || billetLength == 1200) {
+    inputValues["billet-length__select"] = billetLength;
+  } else if (billetLength === 1) {
+    inputValues["billet-length__select"] = $("#billet-other__input").val();
+  }
 
   fileName = "./php/MakingPressDirective/InsDataV7.php";
   sendData = inputValues;
@@ -560,12 +566,38 @@ $(document).on("click", "#save__button", function () {
 });
 
 $(document).on("click", "#update__button", function () {
-  const elementTest = $("div.middle__wrapper div.directive_input__wrapper");
-  elementTest.each(function () {
-    const $this = $(this); // 先に$(this)をキャッシュしておく
-    const inputVal = $this.find("div.pre_directive_input__wrapper div").html();
-    $this.find("input").val(inputVal); // 再度のDOMアクセスを避ける
-  });
+  const sendValues = getAllInputValues();
+  const billetLength = $("#billet-length__select").val();
+  const deleteElements = $(".need-clear");
+  const deleteUpperAreaElements = $("div.top__wrapper div.display__wrapper");
+  const deleteLastPressCondition = $(
+    "div.middle__wrapper div.pre_directive_input__wrapper div"
+  );
+  const summaryTableBody = $("#summary__table tbody");
+
+  sendValues["billet-length__select"] = sendValues["billet-other__input"];
+
+  if (billetLength == 600 || billetLength == 1200) {
+    sendValues["billet-length__select"] = billetLength;
+  } else if (billetLength === 1) {
+    sendValues["billet-length__select"] = $("#billet-other__input").val();
+  }
+  sendValues["target_id"] = $("#selected__tr td:nth-child(1)").html();
+
+  fileName = "./php/MakingPressDirective/UpdateDataV7.php";
+  sendData = sendValues;
+
+  // return;
+  myAjax.myAjax(fileName, sendValues);
+  // delete input value and color
+  deleteElements.val("").addClass("input-required");
+  // delete inserted value
+  deleteUpperAreaElements.html("");
+  deleteLastPressCondition.html("");
+  // delete summary table body
+  summaryTableBody.empty();
+
+  $(this).prop("disabled", true);
 });
 
 function checkAllInputed() {
@@ -593,8 +625,8 @@ $(document).on("click", "#make-pdf__button", function () {
 
 function makeNewPage() {
   // 読み込むHTMLファイルのパス
-  // const htmlFilePath = "../exd11/PressDSPDF.html";
-  const htmlFilePath = "../ex0.11/PressDSPDF.html"; // in SMC
+  const htmlFilePath = "../exd11/PressDSPDF.html";
+  // const htmlFilePath = "../ex0.11/PressDSPDF.html"; // in SMC
 
   const replacements = getPrintData();
   // return;
@@ -846,4 +878,5 @@ function getWorkLength() {
 $(document).on("keyup change", "div.middle__wrapper", function () {
   const allInputed = checkAllInputed();
   $("#save__button").prop("disabled", !allInputed);
+  $("#update__button").prop("disabled", !allInputed);
 });
