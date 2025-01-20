@@ -342,6 +342,22 @@ div#table__wrapper {
       width: 80px;
       margin-top: 5px;
       margin-left: 5px;
+      tr {
+        th:nth-child(1),
+        td:nth-child(1) {
+          width: 15px;
+        }
+        th:nth-child(2),
+        td:nth-child(2) {
+          width: 40px;
+        }
+      }
+      tbody {
+        width: 80px;
+        tr {
+          height: 15px;
+        }
+      }
     }
   }
 }
