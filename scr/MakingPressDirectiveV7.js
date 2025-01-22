@@ -777,6 +777,9 @@ function getPrintData() {
     readDataValues["end"] === null ? "" : readDataValues["end"];
 
   printDataValues["${plan_note}"] = readDataValues["plan_note"];
+  printDataValues["${first_qty}"] = $("#first-profile__input").val();
+  printDataValues["${second_qty}"] = $("#second-profile__input").val();
+
   printDataValues["${makeTable()}"] = makeProfileTable();
 
   // console.log(printDataValues);

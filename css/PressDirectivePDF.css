@@ -359,5 +359,21 @@ div#table__wrapper {
         }
       }
     }
+    div#error-code__div {
+      width: 120px;
+      height: 50%;
+      margin-top: 5px;
+      margin-left: 5px;
+      font-size: 8px;
+    }
+    table#profile-qty__table {
+      margin-top: 10px;
+      td:nth-child(1) {
+        width: 30px;
+      }
+      td:nth-child(2) {
+        width: 50px;
+      }
+    }
   }
 }
