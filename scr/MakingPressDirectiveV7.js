@@ -625,8 +625,8 @@ $(document).on("click", "#make-pdf__button", function () {
 
 function makeNewPage() {
   // 読み込むHTMLファイルのパス
-  const htmlFilePath = "../exd11/PressDSPDF.html";
-  // const htmlFilePath = "../ex0.11/PressDSPDF.html"; // in SMC
+  // const htmlFilePath = "../exd11/PressDSPDF.html";
+  const htmlFilePath = "../ex0.11/PressDSPDF.html"; // in SMC
 
   const replacements = getPrintData();
   // return;
