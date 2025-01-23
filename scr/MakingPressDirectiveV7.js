@@ -43,6 +43,9 @@ $(document).on("click", "#language__mark", function () {
   let fileName;
   let sendData = new Object();
 
+  console.log("Hello");
+  console.log(language);
+
   fileName = "./php/ProductionNumber/SelTitleName.php";
   sendData = {
     dummy: "dummy",
@@ -55,21 +58,23 @@ $(document).on("click", "#language__mark", function () {
       // console.log(targetObj.text() + "\n" + databaseLetters["english"]);
       switch (language[1]) {
         case "En":
+          $("#language__mark").attr("src", "./img/Vn.png");
+          console.log("En mode");
           if (targetObj.text() == databaseLetters["english"]) {
             // console.log(
             //   databaseLetters["english"] + " : " + databaseLetters["vietnamese"]
             // );
             targetObj.text(databaseLetters["vietnamese"]);
-            $("#language__mark").attr("src", "./img/Vn.png");
           }
           break;
         case "Vn":
+          console.log("Vn mode");
+          $("#language__mark").attr("src", "./img/En.png");
           if (targetObj.text() == databaseLetters["vietnamese"]) {
             // console.log(
             //   databaseLetters["english"] + " : " + databaseLetters["vietnamese"]
             // );
             targetObj.text(databaseLetters["english"]);
-            $("#language__mark").attr("src", "./img/En.png");
           }
           break;
       }
