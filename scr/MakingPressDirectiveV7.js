@@ -684,13 +684,6 @@ function getPrintData() {
       5
   );
 
-  // const a = calPressLength(
-  //   ajaxReturnData[0].billet_size,
-  //   ajaxReturnData[0].billet_length,
-  //   ajaxReturnData[0].specific_weight,
-  //   ajaxReturnData[0].hole
-  // );
-
   let pullerF;
   if (readDataValues.specific_weight >= 20) {
     pullerF = 140;
@@ -783,7 +776,8 @@ function getPrintData() {
 
   printDataValues["${plan_note}"] = readDataValues["plan_note"];
   printDataValues["${first-qty}"] = $("#first-profile__input").val();
-  printDataValues["${second-qty}"] = $("#second-profile__input").val();
+  printDataValues["${second-qty}"] = $("#other-profile__input").val();
+  // printDataValues["${second-qty}"] = "test";
 
   printDataValues["${makeTable()}"] = makeProfileTable();
   // console.log(printDataValues);
