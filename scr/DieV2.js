@@ -301,7 +301,7 @@ $(document).on("click", "#summary__table tbody tr", function () {
     $("#arrival_date").val("20" + targetTr.eq(5).text());
   }
   $("#whole__input").val(targetTr.eq(7).text());
-  $("#die_postition").val(targetTr.eq(8).text());
+ $("#die_postition").val(targetTr.eq(8).text()); 
   // Delete background color
   $("div.top__wrapper .input-required").removeClass("input-required");
   // Select "Production Number Table"

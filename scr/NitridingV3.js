@@ -63,7 +63,7 @@ function fillTableBody(data, tbodyDom) {
     checkLimit["die_diamater"] = trVal["die_diamater"];
     // 文字色を変更させる条件　規定値以上に押出している金型
     if (
-      (trVal["after_nitriding_length"] > 3.5 && trVal["die_diamater"] <= 260) ||
+      (trVal["after_nitriding_length"] > 3 && trVal["die_diamater"] <= 260) ||
       (trVal["after_nitriding_length"] > 2.5 && trVal["die_diamater"] >= 300) ||
       trVal["is_washed_die"] >= 5
     ) {
