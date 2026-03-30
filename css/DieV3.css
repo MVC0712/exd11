@@ -15,8 +15,8 @@
 }
 
 body {
-  width: 1210px;
-  height: 700px;
+  width: 1300px;
+  height: 800px;
 }
 dialog {
   width: 250px;
@@ -127,16 +127,16 @@ header > div:nth-child(5) > img {
   cursor: pointer;
 }
 .main__wrapper {
-  height: 670px;
+  height: 900px;
   display: flex;
   flex-direction: column;
 }
 .top__wrapper {
-  height: 240px;
+  height: 290px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: top;
   flex-wrap: wrap;
 }
 .button__wrapper {
@@ -148,7 +148,7 @@ header > div:nth-child(5) > img {
   flex-wrap: nowrap;
 }
 .table__wrapper {
-  height: 370px;
+  height: 420px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -294,7 +294,7 @@ thead th {
 }
 /* Summary Table */
 #summary__table tbody {
-  width: 1192px;
+  width: 1270px;
   height: 250px;
 }
 #summary__table th {
@@ -391,7 +391,11 @@ table img {
 }
 #summary__table th:nth-child(10),
 #summary__table td:nth-child(10) {
-  width: 175px;
+  width: 120px;
+}
+#summary__table th:nth-child(11),
+#summary__table td:nth-child(11) {
+  width: 120px;
 }
 #summary__table div.title__filter {
   display: flex;

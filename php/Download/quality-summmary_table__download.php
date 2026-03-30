@@ -18,7 +18,7 @@
       $file_path = "../../download/" . $_POST["file_name"] . ".csv";
       // print_r($file_path);
       $export_csv_title = [
-        "押出日", "押出時間[h]", "金型番号", "品番", "単重[kg/m]", "製品長さ[m]", 
+        "押出日", "押出時間[h]", "押出機", "金型番号", "品番", "単重[kg/m]", "製品長さ[m]", 
         "製品重量[kg]", "ディスカード厚", "ディスカード重量", "押出種別", "計画ビレット数", "実績ビレット数", 
         "投入ビレット長[mm]", "ビレットサイズ", "切断数", "不良数", "良品数", 
         "寸法チェック完了日", "エッチング完了日", "時効完了日", "梱包完了日", 
@@ -30,7 +30,7 @@
         "停机痕不良", "卷裂不良", "其他不良"
       ];
       $export_csv_title = [
-        "press_date_at", "pressing_time", "die_number", "production_number", "specific_weight", 
+        "press_date_at", "pressing_time", "machine no.", "die_number", "production_number", "specific_weight", 
         "production_length", "production_weight", "discard_thickness", "discard_weight",
         "pressing_type", "plan_billet_quantities", "actual_billet_quantities",
         "billet_length", "billet_size",
@@ -43,6 +43,7 @@
 			SELECT 
 			DATE_FORMAT(t_press.press_date_at, '%Y-%m-%d') AS press_date,
 			ROUND(TIMESTAMPDIFF(MINUTE, t_press.press_start_at, t_press.press_finish_at) / 60, 2) AS pressing_time,
+			t_press.press_machine_no,
 			m_dies.die_number,
 			m_production_numbers.production_number,
 			m_production_numbers.specific_weight,

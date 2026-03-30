@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Maintenance</title>
+		<link rel="stylesheet" href="./css/main.css" />
+		<link rel="stylesheet" href="./css/MaintenanceV3.css" />
+	</head>
+	<body>
+		<div>
+			<header>Maintenance</header>
+			<div class="main__wrapper">
+				<div class="input__wrapper">
+					<div class="left__section">
+						<div class="top__wrapper">
+							<div class="input-block__outer">
+								<div class="title">Line</div>
+								<select
+									id="line"
+									class="save-data need-clear no-input"></select>
+							</div>
+							<div class="input-block__outer">
+								<div class="title">Machine</div>
+								<input
+									id="machine"
+									class="no-input save-data need-clear"
+									type="text" />
+							</div>
+							<div class="input-block__outer">
+								<div class="title">Occurrence date</div>
+								<input
+									id="date_occur"
+									class="no-input save-data need-clear"
+									type="date" />
+							</div>
+							<div class="input-block__outer">
+								<div class="title">Repair date</div>
+								<input
+									id="date_repair"
+									class="save-data need-clear"
+									type="date" />
+							</div>
+						</div>
+						<div class="middle1__wrapper">
+							<div class="input-block__outer1">
+								<div class="title">Repair Content</div>
+								<textarea
+									id="re_content"
+									class="save-data need-clear"
+									rows="4"></textarea>
+							</div>
+							<div class="input-block__outer1">
+								<div class="title">Result</div>
+								<textarea
+									id="result"
+									class="save-data need-clear"
+									rows="4"></textarea>
+							</div>
+						</div>
+						<div class="bottom__wrapper">
+							<div class="input-block__outer2">
+								<div class="title">Cause</div>
+								<textarea
+									id="cause"
+									class="save-data need-clear"
+									rows="4"></textarea>
+							</div>
+							<div class="input-block__outer2">
+								<div class="title">Treatment Detail</div>
+								<textarea
+									id="tre_detail"
+									class="save-data need-clear"
+									rows="4"></textarea>
+							</div>
+						</div>
+					</div>
+					<div class="right__section">
+						<div class="left_table">
+							<table id="staff__table">
+								<thead>
+									<tr>
+										<td>Repair Person</td>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											<textarea
+												id="person_repair"
+												class="save-data need-clear"
+												rows="2"
+												cols="23"></textarea>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<table id="replacement__table">
+								<thead>
+									<tr>
+										<td>Replacement</td>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											<textarea
+												id="pro_id"
+												class="save-data need-clear"
+												rows="2"
+												cols="23"></textarea>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<div class="input-block__outer5">
+								<div class="title">Report No.</div>
+								<input id="re_no" class="save-data need-clear" type="text" />
+							</div>
+							<div class="input-block__outer5">
+								<div class="title">Equipment Status</div>
+								<select
+									id="equip_status"
+									class="save-data need-clear no-input"></select>
+							</div>
+						</div>
+						<div class="mid_table">
+							<table id="pic_before__table">
+								<thead>
+									<tr>
+										<th colspan="2">Before Repair</th>
+									</tr>
+									<tr>
+										<th>File Upload</th>
+										<th>File Name</th>
+									</tr>
+								</thead>
+
+								<tbody>
+									<tr>
+										<td>
+											<input
+												type="file"
+												id="file_upload_1"
+												class="need-clear caculating input__file" />
+										</td>
+										<td>
+											<label id="file_url_1" for="file_upload_1">No file</label>
+										</td>
+									</tr>
+
+									<tr>
+										<td>
+											<input
+												type="file"
+												id="file_upload_2"
+												class="need-clear caculating input__file" />
+										</td>
+										<td>
+											<label id="file_url_2" for="file_upload_2">No file</label>
+										</td>
+									</tr>
+
+									<tr>
+										<td>
+											<input
+												type="file"
+												id="file_upload_3"
+												class="need-clear caculating input__file" />
+										</td>
+										<td>
+											<label id="file_url_3" for="file_upload_3">No file</label>
+										</td>
+									</tr>
+
+									<tr>
+										<td>
+											<input
+												type="file"
+												id="file_upload_4"
+												class="need-clear caculating input__file" />
+										</td>
+										<td>
+											<label id="file_url_4" for="file_upload_4">No file</label>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="right_table">
+							<table id="pic_after__table">
+								<thead>
+									<tr>
+										<th colspan="2">After Repair</th>
+									</tr>
+									<tr>
+										<th>File Upload</th>
+										<th>File Name</th>
+									</tr>
+								</thead>
+
+								<tbody>
+									<tr>
+										<td>
+											<input
+												type="file"
+												id="file_upload_5"
+												class="need-clear caculating input__file" />
+										</td>
+										<td>
+											<label id="file_url_5" for="file_upload_5">No file</label>
+										</td>
+									</tr>
+
+									<tr>
+										<td>
+											<input
+												type="file"
+												id="file_upload_6"
+												class="need-clear caculating input__file" />
+										</td>
+										<td>
+											<label id="file_url_6" for="file_upload_6">No file</label>
+										</td>
+									</tr>
+
+									<tr>
+										<td>
+											<input
+												type="file"
+												id="file_upload_7"
+												class="need-clear caculating input__file" />
+										</td>
+										<td>
+											<label id="file_url_7" for="file_upload_7">No file</label>
+										</td>
+									</tr>
+
+									<tr>
+										<td>
+											<input
+												type="file"
+												id="file_upload_8"
+												class="need-clear caculating input__file" />
+										</td>
+										<td>
+											<label id="file_url_8" for="file_upload_8">No file</label>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="time__wrapper">
+							<table id="time__table">
+								<thead>
+									<tr>
+										<th></th>
+										<th colspan="2">Repair Time</th>
+										<th colspan="2">
+											<input
+												id="repair_time"
+												class="save-data need-clear"
+												type="text" />
+										</th>
+									</tr>
+									<tr>
+										<th></th>
+										<th colspan="4" id="sumtime">Machine Downtime</th>
+									</tr>
+									<tr>
+										<th>ID</th>
+										<th>Date</th>
+										<th>Start</th>
+										<th>End</th>
+										<th>Note</th>
+									</tr>
+								</thead>
+								<tbody></tbody>
+							</table>
+
+							<table id="add_time__table">
+								<thead>
+									<tr>
+										<td>Date</td>
+										<td>Start</td>
+										<td>End</td>
+										<td>Note</td>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											<input id="time_date" class="no-input" type="date" />
+										</td>
+										<td>
+											<input
+												id="time_start"
+												class="time_input no-input"
+												type="text" />
+										</td>
+										<td>
+											<input
+												id="time_end"
+												class="time_input no-input"
+												type="text" />
+										</td>
+										<td>
+											<input id="time_note" type="text" />
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<button id="add_time__button" disabled>Save</button>
+						</div>
+					</div>
+				</div>
+				<div class="button__wrapper">
+					<button id="save__button" disabled>Save</button>
+					<button id="update" disabled>Update</button>
+					<button id="download">Download</button>
+				</div>
+				<div class="table__wrapper">
+					<table id="summary__table">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>Line id</th>
+								<th>Line</th>
+								<th>Machine</th>
+								<th>Occur.Date</th>
+								<th>Repair Date</th>
+								<th>Report No.</th>
+								<th>Repair Content</th>
+								<th>Result</th>
+								<th>Cause</th>
+								<th>Treatment Details</th>
+								<th>Replacement</th>
+								<th>Total Time</th>
+								<th>Repair Person</th>
+								<th>Equipment Status id</th>
+								<th>Equipment Status</th>
+							</tr>
+						</thead>
+						<tbody></tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="file_area">
+			<header>Image before repair</header>
+			<div id="file_area_before">
+				<div id="file_area_1"></div>
+				<div id="file_area_2"></div>
+				<div id="file_area_3"></div>
+				<div id="file_area_4"></div>
+			</div>
+			<header>Image after repair</header>
+			<div id="file_area_after">
+				<div id="file_area_5"></div>
+				<div id="file_area_6"></div>
+				<div id="file_area_7"></div>
+				<div id="file_area_8"></div>
+			</div>
+		</div>
+
+		<!-- Thêm phần này ở cuối body -->
+		<div class="image-overlay" id="imageOverlay">
+			<img src="" alt="Zoomed Image" />
+		</div>
+
+		<script src="./lib/jquery.min.js"></script>
+		<script src="./scr/MaintenanceV3.js"></script>
+	</body>
+</html>

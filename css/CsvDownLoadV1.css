@@ -1,0 +1,13 @@
+body {
+	height: 500px;
+}
+.main__wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 90%;
+}
+button {
+	width: 200px;
+	height: 60px;
+}

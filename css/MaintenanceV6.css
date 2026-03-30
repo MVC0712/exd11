@@ -1,0 +1,508 @@
+body {
+	flex-direction: row;
+	height: calc(900px - 2px);
+	width: calc(1800px - 2px);
+	transform: scale(0.7);
+	transform-origin: top left;
+}
+header {
+	align-items: center;
+	justify-content: center;
+}
+thead td,
+thead th {
+	height: 30px;
+}
+.main__wrapper {
+	display: flex;
+	flex-direction: column;
+	padding: 0;
+	height: 99%;
+	width: 1380px;
+}
+.input__wrapper {
+	display: flex;
+	flex-direction: row;
+	height: 300px;
+	width: 1199px;
+}
+.button__wrapper {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	height: 30px;
+	padding: 10px;
+	justify-content: flex-start;
+	gap: 10px;
+}
+#save__button,
+#update__button,
+#download {
+	width: 100px;
+	height: 25px;
+}
+.left__section {
+	display: flex;
+	flex-direction: column;
+	padding: 5px;
+	height: 280px;
+	width: 520px;
+	border-bottom: 1px dotted #0000ff;
+}
+/* TOP WRAPPER */
+.top__wrapper {
+	display: flex;
+	flex-direction: row;
+	height: 60px;
+	width: 520px;
+	padding-bottom: 10px;
+}
+.input-block__outer {
+	flex-direction: column;
+	height: 60px;
+	width: 120px;
+	margin: 0 5px 0 5px;
+}
+
+#date_occur,
+#date_repair {
+	width: 116px;
+}
+#machine,
+#line {
+	width: 120px;
+}
+
+/* MID1 WRAPPER */
+.middle1__wrapper {
+	display: flex;
+	flex-direction: row;
+	height: 100px;
+	width: 520px;
+	padding-bottom: 10px;
+}
+.input-block__outer1 {
+	flex-direction: column;
+	height: 30px;
+	margin: 0 5px 0 5px;
+}
+.input-block__outer1:nth-child(1),
+.input-block__outer1:nth-child(2) {
+	width: 249px;
+}
+#re_content,
+#detail {
+	width: 245px;
+	resize: none;
+}
+/* BOTTOM WRAPPER */
+.bottom__wrapper {
+	display: flex;
+	flex-direction: row;
+	height: 50px;
+	width: 520px;
+}
+.input-block__outer2 {
+	flex-direction: column;
+	height: 60px;
+	margin: 0 5px 0 5px;
+}
+.input-block__outer2:nth-child(1),
+.input-block__outer2:nth-child(2) {
+	width: 249px;
+}
+#cause,
+#tre_detail {
+	width: 245px;
+	resize: none;
+}
+button {
+	width: 50px;
+	height: 22px;
+	display: block;
+	position: relative;
+	padding: 0px;
+	margin: 0px;
+	text-align: center;
+	text-decoration: none;
+	color: white;
+	background: #0000ff;
+	border: none;
+	font-size: 9pt;
+	font-weight: bold;
+}
+
+.title {
+	width: 100%;
+	height: 20px;
+	border: solid 1px #0000ff;
+	background-color: #0000ff;
+	color: white;
+}
+
+.right__section {
+	display: flex;
+	flex-direction: row;
+	padding: 0;
+	height: 290px;
+	width: 1199px - 520px;
+}
+/* staff table */
+.left_table {
+	height: 273px;
+	width: 175px;
+	padding: 12px 5px 5px 10px;
+	border-left: 1px dotted #0000ff;
+	border-bottom: 1px dotted #0000ff;
+}
+#staff__table thead td,
+#replacement__table thead td {
+	height: 30px;
+}
+#staff__table tbody {
+	height: 50px;
+	width: 170px;
+	overflow: auto;
+}
+#staff__table th:nth-child(1),
+#staff__table td:nth-child(1) {
+	width: 165px;
+}
+#replacement__table tbody {
+	height: 57px;
+	width: 170px;
+	overflow: auto;
+}
+#replacement__table th:nth-child(1),
+#replacement__table td:nth-child(1) {
+	width: 165px;
+}
+#person_repair,
+#pro_id {
+	resize: none;
+}
+.input-block__outer5:nth-child(3) {
+	width: 165px;
+	padding-bottom: 10px;
+	padding-left: 1px;
+}
+#re_no {
+	width: 161px;
+}
+.input-block__outer5:nth-child(4) {
+	width: 165px;
+	padding-bottom: 10px;
+	padding-left: 1px;
+}
+#equip_status {
+	width: 165px;
+}
+/* pic before table */
+.mid_table {
+	height: 273px;
+	width: 190px;
+	padding: 12px 5px 5px 5px;
+	border-left: 1px dotted #0000ff;
+	border-bottom: 1px dotted #0000ff;
+}
+#pic_before__table tbody {
+	height: 180px;
+	width: 190px;
+	overflow: auto;
+}
+#pic_before__table th:nth-child(1),
+#pic_before__table td:nth-child(1) {
+	width: 50px;
+}
+#pic_before__table th:nth-child(2),
+#pic_before__table td:nth-child(2) {
+	width: 140px;
+}
+
+/* pic after table */
+.right_table {
+	height: 273px;
+	width: 190px;
+	padding: 12px 5px 5px 5px;
+	border-left: 1px dotted #0000ff;
+	border-bottom: 1px dotted #0000ff;
+}
+#pic_after__table tbody {
+	height: 180px;
+	width: 190px;
+	overflow: auto;
+}
+#pic_after__table th:nth-child(1),
+#pic_after__table td:nth-child(1) {
+	width: 50px;
+}
+#pic_after__table th:nth-child(2),
+#pic_after__table td:nth-child(2) {
+	width: 140px;
+}
+/*time table */
+.time__wrapper {
+	height: 273px;
+	width: 240px;
+	padding: 12px 5px 5px 5px;
+	border-left: 1px dotted #0000ff;
+	border-bottom: 1px dotted #0000ff;
+}
+#repair_time {
+	width: 45px;
+	height: 25px;
+}
+#time__table {
+	table-layout: fixed;
+	width: 250px; /* tổng width bảng */
+}
+
+#time__table tbody {
+	height: 90px;
+	overflow: hidden;
+}
+#time__table td input {
+	border: none; /* input trong td cũng bỏ viền */
+	width: 100%; /* full width td */
+	box-sizing: border-box;
+}
+#time__table th:nth-child(1),
+#time__table td:nth-child(1) {
+	display: none;
+}
+#time__table th:nth-child(2) {
+	width: 70px;
+}
+#time__table td:nth-child(2) {
+	width: 69px;
+	text-align: left; /* để input chiếm toàn bộ cột */
+	box-sizing: border-box; /* để padding + width hợp lý */
+}
+
+#time__table th:nth-child(3),
+#time__table td:nth-child(3),
+#time__table th:nth-child(4),
+#time__table td:nth-child(4) {
+	width: 50px;
+}
+#time__table th:nth-child(5),
+#time__table td:nth-child(5) {
+	width: 80px;
+}
+#add_time__table td {
+	height: 20px;
+}
+#add_time__table tbody {
+	height: 30px;
+	width: 238px;
+	overflow: hidden;
+}
+#add_time__table th:nth-child(1),
+#add_time__table td:nth-child(1) {
+	width: 65px;
+}
+#time_date {
+	width: 60px;
+}
+#add_time__table th:nth-child(2),
+#add_time__table td:nth-child(2),
+#add_time__table th:nth-child(3),
+#add_time__table td:nth-child(3) {
+	width: 40px;
+}
+#time_start,
+#time_end {
+	width: 34px;
+}
+#add_time__table th:nth-child(4),
+#add_time__table td:nth-child(4) {
+	width: 82px;
+}
+#time_note {
+	width: 75px;
+}
+#add_time__button {
+	margin: 10px 0 0 90px;
+}
+/* summary table */
+.table__wrapper {
+	height: 370px;
+}
+#summary__table {
+	table-layout: fixed;
+	width: 100%;
+	border-collapse: collapse;
+}
+#summary__table td,
+th {
+	word-wrap: break-word; /* ngắt từ nếu dài */
+	word-break: break-word; /* hỗ trợ trình duyệt khác */
+	white-space: normal; /* cho phép xuống dòng */
+}
+#summary__table tbody {
+	height: 480px;
+	width: 1370px;
+}
+#summary__table tbody tr {
+	height: 60px;
+}
+#summary__table th:nth-child(1),
+#summary__table td:nth-child(1),
+#summary__table th:nth-child(2),
+#summary__table td:nth-child(2),
+#summary__table th:nth-child(4),
+#summary__table td:nth-child(4) {
+	display: none;
+}
+#summary__table th:nth-child(3),
+#summary__table td:nth-child(3) {
+	width: 80px;
+}
+#summary__table th:nth-child(5),
+#summary__table td:nth-child(5) {
+	width: 120px;
+}
+#summary__table th:nth-child(6),
+#summary__table td:nth-child(6),
+#summary__table th:nth-child(7),
+#summary__table td:nth-child(7) {
+	width: 70px;
+}
+
+#summary__table th:nth-child(8),
+#summary__table td:nth-child(8) {
+	width: 100px;
+}
+
+#summary__table th:nth-child(9),
+#summary__table td:nth-child(9),
+#summary__table th:nth-child(10),
+#summary__table td:nth-child(10),
+#summary__table th:nth-child(11),
+#summary__table td:nth-child(11),
+#summary__table th:nth-child(12),
+#summary__table td:nth-child(12) {
+	width: 140px;
+}
+
+#summary__table th:nth-child(13),
+#summary__table td:nth-child(13) {
+	width: 90px;
+}
+#summary__table th:nth-child(14),
+#summary__table td:nth-child(14) {
+	width: 50px;
+}
+#summary__table th:nth-child(15),
+#summary__table td:nth-child(15) {
+	width: 105px;
+}
+#summary__table th:nth-child(16),
+#summary__table td:nth-child(16) {
+	display: none;
+}
+#summary__table th:nth-child(17),
+#summary__table td:nth-child(17) {
+	width: 70px;
+}
+#staff__table input {
+	width: 140px;
+	height: 100px;
+}
+.file_area {
+	width: 100%;
+	height: 100%;
+	transform-origin: left;
+	flex-direction: column;
+	display: flex;
+	border-left: 1px solid #0000ff;
+}
+#file_area_before,
+#file_area_after {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr); /* 2 cột */
+	gap: 1px; /* khoảng cách giữa các ô */
+	width: 100%;
+	max-width: 600px; /* tùy chỉnh kích thước tổng thể */
+}
+
+#file_area_before > div,
+#file_area_after > div {
+	aspect-ratio: 1 / 1; /* giữ hình vuông */
+
+	border: 1px solid #0000ff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* Overlay mặc định ẩn */
+.image-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	visibility: hidden; /* ẩn */
+	opacity: 0;
+	transition: opacity 0.3s ease;
+	z-index: 9999;
+}
+
+/* Khi active → hiện overlay */
+.image-overlay.active {
+	visibility: visible;
+	opacity: 1;
+}
+
+/* Ảnh bên trong overlay */
+.image-overlay img {
+	width: 500px;
+	height: 500px;
+	max-width: 90vw;
+	max-height: 90vh;
+	object-fit: contain;
+	border: 3px solid #333;
+	background: #fff;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+	cursor: pointer;
+}
+
+.input-block__outer_outer {
+	height: 35px;
+	width: initial;
+	margin: 0 3px 0 3px;
+	display: flex;
+	flex-direction: row;
+}
+.input-block__outer_outer .input__title {
+	height: 25px;
+	width: 80px;
+	font-weight: bold;
+	text-align: center;
+}
+.input-block__outer_outer input {
+	height: 25px; /* cao bằng label */
+	min-width: 120px; /* chiều ngang tối thiểu */
+	padding: 0 5px;
+	margin-left: 3px;
+	text-align: center; /* chữ căn giữa */
+	border: 1px solid #ccc; /* viền ô input */
+	border-radius: 4px; /* bo góc */
+	box-sizing: border-box; /* để padding không làm rộng ô */
+}
+.input-block__outer_outer select {
+	height: 25px; /* cao bằng label */
+	min-width: 120px; /* chiều ngang tối thiểu */
+	padding: 0 5px;
+	margin-left: 3px;
+	border: 1px solid #ccc; /* viền ô input */
+	border-radius: 4px; /* bo góc */
+	box-sizing: border-box; /* để padding không làm rộng ô */
+}
+#download {
+	visibility: hidden;
+}

@@ -42,7 +42,9 @@
           cooling_type = :cooling_type,
           value_l = :value_l,
           value_m = :value_m,
-          value_n = :value_n
+          value_n = :value_n,
+          sub_initial = :sub_initial,
+          initial = :initial
       WHERE id = :target_id
     ");
 
@@ -69,6 +71,8 @@
       $prepare->bindValue(':value_l', $_POST['sample-position-l__input' ], PDO::PARAM_STR);
       $prepare->bindValue(':value_m', (INT)$_POST['sample-position-m__input' ], PDO::PARAM_INT);
       $prepare->bindValue(':value_n', (INT)$_POST['sample-position-n__input' ], PDO::PARAM_INT);
+      $prepare->bindValue(':sub_initial', (INT)$_POST['sub-initial__input' ], PDO::PARAM_INT);
+      $prepare->bindValue(':initial', (INT)$_POST['initial__input' ], PDO::PARAM_INT);
       $prepare->bindValue(':target_id', (INT)$_POST['targetId' ], PDO::PARAM_INT);
 
       $prepare->execute();

@@ -16,9 +16,9 @@
       );
 
       $sql = "INSERT INTO m_dies (die_number, production_number_id, die_diamater_id, 
-        bolstar_id, hole, arrival_at, created_at, die_postition, kl_khuon) 
+        bolstar_id, hole, arrival_at, created_at, die_postition, kl_khuon, kl_nhom) 
         VALUES (:die_number, :production_number_id, :die_diamater_id,
-        :bolstar_id, :hole, :arrival_at, :created_at, :die_postition, :kl_khuon)";
+        :bolstar_id, :hole, :arrival_at, :created_at, :die_postition, :kl_khuon, :kl_nhom)";
       $prepare = $dbh->prepare($sql);
 
       $prepare->bindValue(':die_number', $_POST['die_number'], PDO::PARAM_STR);
@@ -30,6 +30,7 @@
       $prepare->bindValue(':arrival_at', $_POST['arrival_date'], PDO::PARAM_STR);
       $prepare->bindValue(':created_at', $_POST['today'], PDO::PARAM_STR);
       $prepare->bindValue(':kl_khuon', $_POST['kl_khuon'], PDO::PARAM_STR);
+      $prepare->bindValue(':kl_nhom', $_POST['kl_nhom'], PDO::PARAM_STR);
       $prepare->execute();
       echo json_encode("INSERTED");
   } catch (PDOException $e) {

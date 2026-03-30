@@ -41,7 +41,9 @@
       cooling_type,
       value_l,
       value_m,
-      value_n
+      value_n,
+      sub_initial,
+      initial
         ) VALUES (
       :dies_id,
       :plan_date_at,
@@ -65,7 +67,9 @@
       :cooling_type,
       :value_l,
       :value_m,
-      :value_n
+      :value_n,
+      :sub_initial,
+      :initial
         )"
     );
 
@@ -92,8 +96,8 @@ $prepare->bindValue(':cooling_type' , $_POST['cooling_type' ],PDO::PARAM_STR);
 $prepare->bindValue(':value_l' ,$_POST['sample-position-l__input' ],PDO::PARAM_STR);
 $prepare->bindValue(':value_m' ,(INT)$_POST['sample-position-m__input' ],PDO::PARAM_INT);
 $prepare->bindValue(':value_n' ,(INT)$_POST['sample-position-n__input' ],PDO::PARAM_INT);
-
-
+$prepare->bindValue(':sub_initial' ,(INT)$_POST['sub-initial__input' ],PDO::PARAM_INT);
+$prepare->bindValue(':initial' ,(INT)$_POST['initial__input' ],PDO::PARAM_INT);
     // print_r($sql);
     $prepare->execute();
 

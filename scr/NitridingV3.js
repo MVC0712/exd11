@@ -65,7 +65,7 @@ function fillTableBody(data, tbodyDom) {
     if (
       (trVal["after_nitriding_length"] > 3 && trVal["die_diamater"] <= 260) ||
       (trVal["after_nitriding_length"] > 2.5 && trVal["die_diamater"] >= 300) ||
-      trVal["is_washed_die"] >= 5
+      trVal["washing_count_after_nitriding"] >= 5
     ) {
       chekFlag = true;
     }

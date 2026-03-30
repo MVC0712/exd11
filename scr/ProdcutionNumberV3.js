@@ -142,7 +142,7 @@ $(document).on("keyup", "#hardness", function () {
 });
 
 $(document).on("keyup", "#specific_weight", function () {
-  if (isNumber($(this).val()) && 0.1 <= $(this).val() && $(this).val() <= 40) {
+  if (isNumber($(this).val()) && 0.1 <= $(this).val() && $(this).val() <= 60) {
     $(this).removeClass("input-required");
   } else {
     $(this).addClass("input-required");
@@ -150,7 +150,7 @@ $(document).on("keyup", "#specific_weight", function () {
 });
 
 $(document).on("keyup", "#cross_section_area", function () {
-  if (isNumber($(this).val()) && 2 <= $(this).val() && $(this).val() <= 15000) {
+  if (isNumber($(this).val()) && 2 <= $(this).val() && $(this).val() <= 20000) {
     $(this).removeClass("input-required");
   } else {
     $(this).addClass("input-required");
@@ -158,7 +158,7 @@ $(document).on("keyup", "#cross_section_area", function () {
 });
 
 $(document).on("keyup", "#packing_quantity", function () {
-  if (isNumber($(this).val()) && 2 <= $(this).val() && $(this).val() <= 1000) {
+  if (isNumber($(this).val()) && 2 <= $(this).val() && $(this).val() <= 1500) {
     $(this).removeClass("input-required");
   } else {
     $(this).addClass("input-required");

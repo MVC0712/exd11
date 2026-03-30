@@ -38,9 +38,24 @@
               1
           ELSE 0
       END) AS is_washed_die,
-      CONCAT(t10.die_status,
-              ' ',
-              IFNULL(t10.tank, '')) AS die_status,
+      CONCAT(
+    t10.die_status,
+    IF(
+        t10.tank IS NOT NULL,
+        CONCAT(
+            ' ',
+            CASE
+                WHEN t10.tank = 6  THEN '1.2'
+                WHEN t10.tank = 7  THEN '2.2'
+                WHEN t10.tank = 8  THEN '3.2'
+                WHEN t10.tank = 9  THEN '4.2'
+                WHEN t10.tank = 10 THEN '5.2'
+                ELSE CAST(t10.tank AS CHAR)
+            END
+        ),
+        ''
+    )
+) AS die_status,
       t10.die_status_id,
       SUBSTRING_INDEX(staff_name, ' ', - 1) AS name,
       t10.note,

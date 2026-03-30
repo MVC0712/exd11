@@ -6,6 +6,7 @@
     $end = $_POST['end_date'];
     $die_number = $_POST['die_number'];
     $press_type = $_POST['press_type'];
+    $press_machine = $_POST['press_machine'];
 
     if ($start == ""||$end == "") {
       $add = "";
@@ -49,6 +50,7 @@
         WHERE m_dies.die_number LIKE '%$die_number%'
         $add
               AND pressing_type_id LIKE '%$press_type%'
+              AND press_machine_no LIKE '%$press_type%'
     ORDER BY t_press.press_date_at DESC";
 
       foreach ($export_csv_title as $key => $val) {

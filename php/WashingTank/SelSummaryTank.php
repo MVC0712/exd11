@@ -17,7 +17,16 @@
 
       $sql = "SELECT 
       t_dies_status.id,
-      CONCAT('Tank ', tank) AS tank,
+      CONCAT('Tank ',
+      CASE
+            WHEN t_dies_status.tank = 6 THEN '1.2'
+            WHEN t_dies_status.tank = 7 THEN '2.2'
+            WHEN t_dies_status.tank = 8 THEN '3.2'
+            WHEN t_dies_status.tank = 9 THEN '4.2'
+            WHEN t_dies_status.tank = 10 THEN '5.2'
+            ELSE t_dies_status.tank
+        END
+      ) AS tank,
       DATE_FORMAT((SELECT 
                       MAX(t_washing_tank.wasshing_tank_change_at) AS wasshing_tank_change
                   FROM

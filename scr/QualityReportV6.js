@@ -1,0 +1,833 @@
+let ajaxReturnData;
+let originalValue;
+// let deleteDialog = document.getElementById("delete_ng__dialog");
+// let deleteRackDialog = document.getElementById("delete_rack__dialog");
+let press_id;
+
+const myAjax = {
+  myAjax: function (fileName, sendData) {
+    $.ajax({
+      type: "POST",
+      url: fileName,
+      dataType: "json",
+      data: sendData,
+      async: false,
+    })
+      .done(function (data) {
+        ajaxReturnData = data;
+      })
+      .fail(function () {
+        alert("DB connect error");
+      });
+  },
+};
+
+$(function () {
+  makeNgSelect();
+  $("#add__button").prop("disabled", true);
+  $("#test__button").remove();
+});
+
+function makeNgSelect() {
+  var fileName = "./php/QualityReport/SelNgCode.php";
+  var sendData = {
+    ng_code: $("#ng_code__input").val() + "%",
+  };
+  // read ng_code
+  myAjax.myAjax(fileName, sendData);
+  // fill select options
+  $("#ng_code__select").empty();
+  if (ajaxReturnData.length == 1) {
+    $("#ng_code__select").removeClass("no-input").addClass("complete-input");
+  } else {
+    $("#ng_code__select").append($("<option>").val(0).html("no"));
+    $("#ng_code__select").removeClass("complete-input").addClass("no-input");
+  }
+  ajaxReturnData.forEach(function (value) {
+    $("<option>")
+      .val(value["id"])
+      .html(value["quality_code"] + "-" + value["description_vn"])
+      .appendTo("#ng_code__select");
+  });
+}
+
+function makeDieOption() {
+  var fileName = "./php/QualityReport/SelDieNumber.php";
+  var sendData = {
+    dummy: "dummy",
+    press_date: $("#date__input").val(),
+  };
+  // summary tebale の読み出し
+  myAjax.myAjax(fileName, sendData);
+}
+// ==============  date  ===================
+$(document).on("change", "#date__input", function () {
+  makeDieOption();
+  $("#die_number option").remove();
+  $("#die_number").append($("<option>").val(0).html("NO select"));
+  $("#slkhuon").html(ajaxReturnData.length);
+
+  ajaxReturnData.forEach(function (value) {
+    $("#die_number").append(
+      $("<option>").val(value["id"]).html(value["die_number"])
+    );
+  });
+  $("#date__input").removeClass("no-input").addClass("complete-input");
+});
+// ==============  die_number  ===================
+$(document).on("change", "#die_number", function () {
+  if ($(this).val() != 0) {
+    $(this).removeClass("no-input").addClass("complete-input");
+    fillPressData();
+  } else {
+    $(this).removeClass("complete-input").addClass("no-input");
+  }
+});
+
+function fillPressData() {
+  var fileName = "./php/QualityReport/SelPressDataV1.php";
+  var sendData = {
+    press_date: $("#date__input").val(),
+    dies_id: $("#die_number").val(),
+  };
+  // call php program
+  myAjax.myAjax(fileName, sendData);
+  // console.log(ajaxReturnData);
+  $("#pressing_type").val(ajaxReturnData[0]["pressing_type"]);
+  $("#input_billet_quantity").val(
+    ajaxReturnData[0]["actual_billet_quantities"]
+  );
+  press_id = ajaxReturnData[0]["press_id"];
+  // filling date
+  $("#dimension_check_date").val(ajaxReturnData[0]["dimension_check_date"]);
+  $("#etching_check_date").val(ajaxReturnData[0]["etching_check_date"]);
+  $("#aging_check_date").val(ajaxReturnData[0]["hardness_check_date"]);
+  $("#qc_check_date").val(ajaxReturnData[0]["qc_check_date"]);
+  $("#qc_check_name").val(ajaxReturnData[0]["qc_name"]);
+
+  // read used aging rack information
+  fileName = "./php/QualityReport/SelRackData.php";
+  sendData = {
+    press_id: ajaxReturnData[0]["press_id"],
+  };
+  myAjax.myAjax(fileName, sendData);
+  makeAgingRackTable(ajaxReturnData, $("#rack__table tbody tr"));
+  calTotalWorkQty();
+  makeTotalNgTable();
+  $("#add__button").prop("disabled", true);
+  $("#ng__table tbody:nth-child(2)").empty();
+  $("#total_ng_quantity").html("0");
+  $("#total_ok_quantity").html("0");
+}
+
+function makeAgingRackTable(data, tbodyDom) {
+  $("#table__body").empty();
+
+  data.forEach(function (trVal) {
+    var newTr = $("<tr>");
+    Object.keys(trVal).forEach(function (tdVal) {
+      if (tdVal == "work_quantity") {
+        $("<td>")
+          .append($("<input>").val(trVal[tdVal]).attr("disabled", true))
+          .appendTo(newTr);
+      } else {
+        $("<td>").html(trVal[tdVal]).appendTo(newTr);
+      }
+    });
+    $(newTr).appendTo("#table__body");
+  });
+}
+// ===================== complete date input ====================
+$(document).on("change", "#complete_date", function () {
+  var fileName = "./php/QualityReport/UpdateQualityCheckDateV1.php";
+  var sendData = {
+    process_id: $('input:radio[name="process_name"]:checked').val(),
+    press_id: press_id,
+    date: $("#complete_date").val(),
+  };
+  // call php program
+  // console.log(sendData);
+  myAjax.myAjax(fileName, sendData);
+  fillPressData();
+});
+
+// ===================== click save ====================
+$(document).on("click", "#save__button", function () {
+  const fileName = "./php/QualityReport/UpdateQCDate.php";
+  const sendData = {
+    process_id: $('input:radio[name="process_name"]:checked').val(),
+    press_id: press_id, // biến global
+    date: $("#complete_date").val(),
+    qc_name_id: $("#qc__select").val(), // đúng id select QC
+  };
+
+  // Gọi Ajax
+  myAjax.myAjax(fileName, sendData);
+  $("#qc__select").val(0).removeClass("complete-input").addClass("no-input");
+
+  // Load lại dữ liệu
+  fillPressData();
+  checkSaveButton();
+});
+
+function toggleCompleteDate() {
+  const selectedValue = $('input[name="process_name"]:checked').val();
+  const $wrapper = $(".ng_table__wrapper");
+  const $dateInput = $wrapper.find("#complete_date");
+
+  // RESET: ẩn toàn bộ nội dung, nút và QC wrapper
+  $wrapper.find(".complete-date__wrapper").hide();
+  $wrapper.find(".input-block__wrapper").hide();
+  $wrapper.find(".button__area button").hide();
+  $wrapper.find(".qc-select__wrapper").hide();
+
+  // Xóa giá trị và class date trước khi toggle
+  $dateInput.val("");
+  $dateInput.removeClass("complete-input no-input");
+
+  if (selectedValue === "4") {
+    // 🔥 = 4 → chỉ hiện Complete Date + Save + QC select
+    $wrapper.find(".complete-date__wrapper").show();
+    $dateInput.addClass("no-input"); // gắn no-input cho ô date
+    $wrapper.find("#save__button").show();
+    $wrapper.find(".qc-select__wrapper").show();
+
+    checkSaveButton();
+
+    // Khi người dùng thay đổi date
+    $dateInput.off("change").on("change", function () {
+      $(this).removeClass("no-input").addClass("complete-input");
+      checkSaveButton();
+    });
+  } else if (selectedValue === "1") {
+    // UI bình thường
+    $wrapper.find(".complete-date__wrapper").show();
+    $wrapper.find(".input-block__wrapper").show();
+    $wrapper.find("#add__button, #test__button").show();
+  } else {
+    // Case khác
+    $wrapper.find(".input-block__wrapper").show();
+    $wrapper.find("#add__button, #test__button").show();
+  }
+}
+
+// Khi trang load xong thì kiểm tra ẩn/hiện luôn
+$(document).ready(function () {
+  toggleCompleteDate();
+
+  // Bắt sự kiện change trên radio để ẩn/hiện khối input
+  $('input[name="process_name"]').change(function () {
+    toggleCompleteDate();
+  });
+});
+
+// ===================== qc name select ====================
+$(document).on("change", "#qc__select", function () {
+  if ($(this).val() != 0) {
+    $(this).removeClass("no-input").addClass("complete-input");
+  } else {
+    $(this).removeClass("complete-input").addClass("no-input");
+  }
+  checkSaveButton();
+});
+// ===================== ng code select ====================
+$(document).on("change", "#ng_code__select", function () {
+  if ($(this).val() != 0) {
+    $(this).removeClass("no-input").addClass("complete-input");
+  } else {
+    $(this).removeClass("complete-input").addClass("no-input");
+  }
+});
+
+// ===================== ng code input ====================
+$(document).on("keyup", "#ng_code__input", function () {
+  makeNgSelect();
+});
+
+$(document).on("keydown", "#ng_code__input", function (e) {
+  if ($("#ng_code__select").hasClass("complete-input") && e.keyCode == 13) {
+    $("#ng_quantity").focus();
+    e.preventDefault();
+  }
+});
+// ===================== ng code select ====================
+$(document).on("change", "#ng_code__select", function () {
+  if ($(this).val() != 0) {
+    $(this).removeClass("no-input").addClass("complete-input");
+  } else {
+    $(this).removeClass("complete-input").addClass("no-input");
+  }
+});
+
+// ===================== ng qty input ====================
+$(document).on("keyup", "#ng_quantity", function () {
+  let val = $(this).val();
+
+  if (0 <= Number(val) && Number(val) <= 500 && val != "") {
+    $(this).removeClass("no-input").addClass("complete-input");
+  } else {
+    $(this).removeClass("complete-input").addClass("no-input");
+  }
+});
+
+$(document).on("keydown", "#ng_quantity", function (e) {
+  if ($(this).hasClass("complete-input") && e.keyCode == 13) {
+    $("#name__input").focus();
+    e.preventDefault();
+  }
+});
+// ===================== actvation of Add button ====================
+$(document).on("click", ".buttom__wrapper", function () {
+  checkNgData();
+});
+
+$(document).on("change", ".buttom__wrapper", function () {
+  checkNgData();
+});
+
+$(document).on("keyup", ".buttom__wrapper", function () {
+  checkNgData();
+});
+
+function checkNgData() {
+  let condition1, condition2, condition3, condition4, condition5;
+
+  condition1 = $("#selected__tr").length;
+  condition2 = Number($("#ng_quantity").val());
+  condition3 = $("#ng_code__select").val();
+  condition4 = $("#ng_quantity").val();
+  condition5 = $("#name__select").val();
+
+  if (
+    condition1 != 0 &&
+    condition2 >= 0 &&
+    condition3 != 0 &&
+    condition4 != "" &&
+    condition5 != 0
+  ) {
+    // console.log("ok")
+    $("#add__button").prop("disabled", false);
+  } else {
+    $("#add__button").prop("disabled", true);
+  }
+}
+
+function checkSaveButton() {
+  const $saveBtn = $("#save__button");
+  const $qcSelect = $("#qc__select");
+  const $dateInput = $("#complete_date");
+
+  // Kiểm tra cả 2 điều kiện
+  if ($qcSelect.hasClass("complete-input") && $dateInput.val().trim() !== "") {
+    $saveBtn.show(); // hiện nút Save
+    $saveBtn.prop("disabled", false); // enable
+  } else {
+    $saveBtn.prop("disabled", true); // disable
+  }
+}
+
+// ===================== Add button ====================
+$(document).on("click", "#add__button", function () {
+  let fileName = "./php/QualityReport/InsQalityInformationV1.php";
+  let sendData = {
+    press_date: $("#date__input").val(),
+    dies_id: $("#die_number").val(),
+    process_id: $('input:radio[name="process_name"]:checked').val(),
+    using_aging_rack_id: $("#selected__tr td").eq(0).html(),
+    quality_code_id: $("#ng_code__select").val(),
+    ng_quantities: $("#ng_quantity").val(),
+    staff_id: $("#name__select").val(),
+    note: $("#note_input").val(),
+    created_at: getToday(),
+  };
+  // console.log(sendData);
+  // call php program
+  myAjax.myAjax(fileName, sendData);
+  // read ng table data
+  fileName = "./php/QualityReport/SelSelRackNGDataV1.php";
+  sendData = {
+    using_aging_rack_id: $("#selected__tr td").eq(0).html(),
+  };
+  myAjax.myAjax(fileName, sendData);
+  makeNgTable($("#ng__table tbody:nth-child(2)"));
+  // clear and color input frame
+  $(".ng_table__wrapper .need-clear").val("");
+  $(".ng_table__wrapper .save-data")
+    .not(".note_input") // giữ nguyên complete-input cho note_input
+    .removeClass("complete-input")
+    .addClass("no-input");
+
+  makeTotalNgTable();
+});
+
+function getToday() {
+  // 本日の日付をyy-mm-dd形式で返す
+  let dt = new Date();
+  return dt.getFullYear() + "-" + (dt.getMonth() + 1) + "-" + dt.getDate();
+}
+
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// ++++++++++++++++++++++    rack table   ++++++++++++++++++++++++++++++++++
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// ===================== select rack table ===============
+$(document).on("click", "#table__body tr", function (e) {
+  let fileName;
+  let sendData;
+  if (!$(this).hasClass("selected-record")) {
+    // tr に class を付与し、選択状態の background colorを付ける
+    $(this).parent().find("tr").removeClass("selected-record");
+    $(this).addClass("selected-record");
+    // tr に id を付与する
+    $("#selected__tr").removeAttr("id");
+    $(this).attr("id", "selected__tr");
+
+    // read ng table data
+    fileName = "./php/QualityReport/SelSelRackNGDataV1.php";
+    sendData = {
+      using_aging_rack_id: $("#selected__tr td").eq(0).html(),
+    };
+    myAjax.myAjax(fileName, sendData);
+    makeNgTable($("#ng__table tbody:nth-child(2)"));
+    // $("#add__button").prop("disabled", false);
+  } else {
+    // 選択レコードを再度クリックした時
+    // 削除問い合わせダイアログ
+    deleteRackDialog.showModal();
+    $("#add__button").prop("disabled", true);
+  }
+});
+
+// deleteダイアログのキャンセルボタンが押されたとき
+$(document).on("click", "#delete_rack__dialog-cancel", function () {
+  deleteRackDialog.close();
+});
+
+// deleteダイアログの削除ボタンが押されたとき
+$(document).on("click", "#delete_rack__dialog-delete", function () {
+  // delete quality information
+  fileName = "./php/QualityReport/DelRackData.php";
+  sendData = {
+    id: $("#selected__tr").find("td").eq(0).html(),
+  };
+  myAjax.myAjax(fileName, sendData);
+  // reload rack table data
+  fillPressData();
+
+  deleteRackDialog.close();
+});
+
+function makeNgTable(targetDom) {
+  let ngTotal = 0;
+  let okTotal;
+  targetDom.empty();
+
+  ajaxReturnData.forEach(function (trVal) {
+    let newTr = $("<tr>");
+
+    Object.keys(trVal).forEach(function (tdVal) {
+      if (tdVal === "ng_quantities") {
+        $("<td>")
+          .append($("<input>").val(trVal[tdVal]).addClass("ng_quantity_input"))
+          .appendTo(newTr);
+        ngTotal += Number(trVal[tdVal]);
+      } else if (tdVal === "quality_code") {
+        $("<td>").append(makeNgCodeOptionDom(trVal[tdVal])).appendTo(newTr);
+      } else if (tdVal === "process_name") {
+        $("<td>")
+          .append(makeProcessCodeOptionDom(trVal[tdVal]))
+          .appendTo(newTr);
+      } else if (tdVal === "note") {
+        // Hiển thị note dưới dạng input để có thể chỉnh sửa
+        $("<td>")
+          .append($("<input>").val(trVal[tdVal]).addClass("note_change"))
+          .appendTo(newTr);
+      } else if (tdVal === "name") {
+        // Hiển thị name chỉ đọc
+        $("<td>").text(trVal[tdVal]).appendTo(newTr);
+      } else {
+        $("<td>").html(trVal[tdVal]).appendTo(newTr);
+      }
+    });
+
+    $(newTr).appendTo(targetDom);
+  });
+
+  $("#total_ng_quantity").html(ngTotal);
+
+  const totalWorkQty = Number($("#selected__tr input").val()) || 0;
+  okTotal = totalWorkQty - ngTotal;
+
+  $("#total_ok_quantity").html(okTotal);
+}
+
+// makeProcessCodeOptionDom
+
+function makeNgCodeOptionDom(seletedId) {
+  let targetDom = $("<select>");
+
+  fileName = "./php/QualityReport/SelNgCode.php";
+  sendData = {
+    ng_code: "%",
+  };
+  myAjax.myAjax(fileName, sendData);
+
+  ajaxReturnData.forEach(function (element) {
+    if (element["quality_code"] == seletedId) {
+      $("<option>")
+        .html(element["quality_code"])
+        .val(element["id"])
+        .prop("selected", true)
+        .appendTo(targetDom);
+    } else {
+      $("<option>")
+        .html(element["quality_code"])
+        .val(element["id"])
+        .appendTo(targetDom);
+    }
+  });
+  return targetDom;
+}
+// ===================== input work quantity ===================
+$(document).on("keyup", "#rack__table input", function () {
+  if (
+    (1 <= Number($(this).val()) && Number($(this).val()) <= 500) ||
+    $(this).val() == ""
+  ) {
+    $(this).removeClass("no-input").addClass("complete-input");
+  } else {
+    $(this).removeClass("complete-input").addClass("no-input");
+  }
+});
+
+$(document).on("change", "#rack__table input", function () {
+  let id;
+  id = $(this).parent().parent().find("td").eq(0).html();
+
+  // Update Input Data
+  fileName = "./php/QualityReport/UpdateRackWorkQty.php";
+  sendData = {
+    id: id,
+    work_quantity: $(this).val(),
+  };
+  myAjax.myAjax(fileName, sendData);
+  // read used aging rack information
+  fillPressData();
+  // ng table reset
+  $("#ng__table tbody:nth-child(2)").empty();
+});
+
+function calTotalWorkQty() {
+  let total = 0;
+  $("#rack__table input").each(function (index, val) {
+    // console.log($(this).val());
+    if (!isNaN($(this).val())) {
+      total += Number($(this).val());
+    }
+  });
+  $("#total_work_quantity").html(total);
+}
+
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// -------------------------  ng__table tr ---------------------------------
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+$(document).on("click", "#ng__table tr", function (e) {
+  if (!$(this).hasClass("selected-record")) {
+    // tr に class を付与し、選択状態の background colorを付ける
+    $(this).parent().find("tr").removeClass("selected-record");
+    $(this).addClass("selected-record");
+    // tr に id を付与する
+    $("#ng-selected__tr").removeAttr("id");
+    $(this).attr("id", "ng-selected__tr");
+    // input 要素
+    $(this).parent().find("input").removeClass("selected-input");
+    $(this).find("input").addClass("selected-input");
+    // be color to select element
+    $(this).parent().find("select").removeClass("selected-select");
+    $(this).find("select").addClass("selected-select");
+  } else {
+    // 選択レコードを再度クリックした時
+    // 削除問い合わせダイアログ
+    deleteDialog.showModal();
+  }
+});
+
+// deleteダイアログのキャンセルボタンが押されたとき
+$(document).on("click", "#delete_ng__dialog-cancel", function () {
+  deleteDialog.close();
+});
+
+// deleteダイアログの削除ボタンが押されたとき
+$(document).on("click", "#delete_ng__dialog-delete", function () {
+  // delete quality information
+  fileName = "./php/QualityReport/DelNGData.php";
+  sendData = {
+    id: $("#ng-selected__tr").find("td").eq(0).html(),
+  };
+  myAjax.myAjax(fileName, sendData);
+  // read ng table data
+  fileName = "./php/QualityReport/SelSelRackNGDataV1.php";
+  sendData = {
+    using_aging_rack_id: $("#selected__tr td").eq(0).html(),
+  };
+  myAjax.myAjax(fileName, sendData);
+  makeNgTable($("#ng__table tbody:nth-child(2)"));
+
+  makeTotalNgTable();
+
+  deleteDialog.close();
+});
+
+// NG quantity input in NG table
+$(document).on("focus", "#ng__table input.ng_quantity_input", function () {
+  originalValue = $(this).val();
+});
+
+$(document).on("change", "#ng__table input.ng_quantity_input", function () {
+  if (
+    0 <= Number($(this).val()) &&
+    Number($(this).val()) <= 100 &&
+    $(this).val() != ""
+  ) {
+    // when input value is normal
+    update_t_press_quatlities();
+  } else {
+    // when input value is abnormal
+    $(this).val(originalValue);
+  }
+  makeTotalNgTable();
+});
+$(document).on("focus", "#ng__table input.note_change", function () {
+  originalValue = $(this).val();
+});
+
+$(document).on("change", "#ng__table input.note_change", function () {
+  let val = $(this).val().trim();
+  if (val !== originalValue) {
+    update_t_press_quatlities();
+  }
+});
+$(document).on("input", "#ng__table input.note_change", function (e) {
+  const caretPos = this.selectionStart;
+
+  this.value = this.value.toUpperCase();
+  this.setSelectionRange(caretPos, caretPos);
+});
+$(document).on("change", "#ng__table select", function () {
+  update_t_press_quatlities();
+  makeTotalNgTable();
+});
+
+function update_t_press_quatlities() {
+  fileName = "./php/QualityReport/UpdateWorkQuantitiesV1.php";
+
+  sendData = {
+    id: $("#ng-selected__tr").find("td").eq(0).html(),
+    ng_quantities: $("#ng-selected__tr").find(".ng_quantity_input").val(),
+    process_id: $("#ng-selected__tr").find("select").eq(0).val(),
+    quality_code_id: $("#ng-selected__tr").find("select").eq(1).val(),
+    note: $("#ng-selected__tr").find(".note_change").val(),
+  };
+  myAjax.myAjax(fileName, sendData);
+  // read ng table data
+  fileName = "./php/QualityReport/SelSelRackNGDataV1.php";
+  sendData = {
+    using_aging_rack_id: $("#selected__tr td").eq(0).html(),
+  };
+  myAjax.myAjax(fileName, sendData);
+  makeNgTable($("#ng__table tbody:nth-child(2)"));
+}
+
+// =====================  TEST BUTTON ======================
+$(document).on("click", "#test__button", function () {
+  makeTotalNgTable();
+});
+
+function makeTotalNgTable() {
+  fileName = "./php/QualityReport/SelTotalNg.php";
+  sendData = {
+    press_id: press_id,
+  };
+  myAjax.myAjax(fileName, sendData);
+
+  ajaxReturnData.forEach(function (trVal) {
+    let newTr = $("<tr>");
+    Object.keys(trVal).forEach(function (tdVal) {
+      $("<td>").html(trVal[tdVal]).appendTo(newTr);
+    });
+    $("#total-ng__table tbody").empty();
+    $(newTr).appendTo("#total-ng__table tbody");
+  });
+}
+
+function makeProcessCodeOptionDom(seletedId) {
+  let targetDom = $("<select>");
+
+  fileName = "./php/QualityReport/SelProcess.php";
+  sendData = {
+    ng_code: "dummy",
+  };
+  myAjax.myAjax(fileName, sendData);
+
+  ajaxReturnData.forEach(function (element) {
+    if (element["process_name"] == seletedId) {
+      $("<option>")
+        .html(element["process_name"])
+        .val(element["id"])
+        .prop("selected", true)
+        .appendTo(targetDom);
+    } else {
+      $("<option>")
+        .html(element["process_name"])
+        .val(element["id"])
+        .appendTo(targetDom);
+    }
+  });
+  return targetDom;
+}
+
+// Name input
+$(document).on("focus", "#name__input", function () {
+  makeNameList($(this).val());
+});
+
+$(document).on("keyup", "#name__input", function () {
+  makeNameList($(this).val());
+});
+
+function makeNameList(inputValue) {
+  let fileName = "./php/DailyReport/SelStaff.php";
+  let sendData = {
+    name_s: "%" + inputValue + "%",
+  };
+  myAjax.myAjax(fileName, sendData);
+  $("#name__select option").remove();
+  $("#name__select").append($("<option>").val(0).html("no"));
+  ajaxReturnData.forEach(function (value) {
+    $("#name__select").append(
+      $("<option>").val(value["id"]).html(value["staff_name"])
+    );
+  });
+}
+
+// Name Select
+$(document).on("focus", "#name__select", function () {
+  makeNameList($("#name__input").val());
+});
+
+$(document).on("change", "#name__select", function () {
+  if ($(this).val() != "0") {
+    $(this).removeClass("no-input").addClass("complete-input");
+  } else {
+    $(this).removeClass("complete-input").addClass("no-input");
+  }
+  save_note_check();
+});
+// Note input
+document.getElementById("note_input").addEventListener("input", function (e) {
+  // Ghi nhớ vị trí con trỏ
+  const caretPos = e.target.selectionStart;
+
+  // Viết hoa toàn bộ giá trị trong input
+  e.target.value = e.target.value.toUpperCase();
+
+  // Giữ nguyên vị trí con trỏ sau khi viết hoa
+  e.target.setSelectionRange(caretPos, caretPos);
+});
+
+//tổng hợp note
+$(document).ready(function () {
+  $("#total-ng__table tbody").on("click", "td", function () {
+    const colIndex = $(this).index();
+    if (colIndex === 0) {
+      $("#note-popup").hide();
+      $("#total-ng__table tbody td").removeClass("highlighted");
+      return; // không xử lý cột Total
+    }
+
+    const quality_code = $("#total-ng__table thead tr td")
+      .eq(colIndex)
+      .text()
+      .trim();
+
+    const $cell = $(this);
+    const offset = $cell.offset();
+    const cellHeight = $cell.outerHeight();
+
+    // Bỏ tô xanh tất cả ô trước rồi tô xanh ô hiện tại
+    $("#total-ng__table tbody td").removeClass("highlighted");
+    $cell.addClass("highlighted");
+
+    $.ajax({
+      url: "./php/QualityReport/getNotesByQualityCode.php",
+      type: "POST",
+      data: {
+        press_id: press_id,
+        quality_code: quality_code,
+      },
+      success: function (response) {
+        let notes = [];
+        try {
+          notes = JSON.parse(response);
+        } catch {
+          notes = [];
+        }
+
+        if (notes.length > 0) {
+          const noteStr = notes.join(" ");
+          $("#note-popup").html(
+            `Notes ${quality_code}: <strong>${noteStr}</strong>`
+          );
+        } else {
+          $("#note-popup").html(
+            `<strong>${quality_code}: không có note</strong>`
+          );
+        }
+        $("#note-popup").css({
+          top: offset.top + cellHeight + 5,
+          left: offset.left,
+          display: "block",
+          position: "absolute",
+          background: "yellow",
+          border: "2px solid #333",
+          padding: "5px",
+          "z-index": 9999,
+          "white-space": "nowrap", // ❗Giữ text trên 1 dòng để chiều rộng tự tăng
+          "word-wrap": "normal", // ❗Không ngắt dòng
+        });
+      },
+      error: function () {
+        $("#note-popup")
+          .html("Lỗi khi lấy dữ liệu note")
+          .css({
+            top: offset.top + cellHeight + 5,
+            left: offset.left,
+            display: "block",
+          });
+      },
+    });
+  });
+
+  $(document).on("click", function (e) {
+    if (!$(e.target).closest("#note-popup, #total-ng__table tbody td").length) {
+      $("#note-popup").hide();
+      $("#total-ng__table tbody td").removeClass("highlighted");
+    }
+  });
+});
+
+$(document).on("change", "#die_number", function () {
+  // Reset select QC
+  $("#qc__select")
+    .val("0") // chọn giá trị mặc định
+    .removeClass("complete-input") // bỏ class complete-input
+    .addClass("no-input"); // thêm class no-input
+
+  // Reset input tên QC
+  $("#qc_check_name").val("");
+
+  // Kiểm tra nút Save
+  checkSaveButton();
+
+  // Sau đó gọi fillPressData nếu muốn tự động load dữ liệu mới
+  fillPressData();
+});

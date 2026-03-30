@@ -29,6 +29,7 @@
         t_press_directive.billet_taper_heating,
         t_press_directive.billet_size,
         t_press_directive.billet_input_quantity,
+        t_press_directive.sub_initial,
         t_press_directive.die_temperature,
         t_press_directive.die_heating_time,
         t_press_directive.stretch_ratio,
@@ -41,6 +42,7 @@
         m_nbn.nbn,
         t_press_directive.nbn_id,
         t_press_directive.press_machine,
+        t_press_directive.initial,
         t_press_directive.cooling_type,
         CASE t_press_directive.cooling_type
           WHEN 1 THEN 'Air'

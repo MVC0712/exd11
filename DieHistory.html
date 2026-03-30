@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Die History</title>
+		<link rel="stylesheet" href="./css/main.css" />
+		<link rel="stylesheet" href="./css/DieHistory.css" />
+	</head>
+
+	<body>
+		<header>Die History</header>
+		<div class="main__wrapper">
+			<div class="left__wrapper" id="file_area"></div>
+			<div class="right__wrapper">
+				<!-- <input id="die_number__input" placeholder="Tìm trong bảng" style="width: 100px; text-align: left;" type="text" onkeyup="timkiemkhuon();" /> -->
+				<table id="die__table">
+					<thead>
+						<tr>
+							<td>id</td>
+							<td>
+								<input
+									id="die_number__input"
+									placeholder="Tìm trong bảng"
+									style="width: 100px; text-align: left"
+									type="text" />
+							</td>
+							<td>Status</td>
+							<td>Staff</td>
+							<td>Note</td>
+							<td>Date time</td>
+						</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+			</div>
+		</div>
+
+		<script src="./lib/jquery.min.js"></script>
+		<script src="./scr/DieHistory.js"></script>
+	</body>
+</html>

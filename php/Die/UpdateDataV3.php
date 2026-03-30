@@ -28,7 +28,8 @@
         die_diameter = :die_diameter,
         updated_at = :updated_at,
         die_postition = :die_postition,
-        kl_khuon = :kl_khuon
+        kl_khuon = :kl_khuon,
+        kl_nhom = :kl_nhom
       WHERE id = :targetId
     ");
 
@@ -42,6 +43,7 @@
       $prepare->bindValue(':die_diameter', (INT)$_POST['die_diamater__select'], PDO::PARAM_INT);
       $prepare->bindValue(':updated_at', $_POST['today'], PDO::PARAM_STR);
       $prepare->bindValue(':kl_khuon', $_POST['kl_khuon'], PDO::PARAM_STR);
+      $prepare->bindValue(':kl_nhom', $_POST['kl_nhom'], PDO::PARAM_STR);
       // $prepare->bindValue(':die_note', $_POST['die_note'], PDO::PARAM_STR);
       $prepare->bindValue(':targetId', (INT)$_POST['targetId'], PDO::PARAM_INT);
 

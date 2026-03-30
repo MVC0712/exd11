@@ -41,17 +41,17 @@ function make_action() {
   table = document.getElementById("summary__table");
   tr = table.getElementsByTagName("tr");
   for (i = 0; i < tr.length; i++) {
-      nd = tr[i].getElementsByTagName("td")[5];
-      pk = tr[i].getElementsByTagName("td")[7];
-      if (nd) {
-          nnd = Number(nd.innerText.replace(",", ""));
-          npk = Number(pk.innerText.replace(",", ""));
-          if (nnd == npk) {
-              table.rows[i].cells[7].style.backgroundColor = "#ffc870";
-          }
+    nd = tr[i].getElementsByTagName("td")[5];
+    pk = tr[i].getElementsByTagName("td")[7];
+    if (nd) {
+      nnd = Number(nd.innerText.replace(",", ""));
+      npk = Number(pk.innerText.replace(",", ""));
+      if (nnd == npk) {
+        table.rows[i].cells[7].style.backgroundColor = "#ffc870";
       }
+    }
   }
-};
+}
 
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // ------------------------- Summary Table ---------------------------------
@@ -86,30 +86,61 @@ $(document).on("click", "#summary__table tr", function (e) {
 });
 
 function timkiem() {
-  var input, table, tr, td, td1, td2, filter, i, txtdata, txtdata1, txtdata2, txtdata3;
+  var input,
+    table,
+    tr,
+    td,
+    td1,
+    td2,
+    filter,
+    i,
+    txtdata,
+    txtdata1,
+    txtdata2,
+    txtdata3;
   input = document.getElementById("die_number__input");
   filter = input.value.toUpperCase();
   table = document.getElementById("summary__table");
   var tbody = table.getElementsByTagName("tbody")[0];
   var tr = tbody.getElementsByTagName("tr");
   for (i = 0; i < tr.length; i++) {
-      td = tr[i].getElementsByTagName("td")[1];
-      td1 = tr[i].getElementsByTagName("td")[2];
-      td2 = tr[i].getElementsByTagName("td")[3];
-      td3 = tr[i].getElementsByTagName("td")[4];
-      if (td||td1||td2) {
-          txtdata = td.innerText;
-          txtdata1 = td1.innerText;
-          txtdata2 = td2.innerText;
-          txtdata3 = td3.innerText;
-          if (txtdata.toUpperCase().indexOf(filter) > -1||
-              txtdata1.toUpperCase().indexOf(filter) > -1||
-              txtdata2.toUpperCase().indexOf(filter) > -1||
-              txtdata3.toUpperCase().indexOf(filter) > -1) {
-              tr[i].style.display = "";
-          } else {
-              tr[i].style.display = "none";
-          }
+    td = tr[i].getElementsByTagName("td")[1];
+    td1 = tr[i].getElementsByTagName("td")[2];
+    td2 = tr[i].getElementsByTagName("td")[3];
+    td3 = tr[i].getElementsByTagName("td")[4];
+    if (td || td1 || td2) {
+      txtdata = td.innerText;
+      txtdata1 = td1.innerText;
+      txtdata2 = td2.innerText;
+      txtdata3 = td3.innerText;
+      if (
+        txtdata.toUpperCase().indexOf(filter) > -1 ||
+        txtdata1.toUpperCase().indexOf(filter) > -1 ||
+        txtdata2.toUpperCase().indexOf(filter) > -1 ||
+        txtdata3.toUpperCase().indexOf(filter) > -1
+      ) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
       }
+    }
   }
-} 
+}
+
+function timkiem1() {
+  const filter = document
+    .getElementById("die_number__input")
+    .value.toUpperCase();
+  const rows = document.querySelectorAll("#summary__table tbody tr");
+
+  for (let row of rows) {
+    const td1 = row.getElementsByTagName("td")[1]; // Cột 1 (ID)
+    const td4 = row.getElementsByTagName("td")[4]; // Cột 4 (Issue)
+
+    const text1 = td1 ? td1.textContent.toUpperCase() : "";
+    const text4 = td4 ? td4.textContent.toUpperCase() : "";
+
+    row.style.display =
+      text1.includes(filter) || text4.includes(filter) ? "" : "none";
+  }
+}

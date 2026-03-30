@@ -55,6 +55,7 @@
     t_press_directive.created_at AS issue_date,
     '999' AS plan_pressing_time,
     t_press_directive.billet_input_quantity,
+    t_press_directive.sub_initial,
     t_press_directive.billet_length,
     t_press_directive.discard_thickness,
     t_press_directive.ram_speed,
@@ -95,6 +96,7 @@
     t100.max1 AS value_n,
     m_dies.hole,
     t_press_directive.press_machine,
+    t_press_directive.initial,
     m_dies.die_note,
     CASE h
         WHEN 0 THEN NULL

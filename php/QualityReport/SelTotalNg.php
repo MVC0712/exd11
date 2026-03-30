@@ -19,7 +19,6 @@
         SELECT 
           SUM(t1.ng_quantities) AS total_ng,
           SUM(CASE WHEN t1.quality_code = 301 THEN t1.ng_quantities ELSE 0 END) AS code_301,
-          SUM(CASE WHEN t1.quality_code = 301 THEN t1.ng_quantities ELSE 0 END) AS code_301,
           SUM(CASE WHEN t1.quality_code = 302 THEN t1.ng_quantities ELSE 0 END) AS code_302,
           SUM(CASE WHEN t1.quality_code = 303 THEN t1.ng_quantities ELSE 0 END) AS code_303,
           SUM(CASE WHEN t1.quality_code = 304 THEN t1.ng_quantities ELSE 0 END) AS code_304,

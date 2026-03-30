@@ -269,11 +269,10 @@ $(document).on("keyup", "#whole__input", function () {
   exchageBackground($(this), flag);
   buttonActivaltion();
 });
-
 $(document).on("keyup", "#kl_khuon", function () {
   var flag = true;
   var inputNumber = parseFloat($(this).val());
-  if (Number.isInteger(inputNumber) && inputNumber > 0) {
+  if (Number.isInteger(inputNumber) && inputNumber >= 0) {
     flag = true;
   } else {
     flag = false;
@@ -281,7 +280,17 @@ $(document).on("keyup", "#kl_khuon", function () {
   exchageBackground($(this), flag);
   buttonActivaltion();
 });
-
+$(document).on("keyup", "#kl_nhom", function () {
+  var flag = true;
+  var inputNumber = parseFloat($(this).val());
+  if (Number.isInteger(inputNumber) && inputNumber >= 0) {
+    flag = true;
+  } else {
+    flag = false;
+  }
+  exchageBackground($(this), flag);
+  buttonActivaltion();
+});
 $(document).on("click", "#summary__table tbody tr", function () {
   let targetVal;
   let today = new Date();
@@ -312,9 +321,9 @@ $(document).on("click", "#summary__table tbody tr", function () {
   } else {
     $("#arrival_date").val("20" + targetTr.eq(5).text());
   }
-  $("#whole__input").val(targetTr.eq(7).text()); 
-  $("#kl_khuon").val(targetTr.eq(9).text());
+  $("#whole__input").val(targetTr.eq(7).text());
   $("#die_postition").val(targetTr.eq(8).text());
+  $("#kl_khuon").val(targetTr.eq(9).text());
   // Delete background color
   $("div.top__wrapper .input-required").removeClass("input-required");
   // Select "Production Number Table"

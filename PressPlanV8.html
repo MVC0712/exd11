@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>PressPlan</title>
+		<link rel="stylesheet" href="./css/main.css" />
+		<link rel="stylesheet" href="./css/PressPlanV8.css" />
+	</head>
+
+	<body>
+		<header>Press Plan</header>
+		<div class="summary__wrapper">
+			<dialog class="dialog__wrapper" id="delete__dialog">
+				Do you Delete?
+				<button id="delete-dialog-cancel__button">Cancel</button>
+				<button id="delete-dialog-delete__button">Delete</button>
+			</dialog>
+			<div>
+				<table id="production__table" style="margin-right: 5px">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Die</th>
+							<th>Production ID</th>
+							<th>
+								<input id="production_number" class="need-clear" type="text" />
+							</th>
+							<th>Press</th>
+							<th>Status</th>
+							<th>Status_id</th>
+							<th>Len</th>
+							<th>Wash</th>
+							<th>Dia</th>
+							<th>Date</th>
+						</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+				<div
+					style="
+						margin-top: 10px;
+						margin-right: 10px;
+						background-color: #f5f5f577;
+						text-align: center;
+						border-radius: 2px;
+						padding: 3px;
+						border: 1px solid #0f31f7;
+					">
+					<span
+						style="
+							display: inline-block;
+							width: 20px;
+							height: 20px;
+							background-color: red;
+							border: 1px solid #aaa;
+							vertical-align: middle;
+							margin-right: 5px;
+						"></span>
+					<span style="margin-right: 20px">Need Nitrid</span>
+
+					<span
+						style="
+							display: inline-block;
+							width: 20px;
+							height: 20px;
+							background-color: orange;
+							border: 1px solid #aaa;
+							vertical-align: middle;
+							margin-right: 5px;
+						"></span>
+					<span style="margin-right: 20px">Fixing</span>
+
+					<span
+						style="
+							display: inline-block;
+							width: 20px;
+							height: 20px;
+							background-color: yellow;
+							border: 1px solid #aaa;
+							vertical-align: middle;
+							margin-right: 5px;
+						"></span>
+					<span>Need Wash</span>
+				</div>
+			</div>
+
+			<div>
+				<table id="add__table">
+					<thead>
+						<tr>
+							<th>Dies id</th>
+							<th>Production number id</th>
+							<th>Production Number</th>
+							<th>Die Number</th>
+							<th>Ca</th>
+							<th>Stt</th>
+							<th>Qty</th>
+							<th>N2</th>
+							<th>Note</th>
+						</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+
+				<div
+					style="
+						width: 350px;
+						display: flex;
+						align-items: center;
+						padding-bottom: 5px;
+						justify-content: space-around;
+					">
+					<input
+						id="press_date_at"
+						class="no-input save-data need-clear"
+						type="date" />
+					<div>
+						Máy
+						<select
+							style="width: 30px; text-align: left"
+							id="press_machine"
+							class="no-input save-data need-clear">
+							<option value="0">0</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+						</select>
+					</div>
+					<button disabled id="save__button">Save</button>
+				</div>
+
+				<table id="caculate__table">
+					<thead>
+						<tr>
+							<th>Mã VL</th>
+							<th>Tồn HT</th>
+							<th>Thực tế</th>
+							<th>Kế hoạch</th>
+							<th>Order</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th id="VL61">60612281200</th>
+							<td id="ht60612281200"></td>
+							<td id="tt60612281200"></td>
+							<td id="pl60612281200"></td>
+							<td id="od60612281200"></td>
+						</tr>
+						<tr>
+							<th id="VL61">6061228600</th>
+							<td id="ht6061228600"></td>
+							<td id="tt6061228600"></td>
+							<td id="pl6061228600"></td>
+							<td id="od6061228600"></td>
+						</tr>
+						<tr>
+							<th id="VL63">60632281200</th>
+							<td id="ht60632281200"></td>
+							<td id="tt60632281200"></td>
+							<td id="pl60632281200"></td>
+							<td id="od60632281200"></td>
+						</tr>
+						<tr>
+							<th id="VL63">6063228600</th>
+							<td id="ht6063228600"></td>
+							<td id="tt6063228600"></td>
+							<td id="pl6063228600"></td>
+							<td id="od6063228600"></td>
+						</tr>
+						<tr>
+							<th id="VL6N">6N01A2281200</th>
+							<td id="ht6N012281200"></td>
+							<td id="tt6N012281200"></td>
+							<td id="pl6N012281200"></td>
+							<td id="od6N012281200"></td>
+						</tr>
+						<tr>
+							<th id="VL6N">6N01A228600</th>
+							<td id="ht6N01228600"></td>
+							<td id="tt6N01228600"></td>
+							<td id="pl6N01228600"></td>
+							<td id="od6N01228600"></td>
+						</tr>
+
+						<tr>
+							<th id="VL61">60613051200</th>
+							<td id="ht60613051200"></td>
+							<td id="tt60613051200"></td>
+							<td id="pl60613051200"></td>
+							<td id="od60613051200"></td>
+						</tr>
+						<tr>
+							<th id="VL61">6061305600</th>
+							<td id="ht6061305600"></td>
+							<td id="tt6061305600"></td>
+							<td id="pl6061305600"></td>
+							<td id="od6061305600"></td>
+						</tr>
+						<tr>
+							<th id="VL63">60633051200</th>
+							<td id="ht60633051200"></td>
+							<td id="tt60633051200"></td>
+							<td id="pl60633051200"></td>
+							<td id="od60633051200"></td>
+						</tr>
+						<tr>
+							<th id="VL63">6063305600</th>
+							<td id="ht6063305600"></td>
+							<td id="tt6063305600"></td>
+							<td id="pl6063305600"></td>
+							<td id="od6063305600"></td>
+						</tr>
+						<tr>
+							<th id="VL6N">6N01A3051200</th>
+							<td id="ht6N013051200"></td>
+							<td id="tt6N013051200"></td>
+							<td id="pl6N013051200"></td>
+							<td id="od6N013051200"></td>
+						</tr>
+						<tr>
+							<th id="VL6N">6N01A305600</th>
+							<td id="ht6N01305600"></td>
+							<td id="tt6N01305600"></td>
+							<td id="pl6N01305600"></td>
+							<td id="od6N01305600"></td>
+						</tr>
+
+						<tr>
+							<th id="VL61">60613551200</th>
+							<td id="ht60613551200"></td>
+							<td id="tt60613551200"></td>
+							<td id="pl60613551200"></td>
+							<td id="od60613551200"></td>
+						</tr>
+						<tr>
+							<th id="VL61">6061355600</th>
+							<td id="ht6061355600"></td>
+							<td id="tt6061355600"></td>
+							<td id="pl6061355600"></td>
+							<td id="od6061355600"></td>
+						</tr>
+						<tr>
+							<th id="VL63">60633551200</th>
+							<td id="ht60633551200"></td>
+							<td id="tt60633551200"></td>
+							<td id="pl60633551200"></td>
+							<td id="od60633551200"></td>
+						</tr>
+						<tr>
+							<th id="VL63">6063355600</th>
+							<td id="ht6063355600"></td>
+							<td id="tt6063355600"></td>
+							<td id="pl6063355600"></td>
+							<td id="od6063355600"></td>
+						</tr>
+						<tr>
+							<th id="VL6N">6N01A3551200</th>
+							<td id="ht6N013551200"></td>
+							<td id="tt6N013551200"></td>
+							<td id="pl6N013551200"></td>
+							<td id="od6N013551200"></td>
+						</tr>
+						<tr>
+							<th id="VL6N">6N01A355600</th>
+							<td id="ht6N01355600"></td>
+							<td id="tt6N01355600"></td>
+							<td id="pl6N01355600"></td>
+							<td id="od6N01355600"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div>
+				<div style="display: flex">
+					<input id="plan_start" type="date" />→
+					<input id="plan_end" type="date" />
+					<input
+						style="width: 100px; text-align: left"
+						id="die_number"
+						type="text" />
+					<select style="width: 30px; text-align: left" id="machine">
+						<option value="0">0</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+					</select>
+					<button id="download_excel" style="margin: 0; padding: 0">
+						Tải về
+					</button>
+					<button
+						id="print__button"
+						style="margin: 0; margin-left: 20px; padding: 0"
+						disabled>
+						In Etching
+					</button>
+				</div>
+				<table id="summary__table">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Production Number id</th>
+							<th>Press date</th>
+							<th>MC</th>
+							<th>Production Number</th>
+							<th>Die Number</th>
+							<th>Ca</th>
+							<th>Stt</th>
+							<th>Qty</th>
+							<th>N2</th>
+							<th>Note</th>
+						</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+				<!-- <button id="download_excel" style="margin: 0; padding:0;">Tải về</button> -->
+			</div>
+		</div>
+		<script src="./lib/jquery.min.js"></script>
+		<script src="./scr/PressPlanV8.js"></script>
+	</body>
+</html>

@@ -17,7 +17,17 @@
 
       $prepare = $dbh->prepare("SELECT 
         t_washing_tank.id,
-        CONCAT('Tank ', wasshing_tank) AS tank,
+        CONCAT(
+            'Tank ',
+            CASE 
+                WHEN wasshing_tank = 6 THEN '1.2'
+                WHEN wasshing_tank = 7 THEN '2.2'
+                WHEN wasshing_tank = 8 THEN '3.2'
+                WHEN wasshing_tank = 9 THEN '4.2'
+                WHEN wasshing_tank = 10 THEN '5.2'
+                ELSE wasshing_tank
+            END
+        ) AS tank,
         DATE_FORMAT(wasshing_tank_change_at,
                 '%y-%m-%d %H:%i') AS wasshing_tank_change_at,
         SUBSTRING_INDEX(staff_name, ' ', - 1) AS staff_name,

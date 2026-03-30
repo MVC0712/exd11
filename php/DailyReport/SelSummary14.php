@@ -72,7 +72,7 @@
               LEFT JOIN
           m_ordersheet ON t_press.ordersheet_id = m_ordersheet.id
           WHERE m_dies.die_number LIKE :die_number
-          AND pressing_type_id LIKE :press_type
+          AND pressing_type_id LIKE :press_type AND press_machine_no LIKE :press_machine
           GROUP BY t_press.id
       ORDER BY t_press.press_date_at DESC , t_press.press_start_at
       LIMIT 100
@@ -80,6 +80,7 @@
           $prepare = $dbh->prepare($sql);
           $prepare->bindValue(':die_number', $_POST["die_number"], PDO::PARAM_STR);
           $prepare->bindValue(':press_type', $_POST["press_type"], PDO::PARAM_STR);
+          $prepare->bindValue(':press_machine', $_POST["press_machine"], PDO::PARAM_STR);
       } else {
           $sql = "
           SELECT 
@@ -139,7 +140,7 @@
           WHERE m_dies.die_number LIKE :die_number
                         AND
                         t_press.press_date_at BETWEEN :start_date AND :end_date
-                        AND pressing_type_id LIKE :press_type
+                        AND pressing_type_id LIKE :press_type AND press_machine_no LIKE :press_machine
             GROUP BY t_press.id
       ORDER BY t_press.press_date_at DESC , t_press.press_start_at
       LIMIT 100
@@ -149,6 +150,7 @@
           $prepare->bindValue(':start_date', $_POST["start_date"], PDO::PARAM_STR);
           $prepare->bindValue(':end_date', $_POST["end_date"], PDO::PARAM_STR);
           $prepare->bindValue(':press_type', $_POST["press_type"], PDO::PARAM_STR);
+          $prepare->bindValue(':press_machine', $_POST["press_machine"], PDO::PARAM_STR);
       }
 
       $prepare->execute();

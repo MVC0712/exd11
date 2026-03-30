@@ -1,152 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Maintenance</title>
+		<link rel="stylesheet" href="./css/main.css" />
+		<link rel="stylesheet" href="./css/Maintenance.css" />
+	</head>
+	<body>
+		<div>
+			<header>Maintenance</header>
+			<div class="main__wrapper">
+				<div class="upper__wrapper">
+					<div class="left__wrapper">
+						<table id="summary__table">
+							<thead>
+								<tr>
+									<th>id</th>
+									<th>line_id</th>
+									<th>Line</th>
+									<th>machine_id</th>
+									<th>Machine</th>
+									<th>Work_id</th>
+									<th>Work</th>
+									<th>Nor</th>
+									<th>Start</th>
+									<th>Next_T</th>
+									<th>Ttn</th>
+									<th>IT</th>
+									<th>Note</th>
+								</tr>
+							</thead>
+							<tbody></tbody>
+						</table>
+					</div>
+					<div class="right__wrapper">
+						<table id="history__summary">
+							<thead>
+								<tr>
+									<td></td>
+									<td></td>
+									<td id="ma_po" style="text-align: center" colspan="5">
+										Machine-Position
+									</td>
+								</tr>
+								<tr>
+									<td>id</td>
+									<td>Machine</td>
+									<td>Work</td>
+									<td>Ma_start</td>
+									<td>Note</td>
+								</tr>
+							</thead>
+							<tbody></tbody>
+						</table>
+					</div>
+				</div>
+				<div class="lower__wrapper">
+					<div>
+						<table id="line">
+							<thead>
+								<th>id</th>
+								<th>Line</th>
+							</thead>
+							<tbody>
+								<tr></tr>
+							</tbody>
+						</table>
+						<div class="input-block__outer">
+							<input id="ins_line" class="no-input" type="text" />
+							<button id="Insert_line" disabled>Cate 1</button>
+						</div>
+					</div>
+					<div>
+						<table id="machine">
+							<thead>
+								<th>id</th>
+								<th>Machine</th>
+							</thead>
+							<tbody></tbody>
+						</table>
+						<div class="input-block__outer">
+							<input id="ins_machine" class="no-input" type="text" />
+							<button id="Insert_machine" disabled>Cate 2</button>
+						</div>
+					</div>
+					<div>
+						<table id="work">
+							<thead>
+								<th>id</th>
+								<th>Work</th>
+								<th>KTG</th>
+							</thead>
+							<tbody></tbody>
+						</table>
+						<div class="input-block__outer">
+							<input id="ins_work" class="no-input" type="text" />
+							<input id="duration" class="no-input" type="text" />
+							<button id="Insert_work" disabled>Work</button>
+						</div>
+					</div>
+					<div id="left">
+						<div class="title">Start</div>
+						<input id="maintenance_start" class="no-input" type="date" />
+						<div>
+							<div class="title">Staff</div>
+							<select id="staff" class="no-input need-clear">
+								<option value="0">Select</option>
+							</select>
+						</div>
+						<div>
+							<div class="title">Normal</div>
+							<select id="normal" class="save-data need-clear">
+								<option value="0">Yes</option>
+								<option value="1">No</option>
+							</select>
+						</div>
+					</div>
+					<div id="right">
+						<div class="title">Filename</div>
+						<input id="file" type="file" multiple />
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Maintenance</title>
-    <link rel="stylesheet" href="./css/main.css" />
-    <link rel="stylesheet" href="./css/Maintenance.css" />
-</head>
-<body>
-    <div>
-            <header>Maintenance</header>
-            <div class="main__wrapper">
-                <div class="upper__wrapper">
-                    <div class="left__wrapper">
-                        <table id="summary__table">
-                            <thead>
-                                <tr>
-                                    <th>id</th>
-                                    <th>line_id</th>
-                                    <th>Line</th>
-                                    <th>machine_id</th>
-                                    <th>Machine</th>
-                                    <th>Work_id</th>
-                                    <th>Work</th>
-                                    <th>Nor</th>
-                                    <th>Start</th>
-                                    <th>Next_T</th>
-                                    <th>Ttn</th>
-                                    <th>IT</th>
-                                    <th>Note</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="right__wrapper">
-                        <table id="history__summary">
-                            <thead>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td id="ma_po" style="text-align:center;" colspan="5">Machine-Position</td>
-                                </tr>
-                                <tr>
-                                    <td>id</td>
-                                    <td>Machine</td>
-                                    <td>Work</td>
-                                    <td>Ma_start</td>
-                                    <td>Note</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="lower__wrapper">
-                <div>
-                    <table id="line"> 
-                        <thead>
-                            <th>id</th>
-                            <th>Line</th>
-                        </thead>
-                        <tbody>
-                            <tr>
-
-                        </tbody>
-                    </table>
-                    <div class="input-block__outer">
-                        <input id="ins_line" class="no-input" type="text">
-                        <button id="Insert_line" disabled>Cate 1</button>
-                    </div>
-                </div>
-                <div>
-                    <table id="machine"> 
-                        <thead>
-                            <th>id</th>
-                            <th>Machine</th>
-                        </thead>
-                        <tbody>
-
-                        </tbody>
-                    </table>
-                    <div class="input-block__outer">
-                        <input id="ins_machine" class="no-input" type="text">
-                        <button id="Insert_machine" disabled>Cate 2</button>
-                    </div>
-                </div>
-                <div>
-                    <table id="work"> 
-                        <thead>
-                            <th>id</th>
-                            <th>Work</th>
-                            <th>KTG</th>
-                        </thead>
-                        <tbody>
-
-                        </tbody>
-                    </table>
-                    <div class="input-block__outer">
-                        <input id="ins_work" class="no-input" type="text">
-                        <input id="duration" class="no-input" type="text">
-                        <button id="Insert_work" disabled>Work</button>
-                    </div>
-                </div>
-                    <div id="left">
-                        <div class="title">Start</div>
-                        <input id="maintenance_start" class="no-input" type="date" />
-                    <div>
-                        <div class="title">Staff</div>
-                        <select id="staff" class="no-input need-clear">
-                            <option value="0">Select</option>
-                        </select>
-                    </div>
-                    <div>
-                    <div class="title">Normal</div>
-                    <select id="normal" class="save-data need-clear">
-                        <option value="0">Yes</option>
-                        <option value="1">No</option>
-                    </select>
-                </div>
-                </div>
-                <div id="right">
-                    <div class="title">Filename</div>
-                    <input id="file" type="file" multiple />
-
-                <div class="title">Notes</div>
-                <input id="note" type="text"/>
-                <div id="button__area">
-                    <button id="insert" disabled>
-                        Insert
-                    </button>
-                    <button id="update" disabled>
-                        Update
-                    </button>
-                    <button id="download">
-                        Tải file
-                    </button>
-                </div>
-            </div>
-            </div>
-        </div>
-    </div>
+						<div class="title">Notes</div>
+						<input id="note" type="text" />
+						<div id="button__area">
+							<button id="insert" disabled>Insert</button>
+							<button id="update" disabled>Update</button>
+							<button id="download">Tải file</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 		<div id="file_area"></div>
-    <script src="./lib/jquery.min.js"></script>
-    <script src="./scr/Maintenance.js"></script>
-</body>
-
+		<script src="./lib/jquery.min.js"></script>
+		<script src="./scr/Maintenance.js"></script>
+	</body>
 </html>
