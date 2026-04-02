@@ -1,0 +1,344 @@
+body {
+	width: 1200px;
+	flex-direction: row;
+}
+.left__wrapper {
+	border: 1px solid #0000ff;
+	width: 800px;
+	height: 100%;
+}
+.right__wrapper {
+	width: 390px;
+	border: 1px solid #0000ff;
+	height: 100%;
+	padding-left: 10px;
+}
+.button__wrapper button {
+	height: 20px;
+	margin: 0;
+}
+
+input {
+	text-align: left;
+}
+#form,
+#add__button,
+#delete__button,
+#update__button,
+#save__button {
+	padding: 0;
+	margin: 0;
+	height: 22px;
+}
+#add__button {
+	width: 30px;
+}
+/* --------- main wrapper ---------  */
+
+.main__wrapper {
+	padding-top: 5px;
+	flex-direction: row;
+	height: 30px;
+	align-content: space-around;
+	justify-content: space-around;
+}
+
+/* select */
+
+.main__wrapper select {
+	border-width: 1px 1px 1px 0;
+}
+
+/* ordersheet number */
+#ordersheet_number__group {
+	width: 390px;
+}
+#ordersheet_number__title {
+	width: 75px;
+}
+#ordersheet_number {
+	width: 80px;
+}
+#ordersheet_number__select {
+	width: 100px;
+}
+#production_number {
+	width: 130px;
+	height: 20px;
+	border: 1px;
+	border-style: solid;
+	border-color: #0000ff;
+	background-color: #ffffff;
+	color: #0000ff;
+}
+
+#import_at__group {
+	width: 205px;
+}
+#import_at__title {
+	width: 85px;
+}
+#import_at {
+	width: 120px;
+}
+
+#quantity__group {
+	width: 80px;
+}
+#quantity__title {
+	width: 30px;
+}
+#quantity {
+	width: 50px;
+}
+
+#note__group {
+	display: none;
+	width: 110px;
+}
+#note__title {
+	width: 30px;
+}
+#note {
+	width: 70px;
+}
+
+/* ======================        button area       ======================= */
+
+#remain__button {
+	width: 120px;
+	padding-left: 10px;
+}
+
+/* ----------button block ============== */
+.button__block {
+	position: relative;
+}
+#icon {
+	width: 24px;
+	position: absolute;
+	top: 3px;
+	left: 2px;
+}
+/* --------- button wrapper ---------  */
+
+.button__wrapper {
+	height: 20px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-around;
+}
+.excel__wrapper {
+	height: 200px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-around;
+}
+/* --------- summary wrapper ---------  */
+
+.summary__wrapper {
+	height: calc(598px - 290px);
+	display: flex;
+	align-content: space-around;
+	justify-content: space-around;
+	flex-direction: row;
+}
+
+/* ======================        summary-table       ======================= */
+#summary__table__ordersheet tbody {
+	height: 270px;
+	border-left: 1px dotted #0000ff;
+}
+
+#summary__table tbody {
+	height: 270px;
+}
+
+#summary__table th:nth-child(1),
+#summary__table td:nth-child(1),
+#summary__table th:nth-child(2),
+#summary__table td:nth-child(2) {
+	display: none;
+}
+
+#summary__table th:nth-child(3),
+#summary__table td:nth-child(3) {
+	width: 80px;
+}
+
+#summary__table td:nth-child(3) {
+	text-align: center;
+}
+
+#summary__table th:nth-child(4),
+#summary__table td:nth-child(4) {
+	width: 140px;
+}
+
+#summary__table td:nth-child(4) {
+	text-align: left;
+}
+
+#summary__table th:nth-child(5),
+#summary__table td:nth-child(5) {
+	width: 100px;
+}
+
+#summary__table td:nth-child(5) {
+	text-align: left;
+}
+
+#summary__table th:nth-child(6),
+#summary__table td:nth-child(6) {
+	width: 35px;
+}
+
+#summary__table td:nth-child(6) {
+	text-align: center;
+}
+
+#summary__table__ordersheet th:nth-child(1),
+#summary__table__ordersheet td:nth-child(1),
+#summary__table__ordersheet th:nth-child(2),
+#summary__table__ordersheet td:nth-child(2) {
+	display: none;
+}
+
+#summary__table__ordersheet th:nth-child(3),
+#summary__table__ordersheet td:nth-child(3) {
+	width: 70px;
+}
+
+#summary__table__ordersheet td:nth-child(3) {
+	text-align: center;
+}
+
+#summary__table__ordersheet th:nth-child(4),
+#summary__table__ordersheet td:nth-child(4) {
+	width: 130px;
+}
+
+#summary__table__ordersheet td:nth-child(4) {
+	text-align: left;
+}
+
+#summary__table__ordersheet th:nth-child(5),
+#summary__table__ordersheet td:nth-child(5) {
+	width: 100px;
+}
+
+#summary__table__ordersheet td:nth-child(5) {
+	text-align: center;
+}
+
+#summary__table__ordersheet th:nth-child(6),
+#summary__table__ordersheet td:nth-child(6) {
+	width: 35px;
+}
+
+#summary__table__ordersheet td:nth-child(6) {
+	text-align: left;
+}
+
+#excel_table tbody {
+	height: 170px;
+	width: 510px;
+}
+
+#excel_table th:nth-child(1),
+#excel_table td:nth-child(1) {
+	width: 40px;
+}
+#excel_table th:nth-child(2),
+#excel_table td:nth-child(2) {
+	width: 120px;
+}
+#excel_table th:nth-child(3),
+#excel_table td:nth-child(3) {
+	width: 140px;
+}
+
+#excel_table th:nth-child(4),
+#excel_table td:nth-child(4) {
+	width: 110px;
+}
+#excel_table th:nth-child(4) input,
+#excel_table td:nth-child(4) input {
+	width: 106px;
+}
+
+#excel_table th:nth-child(5),
+#excel_table td:nth-child(5) {
+	width: 45px;
+}
+#excel_table th:nth-child(6),
+#excel_table td:nth-child(6) {
+	width: 20px;
+}
+.remove_button {
+	width: 18px;
+	height: 18px;
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
+#fileupload {
+	width: auto;
+}
+.add-record {
+	background-color: aqua;
+}
+
+#summary_import__table tbody {
+	height: 560px;
+}
+
+#summary_import__table th:nth-child(1),
+#summary_import__table td:nth-child(1) {
+	display: none;
+}
+
+#summary_import__table th:nth-child(2),
+#summary_import__table td:nth-child(2) {
+	width: 80px;
+}
+
+#summary_import__table th:nth-child(3),
+#summary_import__table td:nth-child(3) {
+	width: 130px;
+}
+
+#summary__table td:nth-child(3) {
+	text-align: center;
+}
+
+#summary_import__table th:nth-child(4),
+#summary_import__table td:nth-child(4) {
+	width: 55px;
+}
+
+#summary_import__table td:nth-child(4) {
+	text-align: center;
+}
+#summary_import__table th:nth-child(5),
+#summary_import__table td:nth-child(5) {
+	width: 55px;
+}
+
+#summary_import__table td:nth-child(5) {
+	text-align: center;
+}
+#summary_import__table th:nth-child(6),
+#summary_import__table td:nth-child(6) {
+	width: 40px;
+}
+
+#summary_import__table td:nth-child(6) {
+	text-align: center;
+}
+
+.arlam {
+	background-color: #ffcccc; /* đỏ nhạt */
+}
