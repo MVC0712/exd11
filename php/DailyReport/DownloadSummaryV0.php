@@ -29,25 +29,34 @@ try {
 
     $export_sql = "
         SELECT
-            t_using_aging_rack.id,
-            t_using_aging_rack.rack_number,
-            m_dies.die_number,
-            t_press.press_date_at,
-            t_using_aging_rack.work_quantity,
-            SUM(t_packing_box.work_quantity) AS packing_box_quantity,
+    t_using_aging_rack.id,
+    t_using_aging_rack.rack_number,
+    m_dies.die_number,
+    t_press.press_date_at,
+    t_using_aging_rack.work_quantity,
+    COALESCE(SUM(t_packing_box.work_quantity), 0) AS packing_box_quantity,
+    (
+        SELECT SUM(tpq.ng_quantities)
+        FROM t_press_quality tpq
+        WHERE tpq.using_aging_rack_id = t_using_aging_rack.id
+    ) AS total_ng_quantity,
+    t_using_aging_rack.work_quantity
+        - COALESCE(SUM(t_packing_box.work_quantity), 0)
+        - COALESCE(
             (
                 SELECT SUM(tpq.ng_quantities)
                 FROM t_press_quality tpq
                 WHERE tpq.using_aging_rack_id = t_using_aging_rack.id
-            ) AS total_ng_quantity,
-            t_using_aging_rack.work_quantity - SUM(t_packing_box.work_quantity) - COALESCE((SELECT SUM(tpq.ng_quantities) FROM t_press_quality tpq WHERE tpq.using_aging_rack_id = t_using_aging_rack.id), 0) AS remaining_quantity
-        FROM t_using_aging_rack
-        LEFT JOIN t_press ON t_using_aging_rack.t_press_id = t_press.id
-        LEFT JOIN m_dies ON t_press.dies_id = m_dies.id
-        LEFT JOIN t_packing_box ON t_using_aging_rack.id = t_packing_box.using_aging_rack_id
-        GROUP BY t_using_aging_rack.id
-        HAVING remaining_quantity <> 0
-        ORDER BY t_using_aging_rack.rack_number ASC, t_using_aging_rack.id DESC
+            ), 0
+        ) AS remaining_quantity
+FROM t_using_aging_rack
+LEFT JOIN t_press ON t_using_aging_rack.t_press_id = t_press.id
+LEFT JOIN m_dies ON t_press.dies_id = m_dies.id
+LEFT JOIN t_packing_box ON t_using_aging_rack.id = t_packing_box.using_aging_rack_id
+WHERE t_using_aging_rack.t_press_id IS NOT NULL
+GROUP BY t_using_aging_rack.id
+HAVING remaining_quantity > 0
+ORDER BY t_using_aging_rack.rack_number ASC, t_using_aging_rack.id DESC
     ";
 
     if (touch($file_path)) {
