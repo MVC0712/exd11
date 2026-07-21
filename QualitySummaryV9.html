@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Quality Summary</title>
+		<link rel="stylesheet" href="./css/main.css" />
+		<link rel="stylesheet" href="./css/QualitySummaryV9.css" />
+	</head>
+
+	<body>
+		<header>Quality Summary Page</header>
+		<div class="main__wrapper">
+			<div class="input-block__wrapper">
+				<div class="input__title">D/E/A/P</div>
+				<select id="choice">
+					<!-- <option value="">Select column</option> -->
+					<option value="1">Dim date</option>
+					<option value="2">Etching date</option>
+					<option value="3">Aging date</option>
+					<option value="4">Packing date</option>
+					<option selected value="5">D/E/A/P</option>
+				</select>
+				<!-- <input id="date" class="date__input" type="text" onkeyup="datesearch();" /> -->
+				<input
+					id="date"
+					class="date__input"
+					type="date"
+					onchange="datesearch()" />
+
+				<select id="presstype" onclick="timkiem()">
+					<option value="">Press type</option>
+					<option value="〇">〇</option>
+					<option value="◎">◎</option>
+					<option value="●">●</option>
+					<option value="1">trừ 〇</option>
+				</select>
+			</div>
+			<div class="input-block__wrapper">
+				<div class="input__title">Die Number</div>
+				<input id="die_number__input" class="" type="text" />
+				<select id="machine">
+					<option value="0">Tất cả</option>
+					<option value="1">Máy 1</option>
+					<option value="2">Máy 2</option>
+					<option value="3">Máy 3</option>
+					<option value="4">Máy 4</option>
+				</select>
+				<div class="input__title">Month</div>
+				<input id="month" class="date__input" type="month" />
+				<div class="input__title">Term</div>
+				<!-- <div class="previous-value__display">12.3</div> -->
+				<input id="start_term" class="date__input" type="date" />-
+				<input id="end_term" class="date__input" type="date" />
+				<button id="download">Download</button>
+			</div>
+			<div class="input-block__wrapper">
+				<div class="button__wrapper">
+					<button id="quality-summary-test__button">QA V2</button>
+					<img src="./img/004.svg" alt="V2 page" id="icon" />
+				</div>
+			</div>
+		</div>
+		<div class="summary__wrapper">
+			<div>
+				<table id="total">
+					<thead>
+						<tr>
+							<th colspan="4" width="191px">Total row</th>
+							<th id="pb" width="35px">P/B</th>
+							<th id="ab" width="35px">A/B</th>
+							<th id="qty" width="35px">Qty</th>
+							<th id="tng" width="35px">T_ng</th>
+							<th id="tok" width="35px">T_ok</th>
+							<th id="tok" width="45px">Ok/Tt</th>
+							<th colspan="5" width="236px"></th>
+							<th id="t301" width="26px">301</th>
+							<th id="t302" width="26px">302</th>
+							<th id="t303" width="26px">303</th>
+							<th id="t304" width="26px">304</th>
+							<th id="t305" width="26px">305</th>
+
+							<th id="t307" width="26px">307</th>
+							<th id="t308" width="26px">308</th>
+
+							<th id="t310" width="26px">310</th>
+
+							<th id="t312" width="26px">312</th>
+
+							<th id="t314" width="26px">314</th>
+							<th id="t315" width="26px">315</th>
+							<th id="t316" width="26px">316</th>
+							<th id="t317" width="26px">317</th>
+
+							<th id="t320" width="26px">320</th>
+
+							<th id="t322" width="26px">322</th>
+							<th id="t323" width="26px">323</th>
+
+							<th id="t351" width="26px">351</th>
+							<th id="t401" width="26px">401</th>
+							<th id="t_productivity" width="100px">Productivity</th>
+							<th width="100px"></th>
+						</tr>
+					</thead>
+				</table>
+				<table id="summary__table">
+					<thead>
+						<tr>
+							<th>t_press.id</th>
+							<th>Date</th>
+							<th>DieNumber</th>
+							<th>P/T</th>
+							<th>P/B</th>
+							<th>A/B</th>
+							<th>Qty</th>
+							<th>T_ng</th>
+							<th>T_ok</th>
+							<th>Ok/Tt</th>
+							<th>dim</th>
+							<th>etching</th>
+							<th>aging</th>
+							<th>QC</th>
+							<th>packing</th>
+							<th>301</th>
+							<th>302</th>
+							<th>303</th>
+							<th>304</th>
+							<th>305</th>
+							<th>306</th>
+							<th>307</th>
+							<th>308</th>
+							<th>309</th>
+							<th>310</th>
+							<th>311</th>
+							<th>312</th>
+							<th>313</th>
+							<th>314</th>
+							<th>315</th>
+							<th>316</th>
+							<th>317</th>
+							<th>318</th>
+							<th>319</th>
+							<th>320</th>
+							<th>321</th>
+							<th>322</th>
+							<th>323</th>
+							<th>324</th>
+							<th>351</th>
+							<th>401</th>
+							<th>Productivity</th>
+							<th>Actual Cycle times</th>
+							<th>Total weight</th>
+							<th>Total time</th>
+							<th>Note</th>
+						</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+			</div>
+		</div>
+		<!-- <span id="tt">vl</span> -->
+		<div id="desc">
+			<div id="vn"></div>
+			<div id="jp"></div>
+		</div>
+		<div id="vll">
+			<div id="spt"></div>
+		</div>
+		<script src="./lib/jquery.min.js"></script>
+		<!-- <script
+      type="text/javascript"
+      src="./lib/jquery.mousewheel.min.js"
+    ></script> -->
+		<script src="./scr/QualitySummaryV9.js"></script>
+	</body>
+</html>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>RaspberryPi Summary</title>
+		<link rel="stylesheet" href="./css/main.css" />
+		<link rel="stylesheet" href="./css/RaspberryPiV1.css" />
+	</head>
+
+	<body>
+		<header>RaspberryPi Summary</header>
+		<div class="button__wrapper">
+			<div class="input-block__outer">
+				<div class="input__title">Die Number</div>
+				<input
+					id="die-number__input"
+					class="need-clear input-required save-data"
+					type="text" />
+				<select id="machine">
+					<option value="0">All</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+				</select>
+				<input id="date" class="date__input" type="date" />
+			</div>
+		</div>
+		<div class="summary__wrapper">
+			<table id="summary__table">
+				<thead>
+					<tr>
+						<th></th>
+						<th colspan="3"></th>
+						<th colspan="2">700</th>
+						<th colspan="2">300</th>
+						<th></th>
+					</tr>
+
+					<tr>
+						<th>Run ID</th>
+						<th>Date</th>
+						<th>Die number</th>
+						<th>Machine</th>
+						<th>Start</th>
+						<th>End</th>
+						<th>Start</th>
+						<th>End</th>
+						<th>Start Billet</th>
+						<th>End Billet</th>
+						<th>Billet Qty</th>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+		</div>
+		<script src="./lib/jquery.min.js"></script>
+		<script src="./scr/RaspberryPiV1.js"></script>
+	</body>
+</html>

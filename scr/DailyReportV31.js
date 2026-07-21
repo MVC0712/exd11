@@ -67,7 +67,7 @@ $(document).on("click", "#directive__input", function () {
   window.open(
     "./DailiReport_OrderSheet.html",
     null,
-    "width=830, height=500,toolbar=yes,menubar=yes,scrollbars=no"
+    "width=830, height=500,toolbar=yes,menubar=yes,scrollbars=no",
   );
 });
 // order sheet select
@@ -86,7 +86,7 @@ $(document).on("change", "#directive_input__select", function () {
   $("#die__select").append($("<option>").val(0).html("NO select"));
   ajaxReturnData.forEach(function (value) {
     $("#die__select").append(
-      $("<option>").val(value.m_dies_id).html(value.die_number)
+      $("<option>").val(value.m_dies_id).html(value.die_number),
     );
   });
   $("#number-of-die__display").html(ajaxReturnData.length);
@@ -109,7 +109,7 @@ $(document).on("keyup", "#die__input", function () {
   $("#die__select").append($("<option>").val(0).html("NO select"));
   ajaxReturnData.forEach(function (value) {
     $("#die__select").append(
-      $("<option>").val(value["id"]).html(value["die_number"])
+      $("<option>").val(value["id"]).html(value["die_number"]),
     );
   });
 });
@@ -125,7 +125,7 @@ $(document).on("change", "#die__select", function () {
     // $("#press-directive__select").append($("<option>").val(0).html("NO select"));
     ajaxReturnData.forEach(function (value) {
       $("#press-directive__select").append(
-        $("<option>").val(value["id"]).html(value["plan_date_at"])
+        $("<option>").val(value["id"]).html(value["plan_date_at"]),
       );
     });
     $(this).removeClass("no-input").addClass("complete-input");
@@ -210,7 +210,7 @@ function makeStopList(inputValue) {
   $("#stop-cause__select").append($("<option>").val(1).html("no"));
   ajaxReturnData.forEach(function (value) {
     $("#stop-cause__select").append(
-      $("<option>").val(value["id"]).html(value["stop_code"])
+      $("<option>").val(value["id"]).html(value["stop_code"]),
     );
   });
 }
@@ -430,7 +430,7 @@ function makeNameList(inputValue) {
   $("#name__select").append($("<option>").val(0).html("no"));
   ajaxReturnData.forEach(function (value) {
     $("#name__select").append(
-      $("<option>").val(value["id"]).html(value["staff_name"])
+      $("<option>").val(value["id"]).html(value["staff_name"]),
     );
   });
 }
@@ -543,7 +543,7 @@ function ErrorCode() {
     $("#err_code").append(
       $("<option>")
         .val(value["id"])
-        .html(value["err_code"] + " " + value["error_name"])
+        .html(value["err_code"] + " " + value["error_name"]),
     );
   });
 }
@@ -943,8 +943,8 @@ $(document).on("keydown", "#container-temperature__table input", function (e) {
     $(this),
     getNextTargetIdName(
       $("#container-temperature__table .save-data"),
-      $(this).attr("id")
-    )
+      $(this).attr("id"),
+    ),
   );
 });
 
@@ -1295,11 +1295,11 @@ $(document).on("click", "#add_row__button", function () {
   // for (i = 0; i < 2; ++i) {
   let tdDom;
   tdDom = $("<td>").append(
-    $("<input>").val($("#length_exd").val()).addClass("need-clear")
+    $("<input>").val($("#length_exd").val()).addClass("need-clear"),
   );
   trDom.append(tdDom);
   tdDom = $("<td>").append(
-    $("<input>").val($("#quantity_cut").val()).addClass("need-clear")
+    $("<input>").val($("#quantity_cut").val()).addClass("need-clear"),
   );
   trDom.append(tdDom);
   // }
@@ -1599,14 +1599,14 @@ function fillReadData(data) {
     .append(
       $("<option>")
         .html(data[0]["press_directive_plan_date_at"])
-        .val(data[0]["press_directive_id"])
+        .val(data[0]["press_directive_id"]),
     );
   $("#directive_input__select")
     .empty()
     .append(
       $("<option>")
         .html(data[0]["ordersheet_number"])
-        .val(data[0]["ordersheet_id"])
+        .val(data[0]["ordersheet_id"]),
     );
 
   // label 要素にファイル名を代入する
@@ -2042,7 +2042,7 @@ function checkSum() {
     $("#rack__table tbody tr").each(function () {
       tt1 += Number(
         this.getElementsByTagName("td")[3].getElementsByTagName("input")[0]
-          .value
+          .value,
       );
     });
   }
@@ -2054,7 +2054,7 @@ function checkSum() {
   var tt2 = 0;
   $("#work-length__table tbody tr").each(function () {
     tt2 += Number(
-      this.getElementsByTagName("td")[1].getElementsByTagName("input")[0].value
+      this.getElementsByTagName("td")[1].getElementsByTagName("input")[0].value,
     );
   });
   $("#tt2").html(tt2);
@@ -2066,7 +2066,7 @@ function checkBilletQty() {
   var ttb = 0;
   $("#bundle__table tbody tr").each(function () {
     ttb += Number(
-      this.getElementsByTagName("td")[2].getElementsByTagName("input")[0].value
+      this.getElementsByTagName("td")[2].getElementsByTagName("input")[0].value,
     );
   });
   $("#ttb").html(ttb);
@@ -2587,7 +2587,7 @@ $("#add_cut__button").on("click", function () {
         .appendTo(newCutTr);
       newCutTr.append($("<td>").append($("<input>").val($("#cut_no2").val())));
       newCutTr.append(
-        $("<td>").append($("<input>").val($("#cut_start").val()))
+        $("<td>").append($("<input>").val($("#cut_start").val())),
       );
       newCutTr.append($("<td>").append($("<input>").val($("#cut_end").val())));
       newCutTr.appendTo("#cut__table tbody");
@@ -2854,7 +2854,7 @@ $(document).ready(function () {
     if (!originalOptions) {
       machineSelect.data(
         "originalOptions",
-        machineSelect.find("option").clone()
+        machineSelect.find("option").clone(),
       );
     }
 
@@ -3113,7 +3113,7 @@ $("#press-start__input, #press-finish__input").on("change", function () {
   checkTimeOrder(
     "#press-start__input",
     "#press-finish__input",
-    "#press-finish__input"
+    "#press-finish__input",
   );
 });
 

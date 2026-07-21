@@ -481,3 +481,64 @@ button {
 	color: red;
 	font-weight: bold;
 }
+#total-ng__table {
+	width: 100%;
+}
+#total-ng__table th:nth-child(7),
+#total-ng__table td:nth-child(7),
+#total-ng__table th:nth-child(10),
+#total-ng__table td:nth-child(10),
+#total-ng__table th:nth-child(12),
+#total-ng__table td:nth-child(12),
+#total-ng__table th:nth-child(14),
+#total-ng__table td:nth-child(14),
+#total-ng__table th:nth-child(19),
+#total-ng__table td:nth-child(19),
+#total-ng__table th:nth-child(20),
+#total-ng__table td:nth-child(20),
+#total-ng__table th:nth-child(22),
+#total-ng__table td:nth-child(22),
+#total-ng__table th:nth-child(25),
+#total-ng__table td:nth-child(25) {
+	display: none;
+}
+#total-ng__table th:nth-child(1),
+#total-ng__table td:nth-child(1),
+#total-ng__table th:nth-child(2),
+#total-ng__table td:nth-child(2),
+#total-ng__table th:nth-child(3),
+#total-ng__table td:nth-child(3),
+#total-ng__table th:nth-child(4),
+#total-ng__table td:nth-child(4),
+#total-ng__table th:nth-child(5),
+#total-ng__table td:nth-child(5),
+#total-ng__table th:nth-child(6),
+#total-ng__table td:nth-child(6),
+#total-ng__table th:nth-child(8),
+#total-ng__table td:nth-child(8),
+#total-ng__table th:nth-child(9),
+#total-ng__table td:nth-child(9),
+#total-ng__table th:nth-child(11),
+#total-ng__table td:nth-child(11),
+#total-ng__table th:nth-child(13),
+#total-ng__table td:nth-child(13),
+#total-ng__table th:nth-child(15),
+#total-ng__table td:nth-child(15),
+#total-ng__table th:nth-child(16),
+#total-ng__table td:nth-child(16),
+#total-ng__table th:nth-child(17),
+#total-ng__table td:nth-child(17),
+#total-ng__table th:nth-child(18),
+#total-ng__table td:nth-child(18),
+#total-ng__table th:nth-child(21),
+#total-ng__table td:nth-child(21),
+#total-ng__table th:nth-child(23),
+#total-ng__table td:nth-child(23),
+#total-ng__table th:nth-child(24),
+#total-ng__table td:nth-child(24),
+#total-ng__table th:nth-child(26),
+#total-ng__table td:nth-child(26),
+#total-ng__table th:nth-child(27),
+#total-ng__table td:nth-child(27) {
+	width: 39px;
+}

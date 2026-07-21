@@ -24,6 +24,7 @@
           m_quality_code
         WHERE
           m_quality_code.quality_code LIKE :ng_code
+           AND m_quality_code.id NOT IN (6, 9, 11, 13, 18, 19, 21, 24)
         ORDER BY m_quality_code.quality_code
       ");
 

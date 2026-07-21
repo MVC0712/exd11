@@ -357,6 +357,9 @@ $(document).on("click", "#summary_table tbody tr", function (e) {
     let h = ajaxReturnData[0].hole;
     let n = ajaxReturnData[0].n;
     let m = ajaxReturnData[0].m;
+    console.log("h:", h);
+    console.log("n:", n);
+    console.log("m:", m);
     press_id = $("#selected__tr").find("td").eq(0).html();
     var fileName = "./php/HardNess/SelPressDataV2.php";
     var sendData = {

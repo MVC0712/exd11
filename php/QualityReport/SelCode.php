@@ -22,7 +22,8 @@
       m_quality_code.quality_code
     FROM 
       m_quality_code
-        
+    WHERE
+        m_quality_code.id NOT IN (6, 9, 11, 13, 18, 19, 21, 24)   
       ");
 
       // $prepare->bindValue(':id', (INT)$_POST["id"], PDO::PARAM_INT);

@@ -2077,7 +2077,7 @@ function checkBilletQty() {
 $("#download_data").on("click", function () {
   let fileName;
   let sendData = new Object();
-  fileName = "./php/DailyReport/DownloadSummaryV03.php";
+  fileName = "./php/DailyReport/DownloadSummaryV04.php";
   myAjax.myAjax(fileName, sendData);
   downloadFile();
 });

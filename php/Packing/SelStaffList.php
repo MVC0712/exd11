@@ -20,6 +20,8 @@
           m_staff.id,
           m_staff.staff_name
         FROM m_staff
+        WHERE m_staff.leave_at IS NULL
+       OR m_staff.leave_at > CURDATE()
         ORDER BY m_staff.position_id DESC, m_staff.emploee_number
       ";
       $prepare = $dbh->prepare($sql);

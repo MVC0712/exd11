@@ -78,7 +78,7 @@ input {
 
 #summary__table th:nth-child(2),
 #summary__table td:nth-child(2) {
-	width: 40px;
+	width: 55px;
 }
 
 #summary__table td:nth-child(2) {
@@ -219,6 +219,7 @@ input {
 
 #summary__table td:nth-child(14) {
 	text-align: center;
+	font-size: 9px;
 }
 #summary__table th:nth-child(15),
 #summary__table td:nth-child(15) {
@@ -230,7 +231,24 @@ input {
 }
 
 /* Each Ng Qty */
-
+#summary__table th:nth-child(21),
+#summary__table td:nth-child(21),
+#summary__table th:nth-child(24),
+#summary__table td:nth-child(24),
+#summary__table th:nth-child(26),
+#summary__table td:nth-child(26),
+#summary__table th:nth-child(28),
+#summary__table td:nth-child(28),
+#summary__table th:nth-child(33),
+#summary__table td:nth-child(33),
+#summary__table th:nth-child(34),
+#summary__table td:nth-child(34),
+#summary__table th:nth-child(36),
+#summary__table td:nth-child(36),
+#summary__table th:nth-child(39),
+#summary__table td:nth-child(39) {
+	display: none;
+}
 #summary__table th:nth-child(16),
 #summary__table td:nth-child(16),
 #summary__table th:nth-child(17),
@@ -241,22 +259,14 @@ input {
 #summary__table td:nth-child(19),
 #summary__table th:nth-child(20),
 #summary__table td:nth-child(20),
-#summary__table th:nth-child(21),
-#summary__table td:nth-child(21),
 #summary__table th:nth-child(22),
 #summary__table td:nth-child(22),
 #summary__table th:nth-child(23),
 #summary__table td:nth-child(23),
-#summary__table th:nth-child(24),
-#summary__table td:nth-child(24),
 #summary__table th:nth-child(25),
 #summary__table td:nth-child(25),
-#summary__table th:nth-child(26),
-#summary__table td:nth-child(26),
 #summary__table th:nth-child(27),
 #summary__table td:nth-child(27),
-#summary__table th:nth-child(28),
-#summary__table td:nth-child(28),
 #summary__table th:nth-child(29),
 #summary__table td:nth-child(29),
 #summary__table th:nth-child(30),
@@ -265,27 +275,24 @@ input {
 #summary__table td:nth-child(31),
 #summary__table th:nth-child(32),
 #summary__table td:nth-child(32),
-#summary__table th:nth-child(33),
-#summary__table td:nth-child(33),
-#summary__table th:nth-child(34),
-#summary__table td:nth-child(34),
 #summary__table th:nth-child(35),
 #summary__table td:nth-child(35),
-#summary__table th:nth-child(36),
-#summary__table td:nth-child(36),
 #summary__table th:nth-child(37),
 #summary__table td:nth-child(37),
 #summary__table th:nth-child(38),
 #summary__table td:nth-child(38),
-#summary__table th:nth-child(39),
-#summary__table td:nth-child(39),
 #summary__table th:nth-child(40),
 #summary__table td:nth-child(40),
 #summary__table th:nth-child(41),
 #summary__table td:nth-child(41) {
 	width: 26px;
 }
-
+#summary__table th:nth-child(42),
+#summary__table td:nth-child(42),
+#summary__table th:nth-child(43),
+#summary__table td:nth-child(43) {
+	width: 100px;
+}
 #summary__table td:nth-child(15),
 #summary__table td:nth-child(16),
 #summary__table td:nth-child(17),
@@ -312,10 +319,13 @@ input {
 #summary__table td:nth-child(38),
 #summary__table td:nth-child(39),
 #summary__table td:nth-child(40),
-#summary__table td:nth-child(41) {
+#summary__table td:nth-child(41),
+#summary__table td:nth-child(42),
+#summary__table td:nth-child(43) {
 	text-align: right;
 }
-#summary__table td:nth-child(42) {
+#summary__table th:nth-child(44),
+#summary__table td:nth-child(44) {
 	display: none;
 }
 #date {
